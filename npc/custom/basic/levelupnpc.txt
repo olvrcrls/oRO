@@ -39,7 +39,7 @@
 // -- 30000,JobClassTicket,JobClassTicket,11,10,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ doevent "ClassHelper::OnPCLoginEvent"; },{},{}
 
 
-prontera,150,150,4	script	Class Helper	779,{
+askald,122,117,5	script	Class Helper	779,{
 
 
 // -- Configuration Option
