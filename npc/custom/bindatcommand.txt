@@ -1,0 +1,8 @@
+-	script	atcmd_example	-1,{
+	OnInit:
+		bindatcmd "return",strnpcinfo(3) + "::OnAtcommand";
+		end;
+	OnAtcommand:
+		specialeffect2 EF_ANGEL2;
+		end;
+}

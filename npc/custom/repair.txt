@@ -1,0 +1,14 @@
+-	script	Repairman	-1,{
+	if ( getbrokenid(1) == 0 ){
+	mes "[Repairman]";
+	mes "You don't have anything to be repaired!";
+	close;
+	}
+	repairall;
+	dispbottom "[Repairman]Repaired all broken equipment.";
+	end;
+}
+
+// Start adding duplicates here
+
+turbo_room,89,102,5	duplicate(Repairman)	Repairman#jin	65

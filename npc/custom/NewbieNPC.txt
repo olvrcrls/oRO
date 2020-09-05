@@ -1,0 +1,51 @@
+//---------------------------------------------------------------------------------------//
+//									Newbie gift NPC
+//	Version	2.0
+//	Author:	Wazaby
+//	Changelogs:
+//		1.	Making some cosmetic change to the script.
+//		2.	Change the actual item rewards list
+//---------------------------------------------------------------------------------------//
+
+turbo_room,89,116,5	script	Seyra	90,{
+	// Reward Array <Item Id>, <Qty>, <Refine>
+	// Set refine option to 0 if non-refinable.
+	setarray .@rwd[0],50000,50,0,50001,1,0,674,10,0,2357,1,9,2524,1,9,2421,1,9,2115,1,9;
+	query_sql ("SELECT `last_ip` FROM `login` WHERE `account_id`=" + getcharid(3) + "", .@lip$);
+
+	if ( getd("$" + .@lip$ + "_NG") > 0 || #NewbieGift > 0){
+		mes "[seyra]";
+		mes "I'm sorry, the rewards are exclusively for new characters.";
+		close;
+		}
+	mes "[seyra]";
+	mes "Welcome! Here are some free gifts";
+	mes "for newcomers:";
+	
+	// List all the items.
+	for ( set .@i, 0; .@i < getarraysize(.@rwd); set .@i, .@i + 3 )
+		// Check if refined option is not 0.
+		if(.@rwd[.@i+2] != 0) {
+			mes .@rwd[.@i+1] + " x +" + .@rwd[.@i+2] + " " + getitemname(.@rwd[.@i]);
+			}else{
+				mes .@rwd[.@i+1] + " x " + getitemname(.@rwd[.@i]);
+				}
+			close2;
+	// Get Items
+	for ( set .@i, 0; .@i < getarraysize(.@rwd); set .@i, .@i + 3 )
+	// Check if refined option is not 0.
+		if(.@rwd[.@i+2] != 0) {
+		// getitem2 <id>, <qty>, <identify>, <refine>, <attribute>, <card1>, <card2>, <card3>, <card4>
+			getitem2 .@rwd[.@i], .@rwd[.@i+1], 1, .@rwd[.@i+2], 0, 0, 0, 0, 0;
+				}else{
+					getitem .@rwd[.@i], .@rwd[.@i+1];
+					}
+	// Set variable to make sure player can't get items again.
+	set #NewbieGift, 1;
+	setd "$" + .@lip$ + "_NG", getd("$" + .@lip$ + "_NG") + 1;
+	end;
+
+OnInit:
+waitingroom "Newbie Gift!",0;
+end;
+}

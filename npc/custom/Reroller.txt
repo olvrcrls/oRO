@@ -1,0 +1,89 @@
+//-------------------------------------------------------------------------------//
+//				Custom Enchant NPC
+//
+//
+//
+//
+//--------------------------------------------------------------------------------//
+
+-	script	Reroller#ask	-1,{
+disable_items;
+	set .@action, 0;
+	mes "[Master Craftsman]";
+	mes "I have mastered the art of equipment enchantment.";
+	mes "Would you like to enchant something or reset enchantment?";
+	next;
+	switch(select("Reset Enchantment:Maybe next time.")) {
+	case 1:
+		set .@action,1;
+		break;
+	case 2:
+		mes "[Master Craftsman]";
+		mes "Okay, come again.";
+		close;
+	}
+	if(.@action == 1){
+		next;
+		mes "[Master Craftsman]";
+		mes "Choose any of the equipment you're wearing that you'd like to have the enchants reset.";
+		next;
+		setarray .@position$[1], "Head","Body","Left hand","Right hand","Robe","Shoes","Accessory 1","Accessory 2","Head 2","Head 3";
+		set .@menu$,"";
+		for(set .@i,1; .@i<=10; set .@i,.@i+1) {
+			if(getequipisequiped(.@i)) {
+				set .@menu$, .@menu$ + .@position$[.@i] + "-" + "[" + getequipname(.@i) + "]";
+				set .@equipped,1;
+			}
+			set .@menu$, .@menu$ + ":";
+		}
+		if (.@equipped == 0) {
+			mes "[Master Craftsman]";
+			mes "I don't think I can work on this.";
+			close;
+		}
+		set .@part, select(.@menu$);
+		next;
+
+		if(!getequipisequiped(.@part)) { //custom check
+			mes "[Master Craftsman]";
+			mes "Are you kidding me? You're not wearing anything on that slot.";
+			close;
+		}
+		
+		set .@enchantitemid, getequipid(.@part); // save id of the item
+		set .@slots, getitemslots(.@enchantitemid); // slots of the item
+		set .@refinelevel, getequiprefinerycnt(.@part); // refine level of the item
+		setarray .@equip_card[0], getequipcardid(.@part,0),getequipcardid(.@part,1),getequipcardid(.@part,2),getequipcardid(.@part,3); // get current cards
+			
+		// anti-hack
+		if (callfunc("F_IsEquipIDHack", .@part, .@enchantitemid) ||
+			callfunc("F_IsEquipCardHack", .@part, .@equip_card[0], .@equip_card[1], .@equip_card[2], .@equip_card[3])) {
+			mes "[Master Craftsman]";
+			mes "Hey! What do you think you're doing!";
+			mes "Don't you dare switch your gear while I'm working on them, okay?";
+			close;
+		}
+		
+		if (.@equip_card[3] != 0 && .@slots < 4) {
+			set .@equip_card[3], 0;
+		}
+		if (.@equip_card[2] != 0 && .@slots < 3) {
+			set .@equip_card[2], 0;
+		}
+		if (.@equip_card[1] != 0 && .@slots < 2) {
+			set .@equip_card[1], 0;
+		}
+		if (.@equip_card[0] != 0 && .@slots < 1) {
+			set .@equip_card[0], 0;
+		}
+		
+		specialeffect2 EF_REPAIRWEAPON;
+		delequip .@part;
+		getitem2 .@enchantitemid,1,1,.@refinelevel,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+		mes "[Master Craftsman]";
+		mes "All done!";
+		}
+	close;
+}
+
+askald,29,161,4	duplicate(Reroller#ask)	Reroller#ask1	395

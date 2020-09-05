@@ -1,0 +1,6 @@
+// Repairman
+//============================================================
+askald,132,87,3	script	Repairman#ask	86,{
+	callfunc "repairmain","Repairman";
+	end;
+}

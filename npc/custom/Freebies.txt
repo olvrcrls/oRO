@@ -1,0 +1,37 @@
+askald,120,114,5	script	Kiso	671,{
+setarray .@rwd[0],674,10,0,2357,1,9,2524,1,9,2421,1,9,2115,1,9;
+	if(!Freebies){
+		set Freebies,1;
+		mes "[Kiso]";
+		mes "Welcome! Here are some free gifts";
+		mes "for newcomers:";
+		next;
+		// List all the items.
+		for ( set .@i, 0; .@i < getarraysize(.@rwd); set .@i, .@i + 3 )
+		// Check if refined option is not 0.
+		if(.@rwd[.@i+2] != 0) {
+			mes .@rwd[.@i+1] + " x +" + .@rwd[.@i+2] + " " + getitemname(.@rwd[.@i]);
+			}else{
+				mes .@rwd[.@i+1] + " x " + getitemname(.@rwd[.@i]);
+				close2;
+				}
+			close2;
+		// Get Items
+		for ( set .@i, 0; .@i < getarraysize(.@rwd); set .@i, .@i + 3 )
+		// Check if refined option is not 0.
+			if(.@rwd[.@i+2] != 0) {
+			// getitem2 <id>, <qty>, <identify>, <refine>, <attribute>, <card1>, <card2>, <card3>, <card4>
+				getitem2 .@rwd[.@i], .@rwd[.@i+1], 1, .@rwd[.@i+2], 0, 0, 0, 0, 0;
+					}else{
+						getitem .@rwd[.@i], .@rwd[.@i+1];
+						}
+		//close;
+		}
+	else{
+		mes "You have claimed the Reward already.";
+		close;
+		}
+	OnInit:
+	waitingroom "Freebies Here",0;
+	end;
+}

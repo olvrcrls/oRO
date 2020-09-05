@@ -1,0 +1,162 @@
+The system is: Windows - 10.0.19041 - AMD64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.26.28801/bin/HostX64/x64/cl.exe 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+Microsoft (R) C/C++ Optimizing Compiler Version 19.26.28806 for x64
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+CMakeCCompilerId.c
+Microsoft (R) Incremental Linker Version 14.26.28806.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/out:CMakeCCompilerId.exe 
+CMakeCCompilerId.obj 
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.exe"
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.obj"
+
+The C compiler identification is MSVC, found in "C:/JinRO/rA-JinRO-29082020/rathena/out/build/x64-Debug (default)/CMakeFiles/3.17.20032601-MSVC_2/CompilerIdC/CMakeCCompilerId.exe"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.26.28801/bin/HostX64/x64/cl.exe 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+Microsoft (R) C/C++ Optimizing Compiler Version 19.26.28806 for x64
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+CMakeCXXCompilerId.cpp
+Microsoft (R) Incremental Linker Version 14.26.28806.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/out:CMakeCXXCompilerId.exe 
+CMakeCXXCompilerId.obj 
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.exe"
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.obj"
+
+The CXX compiler identification is MSVC, found in "C:/JinRO/rA-JinRO-29082020/rathena/out/build/x64-Debug (default)/CMakeFiles/3.17.20032601-MSVC_2/CompilerIdCXX/CMakeCXXCompilerId.exe"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: C:/JinRO/rA-JinRO-29082020/rathena/out/build/x64-Debug (default)/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_0ec8f && [1/2] Building C object CMakeFiles\cmTC_0ec8f.dir\testCCompiler.c.obj
+[2/2] Linking C executable cmTC_0ec8f.exe
+
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: C:/JinRO/rA-JinRO-29082020/rathena/out/build/x64-Debug (default)/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_4c558 && [1/2] Building C object CMakeFiles\cmTC_4c558.dir\CMakeCCompilerABI.c.obj
+[2/2] Linking C executable cmTC_4c558.exe
+
+
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: C:/JinRO/rA-JinRO-29082020/rathena/out/build/x64-Debug (default)/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_850e9 && [1/2] Building CXX object CMakeFiles\cmTC_850e9.dir\testCXXCompiler.cxx.obj
+[2/2] Linking CXX executable cmTC_850e9.exe
+
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: C:/JinRO/rA-JinRO-29082020/rathena/out/build/x64-Debug (default)/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_9a8c2 && [1/2] Building CXX object CMakeFiles\cmTC_9a8c2.dir\CMakeCXXCompilerABI.cpp.obj
+[2/2] Linking CXX executable cmTC_9a8c2.exe
+
+
+
+Determining if the include file sys/types.h exists passed with the following output:
+Change Dir: C:/JinRO/rA-JinRO-29082020/rathena/out/build/x64-Debug (default)/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_62063 && [1/2] Building C object CMakeFiles\cmTC_62063.dir\CheckIncludeFile.c.obj
+[2/2] Linking C executable cmTC_62063.exe
+
+
+
+Determining if the include file stdint.h exists passed with the following output:
+Change Dir: C:/JinRO/rA-JinRO-29082020/rathena/out/build/x64-Debug (default)/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_e4960 && [1/2] Building C object CMakeFiles\cmTC_e4960.dir\CheckIncludeFile.c.obj
+[2/2] Linking C executable cmTC_e4960.exe
+
+
+
+Determining if the include file stddef.h exists passed with the following output:
+Change Dir: C:/JinRO/rA-JinRO-29082020/rathena/out/build/x64-Debug (default)/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_c3253 && [1/2] Building C object CMakeFiles\cmTC_c3253.dir\CheckIncludeFile.c.obj
+[2/2] Linking C executable cmTC_c3253.exe
+
+
+
+Determining size of unsigned short passed with the following output:
+Change Dir: C:/JinRO/rA-JinRO-29082020/rathena/out/build/x64-Debug (default)/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_3dc88 && [1/2] Building C object CMakeFiles\cmTC_3dc88.dir\CMAKE_SIZEOF_UNSIGNED_SHORT.c.obj
+[2/2] Linking C executable cmTC_3dc88.exe
+
+
+
+Determining if the system is big endian passed with the following output:
+Change Dir: C:/JinRO/rA-JinRO-29082020/rathena/out/build/x64-Debug (default)/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_d8ee4 && [1/2] Building C object CMakeFiles\cmTC_d8ee4.dir\TestEndianess.c.obj
+[2/2] Linking C executable cmTC_d8ee4.exe
+
+
+TestEndianess.c:
+/* A 16 bit integer is required. */
+typedef unsigned short cmakeint16;
+
+/* On a little endian machine, these 16bit ints will give "THIS IS LITTLE ENDIAN."
+   On a big endian machine the characters will be exchanged pairwise. */
+const cmakeint16 info_little[] =  {0x4854, 0x5349, 0x4920, 0x2053, 0x494c, 0x5454, 0x454c, 0x4520, 0x444e, 0x4149, 0x2e4e, 0x0000};
+
+/* on a big endian machine, these 16bit ints will give "THIS IS BIG ENDIAN."
+   On a little endian machine the characters will be exchanged pairwise. */
+const cmakeint16 info_big[] =     {0x5448, 0x4953, 0x2049, 0x5320, 0x4249, 0x4720, 0x454e, 0x4449, 0x414e, 0x2e2e, 0x0000};
+
+#ifdef __CLASSIC_C__
+int main(argc, argv) int argc; char *argv[];
+#else
+int main(int argc, char *argv[])
+#endif
+{
+  int require = 0;
+  require += info_little[argc];
+  require += info_big[argc];
+  (void)argv;
+  return require;
+}
+
+
+Determining if the function strnlen exists passed with the following output:
+Change Dir: C:/JinRO/rA-JinRO-29082020/rathena/out/build/x64-Debug (default)/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_21023 && [1/2] Building C object CMakeFiles\cmTC_21023.dir\CheckFunctionExists.c.obj
+[2/2] Linking C executable cmTC_21023.exe
+
+
+
+Determining if the function getpid exists passed with the following output:
+Change Dir: C:/JinRO/rA-JinRO-29082020/rathena/out/build/x64-Debug (default)/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_e5691 && [1/2] Building C object CMakeFiles\cmTC_e5691.dir\CheckFunctionExists.c.obj
+[2/2] Linking C executable cmTC_e5691.exe
+
+
+

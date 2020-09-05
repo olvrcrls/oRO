@@ -1,0 +1,320 @@
+//--------------------------------------------------------------------------------------------------------------------//
+//												Enchant Mats
+//	Emulator:	rAthena
+//	Version:	1.0
+//	Date:		29-07-2020
+//	Author:		Wazaby
+//	Type:		Custom NPC Script for Enchant Materials
+//--------------------------------------------------------------------------------------------------------------------//
+
+askald,35,161,4	script	Enchant Mats	406,{
+	mes "[Enchant Mats]";
+	mes "Howdy!!";
+	mes "Which enchanter are you planning to use today?";
+	next;
+	switch(select("Old Glast Heim:Geffen Magic Tournament:Malangdo Enchant:Mora Enchant:Bio Labs Enchant:Terra Gloria Enchant:Banquet for Heroes Enchant:Rockridge Enchants:Verus Enchants:Vicious Mind:Close")){
+		case 1:
+			mes "[Enchant Mats]";
+			mes "Old Glast Heim";
+			close2;
+			callshop "oghmats",1;
+			end;
+		case 2:
+			mes "[Enchant Mats]";
+			mes "Geffen Magic Tournament";
+			close2;
+			callshop "gmtmats",1;
+			end;
+		case 3:
+			mes "[Enchant Mats]";
+			mes "Malangdo Enchant Materials";
+			next;
+			switch(select("Materials:Daggers:Katars:One-Handed Axes:Two-Handed Axes:One-Handed Swords:Two-Handed Swords:One-Handed Spears:Two-Handed Spears:One-Handed Staves:Two-Handed Staves:Maces:Books:Knuckles:Bows:Instruments:Whips:Guns:Close")){
+				case 1: 	//Materials
+					mes "[Malangdo Enchant Mats]";
+					close2;
+					callshop "malmats",1;
+					end;
+				case 2: 	//Daggers
+					mes "[Malangdo Enchant Items]";
+					mes "Daggers";
+					close2;
+					callshop "maldaggers",1;
+					end;
+				case 3: 	//Katars
+					mes "[Malangdo Enchant Items]";
+					mes "Katars";
+					close2;
+					callshop "malkatars",1;
+					end;
+				case 4:		//One-Handed Axes
+					mes "[Malangdo Enchant Items]";
+					mes "One-Handed Axes";
+					close2;
+					callshop "malohaxe",1;
+					end;
+				case 5:		//Two-Handed Axes
+					mes "[Malangdo Enchant Items]";
+					mes "Two-Handed Axes";
+					close2;
+					callshop "malthaxe",1;
+					end;
+				case 6:		//One-Handed Swords
+					mes "[Malangdo Enchant Items]";
+					mes "One-Handed Swords";
+					close2;
+					callshop "malohsword",1;
+					end;
+				case 7:		//Two-Handed Swords
+					mes "[Malangdo Enchant Items]";
+					mes "Two-Handed Swords";
+					close2;
+					callshop "malthsword",1;
+					end;
+				case 8:		//One-Handed Spears
+					mes "[Malangdo Enchant Items]";
+					mes "One-Handed Spears";
+					close2;
+					callshop "malohspear",1;
+					end;
+				case 9:		//Two-Handed Spears
+					mes "[Malangdo Enchant Items]";
+					mes "Two-Handed Spears";
+					close2;
+					callshop "malthspear",1;
+					end;
+				case 10:	//One-Handed Staves
+					mes "[Malangdo Enchant Items]";
+					mes "One-Handed Staves";
+					close2;
+					callshop "malohstaff",1;
+					end;
+				case 11:	//Two-Handed Staves
+					mes "[Malangdo Enchant Items]";
+					mes "Two-Handed Staves";
+					close2;
+					callshop "malthstaff",1;
+					end;
+				case 12:	//Maces
+					mes "[Malangdo Enchant Items]";
+					mes "Maces";
+					close2;
+					callshop "malmaces",1;
+					end;
+				case 13:	//Books
+					mes "[Malangdo Enchant Items]";
+					mes "Books";
+					close2;
+					callshop "malbooks",1;
+					end;
+				case 14:	//Knuckles
+					mes "[Malangdo Enchant Items]";
+					mes "Knuckles";
+					close2;
+					callshop "malknuckles",1;
+					end;
+				case 15:	//Bows
+					mes "[Malangdo Enchant Items]";
+					mes "Bows";
+					close2;
+					callshop "malbows",1;
+					end;
+				case 16:	//Instruments
+					mes "[Malangdo Enchant Items]";
+					mes "Instruments";
+					close2;
+					callshop "malinstru",1;
+					end;
+				case 17:	//Whips
+					mes "[Malangdo Enchant Items]";
+					mes "Whips";
+					close2;
+					callshop "malwhips",1;
+					end;
+				case 18:	//Guns
+					mes "[Malangdo Enchant Items]";
+					mes "Guns";
+					close2;
+					callshop "malguns",1;
+					end;
+				default:
+					mes "Thanks for going through our menu.";
+					close;
+					end;
+			}
+		case 4:
+			mes "[Enchant Mats]";
+			mes "Mora Enchant Materials";
+			next;
+			switch(select("Materials:Arch Bishop:Warlock:Rune Knight:Guillotine Cross:Ranger:Close")){
+				case 1:	//Materials
+					mes "Materials required for Mora Enchant";
+					close2;
+					callshop "moramats",1;
+					end;
+				case 2:	//Arch Bishop
+					mes "";
+					close2;
+					callshop "abmora",1;
+					end;
+				case 3:	//Warlock
+					mes "";
+					close2;
+					callshop "wlmora",1;
+					end;
+				case 4:	//Rune Knight
+					mes "";
+					close2;
+					callshop "rkmora",1;
+					end;
+				case 5:	//Guillotine Cross
+					mes "";
+					close2;
+					callshop "gxmora",1;
+					end;
+				case 6:	//Ranger
+					mes "";
+					close2;
+					callshop "rangmora",1;
+					end;
+				default:	//Close
+					mes "Okay, come back when you are ready to roll.";
+					close;
+					end;
+			}
+		case 5: // Bio Lab
+			mes "[Enchant Mats]";
+			mes "Bio Lab Enchant Materials";
+			next;
+			switch(select("Enchant Materials:Weapons:Gears:Close")){
+				case 1: // Enchant Materials
+					mes "Enchant Mats";
+					close2;
+					callshop "biomats",1;
+					end;
+				case 2:	// Weapons
+					mes "Bio Lab Weapons";
+					close2;
+					callshop "bioweapons",1;
+					end;
+				case 3:	// Gears
+					mes "Bio Lab Gears";
+					close2;
+					callshop "biogears",1;
+					end;
+				default:
+					mes "Come back when you've decided.";
+					close;
+					end;
+			}
+			end;
+		case 6:	// Terra Gloria
+			mes "[Enchant Mats]";
+			mes "Terra Gloria Quest Enchant Materials";
+			close2;
+			callshop "terragloria",1;
+			end;
+		case 7:	// Banquet for Heroes
+			mes "[Enchant Mats]";
+			mes "Banquet for Heroes Materials";
+			close2;
+			callshop "banquet",1;
+			end;
+		case 8: // Rockridge Enchants
+			mes "Rockridge Enchant Materials";
+			close2;
+			callshop "rockridge",1;
+			end;
+		case 9:	// Excellion Gears
+			mes "[Verus Gears & Enchants]";
+			next;
+			switch(select("Excellion Armor & Mats:Blueprints:Charleston Equipment:Close")){
+				case 1: // Excellion Armor & Materials
+					mes "";
+					close2;
+					callshop "excelarmor",1;
+					end;
+				case 2: // Blueprints
+					mes "Excellion Blueprints";
+					close2;
+					callshop "exblueprints",1;
+					end;
+				case 3: // Charleston Equip
+					mes "Charleston Equip and Mats";
+					close2;
+					callshop "charlestoneq",1;
+					end;
+				default:
+					mes "Okay Bye.";
+					close;
+					end;
+			}
+			end;
+		case 10: // Vicious Mind
+			mes "[Enchant Mats]";
+			mes "This is where you will find Sky Fortress Weapons";
+			close2;
+			callshop "skyfortress",1;
+			end;
+		default:
+			mes "[Enchant Mats]";
+			mes "Have a nice day!";
+			close;
+			end;
+	} // first switch case ends
+} // script ends
+	
+// Add shops here and then use the callshop function ----------------------------------------------------------//
+	
+-	shop	oghmats	-1,6608:-1,6755:-1,22006:-1,22007:-1,22008:-1,22009:-1,22010:-1,22011:-1,22113:-1,22114:-1,22115:-1,22116:-1,22117:-1,22118:-1
+-	shop	gmtmats	-1,6671:-1,2185:-1,2186:-1,2963:-1,2964:-1,15073:-1,15074:-1
+	
+// Shops for Malangdo enchants
+
+-	shop	malmats	-1,6417:-1,6423:-1,6418:-1,6419:-1,6420:-1,6421:-1,6422:-1
+-	shop	maldaggers	-1,1225:-1,1227:-1,1229:-1,1232:-1,1233:-1,1235:-1,1236:-1,1237:-1,1240:-1,1241:-1,1242:-1,1244:-1,13032:-1,13046:-1,13047:-1,13061:-1,1223:-1,1228:-1,1234:-1,13017:-1,1231:-1,13062:-1,13031:-1
+-	shop	malkatars	-1,1271:-1,1263:-1,1270:-1,1284:-1,1285:-1,1268:-1,1269:-1,1265:-1,1261:-1,28010:-1
+-	shop	malohaxe	-1,1305:-1,1311:-1
+-	shop	malthaxe	-1,1364:-1,1365:-1,1385:-1,1367:-1,1368:-1,1387:-1,1369:-1,1363:-1,1376:-1,1377:-1,1366:-1,1370:-1
+-	shop	malohsword	-1,1131:-1,1133:-1,1134:-1,1135:-1,1136:-1,1138:-1,1139:-1,1140:-1,1141:-1,1148:-1,13421:-1,13431:-1,1137:-1,1130:-1,1132:-1,13412:-1,13413:-1,13460:-1,13461:-1,13462:-1
+-	shop	malthsword	-1,1164:-1,1166:-1,1167:-1,1168:-1,1170:-1,1176:-1,1191:-1,1182:-1,1188:-1,1189:-1,1196:-1,1165:-1,1169:-1,1175:-1,1185:-1,1186:-1,21018:-1
+-	shop	malohspear	-1,1420:-1,1413:-1,1414:-1,1416:-1,1433:-1,1415:-1,1421:-1,1422:-1,1477:-1
+-	shop	malthspear	-1,1466:-1,1467:-1,1468:-1,1469:-1,1470:-1,1471:-1,1474:-1,1477:-1,1478:-1,1484:-1
+-	shop	malohstaff	-1,1616:-1,1629:-1,1631:-1,1643:-1,1654:-1,1636:-1,1637:-1,1697:-1,1693:-1
+-	shop	malthstaff	-1,1473:-1,2004:-1,2005:-1,2001:-1,2000:-1,2027:-1
+-	shop	malmaces	-1,1524:-1,1525:-1,1527:-1,1541:-1,16000:-1,16001:-1,16010:-1,1523:-1,1526:-1,1528:-1
+-	shop	malbooks	-1,1557:-1,1558:-1,1559:-1,1561:-1,1562:-1,1565:-1
+-	shop	malknuckles	-1,1813:-1,1814:-1,1815:-1,1830:-1
+-	shop	malbows	-1,1719:-1,1722:-1,1724:-1,1725:-1,1737:-1,1740:-1,1741:-1,1745:-1,18103:-1,1720:-1
+-	shop	malinstru	-1,1913:-1,1918:-1,1920:-1,1926:-1,1930:-1
+-	shop	malwhips	-1,1962:-1,1963:-1,1964:-1,1969:-1,1970:-1,1972:-1,1973:-1,1974:-1,1979:-1,1984:-1,1985:-1
+-	shop	malguns	-1,28226:-1,28225:-1,13138:-1,28224:-1,28223:-1
+
+// Shops for Mora enchants
+-	shop	moramats	-1,6380:-1
+-	shop	abmora	-1,2864:-1,2865:-1,2866:-1,2471:-1,2472:-1,2569:-1,2570:-1,15029:-1,15030:-1,1657:-1,16013:-1,2156:-1
+-	shop	wlmora	-1,2467:-1,2468:-1,2469:-1,2470:-1,2859:-1,2860:-1,2861:-1,2862:-1,15025:-1,15026:-1,15027:-1,15028:-1,2007:-1,2008:-1,2009:-1,2010:-1
+-	shop	rkmora	-1,2475:-1,2476:-1,2574:-1,2575:-1,15036:-1,15037:-1,2883:-1,2884:-1
+-	shop	gxmora	-1,2477:-1,2478:-1,2577:-1,2578:-1,15038:-1,15039:-1,2886:-1,2887:-1
+-	shop	rangmora	-1,2479:-1,2480:-1,2580:-1,2581:-1,15042:-1,15043:-1,2890:-1,2891:-1
+
+// Shops for Bio Labs
+-	shop	biomats	-1,6471:-1,6470:-1,6469:-1
+-	shop	bioweapons	-1,1290:-1,1291:-1,1392:-1,1393:-1,1435:-1,1490:-1,1584:-1,1659:-1,13069:-1,13070:-1,16017:-1,18109:-1,18110:-1,18111:-1
+-	shop	biogears	-1,18570:-1,15044:-1,2582:-1,2160:-1,2161:-1,2162:-1,2892:-1
+
+// Shops for Banquet for heroes
+-	shop	banquet	-1,6919:-1,28354:-1,28355:-1,28900:-1,28356:-1,15146:-1,15147:-1
+
+// Shops for Terra Gloria
+-	shop	terragloria	-1,25155:-1,28425:-1,28426:-1,15163:-1,15164:-1
+
+// Shops for Rockridge enchants
+-	shop	rockridge	-1,25250:-1,15177:-1,20820:-1,28441:-1,14178:-1,20821:-1,28442:-1,15180:-1,20822:-1,15179:-1,15176:-1
+// Shops for Excellion Enchants
+-	shop	excelarmor	-1,6962:-1,6961:-1,15128:-1,20773:-1
+-	shop	exblueprints	-1,6965:-1,6966:-1,6967:-1,6968:-1,6969:-1,6970:-1,6972:-1,6973:-1,6974:-1,6975:-1,6976:-1,6977:-1,6978:-1,6979:-1,6980:-1,6981:-1,6982:-1,6983:-1,6984:-1,6985:-1,6986:-1
+-	shop	charlestoneq	-1,22044:-1,22043:-1,20733:-1,20732:-1,15111:-1,15110:-1,2996:-1,2995:-1
+
+//Shop for Sky Fortress
+-	shop	skyfortress	-1,28605:-1,13328:-1,1800:-1,1450:-1,16041:-1,18121:-1,13128:-1,1600:-1,2026:-1,28107:-1,28706:-1,28008:-1,13455:-1,1400:-1,21016:-1,1900:-1,1996:-1

@@ -1,0 +1,22 @@
+askald,157,248,4	script	Change Dress	509,{
+	if ( !(eaclass() & EAJL_THIRD) || BaseJob == Job_SuperNovice ) {
+		mes "I'm sorry, but you do not have 3rd class.";
+		close;
+	}
+	mes "Hi "+strcharinfo(0)+" do you want to change your dress?";
+	next;
+	if ( select ( "Yes", "No" ) == 2 ) close;
+	if ( Zeny < 10 ) {
+		mes "You need 10 Zeny";
+		close;
+	}
+	.@s = select("Primary Dress", "Second Dress") -1;
+	if ( getlook(LOOK_BODY2) == .@s ) {
+		mes "You already wearing that dress";
+		close;
+	}
+	setlook LOOK_BODY2, .@s;
+	Zeny -= 10;
+	mes "Done!";
+	close;
+}

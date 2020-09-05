@@ -1,0 +1,227 @@
+//--------------------------- Instance Shop --------------------------------//
+
+askald,68,154,4	script	INSTANSE#jin	964,{
+	mes "[INSTANSE]";
+	mes "Hello there!";
+	mes "I have shops for all the instances.";
+	mes "They are sorted alphabetically.";
+	mes "Choose from the below menu.";
+	next;
+	switch(select("Instance from [A] to [E]:Instance from [E] to [H]:Instance from [I] to [N]:Instance from [O] to [S]:Instance from [T] to [Z]:Close")){
+	case 1:
+		switch(select("Airship Raid:Bakonawa Lake:Bangungot's Hospital:Buwaya Cave:Charleston Crisis:Devil's Tower:Endless Tower:I'll Pass")) {
+		case 1:
+			mes "Airship Raid";
+			close2;
+			callshop "airship",1;
+			end;
+		case 2:
+			mes "Bakonawa Lake";
+			close2;
+			callshop "bakonawa",1;
+			end;
+		case 3:
+			mes "Bangungot's Hospital";
+			close2;
+			callshop "bangungot",1;
+			end;
+		case 4:
+			mes	"Buwaya Cave";
+			close2;
+			callshop "buwaya",1;
+			end;
+		case 5:
+			mes	"Charleston Crisis";
+			close2;
+			callshop "charleston",1;
+			end;
+		case 6:
+			mes	"Devil's Tower";
+			close2;
+			callshop "deviltower",1;
+			end;
+		case 7:
+			mes	"Endless Tower";
+			close2;
+			callshop "endless",1;
+			end;
+		default:
+			mes "Loooks like you dont want anything here!";
+			close;
+			}
+		end;
+	case 2:
+		switch(select("Faceworm's nest:Geffen Magic Tournament:Ghost Palace:Heaert Hunter War Base:Horror Toy Factory:I'll Pass")){
+			case 1:
+				mes "Faceworm Nest";
+				close2;
+				callshop "faceworm",1;
+				end;
+			case 2:
+				mes "Geffen Magic Tournament";
+				close2;
+				callshop "gmt",1;
+				end;
+			case 3:
+				mes "Ghost Palace";
+				//close2;
+				switch(select("Weapons:Armors:Nothing")){
+				case 1:
+					mes "Ghost Palace Weapons";
+					close2;
+					callshop "ghostpalacewep",1;
+					end;
+				case 2:
+					mes "Ghost Palace Armor";
+					close2;
+					callshop "ghostpalacearm",1;
+					end;
+				default:
+					mes"Don't fool around.";
+					close;
+					end;
+				}
+			case 4:
+				mes "Heart Hunter War Base";
+				close2;
+				callshop "hearthunter",1;
+				end;
+			case 5:
+				mes "Horror Toy Factory";
+				close2;
+				callshop "htf",1;
+				end;
+			default:
+				mes "Loooks like you dont want anything here!";
+				close;
+			end;
+			}
+	case 3:
+		switch(select("Isle of Bios:Infinity Space:Malangdo Culvert:Niddoggur's Nest:Nightmarish Jitterbug:I'll Pass")){
+			case 1:
+				mes "Isle of Bios";
+				close2;
+				callshop "bios",1;
+				end;
+			case 2:
+				mes "Infinity Space";
+				close2;
+				callshop "infinityspace",1;
+				end;
+			case 3:
+				mes "Malangdo Culvert";
+				close2;
+				callshop "malangdo",1;
+				end;
+			case 4:
+				mes "Niddhoggur's Nest";
+				close2;
+				callshop "niddhog",1;
+				end;
+			case 5:
+				mes "Nightmarish Jitterbug";
+				close2;
+				callshop "jitterbug",1;
+				end;
+			default:
+				mes "lookgs like you dont want anything here!";
+				close;
+				end;
+
+		}
+	case 4:
+		switch(select("Old Glast Heim:Room of Consciousness:Sealed Shrine:Sarah anf Fenir:Sky Fortress:I'll Pass")){
+			case 1:
+				mes "Old Glast Heim";
+				close2;
+				callshop "ogh",1;
+				end;
+			case 2:
+				mes "Room of Consciousness";
+				close2;
+				callshop "bijou",1;
+				end;
+			case 3:
+				mes "Sealed Shrine";
+				close2;
+				callshop "sealedshrine",1;
+				end;
+			case 4:
+				mes "Sarah and Fenrir";
+				close2;
+				callshop "sarahandfenrir",1;
+				end;
+			case 5:
+				mes "Sky Fortress";
+				close2;
+				callshop "skyfort",1;
+				end;
+			default:
+				mes "Don't fool around please.";
+				close;
+				end;
+		}
+	case 5:
+		switch(select("Temple of Demon God:The Last Room:Wolchev's Laboratory:Werner's Laboratory:I'll Pass")){
+			case 1:
+				mes "Temple of Demon God";
+				close2;
+				callshop "todg",1;
+				end;
+			case 2:
+				mes "The Last Room";
+				close2;
+				callshop "lastroom",1;
+				end;
+			case 3:
+				mes "Wolchev's Lab";
+				close2;
+				callshop "wolchevlab",1;
+				end;
+			case 4:
+				mes "Werner's Laboratory";
+				close2;
+				callshop "wernerslab",1;
+				end;
+			default:
+				mes "You seem to be fooling around with me.";
+				close;
+				end;
+		}
+
+	default:
+		mes "Oge! Come back when you want to buy something.";
+		close;
+		end;
+	}
+}
+
+// All the shops are set up here. Just add here and then use callshop above in the switch function.
+
+-	shop	airship	-1,22046:-1,15116:-1,20743:-1,19914:-1,15117:-1,20744:-1,22047:-1
+-	shop	bakonawa	-1,6516:-1,6523:-1,15051:-1,2169:-1,6499:-1
+-	shop	bangungot	-1,6517:-1,6524:-1,6499:-1,2491:-1,2169:-1
+-	shop	buwaya	-1,6518:-1,6525:-1,6499:-1,2590:-1,2169:-1
+-	shop	charleston	-1,6752:-1,16031:-1,16033:-1,21011:-1,22043:-1,22044:-1,28101:-1
+-	shop	deviltower	-1,1671:-1,13094:-1,16027:-1,18120:-1,21010:-1,28001:-1
+-	shop	endless	-1,1185:-1
+-	shop	faceworm	-1,6649:-1,13090:-1,20718:-1
+-	shop	gmt	-1,6671:-1,2963:-1,2964:-1,15073:-1,15074:-1
+-	shop	ghostpalacewep	-1,28100:-1,18119:-1,13093:-1,21009:-1,16028:-1,28000:-1,1836:-1,1496:-1,1438:-1,1669:-1,13441:-1,2023:-1,1933:-1,1988:-1
+-	shop	ghostpalacearm	-1,15090:-1,22033:-1,20721:-1,18820:-1,15091:-1,2187:-1
+-	shop	hearthunter	-1,13138:-1,28223:-1,28224:-1,28225:-1,28226:-1,13460:-1,13461:-1,13462:-1
+-	shop	htf	-1,13442:-1,18848:-1,18849:-1,2977:-1,2978:-1,2976:-1,2980:-1,16029:-1,7642:-1
+-	shop	bios	-1,6684:-1,15093:-1,15094:-1,15095:-1,15096:-1,15097:-1,15098:-1,22035:-1,22036:-1,22037:-1
+-	shop	infinityspace	-1,6905:-1,13126:-1,21014:-1,28703:-1,1938:-1,28105:-1,2024:-1,1994:-1,16038:-1,18128:-1,13323:-1,19033:-1,15141:-1,20779:-1,22075:-1
+-	shop	malangdo	-1,6423:-1,6418:-1,6419:-1
+-	shop	niddhog	-1,6081:-1,6080:-1,1417:-1,2554:-1
+-	shop	jitterbug	-1,18123:-1,18122:-1,2990:-1,2991:-1,2989:-1,1990:-1,2988:-1,1935:-1,15100:-1,15101:-1,2992:-1
+-	shop	ogh	-1,6607:-1,6608:-1,6755:-1,21007:-1,13440:-1,2022:-1,13086:-1,15066:-1,2949:-1,22000:-1,22002:-1,22003:-1,22001:-1,22004:-1,22005:-1,22107:-1,22109:-1,22110:-1,22108:-1,22111:-1,22112:-1
+-	shop	bijou	-1,6919:-1,16039:-1,6941:-1
+-	shop	sealedshrine	-1,1181:-1,6004:-1,5374:-1,5518:-1,2898:-1
+-	shop	sarahandfenrir	-1,6803:-1,15121:-1,28310:-1,28311:-1
+-	shop	skyfort	-1,28605:-1,13328:-1,1800:-1,1450:-1,16041:-1,18121:-1,13128:-1,1600:-1,2026:-1,28107:-1,28706:-1,28008:-1,13455:-1,1400:-1,21016:-1,1900:-1,1996:-1,21018:-1,2027:-1,28010:-1
+-	shop	todg	-1,4910:-1,4913:-1,4916:-1,4919:-1,4922:-1,4925:-1
+-	shop	lastroom	-1,18997:-1,28326:-1,28327:-1,1531:-1
+-	shop	wolchevlab	-1,1527:-1,1234:-1,1230:-1,1228:-1,2160:-1,2161:-1,2162:-1,2582:-1,2892:-1,15044:-1,18570:-1,1290:-1,1291:-1,1392:-1,1393:-1,1435:-1,1490:-1,1584:-1,1659:-1,13069:-1,13070:-1,16017:-1,18109:-1,18110:-1,18111:-1
+-	shop	wernerslab	-1,22141:-1,20856:-1,15212:-1,28913:-1

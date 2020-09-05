@@ -1,0 +1,54 @@
+//--------------------------------------------------------------------------------------------------------------------//
+//												DORAM SHOP NPC
+//	Emulator:	rAthena
+//	Version:	1.0
+//	Date:		30-07-2020
+//	Author:		Wazaby
+//	Type:		Custom NPC Script for doram race
+//--------------------------------------------------------------------------------------------------------------------//
+
+askald,56,154,4	script	Doraemon#jin	556,{
+	mes "[Meow Meow]";
+	mes "Hello Meow!";
+	mes "So you've decided to buy items for your class?";
+	mes "Go ahead, choose your class from our exclusive menu.";
+	next;
+	switch(select("Combo Weapons:Magic Weapons:Physical Weapons:Accessories:Armor:Close")){
+		case 1: // Basic or Combo Weapons
+			mes "Basic or Combo Weapons";
+			close2;
+			callshop "dorambasicshop",1;
+			end;
+		case 2: // Magic bases weapons for Doram
+			mes "Magic based weapons";
+			close2;
+			callshop "doramwepmagic",1;
+			end;
+		case 3:	// Phyical or ranged weapons for Doram race
+			mes "Physical or Ranged Weapons";
+			close2;
+			callshop "doramwepphysical",1;
+			end;
+		case 4:
+			mes "Summoner charms";
+			close2;
+			callshop "doramaccessories",1;
+			end;
+		case 5:
+			mes "Summoner Armor";
+			close2;
+			callshop "doramarmor",1;
+			end;
+		default:
+			mes "Okie Dokie.";
+			close;
+			end;
+	} // switch ends
+} // script ends
+
+// Setup shops here
+-	shop	dorambasicshop	-1,1681:-1,26100:-1,26101:-1
+-	shop	doramwepmagic	-1,1687:-1,1683:-1,1685:-1,1691:-1,26155:-1,1692:-1,1693:-1
+-	shop	doramwepphysical	-1,1684:-1,1686:-1,1694:-1,1695:-1,26155:-1,1696:-1,1697:-1
+-	shop	doramaccessories	-1,28380:-1,28381:-1,28382:-1,28422:-1,28423:-1,28424:-1,28413:-1,28416:-1,28419:-1,28414:-1,28417:-1,28420:-1,28415:-1,28418:-1,28421:-1
+-	shop	doramarmor	-1,15156:-1,20790:-1,22085:-1,15129:-1,20789:-1,22084:-1
