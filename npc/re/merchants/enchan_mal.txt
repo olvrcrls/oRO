@@ -19,7 +19,7 @@
 
 // Enchanter NPC :: mal_yong
 //============================================================
-malangdo,213,167,4	script	Mayomayo#mal	555,{
+askald,40,172,4	script	Mayomayo#mal	555,{
 	disable_items;
 	if (checkweight(1201,1) == 0) {
 		mes "You have too many kinds of objects. Let's try to continue after reducing those objects.";
