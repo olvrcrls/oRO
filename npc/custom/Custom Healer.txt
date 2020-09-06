@@ -59,6 +59,7 @@
 	sc_end	SC__STRIPACCESSORY;
 	sc_end	SC_FREEZING;
 	sc_end	SC_CURSEDCIRCLE_TARGET;
+	sc_end  SC_STASIS;
 
 //	give players buff ... don't give too much otherwise player wanna spam
 	.@time = 300000; // the buff last 5 minutes
