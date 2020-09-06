@@ -86,3 +86,4 @@ malaya,227,204,6	duplicate(Healer)	Healer#ma	630
 mora,55,152,4	duplicate(Healer)	Healer#mora	630
 turbo_room,100,121,4	duplicate(Healer)	Healer#jin	630
 askald,128,118,3	duplicate(Healer)	Healer#ask	630
+askald,152,42,3	duplicate(Healer)	Healer#ask	630
