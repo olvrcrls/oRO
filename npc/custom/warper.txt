@@ -126,16 +126,16 @@ function Restrict {
 // --------------------------------------------------
 	Towns:
 // --------------------------------------------------
-menu	"Asklad",T1, "Alberta",T2, "Aldebaran",T3, "Amatsu",T4, "Ayothaya",T5,
+menu	"Askald",T1, "Alberta",T2, "Aldebaran",T3, "Amatsu",T4, "Ayothaya",T5,
     	"Brasilis",T6, "Comodo",T7, "Dewata",T8, "Eclage",T9, "Einbech",T10, 
     	"Einbroch",T11, "El Dicastes",T12, "Geffen",T13, "Kunlun",T14, "Hugel",T15,
     	"Izlude",T16, "Jawaii",T17, "Lasagna",T18, "Lighthalzen",T19, "Luoyang",T20,
 		"Lutie",T21, "Malangdo",T22, "Malaya",T23, "Manuk",T24,
 		"Midgarts Expedition Camp",T25, "Mora",T26, "Morocc",T27, "Moscovia",T28,
 		"Nameless Island",T29, "Niflheim",T30, "Payon",T31, "Rachel",T32, "Splendide",T33,
-		"Thor Camp",T34, "Umbala",T35, "Veins",T36, "Juno",T37, "Verus",T38; "Prontera",T39;
+		"Thor Camp",T34, "Umbala",T35, "Veins",T36, "Juno",T37, "Verus",T38, "Prontera",T39;
 
-T1: Go("asklad",138,128);
+T1: Go("askald",128,112);
 T2: Go("alberta",28,234);
 T3: Go("aldebaran",140,131);
 T4: Go("amatsu",198,84);
