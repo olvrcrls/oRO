@@ -27,4 +27,5 @@
 22540,60,1  // Lux Anima Rune
 
 // Arch Bishop
-12333,3,1  // Ancilla
+12333,200,1  // Ancilla set to 200
+
