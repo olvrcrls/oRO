@@ -162,3 +162,4 @@ malaya,227,204,6	duplicate(Buffer)	Buffer#ma	630
 mora,55,152,4	duplicate(Buffer)	Buffer#mora	630
 //turbo_room,100,121,4	duplicate(Buffer)	Buffer#jin	630
 askald,128,118,3	duplicate(Buffer)	Buffer#ask	630
+askald,152,44,3	duplicate(Buffer)	Buffer#ask2	630
