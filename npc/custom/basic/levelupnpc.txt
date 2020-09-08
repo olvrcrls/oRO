@@ -45,13 +45,13 @@ askald,122,117,5	script	Class Helper	779,{
 // -- Configuration Option
 set .npcname$,"[ ^0000FF Class Helper ^000000 ]";
 set .InfoMenu,0;					// Classes Informations Option [ 0 - Disable / 1 - Enable ]
-set .1stClassMenu,1;				// First Job Class Option [ 0 - Disable / 1 - Enable ]
-set .2ndClassMenu,1;				// Second Job Class Option [ 0 - Disable / 1 - Enable ]
-set .High1stClassMenu,1;			// High 1st Class Option [ 0 - Disable / 1 - Enable ]
-set .Trans2ndClassMenu,1;			// Transcendent Class Option [ 0 - Disable / 1 - Enable ]
+set .1stClassMenu,0;				// First Job Class Option [ 0 - Disable / 1 - Enable ]
+set .2ndClassMenu,0;				// Second Job Class Option [ 0 - Disable / 1 - Enable ]
+set .High1stClassMenu,0;			// High 1st Class Option [ 0 - Disable / 1 - Enable ]
+set .Trans2ndClassMenu,0;			// Transcendent Class Option [ 0 - Disable / 1 - Enable ]
 set .Trans3rdClassMenu,1;			// Third Job Class Option [ 0 - Disable / 1 - Enable ]
 set .ExpandedClassMenu,1;			// Expanded Class Option [ 0 - Disable / 1 - Enable ]
-set .BabyClassMenu,1;				// Baby Job Class Option [ 0 - Disable / 1 - Enable ]
+set .BabyClassMenu,0;				// Baby Job Class Option [ 0 - Disable / 1 - Enable ]
 set .Baby3rdClassMenu,1;			// Baby Third Job Class Option [ 0 - Disable / 1 - Enable ]
 set .Allskills,0;					// Complete Skills Option [ 0 - Disable / 1 - Enable ]
 
