@@ -79,6 +79,171 @@
 14590,4		// Pty_Assumptio_Scroll
 
 //----------------------------------------------------------------------------
+//	War of Emperium
+//----------------------------------------------------------------------------
+// God Items
+1530,4		// Mjolnir
+2383,4		// Brynhild
+2410,4		// Sleipnir
+2541,4		// Asprika
+2629,4		// Magingiorde
+2630,4		// Brysinggamen
+7058,4		// Gullraifnir
+
+// Freya
+2428,4		// Freyja's Boots
+2533,4		// Freyja's Cape
+5306,4		// Freya Crown
+2369,4		// Freya Overcoat
+
+
+// Misc items - Zone 4
+2365,4		// Orleans_Gown
+4077,4		// Phen_Card
+
+4144,4		// Osiris Card
+4147,4		// Baphomet Card
+4142,4		// Doppelganger Card
+4132,4		// Mistress Card
+4128,4		// Golden Thiefbug Card
+4143,4		// Orc Hero Card
+4137,4		// Drake Card
+4123,4		// Eddga Card
+4146,4		// Maya Card
+4131,4		// Moonlight Flower Card
+4148,4		// Pharaoh Card
+4121,4		// Phreeoni Card
+4135,4		// Orc Lord Card
+4318,4		// Stormy Knight Card
+4324,4		// Hatii Card
+4168,4		// Dark Lord Card
+4305,4		// Turtle General Card
+4276,4		// Lord of The Dead Card
+4134,4		// Dracula
+4330,4		// Dark Snake Lord Card
+4263,4		// Incantation Samurai Card
+4236,4		// Amon Ra Card
+4302,4		// Tao Gunka Card
+4342,4		// RSX-0806 Card
+4372,4		// White Lady Card
+4357,4		// Lord Knight Card
+4359,4		// Assassin Cross Card
+4361,4		// MasterSmith Card
+4363,4		// High Priest Card
+4367,4		// Sniper Card
+4365,4		// High Wizard Card
+4352,4		// Boss Egnigem Card
+4374,4		// Vesper Card
+4376,4		// Lady Tanee Card
+4399,4		// Memory of Thanatos Card
+4386,4		// Detardeurus Card
+4403,4		// Kiel-D-01 Card
+4407,4		// Randgris Card
+4408,4		// Gloom Under Night Card
+4419,4		// Ktullanux Card
+4425,4		// Atroce Card
+4430,4		// Ifrit Card
+4441,4		// Fallen Bishop Card
+4145,4		// Berzebub Card
+
+// Mini boss cards
+4198,4		// Maya Purple Card
+
+//----------------------------------------------------------------------------
+//Sealed MVP Cards
+//----------------------------------------------------------------------------
+4480,4		// Sealed_Kiel_Card
+4481,4		// Sealed_Ktullanux_Card
+4482,4		// Sealed_B_Ygnizem_Card
+4483,4		// Sealed_Dracula_Card
+4484,4		// Sealed_Mistress_Card
+4485,4		// Sealed_Gloom_Card
+4488,4		// Sealed_Dark_Lord_Card
+4494,4		// Sealed_Turtle_General_Card
+4495,4		// Sealed_Amon_Ra_Card
+4497,4		// Sealed_Stormy_Knight_Card
+4498,4		// Sealed_Lady_Tanee_Card
+4499,4		// Sealed_Samurai_Card
+4500,4		// Sealed_Orc_Lord_Card
+4501,4		// Sealed_High_Priest_Card
+4502,4		// Sealed_MasterSmith_Card
+4503,4		// Sealed_Vesper_Card
+4504,4		// Sealed_Eddga_Card
+4536,4		// Sealed_Atroce_Card
+4537,4		// Sealed_Phreeoni_Card
+4538,4		// Sealed_Bacsojin_Card
+4539,4		// Sealed_Fallen_Bishop_Card
+4540,4		// SLD_Lord_of_Death_Card#
+
+
+//----------------------------------------------------------------------------
+// Illusion Equips
+//----------------------------------------------------------------------------
+
+1326,4		// Illusion_War_Axe
+1846,4		// Illusion_Combo_Battle_Glove
+2039,4		// Illusion_Wizardry_Staff
+2051,4		// Illusion_Survivor's_Staff
+7974,4		// Illusion_Piece
+13337,4		// Illusion_Huuma_Fluttering_Snow
+13338,4		// Illusion_Wing_Shuriken
+13469,4		// Illusion_Immaterial_Sword
+15195,4		// Illusion_Puente_Robe
+15348,4		// Illusion_Goibne_Armor
+15376,4		// Illusion_Armor_A-type
+15377,4		// Illusion_Armor_B-type
+16063,4		// Illusion_Long_Mace
+16065,4		// Illusion_Iron_Driver
+16576,4		// Illusion_Nothing
+18149,4		// Illusion_Ballista
+18174,4		// Illusion_Hunter_Bow
+19209,4		// Illusion_Nurse_Cap
+19210,4		// Illusion_Apple_of_Archer
+19223,4		// Illusion_Cap
+19247,4		// Illusion_Fancy_Flower
+19344,4		// Illusion_Hot_blooded_Headband
+19366,4		// Illusion_Goibne_Helm
+19428,4		// Illusion_Morpheus's_Hood
+20838,4		// Illusion_Muffler
+20840,4		// Illusion_Ancient_Cape
+20847,4		// Illusion_Survivor_Manteau
+20923,4		// Illusion_Goibne_Spaulders
+20933,4		// Illusion_Engine_wing_A-type
+20934,4		// Illusion_Engine_wing_B-type
+20948,4		// Illusion_Morpheus's_Shawl
+21050,4		// Illusion_Tae_Goo_Lyeon
+22133,4		// Illusion_Shoes
+22190,4		// Illusion_Boots
+22192,4		// Illusion_Goibne's_Greaves
+22196,4		// Illusion_Leg_A-type
+22197,4		// Illusion_Leg_B-type
+25271,4		// Illusion_Stone
+25272,4		// Illusion_Gemstone
+26007,4		// Illusion_Spectral_Spear
+26109,4		// Illusion_Staff_of_Bordeaux
+28022,4		// Illusion_Infiltrator
+28023,4		// Illusion_Sharpened_Legbone_of_Ghoul
+28244,4		// Illusion_Gate_Keeper_DD
+28254,4		// Illusion_Butcher
+28508,4		// Illusion_Skull_Ring
+28509,4		// Illusion_Ring
+28612,4		// Illusion_Apocalypse
+28626,4		// Illusion_Tablet
+28725,4		// Illusion_Moonlight_Dagger
+28745,4		// Illusion_Counter_Dagger
+28762,4		// Illusion_Bazerald
+28922,4		// Illusion_Sacred_Mission
+32005,4		// Illusion_Pole_Axe
+32207,4		// Illusion_Booster_R
+32208,4		// Illusion_Booster_L
+32209,4		// Illusion_Battle_chip_R
+32210,4		// Illusion_Battle_chip_L
+32238,4		// Illusion_Morpheus's_Ring
+32239,4		// Illusion_Morpheus's Bracelet
+32301,4		// Illusion_Gold_Lux
+
+
+//----------------------------------------------------------------------------
 // Battlegrounds
 //----------------------------------------------------------------------------
 12218,8		// Assumptio_5_Scroll
