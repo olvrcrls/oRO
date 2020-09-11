@@ -135,7 +135,7 @@ if(!$@DBG_Status) {
 set $@DBG_T1,bg_create($@DBG_Map$[$@DBG_Status],.team1_x[$@DBG_Status],.team1_y[$@DBG_Status],strnpcinfo(0)+"::OnBGLeave",strnpcinfo(0)+"::OnBGArenaDeath");
 set $@DBG_T2,bg_create($@DBG_Map$[$@DBG_Status],.team2_x[$@DBG_Status],.team2_y[$@DBG_Status],strnpcinfo(0)+"::OnBGLeave",strnpcinfo(0)+"::OnBGArenaDeath");
 sleep 2000;
-announce "Battleground Arena: You have "+.BG_JoinTime+" Minute"+( (.BG_JoinTime > 1)?"s":"")+" to join by using \"@joinbgarena\" - Mode: "+$@DBG_Mode$[$@DBG_Status],$@DBG_Anno_T,$@DBG_Anno$[$@DBG_Status];
+announce "Battleground Arena: You have "+.BG_JoinTime+" Minute"+( (.BG_JoinTime > 1)?"s":"")+" to join by using \"@joinbg\" - Mode: "+$@DBG_Mode$[$@DBG_Status],$@DBG_Anno_T,$@DBG_Anno$[$@DBG_Status];
 // Check if there are existing players in the queue
 if(getarraysize(.Team1) > 0 || getarraysize(.Team2) > 0) 
 	announce "Battleground Arena: "+$@DBG_Mode$[$@DBG_Status]+" - Team 1: "+getarraysize(.Team1)+"/"+.DBG_PlayersMax[$@DBG_Status]+" : Team 2: "+getarraysize(.Team2)+"/"+.DBG_PlayersMax[$@DBG_Status],$@DBG_Anno_T,$@DBG_Anno$[$@DBG_Status];
