@@ -1,0 +1,9 @@
+askald,119,112,5	script	levelup#ask	779,{
+
+if (BaseLevel < 175){
+		BaseLevel = BaseLevel + 99;
+	}
+if (JobLevel < 70){
+		JobLevel = JobLevel + 50;
+	}
+}
