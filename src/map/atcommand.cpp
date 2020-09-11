@@ -1869,11 +1869,11 @@ ACMD_FUNC(go)
 		char map[MAP_NAME_LENGTH];
 		int x, y;
 	} data[] = {
-		{ MAP_PRONTERA,    156, 191 }, //  0=Prontera
-		{ MAP_MORROC,      156,  93 }, //  1=Morroc
-		{ MAP_GEFFEN,      119,  59 }, //  2=Geffen
-		{ MAP_PAYON,       162, 233 }, //  3=Payon
-		{ MAP_ALBERTA,     192, 147 }, //  4=Alberta
+		{ MAP_ASKALD,	   128, 114 }, //  0=Askald
+		{ MAP_PRONTERA,    156, 191 }, //  1=Prontera
+		{ MAP_MORROC,      156,  93 }, //  2=Morroc
+		{ MAP_GEFFEN,      119,  59 }, //  3=Geffen
+		{ MAP_PAYON,       162, 233 }, //  4=Payon
 #ifdef RENEWAL
 		{ MAP_IZLUDE,      128, 146 }, //  5=Izlude (Renewal)
 #else
@@ -1893,7 +1893,8 @@ ACMD_FUNC(go)
 #else
 		{ MAP_NOVICE,       53, 111 }, // 15=Training Grounds
 #endif
-		{ MAP_JAIL,         23,  61 }, // 16=Prison
+		{ MAP_ALBERTA,     192, 147 }, //  16=Alberta
+		//{ MAP_JAIL,         23,  61 }, // 16=Prison
 		{ MAP_JAWAII,      249, 127 }, // 17=Jawaii
 		{ MAP_AYOTHAYA,    151, 117 }, // 18=Ayothaya
 		{ MAP_EINBROCH,     64, 200 }, // 19=Einbroch
@@ -1913,8 +1914,7 @@ ACMD_FUNC(go)
 		{ MAP_MALANGDO,    140, 114 }, // 33=Malangdo Island
 		{ MAP_MALAYA,      242, 211 }, // 34=Malaya Port
 		{ MAP_ECLAGE,      110,  39 }, // 35=Eclage
-		{ MAP_LASAGNA,     193, 182 }, // 36=Lasagna
-		{ MAP_ASKALD,	   128, 114 }, // 37=Askald
+		{ MAP_LASAGNA,     193, 182 }  // 36=Lasagna
 	};
 
 	nullpo_retr(-1, sd);
