@@ -91,10 +91,20 @@ set .@ropt2,getequiprandomoption(.@part,1,ROA_ID);
 set .@ropt3,getequiprandomoption(.@part,2,ROA_ID);
 if(.@ropt1 || .@ropt2 || .@ropt2) {
 	mes " ";
-	mes "I'm sorry, but this weapon already has bonus properities applied.";
-	mes "Please choose a different one.";
-	close;
+	mes "You current enchants will be lost.";
+	mes "Are you sure you want to continue?";
+	switch(select("Yes:No")){
+	case 1:
+		goto Enchant;
+	case 2:
+		mes "Bye";
+		close;
+	}
+	//mes "I'm sorry, but this weapon already has bonus properities applied.";
+	//mes "Please choose a different one.";
+	//close;
 }
+Enchant:
 next;
 // Randomize each Option Slot:
 // Random Option 1
