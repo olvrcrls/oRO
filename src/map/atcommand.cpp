@@ -1894,7 +1894,6 @@ ACMD_FUNC(go)
 		{ MAP_NOVICE,       53, 111 }, // 15=Training Grounds
 #endif
 		{ MAP_ALBERTA,     192, 147 }, //  16=Alberta
-		//{ MAP_JAIL,         23,  61 }, // 16=Prison
 		{ MAP_JAWAII,      249, 127 }, // 17=Jawaii
 		{ MAP_AYOTHAYA,    151, 117 }, // 18=Ayothaya
 		{ MAP_EINBROCH,     64, 200 }, // 19=Einbroch
@@ -1914,7 +1913,8 @@ ACMD_FUNC(go)
 		{ MAP_MALANGDO,    140, 114 }, // 33=Malangdo Island
 		{ MAP_MALAYA,      242, 211 }, // 34=Malaya Port
 		{ MAP_ECLAGE,      110,  39 }, // 35=Eclage
-		{ MAP_LASAGNA,     193, 182 }  // 36=Lasagna
+		{ MAP_LASAGNA,     193, 182 },  // 36=Lasagna
+		{ MAP_JAIL,         23,  61 }   // 37=Prison
 	};
 
 	nullpo_retr(-1, sd);
@@ -1953,18 +1953,18 @@ ACMD_FUNC(go)
 		map_name[i] = TOLOWER(map_name[i]);
 	// try to identify the map name
 	if (strncmp(map_name, "prontera", 3) == 0) {
-		town = 0;
+		town = 1;
 	} else if (strncmp(map_name, "morocc", 4) == 0 ||
 	           strncmp(map_name, "morroc", 4) == 0) {
-		town = 1;
-	} else if (strncmp(map_name, "geffen", 3) == 0) {
 		town = 2;
-	} else if (strncmp(map_name, "payon", 3) == 0) {
+	} else if (strncmp(map_name, "geffen", 3) == 0) {
 		town = 3;
-	} else if (strncmp(map_name, "alberta", 3) == 0) {
+	} else if (strncmp(map_name, "payon", 3) == 0) {
 		town = 4;
-	} else if (strncmp(map_name, "izlude", 3) == 0) {
+	} else if (strncmp(map_name, "alberta", 3) == 0) {
 		town = 5;
+	} else if (strncmp(map_name, "izlude", 3) == 0) {
+		town = 16;
 	} else if (strncmp(map_name, "aldebaran", 3) == 0) {
 		town = 6;
 	} else if (strncmp(map_name, "lutie", 3) == 0 ||
@@ -1995,7 +1995,7 @@ ACMD_FUNC(go)
 	} else if (strncmp(map_name, "sec_pri", 3) == 0 ||
 	           strncmp(map_name, "prison", 3) == 0 ||
 	           strncmp(map_name, "jail", 3) == 0) {
-		town = 16;
+		town = 37; // this has been made 37 for future use
 	} else if (strncmp(map_name, "jawaii", 3) == 0) {
 		town = 17;
 	} else if (strncmp(map_name, "ayothaya", 3) == 0) {
@@ -2037,7 +2037,7 @@ ACMD_FUNC(go)
 	} else if (strncmp(map_name, "lasagna", 2) == 0) {
 		town = 36;
 	} else if (strncmp(map_name, "askald", 3) == 0) {
-		town = 37;
+		town = 0;
 	}
 
 	if (town >= 0 && town < ARRAYLENGTH(data))
@@ -10063,7 +10063,7 @@ ACMD_FUNC(resurrect) {
 //---------------------Battle Stats-----------------------//
 //--------------------------------------------------------//
 //--------------------------------------------------------//
-
+/*
 ACMD_FUNC(battlestats)
 {
 	nullpo_retr(-1, sd);
@@ -10104,7 +10104,7 @@ ACMD_FUNC(battlestats)
 		clif_displaymessage(fd, output);
 	}
 	return 0;
-}
+} */
 
 //------------------------------------------------------------------//
 //------------------------Party Buff Command------------------------//
@@ -10422,7 +10422,7 @@ void atcommand_basecommands(void) {
 		ACMD_DEFR(channel,ATCMD_NOSCRIPT),
 		ACMD_DEF(fontcolor),
 		ACMD_DEF(langtype),
-		ACMD_DEF(battlestats), // battlestats command
+		//ACMD_DEF(battlestats), // battlestats command
 #ifdef VIP_ENABLE
 		ACMD_DEF(vip),
 		ACMD_DEF(showrate),
