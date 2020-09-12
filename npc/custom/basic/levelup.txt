@@ -1,9 +1,13 @@
+// This is a very basic script with atcommand. but works. //
+
 askald,119,112,5	script	levelup#ask	779,{
 
 if (BaseLevel < 175){
 		BaseLevel = BaseLevel + 99;
+		dispbottom "You have become stronger.";
 	}
 if (JobLevel < 70){
 		JobLevel = JobLevel + 50;
+		dispbottom "You have become wiser.";
 	}
 }
