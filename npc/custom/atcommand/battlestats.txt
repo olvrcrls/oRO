@@ -16,9 +16,11 @@
 //------------------------------------------------------------------------------------------------------------------//
 
 -	script		battlestats	-1{
+	.@player$ = strpc
 	OnInit:
 		bindatcmd "battle",strnpcinfo(0) + "::OnAtcommand";
 		end;
+
 	OnAtcommand:
 		dispbottom "Unused status points: " + readparam(9);
 		dispbottom "";
