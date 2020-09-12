@@ -1,0 +1,34 @@
+// Script to check if a Homunculus is attached to a player and make it max level
+// First check would be to check the class of the player
+// Second check is the intimacy
+// Third check is the level of the Homunculus
+
+askald,119,118,5	script	HomLevelUp	643,{
+
+	disable_command; // disables at commands
+	.@maxlevel = 175;
+
+	if(gethominfo(0,getcharid(0)) < 1){ // check if the player has a homunculus attached.
+		mes "You dont have a homunculus.";
+		close;
+	}
+
+	mes "It looks like you have a Homunculus";
+	mes "What would you like to do?";
+	switch(select("Make it loyal:Make it stronger")){
+		case 1:
+			.@loyalty = gethominfo(3); // check intimacy points
+			mes "Your Hom loyalty points = " + .@loyalty;
+
+			if (.@loyalty < 10000){
+			// what to do if the loyalty is less?
+			atcommand "@homfriendly " +(gethominfo(3)+5000);
+			close;
+			}
+		case 2:
+			if(gethominfo(6) < 175){ // it gets the Homunculus' level
+			atcommand "@homlevel +" + .@maxlevel; // make the homun max level
+			close;
+		}
+	} // end of switch
+} // end of script
