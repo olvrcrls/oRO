@@ -7,77 +7,77 @@
 //	Type:		Custom NPC Script for class based consumables
 //--------------------------------------------------------------------------------------------------------------------//
 
-askald,64,154,4	script	Skillerino	643,{
+askald,64,154,4	script	"Catalyst NPC"	643,{
 	mes "[Skillerino]";
 	mes "Hello Jin!";
 	mes "So you've decided to buy items for your class?";
 	mes "Go ahead, choose your class from our exclusive menu.";
 	next;
-	switch(select("Rune Knight:Warlock:Sorcerer:Ranger:Minstrel & Wanderer:Mechanic:Genetic:Guillotine Cross:Shadow Chaser:Arch Bishop:Kagerou & Oboro:Rebellion:Summoner")){
-		case 1: // Rune Kight
-			mes "Rune Knight";
-			close2;
-			callshop "rkshop",1;
-			end;
-		case 2: // Warlock
-			mes "Warlock";
-			close2;
-			callshop "wlshop",1;
-			end;
-		case 3: // Sorcerer
-			mes "Sorcerer";
-			close2;
-			callshop "sorcshop",1;
-			end;
-		case 4: // Ranger
-			mes "Ranger";
-			close2;
-			callshop "rangershop",1;
-			end;
-		case 5: // Minstrel & Wanderer
-			mes "Minstrel & Wanderer";
-			close2;
-			callshop "minsshop",1;
-			end;
-		case 6: // Mechanic
-			mes "Mechanic";
-			close2;
-			callshop "mechshop",1;
-			end;
-		case 7: // Genetic
-			mes "Genetic";
-			close2;
-			callshop "geneshop",1;
-			end;
-		case 8: // Guillotine Cross
-			mes "Guillotine Cross";
-			close2;
-			callshop "gxshop",1;
-			end;
-		case 9: // Shadow Chaser
-			mes "Shadow Chaser";
-			close2;
-			callshop "scshop",1;
-			end;
-		case 10: // Arch Bishop
+	switch(select("Arch Bishop:Genetic:Guillotine Cross:Kagerou & Oboro:Mechanic:Minstrel & Wanderer:Ranger:Rebellion:Rune Knight:Shadow Chaser:Sorcerer:Summoner:Warlock")){
+		case 1: // Arch Bishop
 			mes "Arch Bishop";
 			close2;
 			callshop "abshop",1;
 			end;
-		case 11: // Kagerou & Oboro
+		case 2: // Genetic
+			mes "Genetic";
+			close2;
+			callshop "geneshop",1;
+			end;
+		case 3: // Guillotine Cross
+			mes "Guillotine Cross";
+			close2;
+			callshop "gxshop",1;
+			end;
+		case 4: // Kagerou & Oboro
 			mes "Kagerou & Oboro";
 			close2;
 			callshop "kageshop",1;
 			end;
-		case 12: // Rebellion
+		case 5: // Mechanic
+			mes "Mechanic";
+			close2;
+			callshop "mechshop",1;
+			end;
+		case 6: // Minstrel & Wanderer
+			mes "Minstrel & Wanderer";
+			close2;
+			callshop "minsshop",1;
+			end;
+		case 7: // Ranger
+			mes "Ranger";
+			close2;
+			callshop "rangershop",1;
+			end;
+		case 8: // Rebellion
 			mes "Rebellion";
 			close2;
 			callshop "rebelshop",1;
 			end;
-		case 13: // Summoner
+		case 9: // Rune Kight
+			mes "Rune Knight";
+			close2;
+			callshop "rkshop",1;
+			end;
+		case 10: // Shadow Chaser
+			mes "Shadow Chaser";
+			close2;
+			callshop "scshop",1;
+			end;
+		case 11: // Sorcerer
+			mes "Sorcerer";
+			close2;
+			callshop "sorcshop",1;
+			end;
+		case 12: // Summoner
 			mes "Summoner";
 			close2;
 			callshop "doramshop",1;
+			end;
+		case 13: // Warlock
+			mes "Warlock";
+			close2;
+			callshop "wlshop",1;
 			end;
 		default:
 			mes "oNo you clicked the wrong option.";
