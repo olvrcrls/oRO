@@ -1,6 +1,6 @@
 // This is a very basic script with atcommand. but works. //
 
-askald,119,112,5	script	levelup#ask	779,{
+askald,125,118,5	script	levelup#ask	615,{
 
 if (BaseLevel < 175){
 		BaseLevel = BaseLevel + 99;
