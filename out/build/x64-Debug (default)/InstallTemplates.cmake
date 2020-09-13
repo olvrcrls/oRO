@@ -1,5 +1,5 @@
 macro( INSTALL_TEMPLATE _SRC _DST )
-  set( SRC "C:/JinRO/rA-JinRO-29082020/rathena/${_SRC}" )
+  set( SRC "C:/Users/devol/Desktop/JinRO Dev/DEV-jinro-stable-server/${_SRC}" )
   set( DST "${CMAKE_INSTALL_PREFIX}/${_DST}" )
   if( EXISTS "${DST}" )
     message( "-- Already exists: ${DST}" )
