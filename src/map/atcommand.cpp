@@ -10059,52 +10059,50 @@ ACMD_FUNC(resurrect) {
 	return 0;
 }
 
-//--------------------------------------------------------//
-//---------------------Battle Stats-----------------------//
-//--------------------------------------------------------//
-//--------------------------------------------------------//
-/*
-ACMD_FUNC(battlestats)
-{
-	nullpo_retr(-1, sd);
-	char name[100];
-	char infostring1[100];
-	char infostring2[100];
-	//char race[100];
-	//char def[100];
+/*=========================================
+ * Battlestats Command
+ * [ Wazaby ]
+ *-----------------------------------------*/
+ACMD_FUNC(battlestats) {
 	char output[CHAT_SIZE_MAX];
 	int i;
 	struct {
 		const char* format;
 		int value;
 	} output_table[] = {
-		{ NULL,0 },
-		{ NULL,0 },
-		//{ NULL,0 },
-		{ "Matk (min) - %d",0 },
-		{ "Matk (max) - %d",0 },
-		//{ NULL,0 }
+		{ "   [ %d ] Neutral resist", 0 },
+		{ "   [ %d ] Water resist", 0 },
+		{ "   [ %d ] Earth resist", 0 },
+		{ "   [ %d ] Fire resist", 0 },
+		{ "   [ %d ] Wind resist", 0 },
+		{ "   [ %d ] Poison resist", 0 },
+		{ "   [ %d ] Holy resist", 0 },
+		{ "   [ %d ] Dark resist", 0 },
+		{ "   [ %d ] Ghost resist", 0 },
+		{ "   [ %d ] Undead resist", 0 },
+		{ "   [ %d ] Resist to all", 0 },
+		{ NULL, 0 }
 	};
-	memset(infostring1, '\0', sizeof(infostring1));
 	memset(output, '\0', sizeof(output));
-	memset(infostring2, '\0', sizeof(infostring2));
-	sprintf(infostring2, "- Character Battlestats -");
-	output_table[0].format = infostring2;
-	sprintf(name, "Player Name - %s", sd->status.name);
-	output_table[1].format = name;
-	//sprintf(race, "Player Race - %s", sd->battle_status.race);
-	//output_table[2].format = race;
-	output_table[2].value = sd->battle_status.matk_min;
-	output_table[3].value = sd->battle_status.matk_max;
-	//sprintf(def, "Defense Element: %s", sd->battle_status.def_ele);
-	//output_table[5].format = def;
+	clif_displaymessage(sd->fd, "========= Resistance Values =========");
+	output_table[0].value = (sd->subele[ELE_NEUTRAL] + sd->subele_script[ELE_NEUTRAL]);
+	output_table[1].value = (sd->subele[ELE_WATER] + sd->subele_script[ELE_WATER]);
+	output_table[2].value = (sd->subele[ELE_EARTH] + sd->subele_script[ELE_EARTH]);
+	output_table[3].value = (sd->subele[ELE_FIRE] + sd->subele_script[ELE_FIRE]);
+	output_table[4].value = (sd->subele[ELE_WIND] + sd->subele_script[ELE_WIND]);
+	output_table[5].value = (sd->subele[ELE_POISON] + sd->subele_script[ELE_POISON]);
+	output_table[6].value = (sd->subele[ELE_HOLY] + sd->subele_script[ELE_HOLY]);
+	output_table[7].value = (sd->subele[ELE_DARK] + sd->subele_script[ELE_DARK]);
+	output_table[8].value = (sd->subele[ELE_GHOST] + sd->subele_script[ELE_GHOST]);
+	output_table[9].value = (sd->subele[ELE_UNDEAD] + sd->subele_script[ELE_UNDEAD]);
+	output_table[10].value = (sd->subele[ELE_ALL] + sd->subele_script[ELE_ALL]);
 
-	for (i = 0; i < 4; i++) {
+	for (i = 0; output_table[i].format != NULL; i++) {
 		sprintf(output, output_table[i].format, output_table[i].value);
 		clif_displaymessage(fd, output);
 	}
 	return 0;
-} */
+}
 
 //------------------------------------------------------------------//
 //------------------------Party Buff Command------------------------//
@@ -10422,7 +10420,7 @@ void atcommand_basecommands(void) {
 		ACMD_DEFR(channel,ATCMD_NOSCRIPT),
 		ACMD_DEF(fontcolor),
 		ACMD_DEF(langtype),
-		//ACMD_DEF(battlestats), // battlestats command
+		ACMD_DEF(battlestats), // battlestats command
 #ifdef VIP_ENABLE
 		ACMD_DEF(vip),
 		ACMD_DEF(showrate),
