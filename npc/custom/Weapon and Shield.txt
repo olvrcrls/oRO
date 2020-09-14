@@ -8,33 +8,33 @@
 //--------------------------------------------------------------------------------------------------------------------//
 
 
-askald,70,142,3	script	Utility Master	536,{
-	mes "[Utility Master]";
+askald,70,142,3	script	Arms Master	536,{
+	mes "[Arms Master]";
 	mes "Howdy!!";
 	mes "Whare are you planning to buy today?";
 	next;
 	switch(select("Weapons:Garments:Shield:Accessories:Close")){
 		case 1:
-			mes "[Utility Master]";
+			mes "[Arms Master]";
 			mes "We have a large collection of weapons.";
 			mes "Due to logistics issue we are not able to provide all the weapons.";
 			close2;
 			callshop "weaponsnpc",1;
 			end;
 		case 2:	// Garments NPC
-			mes "[Utility Master]";
+			mes "[Arms Master]";
 			mes	"Choose a garment for battle here";
 			close2;
 			callshop "garmentsnpc",1;
 			end;
 		case 3: // shield
-			mes "[Utility Master]";
+			mes "[Arms Master]";
 			mes "Choose a shield you want to take into battle.";
 			close2;
 			callshop "shieldsnpc",1;
 			end;
 		case 4: // Accessories
-			mes "[Utility Master]";
+			mes "[Arms Master]";
 			mes "Choose your accessory.";
 			close2;
 			callshop "accessoriesnpc",1;
