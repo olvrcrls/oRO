@@ -7,9 +7,9 @@
 //	Type:		Custom NPC Script for class based consumables
 //--------------------------------------------------------------------------------------------------------------------//
 
-askald,64,154,4	script	"Catalyst NPC"	643,{
+askald,64,154,4	script	Class Catalyst NPC	643,{
 	mes "[Skillerino]";
-	mes "Hello Jin!";
+	mes "Greetings!";
 	mes "So you've decided to buy items for your class?";
 	mes "Go ahead, choose your class from our exclusive menu.";
 	next;
