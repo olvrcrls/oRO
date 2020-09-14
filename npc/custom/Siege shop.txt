@@ -6,8 +6,8 @@
 //	Changelogs: None
 //------------------------------------------------------------------------------------------------//
 
-askald,60,138,1	script	Sieger#jin	936,{
-	mes "[Siege Shop]";
+askald,60,138,1	script	Siege Shop#jin	936,{
+	mes "[Sieger]";
 	mes "Welcome to the war zone!";
 	mes "This is where you get the dopest stuff for siege.";
 	mes "Choose from the menu below.";
