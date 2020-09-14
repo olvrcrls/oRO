@@ -60,6 +60,10 @@
 	sc_end	SC_FREEZING;
 	sc_end	SC_CURSEDCIRCLE_TARGET;
 	sc_end  SC_STASIS;
+	sc_end	SC_HARMONIZE;
+	sc_end	SC_HALLUCINATION;
+	sc_end	SC_MANDRAGORA;
+	sc_end	SC_BLEEDING;
 
 //	give players buff ... don't give too much otherwise player wanna spam
 	.@time = 300000; // the buff last 5 minutes

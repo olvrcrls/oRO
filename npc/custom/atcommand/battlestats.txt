@@ -15,13 +15,22 @@
 //------------------------------------------------------------------------------------------------------------------//
 //------------------------------------------------------------------------------------------------------------------//
 
--	script		battlestats	-1{
-	.@player$ = strpc
+-	script	battlestats	-1,{
+
 	OnInit:
 		bindatcmd "battle",strnpcinfo(0) + "::OnAtcommand";
 		end;
 
 	OnAtcommand:
+		dispbottom "Player Name: " + strcharinfo(0);
+		dispbottom "Class: " + readparam(Class);
 		dispbottom "Unused status points: " + readparam(9);
-		dispbottom "";
+		dispbottom "Max HP: " + readparam(MaxHp);
+		dispbottom "Max SP: " + readparam(MaxSP);
+		dispbottom "Base Str: " + readparam(bStr);
+		dispbottom "Base Agi: " + readparam(bAgi);
+		dispbottom "Base Vit: " + readparam(bVit);
+		dispbottom "Base Int: " + readparam(bInt);
+		dispbottom "Base Dex: " + readparam(bDex);
+		dispbottom "Base Luk: " + readparam(bLuk);
 }
