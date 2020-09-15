@@ -1525,6 +1525,35 @@
 	export_constant(SC_LHZ_DUN_N3);
 	export_constant(SC_LHZ_DUN_N4);
 	export_constant(SC_ANCILLA);
+	export_constant(SC_LIGHTOFMOON);
+	export_constant(SC_LIGHTOFSUN);
+	export_constant(SC_LIGHTOFSTAR);
+	export_constant(SC_LUNARSTANCE);
+	export_constant(SC_UNIVERSESTANCE);
+	export_constant(SC_SUNSTANCE);
+	export_constant(SC_FLASHKICK);
+	export_constant(SC_NEWMOON);
+	export_constant(SC_STARSTANCE);
+	export_constant(SC_DIMENSION);
+	export_constant(SC_DIMENSION1);
+	export_constant(SC_DIMENSION2);
+	export_constant(SC_CREATINGSTAR);
+	export_constant(SC_FALLINGSTAR);
+	export_constant(SC_NOVAEXPLOSING);
+	export_constant(SC_GRAVITYCONTROL);
+	export_constant(SC_SOULCOLLECT);
+	export_constant(SC_SOULREAPER);
+	export_constant(SC_SOULUNITY);
+	export_constant(SC_SOULSHADOW);
+	export_constant(SC_SOULFAIRY);
+	export_constant(SC_SOULFALCON);
+	export_constant(SC_SOULGOLEM);
+	export_constant(SC_SOULDIVISION);
+	export_constant(SC_SOULENERGY);
+	export_constant(SC_USE_SKILL_SP_SPA);
+	export_constant(SC_USE_SKILL_SP_SHA);
+	export_constant(SC_SP_SHA);
+	export_constant(SC_SOULCURSE);
 #ifdef RENEWAL
 	export_constant(SC_EXTREMITYFIST2);
 #endif
@@ -7338,6 +7367,9 @@
 	export_constant(CPC_NAME);
 	export_constant(CPC_CHAR);
 	export_constant(CPC_ACCOUNT);
+
+	/* skill unit types */
+	export_constant(UNT_CREATINGSTAR);
 
 	#undef export_constant
 	#undef export_constant2
