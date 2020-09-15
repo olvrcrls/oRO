@@ -4294,7 +4294,7 @@ int status_calc_pc_sub(struct map_session_data* sd, enum e_status_calc_opt opt)
 			sd->ignore_mdef_by_race[RC_DEMON] += sc->data[SC_GLASTHEIM_ATK]->val1;
 		}
 		if (sc->data[SC_LAUDARAMUS])
-			sd->bonus.crit_atk_rate += 5 * sc->data[SC_LAUDARAMUS]->val1;
+			sd->status.luk += 4 + sc->data[SC_LAUDARAMUS]->val1;
 	}
 	status_cpy(&sd->battle_status, base_status);
 
