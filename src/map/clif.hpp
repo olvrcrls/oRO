@@ -543,6 +543,7 @@ enum e_damage_type : uint8_t {
 	DMG_STAND_UP,			/// stand up
 	DMG_ENDURE,				/// damage (endure)
 	DMG_SPLASH,				/// (splash?)
+	DMG_SINGLE,				/// (skill?)
 	DMG_SKILL,				/// (skill?)
 	DMG_REPEAT,				/// (repeat damage?)
 	DMG_MULTI_HIT,			/// multi-hit damage
@@ -713,6 +714,7 @@ void clif_skillunit_update(struct block_list* bl);
 void clif_autospell(struct map_session_data *sd,uint16 skill_lv);
 void clif_devotion(struct block_list *src, struct map_session_data *tsd);
 void clif_spiritball(struct block_list *bl);
+void clif_soulball(struct map_session_data* sd);
 void clif_combo_delay(struct block_list *bl,t_tick wait);
 void clif_bladestop(struct block_list *src, int dst_id, int active);
 void clif_changemapcell(int fd, int16 m, int x, int y, int type, enum send_target target);
