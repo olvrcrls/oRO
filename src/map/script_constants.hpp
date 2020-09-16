@@ -7368,6 +7368,10 @@
 	export_constant(CPC_CHAR);
 	export_constant(CPC_ACCOUNT);
 
+	/* skill hit */
+	export_constant(DMG_SINGLE);
+	export_constant(DMG_MULTI_HIT);
+
 	/* skill unit types */
 	export_constant(UNT_CREATINGSTAR);
 
