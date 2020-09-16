@@ -3,11 +3,11 @@
 askald,125,118,5	script	levelup#ask	615,{
 
 if (BaseLevel < 175){
-		BaseLevel = BaseLevel + 99;
+		set BaseLevel,175;
 		dispbottom "You have become stronger.";
 	}
 if (JobLevel < 70){
-		JobLevel = JobLevel + 50;
+		set JobLevel, 70;
 		dispbottom "You have become wiser.";
 	}
 }
