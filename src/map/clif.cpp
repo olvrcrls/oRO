@@ -13581,10 +13581,10 @@ void clif_parse_CreateGuild(int fd,struct map_session_data *sd){
 		return;
 	}
 
-	if(sd->clan){
-		// Should display a clientside message "You are currently joined in Clan !!" so we ignore it
-		return;
-	}
+	// if(sd->clan){
+	// 	// Should display a clientside message "You are currently joined in Clan !!" so we ignore it
+	// 	return;
+	// }
 
 	guild_create(sd, name);
 }
@@ -13813,9 +13813,9 @@ int clif_sub_guild_invite(int fd, struct map_session_data *sd, struct map_sessio
 	}
 
 	// Players in a clan can not join a guild
-	if(t_sd && t_sd->clan){
-		return 1;
-	}
+	// if(t_sd && t_sd->clan){
+	// 	return 1;
+	// }
 
 	guild_invite(sd, t_sd);
 	return 0;
