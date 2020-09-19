@@ -34,3 +34,6 @@
 
 # Build folder(s)
 /build
+
+# Conf folder file(s)
+/conf
