@@ -37,3 +37,15 @@
 
 # Conf folder file(s)
 /conf
+
+# Build file(s)
+char-server.ilk
+char-server.pdb
+csv2yaml.ilk
+csv2yaml.pdb
+login-server.ilk
+login-server.pdb
+map-server.ilk
+map-server.pdb
+mapcache.ilk
+mapcache.pdb
