@@ -21,6 +21,7 @@
 #include "../common/utils.hpp"
 
 #include "achievement.hpp"
+#include "battleground.hpp"
 #include "battle.hpp"
 #include "channel.hpp"
 #include "chat.hpp"
@@ -387,13 +388,13 @@ ACMD_FUNC(send)
  * @author Euphy
  */
 static void warp_get_suggestions(struct map_session_data* sd, const char *name) {
-	// Minimum length for suggestions is 2 characters
+
 	if( strlen( name ) < 2 ){
 		return;
 	}
 
 	std::vector<const char*> suggestions;
-
+	// build the suggestion string
 	suggestions.reserve( MAX_SUGGESTIONS );
 
 	// check for maps that contain string
@@ -416,9 +417,9 @@ static void warp_get_suggestions(struct map_session_data* sd, const char *name) 
 
 	// if no maps found, search by edit distance
 	if( suggestions.empty() ){
-		// Levenshtein > 4 is bad
-		const int LEVENSHTEIN_MAX = 4;
 
+		const int LEVENSHTEIN_MAX = 4;
+		// calculate Levenshtein distance for all maps
 		std::unordered_map<int, std::vector<const char*>> maps;
 
 		for (int i = 0; i < map_num; i++) {
@@ -438,7 +439,7 @@ static void warp_get_suggestions(struct map_session_data* sd, const char *name) 
 			}
 
 			std::vector<const char*>& vector = maps[distance];
-
+		// selection sort elements as needed
 			// Do not add more entries than required
 			if( vector.size() == MAX_SUGGESTIONS ){
 				continue;
@@ -446,7 +447,7 @@ static void warp_get_suggestions(struct map_session_data* sd, const char *name) 
 
 			vector.push_back(mapdata->name);
 		}
-
+			// print map name
 		for( int distance = 0; distance <= LEVENSHTEIN_MAX; distance++ ){
 			std::vector<const char*>& vector = maps[distance];
 
@@ -463,7 +464,7 @@ static void warp_get_suggestions(struct map_session_data* sd, const char *name) 
 			}
 		}
 	}
-
+			// swap elements
 	// If no suggestion could be made, do not output anything at all
 	if( suggestions.empty() ){
 		return;
@@ -3949,6 +3950,9 @@ ACMD_FUNC(reload) {
 			pc_close_npc(pl_sd,1);
 			clif_cutin(pl_sd, "", 255);
 			pl_sd->state.block_action &= ~(PCBLOCK_ALL ^ PCBLOCK_IMMUNE);
+			
+			if(pl_sd->qd)
+				queue_member_remove(pl_sd->qd,pl_sd->bl.id);
 		}
 		mapit_free(iter);
 
@@ -4155,6 +4159,10 @@ ACMD_FUNC(mapinfo) {
 		strcat(atcmd_output, " NoGo |"); //
 	if (map_getmapflag(m_id, MF_NOMEMO))
 		strcat(atcmd_output, "  NoMemo |");
+	if (map_getmapflag(m_id, MF_ALLOW_BG_ITEMS))
+		strcat(atcmd_output, "  Allow_bg_items |");
+	if (map_getmapflag(m_id, MF_ALLOW_WOE_ITEMS))
+		strcat(atcmd_output, "  Allow_woe_items |");
 	clif_displaymessage(fd, atcmd_output);
 
 	sprintf(atcmd_output, msg_txt(sd,1065),  // No Exp Penalty: %s | No Zeny Penalty: %s
