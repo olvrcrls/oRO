@@ -1167,66 +1167,6 @@ askald,21,162,5	script	MARS_01#pa0829	4_SCR_MT_ROBOTS,{
 		mes "^ff0000You have carried too many items, please reduce it and come back later.^000000";
 		close;
 	}
-	switch( isbegin_quest(12368) ) {
-	case 0:
-		mes "Blurred LCD screen may be frightened or happy and intense shaking, perhaps due to lack of power and can not complete the presentation.";
-		next;
-		if (select( "Just ignore it.", "Press every button." ) == 1) {
-			mes "It may be a pre-scrap robot that is common everywhere and doesn't require much attention.";
-			close;
-		}
-		mes "[?????]";
-		mes "Hello! I'm MARS_01, an exploration robot. Currently, I have entered hibernation mode to save power. The related functions are set as follows.";
-		next;
-		if (select( "Interrupt the machine", "Supply of fuel" ) == 1) {
-			mes "The robot re-enters hibernation mode after a faint sound.";
-			close;
-		}
-		mes "[MARS_01]";
-		mes "We are super power robot, as long as the old oil 1 will let me and the companion PLUTO has more than 90% of the power.";
-		next;
-		mes "[MARS_01]";
-		mes "If you find Old Fuel, please insert the fuel into the mouth of the bottom of the screen, so you can lift the hibernation mode.";
-		setquest 12368;	// Operate the old robot
-		close;
-	case 1:
-		if (countitem(6962) < 1) {
-			mes "[MARS_01]";
-			mes "If you find 1 " + getitemname(6962) + ", please insert the fuel into the mouth of the bottom of the screen, so you can lift the hibernation mode.";
-			close;
-		}
-		mes "Maybe we ran out of power when we went looking for fuel. should we put in the fuel?";
-		next;
-		if (select( "Quit.", "Put in the fuel" ) == 1) {
-			mes "The old robot may be running out of power and not responding at all.";
-			close;
-		}
-		mes "When the fuel is put in, the sound screen opens.";
-		npctalk "Whoa, whoa?! It moves!!!", "Grandpa picking up scrap iron";
-		next;
-		mes "[MARS_01]";
-		mes "Start the inspection system and confirm the damage of each part.";
-		next;
-		mes "[MARS_01]";
-		mes "Power meter 10%, dashboard normal, body skeleton 13%, perform mining operations well.";
-		next;
-		mes "[MARS_01]";
-		mes "Pluto_09 began to inject energy for mining auxiliary robot.";
-		npctalk "Energy response confirmed. It's working.", "PLUTO_09#pa0829";
-		next;
-		mes "[MARS_01]";
-		mes "Thank you for getting me started, I will reset the person who started me to be a manager.";
-		next;
-		select("Enter a name.");
-		mes "[MARS_01]";
-		mes "" + strcharinfo(0) + ",";
-		mes "Hello! The fuel has been fully charged.";
-		delitem 6962,1;// OldTank
-		completequest 12368;
-		close;
-	case 2:
-		break;
-	}
 	mes "[MARS_01]";
 	mes "" + strcharinfo(0) + ",";
 	mes "Hello! Can I help you?";
