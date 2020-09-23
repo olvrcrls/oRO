@@ -13,7 +13,7 @@ askald,70,150,3	script	Headgears#jin	660,{
 	mes "If you are looking for new headgears";
 	mes "You've come to the right place";
 	next;
-	switch(select("Upper Headgear:Mid Headgear:Lower Headgear:Close")){
+	switch(select("Upper Headgear:Mid Headgear:Lower Headgear:Bio5 Headgears:Close")){
 		case 1: // Upper
 			mes "[Headgears NPC]";
 			mes "Here are some upper headgears.";
