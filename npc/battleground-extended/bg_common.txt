@@ -386,7 +386,7 @@ OnInit:
 	// 7773 : War Badges
 	// 7829 : Valor Badges
 	// 7828 : Bravery Badges
-	$BGREWARD_ITID = 7804;
+	$BGREWARD_ITID = 7773;
 	// *****************************************************
 	// Bg Extension
 	// ================================================
@@ -400,7 +400,7 @@ OnInit:
 	.Diff = 3;
 	// ================================================
 	// Min level
-	$@BG_MinLevel = 80;
+	$@BG_MinLevel = 175;
 	// *****************************************************
 	// Don't touch the 2 lines below
 	$@PB_BG_Index = -1;
