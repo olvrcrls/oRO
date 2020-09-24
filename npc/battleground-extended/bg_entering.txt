@@ -29,7 +29,7 @@ warp "x_ra",0,0;
 end;
 }
 
-prontera,148,174,6	script	PVP & Battleground#j	734,{
+askald,122,110,6	script	PVP & Battleground#j	734,{
 	if(bgcheck())
 	{
 		mes "^404040[^808080" + strnpcinfo(1) + "^404040]^000000";
