@@ -1,6 +1,6 @@
 //--------------------------- Instance Shop --------------------------------//
 
-askald,68,154,4	script	INSTANSE#jin	964,{
+askald,29,161,4	script	INSTANSE#jin	964,{
 	mes "[INSTANSE]";
 	mes "Hello there!";
 	mes "I have shops for all the instances.";
