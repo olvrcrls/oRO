@@ -4,19 +4,20 @@
 // Version 1.0							//
 //--------------------------------------//
 askald,138,120,5	script	PVP Warper	4_F_KAFRA1,{
-	for (.@i = 0; .@i < .map_size; .@i++) 
+	for (.@i = 0; .@i < .map_size; .@i++) {
 		.@menu$ = .@menu$ + .map$[.@i] + "("+getmapusers(.map$[.@i])+" user(s))" + ":";
-	.@i = select(.@menu$) - 1;
-	warp .map$[.@i], 0, 0;
+		.@i = select(.@menu$) - 1;
+		warp .map$[.@i], 0, 0;
+	} // end for
 	OnPCLoadMapEvent:
 		announce " Player: " + strcharinfo(0)+ " has entered the PVP room.", bc_map;
-	end;
+		end;
 	OnInit:
 		setarray .map_name$, "name - Izlude"; // if you add more maps here. Need to update below as well.
 		setarray .map$, "pvp_y_8-2";
 		.map_size = getarraysize(.map_name$);
 		end;
-}
+} //script ends
 
 //mapflags
 pvp_y_8-2	mapflag	loadevent
