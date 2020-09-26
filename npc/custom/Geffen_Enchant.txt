@@ -177,14 +177,14 @@ setarray .RandOpt_Accessory[0],	RDMOPT_VAR_MAGICATKPERCENT,		// Magic Attack 1% 
 								RDMOPT_ATTR_TOLERACE_GROUND,	// Earth Resistance	3% ~ 5%
 								RDMOPT_ATTR_TOLERACE_FIRE,		// Fire Resistance	3% ~ 5%
 								RDMOPT_ATTR_TOLERACE_WIND,		// Wind  Resistance	3% ~ 5%
-								RDMOPT_ATTR_TOLERACE_ALL,		// All Elements Except Neutral Resistance 1% ~ 3% TODO Remove Neutral Resistance
 								RDMOPT_DEC_SP_CONSUMPTION,		// Decreases SP consumption	3% ~ 5%
 								RDMOPT_VAR_MAXHPPERCENT,		// Max HP 1% ~ 3%
 								RDMOPT_VAR_MAXSPPERCENT,		// Max SP 1% ~ 3%
-								RDMOPT_VAR_ATKPERCENT;			// Attack 1% ~ 3%
+								RDMOPT_VAR_ATKPERCENT,			// Attack 1% ~ 3%
+								RDMOPT_ATTR_TOLERACE_ALL;		// All Elements Except Neutral Resistance 1% ~ 3% TODO Remove Neutral Resistance
 //setarray .RandOpt_Accessory_minV[0],3,5,5,3,3,3,3,1,3,1,1,1,1;
 //setarray .RandOpt_Accessory_maxV[0],5,7,8,5,5,5,5,3,5,3,3,3,3;
-setarray .RandOpt_Accessory_minV[0],3,5,7,8,5,5,5,5,3,5,3,3,3;
-setarray .RandOpt_Accessory_maxV[0],3,5,7,8,5,5,5,5,3,5,3,3,3;
+setarray .RandOpt_Accessory_minV[0],3,5,7,8,5,5,5,5,5,3,3,3,3;
+setarray .RandOpt_Accessory_maxV[0],3,5,7,8,5,5,5,5,5,3,3,3,3;
 end;
 }
