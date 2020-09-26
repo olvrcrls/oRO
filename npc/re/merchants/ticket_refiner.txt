@@ -39,7 +39,7 @@ askald,59,117,4	script	Refine Master	851,{
 			close;
 		case 2:
 			mes "[Refine Master]";
-			mes "Actully, I sometimes provide refine services for adventurers with a ^006400Refine Ticket^000000...";
+			mes "Actually, I sometimes provide refine services for adventurers with a ^006400Refine Ticket^000000...";
 			mes "Bye bye~!";
 			close;
 		}
