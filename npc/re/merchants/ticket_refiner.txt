@@ -82,7 +82,7 @@ askald,59,117,4	script	Refine Master	851,{
 	switch(getequipweaponlv(.@part)) {
 	default:
 	case 0:
-		setarray .@tickets[0],6457,6235,6234,6233,6232,6239;
+		setarray .@tickets[0],6457,6235,6234,6233,6232;
 		setarray .@levels[0],5,6,7,8,9; //Restricting to +9
 		set .@type$,"Armor";
 		set .@check,.@bArmorUp;
@@ -91,8 +91,8 @@ askald,59,117,4	script	Refine Master	851,{
 	case 2:
 	case 3:
 	case 4:
-		setarray .@tickets[0],6456,6231,6230,6229,6228,6238;
-		setarray .@levels[0],5,6,7,8,9,11; //11 is the max safe refine limit
+		setarray .@tickets[0],6456,6231,6230,6229,6228,6238,56240;
+		setarray .@levels[0],5,6,7,8,9,11,12; //Set max safe refine limit to 12
 		set .@type$,"Weapon";
 		set .@check,.@bWeaponUp;
 		break;

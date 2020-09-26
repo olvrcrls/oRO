@@ -407,6 +407,9 @@
 	export_constant(MF_LEAVES);
 	// Intentionally disabled mf_rain because Ind removed it source side
 	//export_constant(MF_RAIN);
+	export_constant(MF_ALLOW_BG_ITEMS);
+	export_constant(MF_ALLOW_WOE_ITEMS);
+	export_constant(MF_NOEMERGENCYCALL);
 	export_constant(MF_NOGO);
 	export_constant(MF_CLOUDS);
 	export_constant(MF_CLOUDS2);
@@ -1124,6 +1127,7 @@
 	export_constant(SC_HELLPOWER);
 	export_constant(SC_INVINCIBLE);
 	export_constant(SC_INVINCIBLEOFF);
+	export_constant(SC_FULLINVINCIBLE);
 	export_constant(SC_MANU_ATK);
 	export_constant(SC_MANU_DEF);
 	export_constant(SC_SPL_ATK);

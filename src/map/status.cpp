@@ -979,6 +979,13 @@ void initChangeTables(void)
 	StatusIconChangeTable[SC_SPL_MATK] = EFST_SPL_MATK;
 	StatusIconChangeTable[SC_ATKPOTION] = EFST_PLUSATTACKPOWER;
 	StatusIconChangeTable[SC_MATKPOTION] = EFST_PLUSMAGICPOWER;
+	StatusIconChangeTable[SC_FULLINVINCIBLE] = EFST_FULLINVINCIBLE;
+	StatusIconChangeTable[SC_ENCHANTARMS] = EFST_ENCHANTARMS;
+	StatusIconChangeTable[SC_ARMOR_ELEMENT_FIRE] = EFST_ARMOR_ELEMENT_FIRE;
+	StatusIconChangeTable[SC_ARMOR_ELEMENT_WIND] = EFST_ARMOR_ELEMENT_WIND;
+	StatusIconChangeTable[SC_ARMOR_ELEMENT_WATER] = EFST_ARMOR_ELEMENT_WATER;
+	StatusIconChangeTable[SC_ARMOR_ELEMENT_EARTH] = EFST_ARMOR_ELEMENT_EARTH;
+	StatusIconChangeTable[SC_ARMOR_RESIST] = EFST_ARMOR_RESIST;
 
 	/* Cash Items */
 	StatusIconChangeTable[SC_FOOD_STR_CASH] = EFST_FOOD_STR_CASH;
@@ -2287,6 +2294,8 @@ bool status_check_skilluse(struct block_list *src, struct block_list *target, ui
 		* Attacks in invincible are capped to 1 damage and handled in battle.cpp.
 		* Allow spell break and eske for sealed shrine GDB when in INVINCIBLE state.
 		**/
+		if (tsc->data[SC_FULLINVINCIBLE])
+			return false;
 		if( tsc->data[SC_INVINCIBLE] && !tsc->data[SC_INVINCIBLEOFF] && skill_id && !(skill_id&(SA_SPELLBREAKER|SL_SKE)) )
 			return false;
 		if(!skill_id && tsc->data[SC_TRICKDEAD])
@@ -2926,9 +2935,7 @@ int status_calc_mob_(struct mob_data* md, enum e_status_calc_opt opt)
 		struct map_data *mapdata = map_getmapdata(md->bl.m);
 
 		gc=guild_mapname2gc(mapdata->name);
-		if (!gc)
-			ShowError("status_calc_mob: No castle set at map %s\n", mapdata->name);
-		else if(gc->castle_id < 24 || md->mob_id == MOBID_EMPERIUM) {
+		if(gc && (gc->castle_id < 24 || md->mob_id == MOBID_EMPERIUM)) {
 #ifdef RENEWAL
 			status->max_hp += 50 * (gc->defense / 5);
 #else
@@ -13071,6 +13078,12 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 		if (vd && !vd->cloth_color && sce->val4)
 			clif_changelook(bl,LOOK_CLOTHES_COLOR,sce->val4);
 		calc_flag = static_cast<scb_flag>(calc_flag&~SCB_DYE);
+
+		// [Vykimo] Put palette to players if any
+		struct battleground_data *bg;
+		if (sd && sd->bg_id && (bg = bg_team_search(sd->bg_id)) != NULL && bg->palette) {
+			clif_changelook(&sd->bl, LOOK_CLOTHES_COLOR, bg->palette);
+		}
 	}
 
 	/*if (calc_flag&SCB_BODY)// Might be needed in the future. [Rytech]
@@ -13094,6 +13107,19 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 			clif_changelook(bl,LOOK_SHIELD,sd->vd.shield);
 			clif_changelook(bl,LOOK_CLOTHES_COLOR,cap_value(sd->status.clothes_color,0,battle_config.max_cloth_color));
 			clif_changelook(bl,LOOK_BODY2,cap_value(sd->status.body,0,battle_config.max_body_style));
+
+			// [Vykimo] Put palette to players if any
+			struct battleground_data *bg;
+			if (sd && sd->bg_id && (bg = bg_team_search(sd->bg_id)) != NULL && bg->palette) {
+				clif_changelook(&sd->bl, LOOK_CLOTHES_COLOR, bg->palette);
+			}
+		}
+		else if (opt_flag & 2) {
+			// [Vykimo] Put palette to players if any
+			struct battleground_data *bg;
+			if (sd && sd->bg_id && (bg = bg_team_search(sd->bg_id)) != NULL && bg->palette) {
+				clif_changelook(&sd->bl, LOOK_CLOTHES_COLOR, bg->palette);
+			}
 		}
 	}
 	if (calc_flag) {

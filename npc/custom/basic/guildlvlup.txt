@@ -1,0 +1,27 @@
+// -------- Guild Levelup NPC   ------ //
+// --------  Version 1.0        ------ //
+// --------  Written by: Wazaby ------ //
+
+askald,115,118,5	script	Guild Level Up#ask	615,{
+disable_command;
+.@maxlevel = 50;
+// Checks if the character is the guild master of the specified guild.
+	.@GID = getcharid(2);
+	if (.@GID == 0) {
+		mes "Sorry, you are not in a guild.";
+		close;
+	}
+	if (strcharinfo(0) != getguildmaster(.@GID)) {
+		mes "Sorry, you don't own the guild you are in.";
+		close;
+	}
+	mes "Welcome, guild master of " + getguildname(.@GID);
+	mes "Would you like to level up your guild?";
+	switch(select("Yes:No")){
+		case 1:
+			mes "Let me make your guild max level";
+			atcommand "@guildlvlup " + .@maxlevel;
+			close;
+	}
+	close;
+}

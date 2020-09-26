@@ -316,6 +316,10 @@ struct map_session_data {
 		bool mail_writing; // Whether the player is currently writing a mail in RODEX or not
 		bool cashshop_open;
 		bool sale_open;
+		unsigned int view_mob_info : 1;
+		unsigned int bg_listen : 1;
+		unsigned int bg_afk : 1; // Moved here to reduce searchs
+		unsigned int only_walk : 1; // [Zephyrus] Block Skills and Item usage to a player
 		unsigned int block_action : 10;
 	} state;
 	struct {
@@ -659,7 +663,11 @@ struct map_session_data {
 	int debug_line;
 	const char* debug_func;
 
+	// Battleground and Queue System
 	unsigned int bg_id;
+	struct battleground_data *bmaster_flag;
+	struct queue_data *qd;
+	unsigned short bg_team;
 
 #ifdef SECURE_NPCTIMEOUT
 	/**
@@ -1287,6 +1295,8 @@ extern int day_timer_tid;
 extern int night_timer_tid;
 TIMER_FUNC(map_day_timer); // by [yor]
 TIMER_FUNC(map_night_timer); // by [yor]
+
+int pc_update_last_action(struct map_session_data *sd, int type, enum idletime_option idle_option);
 
 // Rental System
 void pc_inventory_rentals(struct map_session_data *sd);

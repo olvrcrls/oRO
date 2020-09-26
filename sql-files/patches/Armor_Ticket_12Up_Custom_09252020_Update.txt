@@ -1,0 +1,1 @@
+INSERT INTO item_db_re (id,name_english,name_japanese,type,price_buy,price_sell,weight) VALUES (56240,'Guarantee_Armor_12Up','+12 Armor Refine Ticket',3,100,1,0);

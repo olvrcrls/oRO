@@ -2097,6 +2097,15 @@ uint8 npc_selllist(struct map_session_data* sd, int n, unsigned short *item_list
 			return 1;
 		}
 
+		if( sd->inventory.u.items_inventory[idx].card[0] == CARD0_CREATE )
+		{
+			int char_id = MakeDWord(sd->inventory.u.items_inventory[idx].card[2],sd->inventory.u.items_inventory[idx].card[3]);
+			if( battle_config.bg_reserved_char_id && char_id == battle_config.bg_reserved_char_id )
+				return 1;
+			if( battle_config.woe_reserved_char_id && char_id == battle_config.woe_reserved_char_id )
+				return 1;
+		}
+		
 		if( nd->master_nd )
 		{// Script-controlled shops decide by themselves, what can be sold and at what price.
 			continue;
@@ -3692,8 +3701,8 @@ void npc_unsetcells(struct npc_data* nd)
 		return;
 
 	struct map_data *mapdata = map_getmapdata(m);
-
 	//Locate max range on which we can locate npc cells
+	//FIXME: does this really do what it's supposed to do? [ultramage]
 	//FIXME: does this really do what it's supposed to do? [ultramage]
 	for(x0 = x-xs; x0 > 0 && map_getcell(m, x0, y, CELL_CHKNPC); x0--);
 	for(x1 = x+xs; x1 < mapdata->xs-1 && map_getcell(m, x1, y, CELL_CHKNPC); x1++);
@@ -4152,7 +4161,7 @@ static const char* npc_parse_mapflag(char* w1, char* w2, char* w3, char* w4, con
 
 				if (sscanf(w4, "%11d", &args.flag_val) == 1)
 					map_setmapflag_sub(m, MF_RESTRICTED, true, &args);
-				else // Could not be read, no value defined; don't remove as other restrictions may be set on the map
+			else //No level specified, block everyone.
 					ShowWarning("npc_parse_mapflag: Zone value not set for the restricted mapflag! Skipped flag from %s (file '%s', line '%d').\n", map_mapid2mapname(m), filepath, strline(buffer,start-buffer));
 			} else
 				map_setmapflag(m, MF_RESTRICTED, false);
@@ -4168,7 +4177,7 @@ static const char* npc_parse_mapflag(char* w1, char* w2, char* w3, char* w4, con
 				map_setmapflag_sub(m, mapflag, state, &args);
 			}
 			break;
-
+                                //we don't remove has other restricted may be set on the map
 		case MF_SKILL_DAMAGE: {
 			char skill_name[SKILL_NAME_LENGTH];
 			char caster_constant[NAME_LENGTH];
@@ -4203,7 +4212,7 @@ static const char* npc_parse_mapflag(char* w1, char* w2, char* w3, char* w4, con
 						map_setmapflag_sub(m, MF_SKILL_DAMAGE, true, &args);
 					else if (skill_name2id(skill_name) <= 0)
 						ShowWarning("npc_parse_mapflag: Invalid skill name '%s' for Skill Damage mapflag. Skipping (file '%s', line '%d').\n", skill_name, filepath, strline(buffer, start - buffer));
-					else { // Adjusted damage for specified skill
+		else {
 						args.flag_val = 1;
 						map_setmapflag_sub(m, MF_SKILL_DAMAGE, true, &args);
 						map_skill_damage_add(map_getmapdata(m), skill_name2id(skill_name), args.skill_damage.rate, args.skill_damage.caster);
