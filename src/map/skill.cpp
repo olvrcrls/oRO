@@ -2050,6 +2050,8 @@ int skill_additional_effect(struct block_list* src, struct block_list *bl, uint1
 					case SC_WEDDING:		case SC_XMAS:			case SC_SUMMER:
 					case SC_DRESSUP:		case SC_HANBOK:			case SC_OKTOBERFEST:
 					case SC_LHZ_DUN_N1:		case SC_LHZ_DUN_N2:			case SC_LHZ_DUN_N3:			case SC_LHZ_DUN_N4:
+					case SC_SOULENERGY:
+					case SC_EP16_2_BUFF_SS:		case SC_EP16_2_BUFF_SC:	case SC_EP16_2_BUFF_AC:
 						continue;
 					case SC_WHISTLE:		case SC_ASSNCROS:		case SC_POEMBRAGI:
 					case SC_APPLEIDUN:		case SC_HUMMING:		case SC_DONTFORGETME:
@@ -8326,6 +8328,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 					case SC_WEDDING:		case SC_XMAS:			case SC_SUMMER:
 					case SC_DRESSUP:		case SC_HANBOK:			case SC_OKTOBERFEST:
 					case SC_LHZ_DUN_N1:		case SC_LHZ_DUN_N2:			case SC_LHZ_DUN_N3:			case SC_LHZ_DUN_N4:
+					case SC_SOULENERGY:
+					case SC_EP16_2_BUFF_SS:		case SC_EP16_2_BUFF_SC:	case SC_EP16_2_BUFF_AC:
 						continue;
 					case SC_WHISTLE:
 					case SC_ASSNCROS:
@@ -9889,6 +9893,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 					case SC_WEDDING:		case SC_XMAS:			case SC_SUMMER:
 					case SC_DRESSUP:		case SC_HANBOK:			case SC_OKTOBERFEST:
 					case SC_LHZ_DUN_N1:		case SC_LHZ_DUN_N2:			case SC_LHZ_DUN_N3:			case SC_LHZ_DUN_N4:
+					case SC_SOULENERGY:
+					case SC_EP16_2_BUFF_SS:		case SC_EP16_2_BUFF_SC:	case SC_EP16_2_BUFF_AC:
 					continue;
 				case SC_ASSUMPTIO:
 					if( bl->type == BL_MOB )
@@ -17279,6 +17285,8 @@ int skill_vfcastfix(struct block_list *bl, double time, uint16 skill_id, uint16 
 			VARCAST_REDUCTION(sc->data[SC_TELEKINESIS_INTENSE]->val2);
 		if (sc->data[SC_SOULFAIRY])
 			VARCAST_REDUCTION(sc->data[SC_SOULFAIRY]->val3);
+		if (sc->data[SC_EP16_2_BUFF_AC])
+			VARCAST_REDUCTION(80);
 		// Multiplicative Fixed CastTime values
 		if (sc->data[SC_SECRAMENT])
 			fixcast_r = max(fixcast_r, sc->data[SC_SECRAMENT]->val2);
