@@ -237,6 +237,7 @@ que_hugel	mapflag	noreturn
 //pvp_n_8-4	mapflag	noreturn
 //pvp_n_8-5	mapflag	noreturn
 //pvp_2vs2	mapflag	noreturn
+pvp_y_8_2	mapflag	noreturn
 
 // Battle Grounds ==============
 bat_c01	mapflag	noreturn
