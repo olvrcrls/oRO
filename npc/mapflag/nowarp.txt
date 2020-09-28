@@ -102,4 +102,4 @@ poring_w02	mapflag	nowarp
 2012rwc_08	mapflag	nowarp
 
 // PVP ==========================
-pvp_y_8_2	mapflag	nowarp
+pvp_y_8-2	mapflag	nowarp
