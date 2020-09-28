@@ -12234,6 +12234,7 @@ int status_change_clear(struct block_list* bl, int type)
 			case SC_LHZ_DUN_N2:
 			case SC_LHZ_DUN_N3:
 			case SC_LHZ_DUN_N4:
+			case SC_INTRAVISION:
 			// Costumes
 			case SC_MOONSTAR:
 			case SC_SUPER_STAR:
