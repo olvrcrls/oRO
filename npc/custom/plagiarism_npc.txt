@@ -1,0 +1,18 @@
+-	script	Plagiarism Master	-1,{
+mes "[ ^FF0000Fu^000000 ]";
+mes "I have the ability of many Jobs, I am a Master!";
+mes "What Skill do you need to copy?";
+set .@SkillID,select( implode( .SkillName$,":" ) ) - 1;
+mes "Selected "+.Skillname$[.@SkillID];
+close2;
+unitskilluseid getnpcid(0),.SkillID[.@SkillID],10,getcharid(3);
+end;
+
+OnInit:
+setarray .SkillID[0],14,19,20,90,84,89,535,537,540,62,379;
+setarray .SkillName$[0],"Cold Bolt","Fire Bolt","Lightning Bolt","Earth Spike","Jupitel Thunder","Storm Gust","Crimson Fire Formation","Lightning Spear of Ice","Wind Blade","Bowling Bash","Soul Breaker";
+end;
+}
+
+// Duplicates
+askald,119,131,4	duplicate(Plagiarism Master)	Plagiarism Master#ask	4_F_GELKA
