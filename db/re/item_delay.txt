@@ -104,5 +104,7 @@
 
 23277,180000	//Mado_Box
 
-12033,45000,SC_REUSE_LIMIT_A // BoS Cooldown
+// Adding custom CD to some items that can be abused.
+12033,50000,SC_REUSE_LIMIT_A // BoS Cooldown
+12414,5000,SC_REUSE_LIMIT_A // Gurana Candy
 
