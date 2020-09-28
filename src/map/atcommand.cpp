@@ -10093,41 +10093,114 @@ ACMD_FUNC(resurrect) {
 
 /*=========================================
  * Battlestats Command
- * [ Wazaby ]
- *-----------------------------------------*/
+ * [ Wazaby ] V 1.2
+ * WIP
+ *=========================================*/
 ACMD_FUNC(battlestats) {
+	unsigned char msize[SZ_ALL][7] = { "Small", "Medium", "Large" };
+	unsigned char mrace[RC_ALL][11] = { "Formless", "Undead", "Beast", "Plant", "Insect", "Fish", "Demon", "Demi-Human", "Angel", "Dragon", "Player" };
+	unsigned char melement[ELE_ALL][8] = { "Neutral", "Water", "Earth", "Fire", "Wind", "Poison", "Holy", "Dark", "Ghost", "Undead" };
+	unsigned char mrweaponelement[ELE_ALL][8] = { "Neutral", "Water", "Earth", "Fire", "Wind", "Poison", "Holy", "Dark", "Ghost", "Undead" };
+	unsigned char mlweaponelement[ELE_ALL][8] = { "Neutral", "Water", "Earth", "Fire", "Wind", "Poison", "Holy", "Dark", "Ghost", "Undead" };
+	char xelement[50];
+	char xrace[50];
+	char xsize[50];
+	char rweaponelement[100];
+	char lweaponelement[100];
 	char output[CHAT_SIZE_MAX];
 	int i;
 	struct {
 		const char* format;
+		char details;
 		int value;
 	} output_table[] = {
-		{ "   [ %d ] Neutral resist", 0 },
-		{ "   [ %d ] Water resist", 0 },
-		{ "   [ %d ] Earth resist", 0 },
-		{ "   [ %d ] Fire resist", 0 },
-		{ "   [ %d ] Wind resist", 0 },
-		{ "   [ %d ] Poison resist", 0 },
-		{ "   [ %d ] Holy resist", 0 },
-		{ "   [ %d ] Dark resist", 0 },
-		{ "   [ %d ] Ghost resist", 0 },
-		{ "   [ %d ] Undead resist", 0 },
-		{ "   [ %d ] Resist to all", 0 },
+		{ NULL, 0 }, //Race
+		{ NULL, 0 }, //Armor Element
+		{ NULL, 0 }, //Size
+		{ NULL, 0 }, //Right-Handed Weapon Element 
+		{ NULL, 0 }, //Left-Handed Weapon Element
+		{ "Walk Speed: %d", 0 },
+		{ "HP Regen Rate: %d%%", 0 },
+		{ "SP Regen Rate: %d%%", 0 },
+		{ "Atk Rate: %d%%   (Without Skill Bonuses)", 0 },
+		{ "Matk Rate: %d%%", 0 },
+		{ "Physical Def:  %d%%   (Hard)", 0 },
+		{ "Magic Def:  %d%%   (Hard)",  0 },
+		{ "Perfect Dodge: %3d%%", 0 },
+		{ "Perfect Hit Bonus: %3d%%   (Equips + Items)", 0 },
+		{ "Crit Chance: %3d%%", 0 },
+		{ "Crit Damage Rate: %3d%%", 0 },
+		{ "Crit Def Rate: %3d%%", 0 },
+		{ "Var Cast Bonus: %3d%%   (Equips + Items)", 0 },
+		{ "Fixed Cast Bonus: %3d%%   (Equips + Items)", 0 },
+		{ "Skill Delay Rate: %3d%%", 0 },
+		{ "Skill SP Use Rate: %3d%%", 0 },
+		{ "Heal Power Bonus: %3d%%   (Equips + Items)", 0 },
+		{ "Reflect Bonus (Melee): %3d%%   (Equips + Items)", 0 },
+		{ "Neutral resist: %3d%%", 0 },
+		{ "Water resist: %3d%%", 0 },
+		{ "Earth resist: %3d%%", 0 },
+		{ "Fire resist: %3d%%", 0 },
+		{ "Wind resist: %3d%%", 0 },
+		{ "Poison resist: %3d%%", 0 },
+		{ "Holy resist: %3d%%", 0 },
+		{ "Dark resist: %3d%%", 0 },
+		{ "Ghost resist: %3d%%", 0 },
+		{ "Undead resist: %3d%%", 0 },
+		{ "Resist to all: %3d%%", 0 },
 		{ NULL, 0 }
 	};
+	memset(xrace, '\0', sizeof(xrace));
+	memset(xelement, '\0', sizeof(xelement));
+	memset(xsize, '\0', sizeof(xsize));
+	memset(rweaponelement, '\0', sizeof(rweaponelement));
+	memset(lweaponelement, '\0', sizeof(lweaponelement));
 	memset(output, '\0', sizeof(output));
-	clif_displaymessage(sd->fd, "========= Resistance Values =========");
-	output_table[0].value = (sd->subele[ELE_NEUTRAL] + sd->subele_script[ELE_NEUTRAL]);
-	output_table[1].value = (sd->subele[ELE_WATER] + sd->subele_script[ELE_WATER]);
-	output_table[2].value = (sd->subele[ELE_EARTH] + sd->subele_script[ELE_EARTH]);
-	output_table[3].value = (sd->subele[ELE_FIRE] + sd->subele_script[ELE_FIRE]);
-	output_table[4].value = (sd->subele[ELE_WIND] + sd->subele_script[ELE_WIND]);
-	output_table[5].value = (sd->subele[ELE_POISON] + sd->subele_script[ELE_POISON]);
-	output_table[6].value = (sd->subele[ELE_HOLY] + sd->subele_script[ELE_HOLY]);
-	output_table[7].value = (sd->subele[ELE_DARK] + sd->subele_script[ELE_DARK]);
-	output_table[8].value = (sd->subele[ELE_GHOST] + sd->subele_script[ELE_GHOST]);
-	output_table[9].value = (sd->subele[ELE_UNDEAD] + sd->subele_script[ELE_UNDEAD]);
-	output_table[10].value = (sd->subele[ELE_ALL] + sd->subele_script[ELE_ALL]);
+
+	//direct array initialization with variables is not standard C compliant.
+	output_table[0].format = xrace;
+	output_table[1].format = xelement;
+	output_table[2].format = xsize;
+	output_table[3].format = rweaponelement;
+	output_table[4].format = lweaponelement;
+	output_table[5].value = sd->battle_status.speed;
+	output_table[6].value = sd->hprecov_rate;
+	output_table[7].value = sd->sprecov_rate;
+	output_table[8].value = 100 + sd->bonus.atk_rate;
+	output_table[9].value = sd->matk_rate;
+	output_table[10].value = 100 - ((int)(100 * ((double)(4000 + sd->battle_status.def) / (4000 + sd->battle_status.def * 10))));
+	output_table[11].value = 100 - ((int)(100 * ((double)(1000 + sd->battle_status.mdef) / (1000 + sd->battle_status.mdef * 10))));
+	output_table[12].value = (sd->battle_status.flee2 / 10 * (sd->flee2_rate)) / 100;
+	output_table[13].value = sd->bonus.perfect_hit_add;
+	output_table[14].value = (sd->battle_status.cri / 10 * (sd->critical_rate)) / 100;
+	output_table[15].value = 40 + sd->bonus.crit_atk_rate;
+	output_table[16].value = sd->bonus.critical_def;
+	output_table[17].value = -1 * (sd->bonus.varcastrate);
+	output_table[18].value = sd->bonus.fixcastrate;
+	output_table[19].value = sd->delayrate;
+	output_table[20].value = sd->dsprate;
+	output_table[21].value = sd->bonus.add_heal_rate;
+	output_table[22].value = sd->bonus.short_weapon_damage_return + (sd->sc.data ? (sd->sc.data[SC_REFLECTSHIELD] ? sd->sc.data[SC_REFLECTSHIELD]->val1 : 0) : 0);
+	output_table[23].value = (sd->subele[ELE_NEUTRAL] + sd->subele_script[ELE_NEUTRAL]);
+	output_table[24].value = (sd->subele[ELE_WATER] + sd->subele_script[ELE_WATER]);
+	output_table[25].value = (sd->subele[ELE_EARTH] + sd->subele_script[ELE_EARTH]);
+	output_table[26].value = (sd->subele[ELE_FIRE] + sd->subele_script[ELE_FIRE]);
+	output_table[27].value = (sd->subele[ELE_WIND] + sd->subele_script[ELE_WIND]);
+	output_table[28].value = (sd->subele[ELE_POISON] + sd->subele_script[ELE_POISON]);
+	output_table[29].value = (sd->subele[ELE_HOLY] + sd->subele_script[ELE_HOLY]);
+	output_table[30].value = (sd->subele[ELE_DARK] + sd->subele_script[ELE_DARK]);
+	output_table[31].value = (sd->subele[ELE_GHOST] + sd->subele_script[ELE_GHOST]);
+	output_table[32].value = (sd->subele[ELE_UNDEAD] + sd->subele_script[ELE_UNDEAD]);
+	output_table[33].value = (sd->subele[ELE_ALL] + sd->subele_script[ELE_ALL]);
+
+	sprintf(xrace, "Race: %s", mrace[sd->battle_status.race]);
+	sprintf(xelement, "Element: %s (Lv. %u)", melement[sd->battle_status.def_ele], sd->battle_status.ele_lv);
+	sprintf(xsize, "Size: %s", msize[sd->battle_status.size]);
+	sprintf(rweaponelement, "Weapon Element (R): %s", mrweaponelement[sd->battle_status.rhw.ele]);
+	sprintf(lweaponelement, "Weapon Element (L): %s", mlweaponelement[sd->battle_status.lhw.ele]);
+	sprintf(output, msg_txt(sd, 53), sd->status.name); // '%s' stats:
+
+	clif_displaymessage(fd, output);
 
 	for (i = 0; output_table[i].format != NULL; i++) {
 		sprintf(output, output_table[i].format, output_table[i].value);
