@@ -42,3 +42,4 @@ umbala	mapflag	reset
 veins	mapflag	reset
 xmas	mapflag	reset
 yuno	mapflag	reset
+askald	mapflag	reset
