@@ -7622,6 +7622,10 @@ void clif_party_info(struct party_data* p, struct map_session_data *sd)
 			else strcat(output, "_");
 			if (target->sc.data[SC_DEVOTION]) strcat(output, "D");
 			else strcat(output, "_");
+			if (target->sc.data[SC_SECRAMENT]) strcat(output, "$");
+			else strcat(output, "_");
+			if (target->sc.data[SC_ASPERSIO]) strcat(output, "+");
+			else strcat(output, "_");
 			strcat(output, "]");
 			strncat(output, target->status.name, NAME_LENGTH);
 			safestrncpy(WBUFCP(buf, PRE_SIZE + i * M_SIZE + 4), output, NAME_LENGTH);
