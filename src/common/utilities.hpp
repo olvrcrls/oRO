@@ -120,6 +120,31 @@ namespace rathena {
 			else
 				return defaultValue;
 		}
+		/**
+		 * Get an iterator element
+		 * @param vec: Vector to search through
+		 * @param value: Value wanted
+		 * @return Key value iterator on success or vector end iterator on failure
+		 **/
+		template <typename K, typename V> typename std::vector<K>::iterator vector_get(std::vector<K> & vec, V key) {
+			return std::find(vec.begin(), vec.end(), key);
+			
+		}
+		
+		/**
+		* Determine if a value exists in the vector
+		* @param vec: Vector to search through
+		* @param value: Value wanted
+		* @return True on success or false on failure
+		*/
+		template <typename K, typename V> bool vector_exists(std::vector<K> & vec, V value) {
+		auto it = std::find(vec.begin(), vec.end(), value);
+
+			if (it != vec.end())
+				return true;
+			else
+				return false;
+		}
 	}
 }
 
