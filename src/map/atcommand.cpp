@@ -10209,6 +10209,24 @@ ACMD_FUNC(battlestats) {
 	return 0;
 }
 
+//==================================================================//
+//--------------------------  Battleinfo  --------------------------//
+//==================================================================//
+/*ACMD_FUNC(battleinfo)
+{
+	if (sd->state.battleinfo)
+	{
+		clif_displaymessage(fd, "- Battle Information Display OFF - Kill/Death -");
+		sd->state.battleinfo = 0; // TODO need to define state.battleinfo in status.cpp
+	}
+	else
+	{
+		clif_displaymessage(fd, "- Battle Information Display ON - Kill/Death -");
+		sd->state.battleinfo = 1;
+	}
+	return 0;
+}*/
+
 //------------------------------------------------------------------//
 //------------------------Party Buff Command------------------------//
 //------------------------------------------------------------------//
