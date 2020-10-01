@@ -125,13 +125,7 @@ bool YamlDatabase::load(const std::string& path) {
 
 	this->parseImports( rootNode );
 
-	this->loadingFinished();
-
 	return true;
-}
-
-void YamlDatabase::loadingFinished(){
-	// Does nothing by default, just for hooking
 }
 
 void YamlDatabase::parse( const YAML::Node& rootNode ){

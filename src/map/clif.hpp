@@ -545,6 +545,7 @@ enum e_damage_type : uint8_t {
 	DMG_ENDURE,				/// damage (endure)
 	DMG_SPLASH,				/// (splash?)
 	DMG_SINGLE,				/// (skill?)
+	DMG_SKILL,				/// (skill?)
 	DMG_REPEAT,				/// (repeat damage?)
 	DMG_MULTI_HIT,			/// multi-hit damage
 	DMG_MULTI_HIT_ENDURE,	/// multi-hit damage (endure)
