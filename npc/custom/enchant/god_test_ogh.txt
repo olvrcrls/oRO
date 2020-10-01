@@ -92,6 +92,7 @@ askald,150,248,4	script	Dark magic master	1_F_01,{
 			close;
 		}
 		.@card[3] = .@enchant_1[.@s];
+	}
 	else {
 		.@amount_coag = 50;
 		.@amount_poll = 10;
