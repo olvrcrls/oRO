@@ -105,6 +105,7 @@
 23277,180000	//Mado_Box
 
 // Adding custom CD to some items that can be abused.
-12033,50000,SC_REUSE_LIMIT_A // BoS Cooldown
-12414,5000,SC_REUSE_LIMIT_A // Gurana Candy
-
+12033,50000,SC_REUSE_LIMIT_A // BoS Cooldown 50s
+12414,5000,SC_REUSE_LIMIT_A // Guarana Candy 5s
+607,10000,SC_REUSE_LIMIT_A // Yggdrasil Berry 10s
+608,6000,SC_REUSE_LIMIT_A // Yggdrasil Seed 6s
