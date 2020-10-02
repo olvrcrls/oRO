@@ -40,10 +40,10 @@
 11524,3000,SC_REUSE_LIMIT_E	//White_Raffle_Sap
 
 // SC_REUSE_LIMIT_F
-607,5000,SC_REUSE_LIMIT_F	//Yggdrasil_Berry
+607,10000,SC_REUSE_LIMIT_F	//Yggdrasil_Berry
 
 // SC_REUSE_LIMIT_G
-608,3000,SC_REUSE_LIMIT_G	//Yggdrasil_Seed
+608,6000,SC_REUSE_LIMIT_G	//Yggdrasil_Seed 6s
 22559,3000,SC_REUSE_LIMIT_G	//Mock_Strawberry
 23042,3000,SC_REUSE_LIMIT_G	//S_Seed_Of_Yggdrasil
 
@@ -105,6 +105,5 @@
 23277,180000	//Mado_Box
 
 // Adding custom CD to some items that can be abused.
-12033,50000,SC_REUSE_LIMIT_A // BoS Cooldown
-12414,5000,SC_REUSE_LIMIT_A // Gurana Candy
-
+12033,50000,SC_REUSE_LIMIT_A // BoS Cooldown 50s
+12414,5000,SC_REUSE_LIMIT_A // Guarana Candy 5s
