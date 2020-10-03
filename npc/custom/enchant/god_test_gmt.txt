@@ -12,8 +12,8 @@ askald,147,248,4	script	Fenrir	4_F_FENRIR,{
 		break;
 		case 2: //Enchant Magic Armor
 			mes "[Fenrir]";
-			.@equip_id = getequipid(EQI_ARMOR);
-				if (!.equip_id){
+			.@itemEqId = getequipid(EQI_ARMOR);
+				if (!.@itemEqId){
 					mes "I don't see anything, please make sure you've equipped the item.";
 					close;
 				}
@@ -114,10 +114,10 @@ askald,147,248,4	script	Fenrir	4_F_FENRIR,{
 				{
 					close;
 				}
-			.@Opt1 = .RandOpt1_Accessory[.@s1];
-			.@Opt2 = .RandOpt2_Accessory[.@s2];
-			.@Opt1_V = .RandOpt1_Accessory_V[.@s1];
-			.@Opt2_V = .RandOpt2_Accessory_V[.@s2];
+			.@Opt1 = .RandOpt_Accessory[.@s1];
+			.@Opt2 = .RandOpt_Accessory[.@s2];
+			.@Opt1_V = .RandOpt_Accessory_V[.@s1];
+			.@Opt2_V = .RandOpt_Accessory_V[.@s2];
 			delitem .itemId,.cost;
 			setrandomoption(.@part,0,.@Opt1,.@Opt1_V,0);
 			setrandomoption(.@part,1,.@Opt2,.@Opt2_V,0);
@@ -132,8 +132,7 @@ askald,147,248,4	script	Fenrir	4_F_FENRIR,{
 		OnInit:
 				.cost = 100;
 				.itemId = 6671;
-			setarray .RandOpt1_Armor[0],
-										RDMOPT_VAR_STRAMOUNT, 			// str 1 ~ 4
+			setarray .RandOpt1_Armor[0],RDMOPT_VAR_STRAMOUNT, 			// str 1 ~ 4
 										RDMOPT_VAR_AGIAMOUNT,			// agi 1 ~ 4
 										RDMOPT_VAR_VITAMOUNT,			// vit 1 ~ 4
 										RDMOPT_VAR_INTAMOUNT,			// int 1 ~ 4
@@ -142,8 +141,7 @@ askald,147,248,4	script	Fenrir	4_F_FENRIR,{
 										RDMOPT_VAR_MAXHPPERCENT,		// MAX HP 3% ~ 5%
 										RDMOPT_VAR_MAXSPPERCENT;		// MAX SP 3% ~ 5%
 			setarray .RandOpt1_Armor_V[0],4,4,4,4,4,4,5,5;
-			setarray .RandOpt2_Armor[0],
-										RDMOPT_VAR_HPACCELERATION, 		// 50% ~ 100%
+			setarray .RandOpt2_Armor[0],RDMOPT_VAR_HPACCELERATION, 		// 50% ~ 100%
 										RDMOPT_VAR_SPACCELERATION,		// 50% ~ 100%
 										RDMOPT_VAR_HITSUCCESSVALUE,		// Hit 15 ~ 30
 										RDMOPT_VAR_AVOIDSUCCESSVALUE,	// Flee 15 ~ 30
@@ -157,8 +155,7 @@ askald,147,248,4	script	Fenrir	4_F_FENRIR,{
 										RDMOPT_BODY_ATTR_GROUND,		// Earth Property
 										RDMOPT_BODY_ATTR_WIND;			// Wind Property
 			setarray .RandOpt2_Armor_V[0],100,100,30,30,60,10,10,10,0,0,0,0,0;					
-			setarray .RandOpt_Accessory[0],	
-											RDMOPT_VAR_ATKPERCENT,			// Attack 1% ~ 3%
+			setarray .RandOpt_Accessory[0],RDMOPT_VAR_ATKPERCENT,			// Attack 1% ~ 3%
 											RDMOPT_VAR_MAGICATKPERCENT,		// Magic Attack 1% ~ 3%
 											RDMOPT_VAR_PLUSASPDPERCENT,		// ASPD 3% ~ 5%
 											RDMOPT_DEC_SPELL_CAST_TIME,		// Variable Cast Reduction	5% ~ 7%
