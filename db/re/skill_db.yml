@@ -28705,16 +28705,6 @@ Body:
           Amount: 100
       Weapon:
         Grenade: true
-      Ammo:
-        Dagger: true
-        Bullet: true
-        Shell: true
-        Grenade: true
-        Shuriken: true
-        Kunai: true
-        Cannonball: true
-        Throwweapon: true
-      AmmoAmount: 1
       ItemCost:
         - Item: Dragon_Tail_Missile
           Amount: 1
