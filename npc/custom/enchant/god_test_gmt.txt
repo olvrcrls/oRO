@@ -13,7 +13,7 @@ askald,147,248,4	script	Fenrir	4_F_FENRIR,{
 		case 2: //Enchant Magic Armor
 			mes "[Fenrir]";
 			.@itemEqId = getequipid(EQI_ARMOR);
-				if (!.@equip_id){
+				if (!.@itemEqId){
 					mes "I don't see anything, please make sure you've equipped the item.";
 					close;
 				}
