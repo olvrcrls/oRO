@@ -120,26 +120,26 @@ function	script	F_Kafra	{
 	else {
 		switch(.@menu_num) {
 			// Save and Storage only
-			case 1:	setarray .@K_Menu0$[0],"Save","Use Storage","Cancel"; break;
+			case 1:	setarray .@K_Menu0$[0],"Save","Use Storage","Repair","Cancel"; break;
 			// Storage only
-			case 2:	setarray .@K_Menu0$[0],"Use Storage","Cancel"; break;
+			case 2:	setarray .@K_Menu0$[0],"Use Storage","Repair","Cancel"; break;
 			// No Teleport (Common)
-			case 3: setarray .@K_Menu0$[0],"Save","Use Storage","Rent a Pushcart","Check Other Information","Cancel"; break;
+			case 3: setarray .@K_Menu0$[0],"Save","Use Storage","Rent a Pushcart","Repair","Check Other Information","Cancel"; break;
 			// Case 4 is Einbroch no tele message.
 			// No save, or teleport. (Common)
-			case 5:	setarray .@K_Menu0$[0],"Use Storage","Rent a Pushcart","Check Other Information","Cancel"; break;
+			case 5:	setarray .@K_Menu0$[0],"Use Storage","Rent a Pushcart","Repair","Check Other Information","Cancel"; break;
 			// Storage and Check Other Information only.
-			case 6:	setarray .@K_Menu0$[0],"Use Storage","Check Other Information","Cancel"; break;
+			case 6:	setarray .@K_Menu0$[0],"Use Storage","Repair","Check Other Information","Cancel"; break;
 			// Save, Storage, and Pushcart only (Kafra Warehouse)
-			case 7:	setarray .@K_Menu0$[0],"Save","Use Storage","Rent a Pushcart","Cancel"; break;
+			case 7:	setarray .@K_Menu0$[0],"Save","Use Storage","Rent a Pushcart","Repair","Cancel"; break;
 			// Save, Storage, Other Check information. (Turbo track)
-			case 8: setarray .@K_Menu0$[0],"Save","Use Storage","Check Other Information","Cancel"; break;
+			case 8: setarray .@K_Menu0$[0],"Save","Use Storage","Repair","Check Other Information","Cancel"; break;
 			// No Save (Rune Knight)
-			case 9: setarray .@K_Menu0$[0],"Use Storage","Rent a Pushcart","Use Teleport Service","Check Other Information","Cancel"; break;
+			case 9: setarray .@K_Menu0$[0],"Use Storage","Rent a Pushcart","Use Teleport Service","Repair","Check Other Information","Cancel"; break;
 			// Storage, Save, and Pushcart (Dewata, reorder of case 7)
-			case 10: setarray .@K_Menu0$[0],"Use Storage","Save","Rent a Pushcart","Cancel"; break;
+			case 10: setarray .@K_Menu0$[0],"Use Storage","Save","Rent a Pushcart","Repair","Cancel"; break;
 			// Default message (obsolete)
-			default: setarray .@K_Menu0$[0],"Save","Use Storage","Use Teleport Service","Rent a Pushcart","Check Other Information","Cancel"; break;
+			default: setarray .@K_Menu0$[0],"Save","Use Storage","Use Teleport Service","Rent a Pushcart","Repair","Check Other Information","Cancel"; break;
 		}
 	}
 	.@menu$ = implode(.@K_Menu0$,":");
@@ -187,6 +187,10 @@ function	script	F_Kafra	{
 		}
 		else if (.@K_Menu0$[.@j] == "Use Guild Storage") {
 			callfunc "F_KafStor",1,0;
+			next;
+		}
+		else if (.@K_Menu0$[.@j] == "Repair"){
+			callfunc "F_KafRepair";
 			next;
 		}
 	}
@@ -670,4 +674,17 @@ function	script	F_KafSet	{
 		@wrpC$[.@i] = @wrpD$[.@i] + " -> " + @wrpP[.@i] + " z";
 	@wrpC$[ .@warp_size ] = "Cancel";
 	return;
+}
+
+//===================================================
+// Repair All function for Kafra
+//===================================================
+function	script	F_KafRepair	{
+	if ( getbrokenid(1) == 0 ){
+	mes "You don't have anything to be repaired!";
+	close;
+	}
+	repairall;
+	dispbottom "Repaired all broken equipment.";
+	end;
 }

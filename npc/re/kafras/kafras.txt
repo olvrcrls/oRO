@@ -123,4 +123,5 @@ askald,123,87,5	script	Kafra Employee::ask	4_F_KAFRA1,{
 	callfunc "F_Kafra",0,8,2,500,0;
 	savepoint "askald",128,114,1,1;
 	callfunc "F_KafEnd",2,0,0;
+	callfunc "F_KafRepair";
 }
