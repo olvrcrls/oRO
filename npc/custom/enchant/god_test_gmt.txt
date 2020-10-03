@@ -12,7 +12,7 @@ askald,147,248,4	script	Fenrir	4_F_FENRIR,{
 		break;
 		case 2: //Enchant Magic Armor
 			mes "[Fenrir]";
-			.@equip_id = getequipid(EQI_ARMOR);
+			.@itemEqId = getequipid(EQI_ARMOR);
 				if (!.@equip_id){
 					mes "I don't see anything, please make sure you've equipped the item.";
 					close;
@@ -114,10 +114,10 @@ askald,147,248,4	script	Fenrir	4_F_FENRIR,{
 				{
 					close;
 				}
-			.@Opt1 = .RandOpt1_Accessory[.@s1];
-			.@Opt2 = .RandOpt2_Accessory[.@s2];
-			.@Opt1_V = .RandOpt1_Accessory_V[.@s1];
-			.@Opt2_V = .RandOpt2_Accessory_V[.@s2];
+			.@Opt1 = .RandOpt_Accessory[.@s1];
+			.@Opt2 = .RandOpt_Accessory[.@s2];
+			.@Opt1_V = .RandOpt_Accessory_V[.@s1];
+			.@Opt2_V = .RandOpt_Accessory_V[.@s2];
 			delitem .itemId,.cost;
 			setrandomoption(.@part,0,.@Opt1,.@Opt1_V,0);
 			setrandomoption(.@part,1,.@Opt2,.@Opt2_V,0);
