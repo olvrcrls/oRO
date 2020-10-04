@@ -41,12 +41,13 @@ askald,144,248,4	script	Faceworm Queen	4_F_IRIS,{
 		mes "[Faceworm]";
 		mes "enchant req dialogue";
 		mes "Continue?";
+		next;
 			if(select("No.","Continue.") == 1){
 						mes "[Faceworm]";
 						mes "nub";
 						close;
 					}
-			if(countitem(.@cost_id < .@cost_v)){
+			if(countitem(.@cost_id) < .@cost_v){
 				mes "[Faceworm]";
 				mes "u lack shit nub";
 				close;
@@ -81,18 +82,17 @@ askald,144,248,4	script	Faceworm Queen	4_F_IRIS,{
 					close;
 			case 2:
 					.@card[1] = .@enchant_2[.@s2];
+					mes "[Faceworm]";
+					mes "gratz";
 					break;
 			case 3:
 					mes "[Faceworm]";
 					mes "nub";
-					close;
 					break;
 		}
 	delitem .@cost_id, .@cost_v;
 	delequip EQI_GARMENT;
 	specialeffect2 EF_REPAIRWEAPON;
-	mes "[Faceworm]";
-	mes "gratz";
 	getitem2 .@equip_id,1,1,.@equip_refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
 	close;
 	}
