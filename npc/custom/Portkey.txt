@@ -36,7 +36,10 @@
 			end;
 		case 6:
 			mes "[Portkey]";
+			mes "Hold on! I'll take you there in a jiffy.";
 			warp "askald",159,242;
+			close2;
+			end;
 		default:
 			mes "[Portkey]";
 			mes "Are you scared to teleport?";
