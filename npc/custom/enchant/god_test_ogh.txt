@@ -77,7 +77,11 @@ askald,150,248,4	script	Himelmez	4_F_HIMEL,{
 		getequipcardid(EQI_SHOES,2),
 		getequipcardid(EQI_SHOES,3);
 	.@equip_refine = getequiprefinerycnt(EQI_SHOES);
-
+	if (.@card[2] > 0) {
+		mes "[Dark magic master]";
+		mes "These boots have already passed the enchanting limit. We can't enchant them any more.";
+		close;
+	}
 	if (.@card[3] == 0) {// 4th slot 1st try enchanting
 		.@amount_coag = 73;
 		.@amount_poll = 14;
@@ -131,6 +135,6 @@ askald,150,248,4	script	Himelmez	4_F_HIMEL,{
 		specialeffect2 EF_REPAIRWEAPON;
 	mes "[Hugin's Magician]";
 	mes "Good Luck Have Fun!!";
-	getitem2 .@equip_id,1,1,.@equip_refine,0,.@card[0],0,.@card[2],.@card[3];
+	getitem2 .@equip_id,1,1,.@equip_refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
 	close;
 }
