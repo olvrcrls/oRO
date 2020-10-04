@@ -1,0 +1,149 @@
+askald,141,248,4	script	Malangdo Enchanter		4_OCTOPUS_LEG,{
+							//boss name? + boss sprite
+							//will come up w/ better dialogue
+	disable_command;
+	disable_items;
+	mes "[Malangdo Enchanter]";
+	mes "intro blablabla wachu want?";
+	next;
+		if(select("Quit","Enchant my shit") == 1){
+			mes "[Malangdo Enchanter]";
+			mes "nub";
+			close;
+		}
+	.@equip_id = getequipid(EQI_HAND_R);
+		switch(.@equip_id){
+				//DAGGERS
+				case 1224:case 1225:case 13062:case 1227:case 1229:case 1232:case 1233:case 1235:case 1236:case 1237:case 1240:case 1241:case 1242:case 1244:case 13047:case 13061:case 1223:case 1228:case 1234:case 1230:case 1231:	
+				//KATARS
+				case 1271:case 1263:case 28010:case 1270:case 1284:case 1285:case 1268:case 1269:case 1265:case 1261:case 1266:
+				//1-H AXES
+				case 1305:case 1311:
+				//2-H AXES
+				case 1364:case 1365:case 1371:case 1385:case 1367:case 1368:case 1387:case 1369:case 1363:case 1376:case 1377:case 1366:case 1370:
+				//1_H SWORDS
+				case 1131:case 1133:case 13462:case 1134:case 1135:case 13400:	case 1136:case 1138:case 1139:case 1140:case 1141:case 1148:case 13421:case 13431:	case 1137:case 1130:case 1132:case 13460:	case 13461:
+				//2-H SWORDS
+				case 1164:case 1166:case 1167:case 1168:case 1170:case 1171:case 1176:case 1178:case 1180:case 1181:case 1182:case 1188:case 1196:case 1165:case 1169:case 1179:case 1175:case 1185:case 1186:case 21018:
+				//1-H SPEARS
+				case 1420:case 1413:case 1422:case 1414:case 1416:case 1418:case 1433:case 1415:case 1421:
+				//2-H SPEARS
+				case 1466:case 1467:case 1484:case 1468:case 1469:case 1470:case 1471:case 1474:case 1476:case 1477:case 1478:case 1479:case 1480:
+				//1-H STAVES
+				case 1616:case 1629:case 1693:case 1631:case 1643:case 1654:case 1636:case 1637:case 1697:
+				//2-H STAVES
+				case 1473:case 2004:case 2005:case 2001:case 2000:case 2027:
+				//MACES
+				case 1524:case 1525:case 1540:case 1527:case 1539:case 1541:case 16000:case 16001:case 16010:case 1523:case 1538:case 1526:case 1528:
+				//BOOKS
+				case 1557:case 1558:case 1559:case 1561:case 1562:case 1565:
+				//KNUCKLES
+				case 1813:case 1814:case 1830:case 1815:case 1816:
+				//BOWS
+				case 1719:case 1722:case 1720:case 1724:case 1725:case 1727:case 1737:case 1740:case 1741:case 1745:case 18103:
+				//INSTRUMENTS
+				case 1913:case 1918:case 1920:case 1922:case 1926:case 1930:
+				//WHIPS
+				case 1962:case 1963:case 1964:case 1969:case 1970:case 1972:case 1973:case 1974:case 1976:case 1979:case 1984:case 1985:
+				//GUNS
+				case 13138:case 28223:case 28226:case 28224:case 28225:
+				.@ench_limit = 2;
+				break;
+				case 13046:		// Krieg
+				case 13412: 	// Twin_Edge_B
+				case 13413: 	// Twin_Edge_R
+				case 1481: 	// Zephyrus_
+				case 1447: 	// Poison_Forged_Spear
+				case 1189: 	// Krasnaya
+				.@ench_limit = 1;
+				break;
+				case -1:
+				mes "[Malangdo Enchanter]";
+				mes "wheres your shit";
+				close;
+				default:
+				mes "[Malangdo Enchanter]";
+				mes "this is not the shit";
+				close;
+		}
+	setarray .@enchants[0],
+							4827,4837,4823,				//SPELL6,EXPERTARCHER6,FIGHTINGSPIRIT8
+							4761,4844,4807,				//MATK 2%,SHARP5,ASPD1
+							4722,4715,4735,				//DEX+3,INT+6,AGI+6
+							4703,4819,4787,				//STR+4,ATK 1%,MDEF+4
+							4740,4750,4796,4801,4729;	//VIT+1,LUK+1,HP+200,SP+100,DEF+6
+	setarray .@card[0],
+						getequipcardid(EQI_HAND_R,0),
+						getequipcardid(EQI_HAND_R,1),
+						getequipcardid(EQI_HAND_R,2),						
+						getequipcardid(EQI_HAND_R,3);
+	.@equip_refine = getequiprefinerycnt(EQI_HAND_R);
+	.@cost_id = 6423; //Seagod's Anger
+	.@cost_v = 100;
+		if(.@card[3] == 0){
+				mes "[Malangdo Enchanter]";
+				mes "enchant req dialogue";
+				mes "Continue?";
+				next;
+					if(select("No.","Continue.") == 1){
+						mes "[Malangdo Enchanter]";
+						mes "nub";
+						close;
+					}
+					if(countitem(.@cost_id) < .@cost_v){
+						mes "[Malangdo Enchanter]";
+						mes "u lack shit nub";
+						close;
+					}
+				mes "[Malangdo Enchanter]";
+				mes "enchant #1 dialogue + req";
+				next;
+				.@s = select("Quit","SPELL6","EXPERTARCHER6","FIGHTINGSPIRIT8","MATK 2%","SHARP5","ASPD1","DEX+3","INT+6","AGI+6","STR+4","ATK 1%","MDEF+4","VIT+1","LUK+1","HP+200","SP+100","DEF+6") -2;
+					if(.@s == -1){
+						mes "[Malangdo Enchanter]";
+						mes "u suck";
+						close;
+					}
+				.@card[3] = .@enchants[.@s];
+		}
+		else {
+				mes "[Malangdo Enchanter]";
+				mes "enchant req dialogue";
+				mes "Continue?";
+				next;
+					if(select("No.","Continue.") == 1){
+						mes "[Malangdo Enchanter]";
+						mes "nub";
+						close;
+					}
+					if(countitem(.@cost_id) < .@cost_v){
+						mes "[Malangdo Enchanter]";
+						mes "u lack shit nub";
+						close;
+					}
+					if(.@ench_limit == 1 || .@card[2] > 0 ){
+						mes "[Malangdo Enchanter]";
+						mes "max enchant already u shit";
+						close;
+					}
+				mes "[Malangdo Enchanter]";
+				mes "enchant #2 dialogue + req";
+				next;
+				.@s = select("Quit","SPELL6","EXPERTARCHER6","FIGHTINGSPIRIT8","MATK 2%","SHARP5","ASPD1","DEX+3","INT+6","AGI+6","STR+4","ATK 1%","MDEF+4","VIT+1","LUK+1","HP+200","SP+100","DEF+6") -2;
+					if(.@s == -1){
+						mes "[Malangdo Enchanter]";
+						mes "u suck";
+						close;
+					}
+				.@card[2] = .@enchants[.@s];
+
+		}
+
+	delitem .@cost_id,.@cost_v;
+	delequip EQI_HAND_R;
+	specialeffect2 EF_REPAIRWEAPON;
+	mes "[Malangdo Enchanter]";
+	mes "gratz";	
+	getitem2 .@equip_id,1,1,.@equip_refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
+	close;
+}
