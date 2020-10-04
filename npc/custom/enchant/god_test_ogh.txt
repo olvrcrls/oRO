@@ -1,5 +1,5 @@
 // Temporal shoes slotted - npc enchant
-askald,150,248,4	script	Geffen Godly Enchanter	1_F_01,{
+askald,150,248,4	script	Himelmez	4_F_HIMEL,{
 	disable_items;
 	if ((MaxWeight - Weight) < 1000) {
 		mes "Your bag is too heavy. Reduce some weight and come back.";
