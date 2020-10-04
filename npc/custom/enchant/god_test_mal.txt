@@ -1,4 +1,4 @@
-askald,141,248,4	script	Malangdo Enchanter		4_OCTOPUS_LEG,{
+askald,141,248,4	script	Malangdo Enchanter		4_CAT_3COLOR,{
 							//boss name? + boss sprite
 							//will come up w/ better dialogue
 	disable_command;
