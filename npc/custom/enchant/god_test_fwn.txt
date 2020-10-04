@@ -1,0 +1,104 @@
+askald,144,248,4	script	Faceworm Queen	4_F_IRIS,{
+							//thoughts on fwq npc sprite?
+							//will come up w/ better dialogue
+	disable_command;
+	disable_items;
+
+	mes "[Faceworm]";
+	mes "intro blablabla wachu want?";
+	next;
+	if(select("Quit","Enchant my shit") == 1){
+		mes "[Faceworm]";
+		mes "nub";
+		close;
+	}
+	.@equip_id = getequipid(EQI_GARMENT);
+	switch(.@equip_id){
+		case 20717: //Giant Snake Skin[0]
+		case 20718: //Giant Snake Skin[1]
+		break;
+		case -1: 
+			mes "[Faceworm]";
+			mes "wheres your shit";
+			close;
+		default: 
+			mes "[Faceworm]";
+			mes "this is not the shit";
+			close;
+	}
+	setarray .@enchant_1[0],4706,4736,4746,4716,4726,4756; //STR,AGI,VIT,INT,DEX,LUK
+	setarray .@enchant_2[0],4853,4854,4855,4856,4857,4858; //S_STR,S_AGI,S_VIT,S_INT,S_DEX,S_LUK
+	setarray .@card[0],
+						getequipcardid(EQI_GARMENT,0),
+						getequipcardid(EQI_GARMENT,1),
+						getequipcardid(EQI_GARMENT,2),
+						getequipcardid(EQI_GARMENT,3);
+	.@equip_refine = getequiprefinerycnt(EQI_GARMENT);
+	.@cost_id = 6649; //Broken Horn
+	.@cost_v = 3;
+
+	if(.@card[3] == 0){
+		mes "[Faceworm]";
+		mes "enchant req dialogue";
+		mes "Continue?";
+			if(select("No.","Continue.") == 1){
+						mes "[Faceworm]";
+						mes "nub";
+						close;
+					}
+			if(countitem(.@cost_id < .@cost_v)){
+				mes "[Faceworm]";
+				mes "u lack shit nub";
+				close;
+			}
+		mes "[Faceworm]";
+		mes "blablabla choose your pokemon #1";
+		next;
+		.@s1 = select("Quit","Strength","Agility","Vitality","Intelligence","Dexterity","Luck") -2;
+			if(.@s == -1){
+				mes "[Faceworm]";
+				mes "u suck";
+				close;
+			}
+			.@card[3] = .@enchant_1[.@s1];
+		mes "[Faceworm]";
+		mes "blablabla choose your pokemon #2";
+		next;
+		.@s2 = 	select("Quit","Strength","Agility","Vitality","Intelligence","Dexterity","Luck") -2;
+			if(.@s == -1){
+				mes "[Faceworm]";
+				mes "u suck";
+				close;
+			}
+			.@card[2] = .@enchant_1[.@s2];
+		mes "[Faceworm]";
+		mes "special enchant dialogue";
+		next;
+		switch(select("Quit","yez plz","No")){
+			case 1:
+					mes "[Faceworm]";
+					mes "u suck";
+					close;
+			case 2:
+					.@card[1] = .@enchant_2[.@s2];
+					break;
+			case 3:
+					mes "[Faceworm]";
+					mes "nub";
+					close;
+					break;
+		}
+	delitem .@cost_id, .@cost_v;
+	delequip EQI_GARMENT;
+	specialeffect2 EF_REPAIRWEAPON;
+	mes "[Faceworm]";
+	mes "gratz";
+	getitem2 .@equip_id,1,1,.@equip_refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
+	close;
+	}
+	else {
+		mes "[Faceworm]";
+		mes "gtfo u already have enchantz";
+		close;
+	}
+}
