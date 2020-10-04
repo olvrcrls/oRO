@@ -10545,7 +10545,6 @@ void atcommand_basecommands(void) {
 		ACMD_DEF(fontcolor),
 		ACMD_DEF(langtype),
 		ACMD_DEF(battlestats), // battlestats command
-		ACMD_DEF(guildskill), // guildskill
 #ifdef VIP_ENABLE
 		ACMD_DEF(vip),
 		ACMD_DEF(showrate),
