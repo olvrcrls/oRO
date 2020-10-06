@@ -193,13 +193,13 @@ ACMD_FUNC(guildskill)
 		return -1;
 	}
 
-	if( !map_getmapflag(sd->bl.m, MF_BATTLEGROUND) ) {
-		if( sd->state.gmaster_flag )
-			skilllv = guild_checkskill(sd->guild, skillnum);
-		else {
-			clif_displaymessage(fd, "This command is reserved for Guild Leaders Only.");
-			return -1;
-		}
+	if( !(map_getmapflag(sd->bl.m, MF_BATTLEGROUND) ) || !(map_getmapflag(sd->bl.m, MF_GVG) )  ) {
+			if( sd->state.gmaster_flag )
+				skilllv = guild_checkskill(sd->guild, skillnum);
+			else {
+				clif_displaymessage(fd, "This command is reserved for Guild Leaders Only.");
+				return -1;
+			}
 	} else {
 		struct battleground_data *bg;
 		if( (bg = sd->bmaster_flag) != NULL )
