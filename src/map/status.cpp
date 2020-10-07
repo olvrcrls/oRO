@@ -2410,7 +2410,7 @@ int status_check_visibility(struct block_list *src, struct block_list *target)
 
 					if (((tsc->option&(OPTION_HIDE|OPTION_CLOAK|OPTION_CHASEWALK)) || tsc->data[SC_CAMOUFLAGE] || tsc->data[SC_STEALTHFIELD] || tsc->data[SC_SUHIDE]) && !is_boss && (tsd->special_state.perfect_hiding || !is_detector))
 						return 0;
-					if (tsc->data[SC_CLOAKINGEXCEED] && !is_boss && ((tsd && tsd->special_state.perfect_hiding) || is_detector))
+					if ((tsc->data[SC_CLOAKINGEXCEED] || tsc->data[SC_NEWMOON]) && !is_boss && ((tsd && tsd->special_state.perfect_hiding) || is_detector))
 						return 0;
 					if (tsc->data[SC__FEINTBOMB] && !is_boss && !is_detector)
 						return 0;

@@ -893,7 +893,9 @@ enum sc_type : int16 {
 	SC_USE_SKILL_SP_SHA,
 	SC_SP_SHA,
 	SC_SOULCURSE,
-		SC_FULLINVINCIBLE,
+
+	//BG Skill
+	SC_FULLINVINCIBLE,
 
 	// ep16.2
 	SC_EP16_2_BUFF_SS,

@@ -2099,12 +2099,15 @@ int unit_skilluse_pos2( struct block_list *src, short skill_x, short skill_y, ui
 			status_change_end(src, SC_CLOAKINGEXCEED, INVALID_TIMER);
 			if (!src->prev)
 				return 0;
-		}
-		else if (sc->data[SC_NEWMOON]) {
+		} else if (sc->data[SC_NEWMOON]) {
 			status_change_end(src, SC_NEWMOON, INVALID_TIMER);
 
 			if (!src->prev)
 				return 0;
+		} else if (sc->data[SC_NEWMOON] && skill_id != SJ_NEWMOONKICK) {
+			status_change_end(src, SC_NEWMOON, INVALID_TIMER);
+			if (!src->prev)
+				return 0; // Warped away!
 		}
 	}
 
