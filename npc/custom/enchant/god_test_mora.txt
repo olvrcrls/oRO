@@ -1,0 +1,277 @@
+askald,138,248,4	script	Lost Dragon 	510{
+							//Lost Dragon sprite as NPC?
+	disable_command;
+	disable_items;
+	mes "[Lost Dragon]";
+	mes "wachu want?";
+	next;
+		if(select("Quit","enchant my shit") == 1){
+			mes "[Lost Dragon]";
+			mes "nub";
+			close;
+		}
+	.@cost_id = 6380;
+	.@cost_v = 100;
+		if(countitem(.@cost_id) < .@cost_v){
+						mes "[Lost Dragon]";
+						mes "u lack shit nub";
+						close;
+		}
+	mes "[Lost Dragon]"
+	mes "Ok, so are you ready? Before I start working on this, what kind of equipment did you want me to enhance?";
+	next;
+	.@i = select("I'm not wearing the equipment","Weapon","Shoes","Garment","Armor","Accessory")-2;
+	if (.@i == -1) {
+		mes "[Artifact Researcher]";
+		mes "Make sure you're wearing the equipment first.";
+		close;
+	}
+	setarray .@parts[0], EQI_HAND_R, EQI_SHOES, EQI_GARMENT, EQI_ARMOR, EQI_ACC_L;
+	.@part = .@parts[.@i];
+	if (!getequipisequiped(.@part)) {
+		mes "[Artifact Researcher]";
+		mes "Make sure you're wearing the equipment first.";
+		close;
+	}
+	.@equip_id = getequipid(.@part);
+	//callsub L_Socket,<enchant type>,<bonus enchant type>,<4-x enchants possible>;
+	// Enchant types:
+	//   [1]ATK [2]CRIT [3]EVA [4]Healer [5]Spell 1 [6]Assist 1 [7]Assist 2 [8]STR [9]Range [10]Physical [11]Spell 2
+	switch(.@part) {
+	case EQI_HAND_R:
+		switch(.@equip_id) {
+			case 1660: callsub L_Socket,4,5,1;  //Wand_Of_Affection2
+			case 2011: callsub L_Socket,5,11,1; //Golden_Rod_Staff2
+			case 2012: callsub L_Socket,5,11,1; //Aqua_Staff2
+			case 2013: callsub L_Socket,5,11,1; //Crimson_Staff2
+			case 2014: callsub L_Socket,5,11,1; //Forest_Staff2
+			case 16018: callsub L_Socket,1,5,1; //Mace_Of_Judgement2
+		}
+		break;
+	case EQI_SHOES:
+		switch(.@equip_id) {
+			case 2475: callsub L_Socket,6,8,1;  //Ur_Greave
+			case 2476: callsub L_Socket,6,10,1; //Peuz_Greave
+			case 2477: callsub L_Socket,6,2,1;  //Sabah_Shoes
+			case 2478: callsub L_Socket,6,1,1;  //Nab_Shoes
+			case 2479: callsub L_Socket,6,2,1;  //White_Wing_Boots
+			case 2480: callsub L_Socket,6,1,1;  //Black_Wing_Boots
+		}
+		break;
+	case EQI_GARMENT:
+		switch(.@equip_id) {
+			case 2574: callsub L_Socket,3,8,1; //Ur_Manteau
+			case 2575: callsub L_Socket,3,2,1; //Peuz_Manteau
+			case 2577: callsub L_Socket,3,2,1; //Sabah_Hood
+			case 2578: callsub L_Socket,3,2,1; //Nab_Hood
+			case 2580: callsub L_Socket,3,1,1; //White_Wing_Manteau
+			case 2581: callsub L_Socket,3,1,1; //Black_Wing_Manteau
+		}
+		break;
+	case EQI_ARMOR:
+		switch(.@equip_id) {
+			case 15036: callsub L_Socket,8,1,1;  //Ur_Plate
+			case 15037: callsub L_Socket,10,2,1; //Peuz_Plate
+			case 15038: callsub L_Socket,2,10,1; //Sabah_Cloth
+			case 15039: callsub L_Socket,1,2,1;  //Nab_Cloth
+			case 15042: callsub L_Socket,2,9,1;  //White_Wing_Suits
+			case 15043: callsub L_Socket,1,9,1;  //Black_Wing_Suits
+		}
+		break;
+	case EQI_ACC_L:
+		switch(.@equip_id) {
+			case 2883: callsub L_Socket,6,0,2; //Ur_Seal
+			case 2884: callsub L_Socket,6,0,2; //Peuz_Seal
+			case 2886: callsub L_Socket,6,0,2; //Sabah_Ring
+			case 2887: callsub L_Socket,6,0,2; //Nab_Ring
+			case 2890: callsub L_Socket,6,0,2; //White_Wing_Brooch
+			case 2891: callsub L_Socket,6,0,2; //Black_wing_Brooch
+		}
+		break;
+	}
+	mes "[Lost Dragon]";
+	mes "^990099"+getequipname(.@part)+"^000000??";
+	mes "this is not the shit";
+	close;
+
+L_Socket:
+	.@enchant_type = getarg(0);
+	.@bonus_enchant = getarg(1);
+	.@allowed_slot = getarg(2);
+	.@equip_id = getequipid(.@part);
+	.@equip_name$ = getitemname(.@equip_id);
+	.@equip_refine = getequiprefinerycnt(.@part);
+	setarray .@card[0], 
+								getequipcardid(.@part,0),
+								getequipcardid(.@part,1),
+								getequipcardid(.@part,2),
+								getequipcardid(.@part,3);
+	setarray .@enchant_type$[1],"ATK Type","Critical Type","Evasion Type","Healer Type","Spell Ability 1","Assist Ability 1","Assist Ability 2","Strength","Range Type","Physical Type","Spell Ability 2";
+	mes "[Lost Dragon]";
+	mes "Choose your enchant type";
+	next;
+	switch(select(.@enchant_type$[.@enchant_type],.@enchant_type$[.@bonus_enchant])) {
+			case 1:
+				break;
+			case 2:
+				.@enchant_type = .@bonus_enchant;
+				break;
+			}							
+	if (.@equip_card[3] == 0 && .@allowed_slot < 4) {
+			.@slot = 3;
+			mes "[Lost Dragon]";
+			mes "Attempting to strengthen the ability further. The previous enforcement won't be affected. Do you want to continue?";
+		} else if (.@equip_card[2] == 0 && .@allowed_slot < 3) {
+			.@slot = 2;
+			mes "[Lost Dragon]";
+			mes "Attempting second enhancement. The previous enforcement won't be affected.";
+			next;
+			mes "[Lost Dragon]";
+			mes "I may have a chance to fail now with this attempt. Do you wish to continue?";
+		} else if (.@equip_card[1] == 0 && .@allowed_slot < 2) {
+			.@slot = 1;
+			mes "[Lost Dragon]";
+			mes "Let's start the third enhancement. I can give the best stats at this stage but remember, ^990000there is now a chance for the artifact to be destroyed and previous enhancements will be erased^000000. Continue?";
+		} else {
+			mes "[Lost Dragon]";
+			mes "This artifact has been strengthened to the limit. Further enhancement is impossible at its current state.";
+			close;
+		}
+		next;
+		if(select("I'll come back later.","Please continue!") == 1) {
+			mes "[Lost Dragon]";
+			mes "If you change your mind, please come back.";
+			close;
+		}
+	switch(.@enchant_type) {
+		case 1: //Attack
+				.@enchant = select("Attack%","Strength","Fighting Spirit");
+			     if (.@slot == 4) setarray atk_type[0],4767,4702,4809;	//ATK3% STR3 FS3
+			else if (.@slot == 3) setarray atk_type[0],4767,4703,4808;	//ATK3% STR4 FS4
+			else if (.@slot == 2) setarray atk_type[0],4767,4705,4821;	//ATK3% STR6 FS6
+			else {
+				mes "[Artifact Researcher]";
+				mes "An unknown error has occurred.";
+				close;
+			}
+			break;
+		case 2: //Critical
+				.@enchant = select("Luck","Strength","Sharp");
+			     if (.@slot == 4) setarray crt_type[0],4752,4702,4818;	//LUK3 STR3 SHARP1
+			else if (.@slot == 3) setarray crt_type[0],4754,4702,4817;	//LUK5 STR3 SHARP2
+			else if (.@slot == 2) setarray crt_type[0],4754,4703,4816;	//LUK5 STR4 SHARP3
+			else {
+				mes "[Artifact Researcher]";
+				mes "An unknown error has occurred.";
+				close;
+			}
+			break;
+		case 3: //Evasion
+				.@enchant = select("Flee","Luck","Agility");
+			     if (.@slot == 4) setarray evd_type[0],4860,4752,4732;	//FLEE3 LUK3 AGI3
+			else if (.@slot == 3) setarray evd_type[0],4762,4753,4733;	//FLEE6 LUK4 AGI4
+			else if (.@slot == 2) setarray evd_type[0],4763,4754,4734;	//FLEE12 LUK5 AGI5
+			else {
+				mes "[Artifact Researcher]";
+				mes "An unknown error has occurred.";
+				close;
+			}
+			break;
+		case 4: //Heal
+				.@enchant = select("Intelligence","Dexterity","Heal Power");
+			     if (.@slot == 4) setarray heal_type[0],4712,4722,4805;			//INT3 DEX3 AB1
+			else if (.@slot == 3) setarray heal_type[0],4713,4723,4850,4760;		//INT4 DEX4 AB2 MATK1%
+			else if (.@slot == 2) setarray heal_type[0],4713,4723,4852,4806;		//INT4 DEX4 AB4 MATK3%
+			else {
+				mes "[Artifact Researcher]";
+				mes "An unknown error has occurred.";
+				close;
+			}
+			break;		
+		case 5: //Spell
+				.@enchant = select("Intelligence","Dexterity","Spell Power");
+			     if (.@slot == 4) setarray spl_type[0],4711,4721,4814;	//INT2 DEX2 SPELL2
+			else if (.@slot == 3) setarray spl_type[0],4712,4722,4813;	//INT3 DEX3 SPELL3
+			else if (.@slot == 2) setarray spl_type[0],4713,4723,4812;	//INT4 DEX4 SPELL4
+			else {
+				mes "[Artifact Researcher]";
+				mes "An unknown error has occurred.";
+				close;
+			}
+			break;
+		case 6: //Assist1
+				.@enchant = select("Magic Defense","SP","HP","Strength","Dexterity","Agility");
+			     if (.@slot == 4) setarray ast_type[0],4787,4801,4796,4700,4720,4730;		//MDEF4 SP100 HP200 STR1 DEX1 AGI1
+			else if (.@slot == 3) setarray ast_type[0],4788,4802,4797,4700,4720,4730,4740;//MDEF6 SP150 HP300 STR1 DEX1 AGI1 VIT1
+			else if (.@slot == 2) setarray ast_type[0],4788,4802,4797,4701,4721,4730,4740;//MDEF6 SP150 HP300 STR2 DEX2 AGI2 VIT1
+			else {
+				mes "[Artifact Researcher]";
+				mes "An unknown error has occurred.";
+				close;
+			}
+			break;
+		case 7: //Assist2
+				.@enchant = select("Magic Defense","SP","HP","Intelligence","Dexterity","Agility");
+			     if (.@slot == 4) setarray ast_type[0],4787,4801,4796,4710,4720,4730;		//MDEF4 SP100 HP200 INT1 DEX1 AGI1
+			else if (.@slot == 3) setarray ast_type[0],4788,4802,4797,4710,4720,4730,4740;//MDEF6 SP150 HP300 INT1 DEX1 AGI1 VIT1
+			else if (.@slot == 2) setarray ast_type[0],4788,4802,4797,4711,4721,4730,4740;//MDEF6 SP150 HP300 INT2 DEX2 AGI2 VIT1
+			else {
+				mes "[Artifact Researcher]";
+				mes "An unknown error has occurred.";
+				close;
+			}
+			break;
+		case 8: //Strength
+				.@enchant = select("Vitality","HP","Defense");
+			     if (.@slot == 4) setarray str_type[0],4742,4799,4793;	//VIT3 HP500 DEF9
+			else if (.@slot == 3) setarray str_type[0],4743,4799,4794;	//VIT3 HP500 DEF12
+			else if (.@slot == 2) setarray str_type[0],4744,4799,4794;	//VIT5 HP500 DEF12
+			else {
+				mes "[Artifact Researcher]";
+				mes "An unknown error has occurred.";
+				close;
+			}
+			break;
+		case 9: //Range
+				.@enchant = select("Luck","Dexterity","Range Power");
+			     if (.@slot == 4) setarray rng_type[0],4753,4722,4834;	//LUK4 DEX3 EA3
+			else if (.@slot == 3) setarray rng_type[0],4753,4723,4834;	//LUK4 DEX4 EA3
+			else if (.@slot == 2) setarray rng_type[0],4753,4724,4836;	//LUK4 DEX5 EA5
+			else {
+				mes "[Artifact Researcher]";
+				mes "An unknown error has occurred.";
+				close;
+			}
+			break;
+		case 10: //Physical
+				.@enchant = select("HP","Agility","Luck");
+			     if (.@slot == 4) setarray phys_type[0],4796,4731,4751;		//HP200 AGI2 LUK2
+			else if (.@slot == 3) setarray phys_type[0],4797,4732,4752;		//HP300 AGI3 LUK3
+			else if (.@slot == 2) setarray phys_type[0],4797,4733,4753,4807;	//HP300 AGI4 LUK4 ASPD1
+			else {
+				mes "[Artifact Researcher]";
+				mes "An unknown error has occurred.";
+				close;
+			}
+			break;
+		case 11: //Spell2
+				.@enchant = select("Intelligence","Dexterity","Spell Power","Magic Attack%");
+			     if (.@slot == 4) setarray spl_type[0],4712,4722,4813,4760;	//INT3 DEX3 SPELL3 MATK1
+			else if (.@slot == 3) setarray spl_type[0],4713,4723,4812,4761;	//INT4 DEX4 SPELL4 MATK2
+			else if (.@slot == 2) setarray spl_type[0],4714,4724,4812,4806;	//INT5 DEX5 SPELL4 MATK3
+			else {
+				mes "[Artifact Researcher]";
+				mes "An unknown error has occurred.";
+				close;
+			}
+			break;
+		}
+		.@card[.@slot] = .@enchant;
+		delitem .@cost_id,.@cost_v;
+		delequip .@part;
+		specialeffect2 EF_REPAIRWEAPON;
+		mes "[Lost Dragon]";
+		mes "I've successfully enhanced the artifact ^990000"+.@equip_name$+"^000000";
+		getitem2 .@equip_id,1,1,.@equip_refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
+		close;
+}	
