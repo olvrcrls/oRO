@@ -1179,7 +1179,7 @@
 19300:28101,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*15; bonus2 bSkillAtk,"NC_AXETORNADO",.@r;}
 19308:1631,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*30; bonus2 bSkillAtk,"AB_ADORAMUS",.@r;}
 19308:1631,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*10; bonus bMatk,.@r;}
-19308:1691,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*5; bonus2 bMagicAtkEle,Ele_Neutral,@r;}
+19308:1691,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*5; bonus2 bMagicAtkEle,Ele_Neutral,.@r;}
 19308:13412,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*10; bonus2 bSkillAtk,"GN_CARTCANNON",.@r;}
 19263:1168,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*20; bonus bBaseAtk,.@r;}
 19263:1171,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*20; bonus bBaseAtk,.@r;}
