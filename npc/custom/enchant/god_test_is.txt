@@ -1,0 +1,137 @@
+askald,135,248,4	script	Infinity Enchanter		555,{
+									//Infinite TGK as npc sprite??
+	disable_command;
+	disable_items;
+	.@cost_id = 6905;
+	.@cost_v = 100;
+	mes "[Infinity Enchanter]";
+	mes "Okay. I'll get straight to the point.";
+	next;
+	mes "[Infinity Enchanter]";
+	mes "The infinity series equipment are full of potential!";
+	mes "But it takes an expert to bring out its hidden attributes.";
+	next;
+	mes "[Infinity Enchanter]";
+	mes "I am able to enchant the infinity series equipment for an amount of " + getitemname(.@cost_id) + ".";
+	next;
+		if(select("Quit","Enchant my shit") == 1){
+				mes "[Infinity Enchanter]";
+				mes "nub";
+				close;
+		}
+		if(countitem(.@cost_id) < .@cost_v){
+				mes "[Infinity Enchanter]";
+				mes "I require at least "+ .@cost_v +" " + getitemname(.@cost_id) + " for enchanting each slot of your equipment.";
+				close;
+		}
+	mes "[Infinity Enchanter]";
+	mes "Which type of equipment would you like me to enchant?";
+	next;
+	.@i = select("Cancel","Weapon","Headgear","Armor","Garment","Shoes")-2;
+		if (.@i == -1) {
+				mes "[Infinity Enchanter]";
+				mes "Okay, maybe next time...";
+				close;
+		}
+	setarray .@parts[0], EQI_HAND_R, EQI_HEAD_TOP, EQI_ARMOR, EQI_GARMENT, EQI_SHOES;
+	.@part = .@parts[.@i];
+		if (!getequipisequiped(.@part)) {
+				mes "[Infinity Enchanter]";
+				mes "Make sure you're wearing the equipment first.";
+				close;
+		}
+	.@equip_id = getequipid(.@part);
+		switch(.@equip_id){
+				case 13126:		//Infinity Handgun [1]
+				case 21014:		//Infinity Two-Handed Sword [1]
+				case 28703:		//Infinity Dagger [1]
+				case 1938:		//Infinity Violin [1]
+				case 28105:		//Infinity Two-Handed Axe [1]
+				case 2024:		//Infinity Two-Handed Staff [1]
+				case 1994:		//Infinity Wire [1]
+				case 16038:		//Infinity Mace [1]
+				case 18128:		//Infinity Bow [1]
+				case 13323:		//Infinity Huuma Shuriken [1]
+
+				case 19033:		//Rift Ancient Decoration [1]
+				case 15141:		//Ancient Armor of Rift [1]
+				case 20779:		//Manteau of Rift [1]
+				case 22075:		//Shoes of Rift [1]
+				break;
+				default:
+					mes "[Infinity Enchanter]";
+					mes "?";
+					mes "I don't think i am capable of enchanting that.";
+					close;
+
+		}
+	setarray enchant[0],4703,4713,4723,4823,4829,4839,4797,4871,4900;	//STR4 INT4 DEX4 FS8 SPELL8 EA8 HP300 SP75 HP5%
+	setarray enchant$[0],"Strength","Intelligence","Dexterity","Fighting Spirit","Spell","Expert Archer","Max HP","Max SP","Max HP%";
+	setarray .@card[0],
+						getequipcardid(.@part,0),
+						getequipcardid(.@part,1),
+						getequipcardid(.@part,2),						
+						getequipcardid(.@part,3);
+	.@equip_refine = getequiprefinerycnt(.@part);				
+	.@e1 = 0;
+	.@e2 = 0;
+	mes "[Infinity Enchanter]";
+	mes "Please choose the enchant type";
+	next;
+		switch(select("Cancel","Physical Type","Caster Type","Ranged Type")){
+			case 1:
+					mes "[Infinity Enchanter]";
+					mes "Ok. If you changed your mind, let me know.";
+					close;
+			case 2:
+					if(.@part == EQI_HAND_R){.@e1 = 0;.@e2 = 3;}
+					else if(.@part == EQI_ARMOR || .@part == EQI_SHOES){.@e1 = 0;.@e2 = 6;}		
+					else if(.@part == EQI_HEAD_TOP || .@part == EQI_GARMENT){.@e1 = 0;.@e2 = 8;}
+					break;
+			case 3:
+					if(.@part == EQI_HAND_R){.@e1 = 1;.@e2 = 4;}
+					else if(.@part == EQI_ARMOR || .@part == EQI_SHOES){.@e1 = 1;.@e2 = 7;}		
+					else if(.@part == EQI_HEAD_TOP || .@part == EQI_GARMENT){.@e1 = 1;.@e2 = 8;}
+					break;
+			case 4:
+					if(.@part == EQI_HAND_R){.@e1 = 2;.@e2 = 5;}
+					else if(.@part == EQI_ARMOR || .@part == EQI_SHOES){.@e1 = 2;.@e2 = 7;}		
+					else if(.@part == EQI_HEAD_TOP || .@part == EQI_GARMENT){.@e1 = 2;.@e2 = 8;}
+					break;
+		}
+		if(.@card[2] > 0){
+				mes "[Infinity Enchanter]";
+				mes "I have given the maximum amount of enchants to this equipment. Further enhancement is impossible at its current state.";
+				close;
+			}
+		if(.@card[3] == 0){
+				.@slot = 4;
+		}
+		else{
+				.@slot = 3;
+		}
+	mes "[Infinity Enchanter]";
+	mes "I shall begin with the first enchantment at slot " + .@slot + ". Shall i continue?";
+	next;
+		if(select("I'll come back later","Please continue!") == 1){
+				mes "[Infinity Enchanter]";
+				mes "I will be here waiting for you.";
+				close;
+		}
+	mes "[Infinity Enchanter]";
+	mes "Choose your preferred enchant";
+	next;
+		if(select(.@enchant$[.@e1],.@enchant$[.@e2]) == 2){
+				.@e1 = .@e2;
+		}
+	.@card[.@slot - 1] = .@enchant[.@e1]
+	delitem .@cost_id,.@cost_v;
+	delequip .@part;
+	specialeffect2 EF_REPAIRWEAPON;
+	mes "[Infinity Enchanter]";
+	mes "I've successfuly enhanced the artifact ^0000ff" + getequipname(.@equip_id) + "^000000 at socket " + .@slot + ".";
+	getitem2 .@equip_id,1,1,.@equip_refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
+	close;
+
+}
+
