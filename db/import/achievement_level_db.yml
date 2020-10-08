@@ -16,13 +16,14 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 ###########################################################################
+# Custom Achievement Level Database
 # Import Achievement Level Database
 ###########################################################################
 #
 # Achievement Level Settings
 #
 ###########################################################################
-# Level - Achievement Level
+# - Level     Achievement Level.
 ###########################################################################
 # Points - Required total scoring points to reach this level.
 ###########################################################################
