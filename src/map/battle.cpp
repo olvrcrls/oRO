@@ -8690,6 +8690,7 @@ static const struct _battle_data {
 	{ "feature.equipswitch",                &battle_config.feature_equipswitch,             1,      0,      1,              },
 	{ "pet_walk_speed",                     &battle_config.pet_walk_speed,                  1,      1,      3,              },
 	{ "display_tax_info",                   &battle_config.display_tax_info,                0,      0,      1,              },
+	{ "blacksmith_fame_refine_threshold",   &battle_config.blacksmith_fame_refine_threshold,10,     1,      MAX_REFINE,     },
 
 #include "../custom/battle_config_init.inc"
 };
