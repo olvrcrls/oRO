@@ -935,6 +935,897 @@ Body:
     Group: AG_CHATTING
     Name: Prontera Contribution
     Targets:
+=======
+  - ID: 110000
+    Group: "AG_EAT"
+    Name: "At this time I live to eat"
+    Score: 10
+  - ID: 110001
+    Group: "AG_SEE"
+    Name: "A fan of this polarity"
+    Score: 10
+  - ID: 120001
+    Group: "AG_ADVENTURE"
+    Name: "North Prontera Field Exploration(1)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120002
+    Group: "AG_ADVENTURE"
+    Name: "North Prontera Field Exploration(2)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120003
+    Group: "AG_ADVENTURE"
+    Name: "North Prontera Field Exploration(3)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120004
+    Group: "AG_ADVENTURE"
+    Name: "West Prontera Field Exploration(1)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120005
+    Group: "AG_ADVENTURE"
+    Name: "West Prontera Field Exploration(2)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120006
+    Group: "AG_ADVENTURE"
+    Name: "East Prontera Field Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120007
+    Group: "AG_ADVENTURE"
+    Name: "South Prontera Field Exploration(1)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120008
+    Group: "AG_ADVENTURE"
+    Name: "South Prontera Field Exploration(2)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120009
+    Group: "AG_ADVENTURE"
+    Name: "South Prontera Field Exploration(3)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120010
+    Group: "AG_ADVENTURE"
+    Name: "South Prontera Field Exploration(4)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120011
+    Group: "AG_ADVENTURE"
+    Name: "East Geffen Field Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120012
+    Group: "AG_ADVENTURE"
+    Name: "Southeast Geffen Field Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120013
+    Group: "AG_ADVENTURE"
+    Name: "Northwest Geffen Field Exploration(1)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120014
+    Group: "AG_ADVENTURE"
+    Name: "Northwest Geffen Field Exploration(2)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120015
+    Group: "AG_ADVENTURE"
+    Name: "Northwest Geffen Field Exploration(3)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120016
+    Group: "AG_ADVENTURE"
+    Name: "South Geffen Field Exploration(1)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120017
+    Group: "AG_ADVENTURE"
+    Name: "South Geffen Field Exploration(2)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120018
+    Group: "AG_ADVENTURE"
+    Name: "Sograt Desert Field Exploration(1)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120019
+    Group: "AG_ADVENTURE"
+    Name: "Sograt Desert Field Exploration(2)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120020
+    Group: "AG_ADVENTURE"
+    Name: "Sograt Desert Field Exploration(3)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120021
+    Group: "AG_ADVENTURE"
+    Name: "Sograt Desert Field Exploration(4)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120022
+    Group: "AG_ADVENTURE"
+    Name: "Sograt Desert Field Exploration(5)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120023
+    Group: "AG_ADVENTURE"
+    Name: "Sograt Desert Field Exploration(6)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120024
+    Group: "AG_ADVENTURE"
+    Name: "Southwest Payon Field Exploration(1)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120025
+    Group: "AG_ADVENTURE"
+    Name: "Southwest Payon Field Exploration(2)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120026
+    Group: "AG_ADVENTURE"
+    Name: "Southwest Payon Field Exploration(3)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120027
+    Group: "AG_ADVENTURE"
+    Name: "Southwest Payon Field Exploration(4)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120028
+    Group: "AG_ADVENTURE"
+    Name: "East Payon Field Exploration(1)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120029
+    Group: "AG_ADVENTURE"
+    Name: "East Payon Field Exploration(2)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120030
+    Group: "AG_ADVENTURE"
+    Name: "East Payon Field Exploration(3)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120031
+    Group: "AG_ADVENTURE"
+    Name: "East Payon Field Exploration(4)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120032
+    Group: "AG_ADVENTURE"
+    Name: "North Mjolnir Field Exploration(1)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120033
+    Group: "AG_ADVENTURE"
+    Name: "North Mjolnir Field Exploration(2)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120034
+    Group: "AG_ADVENTURE"
+    Name: "North Mjolnir Field Exploration(3)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120035
+    Group: "AG_ADVENTURE"
+    Name: "North Mjolnir Field Exploration(4)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120036
+    Group: "AG_ADVENTURE"
+    Name: "North Mjolnir Field Exploration(5)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120037
+    Group: "AG_ADVENTURE"
+    Name: "South Mjolnir Field Exploration(1)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120038
+    Group: "AG_ADVENTURE"
+    Name: "South Mjolnir Field Exploration(2)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120039
+    Group: "AG_ADVENTURE"
+    Name: "South Mjolnir Field Exploration(3)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120040
+    Group: "AG_ADVENTURE"
+    Name: "South Mjolnir Field Exploration(4)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120041
+    Group: "AG_ADVENTURE"
+    Name: "South Mjolnir Field Exploration(5)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120042
+    Group: "AG_ADVENTURE"
+    Name: "South Mjolnir Field Exploration(6)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120043
+    Group: "AG_ADVENTURE"
+    Name: "South Aldebaran Field Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120044
+    Group: "AG_ADVENTURE"
+    Name: "Comodo Field Exploration(1)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120045
+    Group: "AG_ADVENTURE"
+    Name: "Comodo Field Exploration(2)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120046
+    Group: "AG_ADVENTURE"
+    Name: "Comodo Field Exploration(3)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120047
+    Group: "AG_ADVENTURE"
+    Name: "Comodo Field Exploration(4)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120048
+    Group: "AG_ADVENTURE"
+    Name: "Comodo Field Exploration(5)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120049
+    Group: "AG_ADVENTURE"
+    Name: "Comodo Field Exploration(6)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120050
+    Group: "AG_ADVENTURE"
+    Name: "Comodo Field Exploration(7)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120051
+    Group: "AG_ADVENTURE"
+    Name: "Comodo Field Exploration(8)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120052
+    Group: "AG_ADVENTURE"
+    Name: "Border Checkpoint Field Exploration(1)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120053
+    Group: "AG_ADVENTURE"
+    Name: "Border Checkpoint Field Exploration(2)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120054
+    Group: "AG_ADVENTURE"
+    Name: "Kiel Hyre Mansion Field Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120055
+    Group: "AG_ADVENTURE"
+    Name: "El Mes Plateau Field Exploration(1)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120056
+    Group: "AG_ADVENTURE"
+    Name: "El Mes Plateau Field Exploration(2)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120057
+    Group: "AG_ADVENTURE"
+    Name: "El Mes Plateau Field Exploration(3)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120058
+    Group: "AG_ADVENTURE"
+    Name: "El Mes Gorge Field Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120059
+    Group: "AG_ADVENTURE"
+    Name: "Kiel Hyre Academy Field Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120060
+    Group: "AG_ADVENTURE"
+    Name: "Guard Camp Field Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120061
+    Group: "AG_ADVENTURE"
+    Name: "Juno Field Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120062
+    Group: "AG_ADVENTURE"
+    Name: "Front of Thanatos Tower Field Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120063
+    Group: "AG_ADVENTURE"
+    Name: "Hugel Field Exploration(1)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120064
+    Group: "AG_ADVENTURE"
+    Name: "Hugel Field Exploration(2)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120065
+    Group: "AG_ADVENTURE"
+    Name: "Hugel Field Exploration(3)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120066
+    Group: "AG_ADVENTURE"
+    Name: "Abyss Lake Field Exploration(1)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120067
+    Group: "AG_ADVENTURE"
+    Name: "Einbroch Field Exploration(1)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120068
+    Group: "AG_ADVENTURE"
+    Name: "Einbroch Field Exploration(2)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120069
+    Group: "AG_ADVENTURE"
+    Name: "Einbroch Field Exploration(3)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120070
+    Group: "AG_ADVENTURE"
+    Name: "Einbroch Field Exploration(4)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120071
+    Group: "AG_ADVENTURE"
+    Name: "Einbroch Field Exploration(5)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120072
+    Group: "AG_ADVENTURE"
+    Name: "Einbroch Field Exploration(6)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120073
+    Group: "AG_ADVENTURE"
+    Name: "Einbroch Field Exploration(7)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120074
+    Group: "AG_ADVENTURE"
+    Name: "Einbroch Field Exploration(8)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120075
+    Group: "AG_ADVENTURE"
+    Name: "Lighthalzen Field Exploration(1)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120076
+    Group: "AG_ADVENTURE"
+    Name: "Lighthalzen Field Exploration(2)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120077
+    Group: "AG_ADVENTURE"
+    Name: "Lighthalzen Field Exploration(3)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120078
+    Group: "AG_ADVENTURE"
+    Name: "Rachel Audhumbla Plains Field Exploration(1)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120079
+    Group: "AG_ADVENTURE"
+    Name: "Rachel Plains Field Exploration(1)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120080
+    Group: "AG_ADVENTURE"
+    Name: "Rachel Plains Field Exploration(2)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120081
+    Group: "AG_ADVENTURE"
+    Name: "Rachel Plains Field Exploration(3)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120082
+    Group: "AG_ADVENTURE"
+    Name: "Rachel Audhumbla Grassland Field Exploration(1)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120083
+    Group: "AG_ADVENTURE"
+    Name: "Rachel Audhumbla Grassland Field Exploration(2)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120084
+    Group: "AG_ADVENTURE"
+    Name: "Portus Luna Field Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120085
+    Group: "AG_ADVENTURE"
+    Name: "Veins Field Exploration(1)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120086
+    Group: "AG_ADVENTURE"
+    Name: "Veins Field Exploration(2)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120087
+    Group: "AG_ADVENTURE"
+    Name: "Veins Field Exploration(3)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120088
+    Group: "AG_ADVENTURE"
+    Name: "Veins Field Exploration(4)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120089
+    Group: "AG_ADVENTURE"
+    Name: "Veins Field Exploration(5)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120090
+    Group: "AG_ADVENTURE"
+    Name: "Eclage Field Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120091
+    Group: "AG_ADVENTURE"
+    Name: "North Bitfrost Field Exploration(1)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120092
+    Group: "AG_ADVENTURE"
+    Name: "South Bitfrost Field Exploration(1)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120093
+    Group: "AG_ADVENTURE"
+    Name: "Splendide Field Exploration(1)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120094
+    Group: "AG_ADVENTURE"
+    Name: "Splendide Field Exploration(2)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120095
+    Group: "AG_ADVENTURE"
+    Name: "Splendide Field Exploration(3)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120096
+    Group: "AG_ADVENTURE"
+    Name: "Manuk Field Exploration(1)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120097
+    Group: "AG_ADVENTURE"
+    Name: "Manuk Field Exploration(2)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120098
+    Group: "AG_ADVENTURE"
+    Name: "Manuk Field Exploration(3)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120099
+    Group: "AG_ADVENTURE"
+    Name: "Outskirts of Kamidal Field Exploration(1)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120100
+    Group: "AG_ADVENTURE"
+    Name: "Outskirts of Kamidal Field Exploration(2)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120101
+    Group: "AG_ADVENTURE"
+    Name: "Amatsu Field Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120102
+    Group: "AG_ADVENTURE"
+    Name: "Kunlun Field Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120103
+    Group: "AG_ADVENTURE"
+    Name: "Kunlun Field Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120104
+    Group: "AG_ADVENTURE"
+    Name: "Ayothaya Field Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120105
+    Group: "AG_ADVENTURE"
+    Name: "Moscovia Field Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120106
+    Group: "AG_ADVENTURE"
+    Name: "Brasilis Field Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120107
+    Group: "AG_ADVENTURE"
+    Name: "Dewata Field Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120108
+    Group: "AG_ADVENTURE"
+    Name: "Malaya Field Exploration(1)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120109
+    Group: "AG_ADVENTURE"
+    Name: "Malaya Field Exploration(2)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 10
+  - ID: 120110
+    Group: "AG_ADVENTURE"
+    Name: "Abbey Underground Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120111
+    Group: "AG_ADVENTURE"
+    Name: "Abyss Lake Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120112
+    Group: "AG_ADVENTURE"
+    Name: "Clock Tower Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120113
+    Group: "AG_ADVENTURE"
+    Name: "Amatsu Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120114
+    Group: "AG_ADVENTURE"
+    Name: "Ant Hell Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120115
+    Group: "AG_ADVENTURE"
+    Name: "Ayothaya Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120116
+    Group: "AG_ADVENTURE"
+    Name: "Comodo Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120117
+    Group: "AG_ADVENTURE"
+    Name: "Brasilis Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120118
+    Group: "AG_ADVENTURE"
+    Name: "Clock Tower Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120119
+    Group: "AG_ADVENTURE"
+    Name: "Istana Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120120
+    Group: "AG_ADVENTURE"
+    Name: "Scaraba Hole Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120121
+    Group: "AG_ADVENTURE"
+    Name: "Bitfrost Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120122
+    Group: "AG_ADVENTURE"
+    Name: "Einbroch Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120123
+    Group: "AG_ADVENTURE"
+    Name: "Geffen Underground Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120124
+    Group: "AG_ADVENTURE"
+    Name: "Glastheim Dungeon Exploration(1)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120125
+    Group: "AG_ADVENTURE"
+    Name: "Glastheim Dungeon Exploration(2)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120126
+    Group: "AG_ADVENTURE"
+    Name: "Glastheim Dungeon Exploration(3)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120127
+    Group: "AG_ADVENTURE"
+    Name: "Glastheim Dungeon Exploration(4)"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120128
+    Group: "AG_ADVENTURE"
+    Name: "Kunlun Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120129
+    Group: "AG_ADVENTURE"
+    Name: "Rachel Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120130
+    Group: "AG_ADVENTURE"
+    Name: "Sphinx Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120131
+    Group: "AG_ADVENTURE"
+    Name: "Izlude Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120132
+    Group: "AG_ADVENTURE"
+    Name: "Robot Factory Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120133
+    Group: "AG_ADVENTURE"
+    Name: "Bio Lab Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120134
+    Group: "AG_ADVENTURE"
+    Name: "Kunlun Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120135
+    Group: "AG_ADVENTURE"
+    Name: "Nogg Road Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120136
+    Group: "AG_ADVENTURE"
+    Name: "Coal Mine Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120137
+    Group: "AG_ADVENTURE"
+    Name: "Pyramid Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120138
+    Group: "AG_ADVENTURE"
+    Name: "Orc Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120139
+    Group: "AG_ADVENTURE"
+    Name: "Payon Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120140
+    Group: "AG_ADVENTURE"
+    Name: "Labyrinth Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120141
+    Group: "AG_ADVENTURE"
+    Name: "Undersea Tunnel Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120142
+    Group: "AG_ADVENTURE"
+    Name: "Thanatos Tower Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120143
+    Group: "AG_ADVENTURE"
+    Name: "Thor Volcano Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120144
+    Group: "AG_ADVENTURE"
+    Name: "Sunken Ship Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120145
+    Group: "AG_ADVENTURE"
+    Name: "Turtle Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 120146
+    Group: "AG_ADVENTURE"
+    Name: "Toy Factory Dungeon Exploration"
+    #Reward:
+    #  ItemID: 22876
+    Score: 20
+  - ID: 127001
+    Group: "AG_CHATTING"
+    Name: "Prontera Contribution"
+    Map: "prontera"
+    Target:
+>>>>>>> 354c63273... Fixed place names and other typos (#4475)
       - Id: 0
         Count: 100000
     Map: prontera
@@ -963,10 +1854,18 @@ Body:
         Count: 100000
     Map: payon
     Score: 10
+<<<<<<< HEAD
   - Id: 127005
     Group: AG_CHATTING
     Name: Yuno Contribution
     Targets:
+=======
+  - ID: 127005
+    Group: "AG_CHATTING"
+    Name: "Juno Contribution"
+    Map: "yuno"
+    Target:
+>>>>>>> 354c63273... Fixed place names and other typos (#4475)
       - Id: 0
         Count: 100000
     Map: yuno
@@ -1407,6 +2306,7 @@ Body:
     #    Mob: BANGUNGOT_3
     #    Count: 50
     Score: 50
+<<<<<<< HEAD
   - Id: 129001
     Group: AG_ADVENTURE
     Name: Prontera Explorer
@@ -1673,6 +2573,186 @@ Body:
         AchievementId: 129012
     Rewards:
       Item: Old_Violet_Box
+=======
+  - ID: 129001
+    Group: "AG_ADVENTURE"
+    Name: "Prontera Explorer"
+    Dependent:
+      - Id: 120001
+      - Id: 120002
+      - Id: 120003
+      - Id: 120004
+      - Id: 120005
+      - Id: 120006
+      - Id: 120007
+      - Id: 120008
+      - Id: 120009
+      - Id: 120010
+    Reward:
+      ItemID: 644
+    Score: 20
+  - ID: 129002
+    Group: "AG_ADVENTURE"
+    Name: "Geffen Explorer"
+    Dependent:
+      - Id: 120011
+      - Id: 120012
+      - Id: 120013
+      - Id: 120014
+      - Id: 120015
+      - Id: 120016
+      - Id: 120017
+    Reward:
+      ItemID: 644
+    Score: 20
+  - ID: 129003
+    Group: "AG_ADVENTURE"
+    Name: "Sograt Desert Explorer"
+    Dependent:
+      - Id: 120018
+      - Id: 120019
+      - Id: 120020
+      - Id: 120021
+      - Id: 120022
+      - Id: 120023
+    Reward:
+      ItemID: 644
+    Score: 20
+  - ID: 129004
+    Group: "AG_ADVENTURE"
+    Name: "Payon Explorer"
+    Dependent:
+      - Id: 120024
+      - Id: 120025
+      - Id: 120026
+      - Id: 120027
+      - Id: 120028
+      - Id: 120029
+      - Id: 120030
+      - Id: 120031
+    Reward:
+      ItemID: 644
+    Score: 20
+  - ID: 129005
+    Group: "AG_ADVENTURE"
+    Name: "North Mjolnir Explorer"
+    Dependent:
+      - Id: 120032
+      - Id: 120033
+      - Id: 120034
+      - Id: 120035
+      - Id: 120036
+    Reward:
+      ItemID: 644
+    Score: 20
+  - ID: 129006
+    Group: "AG_ADVENTURE"
+    Name: "South Mjolnir Explorer"
+    Dependent:
+      - Id: 120037
+      - Id: 120038
+      - Id: 120039
+      - Id: 120040
+      - Id: 120041
+      - Id: 120042
+      - Id: 120043
+    Reward:
+      ItemID: 644
+    Score: 20
+  - ID: 129007
+    Group: "AG_ADVENTURE"
+    Name: "Comodo Explorer"
+    Dependent:
+      - Id: 120044
+      - Id: 120045
+      - Id: 120046
+      - Id: 120047
+      - Id: 120048
+      - Id: 120049
+      - Id: 120050
+      - Id: 120051
+    Reward:
+      ItemID: 644
+    Score: 20
+  - ID: 129008
+    Group: "AG_ADVENTURE"
+    Name: "Rune-Midgarts Explorer"
+    Dependent:
+      - Id: 129001
+      - Id: 129002
+      - Id: 129003
+      - Id: 129004
+      - Id: 129005
+      - Id: 129006
+      - Id: 129007
+    Reward:
+      ItemID: 617
+    Score: 50
+  - ID: 129009
+    Group: "AG_ADVENTURE"
+    Name: "Juno Explorer"
+    Dependent:
+      - Id: 120052
+      - Id: 120053
+      - Id: 120054
+      - Id: 120055
+      - Id: 120056
+      - Id: 120057
+      - Id: 120058
+      - Id: 120059
+      - Id: 120060
+      - Id: 120061
+    Reward:
+      ItemID: 644
+    Score: 20
+  - ID: 129010
+    Group: "AG_ADVENTURE"
+    Name: "Hugel Explorer"
+    Dependent:
+      - Id: 120062
+      - Id: 120063
+      - Id: 120064
+      - Id: 120065
+      - Id: 120066
+    Reward:
+      ItemID: 644
+    Score: 20
+  - ID: 129011
+    Group: "AG_ADVENTURE"
+    Name: "Einbroch Explorer"
+    Dependent:
+      - Id: 120067
+      - Id: 120068
+      - Id: 120069
+      - Id: 120070
+      - Id: 120071
+      - Id: 120072
+      - Id: 120073
+      - Id: 120074
+    Reward:
+      ItemID: 644
+    Score: 20
+  - ID: 129012
+    Group: "AG_ADVENTURE"
+    Name: "Lighthalzen Explorer"
+    Dependent:
+      - Id: 120075
+      - Id: 120076
+      - Id: 120077
+    Reward:
+      ItemID: 644
+    Score: 20
+  - ID: 129013
+    Group: "AG_ADVENTURE"
+    Name: "Schwarzwald Explorer"
+    Dependent:
+      - Id: 129009
+      - Id: 129010
+      - Id: 129011
+      - Id: 129012
+    Reward:
+      ItemID: 617
+>>>>>>> 354c63273... Fixed place names and other typos (#4475)
     Score: 50
   - Id: 129014
     Group: AG_ADVENTURE

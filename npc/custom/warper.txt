@@ -512,7 +512,7 @@ I20: Restrict("RE");
 // --------------------------------------------------
 menu	"Auction Hall",S1, "Battlegrounds",S2, "Casino",S3, "Dimensional Rift",S4,
 		"Eden Group Headquarters",S5, "Kunlun Arena",S6, "Izlude Arena",S7, 
-		"Monster Race Arena",S8, "Para Market",S9, "Turbo Track",S10, "Mall",S11;
+		"Monster Race Arena",S8, "Para Market",S9, "Turbo Track",S10;
 
 S1: Go("auction_01",22,68);
 S2: Go("bat_room",154,150);
