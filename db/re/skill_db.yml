@@ -28705,6 +28705,16 @@ Body:
           Amount: 100
       Weapon:
         Grenade: true
+      Ammo:
+        Dagger: true
+        Bullet: true
+        Shell: true
+        Grenade: true
+        Shuriken: true
+        Kunai: true
+        Cannonball: true
+        Throwweapon: true
+      AmmoAmount: 1
       ItemCost:
         - Item: Dragon_Tail_Missile
           Amount: 1
@@ -28933,6 +28943,7 @@ Body:
         Time: 50000
       - Level: 5
         Time: 60000
+    CastCancel: true
     Requires:
       SpCost: 40
   - Id: 2575
@@ -28962,6 +28973,9 @@ Body:
     CastCancel: true
     Duration1: 20000
     Cooldown: 1000
+    MaxLevel: 7
+    TargetType: Self
+    CastCancel: true
     Requires:
       SpCost:
         - Level: 1
@@ -28999,6 +29013,7 @@ Body:
         Time: 50000
       - Level: 5
         Time: 60000
+    CastCancel: true
     Requires:
       SpCost: 40
   - Id: 2578
@@ -29029,6 +29044,8 @@ Body:
     CastTime: 1000
     Duration1: 15000
     Cooldown: 1000
+    TargetType: Self
+    CastCancel: true
     Requires:
       SpCost:
         - Level: 1
@@ -29071,6 +29088,9 @@ Body:
         Time: 9000
       - Level: 7
         Time: 10000
+    TargetType: Attack
+    Range: 1
+    CastCancel: true
     Requires:
       SpCost:
         - Level: 1
@@ -29104,6 +29124,10 @@ Body:
     Duration1: 7000
     Cooldown: 10000
     FixedCastTime: 1000
+    Description: Star Emperor
+    MaxLevel: 5
+    TargetType: Self
+    CastCancel: true
     Requires:
       SpCost:
         - Level: 1
@@ -29135,6 +29159,11 @@ Body:
     Duration1: 2000
     Cooldown: 20000
     FixedCastTime: 1000
+    Description: Nova Explosing
+    MaxLevel: 5
+    TargetType: Attack
+    Range: 3
+    CastCancel: true
     Requires:
       SpCost:
         - Level: 1
@@ -29187,6 +29216,9 @@ Body:
       - Level: 7
         Time: 240000
     FixedCastTime: 2000
+    MaxLevel: 7
+    TargetType: Self
+    CastCancel: true
     Requires:
       SpCost:
         - Level: 1
@@ -29218,6 +29250,8 @@ Body:
     AfterCastActDelay: 500
     Duration1: 5000
     Cooldown: 20000
+    Range: 9
+    CastCancel: true
     Requires:
       SpCost: 80
   - Id: 2586
@@ -29243,6 +29277,7 @@ Body:
         Time: 60000
       - Level: 5
         Time: 30000
+    CastCancel: true
     Requires:
       SpCost: 40
   - Id: 2587
@@ -29271,6 +29306,9 @@ Body:
         Time: 10000
     Cooldown: 15000
     FixedCastTime: 1000
+    TargetType: Ground
+    Range: 7
+    CastCancel: true
     Requires:
       SpCost:
         - Level: 1
@@ -29303,6 +29341,12 @@ Body:
     HitCount: 1
     CastCancel: true
     Cooldown: 60000
+  - Id: 2588
+    Name: SJ_DOCUMENT
+    Description: Document
+    MaxLevel: 3
+    TargetType: Self
+    CastCancel: true
     Requires:
       SpCost: 60
   - Id: 2589
@@ -29330,6 +29374,7 @@ Body:
         Time: 50000
       - Level: 5
         Time: 60000
+    CastCancel: true
     Requires:
       SpCost: 40
   - Id: 2591
@@ -29358,6 +29403,9 @@ Body:
     SplashArea: 3
     CastCancel: true
     AfterCastActDelay: 500
+    MaxLevel: 7
+    TargetType: Self
+    CastCancel: true
     Requires:
       SpCost:
         - Level: 1
@@ -29391,6 +29439,9 @@ Body:
     AfterCastActDelay: 1000
     CastDelayFlags:
       IgnoreStatus: true
+    TargetType: Attack
+    Range: 1
+    CastCancel: true
     Requires:
       SpCost: 20
   - Id: 2594
@@ -29407,6 +29458,9 @@ Body:
     HitCount: -3
     Element: Weapon
     SplashArea: 2
+    TargetType: Attack
+    Flags:
+      IsChorus: true
     CastCancel: true
     Requires:
       SpCost: 1
@@ -29425,6 +29479,9 @@ Body:
     HitCount: -3
     Element: Weapon
     SplashArea: 2
+    TargetType: Attack
+    Flags:
+      IsChorus: true
     CastCancel: true
     Requires:
       SpCost: 1
@@ -29452,6 +29509,11 @@ Body:
         Time: 240000
       - Level: 5
         Time: 300000
+    Description: Soul Golem
+    MaxLevel: 5
+    TargetType: Support
+    Range: 9
+    CastCancel: true
     Requires:
       SpCost:
         - Level: 1
@@ -29489,6 +29551,13 @@ Body:
         Time: 240000
       - Level: 5
         Time: 300000
+  - Id: 2597
+    Name: SP_SOULSHADOW
+    Description: Soul Shadow
+    MaxLevel: 5
+    TargetType: Support
+    Range: 9
+    CastCancel: true
     Requires:
       SpCost:
         - Level: 1
@@ -29526,6 +29595,13 @@ Body:
         Time: 240000
       - Level: 5
         Time: 300000
+  - Id: 2598
+    Name: SP_SOULFALCON
+    Description: Soul Falcon
+    MaxLevel: 5
+    TargetType: Support
+    Range: 9
+    CastCancel: true
     Requires:
       SpCost:
         - Level: 1
@@ -29563,6 +29639,13 @@ Body:
         Time: 240000
       - Level: 5
         Time: 300000
+  - Id: 2599
+    Name: SP_SOULFAIRY
+    Description: Soul Fairy
+    MaxLevel: 5
+    TargetType: Support
+    Range: 9
+    CastCancel: true
     Requires:
       SpCost:
         - Level: 1
@@ -29594,6 +29677,13 @@ Body:
     AfterCastActDelay: 500
     Cooldown: 1000
     FixedCastTime: 1000
+  - Id: 2600
+    Name: SP_CURSEEXPLOSION
+    Description: Curse Explosion
+    MaxLevel: 5
+    TargetType: Attack
+    Range: 9
+    CastCancel: true
     Requires:
       SpCost:
         - Level: 1
@@ -29642,6 +29732,18 @@ Body:
     CastTime: 500
     Duration1: 5000
     FixedCastTime: 1000
+    TargetType: Attack
+    Range: 9
+    CastCancel: true
+    Requires:
+      SpCost: 70
+  - Id: 2602
+    Name: SP_SPA
+    Description: Espa
+    MaxLevel: 5
+    TargetType: Attack
+    Range: 9
+    CastCancel: true
     Requires:
       SpCost:
         - Level: 1
@@ -29713,6 +29815,9 @@ Body:
     Duration2: 5000
     Cooldown: 3000
     FixedCastTime: 1000
+    TargetType: Attack
+    Range: 9
+    CastCancel: true
     Requires:
       SpCost:
         - Level: 1
@@ -29759,6 +29864,13 @@ Body:
     Duration1: 5000
     Cooldown: 2000
     FixedCastTime: 1000
+  - Id: 2604
+    Name: SP_SWHOO
+    Description: Eswhoo
+    MaxLevel: 7
+    TargetType: Attack
+    Range: 9
+    CastCancel: true
     Requires:
       SpCost:
         - Level: 1
@@ -29854,6 +29966,9 @@ Body:
       - Level: 7
         Time: 180000
     FixedCastTime: 4000
+    TargetType: Self
+    Range: 11
+    CastCancel: true
     Requires:
       SpCost:
         - Level: 1
@@ -29888,6 +30003,9 @@ Body:
     Duration1: 5000
     Cooldown: 3000
     FixedCastTime: 1500
+    TargetType: Attack
+    Range: 9
+    CastCancel: true
     Requires:
       SpCost:
         - Level: 1
@@ -29936,6 +30054,8 @@ Body:
       - Level: 5
         Time: 210000
     FixedCastTime: 1000
+    TargetType: Self
+    CastCancel: true
     Requires:
       SpCost:
         - Level: 1
@@ -29966,6 +30086,13 @@ Body:
     AfterCastActDelay: 500
     Cooldown: 3000
     FixedCastTime: 1000
+  - Id: 2608
+    Name: SP_SOULREVOLVE
+    Description: Soul Revolve
+    MaxLevel: 3
+    TargetType: Support
+    Range: 9
+    CastCancel: true
     Requires:
       SpCost:
         - Level: 1
@@ -29997,6 +30124,8 @@ Body:
       - Level: 5
         Time: 20000
     Duration2: 600000
+    TargetType: Self
+    CastCancel: true
     Requires:
       SpCost: 100
   - Id: 2610
@@ -30017,6 +30146,9 @@ Body:
     AfterCastActDelay: 500
     Cooldown: 60000
     FixedCastTime: 1000
+    TargetType: Attack
+    Range: 7
+    CastCancel: true
     Requires:
       SpCost:
         - Level: 1
@@ -30033,6 +30165,9 @@ Body:
   - Id: 2611
     Name: SP_SOULENERGY
     Description: Soul Energy Research
+  - Id: 2611
+    Name: SP_SOULENERGY
+    Description: Soul Energy
     MaxLevel: 5
   - Id: 2612
     Name: SP_KAUTE
@@ -30048,6 +30183,9 @@ Body:
     CastCancel: true
     AfterCastActDelay: 1000
     Cooldown: 5000
+    TargetType: Support
+    Range: 7
+    CastCancel: true
     Requires:
       SpCost:
         - Level: 1
