@@ -351,8 +351,16 @@ int battle_delay_damage(t_tick tick, int amotion, struct block_list *src, struct
 	}
 
 	if( ((d_tbl && check_distance_bl(target, d_tbl, sc->data[SC_DEVOTION]->val3)) || e_tbl) &&
-		damage > 0 && skill_id != PA_PRESSURE && skill_id != CR_REFLECTSHIELD )
+		damage > 0 && skill_id != PA_PRESSURE && skill_id != CR_REFLECTSHIELD ){
+		struct map_session_data* tsd = BL_CAST( BL_PC, target );
+
+		if( tsd && pc_issit( tsd ) && battle_config.devotion_standup_fix ){
+			pc_setstand( tsd, true );
+			skill_sit( tsd, 0 );
+		}
+
 		damage = 0;
+	}
 
 	if ( !battle_config.delay_battle_damage || amotion <= 1 ) {
 		//Deal damage
@@ -7538,8 +7546,19 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 				(d_bl->type == BL_PC && ((TBL_PC*)d_bl)->devotion[sce->val2] == target->id)
 				) && check_distance_bl(target, d_bl, sce->val3) )
 			{
-				clif_damage(d_bl, d_bl, gettick(), 0, 0, damage, 0, DMG_NORMAL, 0, false);
-				status_fix_damage(NULL, d_bl, damage, 0, CR_DEVOTION);
+				// Only trigger if the devoted player was hit
+				if( damage > 0 ){
+					struct map_session_data* dsd = BL_CAST( BL_PC, d_bl );
+
+					// The devoting player needs to stand up
+					if( dsd && pc_issit( dsd ) ){
+						pc_setstand( dsd, true );
+						skill_sit( dsd, 0 );
+					}
+
+					clif_damage(d_bl, d_bl, gettick(), wd.amotion, wd.dmotion, damage, 1, DMG_NORMAL, 0, false);
+					status_fix_damage(NULL, d_bl, damage, 0, CR_DEVOTION);
+				}
 			}
 			else
 				status_change_end(target, SC_DEVOTION, INVALID_TIMER);
@@ -8704,6 +8723,7 @@ static const struct _battle_data {
 	{ "instance_block_invite",              &battle_config.instance_block_invite,           1,      0,      1,              },
 	{ "instance_block_expulsion",           &battle_config.instance_block_expulsion,        1,      0,      1,              },
 	{ "hom_idle_no_share",                  &battle_config.hom_idle_no_share,               0,      0,      INT_MAX,        },
+	{ "devotion_standup_fix",               &battle_config.devotion_standup_fix,            1,      0,      1,              },
 
 #include "../custom/battle_config_init.inc"
 };

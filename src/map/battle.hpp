@@ -675,6 +675,7 @@ struct Battle_Config
 	int instance_block_invite;
 	int instance_block_expulsion;
 	int hom_idle_no_share;
+	int devotion_standup_fix;
 
 #include "../custom/battle_config_struct.inc"
 };
