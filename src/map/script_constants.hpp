@@ -7370,6 +7370,10 @@
 	/* timer related */
 	export_constant(INFINITE_TICK);
 
+	/* tax related */
+	export_constant(TAX_SELLING);
+	export_constant(TAX_BUYING);
+
 	/* block action */
 	export_constant(PCBLOCK_MOVE);
 	export_constant(PCBLOCK_ATTACK);
