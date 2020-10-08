@@ -32,7 +32,7 @@ const std::string TaxDatabase::getDefaultLocation() {
 * @return count of successfully parsed rows
 */
 uint64 TaxDatabase::parseBodyNode(const YAML::Node &node) {
-	int type = 0;
+	int64 type = 0;
 	std::string type_str;
 
 	if (!this->nodeExists(node, "Type")) {
