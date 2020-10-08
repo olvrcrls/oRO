@@ -666,6 +666,8 @@ struct Battle_Config
 	int pet_walk_speed;
 	int display_tax_info;
 	int blacksmith_fame_refine_threshold;
+	int mob_nopc_idleskill_rate;
+	int mob_nopc_move_rate;
 
 #include "../custom/battle_config_struct.inc"
 };
