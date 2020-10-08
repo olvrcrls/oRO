@@ -46,7 +46,6 @@
 #include "../map/quest.hpp"
 #include "../map/script.hpp"
 #include "../map/storage.hpp"
-#include "../map/quest.hpp"
 #include "../map/tax.hpp"
 
 using namespace rathena;

@@ -1037,6 +1037,981 @@ Achievements:
     Name: "Strange Guest"
     Target:
       - MobID: 2996
+=======
+Header:
+  Type: ACHIEVEMENT_DB
+  Version: 2
+
+Body:
+  - Id: 110000
+    Group: AG_EAT
+    Name: At this time I live to eat
+    Score: 10
+  - Id: 110001
+    Group: AG_SEE
+    Name: A fan of this polarity
+    Score: 10
+  - Id: 120001
+    Group: AG_ADVENTURE
+    Name: North Prontera Field Exploration(1)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120002
+    Group: AG_ADVENTURE
+    Name: North Prontera Field Exploration(2)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120003
+    Group: AG_ADVENTURE
+    Name: North Prontera Field Exploration(3)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120004
+    Group: AG_ADVENTURE
+    Name: West Prontera Field Exploration(1)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120005
+    Group: AG_ADVENTURE
+    Name: West Prontera Field Exploration(2)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120006
+    Group: AG_ADVENTURE
+    Name: East Prontera Field Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120007
+    Group: AG_ADVENTURE
+    Name: South Prontera Field Exploration(1)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120008
+    Group: AG_ADVENTURE
+    Name: South Prontera Field Exploration(2)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120009
+    Group: AG_ADVENTURE
+    Name: South Prontera Field Exploration(3)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120010
+    Group: AG_ADVENTURE
+    Name: South Prontera Field Exploration(4)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120011
+    Group: AG_ADVENTURE
+    Name: East Geffen Field Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120012
+    Group: AG_ADVENTURE
+    Name: Southeast Geffen Field Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120013
+    Group: AG_ADVENTURE
+    Name: Northwest Geffen Field Exploration(1)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120014
+    Group: AG_ADVENTURE
+    Name: Northwest Geffen Field Exploration(2)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120015
+    Group: AG_ADVENTURE
+    Name: Northwest Geffen Field Exploration(3)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120016
+    Group: AG_ADVENTURE
+    Name: South Geffen Field Exploration(1)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120017
+    Group: AG_ADVENTURE
+    Name: South Geffen Field Exploration(2)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120018
+    Group: AG_ADVENTURE
+    Name: Sograt Desert Field Exploration(1)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120019
+    Group: AG_ADVENTURE
+    Name: Sograt Desert Field Exploration(2)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120020
+    Group: AG_ADVENTURE
+    Name: Sograt Desert Field Exploration(3)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120021
+    Group: AG_ADVENTURE
+    Name: Sograt Desert Field Exploration(4)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120022
+    Group: AG_ADVENTURE
+    Name: Sograt Desert Field Exploration(5)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120023
+    Group: AG_ADVENTURE
+    Name: Sograt Desert Field Exploration(6)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120024
+    Group: AG_ADVENTURE
+    Name: Southwest Payon Field Exploration(1)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120025
+    Group: AG_ADVENTURE
+    Name: Southwest Payon Field Exploration(2)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120026
+    Group: AG_ADVENTURE
+    Name: Southwest Payon Field Exploration(3)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120027
+    Group: AG_ADVENTURE
+    Name: Southwest Payon Field Exploration(4)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120028
+    Group: AG_ADVENTURE
+    Name: East Payon Field Exploration(1)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120029
+    Group: AG_ADVENTURE
+    Name: East Payon Field Exploration(2)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120030
+    Group: AG_ADVENTURE
+    Name: East Payon Field Exploration(3)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120031
+    Group: AG_ADVENTURE
+    Name: East Payon Field Exploration(4)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120032
+    Group: AG_ADVENTURE
+    Name: North Mjolnir Field Exploration(1)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120033
+    Group: AG_ADVENTURE
+    Name: North Mjolnir Field Exploration(2)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120034
+    Group: AG_ADVENTURE
+    Name: North Mjolnir Field Exploration(3)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120035
+    Group: AG_ADVENTURE
+    Name: North Mjolnir Field Exploration(4)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120036
+    Group: AG_ADVENTURE
+    Name: North Mjolnir Field Exploration(5)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120037
+    Group: AG_ADVENTURE
+    Name: South Mjolnir Field Exploration(1)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120038
+    Group: AG_ADVENTURE
+    Name: South Mjolnir Field Exploration(2)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120039
+    Group: AG_ADVENTURE
+    Name: South Mjolnir Field Exploration(3)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120040
+    Group: AG_ADVENTURE
+    Name: South Mjolnir Field Exploration(4)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120041
+    Group: AG_ADVENTURE
+    Name: South Mjolnir Field Exploration(5)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120042
+    Group: AG_ADVENTURE
+    Name: South Mjolnir Field Exploration(6)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120043
+    Group: AG_ADVENTURE
+    Name: South Aldebaran Field Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120044
+    Group: AG_ADVENTURE
+    Name: Comodo Field Exploration(1)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120045
+    Group: AG_ADVENTURE
+    Name: Comodo Field Exploration(2)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120046
+    Group: AG_ADVENTURE
+    Name: Comodo Field Exploration(3)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120047
+    Group: AG_ADVENTURE
+    Name: Comodo Field Exploration(4)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120048
+    Group: AG_ADVENTURE
+    Name: Comodo Field Exploration(5)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120049
+    Group: AG_ADVENTURE
+    Name: Comodo Field Exploration(6)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120050
+    Group: AG_ADVENTURE
+    Name: Comodo Field Exploration(7)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120051
+    Group: AG_ADVENTURE
+    Name: Comodo Field Exploration(8)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120052
+    Group: AG_ADVENTURE
+    Name: Border Checkpoint Field Exploration(1)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120053
+    Group: AG_ADVENTURE
+    Name: Border Checkpoint Field Exploration(2)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120054
+    Group: AG_ADVENTURE
+    Name: Kiel Hyre Mansion Field Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120055
+    Group: AG_ADVENTURE
+    Name: El Mes Plateau Field Exploration(1)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120056
+    Group: AG_ADVENTURE
+    Name: El Mes Plateau Field Exploration(2)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120057
+    Group: AG_ADVENTURE
+    Name: El Mes Plateau Field Exploration(3)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120058
+    Group: AG_ADVENTURE
+    Name: El Mes Gorge Field Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120059
+    Group: AG_ADVENTURE
+    Name: Kiel Hyre Academy Field Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120060
+    Group: AG_ADVENTURE
+    Name: Guard Camp Field Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120061
+    Group: AG_ADVENTURE
+    Name: Juno Field Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120062
+    Group: AG_ADVENTURE
+    Name: Front of Thanatos Tower Field Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120063
+    Group: AG_ADVENTURE
+    Name: Hugel Field Exploration(1)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120064
+    Group: AG_ADVENTURE
+    Name: Hugel Field Exploration(2)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120065
+    Group: AG_ADVENTURE
+    Name: Hugel Field Exploration(3)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120066
+    Group: AG_ADVENTURE
+    Name: Abyss Lake Field Exploration(1)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120067
+    Group: AG_ADVENTURE
+    Name: Einbroch Field Exploration(1)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120068
+    Group: AG_ADVENTURE
+    Name: Einbroch Field Exploration(2)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120069
+    Group: AG_ADVENTURE
+    Name: Einbroch Field Exploration(3)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120070
+    Group: AG_ADVENTURE
+    Name: Einbroch Field Exploration(4)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120071
+    Group: AG_ADVENTURE
+    Name: Einbroch Field Exploration(5)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120072
+    Group: AG_ADVENTURE
+    Name: Einbroch Field Exploration(6)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120073
+    Group: AG_ADVENTURE
+    Name: Einbroch Field Exploration(7)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120074
+    Group: AG_ADVENTURE
+    Name: Einbroch Field Exploration(8)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120075
+    Group: AG_ADVENTURE
+    Name: Lighthalzen Field Exploration(1)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120076
+    Group: AG_ADVENTURE
+    Name: Lighthalzen Field Exploration(2)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120077
+    Group: AG_ADVENTURE
+    Name: Lighthalzen Field Exploration(3)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120078
+    Group: AG_ADVENTURE
+    Name: Rachel Audhumbla Plains Field Exploration(1)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120079
+    Group: AG_ADVENTURE
+    Name: Rachel Plains Field Exploration(1)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120080
+    Group: AG_ADVENTURE
+    Name: Rachel Plains Field Exploration(2)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120081
+    Group: AG_ADVENTURE
+    Name: Rachel Plains Field Exploration(3)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120082
+    Group: AG_ADVENTURE
+    Name: Rachel Audhumbla Grassland Field Exploration(1)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120083
+    Group: AG_ADVENTURE
+    Name: Rachel Audhumbla Grassland Field Exploration(2)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120084
+    Group: AG_ADVENTURE
+    Name: Portus Luna Field Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120085
+    Group: AG_ADVENTURE
+    Name: Veins Field Exploration(1)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120086
+    Group: AG_ADVENTURE
+    Name: Veins Field Exploration(2)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120087
+    Group: AG_ADVENTURE
+    Name: Veins Field Exploration(3)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120088
+    Group: AG_ADVENTURE
+    Name: Veins Field Exploration(4)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120089
+    Group: AG_ADVENTURE
+    Name: Veins Field Exploration(5)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120090
+    Group: AG_ADVENTURE
+    Name: Eclage Field Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120091
+    Group: AG_ADVENTURE
+    Name: North Bitfrost Field Exploration(1)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120092
+    Group: AG_ADVENTURE
+    Name: South Bitfrost Field Exploration(1)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120093
+    Group: AG_ADVENTURE
+    Name: Splendide Field Exploration(1)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120094
+    Group: AG_ADVENTURE
+    Name: Splendide Field Exploration(2)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120095
+    Group: AG_ADVENTURE
+    Name: Splendide Field Exploration(3)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120096
+    Group: AG_ADVENTURE
+    Name: Manuk Field Exploration(1)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120097
+    Group: AG_ADVENTURE
+    Name: Manuk Field Exploration(2)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120098
+    Group: AG_ADVENTURE
+    Name: Manuk Field Exploration(3)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120099
+    Group: AG_ADVENTURE
+    Name: Outskirts of Kamidal Field Exploration(1)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120100
+    Group: AG_ADVENTURE
+    Name: Outskirts of Kamidal Field Exploration(2)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120101
+    Group: AG_ADVENTURE
+    Name: Amatsu Field Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120102
+    Group: AG_ADVENTURE
+    Name: Kunlun Field Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120103
+    Group: AG_ADVENTURE
+    Name: Kunlun Field Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120104
+    Group: AG_ADVENTURE
+    Name: Ayothaya Field Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120105
+    Group: AG_ADVENTURE
+    Name: Moscovia Field Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120106
+    Group: AG_ADVENTURE
+    Name: Brasilis Field Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120107
+    Group: AG_ADVENTURE
+    Name: Dewata Field Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120108
+    Group: AG_ADVENTURE
+    Name: Malaya Field Exploration(1)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120109
+    Group: AG_ADVENTURE
+    Name: Malaya Field Exploration(2)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 10
+  - Id: 120110
+    Group: AG_ADVENTURE
+    Name: Abbey Underground Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120111
+    Group: AG_ADVENTURE
+    Name: Abyss Lake Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120112
+    Group: AG_ADVENTURE
+    Name: Clock Tower Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120113
+    Group: AG_ADVENTURE
+    Name: Amatsu Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120114
+    Group: AG_ADVENTURE
+    Name: Ant Hell Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120115
+    Group: AG_ADVENTURE
+    Name: Ayothaya Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120116
+    Group: AG_ADVENTURE
+    Name: Comodo Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120117
+    Group: AG_ADVENTURE
+    Name: Brasilis Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120118
+    Group: AG_ADVENTURE
+    Name: Clock Tower Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120119
+    Group: AG_ADVENTURE
+    Name: Istana Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120120
+    Group: AG_ADVENTURE
+    Name: Scaraba Hole Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120121
+    Group: AG_ADVENTURE
+    Name: Bitfrost Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120122
+    Group: AG_ADVENTURE
+    Name: Einbroch Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120123
+    Group: AG_ADVENTURE
+    Name: Geffen Underground Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120124
+    Group: AG_ADVENTURE
+    Name: Glastheim Dungeon Exploration(1)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120125
+    Group: AG_ADVENTURE
+    Name: Glastheim Dungeon Exploration(2)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120126
+    Group: AG_ADVENTURE
+    Name: Glastheim Dungeon Exploration(3)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120127
+    Group: AG_ADVENTURE
+    Name: Glastheim Dungeon Exploration(4)
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120128
+    Group: AG_ADVENTURE
+    Name: Kunlun Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120129
+    Group: AG_ADVENTURE
+    Name: Rachel Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120130
+    Group: AG_ADVENTURE
+    Name: Sphinx Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120131
+    Group: AG_ADVENTURE
+    Name: Izlude Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120132
+    Group: AG_ADVENTURE
+    Name: Robot Factory Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120133
+    Group: AG_ADVENTURE
+    Name: Bio Lab Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120134
+    Group: AG_ADVENTURE
+    Name: Kunlun Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120135
+    Group: AG_ADVENTURE
+    Name: Nogg Road Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120136
+    Group: AG_ADVENTURE
+    Name: Coal Mine Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120137
+    Group: AG_ADVENTURE
+    Name: Pyramid Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120138
+    Group: AG_ADVENTURE
+    Name: Orc Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120139
+    Group: AG_ADVENTURE
+    Name: Payon Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120140
+    Group: AG_ADVENTURE
+    Name: Labyrinth Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120141
+    Group: AG_ADVENTURE
+    Name: Undersea Tunnel Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120142
+    Group: AG_ADVENTURE
+    Name: Thanatos Tower Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120143
+    Group: AG_ADVENTURE
+    Name: Thor Volcano Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120144
+    Group: AG_ADVENTURE
+    Name: Sunken Ship Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120145
+    Group: AG_ADVENTURE
+    Name: Turtle Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 120146
+    Group: AG_ADVENTURE
+    Name: Toy Factory Dungeon Exploration
+    Rewards:
+      Item: Old_Money_Pocket
+    Score: 20
+  - Id: 127001
+    Group: AG_CHATTING
+    Name: Prontera Contribution
+    Targets:
+      - Id: 0
+        Count: 100000
+    Map: prontera
+    Score: 10
+  - Id: 127002
+    Group: AG_CHATTING
+    Name: Geffen Contribution
+    Targets:
+      - Id: 0
+        Count: 100000
+    Map: geffen
+    Score: 10
+  - Id: 127003
+    Group: AG_CHATTING
+    Name: Morocc Contribution
+    Targets:
+      - Id: 0
+        Count: 100000
+    Map: morocc
+    Score: 10
+  - Id: 127004
+    Group: AG_CHATTING
+    Name: Payon Contribution
+    Targets:
+      - Id: 0
+        Count: 100000
+    Map: payon
+    Score: 10
+  - Id: 127005
+    Group: AG_CHATTING
+    Name: Juno Contribution
+    Targets:
+      - Id: 0
+        Count: 100000
+    Map: yuno
+    Score: 10
+  - Id: 127006
+    Group: AG_CHATTING
+    Name: Lighthalzen Contribution
+    Targets:
+      - Id: 0
+        Count: 100000
+    Map: lighthalzen
+    Score: 10
+  - Id: 127007
+    Group: AG_CHATTING
+    Name: Einbroch Contribution
+    Targets:
+      - Id: 0
+        Count: 100000
+    Map: einbroch
+    Score: 10
+  - Id: 127008
+    Group: AG_CHATTING
+    Name: Rachel Contribution
+    Targets:
+      - Id: 0
+        Count: 100000
+    Map: rachel
+    Score: 10
+  - Id: 127009
+    Group: AG_CHATTING
+    Name: Veins Contribution
+    Targets:
+      - Id: 0
+        Count: 100000
+    Map: veins
+    Score: 10
+  - Id: 128000
+    Group: AG_BATTLE
+    Name: Uninvited Guest
+    Targets:
+      - Id: 0
+        Mob: XM_CELINE_KIMI
+    Score: 10
+  - Id: 128001
+    Group: AG_BATTLE
+    Name: Strange Guest
+    Targets:
+      - Id: 0
+        Mob: XM_CELINE_KIMI
         Count: 10
     Score: 10
   - ID: 128002
@@ -1486,6 +2461,273 @@ Achievements:
     Dependent: [129009, 129010, 129011, 129012]
     Reward:
       ItemID: 617
+=======
+  - Id: 129001
+    Group: AG_ADVENTURE
+    Name: Prontera Explorer
+    Dependents:
+      - Id: 0
+        AchievementId: 120001
+      - Id: 1
+        AchievementId: 120002
+      - Id: 2
+        AchievementId: 120003
+      - Id: 3
+        AchievementId: 120004
+      - Id: 4
+        AchievementId: 120005
+      - Id: 5
+        AchievementId: 120006
+      - Id: 6
+        AchievementId: 120007
+      - Id: 7
+        AchievementId: 120008
+      - Id: 8
+        AchievementId: 120009
+      - Id: 9
+        AchievementId: 120010
+    Rewards:
+      Item: Gift_Box
+    Score: 20
+  - Id: 129002
+    Group: AG_ADVENTURE
+    Name: Geffen Explorer
+    Dependents:
+      - Id: 0
+        AchievementId: 120011
+      - Id: 1
+        AchievementId: 120012
+      - Id: 2
+        AchievementId: 120013
+      - Id: 3
+        AchievementId: 120014
+      - Id: 4
+        AchievementId: 120015
+      - Id: 5
+        AchievementId: 120016
+      - Id: 6
+        AchievementId: 120017
+    Rewards:
+      Item: Gift_Box
+    Score: 20
+  - Id: 129003
+    Group: AG_ADVENTURE
+    Name: Sograt Desert Explorer
+    Dependents:
+      - Id: 0
+        AchievementId: 120018
+      - Id: 1
+        AchievementId: 120019
+      - Id: 2
+        AchievementId: 120020
+      - Id: 3
+        AchievementId: 120021
+      - Id: 4
+        AchievementId: 120022
+      - Id: 5
+        AchievementId: 120023
+    Rewards:
+      Item: Gift_Box
+    Score: 20
+  - Id: 129004
+    Group: AG_ADVENTURE
+    Name: Payon Explorer
+    Dependents:
+      - Id: 0
+        AchievementId: 120024
+      - Id: 1
+        AchievementId: 120025
+      - Id: 2
+        AchievementId: 120026
+      - Id: 3
+        AchievementId: 120027
+      - Id: 4
+        AchievementId: 120028
+      - Id: 5
+        AchievementId: 120029
+      - Id: 6
+        AchievementId: 120030
+      - Id: 7
+        AchievementId: 120031
+    Rewards:
+      Item: Gift_Box
+    Score: 20
+  - Id: 129005
+    Group: AG_ADVENTURE
+    Name: North Mjolnir Explorer
+    Dependents:
+      - Id: 0
+        AchievementId: 120032
+      - Id: 1
+        AchievementId: 120033
+      - Id: 2
+        AchievementId: 120034
+      - Id: 3
+        AchievementId: 120035
+      - Id: 4
+        AchievementId: 120036
+    Rewards:
+      Item: Gift_Box
+    Score: 20
+  - Id: 129006
+    Group: AG_ADVENTURE
+    Name: South Mjolnir Explorer
+    Dependents:
+      - Id: 0
+        AchievementId: 120037
+      - Id: 1
+        AchievementId: 120038
+      - Id: 2
+        AchievementId: 120039
+      - Id: 3
+        AchievementId: 120040
+      - Id: 4
+        AchievementId: 120041
+      - Id: 5
+        AchievementId: 120042
+      - Id: 6
+        AchievementId: 120043
+    Rewards:
+      Item: Gift_Box
+    Score: 20
+  - Id: 129007
+    Group: AG_ADVENTURE
+    Name: Comodo Explorer
+    Dependents:
+      - Id: 0
+        AchievementId: 120044
+      - Id: 1
+        AchievementId: 120045
+      - Id: 2
+        AchievementId: 120046
+      - Id: 3
+        AchievementId: 120047
+      - Id: 4
+        AchievementId: 120048
+      - Id: 5
+        AchievementId: 120049
+      - Id: 6
+        AchievementId: 120050
+      - Id: 7
+        AchievementId: 120051
+    Rewards:
+      Item: Gift_Box
+    Score: 20
+  - Id: 129008
+    Group: AG_ADVENTURE
+    Name: Rune-Midgarts Explorer
+    Dependents:
+      - Id: 0
+        AchievementId: 129001
+      - Id: 1
+        AchievementId: 129002
+      - Id: 2
+        AchievementId: 129003
+      - Id: 3
+        AchievementId: 129004
+      - Id: 4
+        AchievementId: 129005
+      - Id: 5
+        AchievementId: 129006
+      - Id: 6
+        AchievementId: 129007
+    Rewards:
+      Item: Old_Violet_Box
+    Score: 50
+  - Id: 129009
+    Group: AG_ADVENTURE
+    Name: Juno Explorer
+    Dependents:
+      - Id: 0
+        AchievementId: 120052
+      - Id: 1
+        AchievementId: 120053
+      - Id: 2
+        AchievementId: 120054
+      - Id: 3
+        AchievementId: 120055
+      - Id: 4
+        AchievementId: 120056
+      - Id: 5
+        AchievementId: 120057
+      - Id: 6
+        AchievementId: 120058
+      - Id: 7
+        AchievementId: 120059
+      - Id: 8
+        AchievementId: 120060
+      - Id: 9
+        AchievementId: 120061
+    Rewards:
+      Item: Gift_Box
+    Score: 20
+  - Id: 129010
+    Group: AG_ADVENTURE
+    Name: Hugel Explorer
+    Dependents:
+      - Id: 0
+        AchievementId: 120062
+      - Id: 1
+        AchievementId: 120063
+      - Id: 2
+        AchievementId: 120064
+      - Id: 3
+        AchievementId: 120065
+      - Id: 4
+        AchievementId: 120066
+    Rewards:
+      Item: Gift_Box
+    Score: 20
+  - Id: 129011
+    Group: AG_ADVENTURE
+    Name: Einbroch Explorer
+    Dependents:
+      - Id: 0
+        AchievementId: 120067
+      - Id: 1
+        AchievementId: 120068
+      - Id: 2
+        AchievementId: 120069
+      - Id: 3
+        AchievementId: 120070
+      - Id: 4
+        AchievementId: 120071
+      - Id: 5
+        AchievementId: 120072
+      - Id: 6
+        AchievementId: 120073
+      - Id: 7
+        AchievementId: 120074
+    Rewards:
+      Item: Gift_Box
+    Score: 20
+  - Id: 129012
+    Group: AG_ADVENTURE
+    Name: Lighthalzen Explorer
+    Dependents:
+      - Id: 0
+        AchievementId: 120075
+      - Id: 1
+        AchievementId: 120076
+      - Id: 2
+        AchievementId: 120077
+    Rewards:
+      Item: Gift_Box
+    Score: 20
+  - Id: 129013
+    Group: AG_ADVENTURE
+    Name: Schwarzwald Explorer
+    Dependents:
+      - Id: 0
+        AchievementId: 129009
+      - Id: 1
+        AchievementId: 129010
+      - Id: 2
+        AchievementId: 129011
+      - Id: 3
+        AchievementId: 129012
+    Rewards:
+      Item: Old_Violet_Box
     Score: 50
   - ID: 129014
     Group: "AG_ADVENTURE"

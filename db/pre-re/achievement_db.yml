@@ -417,7 +417,7 @@ Body:
     Score: 10
   - Id: 120061
     Group: AG_ADVENTURE
-    Name: Yuno Field Exploration
+    Name: Juno Field Exploration
     #Rewards:
     #  Item: Old_Money_Pocket
     Score: 10
@@ -669,7 +669,7 @@ Body:
     Score: 10
   - Id: 120103
     Group: AG_ADVENTURE
-    Name: Gonryun Field Exploration
+    Name: Kunlun Field Exploration
     #Rewards:
     #  Item: Old_Money_Pocket
     Score: 10
@@ -855,7 +855,7 @@ Body:
     Score: 20
   - Id: 120134
     Group: AG_ADVENTURE
-    Name: Gonryun Dungeon Exploration
+    Name: Kunlun Dungeon Exploration
     #Rewards:
     #  Item: Old_Money_Pocket
     Score: 20
@@ -1825,7 +1825,6 @@ Body:
     Name: "Prontera Contribution"
     Map: "prontera"
     Target:
->>>>>>> 354c63273... Fixed place names and other typos (#4475)
       - Id: 0
         Count: 100000
     Map: prontera
@@ -1854,18 +1853,12 @@ Body:
         Count: 100000
     Map: payon
     Score: 10
-<<<<<<< HEAD
-  - Id: 127005
-    Group: AG_CHATTING
-    Name: Yuno Contribution
-    Targets:
-=======
+
   - ID: 127005
     Group: "AG_CHATTING"
     Name: "Juno Contribution"
     Map: "yuno"
     Target:
->>>>>>> 354c63273... Fixed place names and other typos (#4475)
       - Id: 0
         Count: 100000
     Map: yuno
@@ -2306,7 +2299,6 @@ Body:
     #    Mob: BANGUNGOT_3
     #    Count: 50
     Score: 50
-<<<<<<< HEAD
   - Id: 129001
     Group: AG_ADVENTURE
     Name: Prontera Explorer
@@ -2460,7 +2452,7 @@ Body:
     Score: 20
   - Id: 129008
     Group: AG_ADVENTURE
-    Name: Rune Midgard Explorer
+    Name: Rune-Midgarts Explorer
     Dependents:
       - Id: 0
         AchievementId: 129001
@@ -2481,7 +2473,7 @@ Body:
     Score: 50
   - Id: 129009
     Group: AG_ADVENTURE
-    Name: Yuno Explorer
+    Name: Juno Explorer
     Dependents:
       - Id: 0
         AchievementId: 120052
@@ -2752,7 +2744,6 @@ Body:
       - Id: 129012
     Reward:
       ItemID: 617
->>>>>>> 354c63273... Fixed place names and other typos (#4475)
     Score: 50
   - Id: 129014
     Group: AG_ADVENTURE
@@ -2877,11 +2868,11 @@ Body:
     Score: 50
   - Id: 129021
     Group: AG_BATTLE
-    Name: Glastheim Challenge Mode
+    Name: Glastheim Challenge Mode # Complete 100 times?
     Rewards:
       TitleId: 1045
     Score: 10
-  - Id: 130000
+  - Id: 130000 # Talk to Prince NPC (npc/quests/quests_morocc.txt L5288)
     Group: AG_CHATTING
     Name: Socialite debut
     Rewards:
@@ -3892,4 +3883,3 @@ Body:
       Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
       TitleId: 1024
     Score: 10
-
