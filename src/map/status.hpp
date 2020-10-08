@@ -2012,6 +2012,8 @@ enum efst_types : short{
 	EFST_RELIEVE_DAMAGE = 1166,
 	EFST_LOCKON_LASER,
 
+	EFST_PRESSURE = 1180,
+
 	// Custom effects added
 	EFST_FULLINVINCIBLE = 1181,
 	EFST_ENCHANTARMS = 1182, // Elemental Converter
