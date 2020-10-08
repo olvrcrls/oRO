@@ -860,6 +860,7 @@ enum sc_type : int16 {
 	SC_LHZ_DUN_N4,
 
 	SC_ANCILLA,
+	SC_EARTHSHAKER,
 
 	// Star Emperor
 	SC_LIGHTOFMOON,

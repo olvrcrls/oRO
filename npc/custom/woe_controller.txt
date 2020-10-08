@@ -81,7 +81,7 @@ OnInit:
 	setarray .reward_amount[0],10;
 
 	// Zeny reward:
-	.reward_zeny = 100000;
+	.reward_zeny = 0;
 
 // -----------------------------------------------------------
 //  Castles datas.
@@ -263,7 +263,7 @@ function Region {
 OnReward:
 	if (!.reward_id_size && !.reward_zeny)
 		return;
-
+	set .@sql$, ((.Options&4)?"position = 0":"online = 1");
 	if (.Options&2) set .@str$,gettimestr("%B %d, %Y",21);
 	freeloop(1);
 	for(set .@i,0; .@i<.total_castle; set .@i,.@i+1) {
@@ -345,6 +345,18 @@ OnReward:
 					}
 					Zeny += .reward_zeny;
 					dispbottom "You have been rewarded for conquering " + .@castle_name$ + ".";
+					}
+				} else if (isloggedin(.@aid[.@j])) {
+					.@name$ = rid2name(.@aid[.@j]);
+					.@castle_name$ = getcastlename(.Castles$[.@i]);
+					for ( .@k = 0; .@k < .reward_id_size; .@k++ ) {
+						if (checkweight(.reward_id[.@k], .reward_amount[.@k]))
+							getitem .reward_id[.@k], .reward_amount[.@k], .@aid[.@j];
+						else
+							message .@name$, "You can't receive x" + .reward_amount[.@k] + " " + getitemname(.reward_id[.@k]) + " for conquering " + .@castle_name$ + " because you're overweight.";
+					}
+					Zeny += .reward_zeny;
+					message .@name$, "You have been rewarded for conquering " + .@castle_name$ + ".";
 				}
 			}
 		}

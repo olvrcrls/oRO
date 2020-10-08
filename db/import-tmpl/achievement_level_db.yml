@@ -17,13 +17,15 @@
 #
 ###########################################################################
 # Custom Achievement Level Database
+# Import Achievement Level Database
 ###########################################################################
 #
 # Achievement Level Settings
 #
 ###########################################################################
 # - Level     Achievement Level.
-#   Points    Required total scoring points to reach this level.
+###########################################################################
+# Points - Required total scoring points to reach this level.
 ###########################################################################
 
 Header:

@@ -1,0 +1,21 @@
+diff a/npc/re/kafras/kafras.txt b/npc/re/kafras/kafras.txt	(rejected hunks)
+@@ -120,16 +120,19 @@
+  	callfunc "F_Kafra",0,8,2,500,0;
+  	savepoint "harboro1",355,207,1,1;
+  	callfunc "F_KafEnd",2,0,0;
+++<<<<<<< HEAD
+ +	callfunc "F_KafRepair";
+ +}
+ +
+ +// Askald
+ +//============================================================
+ +askald,123,87,5	script	Kafra Employee::ask	4_F_KAFRA1,{
+ +	cutin "kafra_01",2;
+ +	callfunc "F_KafSet";
+ +	callfunc "F_Kafra",0,8,2,500,0;
+ +	savepoint "askald",128,114,1,1;
+ +	callfunc "F_KafEnd",2,0,0;
+ +	callfunc "F_KafRepair";
+++=======
+++>>>>>>> 98cb6a1b6... Merge branch 'master' into hotfix/issue1661
+  }

@@ -6977,6 +6977,7 @@ int script_countitem_sub(struct item *items, struct item_data *id, int size, boo
 		}
 	} else { // For expanded functions
 		struct item it;
+
 		memset(&it, 0, sizeof(it));
 
 		it.nameid = id->nameid;
@@ -20189,6 +20190,7 @@ BUILDIN_FUNC(questinfo)
 
 	return SCRIPT_CMD_SUCCESS;
 }
+
 /**
  * questinfo_refresh {<char_id>};
  **/
@@ -21274,10 +21276,10 @@ unsigned short script_instancegetid(struct script_state* st, enum instance_mode 
 					break;
 				case IM_CLAN: {
 					struct clan *cd = clan_search(sd->status.clan_id);
-
 					if (cd && cd->instance_id)
 						instance_id = cd->instance_id;
-				}
+
+			}
 					break;
 				default: // Unsupported type
 					break;

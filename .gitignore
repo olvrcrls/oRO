@@ -53,3 +53,11 @@ map-server.ilk
 map-server.pdb
 mapcache.ilk
 mapcache.pdb
+
+# dlls
+/libmysql.dll
+/pcre8.dll
+/zlib.dll
+
+# CMakeFiles
+/CMakeFiles/

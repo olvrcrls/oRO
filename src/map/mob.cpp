@@ -4504,7 +4504,7 @@ uint64 MobAvailDatabase::parseBodyNode(const YAML::Node &node) {
 		if (!this->asString(node, "Weapon", weapon))
 			return 0;
 
-		struct item_data* item = itemdb_searchname(weapon.c_str());
+		struct item_data *item = itemdb_searchname(weapon.c_str());
 
 		if (item == nullptr) {
 			this->invalidWarning(node["Weapon"], "Weapon %s is not a valid item.\n", weapon.c_str());
@@ -4525,7 +4525,7 @@ uint64 MobAvailDatabase::parseBodyNode(const YAML::Node &node) {
 		if (!this->asString(node, "Shield", shield))
 			return 0;
 
-		struct item_data* item = itemdb_searchname(shield.c_str());
+		struct item_data *item = itemdb_searchname(shield.c_str());
 
 		if (item == nullptr) {
 			this->invalidWarning(node["Shield"], "Shield %s is not a valid item.\n", shield.c_str());
