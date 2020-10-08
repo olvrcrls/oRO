@@ -30165,9 +30165,6 @@ Body:
   - Id: 2611
     Name: SP_SOULENERGY
     Description: Soul Energy Research
-  - Id: 2611
-    Name: SP_SOULENERGY
-    Description: Soul Energy
     MaxLevel: 5
   - Id: 2612
     Name: SP_KAUTE
