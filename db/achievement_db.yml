@@ -44,7 +44,7 @@
 
 Header:
   Type: ACHIEVEMENT_DB
-  Version: 2
+  Version: 1
 
 Footer:
   Imports:
