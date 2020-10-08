@@ -1037,7 +1037,6 @@ Achievements:
     Name: "Strange Guest"
     Target:
       - MobID: 2996
-=======
 Header:
   Type: ACHIEVEMENT_DB
   Version: 2
@@ -2461,31 +2460,20 @@ Body:
     Dependent: [129009, 129010, 129011, 129012]
     Reward:
       ItemID: 617
-=======
   - Id: 129001
     Group: AG_ADVENTURE
     Name: Prontera Explorer
     Dependents:
-      - Id: 0
-        AchievementId: 120001
-      - Id: 1
-        AchievementId: 120002
-      - Id: 2
-        AchievementId: 120003
-      - Id: 3
-        AchievementId: 120004
-      - Id: 4
-        AchievementId: 120005
-      - Id: 5
-        AchievementId: 120006
-      - Id: 6
-        AchievementId: 120007
-      - Id: 7
-        AchievementId: 120008
-      - Id: 8
-        AchievementId: 120009
-      - Id: 9
-        AchievementId: 120010
+      - Id: 120001
+      - Id: 120002
+      - Id: 120003
+      - Id: 120004
+      - Id: 120005
+      - Id: 120006
+      - Id: 120007
+      - Id: 120008
+      - Id: 120009
+      - Id: 120010
     Rewards:
       Item: Gift_Box
     Score: 20
@@ -2493,20 +2481,13 @@ Body:
     Group: AG_ADVENTURE
     Name: Geffen Explorer
     Dependents:
-      - Id: 0
-        AchievementId: 120011
-      - Id: 1
-        AchievementId: 120012
-      - Id: 2
-        AchievementId: 120013
-      - Id: 3
-        AchievementId: 120014
-      - Id: 4
-        AchievementId: 120015
-      - Id: 5
-        AchievementId: 120016
-      - Id: 6
-        AchievementId: 120017
+      - Id: 120011
+      - Id: 120012
+      - Id: 120013
+      - Id: 120014
+      - Id: 120015
+      - Id: 120016
+      - Id: 120017
     Rewards:
       Item: Gift_Box
     Score: 20
@@ -2514,18 +2495,12 @@ Body:
     Group: AG_ADVENTURE
     Name: Sograt Desert Explorer
     Dependents:
-      - Id: 0
-        AchievementId: 120018
-      - Id: 1
-        AchievementId: 120019
-      - Id: 2
-        AchievementId: 120020
-      - Id: 3
-        AchievementId: 120021
-      - Id: 4
-        AchievementId: 120022
-      - Id: 5
-        AchievementId: 120023
+      - Id: 120018
+      - Id: 120019
+      - Id: 120020
+      - Id: 120021
+      - Id: 120022
+      - Id: 120023
     Rewards:
       Item: Gift_Box
     Score: 20
@@ -2533,22 +2508,14 @@ Body:
     Group: AG_ADVENTURE
     Name: Payon Explorer
     Dependents:
-      - Id: 0
-        AchievementId: 120024
-      - Id: 1
-        AchievementId: 120025
-      - Id: 2
-        AchievementId: 120026
-      - Id: 3
-        AchievementId: 120027
-      - Id: 4
-        AchievementId: 120028
-      - Id: 5
-        AchievementId: 120029
-      - Id: 6
-        AchievementId: 120030
-      - Id: 7
-        AchievementId: 120031
+      - Id: 120024
+      - Id: 120025
+      - Id: 120026
+      - Id: 120027
+      - Id: 120028
+      - Id: 120029
+      - Id: 120030
+      - Id: 120031
     Rewards:
       Item: Gift_Box
     Score: 20
@@ -2556,16 +2523,11 @@ Body:
     Group: AG_ADVENTURE
     Name: North Mjolnir Explorer
     Dependents:
-      - Id: 0
-        AchievementId: 120032
-      - Id: 1
-        AchievementId: 120033
-      - Id: 2
-        AchievementId: 120034
-      - Id: 3
-        AchievementId: 120035
-      - Id: 4
-        AchievementId: 120036
+      - Id: 120032
+      - Id: 120033
+      - Id: 120034
+      - Id: 120035
+      - Id: 120036
     Rewards:
       Item: Gift_Box
     Score: 20
@@ -2573,20 +2535,13 @@ Body:
     Group: AG_ADVENTURE
     Name: South Mjolnir Explorer
     Dependents:
-      - Id: 0
-        AchievementId: 120037
-      - Id: 1
-        AchievementId: 120038
-      - Id: 2
-        AchievementId: 120039
-      - Id: 3
-        AchievementId: 120040
-      - Id: 4
-        AchievementId: 120041
-      - Id: 5
-        AchievementId: 120042
-      - Id: 6
-        AchievementId: 120043
+      - Id: 120037
+      - Id: 120038
+      - Id: 120039
+      - Id: 120040
+      - Id: 120041
+      - Id: 120042
+      - Id: 120043
     Rewards:
       Item: Gift_Box
     Score: 20
@@ -2594,22 +2549,14 @@ Body:
     Group: AG_ADVENTURE
     Name: Comodo Explorer
     Dependents:
-      - Id: 0
-        AchievementId: 120044
-      - Id: 1
-        AchievementId: 120045
-      - Id: 2
-        AchievementId: 120046
-      - Id: 3
-        AchievementId: 120047
-      - Id: 4
-        AchievementId: 120048
-      - Id: 5
-        AchievementId: 120049
-      - Id: 6
-        AchievementId: 120050
-      - Id: 7
-        AchievementId: 120051
+      - Id: 120044
+      - Id: 120045
+      - Id: 120046
+      - Id: 120047
+      - Id: 120048
+      - Id: 120049
+      - Id: 120050
+      - Id: 120051
     Rewards:
       Item: Gift_Box
     Score: 20
@@ -2617,20 +2564,13 @@ Body:
     Group: AG_ADVENTURE
     Name: Rune-Midgarts Explorer
     Dependents:
-      - Id: 0
-        AchievementId: 129001
-      - Id: 1
-        AchievementId: 129002
-      - Id: 2
-        AchievementId: 129003
-      - Id: 3
-        AchievementId: 129004
-      - Id: 4
-        AchievementId: 129005
-      - Id: 5
-        AchievementId: 129006
-      - Id: 6
-        AchievementId: 129007
+      - Id: 129001
+      - Id: 129002
+      - Id: 129003
+      - Id: 129004
+      - Id: 129005
+      - Id: 129006
+      - Id: 129007
     Rewards:
       Item: Old_Violet_Box
     Score: 50
@@ -2638,26 +2578,16 @@ Body:
     Group: AG_ADVENTURE
     Name: Juno Explorer
     Dependents:
-      - Id: 0
-        AchievementId: 120052
-      - Id: 1
-        AchievementId: 120053
-      - Id: 2
-        AchievementId: 120054
-      - Id: 3
-        AchievementId: 120055
-      - Id: 4
-        AchievementId: 120056
-      - Id: 5
-        AchievementId: 120057
-      - Id: 6
-        AchievementId: 120058
-      - Id: 7
-        AchievementId: 120059
-      - Id: 8
-        AchievementId: 120060
-      - Id: 9
-        AchievementId: 120061
+      - Id: 120052
+      - Id: 120053
+      - Id: 120054
+      - Id: 120055
+      - Id: 120056
+      - Id: 120057
+      - Id: 120058
+      - Id: 120059
+      - Id: 120060
+      - Id: 120061
     Rewards:
       Item: Gift_Box
     Score: 20
@@ -2665,16 +2595,11 @@ Body:
     Group: AG_ADVENTURE
     Name: Hugel Explorer
     Dependents:
-      - Id: 0
-        AchievementId: 120062
-      - Id: 1
-        AchievementId: 120063
-      - Id: 2
-        AchievementId: 120064
-      - Id: 3
-        AchievementId: 120065
-      - Id: 4
-        AchievementId: 120066
+      - Id: 120062
+      - Id: 120063
+      - Id: 120064
+      - Id: 120065
+      - Id: 120066
     Rewards:
       Item: Gift_Box
     Score: 20
@@ -2682,22 +2607,14 @@ Body:
     Group: AG_ADVENTURE
     Name: Einbroch Explorer
     Dependents:
-      - Id: 0
-        AchievementId: 120067
-      - Id: 1
-        AchievementId: 120068
-      - Id: 2
-        AchievementId: 120069
-      - Id: 3
-        AchievementId: 120070
-      - Id: 4
-        AchievementId: 120071
-      - Id: 5
-        AchievementId: 120072
-      - Id: 6
-        AchievementId: 120073
-      - Id: 7
-        AchievementId: 120074
+      - Id: 120067
+      - Id: 120068
+      - Id: 120069
+      - Id: 120070
+      - Id: 120071
+      - Id: 120072
+      - Id: 120073
+      - Id: 120074
     Rewards:
       Item: Gift_Box
     Score: 20
@@ -2705,12 +2622,9 @@ Body:
     Group: AG_ADVENTURE
     Name: Lighthalzen Explorer
     Dependents:
-      - Id: 0
-        AchievementId: 120075
-      - Id: 1
-        AchievementId: 120076
-      - Id: 2
-        AchievementId: 120077
+      - Id: 120075
+      - Id: 120076
+      - Id: 120077
     Rewards:
       Item: Gift_Box
     Score: 20
@@ -2718,14 +2632,10 @@ Body:
     Group: AG_ADVENTURE
     Name: Schwarzwald Explorer
     Dependents:
-      - Id: 0
-        AchievementId: 129009
-      - Id: 1
-        AchievementId: 129010
-      - Id: 2
-        AchievementId: 129011
-      - Id: 3
-        AchievementId: 129012
+      - Id: 129009
+      - Id: 129010
+      - Id: 129011
+      - Id: 129012
     Rewards:
       Item: Old_Violet_Box
     Score: 50
@@ -2791,6 +2701,110 @@ Body:
   - ID: 190000
     Group: "AG_CHATTING"
     Name: "Alliance workers of merchant city"
+  - Id: 129014
+    Group: AG_ADVENTURE
+    Name: Rachel Explorer
+    Dependents:
+      - Id: 120078
+      - Id: 120079
+      - Id: 120080
+      - Id: 120081
+      - Id: 120082
+      - Id: 120083
+      - Id: 120084
+    Rewards:
+      Item: Gift_Box
+    Score: 20
+  - Id: 129015
+    Group: AG_ADVENTURE
+    Name: Veins Explorer
+    Dependents:
+      - Id: 120085
+      - Id: 120086
+      - Id: 120087
+      - Id: 120088
+      - Id: 120089
+    Rewards:
+      Item: Gift_Box
+    Score: 20
+  - Id: 129016
+    Group: AG_ADVENTURE
+    Name: Arunafeltz Explorer
+    Dependents:
+      - Id: 129014
+      - Id: 129015
+    Rewards:
+      Item: Old_Violet_Box
+    Score: 50
+  - Id: 129017
+    Group: AG_ADVENTURE
+    Name: Laphine Explorer
+    Dependents:
+      - Id: 120090
+      - Id: 120091
+      - Id: 120092
+      - Id: 120093
+      - Id: 120094
+      - Id: 120095
+    Rewards:
+      Item: Gift_Box
+    Score: 20
+  - Id: 129018
+    Group: AG_ADVENTURE
+    Name: Manuk Explorer
+    Dependents:
+      - Id: 120096
+      - Id: 120097
+      - Id: 120098
+      - Id: 120099
+      - Id: 120100
+    Rewards:
+      Item: Gift_Box
+    Score: 20
+  - Id: 129019
+    Group: AG_ADVENTURE
+    Name: Eclage Explorer
+    Dependents:
+      - Id: 129017
+      - Id: 129018
+    Rewards:
+      Item: Old_Violet_Box
+    Score: 50
+  - Id: 129020
+    Group: AG_ADVENTURE
+    Name: Localizing fields explorer
+    Dependents:
+      - Id: 120101
+      - Id: 120102
+      - Id: 120103
+      - Id: 120104
+      - Id: 120105
+      - Id: 120106
+      - Id: 120107
+      - Id: 120108
+      - Id: 120109
+    Rewards:
+      Item: Old_Violet_Box
+    Score: 50
+  - Id: 129021
+    Group: AG_BATTLE
+    Name: Glastheim Challenge Mode # Complete 100 times?
+    Rewards:
+      TitleId: 1045
+    Score: 10
+  - Id: 130000 # Talk to Prince NPC (npc/quests/quests_morocc.txt L5288)
+    Group: AG_CHATTING
+    Name: Socialite debut
+    Rewards:
+      TitleId: 1034
+    Score: 10
+  - Id: 170000
+    Group: AG_HEAR
+    Name: Song chamber is not an accident
+    Score: 10
+  - Id: 190000
+    Group: AG_CHATTING
+    Name: Alliance workers of merchant city
     Score: 50
   - ID: 200000
     Group: "AG_GOAL_LEVEL"
@@ -2808,6 +2822,10 @@ Body:
     Dependent: [200000]
     Reward:
       ItemID: 5364
+    Dependents:
+      - Id: 200000
+    Rewards:
+      Item: Dark_Snake_Lord_Hat
       Script: " specialeffect2 EF_BLESSING; sc_start SC_BLESSING,30000,10; "
       TitleID: 1001
     Score: 60
@@ -2818,6 +2836,10 @@ Body:
     Dependent: [200001]
     Reward:
       ItemID: 18880
+    Dependents:
+      - Id: 200001
+    Rewards:
+      Item: Advanced_Jao_King_Hat
       Script: " specialeffect2 EF_BLESSING; sc_start SC_BLESSING,30000,10; "
       TitleID: 1002
     Score: 70
@@ -2837,6 +2859,10 @@ Body:
     Dependent: [200003]
     Reward:
       ItemID: 12817
+    Dependents:
+      - Id: 200003
+    Rewards:
+      Item: Old_Card_Album_
       Script: " specialeffect2 EF_BLESSING; sc_start SC_BLESSING,30000,10; "
       TitleID: 1004
     Score: 50
@@ -3438,6 +3464,252 @@ Body:
     Name: "Exploring Poring's life (1)"
     Target:
       - MobID: 1002
+  - Id: 230100
+    Group: AG_TAMING
+    Name: Poring is Love
+    Dependents:
+      - Id: 230101
+      - Id: 230102
+      - Id: 230103
+      - Id: 230104
+    Rewards:
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+      TitleId: 1025
+    Score: 50
+  - Id: 230110
+    Group: AG_TAMING
+    Name: Entomologist
+    Dependents:
+      - Id: 230111
+      - Id: 230112
+      - Id: 230113
+      - Id: 230114
+      - Id: 230115
+      - Id: 230116
+    Rewards:
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+      TitleId: 1026
+    Score: 50
+  - Id: 230120
+    Group: AG_TAMING
+    Name: Animals are also our friend
+    Dependents:
+      - Id: 230121
+      - Id: 230122
+      - Id: 230123
+      - Id: 230124
+      - Id: 230125
+      - Id: 230126
+      - Id: 230127
+      - Id: 230128
+    Rewards:
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+      TitleId: 1027
+    Score: 50
+  - Id: 230140
+    Group: AG_TAMING
+    Name: Monster Girls Unite!!
+    Dependents:
+      - Id: 230141
+      - Id: 230142
+      - Id: 230143
+      - Id: 230144
+      - Id: 230145
+      - Id: 230146
+      - Id: 230147
+    Rewards:
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+      TitleId: 1029
+    Score: 50
+  - Id: 230101
+    Group: AG_TAMING
+    Name: Poring - taming
+    Targets:
+      - Id: 0
+        Mob: PORING
+    Score: 10
+  - Id: 230102
+    Group: AG_TAMING
+    Name: Drops - taming
+    Targets:
+      - Id: 0
+        Mob: DROPS
+    Score: 10
+  - Id: 230103
+    Group: AG_TAMING
+    Name: Poporing - taming
+    Targets:
+      - Id: 0
+        Mob: POPORING
+    Score: 10
+  - Id: 230104
+    Group: AG_TAMING
+    Name: Novice Poring - taming
+    Targets:
+      - Id: 0
+        Mob: LITTLE_PORING
+    Score: 10
+  - Id: 230111
+    Group: AG_TAMING
+    Name: Chonchon - taming
+    Targets:
+      - Id: 0
+        Mob: CHONCHON
+    Score: 10
+  - Id: 230112
+    Group: AG_TAMING
+    Name: Steel Chonchon - taming
+    Targets:
+      - Id: 0
+        Mob: STEEL_CHONCHON
+    Score: 10
+  - Id: 230113
+    Group: AG_TAMING
+    Name: Hunter Fly - taming
+    Targets:
+      - Id: 0
+        Mob: HUNTER_FLY
+    Score: 10
+  - Id: 230114
+    Group: AG_TAMING
+    Name: Rocker - taming
+    Targets:
+      - Id: 0
+        Mob: ROCKER
+    Score: 10
+  - Id: 230115
+    Group: AG_TAMING
+    Name: Spore - taming
+    Targets:
+      - Id: 0
+        Mob: SPORE
+    Score: 10
+  - Id: 230116
+    Group: AG_TAMING
+    Name: Poison Spore - taming
+    Targets:
+      - Id: 0
+        Mob: POISON_SPORE
+    Score: 10
+  - Id: 230121
+    Group: AG_TAMING
+    Name: Lunatic - taming
+    Targets:
+      - Id: 0
+        Mob: LUNATIC
+    Score: 10
+  - Id: 230122
+    Group: AG_TAMING
+    Name: Picky - taming
+    Targets:
+      - Id: 0
+        Mob: PICKY
+    Score: 10
+  - Id: 230123
+    Group: AG_TAMING
+    Name: Savage Bebe - taming
+    Targets:
+      - Id: 0
+        Mob: SAVAGE_BABE
+    Score: 10
+  - Id: 230124
+    Group: AG_TAMING
+    Name: Baby Desert Wolf - taming
+    Targets:
+      - Id: 0
+        Mob: DESERT_WOLF_B
+    Score: 10
+  - Id: 230125
+    Group: AG_TAMING
+    Name: Smokie - taming
+    Targets:
+      - Id: 0
+        Mob: SMOKIE
+    Score: 10
+  - Id: 230126
+    Group: AG_TAMING
+    Name: Yoyo - taming
+    Targets:
+      - Id: 0
+        Mob: YOYO
+    Score: 10
+  - Id: 230127
+    Group: AG_TAMING
+    Name: Peco Peco - taming
+    Targets:
+      - Id: 0
+        Mob: PECOPECO
+    Score: 10
+  - Id: 230128
+    Group: AG_TAMING
+    Name: Petite - taming
+    Targets:
+      - Id: 0
+        Mob: PETIT
+    Score: 10
+  - Id: 230141
+    Group: AG_TAMING
+    Name: Munak - taming
+    Targets:
+      - Id: 0
+        Mob: MUNAK
+    Score: 10
+  - Id: 230142
+    Group: AG_TAMING
+    Name: Isis - taming
+    Targets:
+      - Id: 0
+        Mob: ISIS
+    Score: 10
+  - Id: 230143
+    Group: AG_TAMING
+    Name: Sohee - taming
+    Targets:
+      - Id: 0
+        Mob: SOHEE
+    Score: 10
+  - Id: 230144
+    Group: AG_TAMING
+    Name: Zherlthsh - taming
+    Targets:
+      - Id: 0
+        Mob: ZHERLTHSH
+    Score: 10
+  - Id: 230145
+    Group: AG_TAMING
+    Name: Alice - taming
+    Targets:
+      - Id: 0
+        Mob: ALICE
+    Score: 10
+  - Id: 230146
+    Group: AG_TAMING
+    Name: Succubus - taming
+    Targets:
+      - Id: 0
+        Mob: SUCCUBUS
+    Score: 10
+  - Id: 230147
+    Group: AG_TAMING
+    Name: Loli Ruri - taming
+    Targets:
+      - Id: 0
+        Mob: LOLI_RURI
+    Score: 10
+  - Id: 230200
+    Group: AG_BATTLE
+    Name: Poring seeker
+    Dependents:
+      - Id: 230201
+      - Id: 230202
+      - Id: 230203
+    Score: 10
+  - Id: 230201
+    Group: AG_BATTLE
+    Name: Exploring Poring's life (1)
+    Targets:
+      - Id: 0
+        Mob: PORING
         Count: 10
       - MobID: 2398
         Count: 10
@@ -3636,6 +3908,195 @@ Body:
     Dependent: [240019]
     Reward:
       ItemID: 644
+  - Id: 240002
+    Group: AG_GOAL_ACHIEVE
+    Name: Reaching Level 2
+    Condition: " AchievementLevel >= 2 "
+    Dependents:
+      - Id: 240001
+    Rewards:
+      Item: Gift_Box
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+    Score: 10
+  - Id: 240003
+    Group: AG_GOAL_ACHIEVE
+    Name: Reaching Level 3
+    Condition: " AchievementLevel >= 3 "
+    Dependents:
+      - Id: 240002
+    Rewards:
+      Item: Gift_Box
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+    Score: 10
+  - Id: 240004
+    Group: AG_GOAL_ACHIEVE
+    Name: Reaching Level 4
+    Condition: " AchievementLevel >= 4 "
+    Dependents:
+      - Id: 240003
+    Rewards:
+      Item: Gift_Box
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+    Score: 10
+  - Id: 240005
+    Group: AG_GOAL_ACHIEVE
+    Name: Reaching Level 5
+    Condition: " AchievementLevel >= 5 "
+    Dependents:
+      - Id: 240004
+    Rewards:
+      Item: Gift_Box
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+    Score: 10
+  - Id: 240006
+    Group: AG_GOAL_ACHIEVE
+    Name: Reaching Level 6
+    Condition: " AchievementLevel >= 6 "
+    Dependents:
+      - Id: 240005
+    Rewards:
+      Item: Gift_Box
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+    Score: 10
+  - Id: 240007
+    Group: AG_GOAL_ACHIEVE
+    Name: Reaching Level 7
+    Condition: " AchievementLevel >= 7 "
+    Dependents:
+      - Id: 240006
+    Rewards:
+      Item: Gift_Box
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+    Score: 10
+  - Id: 240008
+    Group: AG_GOAL_ACHIEVE
+    Name: Reaching Level 8
+    Condition: " AchievementLevel >= 8 "
+    Dependents:
+      - Id: 240007
+    Rewards:
+      Item: Gift_Box
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+    Score: 10
+  - Id: 240009
+    Group: AG_GOAL_ACHIEVE
+    Name: Reaching Level 9
+    Condition: " AchievementLevel >= 9 "
+    Dependents:
+      - Id: 240008
+    Rewards:
+      Item: Gift_Box
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+    Score: 10
+  - Id: 240010
+    Group: AG_GOAL_ACHIEVE
+    Name: Reaching Level 10
+    Condition: " AchievementLevel >= 10 "
+    Dependents:
+      - Id: 240009
+    Rewards:
+      Item: Gift_Box
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+      TitleId: 1023
+    Score: 10
+  - Id: 240011
+    Group: AG_GOAL_ACHIEVE
+    Name: Reaching Level 11
+    Condition: " AchievementLevel >= 11 "
+    Dependents:
+      - Id: 240010
+    Rewards:
+      Item: Gift_Box
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+    Score: 10
+  - Id: 240012
+    Group: AG_GOAL_ACHIEVE
+    Name: Reaching Level 12
+    Condition: " AchievementLevel >= 12 "
+    Dependents:
+      - Id: 240011
+    Rewards:
+      Item: Gift_Box
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+    Score: 10
+  - Id: 240013
+    Group: AG_GOAL_ACHIEVE
+    Name: Reaching Level 13
+    Condition: " AchievementLevel >= 13 "
+    Dependents:
+      - Id: 240012
+    Rewards:
+      Item: Gift_Box
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+    Score: 10
+  - Id: 240014
+    Group: AG_GOAL_ACHIEVE
+    Name: Reaching Level 14
+    Condition: " AchievementLevel >= 14 "
+    Dependents:
+      - Id: 240013
+    Rewards:
+      Item: Gift_Box
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+    Score: 10
+  - Id: 240015
+    Group: AG_GOAL_ACHIEVE
+    Name: Reaching Level 15
+    Condition: " AchievementLevel >= 15 "
+    Dependents:
+      - Id: 240014
+    Rewards:
+      Item: Gift_Box
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+    Score: 10
+  - Id: 240016
+    Group: AG_GOAL_ACHIEVE
+    Name: Reaching Level 16
+    Condition: " AchievementLevel >= 16 "
+    Dependents:
+      - Id: 240015
+    Rewards:
+      Item: Gift_Box
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+    Score: 10
+  - Id: 240017
+    Group: AG_GOAL_ACHIEVE
+    Name: Reaching Level 17
+    Condition: " AchievementLevel >= 17 "
+    Dependents:
+      - Id: 240016
+    Rewards:
+      Item: Gift_Box
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+    Score: 10
+  - Id: 240018
+    Group: AG_GOAL_ACHIEVE
+    Name: Reaching Level 18
+    Condition: " AchievementLevel >= 18 "
+    Dependents:
+      - Id: 240017
+    Rewards:
+      Item: Gift_Box
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+    Score: 10
+  - Id: 240019
+    Group: AG_GOAL_ACHIEVE
+    Name: Reaching Level 19
+    Condition: " AchievementLevel >= 19 "
+    Dependents:
+      - Id: 240018
+    Rewards:
+      Item: Gift_Box
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+    Score: 10
+  - Id: 240020
+    Group: AG_GOAL_ACHIEVE
+    Name: Reaching Level 20
+    Condition: " AchievementLevel >= 20 "
+    Dependents:
+      - Id: 240019
+    Rewards:
+      Item: Gift_Box
       Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
       TitleID: 1024
     Score: 10
