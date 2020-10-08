@@ -998,8 +998,6 @@ inline bool map_bg_items(int16 m) {
 }
 
 extern char motd_txt[];
-extern char help_txt[];
-extern char help2_txt[];
 extern char charhelp_txt[];
 extern char channel_conf[];
 
