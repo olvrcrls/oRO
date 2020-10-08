@@ -8703,6 +8703,7 @@ static const struct _battle_data {
 	{ "instance_block_leaderchange",        &battle_config.instance_block_leaderchange,     1,      0,      1,              },
 	{ "instance_block_invite",              &battle_config.instance_block_invite,           1,      0,      1,              },
 	{ "instance_block_expulsion",           &battle_config.instance_block_expulsion,        1,      0,      1,              },
+	{ "hom_idle_no_share",                  &battle_config.hom_idle_no_share,               0,      0,      INT_MAX,        },
 
 #include "../custom/battle_config_init.inc"
 };

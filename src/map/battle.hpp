@@ -674,6 +674,7 @@ struct Battle_Config
 	int instance_block_leaderchange;
 	int instance_block_invite;
 	int instance_block_expulsion;
+	int hom_idle_no_share;
 
 #include "../custom/battle_config_struct.inc"
 };
