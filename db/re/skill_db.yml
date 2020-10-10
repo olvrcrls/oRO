@@ -29996,25 +29996,6 @@ Body:
     AfterCastActDelay: 500
     Cooldown: 1000
     FixedCastTime: 1000
-  - Id: 2600
-    Name: SP_CURSEEXPLOSION
-    Description: Curse Explosion
-    MaxLevel: 5
-    TargetType: Attack
-    Range: 9
-    CastCancel: true
-    Requires:
-      SpCost:
-        - Level: 1
-          Amount: 50
-        - Level: 2
-          Amount: 55
-        - Level: 3
-          Amount: 60
-        - Level: 4
-          Amount: 65
-        - Level: 5
-          Amount: 70
   - Id: 2601
     Name: SP_SOULCURSE
     Description: Soul Curse
@@ -30056,44 +30037,6 @@ Body:
     CastCancel: true
     Requires:
       SpCost: 70
-  - Id: 2602
-    Name: SP_SPA
-    Description: Espa
-    MaxLevel: 5
-    TargetType: Attack
-    Range: 9
-    CastCancel: true
-    Requires:
-      SpCost:
-        - Level: 1
-          Amount: 52
-        - Level: 2
-          Amount: 56
-        - Level: 3
-          Amount: 60
-        - Level: 4
-          Amount: 64
-        - Level: 5
-          Amount: 68
-      SpiritSphereCost:
-        - Level: 1
-          Amount: 1
-        - Level: 2
-          Amount: 1
-        - Level: 3
-          Amount: 1
-        - Level: 4
-          Amount: 1
-        - Level: 5
-          Amount: 1
-        - Level: 6
-          Amount: 1
-        - Level: 7
-          Amount: 1
-        - Level: 8
-          Amount: 1
-        - Level: 9
-          Amount: 1
   - Id: 2603
     Name: SP_SHA
     Description: Esha
