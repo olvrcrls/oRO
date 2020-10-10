@@ -7561,6 +7561,10 @@
 	export_constant(ST_ELEMENTALSPIRIT);
 	export_constant(ST_ELEMENTALSPIRIT2);
 	export_constant(ST_PECO);
+	export_constant(ST_SUNSTANCE);
+	export_constant(ST_MOONSTANCE);
+	export_constant(ST_STARSTANCE);
+	export_constant(ST_UNIVERSESTANCE);
 
 	/* skill unit flags */
 	export_constant(UF_NOENEMY);
