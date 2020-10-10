@@ -3821,16 +3821,24 @@ int64 skill_attack (int attack_type, struct block_list* src, struct block_list *
 			skill_onskillusage(sd, bl, skill_id, tick);
 	}
 
-	if (!(flag&2) &&
-		(
-			skill_id == MG_COLDBOLT || skill_id == MG_FIREBOLT || skill_id == MG_LIGHTNINGBOLT
-		) &&
-		(tsc = status_get_sc(src)) &&
-		tsc->data[SC_DOUBLECAST] &&
-		rnd() % 100 < tsc->data[SC_DOUBLECAST]->val2)
-	{
-//		skill_addtimerskill(src, tick + dmg.div_*dmg.amotion, bl->id, 0, 0, skill_id, skill_lv, BF_MAGIC, flag|2);
-		skill_addtimerskill(src, tick + dmg.amotion, bl->id, 0, 0, skill_id, skill_lv, BF_MAGIC, flag|2);
+	if (!(flag&2)) {
+		switch (skill_id) {
+			case MG_COLDBOLT:
+			case MG_FIREBOLT:
+			case MG_LIGHTNINGBOLT:
+				if (sc && sc->data[SC_DOUBLECAST] && rnd() % 100 < sc->data[SC_DOUBLECAST]->val2)
+					//skill_addtimerskill(src, tick + dmg.div_*dmg.amotion, bl->id, 0, 0, skill_id, skill_lv, BF_MAGIC, flag|2);
+					skill_addtimerskill(src, tick + dmg.amotion, bl->id, 0, 0, skill_id, skill_lv, BF_MAGIC, flag|2);
+				break;
+			case SU_BITE:
+			case SU_SCRATCH:
+			case SU_SV_STEMSPEAR:
+			case SU_SCAROFTAROU:
+			case SU_PICKYPECK:
+				if (status_get_lv(src) > 29 && rnd() % 100 < 10 * status_get_lv(src) / 30)
+					skill_addtimerskill(src, tick + dmg.amotion + skill_get_delay(skill_id, skill_lv), bl->id, 0, 0, skill_id, skill_lv, attack_type, flag|2);
+				break;
+		}
 	}
 
 	map_freeblock_unlock();
