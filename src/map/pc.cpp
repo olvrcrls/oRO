@@ -1832,6 +1832,7 @@ void pc_reg_received(struct map_session_data *sd)
 
 	// Cooking Exp
 	sd->cook_mastery = static_cast<short>(pc_readglobalreg(sd, add_str(COOKMASTERY_VAR)));
+	sd->bg_team = static_cast<short>(pc_readglobalreg(sd,add_str("Bat_Team")));
 
 	if( (sd->class_&MAPID_BASEMASK) == MAPID_TAEKWON )
 	{ // Better check for class rather than skill to prevent "skill resets" from unsetting this

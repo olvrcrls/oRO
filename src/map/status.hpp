@@ -2027,12 +2027,8 @@ enum efst_types : short{
 	EFST_DRAGONIC_AURA,
 	EFST_BIG_SCAR,
 	EFST_VIGOR,
-
-	// Custom effects added
-	EFST_FULLINVINCIBLE = 1181,
-
 	EFST_PRESSURE = 1180,
-
+	EFST_FULLINVINCIBLE = 1181,
 	EFST_MD_Me_Potion = 1185,
 	EFST_MD_Ma_Potion,
 	EFST_MD_Ta_Potion,

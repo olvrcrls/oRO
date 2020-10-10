@@ -7019,7 +7019,6 @@ int script_countitem_sub(struct item *items, struct item_data *id, int size, boo
 		}
 	} else { // For expanded functions
 		struct item it;
-
 		memset(&it, 0, sizeof(it));
 
 		it.nameid = id->nameid;
@@ -20210,7 +20209,6 @@ BUILDIN_FUNC(questinfo)
 
 	return SCRIPT_CMD_SUCCESS;
 }
-
 /**
  * questinfo_refresh {<char_id>};
  **/

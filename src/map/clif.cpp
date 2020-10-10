@@ -8698,7 +8698,9 @@ void clif_guild_positioninfolist(struct map_session_data *sd)
 	struct guild *g;
 
 	nullpo_retv(sd);
-	if( (g = sd->guild) == NULL )
+	if( !(sd->bg_id && (g = bg_guild_get(sd->bg_id)) != NULL) )
+		g = sd->guild;
+	if( g == NULL )
 		return;
 
 	fd = sd->fd;
@@ -16112,17 +16114,7 @@ void clif_mail_removeitem( struct map_session_data* sd, bool success, int index,
 	WFIFOB(fd, 2) = success;
 	WFIFOW(fd, 3) = index;
 	WFIFOW(fd, 5) = amount;
-
-	int total = 0;
-	for( int i = 0; i < MAIL_MAX_ITEM; i++ ){
-		if( sd->mail.item[i].nameid == 0 ){
-			break;
-		}
-
-		total += sd->mail.item[i].amount * ( sd->inventory_data[sd->mail.item[i].index]->weight / 10 );
-	}
-
-	WFIFOW(fd, 7) = total;
+	WFIFOW(fd, 7) = 0; // TODO: which weight? item weight? removed weight? remaining weight?
 	WFIFOSET(fd, 9);
 }
 
