@@ -28476,9 +28476,6 @@ Body:
           Amount: 56
       Weapon:
         Rifle: true
-      Ammo:
-        Bullet: true
-      AmmoAmount: 1
       ItemCost:
         - Item: Full_Metal_Jacket
           Amount: 1
@@ -29030,9 +29027,6 @@ Body:
           Amount: 100
       Weapon:
         Grenade: true
-      Ammo:
-        Grenade: true
-      AmmoAmount: 1
       ItemCost:
         - Item: Dragon_Tail_Missile
           Amount: 1
