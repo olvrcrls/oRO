@@ -9068,7 +9068,7 @@ Body:
         Song: true
   - Id: 321
     Name: BA_POEMBRAGI
-    Description: Magic Strings
+    Description: Poem of Bragi
     MaxLevel: 10
     Type: Misc
     TargetType: Self
@@ -24463,10 +24463,10 @@ Body:
     FixedCastTime: -1
     Requires:
       SpCost: 100
-      SpiritSphereCost: 2
+      SpiritSphereCost: 5
   - Id: 2344
     Name: SR_GENTLETOUCH_QUIET
-    Description: Gentle Touch - Quiet
+    Description: Gentle Touch - Silence
     MaxLevel: 5
     Type: Weapon
     TargetType: Attack
@@ -24642,7 +24642,7 @@ Body:
     Name: SR_GENTLETOUCH_REVITALIZE
     Description: Gentle Touch - Revitalize
     MaxLevel: 5
-    TargetType: Self
+    TargetType: Support
     DamageFlags:
       NoDamage: true
     Range: 2
@@ -28476,9 +28476,6 @@ Body:
           Amount: 56
       Weapon:
         Rifle: true
-      Ammo:
-        Bullet: true
-      AmmoAmount: 1
       ItemCost:
         - Item: Full_Metal_Jacket
           Amount: 1
@@ -29030,9 +29027,6 @@ Body:
           Amount: 100
       Weapon:
         Grenade: true
-      Ammo:
-        Grenade: true
-      AmmoAmount: 1
       ItemCost:
         - Item: Dragon_Tail_Missile
           Amount: 1
