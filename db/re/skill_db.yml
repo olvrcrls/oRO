@@ -24466,7 +24466,7 @@ Body:
       SpiritSphereCost: 5
   - Id: 2344
     Name: SR_GENTLETOUCH_QUIET
-    Description: Gentle Touch - Quiet
+    Description: Gentle Touch - Silence
     MaxLevel: 5
     Type: Weapon
     TargetType: Attack
