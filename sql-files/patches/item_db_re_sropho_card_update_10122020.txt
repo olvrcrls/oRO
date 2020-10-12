@@ -1,0 +1,1 @@
+UPDATE `jr_ragnarok`.`item_db_re` SET `script`='bonus4 bAddEffWhenHit,Eff_Crystalize,500,ATF_SHORT,1000;' WHERE  `id`=4522;
