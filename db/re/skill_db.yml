@@ -4317,7 +4317,7 @@ Body:
       NoDamage: true
       Splash: true
     Flags:
-      AllowOnMado: true
+      AllowOnMado: false
     Hit: Single
     HitCount: 1
     SplashArea: -1
@@ -13671,7 +13671,7 @@ Body:
     DamageFlags:
       NoDamage: true
     Flags:
-      AllowOnMado: true
+      AllowOnMado: false
     Hit: Single
     HitCount: 1
     Duration1: 180000
