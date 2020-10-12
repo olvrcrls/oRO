@@ -23016,7 +23016,7 @@ Body:
       - Level: 3
         Time: 30000
     Cooldown: 180000
-    FixedCastTime: -1
+    FixedCastTime: 1000
     Requires:
       SpCost:
         - Level: 1
