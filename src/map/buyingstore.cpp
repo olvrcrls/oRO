@@ -507,7 +507,7 @@ void buyingstore_trade(struct map_session_data* sd, uint32 account_id, unsigned 
 	for( i = 0; i < count; i++ )
 	{// itemlist: <index>.W <name id>.W <amount>.W
 		unsigned short nameid, amount;
-		int index, char_id;
+		int index;
 
 		index  = RBUFW(itemlist,i*6+0)-2;
 		nameid = RBUFW(itemlist,i*6+2);
