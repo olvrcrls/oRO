@@ -358,6 +358,153 @@ int char_mmo_char_tosql(uint32 char_id, struct mmo_charstatus* p){
 			strcat(save_status, " status2");
 	}
 
+	/* Player Battleground Statistics */
+	if (memcmp(&p->bgstats, &cp->bgstats, sizeof(struct s_battleground_stats)))
+	{
+		if (SQL_ERROR == Sql_Query(sql_handle, "REPLACE INTO `rank_bg` ("
+			"`char_id`, "
+			"`top_damage`, `damage_done`, `damage_received`, "
+			"`ctf_taken`, `ctf_captured`, `ctf_droped`, `ctf_wins`, `ctf_lost`, `ctf_tie`, "
+			"`tdm_kills`, `tdm_deaths`, `tdm_wins`, `tdm_lost`, `tdm_tie`, "
+			"`eos_flags`, `eos_bases`, `eos_wins`, `eos_lost`, `eos_tie`, "
+			"`emperium_kill`, `barricade_kill`, `gstone_kill`, `cq_wins`, `cq_lost`, "
+			"`kvm_kills`, `kvm_deaths`, `kvm_wins`, `kvm_lost`, `kvm_tie`, "
+			"`sc_stole`, `sc_captured`, `sc_droped`, `sc_wins`, `sc_lost`, `sc_tie`, "
+			"`dom_bases`, `dom_off_kills`, `dom_def_kills`, `dom_wins`, `dom_lost`, `dom_tie`, "
+			"`ru_captures`, `ru_wins`, `ru_lost`, "
+			"`pb_kills`, `pb_deaths`, `pb_kill_surface`, `pb_death_surface`, `pb_scored`, `pb_score_penalty`, `pb_score_own`, `pb_penalty`, `pb_sixyard`, `pb_wins`, `pb_lost`, `pb_tie`, "
+			"`td_taken`, `td_scored`, `td_kills`, `td_kill_fumbi`, `td_kill_wfumbi`, `td_deaths`, `td_death_fumbi`, `td_death_wfumbi`, `td_wins`, `td_lost`, `td_tie`, "
+			"`kill_count`, `death_count`, `win`, `lost`, `tie`, `leader_win`, `leader_lost`, `leader_tie`, `deserter`, `score`, `points`,"
+			"`sp_heal_potions`, `hp_heal_potions`, `yellow_gemstones`, `red_gemstones`, `blue_gemstones`, `poison_bottles`, `acid_demostration`, `acid_demostration_fail`, "
+			"`support_skills_used`, `healing_done`, `wrong_support_skills_used`, `wrong_healing_done`, "
+			"`sp_used`, `zeny_used`, `spiritb_used`, `ammo_used`)"
+			" VALUES "
+			"('%d',"
+			"'%u','%u','%u',"
+			"'%d','%d','%d','%d','%d','%d',"
+			"'%d','%d','%d','%d','%d',"
+			"'%d','%d','%d','%d','%d',"
+			"'%d','%d','%d','%d','%d',"
+			"'%d','%d','%d','%d','%d',"
+			"'%d','%d','%d','%d','%d','%d',"
+			"'%d','%d','%d','%d','%d','%d',"
+			"'%d','%d','%d',"
+			"'%d','%d','%d','%d','%d','%d','%d','%d','%d','%d','%d','%d',"
+			"'%d','%d','%d','%d','%d','%d','%d','%d','%d','%d','%d',"
+			"'%d','%d','%d','%d','%d','%d','%d','%d','%d','%d','%d',"
+			"'%d','%d','%d','%d','%d','%d','%d','%d',"
+			"'%d','%d','%d','%d',"
+			"'%d','%d','%d','%d')",
+			p->char_id,
+			p->bgstats.top_damage, p->bgstats.damage_done, p->bgstats.damage_received,
+			p->bgstats.ctf_taken, p->bgstats.ctf_captured, p->bgstats.ctf_droped, p->bgstats.ctf_wins, p->bgstats.ctf_lost, p->bgstats.ctf_tie,
+			p->bgstats.tdm_kills, p->bgstats.tdm_deaths, p->bgstats.tdm_wins, p->bgstats.tdm_lost, p->bgstats.tdm_tie,
+			p->bgstats.eos_flags, p->bgstats.eos_bases, p->bgstats.eos_wins, p->bgstats.eos_lost, p->bgstats.eos_tie,
+			p->bgstats.emperium_kill, p->bgstats.barricade_kill, p->bgstats.gstone_kill, p->bgstats.cq_wins, p->bgstats.cq_lost,
+			p->bgstats.kvm_kills, p->bgstats.kvm_deaths, p->bgstats.kvm_wins, p->bgstats.kvm_lost, p->bgstats.kvm_tie,
+			p->bgstats.sc_stole, p->bgstats.sc_captured, p->bgstats.sc_droped, p->bgstats.sc_wins, p->bgstats.sc_lost, p->bgstats.sc_tie,
+			p->bgstats.dom_bases, p->bgstats.dom_off_kills, p->bgstats.dom_def_kills, p->bgstats.dom_wins, p->bgstats.dom_lost, p->bgstats.dom_tie,
+			p->bgstats.ru_captures, p->bgstats.ru_wins, p->bgstats.ru_lost,
+			p->bgstats.pb_kills, p->bgstats.pb_deaths, p->bgstats.pb_kill_surface, p->bgstats.pb_death_surface, p->bgstats.pb_scored, p->bgstats.pb_score_penalty, p->bgstats.pb_score_own, p->bgstats.pb_penalty, p->bgstats.pb_sixyard, p->bgstats.pb_wins, p->bgstats.pb_lost, p->bgstats.pb_tie,
+			p->bgstats.td_taken, p->bgstats.td_scored, p->bgstats.td_kills, p->bgstats.td_kill_fumbi, p->bgstats.td_kill_wfumbi, p->bgstats.td_deaths, p->bgstats.td_death_fumbi, p->bgstats.td_death_wfumbi, p->bgstats.td_wins, p->bgstats.td_lost, p->bgstats.td_tie,
+			p->bgstats.kill_count, p->bgstats.death_count, p->bgstats.win, p->bgstats.lost, p->bgstats.tie, p->bgstats.leader_win, p->bgstats.leader_lost, p->bgstats.leader_tie, p->bgstats.deserter, p->bgstats.score, p->bgstats.points,
+			p->bgstats.sp_heal_potions, p->bgstats.hp_heal_potions, p->bgstats.yellow_gemstones, p->bgstats.red_gemstones, p->bgstats.blue_gemstones, p->bgstats.poison_bottles, p->bgstats.acid_demostration, p->bgstats.acid_demostration_fail,
+			p->bgstats.support_skills_used, p->bgstats.healing_done, p->bgstats.wrong_support_skills_used, p->bgstats.wrong_healing_done,
+			p->bgstats.sp_used, p->bgstats.zeny_used, p->bgstats.spiritb_used, p->bgstats.ammo_used))
+		{
+			Sql_ShowDebug(sql_handle);
+			errors++;
+		}
+		else
+			strcat(save_status, " bgstats");
+	}
+
+	/* WoE Stadistics */
+	if (memcmp(&p->wstats, &cp->wstats, sizeof(struct s_woestats)))
+	{
+		if (SQL_ERROR == Sql_Query(sql_handle, "REPLACE INTO `rank_woe` (`char_id`, `kill_count`, `death_count`, `score`, `top_damage`, `damage_done`, `damage_received`, `emperium_damage`, `guardian_damage`, `barricade_damage`, `gstone_damage`, "
+			"`emperium_kill`, `guardian_kill`, `barricade_kill`, `gstone_kill`, "
+			"`sp_heal_potions`, `hp_heal_potions`, `yellow_gemstones`, `red_gemstones`, `blue_gemstones`, `poison_bottles`, `acid_demostration`, `acid_demostration_fail`, "
+			"`support_skills_used`, `healing_done`, `wrong_support_skills_used`, `wrong_healing_done`, "
+			"`sp_used`, `zeny_used`, `spiritb_used`, `ammo_used`) "
+			"VALUES ('%d', '%d', '%d', '%d', '%u', '%u', '%u', '%u', '%u', '%u', '%u', '%d', '%d', '%d', '%d', '%u', '%u', '%u', '%u', '%u', '%u', '%u', '%u', '%u', '%u', '%u', '%u', '%u', '%u', '%u', '%u')",
+			p->char_id, p->wstats.kill_count, p->wstats.death_count, p->wstats.score, p->wstats.top_damage, p->wstats.damage_done, p->wstats.damage_received, p->wstats.emperium_damage, p->wstats.guardian_damage, p->wstats.barricade_damage, p->wstats.gstone_damage,
+			p->wstats.emperium_kill, p->wstats.guardian_kill, p->wstats.barricade_kill, p->wstats.gstone_kill,
+			p->wstats.sp_heal_potions, p->wstats.hp_heal_potions, p->wstats.yellow_gemstones, p->wstats.red_gemstones, p->wstats.blue_gemstones, p->wstats.poison_bottles, p->wstats.acid_demostration, p->wstats.acid_demostration_fail,
+			p->wstats.support_skills_used, p->wstats.healing_done, p->wstats.wrong_support_skills_used, p->wstats.wrong_healing_done,
+			p->wstats.sp_used, p->wstats.zeny_used, p->wstats.spiritb_used, p->wstats.ammo_used))
+		{
+			Sql_ShowDebug(sql_handle);
+			errors++;
+		}
+		else
+			strcat(save_status, " woestats");
+	}
+
+	/* Skill Usage */
+	if (memcmp(&p->skillcount, &cp->skillcount, sizeof(p->skillcount)))
+	{
+		if (SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `rank_skill_count` WHERE `char_id` = '%d'", p->char_id))
+		{
+			Sql_ShowDebug(sql_handle); // Clear Data
+			errors++;
+		}
+		StringBuf_Clear(&buf);
+		StringBuf_Printf(&buf, "INSERT INTO `rank_skill_count` (`char_id`,`id`,`count`) VALUES ");
+		//insert here.
+		for (i = 0, count = 0; i < MAX_SKILL_TREE; ++i)
+		{
+			if (p->skillcount[i].id && p->skillcount[i].count > 0)
+			{
+				if (count)
+					StringBuf_AppendStr(&buf, ",");
+				StringBuf_Printf(&buf, "('%d','%d','%d')", char_id, p->skillcount[i].id, p->skillcount[i].count);
+				++count;
+			}
+		}
+		if (count)
+		{
+			if (SQL_ERROR == Sql_QueryStr(sql_handle, StringBuf_Value(&buf)))
+			{
+				Sql_ShowDebug(sql_handle);
+				errors++;
+			}
+		}
+		strcat(save_status, " skillcount");
+	}
+
+	/* BG Skill Usage */
+	if (memcmp(&p->bg_skillcount, &cp->bg_skillcount, sizeof(p->bg_skillcount)))
+	{
+		if (SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `rank_bg_skill_count` WHERE `char_id` = '%d'", p->char_id))
+		{
+			Sql_ShowDebug(sql_handle); // Clear Data
+			errors++;
+		}
+		StringBuf_Clear(&buf);
+		StringBuf_Printf(&buf, "INSERT INTO `rank_bg_skill_count` (`char_id`,`id`,`count`) VALUES ");
+		//insert here.
+		for (i = 0, count = 0; i < MAX_SKILL_TREE; ++i)
+		{
+			if (p->bg_skillcount[i].id && p->bg_skillcount[i].count > 0)
+			{
+				if (count)
+					StringBuf_AppendStr(&buf, ",");
+				StringBuf_Printf(&buf, "('%d','%d','%d')", char_id, p->bg_skillcount[i].id, p->bg_skillcount[i].count);
+				++count;
+			}
+		}
+		if (count)
+		{
+			if (SQL_ERROR == Sql_QueryStr(sql_handle, StringBuf_Value(&buf)))
+			{
+				Sql_ShowDebug(sql_handle);
+				errors++;
+			}
+		}
+		strcat(save_status, " bg_skillcount");
+	}
+
 	/* Mercenary Owner */
 	if( (p->mer_id != cp->mer_id) ||
 		(p->arch_calls != cp->arch_calls) || (p->arch_faith != cp->arch_faith) ||

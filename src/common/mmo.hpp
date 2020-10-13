@@ -58,6 +58,7 @@
 #define DEFAULT_WALK_SPEED 150 ///Default walk speed
 #define MIN_WALK_SPEED 20 ///Min walk speed
 #define MAX_WALK_SPEED 1000 ///Max walk speed
+#define MAX_SKILL_TREE 105
 #define MAX_STORAGE 600 ///Max number of storage slots a player can have
 #define MAX_GUILD_STORAGE 600 ///Max number of storage slots a guild
 #define MAX_PARTY 12 ///Max party member
@@ -477,6 +478,128 @@ struct hotkey {
 	unsigned char type; // 0: item, 1: skill
 };
 #endif
+struct s_battleground_stats {
+	unsigned int
+		top_damage,
+		damage_done,
+		damage_received;
+	unsigned short
+		// Capture The Flag
+		ctf_taken,
+		ctf_captured,
+		ctf_droped,
+		ctf_wins, ctf_lost, ctf_tie,
+		// Team Death Match
+		tdm_kills,
+		tdm_deaths,
+		tdm_wins, tdm_lost, tdm_tie,
+		// Eye of Storm
+		eos_flags,
+		eos_bases,
+		eos_wins, eos_lost, eos_tie,
+		// Conquest
+		emperium_kill,
+		barricade_kill,
+		gstone_kill,
+		cq_wins, cq_lost,
+		// KVM
+		kvm_kills,
+		kvm_deaths,
+		kvm_wins, kvm_lost, kvm_tie,
+		// Stone Control
+		sc_stole,
+		sc_captured,
+		sc_droped,
+		sc_wins, sc_lost, sc_tie,
+		// Domination
+		dom_bases,
+		dom_off_kills,
+		dom_def_kills,
+		dom_wins, dom_lost, dom_tie,
+		// Rush
+		ru_captures,
+		ru_wins, ru_lost,
+		// Poring Ball
+		pb_kills, pb_deaths, pb_kill_surface, pb_death_surface,
+		pb_scored, pb_score_penalty, pb_score_own,
+		pb_penalty, pb_sixyard,
+		pb_wins, pb_lost, pb_tie,
+		// Touch Down
+		td_taken,
+		td_scored,
+		td_kills, td_kill_fumbi, td_kill_wfumbi,
+		td_deaths, td_death_fumbi, td_death_wfumbi,
+		td_wins, td_lost, td_tie;
+
+	unsigned int // Ammo
+		sp_heal_potions,
+		hp_heal_potions,
+		yellow_gemstones,
+		red_gemstones,
+		blue_gemstones,
+		poison_bottles,
+		acid_demostration,
+		acid_demostration_fail,
+		support_skills_used,
+		healing_done,
+		wrong_support_skills_used,
+		wrong_healing_done,
+		sp_used,
+		zeny_used,
+		spiritb_used,
+		ammo_used;
+	unsigned short
+		kill_count,
+		death_count,
+		win, lost, tie,
+		leader_win, leader_lost, leader_tie,
+		deserter;
+
+	int score, points;
+};
+
+struct s_woestats {
+	int score;
+	unsigned short
+		kill_count,
+		death_count;
+	unsigned int
+		top_damage,
+		damage_done,
+		damage_received;
+	unsigned int
+		emperium_damage,
+		guardian_damage,
+		barricade_damage,
+		gstone_damage;
+	unsigned short
+		emperium_kill,
+		guardian_kill,
+		barricade_kill,
+		gstone_kill;
+	unsigned int // Ammo
+		sp_heal_potions,
+		hp_heal_potions,
+		yellow_gemstones,
+		red_gemstones,
+		blue_gemstones,
+		poison_bottles,
+		acid_demostration,
+		acid_demostration_fail,
+		support_skills_used,
+		healing_done,
+		wrong_support_skills_used,
+		wrong_healing_done,
+		sp_used,
+		zeny_used,
+		spiritb_used,
+		ammo_used;
+};
+
+struct s_skillcount {
+	unsigned short id, count;
+};
+
 
 struct mmo_charstatus {
 	uint32 char_id;
@@ -486,17 +609,17 @@ struct mmo_charstatus {
 	uint32 mother;
 	uint32 child;
 
-	unsigned int base_exp,job_exp;
+	unsigned int base_exp, job_exp;
 	int zeny;
 
 	short class_; ///< Player's JobID
-	unsigned int status_point,skill_point;
-	int hp,max_hp,sp,max_sp;
+	unsigned int status_point, skill_point;
+	int hp, max_hp, sp, max_sp;
 	unsigned int option;
 	short manner; // Defines how many minutes a char will be muted, each negative point is equivalent to a minute.
 	unsigned char karma;
-	short hair,hair_color,clothes_color,body;
-	int party_id,guild_id,pet_id,hom_id,mer_id,ele_id,clan_id;
+	short hair, hair_color, clothes_color, body;
+	int party_id, guild_id, pet_id, hom_id, mer_id, ele_id, clan_id;
 	int fame;
 
 	// Mercenary Guilds Rank
@@ -506,25 +629,31 @@ struct mmo_charstatus {
 
 	short weapon; // enum weapon_type
 	short shield; // view-id
-	short head_top,head_mid,head_bottom;
+	short head_top, head_mid, head_bottom;
 	short robe;
 
 	char name[NAME_LENGTH];
-	unsigned int base_level,job_level;
-	unsigned short str,agi,vit,int_,dex,luk;
-	unsigned char slot,sex;
+	unsigned int base_level, job_level;
+	unsigned short str, agi, vit, int_, dex, luk;
+	unsigned char slot, sex;
 
 	uint32 mapip;
 	uint16 mapport;
 
-	struct point last_point,save_point,memo_point[MAX_MEMOPOINTS];
+	// Ranking Data
+	struct s_battleground_stats bgstats;
+	struct s_skillcount bg_skillcount[MAX_SKILL_TREE]; // BG Limited
+	struct s_woestats wstats;
+	struct s_skillcount skillcount[MAX_SKILL_TREE]; // WoE Limited
+
+	struct point last_point, save_point, memo_point[MAX_MEMOPOINTS];
 	struct s_skill skill[MAX_SKILL];
 
 	struct s_friend friends[MAX_FRIENDS]; //New friend system [Skotlex]
 #ifdef HOTKEY_SAVING
 	struct hotkey hotkeys[MAX_HOTKEYS];
 #endif
-	bool show_equip,allow_party;
+	bool show_equip, allow_party;
 	short rename;
 
 	time_t delete_date;
@@ -540,9 +669,9 @@ struct mmo_charstatus {
 	uint32 uniqueitem_counter;
 
 	unsigned char hotkey_rowshift;
+	unsigned char hotkey_rowshift2;
 	unsigned long title_id;
 };
-
 typedef enum mail_status {
 	MAIL_NEW,
 	MAIL_UNREAD,
