@@ -9605,13 +9605,13 @@ BUILDIN_FUNC(successrefitem) {
 		{ // Fame point system [DracoRPG]
 			switch (sd->inventory_data[i]->wlv){
 				case 1:
-					pc_addfame(sd, battle_config.fame_refine_lv1); // Success to refine to +10 a lv1 weapon you forged = +1 fame point
+					pc_addfame(sd, battle_config.fame_refine_lv1,0); // Success to refine to +10 a lv1 weapon you forged = +1 fame point
 					break;
 				case 2:
-					pc_addfame(sd, battle_config.fame_refine_lv2); // Success to refine to +10 a lv2 weapon you forged = +25 fame point
+					pc_addfame(sd, battle_config.fame_refine_lv2,0); // Success to refine to +10 a lv2 weapon you forged = +25 fame point
 					break;
 				case 3:
-					pc_addfame(sd, battle_config.fame_refine_lv3); // Success to refine to +10 a lv3 weapon you forged = +1000 fame point
+					pc_addfame(sd, battle_config.fame_refine_lv3,0); // Success to refine to +10 a lv3 weapon you forged = +1000 fame point
 					break;
 			 }
 		}
@@ -21264,6 +21264,150 @@ unsigned short script_instancegetid(struct script_state* st, enum instance_mode 
 	}
 
 	return instance_id;
+}
+/*==========================================
+ * Ranking Reset
+ *------------------------------------------*/
+BUILDIN_FUNC(bg_rankpoints)
+{
+	struct map_session_data* sd;
+	struct battleground_data* bg;
+	const char* type;
+	int i, add_value;
+
+	if (script_hasdata(st, 4))
+		sd = map_id2sd(script_getnum(st, 4));
+	else
+		script_rid2sd(sd);
+
+	if (sd == NULL)
+		return 0;
+
+	if (!sd->bg_id || !(bg = bg_team_search(sd->bg_id)))
+		return 0;
+	ARR_FIND(0, MAX_BG_MEMBERS, i, bg->members[i].sd == sd);
+	if (i >= MAX_BG_MEMBERS)
+		return 0;
+
+	type = script_getstr(st, 2);
+	add_value = script_getnum(st, 3);
+
+	// Just +1 Fame Point
+	if (!strcmpi(type, "fame"))
+		pc_addfame(sd, add_value, 3);
+	// Normal Ranking actions
+	else if (!strcmpi(type, "eos_flags"))
+	{
+		add2limit(sd->status.bgstats.eos_flags, add_value, USHRT_MAX);
+		pc_addfame(sd, 5, 3);
+	}
+	else if (!strcmpi(type, "sc_stole"))
+	{
+		add2limit(sd->status.bgstats.sc_stole, add_value, USHRT_MAX);
+		pc_addfame(sd, 1, 3);
+	}
+	else if (!strcmpi(type, "sc_captured"))
+	{
+		add2limit(sd->status.bgstats.sc_captured, add_value, USHRT_MAX);
+		pc_addfame(sd, 5, 3);
+	}
+	else if (!strcmpi(type, "sc_droped"))
+	{
+		add2limit(sd->status.bgstats.sc_droped, add_value, USHRT_MAX);
+	}
+	else if (!strcmpi(type, "ctf_taken"))
+	{
+		add2limit(sd->status.bgstats.ctf_taken, add_value, USHRT_MAX);
+		pc_addfame(sd, 1, 3);
+	}
+	else if (!strcmpi(type, "ctf_captured"))
+	{
+		add2limit(sd->status.bgstats.ctf_captured, add_value, USHRT_MAX);
+		pc_addfame(sd, 25, 3);
+	}
+	else if (!strcmpi(type, "ctf_droped"))
+	{
+		add2limit(sd->status.bgstats.ctf_droped, add_value, USHRT_MAX);
+	}
+	else if (!strcmpi(type, "dom_off_kills"))
+	{
+		add2limit(sd->status.bgstats.dom_off_kills, add_value, USHRT_MAX);
+	}
+	else if (!strcmpi(type, "dom_def_kills"))
+	{
+		add2limit(sd->status.bgstats.dom_def_kills, add_value, USHRT_MAX);
+	}
+	else if (!strcmpi(type, "pb_kills"))
+	{
+		add2limit(sd->status.bgstats.pb_kills, add_value, USHRT_MAX);
+		pc_addfame(sd, 3, 3);
+	}
+	else if (!strcmpi(type, "pb_kill_surface"))
+	{
+		add2limit(sd->status.bgstats.pb_kill_surface, add_value, USHRT_MAX);
+		pc_addfame(sd, 15, 3);
+	}
+	else if (!strcmpi(type, "pb_scored"))
+	{
+		add2limit(sd->status.bgstats.pb_scored, add_value, USHRT_MAX);
+		pc_addfame(sd, 25, 3);
+	}
+	else if (!strcmpi(type, "pb_score_own"))
+	{
+		add2limit(sd->status.bgstats.pb_score_own, add_value, USHRT_MAX);
+	}
+	else if (!strcmpi(type, "pb_score_penalty"))
+	{
+		add2limit(sd->status.bgstats.pb_score_penalty, add_value, USHRT_MAX);
+		pc_addfame(sd, 20, 3);
+	}
+	else if (!strcmpi(type, "pb_deaths"))
+	{
+		add2limit(sd->status.bgstats.pb_deaths, add_value, USHRT_MAX);
+	}
+	else if (!strcmpi(type, "pb_death_surface"))
+	{
+		add2limit(sd->status.bgstats.pb_death_surface, add_value, USHRT_MAX);
+	}
+	else if (!strcmpi(type, "td_death_wfumbi"))
+	{
+		add2limit(sd->status.bgstats.td_death_wfumbi, add_value, USHRT_MAX);
+	}
+	else if (!strcmpi(type, "td_death_fumbi"))
+	{
+		add2limit(sd->status.bgstats.td_death_fumbi, add_value, USHRT_MAX);
+	}
+	else if (!strcmpi(type, "td_deaths"))
+	{
+		add2limit(sd->status.bgstats.td_deaths, add_value, USHRT_MAX);
+	}
+	else if (!strcmpi(type, "td_scored"))
+	{
+		add2limit(sd->status.bgstats.td_scored, add_value, USHRT_MAX);
+		pc_addfame(sd, 25, 3);
+	}
+	else if (!strcmpi(type, "td_taken"))
+	{
+		add2limit(sd->status.bgstats.td_taken, add_value, USHRT_MAX);
+		pc_addfame(sd, 1, 3);
+	}
+	else if (!strcmpi(type, "td_kill_wfumbi"))
+	{
+		add2limit(sd->status.bgstats.td_kill_wfumbi, add_value, USHRT_MAX);
+		pc_addfame(sd, 6, 3);
+	}
+	else if (!strcmpi(type, "td_kill_fumbi"))
+	{
+		add2limit(sd->status.bgstats.td_kill_fumbi, add_value, USHRT_MAX);
+		pc_addfame(sd, 5, 3);
+	}
+	else if (!strcmpi(type, "td_kills"))
+	{
+		add2limit(sd->status.bgstats.td_kills, add_value, USHRT_MAX);
+		pc_addfame(sd, 1, 3);
+	}
+
+	return 0;
 }
 
 /*==========================================

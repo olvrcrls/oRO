@@ -22,6 +22,24 @@ bool exists(const char* filename);
 /// Apply rate for val, divided by 100)
 #define apply_rate(val, rate) (((rate) == 100) ? (val) : ((val) > 100000) ? ((val) / 100 * (rate)) : ((val) * (rate) / 100))
 
+#define add2limit(a, b, max) \
+	do { \
+		if( (max - a) < b ) { \
+			a = max; \
+		} else { \
+			a += b; \
+		} \
+	} while(0)
+
+#define sub2limit(a, b, min) \
+	do { \
+		if( (b + min) > a ) { \
+			a = min; \
+		} else { \
+			a -= b; \
+		} \
+	} while(0)
+
 /// Apply rate for val, divided by per
 #define apply_rate2(val, rate, per) (((rate) == (per)) ? (val) : ((val) > 100000) ? ((val) / (per) * (rate)) : ((val) * (rate) / (per)))
 

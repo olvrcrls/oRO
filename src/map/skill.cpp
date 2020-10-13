@@ -17577,13 +17577,13 @@ void skill_weaponrefine(struct map_session_data *sd, int idx)
 				{ // Fame point system [DracoRPG]
 					switch(ditem->wlv){
 						case 1:
-							pc_addfame(sd, battle_config.fame_refine_lv1); // Success to refine to +10 a lv1 weapon you forged = +1 fame point
+							pc_addfame(sd, battle_config.fame_refine_lv1,0); // Success to refine to +10 a lv1 weapon you forged = +1 fame point
 							break;
 						case 2:
-							pc_addfame(sd, battle_config.fame_refine_lv2); // Success to refine to +10 a lv2 weapon you forged = +25 fame point
+							pc_addfame(sd, battle_config.fame_refine_lv2,0); // Success to refine to +10 a lv2 weapon you forged = +25 fame point
 							break;
 						case 3:
-							pc_addfame(sd, battle_config.fame_refine_lv3); // Success to refine to +10 a lv3 weapon you forged = +1000 fame point
+							pc_addfame(sd, battle_config.fame_refine_lv3,0); // Success to refine to +10 a lv3 weapon you forged = +1000 fame point
 							break;
 					}
 				}
@@ -20166,7 +20166,7 @@ bool skill_produce_mix(struct map_session_data *sd, uint16 skill_id, unsigned sh
 			clif_produceeffect(sd,0,nameid);
 			clif_misceffect(&sd->bl,3);
 			if (itemdb_wlv(nameid) >= 3 && ((ele? 1 : 0) + sc) >= 3) // Fame point system [DracoRPG]
-				pc_addfame(sd, battle_config.fame_forge); // Success to forge a lv3 weapon with 3 additional ingredients = +10 fame point
+				pc_addfame(sd, battle_config.fame_forge,0); // Success to forge a lv3 weapon with 3 additional ingredients = +10 fame point
 		} else {
 			int fame = 0;
 			tmp_item.amount = 0;
@@ -20206,7 +20206,7 @@ bool skill_produce_mix(struct map_session_data *sd, uint16 skill_id, unsigned sh
 			}
 
 			if (fame)
-				pc_addfame(sd,fame);
+				pc_addfame(sd,fame,0);
 			//Visual effects and the like.
 			switch (skill_id) {
 				case AM_PHARMACY:

@@ -667,7 +667,7 @@ int pc_delsoulball(struct map_session_data* sd, int count, int type)
 * @param sd Player
 * @param count Fame point
 */
-void pc_addfame(struct map_session_data *sd,int count)
+void pc_addfame(struct map_session_data* sd, int count, short flag)
 {
 	enum e_rank ranktype;
 	nullpo_retv(sd);
