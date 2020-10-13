@@ -21409,6 +21409,72 @@ BUILDIN_FUNC(bg_rankpoints)
 
 	return 0;
 }
+BUILDIN_FUNC(bg_rankpoints_area)
+{
+	const char* str, * type;
+	int m, x0, y0, x1, y1, bg_id;
+	int i = 0, add_value;
+	int type_val;
+	struct battleground_data* bg;
+	struct map_session_data* sd;
+
+	bg_id = script_getnum(st, 2);
+	str = script_getstr(st, 3);
+
+	if (!(bg = bg_team_search(sd->bg_id)) || (m = map_mapname2mapid(str)) < 0)
+	{
+		script_pushint(st, 0);
+		return 0;
+	}
+
+	x0 = script_getnum(st, 4);
+	y0 = script_getnum(st, 5);
+	x1 = script_getnum(st, 6);
+	y1 = script_getnum(st, 7);
+	type = script_getstr(st, 8);
+
+	if (!strcmpi(type, "eos_bases"))
+		type_val = 1;
+	else if (!strcmpi(type, "dom_bases"))
+		type_val = 2;
+	else if (!strcmpi(type, "pb_sixyard"))
+		type_val = 3;
+	else if (!strcmpi(type, "pb_penalty"))
+		type_val = 4;
+	else return 0; // Invalid Type
+
+	add_value = script_getnum(st, 9);
+
+	for (i = 0; i < MAX_BG_MEMBERS; i++)
+	{
+		if ((sd = bg->members[i].sd) == NULL)
+			continue;
+		if (sd->bl.m != m || sd->bl.x < x0 || sd->bl.y < y0 || sd->bl.x > x1 || sd->bl.y > y1)
+			continue;
+
+		switch (type_val)
+		{
+		case 1:
+			add2limit(sd->status.bgstats.eos_bases, add_value, USHRT_MAX);
+			pc_addfame(sd, 10, 3);
+			break;
+		case 2:
+			add2limit(sd->status.bgstats.dom_bases, add_value, USHRT_MAX);
+			pc_addfame(sd, 10, 3);
+			break;
+		case 3:
+			add2limit(sd->status.bgstats.pb_sixyard, add_value, USHRT_MAX);
+			pc_addfame(sd, 10, 3);
+			break;
+		case 4:
+			add2limit(sd->status.bgstats.pb_penalty, add_value, USHRT_MAX);
+			pc_addfame(sd, 10, 3);
+			break;
+		}
+	}
+
+	return 0;
+}
 
 /*==========================================
  * Creates the instance
@@ -26528,6 +26594,8 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(bg_queue_data,"ii"),
 	BUILDIN_DEF(bg_queue2teams,"iiiiii"),
 	BUILDIN_DEF(bg_queue_checkstart,"iiii??"),
+	BUILDIN_DEF(bg_rankpoints, "si?"),
+	BUILDIN_DEF(bg_rankpoints_area, "isiiiisi"),
 
 	// Instancing
 	BUILDIN_DEF(instance_create,"s??"),
