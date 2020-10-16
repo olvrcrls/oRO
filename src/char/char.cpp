@@ -46,10 +46,12 @@ struct mmo_map_server map_server[MAX_MAP_SERVERS];
 int fame_list_size_chemist = MAX_FAME_LIST;
 int fame_list_size_smith = MAX_FAME_LIST;
 int fame_list_size_taekwon = MAX_FAME_LIST;
+int fame_list_size_bg = MAX_FAME_LIST;
 // Char-server-side stored fame lists [DracoRPG]
 struct fame_list smith_fame_list[MAX_FAME_LIST];
 struct fame_list chemist_fame_list[MAX_FAME_LIST];
 struct fame_list taekwon_fame_list[MAX_FAME_LIST];
+struct fame_list bg_fame_list[MAX_FAME_LIST];
 
 #define CHAR_MAX_MSG 300	//max number of msg_conf
 static char* msg_table[CHAR_MAX_MSG]; // Login Server messages_conf
@@ -2166,6 +2168,7 @@ void char_read_fame_list(void)
 	memset(smith_fame_list, 0, sizeof(smith_fame_list));
 	memset(chemist_fame_list, 0, sizeof(chemist_fame_list));
 	memset(taekwon_fame_list, 0, sizeof(taekwon_fame_list));
+	memset(bg_fame_list, 0, sizeof(bg_fame_list));
 	// Build Blacksmith ranking list
 	if( SQL_ERROR == Sql_Query(sql_handle, "SELECT `char_id`,`fame`,`name` FROM `%s` WHERE `fame`>0 AND (`class`='%d' OR `class`='%d' OR `class`='%d' OR `class`='%d' OR `class`='%d' OR `class`='%d') ORDER BY `fame` DESC LIMIT 0,%d", schema_config.char_db, JOB_BLACKSMITH, JOB_WHITESMITH, JOB_BABY_BLACKSMITH, JOB_MECHANIC, JOB_MECHANIC_T, JOB_BABY_MECHANIC, fame_list_size_smith) )
 		Sql_ShowDebug(sql_handle);
@@ -2210,6 +2213,19 @@ void char_read_fame_list(void)
 		// name
 		Sql_GetData(sql_handle, 2, &data, &len);
 		memcpy(taekwon_fame_list[i].name, data, zmin(len, NAME_LENGTH));
+	}
+	Sql_FreeResult(sql_handle);
+	// Build BG Normal ranking list
+	if (SQL_ERROR == Sql_Query(sql_handle, "SELECT `rank_bg`.`char_id`, `rank_bg`.`points`, `%s`.`name` FROM `rank_bg` LEFT JOIN `%s` ON `%s`.`char_id` = `rank_bg`.`char_id` WHERE `rank_bg`.`points` > '0' ORDER BY `rank_bg`.`points` DESC LIMIT 0,%d", schema_config.char_db, schema_config.char_db, schema_config.char_db, fame_list_size_bg))
+		Sql_ShowDebug(sql_handle);
+	for (i = 0; i < fame_list_size_bg && SQL_SUCCESS == Sql_NextRow(sql_handle); ++i)
+	{
+		Sql_GetData(sql_handle, 0, &data, NULL);
+		bg_fame_list[i].id = atoi(data);
+		Sql_GetData(sql_handle, 1, &data, &len);
+		bg_fame_list[i].fame = atoi(data);
+		Sql_GetData(sql_handle, 2, &data, &len);
+		memcpy(bg_fame_list[i].name, data, zmin(len, NAME_LENGTH));
 	}
 	Sql_FreeResult(sql_handle);
 }

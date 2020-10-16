@@ -244,4 +244,21 @@ ACMD_FUNC(guildskill)
 	if( skilllv ) unit_skilluse_id(&sd->bl, sd->bl.id, skillnum, skilllv);
 	return 0;
 }
+ACMD_FUNC(bgranking)
+{
+	int i;
+	memset(atcmd_output, '\0', sizeof(atcmd_output));
 
+	clif_displaymessage(fd, "============= BATTLEGROUND FAME LIST =============");
+	for( i = 0; i < MAX_FAME_LIST && bg_fame_list[i].id; i++ )
+	{
+		sprintf(atcmd_output,"%d - %s - %d points",i+1,bg_fame_list[i].name,bg_fame_list[i].fame);
+		clif_displaymessage(fd, atcmd_output);
+	}
+	clif_displaymessage(fd, "================== MY POINTS ===================");
+	
+	sprintf(atcmd_output,"MY POINTS : %d", sd->status.bgstats.points);
+	clif_displaymessage(fd, atcmd_output);
+	clif_displaymessage(fd, "============= BATTLEGROUND FAME LIST =============");
+	return 0;
+}
