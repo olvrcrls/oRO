@@ -124,7 +124,7 @@ askald,135,248,4	script	Infinity Enchanter		555,{
 		if(select(.@enchant$[.@e1],.@enchant$[.@e2]) == 2){
 				.@e1 = .@e2;
 		}
-	.@card[.@slot - 1] = .@enchant[.@e1]
+	.@card[.@slot - 1] = .@enchant[.@e1];
 	delitem .@cost_id,.@cost_v;
 	delequip .@part;
 	specialeffect2 EF_REPAIRWEAPON;
