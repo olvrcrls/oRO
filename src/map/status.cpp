@@ -862,7 +862,7 @@ void initChangeTables(void)
 	set_sc_with_vfx( RL_AM_BLAST	, SC_ANTI_M_BLAST	, EFST_ANTI_M_BLAST	, SCB_NONE );
 
 	// New Mounts
-	set_sc_with_vfx_noskill( SC_ALL_RIDING	, EFST_ALL_RIDING	, SCB_SPEED );
+	set_sc_with_vfx_noskill(SC_ALL_RIDING, EFST_ALL_RIDING, SCB_SPEED);
 
 	// Costumes
 	set_sc_with_vfx_noskill( SC_MOONSTAR	, EFST_MOONSTAR	, SCB_NONE );
@@ -8806,15 +8806,15 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 			return 0;
 		break;
 	case SC_ALL_RIDING:
-		if( !sd || sc->option&(OPTION_RIDING|OPTION_DRAGON|OPTION_WUGRIDER|OPTION_MADOGEAR) )
+		if (!sd || sc->option & (OPTION_RIDING | OPTION_DRAGON | OPTION_WUGRIDER | OPTION_MADOGEAR))
 			return 0;
-		if( sc->data[type] )
+		if (sc->data[type])
 		{	// Already mounted, just dismount.
 			status_change_end(bl, SC_ALL_RIDING, INVALID_TIMER);
 			return 0;
 		}
 		break;
-	// They're all like berserk, do not everlap each other
+		// They're all like berserk, do not everlap each other
 	case SC_BERSERK:
 		if(sc->data[SC_SATURDAYNIGHTFEVER])
 			return 0;
@@ -11639,23 +11639,23 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 	}
 
 	/* [Ind] */
-	if (StatusDisplayType[type]&bl->type) {
+	if (StatusDisplayType[type] & bl->type) {
 		int dval1 = 0, dval2 = 0, dval3 = 0;
 
 		switch (type) {
-			case SC_ALL_RIDING:
-				dval1 = 1;
-				break;
-			case SC_CLAN_INFO:
-				dval1 = val1;
-				dval2 = val2;
-				dval3 = val3;
-				break;
-			default: /* All others: just copy val1 */
-				dval1 = val1;
-				break;
+		case SC_ALL_RIDING:
+			dval1 = 1;
+			break;
+		case SC_CLAN_INFO:
+			dval1 = val1;
+			dval2 = val2;
+			dval3 = val3;
+			break;
+		default: /* All others: just copy val1 */
+			dval1 = val1;
+			break;
 		}
-		status_display_add(bl,type,dval1,dval2,dval3);
+		status_display_add(bl, type, dval1, dval2, dval3);
 	}
 
 	// Those that make you stop attacking/walking....

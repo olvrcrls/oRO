@@ -9563,83 +9563,94 @@ void pc_changelook(struct map_session_data *sd,int type,int val) {
 /*==========================================
  * Give an option (type) to player (sd) and display it to client
  *------------------------------------------*/
-void pc_setoption(struct map_session_data *sd,int type)
+void pc_setoption(struct map_session_data* sd, int type)
 {
-	int p_type, new_look=0;
+	int p_type, new_look = 0;
 	nullpo_retv(sd);
 	p_type = sd->sc.option;
 
 	//Option has to be changed client-side before the class sprite or it won't always work (eg: Wedding sprite) [Skotlex]
-	sd->sc.option=type;
+	sd->sc.option = type;
 	clif_changeoption(&sd->bl);
 
-	if( (type&OPTION_RIDING && !(p_type&OPTION_RIDING)) || (type&OPTION_DRAGON && !(p_type&OPTION_DRAGON) && pc_checkskill(sd,RK_DRAGONTRAINING) > 0) )
+	if ((type & OPTION_RIDING && !(p_type & OPTION_RIDING)) || (type & OPTION_DRAGON && !(p_type & OPTION_DRAGON) && pc_checkskill(sd, RK_DRAGONTRAINING) > 0))
 	{ // Mounting
-		clif_status_load(&sd->bl,EFST_RIDING,1);
-		status_calc_pc(sd,SCO_NONE);
+		clif_status_load(&sd->bl, EFST_RIDING, 1);
+		status_calc_pc(sd, SCO_NONE);
 	}
-	else if( (!(type&OPTION_RIDING) && p_type&OPTION_RIDING) || (!(type&OPTION_DRAGON) && p_type&OPTION_DRAGON && pc_checkskill(sd,RK_DRAGONTRAINING) > 0) )
+	else if ((!(type & OPTION_RIDING) && p_type & OPTION_RIDING) || (!(type & OPTION_DRAGON) && p_type & OPTION_DRAGON && pc_checkskill(sd, RK_DRAGONTRAINING) > 0))
 	{ // Dismount
-		clif_status_load(&sd->bl,EFST_RIDING,0);
-		status_calc_pc(sd,SCO_NONE);
+		clif_status_load(&sd->bl, EFST_RIDING, 0);
+		status_calc_pc(sd, SCO_NONE);
 	}
 
 #ifndef NEW_CARTS
-	if( type&OPTION_CART && !( p_type&OPTION_CART ) ) { //Cart On
+	if (type & OPTION_CART && !(p_type & OPTION_CART)) { //Cart On
 		clif_cartlist(sd);
 		clif_updatestatus(sd, SP_CARTINFO);
-		if(pc_checkskill(sd, MC_PUSHCART) < 10)
-			status_calc_pc(sd,SCO_NONE); //Apply speed penalty.
-	} else if( !( type&OPTION_CART ) && p_type&OPTION_CART ){ //Cart Off
+		if (pc_checkskill(sd, MC_PUSHCART) < 10)
+			status_calc_pc(sd, SCO_NONE); //Apply speed penalty.
+	}
+	else if (!(type & OPTION_CART) && p_type & OPTION_CART) { //Cart Off
 		clif_clearcart(sd->fd);
-		if(pc_checkskill(sd, MC_PUSHCART) < 10)
-			status_calc_pc(sd,SCO_NONE); //Remove speed penalty.
+		if (pc_checkskill(sd, MC_PUSHCART) < 10)
+			status_calc_pc(sd, SCO_NONE); //Remove speed penalty.
 	}
 #endif
 
-	if (type&OPTION_FALCON && !(p_type&OPTION_FALCON)) //Falcon ON
-		clif_status_load(&sd->bl,EFST_FALCON,1);
-	else if (!(type&OPTION_FALCON) && p_type&OPTION_FALCON) //Falcon OFF
-		clif_status_load(&sd->bl,EFST_FALCON,0);
+	if (type & OPTION_FALCON && !(p_type & OPTION_FALCON)) //Falcon ON
+		clif_status_load(&sd->bl, EFST_FALCON, 1);
+	else if (!(type & OPTION_FALCON) && p_type & OPTION_FALCON) //Falcon OFF
+		clif_status_load(&sd->bl, EFST_FALCON, 0);
 
-	if( (sd->class_&MAPID_THIRDMASK) == MAPID_RANGER ) {
-		if( type&OPTION_WUGRIDER && !(p_type&OPTION_WUGRIDER) ) { // Mounting
-			clif_status_load(&sd->bl,EFST_WUGRIDER,1);
-			status_calc_pc(sd,SCO_NONE);
-		} else if( !(type&OPTION_WUGRIDER) && p_type&OPTION_WUGRIDER ) { // Dismount
-			clif_status_load(&sd->bl,EFST_WUGRIDER,0);
-			status_calc_pc(sd,SCO_NONE);
+	if ((sd->class_ & MAPID_THIRDMASK) == MAPID_RANGER) {
+		if (type & OPTION_WUGRIDER && !(p_type & OPTION_WUGRIDER)) { // Mounting
+			clif_status_load(&sd->bl, EFST_WUGRIDER, 1);
+			status_calc_pc(sd, SCO_NONE);
+		}
+		else if (!(type & OPTION_WUGRIDER) && p_type & OPTION_WUGRIDER) { // Dismount
+			clif_status_load(&sd->bl, EFST_WUGRIDER, 0);
+			status_calc_pc(sd, SCO_NONE);
 		}
 	}
-	if( (sd->class_&MAPID_THIRDMASK) == MAPID_MECHANIC ) {
-		if( type&OPTION_MADOGEAR && !(p_type&OPTION_MADOGEAR) ) {
-			static const sc_type statuses [] = { SC_MAXIMIZEPOWER, SC_OVERTHRUST, SC_WEAPONPERFECTION, SC_ADRENALINE, SC_CARTBOOST, SC_MELTDOWN, SC_MAXOVERTHRUST };
+	if ((sd->class_ & MAPID_THIRDMASK) == MAPID_MECHANIC) {
+		if (type & OPTION_MADOGEAR && !(p_type & OPTION_MADOGEAR)) {
+			static const sc_type statuses[] = { SC_LOUD, SC_CARTBOOST, SC_MELTDOWN, SC_ADRENALINE, SC_ADRENALINE2, SC_WEAPONPERFECTION, SC_MAXIMIZEPOWER, SC_OVERTHRUST, SC_MAXOVERTHRUST };
 
-			status_calc_pc(sd,SCO_NONE);
+			status_calc_pc(sd, SCO_NONE);
 			for (uint8 i = 0; i < ARRAYLENGTH(statuses); i++) {
 				int skill_id = status_sc2skill(statuses[i]);
 
 				if (skill_id > 0 && !skill_get_inf2(skill_id, INF2_ALLOWONMADO))
-					status_change_end(&sd->bl,statuses[i],INVALID_TIMER);
+					status_change_end(&sd->bl, statuses[i], INVALID_TIMER);
 			}
-			pc_bonus_script_clear(sd,BSF_REM_ON_MADOGEAR);
-		} else if( !(type&OPTION_MADOGEAR) && p_type&OPTION_MADOGEAR ) {
-			status_calc_pc(sd,SCO_NONE);
-			status_change_end(&sd->bl,SC_SHAPESHIFT,INVALID_TIMER);
-			status_change_end(&sd->bl,SC_HOVERING,INVALID_TIMER);
-			status_change_end(&sd->bl,SC_ACCELERATION,INVALID_TIMER);
-			status_change_end(&sd->bl,SC_OVERHEAT_LIMITPOINT,INVALID_TIMER);
-			status_change_end(&sd->bl,SC_OVERHEAT,INVALID_TIMER);
-			status_change_end(&sd->bl,SC_MAGNETICFIELD,INVALID_TIMER);
-			status_change_end(&sd->bl,SC_NEUTRALBARRIER_MASTER,INVALID_TIMER);
-			status_change_end(&sd->bl,SC_STEALTHFIELD_MASTER,INVALID_TIMER);
-			pc_bonus_script_clear(sd,BSF_REM_ON_MADOGEAR);
+			pc_bonus_script_clear(sd, BSF_REM_ON_MADOGEAR);
+
+#if PACKETVER_MAIN_NUM >= 20191120 || PACKETVER_RE_NUM >= 20191106
+			clif_status_load(&sd->bl, EFST_MADOGEAR, 1);
+#endif
+		}
+		else if (!(type & OPTION_MADOGEAR) && p_type & OPTION_MADOGEAR) {
+			status_calc_pc(sd, SCO_NONE);
+			status_change_end(&sd->bl, SC_SHAPESHIFT, INVALID_TIMER);
+			status_change_end(&sd->bl, SC_HOVERING, INVALID_TIMER);
+			status_change_end(&sd->bl, SC_ACCELERATION, INVALID_TIMER);
+			status_change_end(&sd->bl, SC_OVERHEAT_LIMITPOINT, INVALID_TIMER);
+			status_change_end(&sd->bl, SC_OVERHEAT, INVALID_TIMER);
+			status_change_end(&sd->bl, SC_MAGNETICFIELD, INVALID_TIMER);
+			status_change_end(&sd->bl, SC_NEUTRALBARRIER_MASTER, INVALID_TIMER);
+			status_change_end(&sd->bl, SC_STEALTHFIELD_MASTER, INVALID_TIMER);
+			pc_bonus_script_clear(sd, BSF_REM_ON_MADOGEAR);
+
+#if PACKETVER_MAIN_NUM >= 20191120 || PACKETVER_RE_NUM >= 20191106
+			clif_status_load(&sd->bl, EFST_MADOGEAR, 0);
+#endif
 		}
 	}
 
-	if (type&OPTION_FLYING && !(p_type&OPTION_FLYING))
+	if (type & OPTION_FLYING && !(p_type & OPTION_FLYING))
 		new_look = JOB_STAR_GLADIATOR2;
-	else if (!(type&OPTION_FLYING) && p_type&OPTION_FLYING)
+	else if (!(type & OPTION_FLYING) && p_type & OPTION_FLYING)
 		new_look = -1;
 
 	if (sd->disguise || !new_look)
@@ -9651,11 +9662,11 @@ void pc_setoption(struct map_session_data *sd,int type)
 	}
 
 	pc_stop_attack(sd); //Stop attacking on new view change (to prevent wedding/santa attacks.
-	clif_changelook(&sd->bl,LOOK_BASE,new_look);
+	clif_changelook(&sd->bl, LOOK_BASE, new_look);
 	if (sd->vd.cloth_color)
-		clif_changelook(&sd->bl,LOOK_CLOTHES_COLOR,sd->vd.cloth_color);
-	if( sd->vd.body_style )
-		clif_changelook(&sd->bl,LOOK_BODY2,sd->vd.body_style);
+		clif_changelook(&sd->bl, LOOK_CLOTHES_COLOR, sd->vd.cloth_color);
+	if (sd->vd.body_style)
+		clif_changelook(&sd->bl, LOOK_BODY2, sd->vd.body_style);
 	clif_skillinfoblock(sd); // Skill list needs to be updated after base change.
 }
 
