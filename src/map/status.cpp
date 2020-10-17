@@ -6427,7 +6427,7 @@ static signed short status_calc_hit(struct block_list *bl, struct status_change 
 		hit += hit * sc->data[SC_INCHITRATE]->val1/100;
 	if(sc->data[SC_BLIND])
 		hit -= hit * 25/100;
-	if(sc->data[SC_HEAT_BARREL])
+	if (sc->data[SC_HEAT_BARREL])
 		hit -= sc->data[SC_HEAT_BARREL]->val4;
 	if(sc->data[SC__GROOMY])
 		hit -= hit * sc->data[SC__GROOMY]->val3 / 100;
@@ -11287,17 +11287,17 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 			val2 = src->id;
 			break;
 		case SC_HEAT_BARREL:
-			{
-				uint8 n = 10;
-				if (sd)
-					n = (uint8)sd->spiritball_old;
+		{
+			uint8 n = 10;
+			if (sd)
+				n = (uint8)sd->spiritball_old;
 
-				//kRO Update 2016-05-25
-				val2 = n * 5; // -fixed casttime
-				val3 = (6 + val1 * 2) * n; // ATK
-				val4 = 25 + val1 * 5; // -hit
-			}
-			break;
+			//kRO Update 2016-05-25
+			val2 = n * 5; // -fixed casttime
+			val3 = (6 + val1 * 2) * n; // ATK
+			val4 = 25 + val1 * 5; // -hit
+		}
+		break;
 		case SC_P_ALTER:
 			{
 				uint8 n = 10;
