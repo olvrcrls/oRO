@@ -4720,7 +4720,7 @@ static void battle_attack_sc_bonus(struct Damage* wd, struct block_list *src, st
 		}
 		if (sc->data[SC_HEAT_BARREL]) {
 			ATK_ADDRATE(wd->damage, wd->damage2, sc->data[SC_HEAT_BARREL]->val3);
-			RE_ALLATK_ADDRATE(wd, sc->data[SC_HEAT_BARREL]->val3);
+			RE_ALLATK_ADD(wd, sc->data[SC_HEAT_BARREL]->val3);
 		}
 		if((wd->flag&(BF_LONG|BF_MAGIC)) == BF_LONG) {
 			if (sc->data[SC_MTF_RANGEATK]) { // Monster Transformation bonus
