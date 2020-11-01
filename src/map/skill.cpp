@@ -3941,6 +3941,7 @@ static int skill_check_unit_range_sub(struct block_list *bl, va_list ap)
 		case RA_ICEBOUNDTRAP:
 		case SC_DIMENSIONDOOR:
 		case SC_BLOODYLUST:
+		case SC_MANHOLE:
 		case NPC_REVERBERATION:
 		case WM_REVERBERATION:
 		case GN_THORNS_TRAP:
@@ -18732,9 +18733,12 @@ int skill_delunit(struct skill_unit* unit)
 			break;
 		case SC_MANHOLE: // Note : Removing the unit don't remove the status (official info)
 			if( group->val2 ) { // Someone Traped
+				struct block_list* target = map_id2bl(group->val2);
 				struct status_change *tsc = status_get_sc( map_id2bl(group->val2));
-				if( tsc && tsc->data[SC__MANHOLE] )
+				if( tsc && tsc->data[SC__MANHOLE] ) {
 					tsc->data[SC__MANHOLE]->val4 = 0; // Remove the Unit ID
+					status_change_end(target, SC__MANHOLE, INVALID_TIMER);
+				}
 			}
 			break;
 	}

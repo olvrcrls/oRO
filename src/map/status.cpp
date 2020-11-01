@@ -12670,11 +12670,12 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 			if (vd) vd->dead_sit = 0;
 			break;
 		case SC_WARM:
-		case SC__MANHOLE:
+		case SC_MANHOLE:
 			if (sce->val4) { // Clear the group.
 				struct skill_unit_group* group = skill_id2group(sce->val4);
 				sce->val4 = 0;
 				if( group ) // Might have been cleared before status ended, e.g. land protector
+					status_change_end(bl, SC__MANHOLE, INVALID_TIMER);
 					skill_delunitgroup(group);
 			}
 			break;
