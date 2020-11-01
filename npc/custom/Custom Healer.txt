@@ -52,10 +52,11 @@
 	sc_end	SC_STRIPARMOR;
 	sc_end	SC_STRIPHELM;
 	sc_end	SC__IGNORANCE;
-	sc_end	SC_LAZINESS;
-	sc_end	SC_UNLUCKY;
+	sc_end	SC__LAZINESS;
+	sc_end	SC__UNLUCKY;
 	sc_end	SC__WEAKNESS;
 	sc_end	SC__GROOMY;
+	sc_end	SC__ENERVATION;
 	sc_end	SC_FREEZING;
 	sc_end	SC_CURSEDCIRCLE_TARGET;
 	sc_end  SC_STASIS;
