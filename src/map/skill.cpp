@@ -8359,6 +8359,10 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 						break;
 				}
 				if(i == SC_BERSERK) tsc->data[i]->val2=0; //Mark a dispelled berserk to avoid setting hp to 100 by setting hp penalty to 0.
+				if(i == SC__WEAKNESS) {
+					status_change_end(bl, (sc_type)SC_STRIPWEAPON, INVALID_TIMER);
+					status_change_end(bl, (sc_type)SC_STRIPSHIELD, INVALID_TIMER);	
+				}
 				status_change_end(bl, (sc_type)i, INVALID_TIMER);
 			}
 			break;
@@ -9815,6 +9819,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 				if (!tsc->data[i])
 					continue;
 				switch (i) {
+					case SC__STRIPACCESSORY:
 					case SC_WEIGHT50:		case SC_WEIGHT90:		case SC_HALLUCINATION:
 					case SC_STRIPWEAPON:		case SC_STRIPSHIELD:		case SC_STRIPARMOR:
 					case SC_STRIPHELM:		case SC_CP_WEAPON:		case SC_CP_SHIELD:
