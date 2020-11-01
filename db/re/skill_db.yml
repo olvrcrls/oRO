@@ -28185,7 +28185,7 @@ Body:
     Type: Misc
     TargetType: Attack
     DamageFlags:
-      IgnoreElement: true
+      IgnoreElement: false
       IgnoreDefCard: true
     Hit: Single
     HitCount: 1
