@@ -3941,6 +3941,7 @@ static int skill_check_unit_range_sub(struct block_list *bl, va_list ap)
 		case RA_ICEBOUNDTRAP:
 		case SC_DIMENSIONDOOR:
 		case SC_BLOODYLUST:
+		case SC_MANHOLE:
 		case NPC_REVERBERATION:
 		case WM_REVERBERATION:
 		case GN_THORNS_TRAP:
@@ -8359,6 +8360,10 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 						break;
 				}
 				if(i == SC_BERSERK) tsc->data[i]->val2=0; //Mark a dispelled berserk to avoid setting hp to 100 by setting hp penalty to 0.
+				if(i == SC__WEAKNESS) {
+					status_change_end(bl, (sc_type)SC_STRIPWEAPON, INVALID_TIMER);
+					status_change_end(bl, (sc_type)SC_STRIPSHIELD, INVALID_TIMER);	
+				}
 				status_change_end(bl, (sc_type)i, INVALID_TIMER);
 			}
 			break;
@@ -9815,6 +9820,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 				if (!tsc->data[i])
 					continue;
 				switch (i) {
+					case SC__STRIPACCESSORY:
 					case SC_WEIGHT50:		case SC_WEIGHT90:		case SC_HALLUCINATION:
 					case SC_STRIPWEAPON:		case SC_STRIPSHIELD:		case SC_STRIPARMOR:
 					case SC_STRIPHELM:		case SC_CP_WEAPON:		case SC_CP_SHIELD:
@@ -9844,9 +9850,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 					case SC_SERVICE4U:		case SC_FOOD_STR_CASH:		case SC_FOOD_AGI_CASH:
 					case SC_FOOD_VIT_CASH:		case SC_FOOD_DEX_CASH:		case SC_FOOD_INT_CASH:
 					case SC_FOOD_LUK_CASH:		case SC_ELECTRICSHOCKER:	case SC_BITE:
-					case SC__STRIPACCESSORY:	case SC__ENERVATION:		case SC__GROOMY:
-					case SC__IGNORANCE: 		case SC__LAZINESS:		case SC__UNLUCKY:
-					case SC__WEAKNESS:		case SC_SAVAGE_STEAK:		case SC_COCKTAIL_WARG_BLOOD:
+					case SC_SAVAGE_STEAK:		case SC_COCKTAIL_WARG_BLOOD:
 					case SC_MAGNETICFIELD:		case SC_MINOR_BBQ:		case SC_SIROMA_ICE_TEA:
 					case SC_DROCERA_HERB_STEAMED:	case SC_PUTTI_TAILS_NOODLES:	case SC_NEUTRALBARRIER_MASTER:
 					case SC_NEUTRALBARRIER:		case SC_STEALTHFIELD_MASTER:	case SC_STEALTHFIELD:
@@ -9900,6 +9904,10 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 					break;
 				}
 				if(i == SC_BERSERK) tsc->data[i]->val2=0; //Mark a dispelled berserk to avoid setting hp to 100 by setting hp penalty to 0.
+				if (i == SC__WEAKNESS) { // This will dispell the strip weapon and strip shield from the Masquerade Weakness' effect.
+					status_change_end(bl,SC_STRIPWEAPON,INVALID_TIMER);
+					status_change_end(bl,SC_STRIPSHIELD,INVALID_TIMER);
+				}
 				status_change_end(bl,(sc_type)i,INVALID_TIMER);
 			}
 			break;
@@ -18725,9 +18733,12 @@ int skill_delunit(struct skill_unit* unit)
 			break;
 		case SC_MANHOLE: // Note : Removing the unit don't remove the status (official info)
 			if( group->val2 ) { // Someone Traped
+				struct block_list* target = map_id2bl(group->val2);
 				struct status_change *tsc = status_get_sc( map_id2bl(group->val2));
-				if( tsc && tsc->data[SC__MANHOLE] )
+				if( tsc && tsc->data[SC__MANHOLE] ) {
 					tsc->data[SC__MANHOLE]->val4 = 0; // Remove the Unit ID
+					status_change_end(target, SC__MANHOLE, INVALID_TIMER);
+				}
 			}
 			break;
 	}
