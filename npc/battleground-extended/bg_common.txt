@@ -183,9 +183,9 @@ OnSun2300:
 // ================================== BattleGround Happy Hour ===================================
 // BattleGround Happy Hour
 OnDoHappyHour:
-OnClock1600:
-OnClock1800:
-OnClock2000:
+OnClock0500:
+OnClock1000:
+OnClock1700:
 OnClock2200:
 	switch( gettime(DT_DAYOFWEEK) )
 	{
