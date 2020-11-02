@@ -52,6 +52,7 @@
 #define MAP_ECLAGE_IN "ecl_in01"
 #define MAP_LASAGNA "lasagna"
 #define MAP_ASKALD "askald"
+#define MAP_BG "bat_room"
 
 const char* mapindex_getmapname(const char* string, char* output);
 const char* mapindex_getmapname_ext(const char* string, char* output);

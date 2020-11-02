@@ -1995,7 +1995,8 @@ ACMD_FUNC(go)
 		{ MAP_MALAYA,      242, 211 }, // 34=Malaya Port
 		{ MAP_ECLAGE,      110,  39 }, // 35=Eclage
 		{ MAP_LASAGNA,     193, 182 },  // 36=Lasagna
-		{ MAP_JAIL,         23,  61 }   // 37=Prison
+		{ MAP_JAIL,         23,  61 },   // 37=Prison
+		{ MAP_BG,		   154, 150 } // 38 = BG
 	};
 
 	nullpo_retr(-1, sd);
@@ -2119,6 +2120,8 @@ ACMD_FUNC(go)
 		town = 36;
 	} else if (strncmp(map_name, "askald", 3) == 0) {
 		town = 0;
+	} else if (strncmp(map_name, "bg", 2) == 0) {
+		town = 38;
 	}
 
 	if (town >= 0 && town < ARRAYLENGTH(data))
