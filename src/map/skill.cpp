@@ -12460,8 +12460,10 @@ int skill_castend_pos2(struct block_list* src, int x, int y, uint16 skill_id, ui
 #else
 			clif_skill_poseffect(src,skill_id,skill_lv,src->x,src->y,tick);
 #endif
-			if (sd)
-				skill_blockpc_start (sd, MO_EXTREMITYFIST, 2000);
+			if (sd) {
+				skill_blockpc_start(sd, MO_EXTREMITYFIST, 2000);
+				skill_blockpc_start(sd, pc_issit(sd), 1000); // adds a 1s delay on sitting [Wazaby]
+			}
 		}
 		break;
 	case NJ_SHADOWJUMP:
