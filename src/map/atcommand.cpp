@@ -7173,6 +7173,8 @@ ACMD_FUNC(refresh)
 {
 	nullpo_retr(-1, sd);
 	clif_refresh(sd);
+	sd->ud.canact_tick += 300;
+	sd->ud.canmove_tick += 300;
 	return 0;
 }
 
