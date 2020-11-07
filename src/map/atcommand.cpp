@@ -7174,8 +7174,16 @@ ACMD_FUNC(mute)
  *------------------------------------------*/
 ACMD_FUNC(refresh)
 {
+	t_tick tick = gettick();
 	nullpo_retr(-1, sd);
-	clif_refresh(sd);
+	if(DIFF_TICK(sd->canrefresh_tick,tick) > 0)
+	{
+		clif_displaymessage(fd,"@refresh command is still on cooldown.");
+		return 0;
+	} else {
+		clif_refresh(sd);
+		sd->canrefresh_tick = tick + 2500;
+	}
 	sd->ud.canact_tick += 300;
 	sd->ud.canmove_tick += 300;
 	return 0;

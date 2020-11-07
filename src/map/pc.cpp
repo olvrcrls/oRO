@@ -1607,6 +1607,7 @@ bool pc_authok(struct map_session_data *sd, uint32 login_id2, time_t expiration_
 #endif
 
 	sd->canuseitem_tick = tick;
+	sd->canrefresh_tick = tick;
 	sd->canusecashfood_tick = tick;
 	sd->canequip_tick = tick;
 	sd->cantalk_tick = tick;
