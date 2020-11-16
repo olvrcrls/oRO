@@ -1524,7 +1524,7 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 		if (!damage)
 			return 0;
 
-		if( (sce = sc->data[SC_LIGHTNINGWALK]) && flag && BF_LONG && !flag && BF_MAGIC && rnd()%100 < sce->val1 ) {
+		if( (sce = sc->data[SC_LIGHTNINGWALK]) && (flag&BF_LONG) && !(flag&BF_MAGIC) && rnd()%100 < sce->val1 ) {
 			int dx[8] = { 0,-1,-1,-1,0,1,1,1 };
 			int dy[8] = { 1,1,0,-1,-1,-1,0,1 };
 			uint8 dir = map_calc_dir(bl, src->x, src->y);
