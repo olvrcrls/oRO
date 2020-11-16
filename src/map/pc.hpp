@@ -397,6 +397,7 @@ struct map_session_data {
 	int invincible_timer;
 	t_tick canlog_tick;
 	t_tick canuseitem_tick;	// [Skotlex]
+	t_tick canrefresh_tick;
 	t_tick canusecashfood_tick;
 	t_tick canequip_tick;	// [Inkfish]
 	t_tick cantalk_tick;

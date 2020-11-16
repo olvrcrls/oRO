@@ -539,6 +539,7 @@ void initChangeTables(void)
 	add_sc( NPC_WIDESIGHT		, SC_SIGHT		);
 	add_sc( NPC_EVILLAND		, SC_BLIND		);
 	add_sc( NPC_MAGICMIRROR		, SC_MAGICMIRROR	);
+	set_sc( NPC_MAGICMIRROR		, SC_MAGICMIRROR	, EFST_MAGICMIRROR	, SCB_NONE);
 	set_sc( NPC_SLOWCAST		, SC_SLOWCAST		, EFST_SLOWCAST		, SCB_NONE );
 	set_sc( NPC_CRITICALWOUND	, SC_CRITICALWOUND	, EFST_CRITICALWOUND	, SCB_NONE );
 	set_sc( NPC_STONESKIN		, SC_ARMORCHANGE	, EFST_BLANK		, SCB_NONE );
@@ -10227,7 +10228,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 			struct status_change *d_sc;
 
 			if( (d_bl = map_id2bl(val1)) && (d_sc = status_get_sc(d_bl)) && d_sc->count ) { // Inherits Status From Source
-				const enum sc_type types[] = { SC_AUTOGUARD, SC_DEFENDER, SC_REFLECTSHIELD, SC_ENDURE };
+				const enum sc_type types[] = { SC_AUTOGUARD, SC_DEFENDER, SC_REFLECTSHIELD, SC_ENDURE, SC_MAGICMIRROR };
 				int i = (map_flag_gvg2(bl->m) || map_getmapflag(bl->m, MF_BATTLEGROUND))?2:3;
 				while( i >= 0 ) {
 					enum sc_type type2 = types[i];
@@ -11955,7 +11956,8 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 		calc_flag&=~SCB_BODY;
 	}*/
 
-	if (!(flag&SCSTART_NOICON) && !(flag&SCSTART_LOADED && StatusDisplayType[type])) {
+	// if (!(flag&SCSTART_NOICON) && !(flag&SCSTART_LOADED && StatusDisplayType[type])) {
+	if(!(flag&SCSTART_LOADED && StatusDisplayType[type])) {
 		int status_icon = StatusIconChangeTable[type];
 
 #if PACKETVER < 20151104
