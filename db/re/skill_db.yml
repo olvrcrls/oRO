@@ -22845,6 +22845,7 @@ Body:
       Flag:
         NoReiteration: true
         NoFootSet: true
+        NoOverlap: true
         RemovedByFireRain: true
   - Id: 2300
     Name: SC_DIMENSIONDOOR
@@ -27905,7 +27906,7 @@ Body:
     Hit: Single
     HitCount: 1
     Element: Earth
-    SplashArea: 2
+    SplashArea: 4
     CopyFlags:
       Skill:
         Reproduce: true
@@ -32075,6 +32076,7 @@ Body:
       Interval: 1000
       Flag:
         NoReiteration: true
+        NoOverlap: true
   - Id: 5011
     Name: AB_OFFERTORIUM
     Description: Offertorium
