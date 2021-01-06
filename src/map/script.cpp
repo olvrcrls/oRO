@@ -26006,21 +26006,21 @@ BUILDIN_FUNC(convertpcinfo) {
 	return SCRIPT_CMD_SUCCESS;
 }
 
-#include "ping.cpp"
-BUILDIN_FUNC(ping) {
-	const char* name;
-	char _cmd[500];
-	int nRet = 0, nTime = 0;
-	name = script_getstr(st, 2);
-	Ping((char*)name, &nRet, &nTime);
-	if (nRet <= 0 || nTime < 0)
-		sprintf(_cmd, "Return Message: %s fail to connect", (char*)name);
-	else
-		sprintf(_cmd, "Return Message: %s bytes=%d time=%dms\n", (char*)name, nRet, nTime);
-		script_pushstrcopy(st, _cmd);
-	return 0;
+// #include "ping.cpp"
+// BUILDIN_FUNC(ping) {
+// 	const char* name;
+// 	char _cmd[500];
+// 	int nRet = 0, nTime = 0;
+// 	name = script_getstr(st, 2);
+// 	Ping((char*)name, &nRet, &nTime);
+// 	if (nRet <= 0 || nTime < 0)
+// 		sprintf(_cmd, "Return Message: %s fail to connect", (char*)name);
+// 	else
+// 		sprintf(_cmd, "Return Message: %s bytes=%d time=%dms\n", (char*)name, nRet, nTime);
+// 		script_pushstrcopy(st, _cmd);
+// 	return 0;
 	
-}
+// }
 
 #include "../custom/script.inc"
 
@@ -26108,7 +26108,7 @@ BUILDIN_FUNC(isnpccloaked)
 /// script command definitions
 /// for an explanation on args, see add_buildin_func
 struct script_function buildin_func[] = {
-	BUILDIN_DEF(ping,"s"),
+	// BUILDIN_DEF(ping,"s"),
 	// NPC interaction
 	BUILDIN_DEF(mes,"s*"),
 	BUILDIN_DEF(next,""),
