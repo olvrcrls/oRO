@@ -1,0 +1,3 @@
+#ifndef SVNVERSION
+#define SVNVERSION 415f7ce355_415f7ce355
+#endif
