@@ -1,6 +1,6 @@
 // This is a very basic script with atcommand. but works. //
 
-askald,125,118,5	script	levelup#ask	615,{
+askald,125,118,5	script	Level Booster#ask	615,{
 
 if (BaseLevel < 175){
 		set BaseLevel,175;

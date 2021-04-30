@@ -84,7 +84,7 @@
 			a = getequipid(.@Part);                
 			delitem a,1;
 			getitem a,1;
-                       
+
 			mes "[Clown]";
 			mes "Done, enjoy your restored headgear.";
 			close;

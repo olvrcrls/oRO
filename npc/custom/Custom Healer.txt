@@ -1,5 +1,5 @@
 //===== Hercules Script ======================================
-//= Buffer npc
+//= Healer npc
 //===== By: ==================================================
 //= AnnieRuru
 //===== Current Version: =====================================
@@ -7,9 +7,9 @@
 //===== Compatible With: =====================================
 //============================================================
 
--	script	Buffer	-1,{
+-	script	Healer	-1,{
 
-	.@cooldown = 3; // how many seconds before the player can heal again
+	.@cooldown = 5; // how many seconds before the player can heal again
 
 	if ( @heal_cooldown + .@cooldown > gettimetick(2) ) {
 		dispbottom "You need to wait for " + ( @heal_cooldown + .@cooldown - gettimetick(2) ) + " seconds.";
@@ -68,8 +68,9 @@
 
 //	give players buff ... don't give too much otherwise player wanna spam
 	.@time = 300000; // the buff last 5 minutes
-	sc_start SC_INCREASEAGI, .@time, 10;
-	sc_start SC_BLESSING, .@time, 10;
+	// sc_start SC_INCREASEAGI, .@time, 10;
+	// sc_start SC_BLESSING, .@time, 10;
+	// sc_start SC_ANGELUS, .@time, 10;
 	//sc_start SC_CONCENTRATION, .@time, 10;
 	//sc_start SC_IMPOSITIO, .@time, 5;
 	//sc_start SC_SUFFRAGIUM, .@time, 3;
@@ -77,7 +78,6 @@
 	//sc_start SC_MAGNIFICAT, .@time, 5;
 	//sc_start SC_GLORIA, .@time, 5;
 	//sc_start SC_WINDWALK, .@time, 5;
-	sc_start SC_ANGELUS, .@time, 10;
 
 //	give player's soul link
 	//if ( .@spirit = .spirit[BaseJob] );
@@ -126,45 +126,45 @@
 
 // Duplicates
 //============================================================
-alberta,25,240,6	duplicate(Buffer)	Buffer#alb	630
-aldebaran,135,118,6	duplicate(Buffer)	Buffer#alde	630
-amatsu,200,79,4	duplicate(Buffer)	Buffer#ama	630
-ayothaya,207,169,6	duplicate(Buffer)	Buffer#ayo	630
-comodo,184,158,6	duplicate(Buffer)	Buffer#com	630
-einbech,57,36,6	duplicate(Buffer)	Buffer#einbe	630
-einbroch,57,202,6	duplicate(Buffer)	Buffer#einbr	630
-geffen,115,72,6	duplicate(Buffer)	Buffer#gef	630
-gonryun,156,122,6	duplicate(Buffer)	Buffer#gon	630
-hugel,89,150,6	duplicate(Buffer)	Buffer#hug	630
-izlude,121,150,6	duplicate(Buffer)	Buffer#izl	630	//Pre-RE: (125,118)
-jawaii,250,139,4	duplicate(Buffer)	Buffer#jaw	630
-lighthalzen,152,100,6	duplicate(Buffer)	Buffer#lhz	630
-louyang,226,103,4	duplicate(Buffer)	Buffer#lou	630
-manuk,272,144,6	duplicate(Buffer)	Buffer#man	630
-mid_camp,203,289,6	duplicate(Buffer)	Buffer#mid	630
-moc_ruins,72,164,4	duplicate(Buffer)	Buffer#moc	630
-morocc,153,97,6	duplicate(Buffer)	Buffer#mor	630
-moscovia,220,191,4	duplicate(Buffer)	Buffer#mos	630
-niflheim,212,182,5	duplicate(Buffer)	Buffer#nif	630
-payon,179,106,4	duplicate(Buffer)	Buffer#pay	630
-prontera,162,193,4	duplicate(Buffer)	Buffer#prt	630
-rachel,125,116,6	duplicate(Buffer)	Buffer#rac	630
-splendide,201,153,4	duplicate(Buffer)	Buffer#spl	630
-thor_camp,249,74,4	duplicate(Buffer)	Buffer#thor	630
-umbala,105,148,3	duplicate(Buffer)	Buffer#umb	630
-veins,217,121,4	duplicate(Buffer)	Buffer#ve	630
-xmas,143,136,4	duplicate(Buffer)	Buffer#xmas	630
-yuno,164,45,4	duplicate(Buffer)	Buffer#yuno	630
+alberta,25,240,6	duplicate(Healer)	Healer#alb	630
+aldebaran,135,118,6	duplicate(Healer)	Healer#alde	630
+amatsu,200,79,4	duplicate(Healer)	Healer#ama	630
+ayothaya,207,169,6	duplicate(Healer)	Healer#ayo	630
+comodo,184,158,6	duplicate(Healer)	Healer#com	630
+einbech,57,36,6	duplicate(Healer)	Healer#einbe	630
+einbroch,57,202,6	duplicate(Healer)	Healer#einbr	630
+geffen,115,72,6	duplicate(Healer)	Healer#gef	630
+gonryun,156,122,6	duplicate(Healer)	Healer#gon	630
+hugel,89,150,6	duplicate(Healer)	Healer#hug	630
+izlude,121,150,6	duplicate(Healer)	Healer#izl	630	//Pre-RE: (125,118)
+jawaii,250,139,4	duplicate(Healer)	Healer#jaw	630
+lighthalzen,152,100,6	duplicate(Healer)	Healer#lhz	630
+louyang,226,103,4	duplicate(Healer)	Healer#lou	630
+manuk,272,144,6	duplicate(Healer)	Healer#man	630
+mid_camp,203,289,6	duplicate(Healer)	Healer#mid	630
+moc_ruins,72,164,4	duplicate(Healer)	Healer#moc	630
+morocc,153,97,6	duplicate(Healer)	Healer#mor	630
+moscovia,220,191,4	duplicate(Healer)	Healer#mos	630
+niflheim,212,182,5	duplicate(Healer)	Healer#nif	630
+payon,179,106,4	duplicate(Healer)	Healer#pay	630
+prontera,162,193,4	duplicate(Healer)	Healer#prt	630
+rachel,125,116,6	duplicate(Healer)	Healer#rac	630
+splendide,201,153,4	duplicate(Healer)	Healer#spl	630
+thor_camp,249,74,4	duplicate(Healer)	Healer#thor	630
+umbala,105,148,3	duplicate(Healer)	Healer#umb	630
+veins,217,121,4	duplicate(Healer)	Healer#ve	630
+xmas,143,136,4	duplicate(Healer)	Healer#xmas	630
+yuno,164,45,4	duplicate(Healer)	Healer#yuno	630
 
 // Duplicates (Renewal)
 //============================================================
-brasilis,194,221,6	duplicate(Buffer)	Buffer#bra	630
-dewata,195,187,4	duplicate(Buffer)	Buffer#dew	630
-dicastes01,201,194,4	duplicate(Buffer)	Buffer#dic	630
-ecl_in01,45,60,4	duplicate(Buffer)	Buffer#ecl	630
-malangdo,132,114,6	duplicate(Buffer)	Buffer#mal	630
-malaya,227,204,6	duplicate(Buffer)	Buffer#ma	630
-mora,55,152,4	duplicate(Buffer)	Buffer#mora	630
-//turbo_room,100,121,4	duplicate(Buffer)	Buffer#jin	630
-askald,128,118,3	duplicate(Buffer)	Buffer#ask	630
-askald,152,44,3	duplicate(Buffer)	Buffer#ask2	630
+brasilis,194,221,6	duplicate(Healer)	Healer#bra	630
+dewata,195,187,4	duplicate(Healer)	Healer#dew	630
+dicastes01,201,194,4	duplicate(Healer)	Healer#dic	630
+ecl_in01,45,60,4	duplicate(Healer)	Healer#ecl	630
+malangdo,132,114,6	duplicate(Healer)	Healer#mal	630
+malaya,227,204,6	duplicate(Healer)	Healer#ma	630
+mora,55,152,4	duplicate(Healer)	Healer#mora	630
+//turbo_room,100,121,4	duplicate(Healer)	Healer#jin	630
+askald,128,118,3	duplicate(Healer)	Healer#ask	630
+askald,152,44,3	duplicate(Healer)	Healer#ask2	630

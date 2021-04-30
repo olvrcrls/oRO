@@ -19,7 +19,7 @@ We want to use MD5 passwords and disable `_m/f` account creation methods.
 #### /conf/import/login_conf.txt
 
 	new_account: no
-	use_MD5_passwords: yes
+	use_MD5_passwords: no
 
 
 ### Char Server

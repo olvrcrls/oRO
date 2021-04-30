@@ -280,7 +280,7 @@ int chlogif_parse_ackconnect(int fd, struct char_session_data* sd){
 		return 0;
 
 	if (RFIFOB(fd,2)) {
-		//printf("connect login server error : %d\n", RFIFOB(fd,2));
+		printf("connect login server error : %d\n", RFIFOB(fd,2));
 		ShowError("Can not connect to login-server.\n");
 		ShowError("The server communication passwords (default s1/p1) are probably invalid.\n");
 		ShowError("Also, please make sure your login db has the correct communication username/passwords and the gender of the account is S.\n");

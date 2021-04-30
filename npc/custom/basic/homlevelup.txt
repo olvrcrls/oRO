@@ -3,7 +3,7 @@
 // Second check is the intimacy
 // Third check is the level of the Homunculus
 
-askald,119,118,5	script	HomLevelUp	643,{
+askald,119,118,5	script	Max Homunculus	643,{
 
 	disable_command; // disables at commands
 	.@maxlevel = 175;
