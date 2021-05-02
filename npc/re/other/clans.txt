@@ -100,11 +100,7 @@ askald,132,161,4	script	Raffam Oranpere	10058,{
 					mes "So, you're ^3131FF" + strcharinfo( 0 ) + "^000000! Nice name!";
 					mes "Let me register you.";
 					next;
-					if( getcharid( 2 ) ){
-						mes "[Raffam Oranpere]";
-						mes "Come back to join after you leave your current guild.";
-						close;
-					}else if( getcharid( 5 ) != 0 ){
+					if( getcharid( 5 ) != 0 ){
 						cutin "laperm04.bmp", 2;
 						mes "[Raffam Oranpere]";
 						mes "Eh? Oh, you're in a Clan.";
@@ -265,11 +261,7 @@ askald,135,161,4	script	Devon Aire	10059,{
 					mes "^3131FF" + strcharinfo( 0 ) + "^000000.....";
 					mes "Good, let me invite you in.";
 					next;
-					if( getcharid( 2 ) ){
-						mes "[Devon Aire]";
-						mes "Leave your guild first to join my Clan, duh.";
-						close;
-					}else if( getcharid( 5 ) != 0 ){
+					if( getcharid( 5 ) != 0 ){
 						cutin "debon03.bmp", 2;
 						mes "[Devon Aire]";
 						mes "You're already in a Clan. You joking?!";
@@ -417,12 +409,7 @@ askald,138,161,4	script	Berman Aire	10060,{
 					mes "^3131FF" + strcharinfo( 0 ) + "^000000! What a good name!";
 					mes "Okay, then...";
 					next;
-					if( getcharid( 2 ) ){
-						mes "[Berman Aire]";
-						mes "Oh, no.";
-						mes "In order to join, you first have to leave your current guild.";
-						close;
-					}else if( getcharid( 5 ) != 0 ){
+					if( getcharid( 5 ) != 0 ){
 						mes "[Berman Aire]";
 						mes "You're already in a Clan.";
 						mes "You're just confused, right?";
@@ -564,11 +551,7 @@ askald,141,161,4	script	Shaam Rumi	10027,{
 					mes "^3131FF" + strcharinfo( 0 ) + "^000000..!";
 					mes "Ugh, your penmanship needs work. Let me process your application.";
 					next;
-					if( getcharid( 2 ) ){
-						mes "[Shaam Rumi]";
-						mes "Did you finish things up with your guild?";
-						close;
-					}else if( getcharid( 5 ) != 0 ){
+					if( getcharid( 5 ) != 0 ){
 						mes "[Shaam Rumi]";
 						mes "Eh, you're already in a Clan. Hey, this isn't funny.";
 					}else{
