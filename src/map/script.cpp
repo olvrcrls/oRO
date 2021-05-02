@@ -21409,6 +21409,7 @@ BUILDIN_FUNC(bg_rankpoints)
 
 	return 0;
 }
+
 BUILDIN_FUNC(bg_rankpoints_area)
 {
 	const char* str, * type;
@@ -21420,6 +21421,20 @@ BUILDIN_FUNC(bg_rankpoints_area)
 
 	bg_id = script_getnum(st, 2);
 	str = script_getstr(st, 3);
+
+	if (script_hasdata(st, 4))
+		sd = map_id2sd(script_getnum(st, 4));
+	else
+		script_rid2sd(sd);
+
+	if (sd == NULL)
+		return 0;
+
+	if (!sd->bg_id || !(bg = bg_team_search(sd->bg_id)))
+		return 0;
+	ARR_FIND(0, MAX_BG_MEMBERS, i, bg->members[i].sd == sd);
+	if (i >= MAX_BG_MEMBERS)
+		return 0;
 
 	if (!(bg = bg_team_search(sd->bg_id)) || (m = map_mapname2mapid(str)) < 0)
 	{
