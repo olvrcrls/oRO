@@ -13,6 +13,8 @@
 //============================================================
 
 // PvP ========================
+// Just for testing, remove askald for production.
+askald	mapflag	pvp
 pvp_y_1-1	mapflag	pvp
 pvp_y_1-2	mapflag	pvp
 pvp_y_1-3	mapflag	pvp
