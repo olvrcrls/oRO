@@ -11,6 +11,7 @@
 //ACMD_DEF(newcommand),
 
 // Battleground Extended by Vykimo
+ACMD_DEF(battleinfo),
 ACMD_DEF(bgstart),
 ACMD_DEF(bgend),
 ACMD_DEF(guildskill),
@@ -20,5 +21,4 @@ ACMD_DEF(leader),
 //ACMD_DEF(voteleader),
 ACMD_DEF(reportafk),
 ACMD_DEF2("votekick", reportafk),
-//ACMD_DEF(battleinfo),
 ACMD_DEF(bgranking),
