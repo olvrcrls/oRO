@@ -10225,6 +10225,7 @@ ACMD_FUNC(resurrect) {
 	return 0;
 }
 
+
 /*=========================================
  * Battlestats Command
  * [ Wazaby ] V 1.2
@@ -10404,6 +10405,7 @@ void atcommand_basecommands(void) {
 		ACMD_DEF(whogm),
 		ACMD_DEF(save),
 		ACMD_DEF(load),
+		ACMD_DEF2("return", load),
 		ACMD_DEF(speed),
 		ACMD_DEF(storage),
 		ACMD_DEF(guildstorage),
@@ -10591,6 +10593,7 @@ void atcommand_basecommands(void) {
 		ACMD_DEF(mutearea),
 		ACMD_DEF(rates),
 		ACMD_DEF(iteminfo),
+		ACMD_DEF2("ii", iteminfo),
 		ACMD_DEF(whodrops),
 		ACMD_DEF(whereis),
 		ACMD_DEF(mapflag),
@@ -10662,6 +10665,7 @@ void atcommand_basecommands(void) {
 		ACMD_DEF(fontcolor),
 		ACMD_DEF(langtype),
 		ACMD_DEF(battlestats), // battlestats command
+		ACMD_DEF(battleinfo),
 #ifdef VIP_ENABLE
 		ACMD_DEF(vip),
 		ACMD_DEF(showrate),

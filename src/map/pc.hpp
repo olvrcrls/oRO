@@ -290,6 +290,7 @@ struct map_session_data {
 		unsigned int buyingstore : 1;
 		unsigned int lesseffect : 1;
 		unsigned int vending : 1;
+		unsigned int battleinfo : 1;
 		unsigned int noks : 3; // [Zeph Kill Steal Protection]
 		unsigned int changemap : 1;
 		unsigned int callshop : 1; // flag to indicate that a script used callshop; on a shop
@@ -1192,7 +1193,7 @@ int pc_skillheal_bonus(struct map_session_data *sd, uint16 skill_id);
 int pc_skillheal2_bonus(struct map_session_data *sd, uint16 skill_id);
 
 void pc_damage(struct map_session_data *sd,struct block_list *src,unsigned int hp, unsigned int sp);
-int pc_dead(struct map_session_data *sd,struct block_list *src);
+int pc_dead(struct map_session_data *sd,struct block_list *src, uint16 skill_id);
 void pc_revive(struct map_session_data *sd,unsigned int hp, unsigned int sp);
 bool pc_revive_item(struct map_session_data *sd);
 void pc_heal(struct map_session_data *sd,unsigned int hp,unsigned int sp, int type);

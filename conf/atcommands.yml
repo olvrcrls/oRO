@@ -155,6 +155,9 @@ Body:
   - Command: whogm
     Help: |
       Params: [match_text] - Like @who+@who2+who3, but only for GM.
+  - Command: guildskill
+    Help: |
+      Cast a guild skill instantly.
   - Command: guildspy
     Help: |
       Params: <guild name|id> - You will receive all messages of the guild channel (Chat logging must be enabled)
@@ -955,6 +958,9 @@ Body:
   - Command: reloadnpcfile
     Aliases:
       - reloadnpc
+  - Command: battleinfo
+    Help: |
+      Displays the battle information with your kills & death.
   - Command: adopt
     Help: |
       Adopt a character.

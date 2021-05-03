@@ -8298,10 +8298,34 @@ void pc_close_npc(struct map_session_data *sd,int flag)
 	}
 }
 
+void pc_battle_info(struct map_session_data *tsd, struct map_session_data *ssd, uint16 skill_id)
+{
+	char output[256];
+
+	if (!tsd || !ssd || tsd == ssd)
+	{
+		/*
+		sprintf(output,"You killed %s [%s] using <%s>.", job_name(ssd->status.class_), ssd->status.name, ( skill_id ? skill_get_desc(skill_id) : "Basic/Reflect/Effect" ));
+		*/
+		sprintf(output,"You killed %s - %s using %s", tsd->status.name, job_name(tsd->status.class_), ( skill_id ? skill_get_desc(skill_id) : "Basic/Reflect/Effect" ));
+		clif_displaymessage(tsd->fd,output);
+	}
+
+	if( tsd->fd && tsd->state.battleinfo )
+	{
+		/*
+		This with the class of the player
+		sprintf(output,"( %s [%s] killed you using <%s> )", job_name(ssd->status.class_), ssd->status.name, ( skill_id ? skill_get_desc(skill_id) : "Basic/Reflect/Effect" ));
+		*/
+		sprintf(output,"%s - %s killed you using %s.", ssd->status.name, job_name(ssd->status.class_), ( skill_id ? skill_get_desc(skill_id) : "Basic/Reflect/Effect" ));
+		clif_displaymessage(tsd->fd,output);
+	}
+}
+
 /*==========================================
  * Invoked when a player has negative current hp
  *------------------------------------------*/
-int pc_dead(struct map_session_data *sd,struct block_list *src)
+int pc_dead(struct map_session_data *sd,struct block_list *src, uint16 skill_id)
 {
 	int i=0,k=0;
 	t_tick tick = gettick();
@@ -8450,6 +8474,7 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 
 	if (src && src->type == BL_PC) {
 		struct map_session_data *ssd = (struct map_session_data *)src;
+		pc_battle_info(sd, ssd, skill_id);
 		pc_setparam(ssd, SP_KILLEDRID, sd->bl.id);
 		npc_script_event(ssd, NPCE_KILLPC);
 
