@@ -9897,7 +9897,7 @@ REPLACE INTO `item_db_re` VALUES (18666,'CD_In_Mouth','CD In Mouth',4,20,NULL,20
 REPLACE INTO `item_db_re` VALUES (18667,'Cat_Lace_Hairband','Cat Lace Hairband',4,20,NULL,500,NULL,2,NULL,1,0xFFFFFFFE,63,2,256,NULL,'60',0,816,'bonus bDex,3;',NULL,NULL);
 REPLACE INTO `item_db_re` VALUES (18668,'Droopy_Turtle_Hat','Droopy Turtle Hat',4,20,NULL,300,NULL,1,NULL,1,0xFFFFFFFE,63,2,256,NULL,'1',1,694,'skill "AL_DECAGI",3;',NULL,NULL);
 REPLACE INTO `item_db_re` VALUES (18669,'Cowhide_Hat','Cowhide Hat',4,20,NULL,200,NULL,3,NULL,1,0xFFFFFFFE,63,2,256,NULL,'1',1,819,'bonus bDex,2; bonus bMaxHPrate,1;',NULL,NULL);
-REPLACE INTO `item_db_re` VALUES (18670,'Hankie_In_Mouth','Hankie In Mouth',4,20,NULL,100,NULL,1,NULL,0,0xFFFFFFFF,63,2,1,NULL,'12',0,818,'bonus bDex,3; bonus2 bSubRace,RC_DemiHuman,3; bonus2 bSubRace,RC_Player,3;',NULL,NULL);
+REPLACE INTO `item_db_re` VALUES (18670,'Handkerchief_In_Mouth','Handkerchief In Mouth',4,20,NULL,100,NULL,1,NULL,0,0xFFFFFFFF,63,2,1,NULL,'12',0,818,'bonus bDex,3; bonus2 bSubRace,RC_DemiHuman,3; bonus2 bSubRace,RC_Player,3;',NULL,NULL);
 REPLACE INTO `item_db_re` VALUES (18671,'Rudolf_Hairband','Rudolf Hairband',4,20,NULL,200,NULL,5,NULL,0,0xFFFFFFFF,63,2,256,NULL,'30',1,836,NULL,NULL,NULL);
 REPLACE INTO `item_db_re` VALUES (18672,'Tare_Pope','Drooping Pope',4,20,NULL,300,NULL,0,NULL,0,0xFFFFFFFF,63,2,256,NULL,'1',0,817,'bonus bMdef,1; bonus bSPrecovRate,2; bonus bUnbreakableHelm;',NULL,NULL);
 REPLACE INTO `item_db_re` VALUES (18673,'Tare_Pope_','Drooping Pope',4,20,NULL,300,NULL,0,NULL,1,0xFFFFFFFF,63,2,256,NULL,'1',1,817,'bonus bUnbreakableHelm; bonus bMdef,7; .@r = getrefine(); bonus bHealPower,(.@r>=7?5+(.@r-6):5); if (.@r>=9) { bonus bMatkRate, ( .@r >= 12 ? 12 : 7 ); }',NULL,NULL);
