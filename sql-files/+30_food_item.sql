@@ -1,0 +1,4 @@
+-- This will insert a  instant +30 food that lasts for an hour.
+DELETE FROM `item_db_re` WHERE id = 14646;
+INSERT INTO `item_db_re`(id, name_english, name_japanese, type, price_buy, price_sell, weight, equip_jobs, equip_genders, script)
+VALUES (14646, 'Nutriboost', 'Nutriboost', 2, 69420, 0, 1000, 0xFFFFFFFF, 2, '{ sc_start SC_ATKPOTION,3600000,30; sc_start SC_MATKPOTION,3600000,30; sc_start SC_SIROMA_ICEA_TEA, 3600000, 20; sc_start SC_PUTTI_TAILS_NOODLES, 3600000, 20; sc_start SC_COCKTAIL_WARG_BLOOD, 3600000, 20; sc_start SC_MINOR_BBQ, 3600000 20; sc_start SC_SAVAGE_STEAK, 3600000, 20; sc_start SC_DROSERA_HERB_STEAMED, 3600000, 20; sc_start SC_STRFOOD, 3600000, 10; sc_start SC_AGIFOOD, 3600000, 10; sc_start SC_INTFOOD, 3600000, 10; sc_start SC_DEXFOOD, 3600000, 10; sc_start SC_LUKFOOD, 3600000, 10; sc_start SC_VITFOOD, 3600000, 10; }');

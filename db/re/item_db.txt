@@ -8685,6 +8685,7 @@
 14629,Costume_Enchantment_Stone_Box,Costume Enchantment Stone Box,2,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ getitem callfunc("F_Rand",6636,6637,6638,6639,6640,6641,6642,6643,6644,6645),1; },{},{}
 //
 14643,Violet_Scroll,Violet Scroll,18,20,,0,,,,,0xFFFFFFFF,63,2,,,,,,{ getgroupitem(IG_Violet_Scroll); },{},{}
+14646,Nutriboost,Nutriboost,2,,,1000,30,,,,0xFFFFFFFF,63,2,,,,,,{ sc_start SC_ATKPOTION,3600000,30; sc_start SC_MATKPOTION,3600000,30; sc_start SC_SIROMA_ICEA_TEA, 3600000, 20; sc_start SC_PUTTI_TAILS_NOODLES, 3600000, 20; sc_start SC_COCKTAIL_WARG_BLOOD, 3600000, 20; sc_start SC_MINOR_BBQ, 3600000 20; sc_start SC_SAVAGE_STEAK, 3600000, 20; sc_start SC_DROSERA_HERB_STEAMED, 3600000, 20; sc_start SC_STRFOOD, 3600000, 10; sc_start SC_AGIFOOD, 3600000, 10; sc_start SC_INTFOOD, 3600000, 10; sc_start SC_DEXFOOD, 3600000, 10; sc_start SC_LUKFOOD, 3600000, 10; sc_start SC_VITFOOD, 3600000, 10; },{},{}
 14663,Scroll_Sealed_Dark_Lord,Scroll Sealed Dark Lord,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ /*TODO: Confirm the rates*/ getitem callfunc("F_Rand",6228,6232,4488,4169,19739,24032,24033,24031,24030,24028,24029,24028,24027),1; },{},{}
 14664,Bi_Hwang_Scroll,Bi Hwang Scroll,18,20,,0,,,,,0xFFFFFFFF,63,2,,,,,,{ getgroupitem(IG_Bi_Hwang_Scroll); },{},{}
 14665,Jung_Bi_Scroll,Jung Bi Scroll,18,20,,0,,,,,0xFFFFFFFF,63,2,,,,,,{ getgroupitem(IG_Jung_Bi_Scroll); },{},{}
@@ -11572,16 +11573,10 @@
 23046,S_Mystic_Powder,[Sale] Mystic Powder,2,0,,0,,,,,0xFFFFFFFF,63,2,,,,,,{ bonus_script "bonus bFlee,20; bonus bLuk,10;",300,9; /* fix me: unknown flag and specialeffect */ },{},{}
 23047,S_Blessing_Tyr,[Sale] Blessing of Tyr,2,0,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ sc_start SC_FLEEFOOD,300000,30; sc_start SC_HITFOOD,300000,30; sc_start SC_ATKPOTION,300000,20; sc_start SC_MATKPOTION,300000,20; },{},{}
 23048,S_Resilience_Potion,[Sale] Resilience Enhancement Potion,2,,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ bonus_script "bonus bAddItemHealRate,20;",1800,9; /* fix me: unknown flag and specialeffect */ },{},{}
-<<<<<<< HEAD
-23076,Build_Up_Potion_SS,Build Up Potion SS,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ if (strcharinfo(3) == "slabw01") { bonus_script "{ bonus bAspd,10; }",10; } },{},{}
-23077,Build_Up_Potion_SC,Build Up Potion SC,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ if (strcharinfo(3) == "slabw01") { bonus_script "{ bonus bCritical,30; }",10; } },{},{}
-23078,Build_Up_Potion_AC,Build Up Potion AC,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ if (strcharinfo(3) == "slabw01") { bonus_script "{ bonus bVariableCastrate,-80; }",10; } },{},{}
-=======
 23058,Enchant_Stone_Box9,Costume Enchantment Stone Box 9,2,10,,10,,,,0,0xFFFFFFFF,63,2,,,1,,,{ getgroupitem(IG_Enchant_Stone_Box9); },{},{}
 23076,Build_Up_Potion_SS,Build Up Potion SS,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ if (strcharinfo(3) == "slabw01") { sc_start SC_EP16_2_BUFF_SS,10000,0; } },{},{}
 23077,Build_Up_Potion_SC,Build Up Potion SC,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ if (strcharinfo(3) == "slabw01") { sc_start SC_EP16_2_BUFF_SC,10000,0; } },{},{}
 23078,Build_Up_Potion_AC,Build Up Potion AC,2,10,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ if (strcharinfo(3) == "slabw01") { sc_start SC_EP16_2_BUFF_AC,10000,0; } },{},{}
->>>>>>> 07cac123a... Terra Gloria (episode 16.2) - walkthrough conversion (#3990)
 23080,Cursed_Crystal,Cursed Crystal,2,1,,500,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc("F_Cursed_Crystal"); },{},{}
 23087,Small_Leather_Bag,Small Leather Bag,2,0,,0,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 25180,1; getitem 25181,1; getitem 25182,1; getitem 25183,1; getitem 25184,1; getitem 25185,1; },{},{}
 23123,Bullet_Case_Flare,Flare Bullet Cartridge,2,10,,250,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 13228,500; },{},{}
@@ -12064,15 +12059,9 @@
 25151,Rachels_Revolver,Rachel's Revolver,3,0,,0,,,,,,,,,,,,,{},{},{}
 25152,Cherish_Bouquet,Cherished Bouquet,3,0,,0,,,,,,,,,,,,,{},{},{}
 25153,Broken_Gun_Wreck,Broken Gun Wreck,3,0,,0,,,,,,,,,,,,,{},{},{}
-<<<<<<< HEAD
-25154,Antique_Gunpowder,Antique Gunpowder,3,0,,10,,,,,,,,,,,,,{},{},{}
-25155,Schwartz's_Honor_Token,Schwarz's Honor Token,3,0,,0,,,,,,,,,,,,,{},{},{}
-25156,Piece_of_Chimera,Piece of Chimera,3,0,,10,,,,,,,,,,,,,{},{},{}
-=======
 25154,Antique_Powder,Antique Gunpowder,3,0,,10,,,,,,,,,,,,,{},{},{}
 25155,Swz_Honor_Token,Schwarz's Honor Token,3,0,,0,,,,,,,,,,,,,{},{},{}
 25156,Piece_Of_Chimera,Piece of Chimera,3,0,,10,,,,,,,,,,,,,{},{},{}
->>>>>>> 07cac123a... Terra Gloria (episode 16.2) - walkthrough conversion (#3990)
 25157,Fallen_Leaves_Branch,Fallen Leaves Branch,3,0,,10,,,,,,,,,,,,,{},{},{}
 25158,Core_Jelly,Core Jelly,3,0,,10,,,,,,,,,,,,,{},{},{}
 25159,Heart_Hunter_Seal,Heart Hunter's Seal,3,0,,10,,,,,,,,,,,,,{},{},{}
@@ -12404,23 +12393,12 @@
 28200,END_OF_HORIZO,End Of The Horizon,5,2700000,,2400,410,,9,1,0x40000000,63,2,34,4,110,1,21,{},{},{}
 28201,Southern_Cross_R,Southern Cross,5,2800000,,2000,480,,9,0,0x40000000,63,2,34,4,141,1,21,{ bonus3 bAutoSpell,"GC_CROSSIMPACT",1,50; },{},{}
 28202,Southern_Cross_R_,Southern Cross,5,2800000,,2000,480,,9,1,0x40000000,63,2,34,4,141,1,21,{ bonus3 bAutoSpell,"GC_CROSSIMPACT",1,50; },{},{}
-<<<<<<< HEAD
-28203,Half_BF_Rifle1,Half BF Rifle1,5,0,,0,50,,9,0,0x41000000,63,2,34,3,80,1,18,{ bonus bDex,2; bonus bHit,8; bonus bCritical,8; bonus2 bAddRace,RC_DemiHuman,30; bonus2 bAddRace,RC_Player,30; bonus2 bVariableCastrate,"GS_TRACKING",-20; bonus2 bIgnoreDefRaceRate,RC_DemiHuman,10; bonus2 bIgnoreDefRaceRate,RC_Player,10; bonus bUnbreakableWeapon; },{},{}
-28204,Half_BF_Shotgun1,Half BF Shotgun1,5,0,,0,100,,9,0,0x41000000,63,2,34,3,80,1,20,{ bonus bDex,2; bonus bSplashRange,1; bonus2 bAddRace,RC_DemiHuman,30; bonus2 bAddRace,RC_Player,30; bonus2 bIgnoreDefRaceRate,RC_DemiHuman,10; bonus2 bIgnoreDefRaceRate,RC_Player,10; autobonus "{ bonus bBaseAtk,80; bonus2 bHPLossRate,100,1000; }",30,6000,BF_WEAPON,"{ specialeffect2 EF_BASH3D; }"; bonus bUnbreakableWeapon; },{},{}
-28223,Finisher,Finisher,5,20,,2000,200,,9,2,0x40000000,63,2,34,3,120,1,18,{ .@r = getrefine(); bonus bLongAtkRate,15; if (.@r >= 7) { bonus2 bSkillAtk,"RL_AM_BLAST",30; bonus2 bSkillAtk,"RL_MASS_SPIRAL",30; if (.@r >= 9) { bonus2 bSkillCooldown,"RL_AM_BLAST",-1000; } } },{},{}
-28224,Dustfire,Dustfire,5,20,,1300,300,,9,2,0x40000000,63,2,34,3,120,1,20,{ bonus bSplashRange,1; bonus2 bAddEff,Eff_Blind,50; if (.@r >= 7) { bonus2 bSkillAtk,"RL_S_STORM",15; if (.@r >= 9) { bonus2 bSkillAtk,"RL_BANISHING_BUSTER",15; } } },{},{}
-=======
 28203,Half_BF_Rifle1,Half BF Rifle1,5,0,,0,50,,9,0,0x41000000,63,2,34,3,80,1,18,{ bonus bDex,2; bonus bHit,8; bonus bCritical,8; bonus2 bAddRace,RC_DemiHuman,30; bonus2 bAddRace,RC_Player_Human,30; bonus2 bVariableCastrate,"GS_TRACKING",-20; bonus2 bIgnoreDefRaceRate,RC_DemiHuman,10; bonus2 bIgnoreDefRaceRate,RC_Player_Human,10; bonus bUnbreakableWeapon; },{},{}
 28204,Half_BF_Shotgun1,Half BF Shotgun1,5,0,,0,100,,9,0,0x41000000,63,2,34,3,80,1,20,{ bonus bDex,2; bonus bSplashRange,1; bonus2 bAddRace,RC_DemiHuman,30; bonus2 bAddRace,RC_Player_Human,30; bonus2 bIgnoreDefRaceRate,RC_DemiHuman,10; bonus2 bIgnoreDefRaceRate,RC_Player_Human,10; autobonus "{ bonus bBaseAtk,80; bonus2 bHPLossRate,100,1000; }",30,6000,BF_WEAPON,"{ specialeffect2 EF_BASH3D; }"; bonus bUnbreakableWeapon; },{},{}
 28223,Just_Finish,Finisher,5,20,,2000,200,,9,2,0x40000000,63,2,34,3,120,1,18,{ .@r = getrefine(); bonus bLongAtkRate,15; if (.@r >= 7) { bonus2 bSkillAtk,"RL_AM_BLAST",30; bonus2 bSkillAtk,"RL_MASS_SPIRAL",30; if (.@r >= 9) { bonus2 bSkillCooldown,"RL_AM_BLAST",-1000; } } },{},{}
 28224,Dust_Fire,Dustfire,5,20,,1300,300,,9,2,0x40000000,63,2,34,3,120,1,20,{ bonus bSplashRange,1; bonus2 bAddEff,Eff_Blind,50; if (.@r >= 7) { bonus2 bSkillAtk,"RL_S_STORM",15; if (.@r >= 9) { bonus2 bSkillAtk,"RL_BANISHING_BUSTER",15; } } },{},{}
->>>>>>> 07cac123a... Terra Gloria (episode 16.2) - walkthrough conversion (#3990)
 28225,Burning_Rose,Burning Rose,5,20,,2500,200,,9,2,0x40000000,63,2,34,3,120,1,19,{ bonus bLongAtkRate,15; if (.@r >= 7) { bonus2 bSkillAtk,"RL_FIRE_RAIN",30; if (.@r >= 9) { bonus2 bSkillCooldown,"RL_FIRE_RAIN",-1000; } } },{},{}
-<<<<<<< HEAD
-28226,Revenger,Avenger,5,20,,1800,350,,9,2,0x40000000,63,2,34,3,120,1,21,{ bonus bLongAtkRate,20; if (.@r >= 7) { bonus2 bSkillAtk,"RL_D_TAIL",15; if (.@r >= 9) { bonus2 bSkillCooldown,"RL_H_MINE",-1000; } } },{},{}
-=======
 28226,Avenger,Avenger,5,20,,1800,350,,9,2,0x40000000,63,2,34,3,120,1,21,{ bonus bLongAtkRate,20; if (.@r >= 7) { bonus2 bSkillAtk,"RL_D_TAIL",15; if (.@r >= 9) { bonus2 bSkillCooldown,"RL_H_MINE",-1000; } } },{},{}
->>>>>>> 98cb6a1b6... Merge branch 'master' into hotfix/issue1661
 28240,Calf_Kingcobra,Calf Kingcobra,5,0,0,900,230,,9,2,0x40000000,63,2,34,4,150,1,18,{ .@r = getrefine(); bonus bAspdRate,10 + (.@r > 6 ? 5 : 0); bonus bLongAtkRate,(.@r/2)*5 + (.@r > 11 ? 5 : 0); if(.@r > 8){ bonus bCritAtkRate,15; } },{},{}
 28241,Calf_Diamondback,Calf Diamondback,5,0,,3000,220,,9,2,0x40000000,63,2,34,4,150,1,19,{ .@r = getrefine(); bonus bDex,2; bonus2 bAddClass,Class_All,2; bonus bLongAtkRate,(.@r/2)*5 + (.@r > 11 ? 5 : 0); if(.@r > 6){ bonus2 bSkillAtk,"RL_R_TRIP",20; } if(.@r > 8){ bonus2 bSkillUseSPrate,"RL_R_TRIP",-5; } },{},{}
 28242,Calf_Anaconda,Calf Anaconda,5,10,,1400,305,,9,2,0x40000000,63,2,34,4,150,1,20,{ .@r = getrefine(); bonus bSplashRange,1; bonus bMaxSPrate,2; bonus bLongAtkRate,(.@r/2)*5 + (.@r > 8 ? 5 : 0); if(.@r > 6){ bonus2 bSkillAtk,"RL_BANISHING_BUSTER",20; } if(.@r > 11){ bonus2 bSkillUseSPrate,"RL_BANISHING_BUSTER",-15; } },{},{}
@@ -12486,18 +12464,8 @@
 28422,Shiny_Branch_Talisman,Shiny Branch Talisman,4,0,,100,,1,,1,0x80000000,63,2,136,,100,,,{ bonus2 bVariableCastrate,"SU_SV_STEMSPEAR",-50; bonus2 bSkillAtk,"SU_SV_STEMSPEAR",(readparam(bInt)/2)+(20 * getskilllv("SU_SV_STEMSPEAR")); /* Need to confirm damage formula */ },{},{}
 28423,Fresh_Tuna_Talisman,Fresh Tuna Talisman,4,0,,100,,1,,1,0x80000000,63,2,136,,100,,,{ bonus2 bSkillCooldown,"SU_TUNAPARTY",-5000; bonus3 bAutoSpellWhenHit,"SU_TUNAPARTY",max(1,getskilllv("SU_TUNAPARTY")),10; },{},{}
 28424,Chubby_Worm_Talisman,Chubby Worm Talisman,4,0,,100,,1,,1,0x80000000,63,2,136,,100,,,{ bonus2 bVariableCastrate,"SU_PICKYPECK",-50; bonus2 bSkillAtk,"SU_PICKYPECK",(readparam(bDex)/2)+(20 * getskilllv("SU_PICKYPECK")); /* Need to confirm damage formula */ },{},{}
-<<<<<<< HEAD
-28425,Mercenary_Ring_A,Mercenary Ring Type A,4,20,,200,,0,,0,0xFFFFFFFF,63,2,136,,99,0,0,{ bonus bVit,3; if (BaseClass == Job_Gunslinger || BaseJob == Job_Novice || BaseJob == Job_SuperNovice || BaseClass == Job_Ninja || BaseClass == Job_Taekwon) { bonus bMaxHP,1000; bonus bMaxSP,200; } },{},{}
-28426,Mercenary_Ring_B,Mercenary Ring Type B,4,20,,200,,0,,0,0xFFFFFFFF,63,2,136,,99,0,0,{ bonus bInt,3; if (BaseClass == Job_Gunslinger || BaseJob == Job_Novice || BaseJob == Job_SuperNovice || BaseClass == Job_Ninja || BaseClass == Job_Taekwon) { bonus bVariableCastrate,-30; } },{},{}
-=======
-28425,Mercenary_Ring_Type_A,Mercenary Ring Type A,4,20,,200,,0,,0,0xFFFFFFFF,63,2,136,,99,0,0,{ bonus bVit,3; if (BaseClass == Job_Gunslinger || BaseJob == Job_Novice || BaseJob == Job_SuperNovice || BaseClass == Job_Ninja || BaseClass == Job_Taekwon) { bonus bMaxHP,1000; bonus bMaxSP,200; } },{},{}
-28426,Mercenary_Ring_Type_B,Mercenary Ring Type B,4,20,,200,,0,,0,0xFFFFFFFF,63,2,136,,99,0,0,{ bonus bInt,3; if (BaseClass == Job_Gunslinger || BaseJob == Job_Novice || BaseJob == Job_SuperNovice || BaseClass == Job_Ninja || BaseClass == Job_Taekwon) { bonus bVariableCastrate,-30; } },{},{}
->>>>>>> 98cb6a1b6... Merge branch 'master' into hotfix/issue1661
-28429,Arquien's_Necklace,Arquien's Necklace,4,20,,100,,0,,1,0xFFFFFFFF,63,2,136,,20,0,0,{ bonus2 bSkillAtk,"MC_CARTREVOLUTION",Baselevel; bonus2 bSkillAtk,"NC_AXETORNADO",(Baselevel/3); bonus2 bSkillAtk,"NC_POWERSWING",(Baselevel/5); bonus2 bSkillUseSP,"NC_POWERSWING",2; bonus2 bAddMonsterDropItem,529,2000; bonus2 bAddMonsterDropItem,530,2000; bonus2 bAddMonsterDropItem,573,500; bonus2 bAddItemHealRate,529,100; bonus2 bAddItemHealRate,530,100; /* Unknow drop rates */ },{},{}
-28430,Arch_Bishop_Ring,Arch Bishop Ring,4,20,,400,,0,,1,0xFFFFFFFF,63,2,136,,90,0,0,{ bonus bLuk,2; bonus bFlee2,5; bonus bUseSPrate,-5; bonus bHealPower,15; bonus bAddItemHealRate,15; },{},{}
 28433,Luminous_Blue_Stone,Luminous Blue Stone,4,20,,400,,0,,1,0xFFFFFFFF,63,2,136,,90,0,0,{ bonus bAgi,2; bonus bCritical,5; bonus bAspdRate,5; bonus bCritAtkRate,2; skill "MG_SIGHT",1; if (readparam(bLuk)>=100) { bonus bCritical,10; bonus bCritAtkRate,10; } },{},{}
 28434,Fist_Fighter_Glove,Fist Fighter's Glove,4,20,,400,,0,,1,0xFFFFFFFF,63,2,136,,90,0,0,{ bonus bStr,2; bonus bMaxSP,100; bonus2 bAddClass,Class_All,2; skill "MO_ABSORBSPIRITS",1; if (readparam(bStr)>99) bonus2 bAddClass,Class_All,5; },{},{}
-28437,Hibram's_Gloves,Hibram's Gloves,4,20,,400,,0,,1,0xFFFFFFFF,63,2,136,,90,0,0,{ skill "AL_HEAL",3; bonus bInt,2; bonus bMatkRate,2; bonus bUseSPrate,-5; if (readparam(bInt)>=110) bonus bMatkRate,5; },{},{}
 28438,Fairy_Leaf_Powder,Fairy Leaf Powder,4,20,,400,,0,,1,0xFFFFFFFF,63,2,136,,90,0,0,{ bonus bDex,2; bonus bDelayrate,-5; bonus bLongAtkRate,2; skill "SM_MAGNUM",3; if (readparam(bDex)>=100) bonus bLongAtkRate,5; },{},{}
 28441,Vigilante_Badge,Vigilante Badge,4,0,,200,,0,,0,0x00020000,56,2,136,,100,0,0,{ bonus bFlee,10; bonus bLongAtkRate,5; },{},{}
 28442,Hippie_Feather,Hippie Feather,4,0,,200,,0,,1,0x00080000,56,2,136,,100,0,0,{ bonus bHit,5; bonus bFlee,5; },{},{}
