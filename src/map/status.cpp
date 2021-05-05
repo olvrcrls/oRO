@@ -12109,6 +12109,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 
 /**
  * End all statuses except those listed
+ * This is where the bonus stats are cleared upon death.
  * TODO: May be useful for dispel instead resetting a list there
  * @param src: Source of the status change [PC|MOB|HOM|MER|ELEM|NPC]
  * @param type: Changes behaviour of the function

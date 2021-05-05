@@ -7030,7 +7030,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 		break;
 
 	case SO_STRIKING:
-		if (battle_check_target(src, bl, BCT_SELF|BCT_PARTY) > 0) {
+		// Enabling striking to outside party as long as the target is a guild member.
+		if (battle_check_target(src, bl, BCT_SELF|BCT_PARTY|BCT_GUILD) > 0) {
 			int bonus = 0;
 
 			if (dstsd) {
