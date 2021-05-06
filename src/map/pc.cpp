@@ -8309,14 +8309,14 @@ void pc_battle_info(struct map_session_data *tsd, struct map_session_data *ssd, 
 	// tsd - Killed
 	if (ssd->fd && ssd->state.battleinfo)
 	{
-		sprintf(output,"You killed %s - %s using %s", tsd->status.name, job_name(tsd->status.class_), ( skill_id ? skill_get_desc(skill_id) : "Basic/Reflect/Effect" ));
+		sprintf(output,"You killed %s - %s using [%s]", tsd->status.name, job_name(tsd->status.class_), ( skill_id ? skill_get_desc(skill_id) : "Basic/Reflect/Effect" ));
 		clif_messagecolor(&ssd->bl,color_table[COLOR_CYAN],output,false,SELF);
 		
 	}
 
 	if (tsd->fd && tsd->state.battleinfo)
 	{
-		sprintf(output,"%s - %s killed you using %s.", ssd->status.name, job_name(ssd->status.class_), ( skill_id ? skill_get_desc(skill_id) : "Basic/Reflect/Effect" ));
+		sprintf(output,"%s - %s killed you using [%s].", ssd->status.name, job_name(ssd->status.class_), ( skill_id ? skill_get_desc(skill_id) : "Basic/Reflect/Effect" ));
 		clif_messagecolor(&tsd->bl,color_table[COLOR_RED],output,false,SELF);
 	}
 }
