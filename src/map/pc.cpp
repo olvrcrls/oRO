@@ -8303,22 +8303,21 @@ void pc_battle_info(struct map_session_data *tsd, struct map_session_data *ssd, 
 	char output[256];
 
 	if (!tsd || !ssd || tsd == ssd)
+	return;
+
+	// ssd - Killer
+	// tsd - Killed
+	if (ssd->fd && ssd->state.battleinfo)
 	{
-		/*
-		sprintf(output,"You killed %s [%s] using <%s>.", job_name(ssd->status.class_), ssd->status.name, ( skill_id ? skill_get_desc(skill_id) : "Basic/Reflect/Effect" ));
-		*/
 		sprintf(output,"You killed %s - %s using %s", tsd->status.name, job_name(tsd->status.class_), ( skill_id ? skill_get_desc(skill_id) : "Basic/Reflect/Effect" ));
-		clif_displaymessage(tsd->fd,output);
+		clif_messagecolor(&ssd->bl,color_table[COLOR_CYAN],output,false,SELF);
+		
 	}
 
-	if( tsd->fd && tsd->state.battleinfo )
+	if (tsd->fd && tsd->state.battleinfo)
 	{
-		/*
-		This with the class of the player
-		sprintf(output,"( %s [%s] killed you using <%s> )", job_name(ssd->status.class_), ssd->status.name, ( skill_id ? skill_get_desc(skill_id) : "Basic/Reflect/Effect" ));
-		*/
 		sprintf(output,"%s - %s killed you using %s.", ssd->status.name, job_name(ssd->status.class_), ( skill_id ? skill_get_desc(skill_id) : "Basic/Reflect/Effect" ));
-		clif_displaymessage(tsd->fd,output);
+		clif_messagecolor(&tsd->bl,color_table[COLOR_RED],output,false,SELF);
 	}
 }
 
