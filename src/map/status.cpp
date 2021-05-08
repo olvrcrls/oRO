@@ -8842,14 +8842,15 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 	case SC_OVERTHRUST:
 		if (sc->data[SC_MAXOVERTHRUST])
 			return 0; // Overthrust can't take effect if under Max Overthrust. [Skotlex]
-	case SC_MAXOVERTHRUST:
-		if( sc->option&OPTION_MADOGEAR )
-			return 0; // Overthrust and Overthrust Max cannot be used on Mado Gear [Ind]
-	break;
+	// Enabling mech skills when on mado gear. Uncomment to disable mado gear to use mech skills.
+	// case SC_MAXOVERTHRUST:
+	// 	if( sc->option&OPTION_MADOGEAR )
+	// 		return 0; // Overthrust and Overthrust Max cannot be used on Mado Gear [Ind]
+	// break;
 	case SC_ADRENALINE:
 		if (sc->data[SC_QUAGMIRE] ||
 			sc->data[SC_DECREASEAGI] ||
-			sc->option&OPTION_MADOGEAR // Adrenaline doesn't affect Mado Gear [Ind]
+			// sc->option&OPTION_MADOGEAR // Adrenaline doesn't affect Mado Gear [Ind]
 		)
 			return 0;
 	break;
@@ -8868,13 +8869,14 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 	case SC_TWOHANDQUICKEN:
 		if(sc->data[SC_DECREASEAGI])
 			return 0;
-	case SC_INCREASEAGI:
-	case SC_CONCENTRATE:
+	// If the you want to enable increase agi on mado gear
+	// case SC_INCREASEAGI:
+	// case SC_CONCENTRATE:
 	case SC_SPEARQUICKEN:
 	case SC_TRUESIGHT:
-	case SC_WINDWALK:
-	case SC_CARTBOOST:
-	case SC_ASSNCROS:
+	// case SC_WINDWALK:
+	// case SC_CARTBOOST:
+	// case SC_ASSNCROS:
 		if (sc->option&OPTION_MADOGEAR)
 			return 0; // Mado is immune to Wind Walk, Cart Boost, etc (others above) [Ind]
 		if (sc->data[SC_QUAGMIRE])
