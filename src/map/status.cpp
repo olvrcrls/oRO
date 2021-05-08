@@ -8849,7 +8849,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 	// break;
 	case SC_ADRENALINE:
 		if (sc->data[SC_QUAGMIRE] ||
-			sc->data[SC_DECREASEAGI] ||
+			sc->data[SC_DECREASEAGI]
 			// sc->option&OPTION_MADOGEAR // Adrenaline doesn't affect Mado Gear [Ind]
 		)
 			return 0;
