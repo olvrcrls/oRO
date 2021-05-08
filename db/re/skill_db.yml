@@ -20152,7 +20152,7 @@ Body:
       Splash: true
     Hit: Single
     HitCount: 1
-    Element: Holy
+    Element: Neutral #Previously Holy but it doesn't work when the other pt mates are on holy armor.
     SplashArea: 15
     CastCancel: true
     CastTime: 1000
@@ -20180,7 +20180,7 @@ Body:
       Splash: true
     Hit: Single
     HitCount: 1
-    Element: Holy
+    Element: Neutral #Previously Holy but it doesn't work when the other pt mates are on holy armor.
     SplashArea: 15
     CastCancel: true
     CastTime: 1000
