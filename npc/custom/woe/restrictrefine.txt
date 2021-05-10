@@ -1,3 +1,4 @@
+// Refine restrictions on map
 -	script	Refine Restriction	-1,{
 
 OnInit:
@@ -54,7 +55,7 @@ for( set .@i,0; getarg( .@i,0 ); set .@i,.@i + 2 ){
 		}
 	}
 	if( @Exceed ){
-		mes "Please ensure all the Items above didnt reach the Limit as stated above.";
+		mes "Please ensure all the Items above didnt reach the limit as stated above.";
 		close2;
 		warp "SavePoint",0,0;
 		deltimer strnpcinfo(0)+"::OnPCLoadMapEvent";

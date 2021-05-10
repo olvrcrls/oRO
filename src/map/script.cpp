@@ -10634,6 +10634,37 @@ BUILDIN_FUNC(openstorage)
 	return SCRIPT_CMD_SUCCESS;
 }
 
+/*==========================================
+ * Check if player's storage is open.
+ *------------------------------------------*/
+BUILDIN_FUNC(is_storage_open)
+{
+	struct map_session_data* sd;
+	int ret;
+
+	if( !script_rid2sd(sd) )
+		return SCRIPT_CMD_SUCCESS;
+
+	// check if the storage is open
+	if (sd->state.storage_flag != 0) ret = 1;
+	else ret = 0;
+
+	script_pushint(st,ret);
+	return SCRIPT_CMD_SUCCESS;
+}
+
+BUILDIN_FUNC(close_player_storage)
+{
+	struct map_session_data* sd;
+
+	if( !script_rid2sd(sd) )
+		return SCRIPT_CMD_SUCCESS;
+	
+	if (sd->state.storage_flag != 0) storage_storageclose(sd);
+
+	return SCRIPT_CMD_SUCCESS;
+}
+
 BUILDIN_FUNC(guildopenstorage)
 {
 	TBL_PC* sd;
@@ -26260,6 +26291,8 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(gettime,"i"),
 	BUILDIN_DEF(gettimestr,"si?"),
 	BUILDIN_DEF(openstorage,""),
+	BUILDIN_DEF(is_storage_open, ""),
+	BUILDIN_DEF(close_player_storage,""),
 	BUILDIN_DEF(guildopenstorage,""),
 	BUILDIN_DEF(countstorageitem,"iiiiiiiii?"),
 	BUILDIN_DEF(stor2inv,"iiiiiiiii?"),
