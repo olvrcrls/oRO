@@ -1338,6 +1338,7 @@ ACMD_FUNC(heal)
 	return 0;
 }
 
+
 /*==========================================
  * @item command (usage: @item <itemdid1:itemid2:itemname:..> <quantity>) (modified by [Yor] for pet_egg)
  * @itembound command (usage: @itembound <name/id_of_item> <quantity> <bound_type>)
@@ -7178,7 +7179,7 @@ ACMD_FUNC(refresh)
 	nullpo_retr(-1, sd);
 	if(DIFF_TICK(sd->canrefresh_tick,tick) > 0)
 	{
-		clif_displaymessage(fd,"@refresh command is still on cooldown.");
+		clif_displaymessage(fd,"@refresh is still on cooldown.");
 		return 0;
 	} else {
 		clif_refresh(sd);
@@ -10371,7 +10372,8 @@ ACMD_FUNC(partybuff)
 
 	clif_party_info(p, sd);
 	return 0;
-}
+} // party buff / show buffs
+
 
 #include "../custom/atcommand.inc"
 
@@ -10665,7 +10667,6 @@ void atcommand_basecommands(void) {
 		ACMD_DEF(fontcolor),
 		ACMD_DEF(langtype),
 		ACMD_DEF(battlestats), // battlestats command
-		ACMD_DEF(battleinfo),
 #ifdef VIP_ENABLE
 		ACMD_DEF(vip),
 		ACMD_DEF(showrate),

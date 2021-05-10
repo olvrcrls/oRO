@@ -26,7 +26,7 @@ ACMD_FUNC(battleinfo)
 	if (sd->state.battleinfo)
 	{
 		clif_displaymessage(fd, "- Battle Information Display OFF - Kill/Death -");
-		sd->state.battleinfo = 0; // TODO need to define state.battleinfo in status.cpp
+		sd->state.battleinfo = 0;
 	}
 	else
 	{
@@ -244,6 +244,7 @@ ACMD_FUNC(guildskill)
 	if( skilllv ) unit_skilluse_id(&sd->bl, sd->bl.id, skillnum, skilllv);
 	return 0;
 }
+
 ACMD_FUNC(bgranking)
 {
 	int i;
