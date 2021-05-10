@@ -1,0 +1,131 @@
+//===== rAthena Script ======================================= 
+//= @restock command
+//===== By: ==================================================
+//= Mastagoon
+//===== Description: =========================================
+//= @restock command to get certain items from your storage
+//===== Current Version: =====================================
+//= 1.0
+//===== TODO: ================================================
+//=	@restock SNAPSHOT
+//============================================================
+-	script	restock_atcmd	-1,{	
+function	addSpace	{
+	set .@space$, "";
+	for(.@i = 1; .@i <= getarg(0); .@i++) {
+		set .@space$, .@space$+" ";
+	}
+	return .@space$;
+}
+
+function	showRestockHelp	{
+	dispbottom "Command Usage : ";
+	dispbottom "@restock add <itemid> <quantity> : add item to restock list";
+	dispbottom "@restock +<itemid> <quantity> : add item to restock list";
+	dispbottom "@restock remove <itemid> : remove item from restock list";
+	dispbottom "@restock -<itemid> <quantity> : add item to restock list";
+	dispbottom "@restock list : show current restock list";
+	dispbottom "@restock reset : reset restock list";
+	dispbottom "@restock help/h : show this help menu";
+}
+
+OnInit:
+	setarray .allowedtypes[0],0,2,3,11; //healing,usable,etc,delayed usable
+	bindatcmd "restock",strnpcinfo(3)+"::OnAtcommand";
+	end;
+
+OnAtcommand:
+	if (getmapflag(strcharinfo(3), mf_town)) {
+		switch(.@atcmd_numparameters) {
+			case 0:	// @restock command
+				if(getarraysize(RestockList) == 0) {
+					dispbottom "Your restock list is empty.";
+				}
+				for(.@i = 0; .@i < getarraysize(RestockList); .@i++) {
+					.@amount = RestockAmountList[.@i] - countitem(RestockList[.@i]);
+					if(storagecountitem(RestockList[.@i])  >= .@amount) {
+						getitem RestockList[.@i],.@amount;
+						storagedelitem RestockList[.@i],.@amount; // successful @restock
+						message strcharinfo(0), "Successfully restocked your items.";
+					} else {
+						message "Restocking ["+getitemname(RestockList[.@i])+"] failed you don't have enough items.";
+					}
+				}
+				break;
+			case 1:
+				if(strtolower(.@atcmd_parameters$[0]) == "list") { // get restock list
+					if(getarraysize(RestockList) == 0) {
+						message strcharinfo(0), "Your restock list is empty.";
+						end;
+					}
+					dispbottom "ID"+addSpace(32)+"Name"+addSpace(33)+"Quantity";
+					dispbottom "============================================";
+					for(.@i = 0; .@i < getarraysize(RestockList); .@i++) {
+						.@item_name$ = getitemname(RestockList[.@i]);
+						dispbottom RestockList[.@i]+addSpace(30-getstrlen(.@i+""))+.@item_name$+addSpace(36-
+						getstrlen(.@item_name$))+RestockAmountList[.@i];
+					}
+				} else if (strtolower(.@atcmd_parameters$[0]) == "reset") {	// reset restock list
+					deletearray RestockList[0],getarraysize(RestockList);
+					deletearray RestockAmountList[0],getarraysize(RestockAmountList);
+					dispbottom "Your restock list have been reset.";
+				} else if (strtolower(.@atcmd_parameters$[0]) == "help" || strtolower(.@atcmd_parameters$[0]) == "h") {
+					showRestockHelp();
+				} else if (strtolower(.@atcmd_parameters$[0]) == "snapshot") {
+					dispbottom "@restock snapshot is still in progress. It will be implemented soon™️.";
+				}
+				break;
+			case 2:
+				if(strtolower(.@atcmd_parameters$[0]) != "remove" && .@atcmd_parameters$[0] != "-") {
+					showRestockHelp();
+					end;
+				}
+				.@item = atoi(.@atcmd_parameters$[1]);
+				if(getitemname(.@item) == "null") {
+					message strcharinfo(0), "This item does not exist. (Item ID: "+.@item+")";
+					end;
+				}
+				.@index = inarray(RestockList, .@item);
+				if(.@index == -1) {	//item is not in the list
+					message strcharinfo(0), "This item is not on your restock list.";
+					end;
+				}
+				deletearray RestockList[.@index],1;
+				deletearray RestockAmountList[.@index],1;
+				dispbottom "Item: "+getitemname(.@item)+" deleted succesfully from your restock list!";
+				break;
+			case 3:
+				.@item = atoi(.@atcmd_parameters$[1]);
+				.@quantity = atoi(.@atcmd_parameters$[2]);
+				if((strtolower(.@atcmd_parameters$[0]) != "add" && .@atcmd_parameters$[0] != "+") || !.@item || !.@quantity) {
+					dispbottom "Invalid command for @restock.";
+					showRestockHelp();
+					break;
+				}
+
+				if(getitemname(.@item) == "null"){
+					dispbottom "This item does not exist. (id "+.@item+")";
+				} else if(inarray(.allowedtypes[0],getiteminfo(.@item,2)) == -1) {
+					dispbottom "You cannot restock this type of item.";
+					break;
+				} else if(inarray(RestockList[0],.@item) >= 0) {
+					dispbottom "Item '"+getitemname(.@item)+"' (id:"+.@item+") already in list.";
+					break;
+				} else if(.@quantity < 1 || .@quantity > 500) {
+					dispbottom "Please enter valid quantity value (1 - 500)";
+					break;
+				}
+				//passed all checks
+				setarray RestockList[getarraysize(RestockList)],.@item;
+				setarray RestockAmountList[getarraysize(RestockAmountList)],.@quantity;
+				message strcharinfo(0), "["+getitemname(.@item)+"] "+.@quantity+" pcs added to your restock list.";
+				break;
+			default:
+				showRestockHelp();
+				break;
+		}
+	} else {
+		dispbottom "@restock can only be used at towns!";
+	}
+	end;
+}
