@@ -7604,31 +7604,34 @@ void clif_party_info(struct party_data* p, struct map_session_data *sd)
 	WBUFW(buf,2) = PRE_SIZE+c*M_SIZE+6;
 #endif
 
-	if(sd) { // send only to self
-		clif_send(buf, WBUFW(buf,2), &sd->bl, SELF);
-	} else if (party_sd) { // send to whole party
-		clif_send(buf, WBUFW(buf,2), &party_sd->bl, PARTY);
-	}
+	// if(sd) { // send only to self
+	// 	clif_send(buf, WBUFW(buf,2), &sd->bl, SELF);
+	// } else if (party_sd) { // send to whole party
+	// 	clif_send(buf, WBUFW(buf,2), &party_sd->bl, PARTY);
+	// }
 
 	for (i = 0, c = 0; i < MAX_PARTY; i++)
 	{
 		if ((target = p->data[i].sd)) {
-			strcpy(output, "[");
-			if (target->sc.data[SC_BLESSING]) strcat(output, "B");
-			else strcat(output, "_");
-			if (target->sc.data[SC_INCREASEAGI]) strcat(output, "A");
-			else strcat(output, "_");
+			strcpy(output, "(");
+			if (target->sc.data[SC_BLESSING] && target->sc.data[SC_INCREASEAGI]) {
+				strcat(output, "\u00b1");
+			} else {
+				if (target->sc.data[SC_BLESSING]) strcat(output, "+");
+				if (target->sc.data[SC_INCREASEAGI]) strcat(output, "-");
+			} // check if target has both buffs of bless and agi first
+
+			if (target->sc.data[SC_STRIKING]) strcat(output, "!");
+			if (target->sc.data[SC_PNEUMA]) strcat(output, "P");
+			if (target->sc.data[SC_EXPIATIO]) strcat(output, "x");
+
+			if (target->sc.data[SC_ASPERSIO]) strcat(output, "\u0914");
+
 			if (target->sc.data[SC_CP_WEAPON] && target->sc.data[SC_CP_SHIELD] && target->sc.data[SC_CP_ARMOR] && target->sc.data[SC_CP_HELM]) strcat(output, "F");
-			else strcat(output, "_");
-			if (target->sc.data[SC_SPIRIT]) strcat(output, "S");
-			else strcat(output, "_");
+			// if (target->sc.data[SC_SPIRIT]) strcat(output, "S");
 			if (target->sc.data[SC_DEVOTION]) strcat(output, "D");
-			else strcat(output, "_");
 			if (target->sc.data[SC_SECRAMENT]) strcat(output, "$");
-			else strcat(output, "_");
-			if (target->sc.data[SC_ASPERSIO]) strcat(output, "+");
-			else strcat(output, "_");
-			strcat(output, "]");
+			strcat(output, ") ");
 			strncat(output, target->status.name, NAME_LENGTH);
 			safestrncpy(WBUFCP(buf, PRE_SIZE + i * M_SIZE + 4), output, NAME_LENGTH);
 		}
