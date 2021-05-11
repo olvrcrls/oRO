@@ -10368,6 +10368,12 @@ ACMD_FUNC(partybuff)
 	else {
 		sd->state.spb = 1;
 		clif_displaymessage(fd, msg_txt(sd, 1073)); // Displaying party member's buffs enabled.
+		clif_displaymessage(fd, "You will now receive party buff information:");
+		clif_displaymessage(fd, "F = Full Chemical Protection");
+		clif_displaymessage(fd, "+ = Blessing, - = Agility Up, \u00b1 = Blessing and Agility Up");
+		clif_displaymessage(fd, "$ = Sacrament, \u0914 = Aspersio");
+		clif_displaymessage(fd, "x = Expiatio, D = Devotion");
+		clif_displaymessage(fd, "P = Pneuma, ! = Striking");
 	}
 
 	clif_party_info(p, sd);
@@ -10395,6 +10401,7 @@ void atcommand_basecommands(void) {
 		ACMD_DEF2R("warp", mapmove, ATCMD_NOCONSOLE),
 		ACMD_DEF(partybuff), // [Vykimo]
 		ACMD_DEF2("spb", partybuff), // [Vykimo]
+		ACMD_DEF2("showbuffs", partybuff), // [Vykimo]
 		ACMD_DEF(where),
 		ACMD_DEF(jumpto),
 		ACMD_DEF(jump),
