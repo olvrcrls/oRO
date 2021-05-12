@@ -46,7 +46,6 @@ OnAtcommand:
 							for(.@i = 0; .@i < getarraysize(RestockList); .@i++) {
 								.@amount = RestockAmountList[.@i] - countitem(RestockList[.@i]);
 								.@storage_count = storagecountitem(RestockList[.@i]);
-								dispbottom "Storage count: " + .@storage_count + " and restock list amount: " + .@amount;
 								if (.@storage_count > 0) {
 									if (.@storage_count < .@amount) .@amount = .@storage_count;
 
