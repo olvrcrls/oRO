@@ -7604,12 +7604,12 @@ void clif_party_info(struct party_data* p, struct map_session_data *sd)
 	WBUFW(buf,2) = PRE_SIZE+c*M_SIZE+6;
 #endif
 
-	// if(sd) { // send only to self
-	// 	clif_send(buf, WBUFW(buf,2), &sd->bl, SELF);
-	// } else if (party_sd) { // send to whole party
-	// 	clif_send(buf, WBUFW(buf,2), &party_sd->bl, PARTY);
-	// }
-
+	if(sd) { // send only to self
+		clif_send(buf, WBUFW(buf,2), &sd->bl, SELF);
+	} else if (party_sd) { // send to whole party
+		clif_send(buf, WBUFW(buf,2), &party_sd->bl, PARTY);
+	}
+	
 	for (i = 0, c = 0; i < MAX_PARTY; i++)
 	{
 		if ((target = p->data[i].sd)) {
