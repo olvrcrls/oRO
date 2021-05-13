@@ -10371,7 +10371,7 @@ ACMD_FUNC(partybuff)
 		clif_displaymessage(fd, "You will now receive party buff information:");
 		clif_displaymessage(fd, "F = Full Chemical Protection");
 		clif_displaymessage(fd, "+ = Blessing, - = Agility Up, \u00b1 = Blessing and Agility Up");
-		clif_displaymessage(fd, "$ = Sacrament, \u0914 = Aspersio");
+		clif_displaymessage(fd, "$ = Sacrament, ? = Aspersio");
 		clif_displaymessage(fd, "x = Expiatio, D = Devotion");
 		clif_displaymessage(fd, "P = Pneuma, ! = Striking");
 	}

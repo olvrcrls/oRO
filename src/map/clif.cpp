@@ -7625,7 +7625,7 @@ void clif_party_info(struct party_data* p, struct map_session_data *sd)
 			if (target->sc.data[SC_PNEUMA]) strcat(output, "P");
 			if (target->sc.data[SC_EXPIATIO]) strcat(output, "x");
 
-			if (target->sc.data[SC_ASPERSIO]) strcat(output, "\u0914");
+			if (target->sc.data[SC_ASPERSIO]) strcat(output, "?");
 
 			if (target->sc.data[SC_CP_WEAPON] && target->sc.data[SC_CP_SHIELD] && target->sc.data[SC_CP_ARMOR] && target->sc.data[SC_CP_HELM]) strcat(output, "F");
 			// if (target->sc.data[SC_SPIRIT]) strcat(output, "S");
