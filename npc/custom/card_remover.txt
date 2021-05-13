@@ -16,8 +16,8 @@
 
 askald,70,112,3	script	Wise Old Woman#eAcustom	78,{
 
-	set .zenycost,10;    // base cost of the card remover services (in Zeny)
-	set .percardcost,10;  // cost per card of the card remover services (in Zeny)
+	set .zenycost,2200000;    // base cost of the card remover services (in Zeny)
+	set .percardcost,0;  // cost per card of the card remover services (in Zeny)
 	set .faildestroy,0;      // should the card remover have a chance of failure that destroys items? (1=yes, 0=no)
 
 	disable_items;
@@ -59,37 +59,52 @@ askald,70,112,3	script	Wise Old Woman#eAcustom	78,{
 			close;
 		}
 		mes "[Wise Old Woman]";
-		mes "This item has " + .@cardcount + " cards compounded on it. To perform my magic, I will need " + (.zenycost+(.@cardcount * .percardcost)) + " zeny, a ^0000FFStar Crumb^000000, and a ^0000FFYellow Gemstone^000000.";
+		// mes "This item has " + .@cardcount + " cards compounded on it. To perform my magic, I will need " + (.zenycost+(.@cardcount * .percardcost)) + " zeny, a ^0000FFStar Crumb^000000, and a ^0000FFYellow Gemstone^000000.";
+		mes "This item has " + .@cardcount + " cards compounded on it. To perform my magic, I will need ^0000FF" + (.zenycost+(.@cardcount * .percardcost)) + "^000000 zeny.";
 		next;
 		if(select("Very well. Do it.:Never mind.") == 2) {
 			mes "[Wise Old Woman]";
 			mes "Very well. Return at once if you seek my services.";
 			close;
 		}
-		if((zeny < (.zenycost+(.@cardcount * .percardcost))) || (countitem(1000) < 1) || (countitem(715) < 1)) {
+		// if((zeny < (.zenycost+(.@cardcount * .percardcost))) || (countitem(1000) < 1) || (countitem(715) < 1)) { // to require starcrumb and yellow gemstone
+		if ((zeny < (.zenycost+(.@cardcount * .percardcost)))) {
 			mes "[Wise Old Woman]";
 			mes "You do not have all the items I require to work my magic, child. Come again when you do.";
 			close;
 		}
 		mes "[Wise Old Woman]";
-		mes "Before I begin, I must warn you--I may fail. If I do, I may destroy the cards, the item, or both. I do not give refunds. That being said, which is more important to you: The cards, or the item?";
+		mes "Before I begin, I must warn you--I may fail. If I do, I may DESTROY the cards, the item, or both. I do not give refunds. That being said, which is more important to you: The cards, or the item?";
+		mes "Just joking, there is no failure chance. I am no amateur.";
 		next;
-		switch(select("I changed my mind about this.:The item.:The cards.")) {
+		// switch(select("I changed my mind about this.:The item.:The cards.")) {
+		switch(select("Proceed.:I changed my mind about this.")) {
 		case 1:
+			mes "[Wise Old Woman]";
+			// mes "Very well. Return at once if you seek my services.";
+			mes "I shall proceed doing my magic.";
+			next;
+			break;
+		case 2:
 			mes "[Wise Old Woman]";
 			mes "Very well. Return at once if you seek my services.";
 			close;
-		case 2:
-			set .@failtype,1;
 			break;
-		case 3:
-			set .@failtype,2;
+		// case 2:
+		//	set .@failtype,1;
+		//	break;
+		// case 3:
+		//	set .@failtype,2;
+		//	break;
 		}
 		mes "[Wise Old Woman]";
-		mes "Very well. I shall begin.";
+		mes "Very well. I shall begin...";
+		next;
+		mes "[Wise Old Woman]";
+		mes "Oh my goodness, it broke!";
 		set Zeny, Zeny - (.zenycost+(.@cardcount * .percardcost));
-		delitem 1000,1; //Star_Crumb
-		delitem 715,1; //Yellow_Gemstone
+		// delitem 1000,1; //Star_Crumb
+		// delitem 715,1; //Yellow_Gemstone
 		
 		// Replace the constants in the next 3 lines with failure chance values defined in refine_db.txt
 		// First value = Total failure chance (item and cards destroyed)
@@ -123,19 +138,20 @@ askald,70,112,3	script	Wise Old Woman#eAcustom	78,{
 					close;
 				}
 			}
+
+			if(.@failchance < 10) {
+				next;
+				failedremovecards .@part,3;
+				mes "[Wise Old Woman]";
+				mes "I have failed to remove the cards. Luckily, however, both the item and the cards are still okay.";
+				close;
+			}
 		}
 
-		if(.@failchance < 10) {
-			next;
-			failedremovecards .@part,3;
-			mes "[Wise Old Woman]";
-			mes "I have failed to remove the cards. Luckily, however, both the item and the cards are still okay.";
-			close;
-		}
 		next;
 		successremovecards .@part;
 		mes "[Wise Old Woman]";
-		mes "The process was a success. Here are your cards and your item. Farewell.";
+		mes "Just joking the process was a success. Here are your cards and your item. Farewell, noob.";
 		close;
 	case 2:
 		mes "[Wise Old Woman]";
