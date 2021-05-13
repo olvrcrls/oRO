@@ -1,4 +1,4 @@
--	script	RandomItem	-1,{
+-	script	BlankCard	-1,{
 	OnNPCKillEvent:
 		// if (rand(99) > 9 || strnpcinfo(3) != "prt_fild01") end; // 10% chance of success, only works on prt_fild01
 	
