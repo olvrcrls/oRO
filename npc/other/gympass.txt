@@ -148,3 +148,5 @@ askald,67,117,4	script	Ripped Cabus#GymPass	899,{
 		}
 	}
 }
+
+payon,170,144,4	duplicate(Ripped Cabus#GymPass)	Ripped Cabus#pay	899
