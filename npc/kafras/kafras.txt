@@ -112,6 +112,19 @@ aldeba_in,96,181,4	script	Kafra Service	113,{
 	end;
 }
 
+askald,134,115,4	script	Kafra Employee::kaf_askald	117,{
+	cutin "kafra_05",2;
+	callfunc "F_KafSet";
+	mes "[Kafra Employee]";
+	mes "The Kafra Corporation";
+	mes "is always working to provide";
+	mes "you with convenient services.";
+	mes "How may I be of assistance?";
+	callfunc "F_Kafra",5,0,1,20,600;
+	savepoint "askald",128,114,1,1;
+	callfunc "F_KafEnd",0,1,"in the city of Askald.";
+}
+
 aldebaran,143,119,4	script	Kafra Employee::kaf_aldebaran	113,{
 	cutin "kafra_05",2;
 	callfunc "F_KafSet";
