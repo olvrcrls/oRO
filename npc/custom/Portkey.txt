@@ -1,31 +1,31 @@
 -	script	Portkey	-1,{
 	//set .n$ = '[Portkey]';
 	mes .n$;
-	//mes "Where would you like to go?";
+	mes "Where would you like to go?";
 	//next;
-	switch(select("Town Square:Training Grounds:Enchanters:Item Shops:Refiner:Stylist:Close")){
+	switch(select("Town Square:Supply Shops:Enchant Items:Clans:Refiner/Card Removal:Training Grounds:Stylist/Echanters:Close")){
 		case 1: // Town Square
 			mes "[Portkey]";
 			mes "Hold on! I'll take you there in a jiffy.";
 			close2;
-			warp "askald",125,119;
+			warp "askald",128,114;
 			end;
-		case 2: // Training Grounds
+		case 2: // Supply Shops
 			mes "[Portkey]";
 			mes "Hold on! I'll take you there in a jiffy.";
+			warp "askald",64,144;
 			close2;
-			warp "askald",145,56;
 			end;
-		case 3: // Enchanters
+		case 3: // Enchant Items
 			mes "[Portkey]";
 			mes "Hold on! I'll take you there in a jiffy.";
 			warp "askald",32,166;
 			close2;
 			end;
-		case 4: // Mall
+		case 4: // Clans
 			mes "[Portkey]";
 			mes "Hold on! I'll take you there in a jiffy.";
-			warp "askald",64,144;
+			warp "askald",135,157;
 			close2;
 			end;
 		case 5: // Refiner
@@ -34,7 +34,13 @@
 			warp "askald",64,109;
 			close2;
 			end;
-		case 6:
+		case 6: // Training Grounds
+			mes "[Portkey]";
+			mes "Hold on! I'll take you there in a jiffy.";
+			close2;
+			warp "askald",145,56;
+			end;
+		case 7:
 			mes "[Portkey]";
 			mes "Hold on! I'll take you there in a jiffy.";
 			warp "askald",159,242;
@@ -55,3 +61,4 @@ askald,32,161,0	duplicate(Portkey)	Portkey#en	723
 askald,55,138,0	duplicate(Portkey)	Portkey#ml	723
 askald,55,99,0	duplicate(Portkey)	Portkey#rf	723
 askald,167,240,0	duplicate(Portkey)	Portkey#st	723
+askald,142,156,0	duplicate(Portkey)	Portkey#st	723
