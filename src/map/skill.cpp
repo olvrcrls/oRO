@@ -16088,6 +16088,16 @@ bool skill_check_condition_castbegin(struct map_session_data* sd, uint16 skill_i
 			break;
 		case SC_MANHOLE:
 		case SC_DIMENSIONDOOR:
+			if (map_flag_gvg2(sd->bl.m)) {
+				if (map_foreachinallrange(mob_count_sub, &sd->bl, 15, BL_MOB,
+					MOBID_EMPERIUM, MOBID_GUARDIAN_STONE1, MOBID_GUARDIAN_STONE2)) {
+					char output[128];
+
+					sprintf(output,"%s",msg_txt(sd,382)); // You're too close to a stone or emperium to use this skill.
+					clif_messagecolor(&sd->bl,color_table[COLOR_RED], output, false, SELF);
+					return false;
+				}
+			}
 			if( sc && sc->data[SC_MAGNETICFIELD] ) {
 				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 				return false;
