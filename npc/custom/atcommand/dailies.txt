@@ -113,7 +113,7 @@ OnLoginCmnd:
 				.@time = gettime(DT_YEAR) * 60 * 24 * 365 + gettime(DT_DAYOFYEAR) * 60 * 24 + gettime(DT_HOUR) * 60 + gettime(DT_MINUTE);
 				if(.@time < @logintime + .Rest){
 					.@delay = @logintime + .Rest - .@time;
-					message strcharinfo(0),"[Dailies NPC]: to collect reward you must remain logged in for "+callfunc("F_InsertPlural",.@delay,"more minute")+".";
+					message strcharinfo(0),"[Dailies NPC]: Please remain logged in for "+callfunc("F_InsertPlural",.@delay,"more minute")+" to get your Daily Rewards.";
 					continue;
 				}	
 			}
@@ -122,7 +122,7 @@ OnLoginCmnd:
 			explode(.@XT$,.Rewards$[.@NextDay],",");
 		}
 		if(checkvending() & 2 && .Mode & 256){
-			message strcharinfo(0),"[Dailies NPC]: Venders cannot recive rewards.";
+			message strcharinfo(0),"[Dailies NPC]: Venders cannot receive rewards.";
 			end;
 		}
 		.@Size = getarraysize(.@XT$);
