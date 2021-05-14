@@ -1,0 +1,1 @@
+UPDATE `item_db_re` SET `price_sell` = '500000' WHERE (`id` = '6187');
