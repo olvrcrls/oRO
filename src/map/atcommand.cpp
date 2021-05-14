@@ -10605,6 +10605,7 @@ void atcommand_basecommands(void) {
 		ACMD_DEF2("ii", iteminfo),
 		ACMD_DEF(whodrops),
 		ACMD_DEF(whereis),
+		ACMD_DEF2("wi", whereis),
 		ACMD_DEF(mapflag),
 		ACMD_DEF(me),
 		ACMD_DEF(monsterignore),
