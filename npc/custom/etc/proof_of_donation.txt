@@ -1,0 +1,9 @@
+-	script	FreeProofOfDonation	-1,{
+	OnNPCKillEvent:
+		set .@rng,rand(1,99);
+		if (.@rng == 1) {
+			getitem 7179,1;
+			end;
+		}
+	}
+	
