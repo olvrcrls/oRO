@@ -31723,7 +31723,7 @@ Body:
     TargetType: Attack
     DamageFlags:
       Splash: true
-    Range: 7
+    Range: -1
     Hit: Single
     HitCount: 1
     Element: Weapon
