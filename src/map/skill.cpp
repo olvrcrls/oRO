@@ -1949,7 +1949,8 @@ int skill_additional_effect(struct block_list* src, struct block_list *bl, uint1
 		break;
 	case GN_ILLUSIONDOPING:
 		if( sc_start(src,bl,SC_ILLUSIONDOPING,100 - skill_lv * 10,skill_lv,skill_get_time(skill_id,skill_lv)) )
-			sc_start(src,bl,SC_HALLUCINATION,100,skill_lv,skill_get_time(skill_id,skill_lv));
+			// sc_start(src,bl,SC_HALLUCINATION,100,skill_lv,skill_get_time(skill_id,skill_lv));
+			sc_start(src,bl,SC_CONFUSION,100,skill_lv,50000);
 		break;
 
 	case RL_MASS_SPIRAL:
