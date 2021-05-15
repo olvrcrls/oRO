@@ -8,21 +8,34 @@ OnPointGet:
 	while(checkvending() >= 1 || checkchatting() == 1 || checkidle()>=.dlimit) {
 		sleep2 .delay;
 		if(.@mes$=="")
-			dispbottom set(.@mes$,"You have stopped receiving reward points because you were vending, chatting, or idle.");
+			dispbottom set(.@mes$,"You are not receiving reward points because you are either vending, chatting, or idle.");
 	}
 
-	set #CASHPOINTS, #CASHPOINTS + .point_amt;
-	dispbottom "You received "+.point_amt+" CP by staying ingame for 1 hour";
-	dispbottom "Current Balance = "+#CASHPOINTS+" CP";
+	// set #CASHPOINTS, #CASHPOINTS + .point_amt;
+	getitem 7179,1;
+	dispbottom "You received 1 Proof of Donation by staying in game for an hour.";
+	// dispbottom "Current Balance = "+#CASHPOINTS+" CP";
 	set @consecutive_hour, @consecutive_hour + 1;
 
-	//Check for 3 hours consecutive
-	if(@consecutive_hour == 3) {
-		set @consecutive_hour,0;
-		set #CASHPOINTS, #CASHPOINTS + .cpoint_amt;
-		dispbottom "You receive "+.cpoint_amt+" SEA CPM in playing for 12 consecutive hours";
-		dispbottom "Current Balance = "+#CASHPOINTS+" SEA CPM";
+	//Check for 8 hours consecutive
+	if (@consecutive_hour == 8) {
+		getitem 7179,50;
+		dispbottom "You're treating this game like work. Here's your salary:";
+		dispbottom "You received 50 Proof of Donation by staying in game for 8 hours.";
+
+		// set #CASHPOINTS, #CASHPOINTS + .cpoint_amt;
+		// dispbottom "You receive "+.cpoint_amt+" SEA CPM in playing for 12 consecutive hours";
+		// dispbottom "Current Balance = "+#CASHPOINTS+" SEA CPM";
 	}
+
+	// Check if the character have logged in for 12 hours straight. Crazy people.
+	if (@consecutive_hour == 12) {
+		set @consecutive_hour,0;
+		getitem 7179, 100;
+		dispbottom "Wow, do you have a life?";
+		dispbottom "Anyway, thank you for staying active in game for 12 hours. You have 100 Proof of Donation!";
+	}
+	
 	addtimer .timer,"hourlypoints::OnPointGet";
 	end;
 
@@ -31,5 +44,5 @@ OnInit:
 	set .cpoint_amt, 50; //Points gained for consecutive time online.
 	set .point_amt, 10; //Normal points gained.
 	set .delay, 500; //Delay for idle re-check check.
-	set .dlimit, 60*10; //Stop points if afk greater then in seconds.
+	set .dlimit, 3540; //Stop points if afk greater then in seconds / 59 minutes.
 }
