@@ -108,7 +108,7 @@ L_Next:
 	else if(.@nbr_joueurPVP >=1) 
 		waitingroom .@nbr_joueurPVP + " Player"+(.@nbr_joueurPVP>1?"s":"")+" in PVP",0;
 	else
-		waitingroom "No players",0;
+		waitingroom "No Players",0;
 	initnpctimer;
 	end;
 	
@@ -139,8 +139,8 @@ OnBGGlobalStart:
 	
 L_Sortir:
 	close2;
-	dispbottom "[ Exit ] : Going back town in 3seconds.";
-	progressbar "green",3;
+	dispbottom "[ Exit ] : Going back town in 5 seconds.";
+	progressbar "green",5;
 	warp "SavePoint",0,0;
 	end;
 	
