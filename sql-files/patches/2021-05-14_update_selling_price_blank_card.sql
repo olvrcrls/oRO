@@ -1,1 +1,1 @@
-UPDATE `item_db_re` SET `price_sell` = '500000' WHERE (`id` = '6187');
+UPDATE `item_db_re` SET `price_sell` = '500000', `weight` = 0 WHERE (`id` = '6187');
