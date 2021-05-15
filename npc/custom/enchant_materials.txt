@@ -7,8 +7,8 @@
 //	Type:		Custom NPC Script for Enchant Materials
 //--------------------------------------------------------------------------------------------------------------------//
 
-askald,35,161,4	script	Enchant Mats	406,{
-	mes "[Enchant Mats]";
+askald,35,161,4	script	Enchant Materials	900,{
+	mes "[Enchant Material Gatherer]";
 	mes "Howdy!!";
 	mes "Which enchanter are you planning to use today?";
 	next;

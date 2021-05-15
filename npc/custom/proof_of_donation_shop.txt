@@ -1,0 +1,90 @@
+//===== eAthena Script =======================================
+//= Custom-Currency Multi-Shop
+//===== By: ==================================================
+//= Euphy
+//===== Current Version: =====================================
+//= 1.2
+//===== Description: =========================================
+//= Allows for better organization in a single shop call.
+//= Note that there are two configuration areas.
+//============================================================
+
+// -------------------- Config 1 --------------------
+// For each shop added, copy this MSHOPX dummy data.
+// Write your shop names in the select() function.
+
+-	shop	PSHOP1	-1,512:-1
+-	shop	PSHOP2	-1,512:-1
+-	shop	PSHOP3	-1,512:-1
+-	shop	PSHOP4	-1,512:-1
+-	shop	PSHOP5	-1,512:-1
+-	shop	PSHOP6	-1,512:-1
+-	shop	PSHOP7	-1,512:-1
+-	shop	PSHOP8	-1,512:-1
+
+askald,138,109,4	script	Donation Exchanger	871,{
+
+	set @s, select("Consumables:Headgears:Armors:Garments:Shoes:Shields:Cards:Misc");
+
+// --------------------------------------------------
+
+	message strcharinfo(0),"This shop only accepts "+getitemname(.Currency[@s])+".";
+	dispbottom "You have "+countitem(.Currency[@s])+" "+getitemname(.Currency[@s])+".";
+	callshop "PSHOP"+@s,1;
+	npcshopattach "PSHOP"+@s;
+	end;
+
+OnBuyItem:
+	set .@i,0;
+	while (.@i < getarraysize(@bought_nameid)) {
+		set .@j, 0;
+		while (.@j < getarraysize(getd(".Pod"+@s))) {
+			if(getd(".Pod"+@s+"["+.@j+"]") == @bought_nameid[.@i]) {
+				set @itemcost, (getd(".Pod"+@s+"["+(.@j+1)+"]") * @bought_quantity[.@i]);
+				set @totalcost, @totalcost + @itemcost;
+				break; }
+			set .@j, .@j+2; }
+		set .@i, .@i+1; }
+	if (@totalcost > countitem(.Currency[@s])) dispbottom "You don't have enough "+getitemname(.Currency[@s])+".";
+	else {
+		set .@i,0;
+		while (.@i < getarraysize(@bought_nameid)) {
+			getitem @bought_nameid[.@i], @bought_quantity[.@i];
+			dispbottom "Purchased "+@bought_quantity[.@i]+"x "+getitemname(@bought_nameid[.@i])+".";
+			set .@i, .@i+1; }
+		delitem .Currency[@s], @totalcost; }
+	set @totalcost, 0;
+	deletearray @bought_nameid[0], 128;
+	deletearray @bought_quantity[0], 128;
+	end;
+
+OnInit:
+
+// -------------------- Config 2 --------------------
+// Currency:  The ID of each shop currency,
+//    in the same order as the shops.
+// Shop order follows that of the select() call,
+//   and is formatted "ID1,Count1,ID2,Count2,..."
+
+	setarray .Currency[1],7179,7179,7179,7179,7179,7179,7179,7179; // Currencies per shop
+	setarray .Pod1[0],14646,1,1229,20; // Consumable items
+	setarray .Pod2[0],5116,15; // Headgears
+	setarray .Pod3[0],2302,2,2348,30; // Armors
+	setarray .Pod4[0],2502,2,2513,15,2523,15; // Garments
+	setarray .Pod5[0],2441,15; // Shoes
+	setarray .Pod6[0],2199,32768; // Shields
+	setarray .Pod7[0],4051,3,4285,6; // Cards
+	setarray .Pod8[0],513,1,532,2,634,4; // Misc
+
+// --------------------------------------------------
+
+	set .@i,1;
+	while (.@i <= getarraysize(.Currency)) {
+		set .@j,0;
+		while (.@j < getarraysize(getd(".Pod"+.@i))) {
+			npcshopdelitem "PSHOP"+.@i,7179;
+			npcshopadditem "PSHOP"+.@i, getd(".Pod"+.@i+"["+.@j+"]"), getd(".Pod"+.@i+"["+(.@j+1)+"]");
+			set .@j, .@j+2; }
+		set .@i, .@i+1; }
+	end;
+}

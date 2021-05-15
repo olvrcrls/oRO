@@ -1,9 +1,10 @@
 //--------------------------- Instance Shop --------------------------------//
 
-askald,29,161,4	script	INSTANSE#jin	964,{
-	mes "[INSTANSE]";
+askald,29,161,4	script	Top PvMer#jin	964,{
+	mes "[Top PvMer]";
 	mes "Hello there!";
-	mes "I have shops for all the instances.";
+	mes "I'm the top PvMer of this server!";
+	mes "I have shops for all the instances for its all of its materils.";
 	mes "They are sorted alphabetically.";
 	mes "Choose from the below menu.";
 	next;

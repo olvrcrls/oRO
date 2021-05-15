@@ -3,7 +3,7 @@ askald,157,248,4	script	Change Dress	509,{
 		mes "I'm sorry, but you do not have 3rd class.";
 		close;
 	}
-	mes "Hi "+strcharinfo(0)+" do you want to change your dress?";
+	mes "Hi "+strcharinfo(0)+" do you want to change your outfit?";
 	next;
 	if ( select ( "Yes", "No" ) == 2 ) close;
 	if ( Zeny < 10 ) {
