@@ -1,0 +1,41 @@
+//--------
+// Author: Andie
+// Surgeon NPC
+// This will change the character's sex.
+// TODO: Add a ticket for change sex.
+//--------
+
+askald,159,234,4	script	Doctora W. Belo	814,{
+	set .@catalyst_id, 7179;
+	set @totalcost, 250;
+
+	mes "[Winky]";
+	mes "Hey you seem not content with your look!?";
+	mes "I can change your gender orientation with natural causes for only ^FF2000"+ @totalcost + " " + getitemname(.@catalyst_id) +"^000000!";
+	next;
+
+	set @selection, select("Change my gender orientation.:Nevermind.");
+
+	switch(@selection) {
+		case 1:
+			if (@totalcost > countitem(.@catalyst_id)) {
+				mes "[Winky]";
+				mes "I ain't tweaking your crotch for free!!1!1";
+				mes "Come back when you already have ^FF2000"+ @totalcost + "^000000 ^FF2000"+getitemname(.@catalyst_id)+"^000000.";
+				end;	
+			} else {
+				mes "[Winky]";
+				mes "Mind you, your equipment will be taken off.\nOf course, we need you naked for the operation.\n";
+				mes "Alright here we go... You need to relogin after this procedure.";
+				next;
+				delitem .@catalyst_id, @totalcost;
+				changecharsex();
+				close;
+				end;
+			}
+		case 2:
+			mes "[Winky]";
+			mes "Okay, let me know if you changed your mind. I'm always here!";
+			end;
+	} // switch
+}
