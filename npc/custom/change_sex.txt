@@ -2,11 +2,11 @@
 // Author: Andie
 // Surgeon NPC
 // This will change the character's sex.
-// TODO: Add a ticket for change sex.
+//
 //--------
 
 askald,159,234,4	script	Doctora W. Belo	814,{
-	set .@catalyst_id, 7179;
+	set .@catalyst_id, 7179; // Proof of Donation
 	set @totalcost, 250;
 
 	mes "[Winky]";

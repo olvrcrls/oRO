@@ -13,15 +13,15 @@
 // For each shop added, copy this MSHOPX dummy data.
 // Write your shop names in the select() function.
 
--	shop	PSHOP1	-1,532:1
--	shop	PSHOP2	-1,532:1
--	shop	PSHOP3	-1,532:1
--	shop	PSHOP4	-1,532:1
--	shop	PSHOP5	-1,532:1
--	shop	PSHOP6	-1,532:1
--	shop	PSHOP7	-1,532:1
--	shop	PSHOP8	-1,532:1
--	shop	PSHOP9	-1,532:1
+-	itemshop	PSHOP1	-1,7179,532:1
+-	itemshop	PSHOP2	-1,7179,532:1
+-	itemshop	PSHOP3	-1,7179,532:1
+-	itemshop	PSHOP4	-1,7179,532:1
+-	itemshop	PSHOP5	-1,7179,532:1
+-	itemshop	PSHOP6	-1,7179,532:1
+-	itemshop	PSHOP7	-1,7179,532:1
+-	itemshop	PSHOP8	-1,7179,532:1
+-	itemshop	PSHOP9	-1,7179,532:1
 
 askald,138,109,4	script	Donation Exchanger	871,{
 

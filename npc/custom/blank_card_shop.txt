@@ -13,15 +13,15 @@
 // For each shop added, copy this MSHOPX dummy data.
 // Write your shop names in the select() function.
 
--	shop	MSHOP1	-1,512:-1
--	shop	MSHOP2	-1,512:-1
--	shop	MSHOP3	-1,512:-1
--	shop	MSHOP4	-1,512:-1
--	shop	MSHOP5	-1,512:-1
--	shop	MSHOP6	-1,512:-1
--	shop	MSHOP7	-1,512:-1
--	shop	MSHOP8	-1,512:-1
--	shop	MSHOP9	-1,512:-1
+-	itemshop	MSHOP1	-1,6187,512:-1
+-	itemshop	MSHOP2	-1,6187,512:-1
+-	itemshop	MSHOP3	-1,6187,512:-1
+-	itemshop	MSHOP4	-1,6187,512:-1
+-	itemshop	MSHOP5	-1,6187,512:-1
+-	itemshop	MSHOP6	-1,6187,512:-1
+-	itemshop	MSHOP7	-1,6187,512:-1
+-	itemshop	MSHOP8	-1,6187,512:-1
+-	itemshop	MSHOP9	-1,6187,512:-1
 
 askald,135,109,4	script	Blank Card Exchanger	984,{
 
