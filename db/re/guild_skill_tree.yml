@@ -55,7 +55,7 @@ Body:
     MaxLevel: 3
 
   - Id: GD_EXTENSION
-    MaxLevel: 10
+    MaxLevel: 3 # Default was 10
 
   - Id: GD_GLORYGUILD
     MaxLevel: 0
@@ -92,7 +92,7 @@ Body:
     - Id: GD_APPROVAL
       Level: 1
     - Id: GD_EXTENSION
-      Level: 5
+      Level: 3 # originally 5
     - Id: GD_BATTLEORDER
       Level: 1
 
@@ -110,7 +110,7 @@ Body:
     - Id: GD_GUARDRESEARCH
       Level: 1
     - Id: GD_EXTENSION
-      Level: 5
+      Level: 3 # originally 5
     - Id: GD_BATTLEORDER
       Level: 1
     - Id: GD_REGENERATION
