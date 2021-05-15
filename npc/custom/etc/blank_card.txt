@@ -7,7 +7,7 @@
 		set .@rng,rand(1,99);
 
 		if (.@rng > 5 && .@rng <= 10) {
-			getitem 6187,1; 
+			getitem 6187,1;
 			end;
 		}
 		else if (.@rng <= 5 && .@rng > 1) {
