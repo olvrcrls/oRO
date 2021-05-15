@@ -21,6 +21,7 @@
 -	shop	MSHOP6	-1,512:-1
 -	shop	MSHOP7	-1,512:-1
 -	shop	MSHOP8	-1,512:-1
+-	shop	MSHOP9	-1,512:-1
 
 askald,135,109,4	script	Blank Card Exchanger	984,{
 
@@ -66,15 +67,16 @@ OnInit:
 // Shop order follows that of the select() call,
 //   and is formatted "ID1,Count1,ID2,Count2,..."
 
-	setarray .Currency[1],6187,6187,6187,6187,6187,6187,6187,6187; // Currencies per shop
+	setarray .Currency[1],6187,6187,6187,6187,6187,6187,6187,6187,6187; // Currencies per shop
 	setarray .Shop1[0],14646,5,12211,25; // Consumable items
-	setarray .Shop2[0],5116,15; // Headgears
-	setarray .Shop3[0],2302,2,2348,30; // Armors
-	setarray .Shop4[0],2502,2,2513,15,2523,15; // Garments
-	setarray .Shop5[0],2441,15; // Shoes
-	setarray .Shop6[0],2199,32768; // Shields
-	setarray .Shop7[0],4051,3,4285,6; // Cards
-	setarray .Shop8[0],513,1,532,2,634,4; // Misc
+	setarray .Shop2[0],5116,15; // Costumes
+	setarray .Shop3[0],5116,15; // Headgears
+	setarray .Shop4[0],2302,2,2348,30; // Armors
+	setarray .Shop5[0],2502,2,2513,15,2523,15; // Garments
+	setarray .Shop6[0],2441,15; // Shoes
+	setarray .Shop7[0],2199,32768; // Shields
+	setarray .Shop8[0],4051,3,4285,6; // Cards
+	setarray .Shop9[0],513,1,532,2,634,4; // Misc
 
 // --------------------------------------------------
 
