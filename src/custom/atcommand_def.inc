@@ -12,9 +12,11 @@
 
 // Battleground Extended by Vykimo
 ACMD_DEF(battleinfo),
+ACMD_DEF2("bi",battleinfo),
 ACMD_DEF(bgstart),
 ACMD_DEF(bgend),
 ACMD_DEF(guildskill),
+ACMD_DEF2("gskill", guildskill),
 ACMD_DEF(listenbg),
 ACMD_DEF(order),
 ACMD_DEF(leader),
