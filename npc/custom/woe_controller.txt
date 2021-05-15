@@ -76,13 +76,13 @@ OnInit:
 	//   setarray .reward_id[0],     <itemID>{,<itemID>,...}
 	//   setarray .reward_amount[0], <amount>{,<amount>,...}
 	
-	// WoE rewards are: Basic Siege Supply Box, KVM Badge
-	setarray .reward_id[0],14001,6376;
+	// WoE rewards are: Basic Siege Supply Box, KVM Badge, Blank Card, Proof of Donation
+	setarray .reward_id[0],14001,6376,6187,7179;
 	
-	setarray .reward_amount[0],1,1000;
+	setarray .reward_amount[0],1,500,500,10;
 
 	// Zeny reward:
-	.reward_zeny = 10000000;
+	.reward_zeny = 10000000; // 10M
 
 // -----------------------------------------------------------
 //  Constants (leave this section alone).
@@ -121,6 +121,7 @@ OnMinute00:
 			if (gettime(DT_DAYOFWEEK) == $WOE_CONTROL[.@i] && gettime(DT_HOUR) == $WOE_CONTROL[.@i+2]) {
 			OnWOEEnd:
 				announce "The War Of Emperium is over!",bc_all|bc_woe;
+				announce "Winners please check your RODEX for your rewards!",bc_all|bc_woe;
 				AgitEnd; AgitEnd2;
 				sleep 1000;
 				for(set .@j,0; .@j<getarraysize(.Castles$); set .@j,.@j+1) {
