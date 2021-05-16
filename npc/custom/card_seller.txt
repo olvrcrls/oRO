@@ -11,7 +11,7 @@
 //= 1.2 Update for monster mode and enchants [Lemongrass]
 //============================================================
 
-askald,60,154,4	script	Cardi-B	639,{
+askald,60,154,4	script	Cardi-B	412,{
 	.@menu$ = getvariableofnpc( .alphabet_menu$, "card_seller_creation" );
 	if (.@menu$ == "") {
 		mes "[Cardi-B]";
