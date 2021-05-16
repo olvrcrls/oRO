@@ -7,8 +7,10 @@ OnPCLoginEvent:
 OnPointGet:
 	while(checkvending() >= 1 || checkchatting() == 1 || checkidle()>=.dlimit) {
 		sleep2 .delay;
-		if(.@mes$=="")
+		set @consecutive_hour,0;
+		if(.@mes$=="") {
 			dispbottom set(.@mes$,"You are not receiving reward points because you are either vending, chatting, or idle.");
+		}
 	}
 
 	// set #CASHPOINTS, #CASHPOINTS + .point_amt;
@@ -44,5 +46,5 @@ OnInit:
 	set .cpoint_amt, 50; //Points gained for consecutive time online.
 	set .point_amt, 10; //Normal points gained.
 	set .delay, 500; //Delay for idle re-check check.
-	set .dlimit, 3540; //Stop points if afk greater then in seconds / 59 minutes.
+	set .dlimit, 900; //Stop points if afk greater then in seconds / 15 minutes.
 }
