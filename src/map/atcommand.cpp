@@ -10289,6 +10289,8 @@ ACMD_FUNC(battlestats) {
 		{ "Ghost resist: %3d%%", 0 },
 		{ "Undead resist: %3d%%", 0 },
 		{ "Resist to all: %3d%%", 0 },
+		{ "Total Player Resistance: %3d%%", 0 },
+		{ "Total Bonus Damage to Player: %3d%%", 0 },
 		{ NULL, 0 }
 	};
 	memset(xrace, '\0', sizeof(xrace));
@@ -10333,6 +10335,8 @@ ACMD_FUNC(battlestats) {
 	output_table[31].value = (sd->subele[ELE_GHOST] + sd->subele_script[ELE_GHOST]);
 	output_table[32].value = (sd->subele[ELE_UNDEAD] + sd->subele_script[ELE_UNDEAD]);
 	output_table[33].value = (sd->subele[ELE_ALL] + sd->subele_script[ELE_ALL]);
+	output_table[34].value = (sd->subrace[RC_PLAYER]);
+	output_table[35].value = (sd->addrace[RC_PLAYER]);
 
 	sprintf(xrace, "Race: %s", mrace[sd->battle_status.race]);
 	sprintf(xelement, "Element: %s (Lv. %u)", melement[sd->battle_status.def_ele], sd->battle_status.ele_lv);
@@ -10611,6 +10615,7 @@ void atcommand_basecommands(void) {
 		ACMD_DEF(iteminfo),
 		ACMD_DEF2("ii", iteminfo),
 		ACMD_DEF(whodrops),
+		ACMD_DEF2("wd", whodrops),
 		ACMD_DEF(whereis),
 		ACMD_DEF2("wi", whereis),
 		ACMD_DEF(mapflag),
