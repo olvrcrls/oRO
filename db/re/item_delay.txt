@@ -107,3 +107,10 @@
 // Adding custom CD to some items that can be abused.
 12033,50000,SC_REUSE_LIMIT_A // BoS Cooldown 50s
 12414,5000,SC_REUSE_LIMIT_A // Guarana Candy 5s
+// Adding cooldown to these items in case of accidental double click
+14646,5000,SC_REUSE_LIMIT_A // Nutriboost 5s
+14647,5000,SC_REUSE_LIMIT_A // Nutriboost PLUS 5s
+14648,5000,SC_REUSE_LIMIT_A // PP Up 5s
+14649,5000,SC_REUSE_LIMIT_A // Guyak Pudding 1hr 5s
+14650,5000,SC_REUSE_LIMIT_A // Budget Nutriboost 5s
+14651,5000,SC_REUSE_LIMIT_A // Nutriboost Lite 5s
