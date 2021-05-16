@@ -1,0 +1,2 @@
+-- Creates a 1 hour duration guyak pudding
+INSERT INTO `item_db_re` (`id`, `name_english`, `name_japanese`, `type`, `price_buy`, `price_sell`, `weight`, `atk:matk`, `defence`, `range`, `slots`, `equip_jobs`, `equip_upper`, `equip_genders`, `script`) VALUES ('14649', 'Guyak_Pudding_1_HR', 'Guyak Pudding 1 HR.', '2', '0', '0', '1', '0', '0', '0', '0', '4294967295', '63', '2', 'sc_start SC_SPEEDUP1,3600000,50;');

@@ -1,0 +1,1 @@
+UPDATE `item_db_re` SET `script` = 'specialeffect2 EF_LIGHTSPHERE; sc_start SC_INCHEALRATE,1800000,20;' WHERE (`id` = '12461');
