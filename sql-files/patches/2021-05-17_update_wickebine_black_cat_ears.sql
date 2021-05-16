@@ -1,0 +1,1 @@
+UPDATE `item_db_re` SET `script` = 'bonus bFlee,10; bonus bCritAtkRate,10; autobonus \"{ bonus2 bIgnoreMdefRaceRate,RC_ALL,100; }\",50,3000,BF_MAGIC,\"{ specialeffect2 EF_SPELLBREAKER; }\";' WHERE (`id` = '19134');
