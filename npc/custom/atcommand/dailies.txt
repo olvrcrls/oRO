@@ -91,11 +91,11 @@ OnLoginCmnd:
 				.@Size = getarraysize(.@AccountId);
 				for(.@i=0; .@i < .@Size; .@i++){
 					query_sql("SELECT `value` FROM `acc_reg_num` WHERE `account_id` = '"+.@AccountId[.@i]+"' AND `key` = '#LastDailyReward'",.@LastIp2);
-					if((.@i <= .@LastIp2) && .AlreadyFetched <= 0){
+					if(.@LastIp2 && (.@i <= .@LastIp2) && .AlreadyFetched <= 0){
 						// message strcharinfo(0),"[Dailies NPC]: Rewards are limited to 1 per IP sorry.";
 						dispbottom "[Dailies NPC]: You have already got your daily rewards for today.";
-						.AlreadyFetched = 1;
-						break;
+						set .AlreadyFetched,1;
+						end;
 					}
 				}
 			}
@@ -111,7 +111,7 @@ OnLoginCmnd:
 					}
 				}
 			}
-			if(.Rest){
+			if(.Rest && !.AlreadyFetched){
 				.@time = gettime(DT_YEAR) * 60 * 24 * 365 + gettime(DT_DAYOFYEAR) * 60 * 24 + gettime(DT_HOUR) * 60 + gettime(DT_MINUTE);
 				if(.@time < @logintime + .Rest){
 					.@delay = @logintime + .Rest - .@time;
@@ -124,7 +124,7 @@ OnLoginCmnd:
 			explode(.@XT$,.Rewards$[.@NextDay],",");
 		}
 		if(checkvending() & 2 && .Mode & 256){
-			message strcharinfo(0),"[Dailies NPC]: Venders cannot receive rewards.";
+			message strcharinfo(0),"[Dailies NPC]: Vendors cannot receive rewards.";
 			end;
 		}
 		.@Size = getarraysize(.@XT$);
@@ -202,7 +202,7 @@ OnNextCmnd:
 	} else {
 		.@i = gettime(DT_YEAR) * 12 * 31 + gettime(DT_MONTH) * 31 + gettime(DT_DAYOFMONTH);
 		if(.@i <= #LastDailyReward)
-			message strcharinfo(0),"[Dailies NPC]: Your next reward will be aviable tomorrow.";
+			message strcharinfo(0),"[Dailies NPC]: Your next reward will be available tomorrow.";
 		else {
 			.@days = (.@time >= @logintime + .Rest) / 60 / 24;
 			.@hours = ((.@time >= @logintime + .Rest) / 60) % 24;
@@ -267,7 +267,7 @@ OnInit:
 	.Points$ = "Loyalty Points";
 
 	// Flag if the player already fetched his daily reward
-	.AlreadyFetched = 0;
+	set .AlreadyFetched, 0;
 
 	// Ip check to prevent multi accounts
 	// Toggle 
@@ -324,7 +324,7 @@ OnInit:
 	//   ...;
 	// Total length of any days string must be 255 or shorter
 	setarray .Rewards$[1],
-		"1000",				// Day 1: 1000 Zeny
+		"0,0,0,0,6187,50",				// Day 1: 50 Blank Cards
 		"0,0,0,0,501,5",		// Day 2: 5 Red Potion
 		"0,0,0,0,506,5",		// Day 3: 5 Green Potion
 		"2000",				// Day 4: 2000 Zeny
