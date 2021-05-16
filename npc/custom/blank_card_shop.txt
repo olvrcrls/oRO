@@ -13,19 +13,20 @@
 // For each shop added, copy this MSHOPX dummy data.
 // Write your shop names in the select() function.
 
--	itemshop	MSHOP1	-1,6187,512:-1
--	itemshop	MSHOP2	-1,6187,512:-1
+-	itemshop	MSHOP1	-1,6187,4040:100
+-	itemshop	MSHOP2	-1,6187,14542:5
 -	itemshop	MSHOP3	-1,6187,512:-1
--	itemshop	MSHOP4	-1,6187,512:-1
+-	itemshop	MSHOP4	-1,6187,5536:500
 -	itemshop	MSHOP5	-1,6187,512:-1
 -	itemshop	MSHOP6	-1,6187,512:-1
 -	itemshop	MSHOP7	-1,6187,512:-1
 -	itemshop	MSHOP8	-1,6187,512:-1
 -	itemshop	MSHOP9	-1,6187,512:-1
+-	itemshop	MSHOP10	-1,6187,7179:100
 
 askald,135,109,4	script	Blank Card Exchanger	984,{
 
-	set @s, select("Consumables:Headgears:Armors:Garments:Shoes:Shields:Cards:Misc");
+	set @s, select("Cards:Consumables:Costumes:Headgears:Armors:Garments:Weapons:Shields:Shoes:Misc");
 
 // --------------------------------------------------
 
@@ -68,15 +69,17 @@ OnInit:
 //   and is formatted "ID1,Count1,ID2,Count2,..."
 
 	setarray .Currency[1],6187,6187,6187,6187,6187,6187,6187,6187,6187; // Currencies per shop
-	setarray .Shop1[0],14646,5,12211,25; // Consumable items
-	setarray .Shop2[0],5116,15; // Costumes
-	setarray .Shop3[0],5116,15; // Headgears
-	setarray .Shop4[0],2302,2,2348,30; // Armors
-	setarray .Shop5[0],2502,2,2513,15,2523,15; // Garments
-	setarray .Shop6[0],2441,15; // Shoes
-	setarray .Shop7[0],2199,32768; // Shields
-	setarray .Shop8[0],4051,3,4285,6; // Cards
-	setarray .Shop9[0],513,1,532,2,634,4; // Misc
+
+	setarray .Shop1[0],4101,100,4089,100,4114,100,4099,100,4098,100,4105,100,4119,100,4141,100,4405,100,27120,100,4699,200,27161,200,27125,200,27183,200,27176,200,31021,200,31024,200,27256,200,27260,200,4577,5000,4047,5000,4054,5000,4174,5000,4648,5000,4644,5000,4650,5000,4649,5000,4651,5000,4647,5000,4645,5000,4241,1000,4546,69420; // Cards
+	setarray .Shop2[0],14544,5,14646,50,14649,50,12211,50,14651,100; // Consumable items
+	setarray .Shop3[0],5116,15; // Costumes
+	setarray .Shop4[0],5116,15; // Headgears
+	setarray .Shop5[0],2302,2,2348,30; // Armors
+	setarray .Shop6[0],2502,2,2513,15,2523,15; // Garments
+	setarray .Shop7[0],13021,200; // Weapons
+	setarray .Shop8[0],28942,5000; // Shields
+	setarray .Shop9[0],2441,15; // Shoes
+	setarray .Shop10[0],513,1,532,2,634,4; // Misc
 
 // --------------------------------------------------
 
