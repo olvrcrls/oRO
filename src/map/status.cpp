@@ -12191,6 +12191,7 @@ int status_change_clear(struct block_list* bl, int type)
 			case SC_FOOD_DEX_CASH:
 			case SC_FOOD_INT_CASH:
 			case SC_FOOD_LUK_CASH:
+			case SC_SPEEDUP1:
 			case SC_SAVAGE_STEAK:
 			case SC_COCKTAIL_WARG_BLOOD:
 			case SC_MINOR_BBQ:

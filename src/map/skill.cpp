@@ -8276,12 +8276,13 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 					case SC_INCHITRATE:		case SC_INCATKRATE:		case SC_NEN:
 					case SC_READYSTORM:		case SC_READYDOWN:		case SC_READYTURN:
 					case SC_READYCOUNTER:	case SC_DODGE:			case SC_WARM:
-					/*case SC_SPEEDUP1:*/	case SC_AUTOTRADE:		case SC_CRITICALWOUND:
+					case SC_SPEEDUP1:		case SC_AUTOTRADE:		case SC_CRITICALWOUND:
 					case SC_JEXPBOOST:		case SC_INVINCIBLE:		case SC_INVINCIBLEOFF:
 					case SC_HELLPOWER:		case SC_MANU_ATK:		case SC_MANU_DEF:
 					case SC_SPL_ATK:		case SC_SPL_DEF:		case SC_MANU_MATK:
 					case SC_SPL_MATK:		case SC_RICHMANKIM:		case SC_ETERNALCHAOS:
 					case SC_DRUMBATTLE:		case SC_NIBELUNGEN:		case SC_ROKISWEIL:
+					case SC_MDEF_RATE:		case SC_DEF_RATE:
 					case SC_INTOABYSS:		case SC_SIEGFRIED:		case SC_FOOD_STR_CASH:
 					case SC_FOOD_AGI_CASH:	case SC_FOOD_VIT_CASH:	case SC_FOOD_DEX_CASH:
 					case SC_FOOD_INT_CASH:	case SC_FOOD_LUK_CASH:	case SC_SEVENWIND:
