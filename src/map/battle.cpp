@@ -1008,7 +1008,7 @@ bool battle_check_sc(struct block_list *src, struct block_list *target, struct s
 	if (!sc)
 		return true;
 
-	if (sc->data[SC_SAFETYWALL] && (d->flag&(BF_SHORT|BF_MAGIC)) == BF_SHORT) {
+	if (sc->data[SC_SAFETYWALL] && (d->flag&(BF_SHORT|BF_MAGIC)) == BF_SHORT && status_get_class(target) != MOBID_EMPERIUM) {
 		struct skill_unit_group* group = skill_id2group(sc->data[SC_SAFETYWALL]->val3);
 		uint16 skill_id_val = sc->data[SC_SAFETYWALL]->val2;
 
@@ -1040,12 +1040,12 @@ bool battle_check_sc(struct block_list *src, struct block_list *target, struct s
 		status_change_end(target, SC_SAFETYWALL, INVALID_TIMER);
 	}
 
-	if (sc->data[SC_NEUTRALBARRIER] && ((d->flag&(BF_LONG|BF_MAGIC)) == BF_LONG || skill_id == CR_ACIDDEMONSTRATION)) {
+	if (sc->data[SC_NEUTRALBARRIER] && ((d->flag&(BF_LONG|BF_MAGIC)) == BF_LONG || skill_id == CR_ACIDDEMONSTRATION) && status_get_class(target) != MOBID_EMPERIUM) {
 		d->dmg_lv = ATK_MISS;
 		return false;
 	}
 
-	if( sc->data[SC_PNEUMA] && (d->flag&(BF_MAGIC|BF_LONG)) == BF_LONG ) {
+	if( sc->data[SC_PNEUMA] && (d->flag&(BF_MAGIC|BF_LONG)) == BF_LONG && status_get_class(target) != MOBID_EMPERIUM) {
 		d->dmg_lv = ATK_BLOCK;
 		return false;
 	}
