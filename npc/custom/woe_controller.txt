@@ -77,9 +77,9 @@ OnInit:
 	//   setarray .reward_amount[0], <amount>{,<amount>,...}
 	
 	// WoE rewards are: Basic Siege Supply Box, KVM Badge, Blank Card, Proof of Donation
-	setarray .reward_id[0],14001,6376,6187,7179;
+	setarray .reward_id[0],12675,6376,6187,7179;
 	
-	setarray .reward_amount[0],1,500,500,10;
+	setarray .reward_amount[0],3,250,250,25;
 
 	// Zeny reward:
 	.reward_zeny = 10000000; // 10M
