@@ -2,7 +2,7 @@ INSERT INTO `item_db_re` (`id`, `name_english`, `name_japanese`, `type`, `price_
 
 
 -- Correct the item above
-UPDATE `item_db_re` SET `price_buy` = '20', `price_sell` = NULL, `weight` = '200', `equip_jobs` = '512', `equip_upper` = '56', `view` = '911', `script` = 'bonus2 bMagicAddClass,Class_All,5; bonus2 bIgnoreMdefRaceRate,RC_ALL,10; bonus2  bSkillAtk,\"WL_CHAINLIGHTNING\",5; bonus2  bSkillAtk,\"WL_CHAINLIGHTNING\",10; bonus2 bSkillAtk,\"WL_CRIMSONROCK\",5; bonus2 bSkillAtk,\"WL_EARTHSTRAIN\",5; bonus2 bSkillAtk,\"WL_JACKFROST\",5; .@r = getrefine(); if(.@r < 8) { bonus2 bIgnoreMdefRaceRate,RC_ALL,getrefine() * 4; } if(.@r >= 8) { bonus2 bIgnoreMdefRaceRate,RC_ALL,30; } if(.@r >= 9) { bonus2  bSkillAtk,\"WL_CHAINLIGHTNING\",10; bonus2 bSkillAtk,\"WL_CRIMSONROCK\",10; bonus2 bSkillAtk,\"WL_EARTHSTRAIN\",10; bonus2 bSkillAtk,\"WL_JACKFROST\",10; }' WHERE (`id` = '18794');
+UPDATE `item_db_re` SET `price_buy` = '20', `price_sell` = NULL, `weight` = '200', `equip_jobs` = '512', `equip_upper` = '56', `view` = '911', `script` = 'bonus2 bIgnoreMdefRaceRate,RC_ALL,10; bonus2  bSkillAtk,\"WL_CHAINLIGHTNING\",5; bonus2  bSkillAtk,\"WL_CHAINLIGHTNING\",10; bonus2 bSkillAtk,\"WL_CRIMSONROCK\",5; bonus2 bSkillAtk,\"WL_EARTHSTRAIN\",5; bonus2 bSkillAtk,\"WL_JACKFROST\",5; .@r = getrefine(); if(.@r < 8) { bonus2 bIgnoreMdefRaceRate,RC_ALL,getrefine() * 4; } if(.@r >= 8) { bonus2 bIgnoreMdefRaceRate,RC_ALL,30; } if(.@r >= 7) { bonus2 bMagicAddClass,Class_All,5; } if (.@r >= 9) { bonus2  bSkillAtk,\"WL_CHAINLIGHTNING\",10; bonus2 bSkillAtk,\"WL_CRIMSONROCK\",10; bonus2 bSkillAtk,\"WL_EARTHSTRAIN\",10; bonus2 bSkillAtk,\"WL_JACKFROST\",10; } ' WHERE (`id` = '18794');
 
 
 
