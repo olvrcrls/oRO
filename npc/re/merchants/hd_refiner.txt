@@ -19,7 +19,7 @@
 	disable_items;
 	mes "[Blacksmith Mighty Hammer]";
 	mes "Unlike others, I am a blacksmith who refines a very limited number of items.";
-	mes "I refine only items that are ^CC0000+7 to +9^000000.";
+	mes "I refine only items that are ^CC0000+7 to +10^000000.";
 	next;
 	mes "[Blacksmith Mighty Hammer]";
 	mes "My specialty is that even if my refining fails, the refine level decreases by 1 without losing the gear. Isn't it great?";
@@ -68,9 +68,9 @@
 		mes "This item can't be refined.";
 		close;
 	}
-	if (getequiprefinerycnt(.@part) < 7 || getequiprefinerycnt(.@part) > 9) {
+	if (getequiprefinerycnt(.@part) < 7 || getequiprefinerycnt(.@part) > 10) {
 		mes "[Blacksmith Mighty Hammer]";
-		mes "I only handle items with refine levels from +7 to +9.";
+		mes "I only handle items with refine levels from +7 to +10.";
 		close;
 	}
 	
@@ -148,6 +148,7 @@ alberta_in,16,56,3	duplicate(MightyHammer)	Mighty Hammer#alb	826
 yuno_in01,171,18,3	duplicate(MightyHammer)	Mighty Hammer#yuno	826
 ein_in01,22,82,3	duplicate(MightyHammer)	Mighty Hammer#ein	826
 lhz_in02,280,19,3	duplicate(MightyHammer)	Mighty Hammer#lhz	826
+askald,70,117,3	duplicate(MightyHammer)	Mighty Hammer#ask	826
 
 // iRO NPC locations:
 // payon,174,133,4	duplicate(MightyHammer)	Mighty Hammer#im	826
@@ -210,7 +211,8 @@ lhz_in02,280,19,3	duplicate(MightyHammer)	Mighty Hammer#lhz	826
 		mes "Haven't I told you? I only refine equipments that are +10 and above.";
 		close;
 	}
-	if (getequiprefinerycnt(.@part) == 20) {
+	// if (getequiprefinerycnt(.@part) == 20) {
+	if (getequiprefinerycnt(.@part) == 15) { // max refine is 15
 		mes "[Basta]";
 		mes "This weapon is perfect, no need to refine it anymore~";
 		close;
@@ -316,3 +318,4 @@ alberta_in,18,56,3	duplicate(Basta)	Basta#alberta	826
 yuno_in01,173,18,3	duplicate(Basta)	Basta#yuno	826
 ein_in01,24,82,3	duplicate(Basta)	Basta#einbroch	826
 lhz_in02,280,17,3	duplicate(Basta)	Basta#lighthalzen	826
+askald,70,101,3	duplicate(Basta)	Basta#askald	826
