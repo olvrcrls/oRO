@@ -112,7 +112,7 @@ aldeba_in,96,181,4	script	Kafra Service	113,{
 	end;
 }
 
-askald,134,115,4	script	Kafra Employee::kaf_askald	117,{
+askald,133,113,4	script	Kafra Employee::kaf_askald	117,{
 	cutin "kafra_05",2;
 	callfunc "F_KafSet";
 	mes "[Kafra Employee]";
