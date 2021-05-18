@@ -1,0 +1,335 @@
+//===== eAthena Script ======================================= 
+//= AntiBot Login
+//===== By: ================================================== 
+// Create By - Mr.CoolZ
+// Modify By  pizan
+// Modify By hendra814
+//===== Current Version: ===================================== 
+//= 1.0
+//= 1.1 -change from onpcloginevent to onnpckillevent by hendra814
+//= 2.0 -not checking for instances map by hendra814
+//= 2.1 -add retry 3 times for wrong input bot checking by hendra814
+//= 3.0 -add timer for input bot checking, if more than 30second it will warp to jail map by hendra814
+//===== Compatible With: ===================================== 
+//= eAthena, 3ceAM, & rathena
+//===== Description: ========================================= 
+//= AntiBotLogin Script
+//  You can Change The GM lv
+// if (getgmlevel()>=85) goto gm_admin;  ' GM lv i Set on This Script 85 You May Change it '
+//============================================================ 
+-	script	AntiBot	-1,{
+
+OnPCLoginEvent:
+	set @Fail,0;
+	set @killmonster,1;
+	set @killcekmin,rand(1000,2000);
+
+OnNPCKillEvent:
+	if( strcharinfo(3) == "1@tower") end;
+	else if( strcharinfo(3) == "2@tower") end;
+	else if( strcharinfo(3) == "3@tower") end;
+	else if( strcharinfo(3) == "4@tower") end;
+	else if( strcharinfo(3) == "5@tower") end;
+	else {
+	set @killmonster,@killmonster+1;
+	if (@killmonster>=@killcekmin) {
+		set @killmonster,1;
+		set @killcekmin,rand(1000,2000);
+	}
+		cutin "ein_soldier",2;
+		// if (getgmlevel()>60) goto gm_admin;
+		setoption 0x40;
+		setoption 0x2000;
+		pcblockmove getcharid(3),1;
+		mes "Hallo, are you bot ?? If is not.. Type the right number.";
+		atcommand "@noask";
+		mes "This is bot checker.";
+		mes "Type the right number which have same colour sign ####";
+		attachnpctimer;
+		initnpctimer;
+		next;
+		goto Code;
+	}
+
+Code:
+	set number1, rand (1000000,9999999);
+	set number2, rand (1000000,9999999);
+	set number3, rand (1000000,9999999);
+	set number4, rand (1000000,9999999);
+	set number5, rand (1000000,9999999);
+	set number6, rand (1000000,9999999);
+	set number00, rand (1000000,9999999);
+	set number01, rand (1000000,9999999);
+	set number02, rand (1000000,9999999);
+	set number03, rand (1000000,9999999);
+	set number04, rand (1000000,9999999);
+	set number05, rand (1000000,9999999);
+	set number06, rand (1000000,9999999);
+	set number07, rand (1000000,9999999);
+	set number08, rand (1000000,9999999);
+	set number09, rand (1000000,9999999);
+	set number10, rand (1000000,9999999);
+	set number66, rand (1000,9999);
+	set number99, rand (100,999);
+
+	set @Col, rand (0,6);
+	if(@Col == 0) goto colred;
+	if(@Col == 1) goto colorg;
+	if(@Col == 2) goto colblu;
+	if(@Col == 3) goto colvio;
+	if(@Col == 4) goto colgre;
+	mes "^F5F9FD"+ number99 +"^000000^FFF9EE"+ number66 +"^000000^FF8C00"+ number2 +"^000000^F5F9FD"+ number05 +"^000000";
+	mes "^F8F8FF"+ number66 +"^000000^F7F7FF"+ number99 +"^000000^A52A2A"+ number6 +"^000000^F5F9FD"+ number05 +"^000000";
+	mes "^F5F9FD"+ number99 +"^000000^FFF9EE"+ number66 +"^000000^9400D3"+ number4 +"^000000^F8F8FF"+ number06 +"^000000";
+	mes "^F5F9FD"+ number66 +"^000000^F7F7FF"+ number99 +"^000000^FF0000"+ number1 +"^000000^F5F9FD"+ number02 +"^000000";
+	mes "^F8F8FF"+ number99 +"^000000^FFF9EE"+ number66 +"^000000^0000FF"+ number3 +"^000000^F8F8FF"+ number01 +"^000000";
+	mes "^F5F9FD"+ number99 +"^000000^F7F7FF"+ number66 +"^000000^008000"+ number5 +"^000000^F5F9FD"+ number03 +"^000000";
+	mes "^F7F7FF#^F5F9FD#^FFF9FA#^A52A2A####^FFF9EE##^F8F8FF#";
+	next;
+	input number;
+	next;
+	goto brochk;
+	close;
+
+	colgre:
+	mes "^FFF9EE"+ number66 +"^000000^FFF9EE"+ number99 +"^000000^008000"+ number5 +"^000000^F5F9FD"+ number04 +"^000000";
+	mes "^FFF9FA"+ number99 +"^000000^F7F7FF"+ number66 +"^000000^FFA500"+ number2 +"^000000^F5F9FD"+ number03 +"^000000";
+	mes "^F5F9FD"+ number66 +"^000000^FFF9EE"+ number99 +"^000000^FF0000"+ number1 +"^000000^F5F9FD"+ number00 +"^000000";
+	mes "^FFF9EE"+ number99 +"^000000^FFF9EE"+ number66 +"^000000^9400D3"+ number4 +"^000000^F5F9FD"+ number01 +"^000000";
+	mes "^F7F7FF"+ number66 +"^000000^FFF9FA"+ number99 +"^000000^0000FF"+ number3 +"^000000^F5F9FD"+ number06 +"^000000";
+	mes "^FFF9EE"+ number99 +"^000000^F5F9FD"+ number66 +"^000000^A52A2A"+ number6 +"^000000^F5F9FD"+ number05 +"^000000";
+	mes "^F7F7FF#^FFF9FA#^F5F9FD#^008000####^F5F9FD#^F8F8FF#^FFF9EE##";
+	next;
+	input number;
+	next;
+	goto grechk;
+	close;
+
+	colvio:
+	mes "^F7F7FF"+ number66 +"^000000^FFF9EE"+ number99 +"^000000^9400D3"+ number4 +"^000000^F5F9FD"+ number09 +"^000000";
+	mes "^F7F7FF"+ number66 +"^000000^FFF9EE"+ number99 +"^000000^FFA500"+ number2 +"^000000^F5F9FD"+ number04 +"^000000";
+	mes "^F7F7FF"+ number66 +"^000000^FFF9EE"+ number99 +"^000000^A52A2A"+ number6 +"^000000^F5F9FD"+ number05 +"^000000";
+	mes "^FFF9EE"+ number99 +"^000000^F7F7FF"+ number66 +"^000000^FF0000"+ number1 +"^000000^F5F9FD"+ number06 +"^000000";
+	mes "^FFF9EE"+ number99 +"^000000^F7F7FF"+ number66 +"^000000^0000FF"+ number3 +"^000000^F5F9FD"+ number08 +"^000000";
+	mes "^FFF9EE"+ number99 +"^000000^F7F7FF"+ number66 +"^000000^008000"+ number5 +"^000000^F5F9FD"+ number01 +"^000000";
+	mes "^F5F9FD#^FFF9EE#^FFF9FA#^9400D3####^F8F8FF#^F5F9FD##^F7F7FF##";
+	next;
+	input number;
+	next;
+	goto viochk;
+	close;
+
+	colblu:
+	mes "^F8F8FF"+ number01 +"^000000^FFA500"+ number2 +"^000000^F7F7FF"+ number66 +"^000000^F5F9FD"+ number99 +"^000000";
+	mes "^FFF9EE"+ number09 +"^000000^A52A2A"+ number6 +"^000000^F5F9FD"+ number66 +"^000000^FFF9EE"+ number99 +"^000000";
+	mes "^F5F9FD"+ number08 +"^000000^FF0000"+ number1 +"^000000^F7F7FF"+ number66 +"^000000^FFF9EE"+ number99 +"^000000";
+	mes "^F8F8FF"+ number07 +"^000000^0000FF"+ number3 +"^000000^F5F9FD"+ number66 +"^000000^F5F9FD"+ number99 +"^000000";
+	mes "^FFF9EE"+ number06 +"^000000^008000"+ number5 +"^000000^F5F9FD"+ number66 +"^000000^FFF9EE"+ number99 +"^000000";
+	mes "^F5F9FD"+ number05 +"^000000^9400D3"+ number4 +"^000000^F7F7FF"+ number66 +"^000000^F5F9FD"+ number99 +"^000000";
+	mes "^FFF9EE###^0000FF####^F8F8FF####^F5F9FD#^FFF9FA#^F7F7FF##";
+	next;
+	input number;
+	next;
+	goto bluchk;
+	close;
+
+	colorg:
+	mes "^FFF9EE"+ number4 +"^000000^A52A2A"+ number6 +"^000000^F5F9FD"+ number07 +"^000000";
+	mes "^F8F8FF"+ number3 +"^000000^9400D3"+ number4 +"^000000^F5F9FD"+ number00 +"^000000";
+	mes "^F5F9FD"+ number1 +"^000000^FF0000"+ number1 +"^000000^F5F9FD"+ number06 +"^000000";
+	mes "^F8F8FF"+ number2 +"^000000^0000FF"+ number3 +"^000000^F5F9FD"+ number04 +"^000000";
+	mes "^F5F9FD"+ number5 +"^000000^FF8C00"+ number2 +"^000000^F5F9FD"+ number08 +"^000000";
+	mes "^F5F9FD"+ number6 +"^000000^008000"+ number5 +"^000000^F8F8FF"+ number10 +"^000000";
+	mes "^F5F9FD#^FFF9EE####^FFA500####^F5F9FD#^F5F9FD####^F7F7FF##^FFF9FA##";
+	next;
+	input number;
+	next;
+	goto orgchk;
+	close;
+
+	colred:
+	mes "^F5F9FD"+ number6 +"^000000^A52A2A"+ number6 +"^000000^F8F8FF"+ number10 +"^000000";
+	mes "^F8F8FF"+ number5 +"^000000^008000"+ number5 +"^000000^F5F9FD"+ number09 +"^000000";
+	mes "^F5F9FD"+ number3 +"^000000^9400D3"+ number4 +"^000000^F8F8FF"+ number08 +"^000000";
+	mes "^F8F8FF"+ number1 +"^000000^0000FF"+ number3 +"^000000^F5F9FD"+ number07 +"^000000";
+	mes "^F5F9FD"+ number2 +"^000000^FFA500"+ number2 +"^000000^F5F9FD"+ number05 +"^000000";
+	mes "^F8F8FF"+ number5 +"^000000^FF0000"+ number1 +"^000000^F5F9FD"+ number02 +"^000000";
+	mes "^F5F9FD##^FF0000####^F8F8FF####^FFF9FA#^FFF9EE#^F7F7FF#";
+	next;
+	input number;
+	next;
+	goto redchk;
+	close;
+
+redchk:
+	if(number < number1 || number > number1) goto LOG_FAIL;
+	goto OK; close;
+	orgchk:
+	if(number < number2 || number > number2) goto LOG_FAIL;
+		goto OK; close;
+	bluchk:
+	if(number < number3 || number > number3) goto LOG_FAIL;
+	goto OK; close;
+	viochk:
+	if(number < number4 || number > number4) goto LOG_FAIL;
+		goto OK; close;
+	grechk:
+	if(number < number5 || number > number5) goto LOG_FAIL;
+	goto OK; close;
+	brochk:
+	if(number < number6 || number > number6) goto LOG_FAIL;
+	goto OK; close;
+  
+LOG_FAIL:
+	if (@Fail <3) {
+	mes "Please try again.";
+	set @Fail, @Fail+1;
+	next;
+	goto Code;
+	}
+	mes "^FF0000You put wrong number.^000000.";
+	next;
+	mes "Bye... Bye...!";
+	next;
+	warp    "lhz_in03", 260, 261;
+	setoption 0x40,0;
+	setoption 0x2000,0;
+	pcblockmove getcharid(3),0;
+	sc_end sc_stone;
+	sc_end sc_freeze;
+	sc_end sc_sleep;
+	sc_end sc_curse;
+	sc_end sc_silence;
+	sc_end sc_confusion;
+	sc_end sc_blind;
+	sc_end sc_bleeding;
+	sc_end sc_decreaseagi;
+	sc_end sc_poison;
+	sc_end sc_hallucination;
+	sc_end sc_stripweapon;
+	sc_end sc_striparmor;
+	sc_end sc_striphelm;
+	sc_end sc_stripshield;
+	atcommand "@noask";
+end;
+
+OK:
+	mes "^4233F4"+strcharinfo(0)+"^000000!";
+	mes "Thank you for not using bot at this server.";
+	announce "Player "+strcharinfo(0)+" Online!!",bc_all;
+	setoption 0x40,0;
+	setoption 0x2000,0;
+	pcblockmove getcharid(3),0;
+	sc_start SC_GLORIA,1800000,2;
+	sc_start SC_ANGELUS,1800000,10;
+	sc_start SC_MAGNIFICAT,1800000,5;
+	skilleffect 34,0;
+	sc_start SC_BLESSING,1800000,10;
+	sc_start SC_INCREASEAGI,1800000,10;
+	percentheal 100,100;
+	sc_end sc_stone;
+	sc_end sc_freeze;
+	sc_end sc_sleep;
+	sc_end sc_curse;
+	sc_end sc_silence;
+	sc_end sc_confusion;
+	sc_end sc_blind;
+	sc_end sc_bleeding;
+	sc_end sc_decreaseagi;
+	sc_end sc_poison;
+	sc_end sc_hallucination;
+	sc_end sc_stripweapon;
+	sc_end sc_striparmor;
+	sc_end sc_striphelm;
+	sc_end sc_stripshield;
+	atcommand "@noask";
+	cutin "ein_soldier",255;
+	close;
+
+gm_admin:
+	mes "Welcome GM ^4233F4"+strcharinfo(0)+"^000000!";
+	announce "GM "+strcharinfo(0)+" Online!!",bc_all;
+	cutin "ein_soldier",255;
+	sc_start SC_GLORIA,1800000,2;
+	sc_start SC_ANGELUS,1800000,10;
+	sc_start SC_MAGNIFICAT,1800000,5;
+	skilleffect 34,0;
+	sc_start SC_BLESSING,1800000,10;
+	sc_start SC_INCREASEAGI,1800000,10;
+	percentheal 100,100;
+	sc_end sc_stone;
+	sc_end sc_freeze;
+	sc_end sc_sleep;
+	sc_end sc_curse;
+	sc_end sc_silence;
+	sc_end sc_confusion;
+	sc_end sc_blind;
+	sc_end sc_bleeding;
+	sc_end sc_decreaseagi;
+	sc_end sc_poison;
+	sc_end sc_hallucination;
+	sc_end sc_stripweapon;
+	sc_end sc_striparmor;
+	sc_end sc_striphelm;
+	sc_end sc_stripshield;
+	close;
+
+OnTimer30000:
+	dispbottom "You failed to answer the question within 30 seconds.";
+	warp    "lhz_in03", 260, 261;
+	setoption 0x40,0;
+	setoption 0x2000,0;
+	pcblockmove getcharid(3),0;
+	sc_end sc_stone;
+	sc_end sc_freeze;
+	sc_end sc_sleep;
+	sc_end sc_curse;
+	sc_end sc_silence;
+	sc_end sc_confusion;
+	sc_end sc_blind;
+	sc_end sc_bleeding;
+	sc_end sc_decreaseagi;
+	sc_end sc_poison;
+	sc_end sc_hallucination;
+	sc_end sc_stripweapon;
+	sc_end sc_striparmor;
+	sc_end sc_striphelm;
+	sc_end sc_stripshield;
+	atcommand "@noask";
+	stopnpctimer;
+}
+
+
+// - The Script
+lhz_in03,260,266,4	script	Bot Checker	75,{
+	mes "You already fail";
+	mes "to prove if you are not bot.";
+	mes "To get out fom this room";
+	mes "you must pay me 10.000.000 zeny.";
+	next;
+	switch(select("Pay:No")) {
+		case 1:
+		if (zeny < 10000000) {
+			mes "Your zeny not enough";
+			close;
+		}
+		set zeny, zeny - 10000000;
+		set @Fail, 0;
+		warp prontera,0,0;
+		close;
+	
+		case 2:
+		mes "[ GM Staff ]";
+		mes "Ok. Bye... Bye...";
+		close;
+	}
+}
+// - The Mapflags
+// lhz_in03    mapflag nowarpto
+// lhz_in03    mapflag nowarp
+// lhz_in03    mapflag noreturn
+// lhz_in03    mapflag noteleport
+// lhz_in03    mapflag nomemo
+// lhz_in03    mapflag noskill
+// lhz_in03    mapflag noicewall
+// lhz_in03    mapflag nobranch

@@ -4,7 +4,7 @@
 	
 		// .setarray .@Items,6187;  		// Item array
 		// set .@rand,rand(1,getarraysize(.@items);
-		set .@rng,rand(1,99);
+		set .@rng,rand(1,120);
 
 		if (.@rng > 5 && .@rng <= 10) {
 			getitem 6187,1;

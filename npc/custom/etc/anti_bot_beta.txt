@@ -1,0 +1,49 @@
+-	script	AntiBot	-1,{
+	OnPCLoginEvent:
+		// addtimer (2700 * 1000), strnpcinfo(3) + "::OnPCLoginEvent";
+		addtimer 300000, strnpcinfo(3) + "::OnPCLoginEvent"; // 5 minutes test
+		if (getmapflag(strcharinfo(3), mf_town) || getmapflag(strcharinfo(3), mf_gvg) || getmapflag(strcharinfo(3), mf_pvp)) end;
+ 
+		switch( rand(2) ){
+			case 0:
+				pcblockmove getcharid(3),1;
+				set .@String$,"I ACCEPT";
+				mes "Input exactly the following: ^FF0000I ACCEPT^000000 to prove you're not botting.";
+				// mes "^0000FF"+GetString( 15,rand(5,10) )+"^FF0000"+.@String$+"^0000FF"+GetString( 15,rand(3,10) )+"^000000";
+				input .@Input$;
+				if( .@Input$ != .@String$ ){
+					mes "Wrong..";
+					announce strcharinfo(0) + " is might be botting. User has been logged out momentarily.", bc_all,0xC3FF00;
+					atcommand "@kick "+strcharinfo(0);
+				} else {
+					pcblockmove getcharid(3),0;
+				}
+				break;
+ 
+			case 1:
+				pcblockmove getcharid(3),1;
+				set .@A,rand(6);
+				set .@B,rand(6);
+				mes "If A = "+.@A+"   B = "+.@B;
+				switch( rand(2) ){
+					case 0:
+						set .@Answer,.@A + .@B;
+						mes "How many is A + B ?";
+						break;
+					case 1:
+						set .@Answer,.@A * .@B;
+						mes "How many is A * B ?";
+						break;
+				}
+				input .@Input;
+				if( .@Input != .@Answer ){
+					mes "Wrong";
+					announce strcharinfo(0) + " is botting or is not very good at Mathematics. User has been logged out momentarily.", bc_all,0xC3FF00;
+					atcommand "@kick "+strcharinfo(0);
+				} else {
+					pcblockmove getcharid(3),0;
+				}
+				break;
+		}
+		close;
+}
