@@ -1,0 +1,17 @@
+
+// This is buggy, the player can leave the clan but the actual status and bonus stats doesn't disappear, therefore infinite bonus stats can be abused.
+
+-	script	leaveclan	-1,{
+
+	OnInit:
+		bindatcmd "leaveclan",strnpcinfo(0) + "::OnAtcommand";
+		end;
+
+	OnAtcommand:
+		if (clan_leave()) {
+			dispbottom "You have successfully left your clan.";
+		} else {
+			dispbottom "Failed to leave clan. You don't even have one, I think.", 0xFF2000;
+		}
+		end;
+}
