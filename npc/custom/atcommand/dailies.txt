@@ -44,7 +44,7 @@
 //= [Stolao] 
 //= Email: Taingram11@gmail.com
 //============================================================
-askald,135,112,3	script	Dailies NPC	4_f_kafra9,{
+askald,136,117,3	script	Dailies NPC	4_f_kafra9,{
 OnPCLoginEvent:
 	if(!@logintime)
 		@logintime = gettime(DT_YEAR) * 60 * 24 * 365 + gettime(DT_DAYOFYEAR) * 60 * 24 + gettime(DT_HOUR) * 60 + gettime(DT_MINUTE);
