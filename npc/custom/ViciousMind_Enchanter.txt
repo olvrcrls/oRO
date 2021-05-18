@@ -37,8 +37,8 @@
 askald,36,172,4	script	Vicious Mind Enchanter	101,{
 
 mes .n$;
-mes "Hello, "+strcharinfo(0)+"!";
-mes "What can I do for you?";
+mes "Greetings, "+strcharinfo(0)+"!";
+mes "I can enchant your ^0000FFVicious Mind Weapon^000000 for only ^FF0000250,000 zeny^000000.";
 if(select("- Enchant Vicious Weapons:- Nevermind") - 1) close;
 next;
 mes .n$;
@@ -50,6 +50,11 @@ mes "First, let's see what you have equipped...:";
 next;
 set .@part,EQI_HAND_R; // Save equip location
 mes .n$;
+if (Zeny < .cost) {
+	mes "You don't have enough funds for my service.";
+	close;
+	end;
+}
 if(!getequipid(.@part)) {
 	mes "You don't have anything equipped!";
 	close;
@@ -89,6 +94,7 @@ mes "Equipped Weapon: "+getitemname(getequipid(.@part));
 set .@ropt1,getequiprandomoption(.@part,0,ROA_ID);
 set .@ropt2,getequiprandomoption(.@part,1,ROA_ID);
 set .@ropt3,getequiprandomoption(.@part,2,ROA_ID);
+
 if(.@ropt1 || .@ropt2 || .@ropt2) {
 	mes " ";
 	mes "You current enchants will be lost.";
@@ -108,6 +114,7 @@ Enchant:
 next;
 // Randomize each Option Slot:
 // Random Option 1
+set Zeny,Zeny - .cost;
 set .@Opt1,rand(getarraysize(getd(".RandOpt1_"+.@Type$)));
 if(getd(".RandOpt1_"+.@Type$+"_MinV["+.@Opt1+"]") != getd(".RandOpt1_"+.@Type$+"_MaxV["+.@Opt1+"]"))
 	set .@Opt1_V,rand(getd(".RandOpt1_"+.@Type$+"_MinV["+.@Opt1+"]"),getd(".RandOpt1_"+.@Type$+"_MaxV["+.@Opt1+"]"));
@@ -134,9 +141,12 @@ setrandomoption(.@part,1,getd(".RandOpt2_"+.@Type$+"["+.@Opt2+"]"),.@Opt2_V,0);
 setrandomoption(.@part,2,getd(".RandOpt3_"+.@Type$+"["+.@Opt3+"]"),.@Opt3_V,0);
 mes .n$;
 mes "Random bonus properities have been applied on your \""+getitemname(getequipid(.@part))+"\" successfully.";
+next;
+mes "Please come back again, I can re-roll your enchants if you're not satisfied.";
 end;
 
 OnInit:
+set .cost, 250000; // 250k
 set .n$,"[Vicious Enchanter]";
 // ========= Random Option Slot 1 ========= 
 // - Physical
