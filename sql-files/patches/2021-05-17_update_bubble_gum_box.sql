@@ -1,0 +1,1 @@
+UPDATE `item_db_re` SET `script` = 'getitem 12441,10;' WHERE (`id` = '12902');
