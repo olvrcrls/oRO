@@ -8,25 +8,26 @@
 //--------------------------------------------------------------------------------------------------------------------//
 
 askald,35,161,4	script	Enchant Materials	900,{
-	mes "[Enchant Material Gatherer]";
+	set .n$, "[Miki]";
+	mes .n$;
 	mes "Howdy!!";
 	mes "Which enchanter are you planning to use today?";
 	next;
 	switch(select("Old Glast Heim:Geffen Magic Tournament:Malangdo Enchant:Mora Enchant:Bio Labs Enchant:Terra Gloria Enchant:Banquet for Heroes Enchant:Rockridge Enchants:Verus Enchants:Vicious Mind Weapons:Close")){
 		case 1:
-			mes "[Enchant Mats]";
+			mes .n$;
 			mes "Old Glast Heim";
 			close2;
 			callshop "oghmats",1;
 			end;
 		case 2:
-			mes "[Enchant Mats]";
+			mes .n$;
 			mes "Geffen Magic Tournament";
 			close2;
 			callshop "gmtmats",1;
 			end;
 		case 3:
-			mes "[Enchant Mats]";
+			mes .n$;
 			mes "Malangdo Enchant Materials";
 			next;
 			switch(select("Materials:Daggers:Katars:One-Handed Axes:Two-Handed Axes:One-Handed Swords:Two-Handed Swords:One-Handed Spears:Two-Handed Spears:One-Handed Wands:Two-Handed Wands:Maces:Books:Knuckles:Bows:Instruments:Whips:Guns:Close")){
@@ -143,7 +144,7 @@ askald,35,161,4	script	Enchant Materials	900,{
 					end;
 			}
 		case 4:
-			mes "[Enchant Mats]";
+			mes .n$;
 			mes "Mora Enchant Materials";
 			next;
 			switch(select("Materials:Arch Bishop:Warlock:Rune Knight:Guillotine Cross:Ranger:Close")){
@@ -183,7 +184,7 @@ askald,35,161,4	script	Enchant Materials	900,{
 					end;
 			}
 		case 5: // Bio Lab
-			mes "[Enchant Mats]";
+			mes .n$;
 			mes "Bio Lab Enchant Materials";
 			next;
 			// switch(select("Enchant Materials:Weapons:Gears:Close")){
@@ -210,13 +211,13 @@ askald,35,161,4	script	Enchant Materials	900,{
 			}
 			end;
 		case 6:	// Terra Gloria
-			mes "[Enchant Mats]";
+			mes .n$;
 			mes "Terra Gloria Quest Enchant Materials";
 			close2;
 			callshop "terragloria",1;
 			end;
 		case 7:	// Banquet for Heroes
-			mes "[Enchant Mats]";
+			mes .n$;
 			mes "Banquet for Heroes Materials";
 			close2;
 			callshop "banquet",1;
@@ -252,13 +253,13 @@ askald,35,161,4	script	Enchant Materials	900,{
 			}
 			end;
 		case 10: // Vicious Mind
-			mes "[Enchant Mats]";
+			mes .n$;
 			mes "This is where you will find Sky Fortress Weapons";
 			close2;
 			callshop "skyfortress",1;
 			end;
 		default:
-			mes "[Enchant Mats]";
+			mes .n$;
 			mes "Have a nice day!";
 			close;
 			end;
