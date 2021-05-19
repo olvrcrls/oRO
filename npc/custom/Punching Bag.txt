@@ -12,7 +12,7 @@
 //===== Additional Comments: =======================================
 //= When duplicating this NPC. Only use NUMBER after the # [secret]
 //==================================================================
-askald,157,55,0	script	PunchingBag#0	844,{
+askald,157,55,0	script	PunchingBag#0	978,{
 	end;
 	
 OnMyMobDead:
@@ -40,9 +40,9 @@ OnTimer5000:
 	initnpctimer;
 }
 
-//Prontera
-askald,157,48,0	duplicate(PunchingBag#0)	PunchingBag#1	844
-askald,152,55,0	duplicate(PunchingBag#0)	PunchingBag#2	844
-askald,152,48,0	duplicate(PunchingBag#0)	PunchingBag#3	844
-askald,147,55,0	duplicate(PunchingBag#0)	PunchingBag#4	844
-askald,147,48,0	duplicate(PunchingBag#0)	PunchingBag#5	844
+//Prontera previous: 844
+askald,157,48,0	duplicate(PunchingBag#0)	PunchingBag#1	978
+askald,152,55,0	duplicate(PunchingBag#0)	PunchingBag#2	978
+askald,152,48,0	duplicate(PunchingBag#0)	PunchingBag#3	978
+askald,147,55,0	duplicate(PunchingBag#0)	PunchingBag#4	978
+askald,147,48,0	duplicate(PunchingBag#0)	PunchingBag#5	978
