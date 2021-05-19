@@ -4,7 +4,10 @@
 		// addtimer 60000, strnpcinfo(3) + "::OnPCLoginEvent"; // 5 minutes test
 		
 		// Exempts GM users
-		if (getgmlevel() >= 99) end; 
+		if (getgmlevel() >= 99) {
+			atcommand "@speed 10";	
+			end; 
+		}
 
 		// Exempted on towns, gvg maps, pvp maps, bg maps
 		if (getmapflag(strcharinfo(3), mf_town) || getmapflag(strcharinfo(3), mf_gvg) || getmapflag(strcharinfo(3), mf_pvp) || getmapflag(strcharinfo(3), mf_battleground)) end;
