@@ -5,7 +5,7 @@ OnPCLoginEvent:
 	end;
     
 OnPointGet:
-	while(checkvending() >= 1 || checkchatting() == 1 || checkidle()>=.dlimit) {
+	while(checkvending(strcharinfo(0)) >= 1 || checkchatting(strcharinfo(0)) == 1 || checkidle(strcharinfo(0)) >= .dlimit) {
 		sleep2 .delay;
 		set @consecutive_hour,0;
 		if(.@mes$=="") {
@@ -21,7 +21,7 @@ OnPointGet:
 
 	//Check for 8 hours consecutive
 	if (@consecutive_hour == 8) {
-		getitem 7179,50;
+		getitem 7179,25;
 		dispbottom "You're treating this game like work. Here's your salary:";
 		dispbottom "You received 50 Proof of Donation by staying in game for 8 hours.";
 
@@ -33,7 +33,7 @@ OnPointGet:
 	// Check if the character have logged in for 12 hours straight. Crazy people.
 	if (@consecutive_hour == 12) {
 		set @consecutive_hour,0;
-		getitem 7179, 100;
+		getitem 7179, 50;
 		dispbottom "Wow, do you have a life?";
 		dispbottom "Anyway, thank you for staying active in game for 12 hours. You have 100 Proof of Donation!";
 	}

@@ -1,25 +1,47 @@
 -	script	AntiBot	-1,{
 	OnPCLoginEvent:
 		// addtimer (2700 * 1000), strnpcinfo(3) + "::OnPCLoginEvent";
-		addtimer 300000, strnpcinfo(3) + "::OnPCLoginEvent"; // 5 minutes test
-		if (getmapflag(strcharinfo(3), mf_town) || getmapflag(strcharinfo(3), mf_gvg) || getmapflag(strcharinfo(3), mf_pvp)) end;
- 
+		addtimer 60000, strnpcinfo(3) + "::OnPCLoginEvent"; // 5 minutes test
+		
+		// Exempts GM users
+		if (getgmlevel() >= 99) end; 
+
+		// Exempted on towns, gvg maps, pvp maps, bg maps
+		if (getmapflag(strcharinfo(3), mf_town) || getmapflag(strcharinfo(3), mf_gvg) || getmapflag(strcharinfo(3), mf_pvp) || getmapflag(strcharinfo(3), mf_battleground)) end;
+
+		
+		// Exempted Maps for Anti Botting
+		if(strcharinfo(3) == "1@tower") end;
+		else if( strcharinfo(3) == "2@tower") end;
+		else if( strcharinfo(3) == "3@tower") end;
+		else if( strcharinfo(3) == "4@tower") end;
+		else if( strcharinfo(3) == "5@tower") end;
+		else if( strcharinfo(3) == "aru_gld") end;
+		else if( strcharinfo(3) == "sch_gld") end;
+
 		switch( rand(2) ){
 			case 0:
 				pcblockmove getcharid(3),1;
 				set .@String$,"I ACCEPT";
-				mes "Input exactly the following: ^FF0000I ACCEPT^000000 to prove you're not botting.";
+				set .@String_lower$, "i accept";
+				mes "Type and enter ^FF0000I ACCEPT^000000 / ^FF0000i accept^000000 to prove you're not botting.";
 				// mes "^0000FF"+GetString( 15,rand(5,10) )+"^FF0000"+.@String$+"^0000FF"+GetString( 15,rand(3,10) )+"^000000";
 				input .@Input$;
-				if( .@Input$ != .@String$ ){
+				if( .@Input$ != .@String$ && .@Input$ != .@String_lower$ ){
 					mes "Wrong..";
 					announce strcharinfo(0) + " is might be botting. User has been logged out momentarily.", bc_all,0xC3FF00;
 					atcommand "@kick "+strcharinfo(0);
 				} else {
 					pcblockmove getcharid(3),0;
+					if (checkidle(strcharinfo(0)) <= .idle_timer) {
+						dispbottom "Thank you for not using a bot system and being an active player. Here's a compensation for the disturbance.";
+						getitem 6187,10;
+					} else {
+						dispbottom "Thank you for clarifying that you are not botting. Apparently, you were AFK for " + checkidle(strcharinfo(0)) +" seconds, no compensation for now.";
+					}
 				}
 				break;
- 
+
 			case 1:
 				pcblockmove getcharid(3),1;
 				set .@A,rand(6);
@@ -42,8 +64,17 @@
 					atcommand "@kick "+strcharinfo(0);
 				} else {
 					pcblockmove getcharid(3),0;
+					if (checkidle(strcharinfo(0)) <= .idle_timer) {
+						dispbottom "Thank you for not using a bot system and being an active player. Here's a compensation for the disturbance.";
+						getitem 6187,10;
+					} else {
+						dispbottom "Thank you for clarifying that you are not botting. Apparently, you were AFK for " + checkidle(strcharinfo(0)) +" seconds, no compensation for now.";
+					}
 				}
 				break;
 		}
 		close;
+
+	OnInit:
+		set .idle_timer, 3; //Delay for idle re-check check. 3s
 }

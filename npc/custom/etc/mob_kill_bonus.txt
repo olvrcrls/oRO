@@ -1,4 +1,4 @@
--	script	BlankCard	-1,{
+-	script	MobKillBonus	-1,{
 	OnNPCKillEvent:
 		// if (rand(99) > 9 || strnpcinfo(3) != "prt_fild01") end; // 10% chance of success, only works on prt_fild01
 
@@ -19,6 +19,10 @@
 		}
 		else if (.@blank_rng == 1) {
 			getitem 6187,5;
+			end;
+		}
+		else if (.@blank_rng == 69) {
+			getitem 6187,10;
 			end;
 		}
 	}
