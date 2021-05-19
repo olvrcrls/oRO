@@ -1,7 +1,7 @@
 -	script	AntiBot	-1,{
 	OnPCLoginEvent:
-		// addtimer (2700 * 1000), strnpcinfo(3) + "::OnPCLoginEvent";
-		addtimer 60000, strnpcinfo(3) + "::OnPCLoginEvent"; // 5 minutes test
+		addtimer (3000 * 1000), strnpcinfo(3) + "::OnPCLoginEvent"; // happens every 50 minutes
+		// addtimer 60000, strnpcinfo(3) + "::OnPCLoginEvent"; // 5 minutes test
 		
 		// Exempts GM users
 		if (getgmlevel() >= 99) end; 
