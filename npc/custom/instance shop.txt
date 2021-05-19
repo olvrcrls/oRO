@@ -1,12 +1,16 @@
 //--------------------------- Instance Shop --------------------------------//
 
 askald,29,161,4	script	Top PvMer#jin	964,{
-	mes "[Top PvMer]";
+	set .n$, "[DEEGS]";
+	mes .n$;
 	mes "Hello there!";
 	mes "I'm the top PvMer of this server!";
-	mes "I have shops for all the instances for its all of its materils.";
-	mes "They are sorted alphabetically.";
-	mes "Choose from the below menu.";
+	next;
+	
+	mes .n$;
+	mes "I have shops for all the instances drops.";
+	mes "The instances are sorted alphabetically.";
+	mes "Choose from the below menu:";
 	next;
 	switch(select("Instance from [A] to [E]:Instance from [E] to [H]:Instance from [I] to [N]:Instance from [O] to [S]:Instance from [T] to [Z]:Close")){
 	case 1:
@@ -53,7 +57,7 @@ askald,29,161,4	script	Top PvMer#jin	964,{
 			}
 		end;
 	case 2:
-		switch(select("Faceworm's nest:Geffen Magic Tournament:Ghost Palace:Heart Hunter War Base:Horror Toy Factory:I'll Pass")){
+		switch(select("Faceworm's Nest:Geffen Magic Tournament:Ghost Palace:Heart Hunter War Base:Horror Toy Factory:I'll Pass")){
 			case 1:
 				mes "Faceworm Nest";
 				close2;
@@ -208,7 +212,7 @@ askald,29,161,4	script	Top PvMer#jin	964,{
 -	shop	charleston	-1,6752:15500,16031:500000,16033:500000,21011:500000,22043:500000,22044:500000,28101:500000
 -	shop	deviltower	-1,1671:100000,13094:100000,16027:100000,18120:100000,21010:100000,28001:100000
 // -	shop	endless	-1,1185:-1,13412:-1,13413:-1
--	shop	faceworm	-1,13090:5000000,20718:3000000
+-	shop	faceworm	-1,6649:28000,13090:5000000,20718:3000000
 -	shop	gmt	-1,6671:15000,2963:2500000,2964:2500000,15073:2500000,15074:2500000
 -	shop	ghostpalacewep	-1,28100:5500000,18119:5500000,13093:5500000,21009:5500000,16028:5500000,28000:5500000,1836:5500000,1496:5500000,1438:5500000,1669:5500000,13441:5500000,2023:5500000,1933:5500000,1988:5500000
 -	shop	ghostpalacearm	-1,15090:2500000,22033:2500000,20721:2500000,18820:2500000,15091:2500000,2187:2500000
