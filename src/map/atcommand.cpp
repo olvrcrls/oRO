@@ -901,9 +901,10 @@ ACMD_FUNC(whogm)
 			continue;
 		}
 
-		sprintf(atcmd_output, msg_txt(sd,914), // Name: %s (GM:%d) | Location: %s %d %d
-			pl_sd->status.name, pl_level,
-			mapindex_id2name(pl_sd->mapindex), pl_sd->bl.x, pl_sd->bl.y);
+		sprintf(atcmd_output, msg_txt(sd,913), pl_sd->status.name);
+		// sprintf(atcmd_output, msg_txt(sd,914), // Name: %s (GM:%d) | Location: %s %d %d
+			// pl_sd->status.name, pl_level,
+			// mapindex_id2name(pl_sd->mapindex), pl_sd->bl.x, pl_sd->bl.y);
 		clif_displaymessage(fd, atcmd_output);
 
 		sprintf(atcmd_output, msg_txt(sd,915), // BLvl: %d | Job: %s (Lvl: %d)
