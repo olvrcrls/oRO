@@ -2,24 +2,34 @@
 -	script	Guild Limiter	-1,{
 // This part ejects players when they are in the map 
 	OnPCLoadMapEvent:
-	if( getcharid(2) == $App_Guilds[.@i] ){
-	.count = 0;
-	.@origin = getcharid(3);
-	addrid 3, 0, getcharid(2);
-	if ( strcharinfo(3) == .checkmap$ )
-		.count++;
-	if ( !.@origin ) end;
-		if ( .count > 12 ) { // 12 means only 12 players per guild allowed in a map.
-			message strcharinfo(0), "Your guild members are over the limit";
-			sleep2 2000;
+		if (getgmlevel() >= 99) end;
+		
+		if (getcharid(2) == 0) {
+			message strcharinfo(0), "You don't have a guild. You're not allowed here.";
+			sleep2 1000;
 			warp "SavePoint", 0,0;
 		}
-	}
+
+		else if( getcharid(2) == $App_Guilds[.@i] ) {
+		.count = 0;
+		.@origin = getcharid(3);
+		addrid 3, 0, getcharid(2);
+		if (strcharinfo(3) == .checkmap$) .count++;
+
+		if ( !.@origin ) end;
+			if ( .count > 25 ) { 
+				message strcharinfo(0), "Your guild members are over the limit of " + .@limit_str$;
+				sleep2 1000;
+				warp "SavePoint", 0,0;
+			}
+		}
 	end;
 OnInit:
 	setarray .@checkmap$, "arug_cas01", "arug_cas02", "arug_cas03", "arug_cas04", "arug_cas05", "schg_cas01", "schg_cas02", "schg_cas03", "schg_cas04", "schg_cas05";
 	.@len = getarraysize( .@checkmap$ );
-	for ( .@i = 0; .@i < .@size; .@i++ ) {
+	.@limit = 25;
+	.@limit_str$ = .@limit;
+	for ( .@i = 0; .@i < .@len; .@i++ ) {
 		setmapflag .@checkmap$[.@i], mf_loadevent;
 		setd "."+ .@checkmap$[.@i], 1;
 	}
