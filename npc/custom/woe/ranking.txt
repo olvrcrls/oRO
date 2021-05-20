@@ -40,7 +40,7 @@ askald,114,110,4	script	Arias	419,{
 	
 	mes .n$;
 	for (set .@c, 0; .@c < .@size; set .@c, .@c + 1)
-		mes "TOP ^0000FF" +(.@c + 1) + "^000000: ^0000FF" + .@name$[.@c] + "^000000 has ^FF0000" + @Kills[.@c] + "^000000 ^000000player kills^000000";
+		mes "TOP ^0000FF" +(.@c + 1) + "^000000: ^0000FF" + .@name$[.@c] + "^000000 has ^FF0000" + .@Kills[.@c] + "^000000 ^000000player kills^000000";
 	close;
 	break;
 	
