@@ -23,41 +23,46 @@ PRIMARY KEY (`Char_ID`)
 ) ENGINE=MyISAM;
 */
 
-prontera,153,190,4	script	Krane The Ranker	419,{
-
+askald,114,110,4	script	Arias	419,{
+	set .n$, "[WoE Accountant]";
+	mes .n$;
+	mes "Hey, I'm a WoE Accountant.";
+	mes "I'm here while Master Andie is building"; 
+	mes "the website's WoE Stats page.";
+	next;
 	set .@menu$, "Top "+.top+" Kills:Top "+.top+" Deaths:Top "+.top+" Breaker:Guild Rank:Points Shop:";
 	if (getgmlevel() == 99) { set .@menu$, .@menu$ + "Reset Data"; }
 	switch(select(.@menu$)) {
 	case 1:
 	query_sql "CREATE TABLE IF NOT EXISTS `woe_ranking` ( `Char_ID` int(11) unsigned NOT NULL DEFAULT '0', `PlayerName` varchar(255) NULL DEFAULT '', `Kills` varchar(255) NULL DEFAULT '', `Deaths` varchar(255) NULL DEFAULT '', `EmpBreak` varchar(255) NULL DEFAULT '', PRIMARY KEY (`Char_ID`) ) ENGINE=MyISAM";
 	query_sql( "DELETE FROM `woe_ranking` WHERE `PlayerName` NOT IN ( SELECT `name` FROM `char` )" ); 
-	set .@size, query_sql( "SELECT * FROM woe_ranking WHERE Kills > 0 ORDER BY Kills DESC limit "+ .top, .@CharID, .@name$, .@Kills, .@Deaths, .@EmpBreak);
+	set .@size, query_sql( "SELECT Char_ID, PlayerName, Kills FROM woe_ranking WHERE Kills > 0 ORDER BY Kills DESC limit "+ .top, .@CharID, .@name$, .@Kills);
 	
-	mes "[^FF0000WoE ^0000FFRank ^996600Top ^FF0000" + .top +"^000000]";
+	mes .n$;
 	for (set .@c, 0; .@c < .@size; set .@c, .@c + 1)
-		mes "Top ^FF0000" +(.@c + 1) +"^000000: ^0000FF" + .@name$[.@c] +"^000000 | ^FF0000" + .@Kills[.@c] +"^000000 Kills | ^FF0000" + .@Deaths[.@c] +"^000000 Deaths | ^FF0000" + .@EmpBreak[.@c] +"^000000 Emp Break";
+		mes "TOP ^0000FF" +(.@c + 1) + "^000000: ^0000FF" + .@name$[.@c] + "^000000 has ^FF0000" + @Kills[.@c] + "^000000 ^000000player kills^000000";
 	close;
 	break;
 	
 	case 2:
 	query_sql "CREATE TABLE IF NOT EXISTS `woe_ranking` ( `Char_ID` int(11) unsigned NOT NULL DEFAULT '0', `PlayerName` varchar(255) NULL DEFAULT '', `Kills` varchar(255) NULL DEFAULT '', `Deaths` varchar(255) NULL DEFAULT '', `EmpBreak` varchar(255) NULL DEFAULT '', PRIMARY KEY (`Char_ID`) ) ENGINE=MyISAM";
 	query_sql( "DELETE FROM `woe_ranking` WHERE `PlayerName` NOT IN ( SELECT `name` FROM `char` )" ); 
-	set .@size, query_sql( "SELECT * FROM woe_ranking WHERE Deaths > 0 ORDER BY Deaths DESC limit "+ .top, .@CharID, .@name$, .@Kills, .@Deaths, .@EmpBreak);
+	set .@size, query_sql( "SELECT Char_ID, PlayerName, Deaths FROM woe_ranking WHERE Deaths > 0 ORDER BY Deaths DESC limit "+ .top, .@CharID, .@name$, .@Deaths);
 	
-	mes "[^FF0000WoE ^0000FFRank ^996600Top ^FF0000" + .top +"^000000]";
+	mes .n$;
 	for (set .@c, 0; .@c < .@size; set .@c, .@c + 1)
-		mes "Top ^FF0000" +(.@c + 1) +"^000000: ^0000FF" + .@name$[.@c] +"^000000 | ^FF0000" + .@Kills[.@c] +"^000000 Kills | ^FF0000" + .@Deaths[.@c] +"^000000 Deaths | ^FF0000" + .@EmpBreak[.@c] +"^000000 Emp Break";
+		mes "TOP ^0000FF" +(.@c + 1) +"^000000: ^0000FF" + .@name$[.@c] +"^000000 died ^FF0000" + .@Deaths[.@c] + "^000000 times.";
 	close;
 	break;
 	
 	case 3:
 	query_sql "CREATE TABLE IF NOT EXISTS `woe_ranking` ( `Char_ID` int(11) unsigned NOT NULL DEFAULT '0', `PlayerName` varchar(255) NULL DEFAULT '', `Kills` varchar(255) NULL DEFAULT '', `Deaths` varchar(255) NULL DEFAULT '', `EmpBreak` varchar(255) NULL DEFAULT '', PRIMARY KEY (`Char_ID`) ) ENGINE=MyISAM";
 	query_sql( "DELETE FROM `woe_ranking` WHERE `PlayerName` NOT IN ( SELECT `name` FROM `char` )" ); 
-	set .@size, query_sql( "SELECT * FROM woe_ranking WHERE EmpBreak > 0 ORDER BY EmpBreak DESC limit "+ .top, .@CharID, .@name$, .@Kills, .@Deaths, .@EmpBreak);
+	set .@size, query_sql( "SELECT Char_ID, PlayerName, EmpBreak FROM woe_ranking WHERE EmpBreak > 0 ORDER BY EmpBreak DESC limit "+ .top, .@CharID, .@name$, .@EmpBreak);
 	
-	mes "[^FF0000WoE ^0000FFRank ^996600Top ^FF0000" + .top +"^000000]";
+	mes .n$;
 	for (set .@c, 0; .@c < .@size; set .@c, .@c + 1)
-		mes "Top ^FF0000" +(.@c + 1) +"^000000: ^0000FF" + .@name$[.@c] +"^000000 | ^FF0000" + .@Kills[.@c] +"^000000 Kills | ^FF0000" + .@Deaths[.@c] +"^000000 Deaths | ^FF0000" + .@EmpBreak[.@c] +"^000000 Emp Break";
+		mes "TOP ^0000FF" +(.@c + 1) + "^000000: ^0000FF" + .@name$[.@c] + "^000000 broke ^FF0000" + .@EmpBreak[.@c] +"^000000 ^000000Emperium(s)^000000";
 	close;
 	break;
 	
@@ -107,11 +112,11 @@ prontera,153,190,4	script	Krane The Ranker	419,{
 	}
 
 OnInit: // Script Configuration
-	set .top, 10;
+	set .top, 25;
 	set .WoePoints, 1;      //points to add in database/player when kill
 	set .WoeDeduct, 1;      //points to add in database
 	set .diedeductpoint, 2; //points to deduct when died
-	waitingroom "Woe Rank List",0;
+	waitingroom "WoE Master Ranks",0;
 	end;
 
 OnPCKillEvent:
