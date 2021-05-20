@@ -7,7 +7,7 @@
 
 askald,159,234,4	script	Doctora W. Belo	814,{
 	set .@catalyst_id, 7179; // Proof of Donation
-	set @totalcost, 250;
+	set @totalcost, 500;
 
 	mes "[Winky]";
 	mes "Hey you seem not content with your look!?";
