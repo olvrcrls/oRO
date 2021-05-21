@@ -71,4 +71,4 @@ OnRecvCastlesc03:
 	FlagEmblem GetCastleData("schg_cas03",1);
 	end;
 }
-sch_gld,104,191,0	duplicate(Sc03_Flag)	Bidblind#flag_sc03_2	722
+sch_gld,104,191,0	duplicate(Sc03_Flag)	Vidblainn#flag_sc03_2	722
