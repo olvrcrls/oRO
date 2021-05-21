@@ -8,6 +8,16 @@
 			message strcharinfo(0), "You don't have a guild. You're not allowed here.";
 			sleep2 1000;
 			warp "SavePoint", 0,0;
+			end;
+		}
+
+		query_sql("SELECT guild_id, emblem_id, emblem_len FROM `guild` WHERE guild_id = " + getcharid(2), .@guild_id, .@emblem_id, .@emblem_len);
+		if (.@emblem_id == 0 && .@emblem_len == 0) {
+			message strcharinfo(0), "Your guild doesn't have an emblem. You're not allowed here.";
+			message strcharinfo(0), "Setup a guild emblem before WoE then relog to take effect.";
+			sleep2 1000;
+			warp "SavePoint",0,0;
+			end;
 		}
 
 		else if( getcharid(2) == $App_Guilds[.@i] ) {
