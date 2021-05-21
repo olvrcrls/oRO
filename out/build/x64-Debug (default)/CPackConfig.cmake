@@ -95,3 +95,31 @@ SET(CPACK_COMPONENTS_ALL)
 set(CPACK_COMPONENT_DEVELOPMENT_BASE_DISPLAY_NAME "Base files")
 set(CPACK_COMPONENT_DEVELOPMENT_BASE_DESCRIPTION "projects, 3rdparty, sources, templates")
 set(CPACK_COMPONENT_DEVELOPMENT_BASE_GROUP Development)
+
+# Configuration for component "Runtime_loginserver"
+
+SET(CPACK_COMPONENTS_ALL Runtime_base Runtime_templates)
+set(CPACK_COMPONENT_RUNTIME_LOGINSERVER_DISPLAY_NAME "login-server")
+set(CPACK_COMPONENT_RUNTIME_LOGINSERVER_DESCRIPTION "login-server")
+set(CPACK_COMPONENT_RUNTIME_LOGINSERVER_GROUP Runtime)
+
+# Configuration for component "Runtime_charserver"
+
+SET(CPACK_COMPONENTS_ALL Runtime_base Runtime_loginserver Runtime_templates)
+set(CPACK_COMPONENT_RUNTIME_CHARSERVER_DISPLAY_NAME "char-server")
+set(CPACK_COMPONENT_RUNTIME_CHARSERVER_DESCRIPTION "char-server")
+set(CPACK_COMPONENT_RUNTIME_CHARSERVER_GROUP Runtime)
+
+# Configuration for component "Runtime_mapserver"
+
+SET(CPACK_COMPONENTS_ALL Runtime_base Runtime_charserver Runtime_loginserver Runtime_templates)
+set(CPACK_COMPONENT_RUNTIME_MAPSERVER_DISPLAY_NAME "map-server")
+set(CPACK_COMPONENT_RUNTIME_MAPSERVER_DESCRIPTION "map-server")
+set(CPACK_COMPONENT_RUNTIME_MAPSERVER_GROUP Runtime)
+
+# Configuration for component "Runtime_mapcache"
+
+SET(CPACK_COMPONENTS_ALL Runtime_base Runtime_charserver Runtime_loginserver Runtime_mapserver Runtime_templates)
+set(CPACK_COMPONENT_RUNTIME_MAPCACHE_DISPLAY_NAME "mapcache")
+set(CPACK_COMPONENT_RUNTIME_MAPCACHE_DESCRIPTION "mapcache generator")
+set(CPACK_COMPONENT_RUNTIME_MAPCACHE_GROUP Runtime)

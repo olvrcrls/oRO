@@ -17,6 +17,12 @@
 //Allow CMake to build in the source directory.
 ALLOW_SAME_DIRECTORY:BOOL=OFF
 
+//build mapcache executable
+BUILD_MAPCACHE:BOOL=ON
+
+//build server executables
+BUILD_SERVERS:BOOL=ON
+
 //Path to a program.
 CMAKE_AR:FILEPATH=C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.28.29333/bin/Hostx64/x64/lib.exe
 
@@ -243,6 +249,15 @@ ENABLE_RDTSC:BOOL=OFF
 //Git command line client
 GIT_EXECUTABLE:FILEPATH=D:/Programs/Git/cmd/git.exe
 
+//mysql client is available as a local copy
+HAVE_LOCAL_MYSQL:BOOL=ON
+
+//pcre is available as a local copy
+HAVE_LOCAL_PCRE:BOOL=ON
+
+//zlib is available as a local copy
+HAVE_LOCAL_ZLIB:BOOL=ON
+
 //install/package files needed to build the project
 INSTALL_COMPONENT_DEVELOPMENT:BOOL=OFF
 
@@ -269,16 +284,16 @@ LIBCONFIG_INCLUDE_DIRS:PATH=C:/Users/devol/Desktop/oRO/3rdparty/libconfig
 LIBCONFIG_SOURCE_DIR:PATH=C:/Users/devol/Desktop/oRO/3rdparty/libconfig
 
 //MYSQL include directories
-MYSQL_INCLUDE_DIRS:PATH=
+MYSQL_INCLUDE_DIRS:PATH=C:/Users/devol/Desktop/oRO/3rdparty/mysql/include
 
 //MYSQL libraries
-MYSQL_LIBRARIES:PATH=
+MYSQL_LIBRARIES:PATH=C:/Users/devol/Desktop/oRO/3rdparty/mysql/lib/x64/libmysql.lib
 
 //Path to a file.
 MYSQL_LOCAL_INCLUDE_DIRS:PATH=C:/Users/devol/Desktop/oRO/3rdparty/mysql/include
 
 //Path to a library.
-MYSQL_LOCAL_LIBRARIES:FILEPATH=MYSQL_LOCAL_LIBRARIES-NOTFOUND
+MYSQL_LOCAL_LIBRARIES:FILEPATH=C:/Users/devol/Desktop/oRO/3rdparty/mysql/lib/x64/libmysql.lib
 
 //system mysql include directories
 MYSQL_SYSTEM_INCLUDE_DIRS:PATH=MYSQL_INCLUDE_DIRS-NOTFOUND
@@ -293,10 +308,10 @@ PACKETVER:STRING=
 PCRE_INCLUDE_DIR:PATH=PCRE_INCLUDE_DIR-NOTFOUND
 
 //PCRE include directories
-PCRE_INCLUDE_DIRS:PATH=
+PCRE_INCLUDE_DIRS:PATH=C:/Users/devol/Desktop/oRO/3rdparty/pcre/include
 
 //PCRE libraries
-PCRE_LIBRARIES:PATH=
+PCRE_LIBRARIES:PATH=C:/Users/devol/Desktop/oRO/3rdparty/pcre/lib/x64/pcre8.lib
 
 //Path to a library.
 PCRE_LIBRARY:FILEPATH=PCRE_LIBRARY-NOTFOUND
@@ -305,7 +320,7 @@ PCRE_LIBRARY:FILEPATH=PCRE_LIBRARY-NOTFOUND
 PCRE_LOCAL_INCLUDE_DIRS:PATH=C:/Users/devol/Desktop/oRO/3rdparty/pcre/include
 
 //Path to a library.
-PCRE_LOCAL_LIBRARIES:FILEPATH=PCRE_LOCAL_LIBRARIES-NOTFOUND
+PCRE_LOCAL_LIBRARIES:FILEPATH=C:/Users/devol/Desktop/oRO/3rdparty/pcre/lib/x64/pcre8.lib
 
 //system pcre include directories
 PCRE_SYSTEM_INCLUDE_DIRS:PATH=
@@ -325,6 +340,24 @@ SVN_FOLDER_PATTERN:STRING=[\.]svn
 //enable building packages with CPack ('package' target)
 WITH_CPACK:BOOL=ON
 
+//use local version of MYSQL
+WITH_LOCAL_MYSQL:BOOL=ON
+
+//use local version of PCRE
+WITH_LOCAL_PCRE:BOOL=ON
+
+//use local version of ZLIB
+WITH_LOCAL_ZLIB:BOOL=ON
+
+//use MYSQL
+WITH_MYSQL:BOOL=ON
+
+//use PCRE
+WITH_PCRE:BOOL=ON
+
+//use ZLIB
+WITH_ZLIB:BOOL=ON
+
 //Path to a file.
 YAML_INCLUDE_DIRS:PATH=C:/Users/devol/Desktop/oRO/3rdparty/yaml-cpp/include
 
@@ -335,10 +368,10 @@ YAML_SOURCE_DIR:PATH=C:/Users/devol/Desktop/oRO/3rdparty/yaml-cpp/src
 ZLIB_INCLUDE_DIR:PATH=ZLIB_INCLUDE_DIR-NOTFOUND
 
 //ZLIB include directories
-ZLIB_INCLUDE_DIRS:PATH=
+ZLIB_INCLUDE_DIRS:PATH=C:/Users/devol/Desktop/oRO/3rdparty/zlib/include
 
 //ZLIB libraries
-ZLIB_LIBRARIES:PATH=ZLIB_LIBRARY-NOTFOUND
+ZLIB_LIBRARIES:PATH=C:/Users/devol/Desktop/oRO/3rdparty/zlib/lib/x64/zlib.lib
 
 //Path to a library.
 ZLIB_LIBRARY_DEBUG:FILEPATH=ZLIB_LIBRARY_DEBUG-NOTFOUND
@@ -350,13 +383,19 @@ ZLIB_LIBRARY_RELEASE:FILEPATH=ZLIB_LIBRARY_RELEASE-NOTFOUND
 ZLIB_LOCAL_INCLUDE_DIRS:PATH=C:/Users/devol/Desktop/oRO/3rdparty/zlib/include
 
 //Path to a library.
-ZLIB_LOCAL_LIBRARIES:FILEPATH=ZLIB_LOCAL_LIBRARIES-NOTFOUND
+ZLIB_LOCAL_LIBRARIES:FILEPATH=C:/Users/devol/Desktop/oRO/3rdparty/zlib/lib/x64/zlib.lib
 
 //system zlib include directories
 ZLIB_SYSTEM_INCLUDE_DIRS:PATH=
 
 //system zlib libraries
 ZLIB_SYSTEM_LIBRARIES:PATH=ZLIB_LIBRARY-NOTFOUND
+
+//Dependencies for the target
+common_LIB_DEPENDS:STATIC=general;oldnames.lib;general;ws2_32.lib;general;C:/Users/devol/Desktop/oRO/3rdparty/mysql/lib/x64/libmysql.lib;general;common_base;general;yaml-cpp;
+
+//Dependencies for the target
+common_base_LIB_DEPENDS:STATIC=general;oldnames.lib;general;ws2_32.lib;general;C:/Users/devol/Desktop/oRO/3rdparty/zlib/lib/x64/zlib.lib;general;yaml-cpp;
 
 //Value Computed by CMake
 rAthena_BINARY_DIR:STATIC=C:/Users/devol/Desktop/oRO/out/build/x64-Debug (default)
@@ -377,6 +416,7 @@ yaml-cpp_SOURCE_DIR:STATIC=C:/Users/devol/Desktop/oRO/3rdparty/yaml-cpp
 
 //Result of TEST_BIG_ENDIAN
 BIG_ENDIAN:INTERNAL=0
+CHAR_SOURCE_DIR:INTERNAL=C:/Users/devol/Desktop/oRO/src/char
 //This is the directory where this CMakeCache.txt was created
 CMAKE_CACHEFILE_DIR:INTERNAL=c:/Users/devol/Desktop/oRO/out/build/x64-Debug (default)
 //Major version of cmake used to create the current loaded cache
@@ -466,7 +506,7 @@ CMAKE_MODULE_PATH:INTERNAL=C:/Users/devol/Desktop/oRO/3rdparty/cmake
 //ADVANCED property for variable: CMAKE_MT
 CMAKE_MT-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=9
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=13
 //Platform information initialized
 CMAKE_PLATFORM_INFO_INITIALIZED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_RC_COMPILER
@@ -512,10 +552,22 @@ CMAKE_STATIC_LINKER_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//common_base definitions
+COMMON_BASE_DEFINITIONS:INTERNAL=-DLIBCONFIG_STATIC
+//common_base headers
+COMMON_BASE_HEADERS:INTERNAL=C:/Users/devol/Desktop/oRO/out/build/x64-Debug (default)/src/common/version.hpp;C:/Users/devol/Desktop/oRO/src/common/cbasetypes.hpp;C:/Users/devol/Desktop/oRO/src/common/mmo.hpp;C:/Users/devol/Desktop/oRO/src/common/conf.hpp;C:/Users/devol/Desktop/oRO/src/common/core.hpp;C:/Users/devol/Desktop/oRO/src/common/database.hpp;C:/Users/devol/Desktop/oRO/src/common/db.hpp;C:/Users/devol/Desktop/oRO/src/common/des.hpp;C:/Users/devol/Desktop/oRO/src/common/ers.hpp;C:/Users/devol/Desktop/oRO/src/common/grfio.hpp;C:/Users/devol/Desktop/oRO/src/common/malloc.hpp;C:/Users/devol/Desktop/oRO/src/common/mapindex.hpp;C:/Users/devol/Desktop/oRO/src/common/md5calc.hpp;C:/Users/devol/Desktop/oRO/src/common/nullpo.hpp;C:/Users/devol/Desktop/oRO/src/common/random.hpp;C:/Users/devol/Desktop/oRO/src/common/showmsg.hpp;C:/Users/devol/Desktop/oRO/src/common/socket.hpp;C:/Users/devol/Desktop/oRO/src/common/strlib.hpp;C:/Users/devol/Desktop/oRO/src/common/timer.hpp;C:/Users/devol/Desktop/oRO/src/common/utils.hpp;C:/Users/devol/Desktop/oRO/src/common/msg_conf.hpp;C:/Users/devol/Desktop/oRO/src/common/cli.hpp;C:/Users/devol/Desktop/oRO/src/common/utilities.hpp;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/grammar.h;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/libconfig.h;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/parsectx.h;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/scanctx.h;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/scanner.h;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/strbuf.h;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/wincompat.h;C:/Users/devol/Desktop/oRO/src/common/winapi.hpp
+//common_base include dirs
+COMMON_BASE_INCLUDE_DIRS:INTERNAL=C:/Users/devol/Desktop/oRO/3rdparty/libconfig;C:/Users/devol/Desktop/oRO/3rdparty/yaml-cpp/include
+//common_base sources
+COMMON_BASE_SOURCES:INTERNAL=C:/Users/devol/Desktop/oRO/src/common/conf.cpp;C:/Users/devol/Desktop/oRO/src/common/core.cpp;C:/Users/devol/Desktop/oRO/src/common/database.cpp;C:/Users/devol/Desktop/oRO/src/common/db.cpp;C:/Users/devol/Desktop/oRO/src/common/des.cpp;C:/Users/devol/Desktop/oRO/src/common/ers.cpp;C:/Users/devol/Desktop/oRO/src/common/grfio.cpp;C:/Users/devol/Desktop/oRO/src/common/malloc.cpp;C:/Users/devol/Desktop/oRO/src/common/mapindex.cpp;C:/Users/devol/Desktop/oRO/src/common/md5calc.cpp;C:/Users/devol/Desktop/oRO/src/common/nullpo.cpp;C:/Users/devol/Desktop/oRO/src/common/random.cpp;C:/Users/devol/Desktop/oRO/src/common/showmsg.cpp;C:/Users/devol/Desktop/oRO/src/common/socket.cpp;C:/Users/devol/Desktop/oRO/src/common/strlib.cpp;C:/Users/devol/Desktop/oRO/src/common/timer.cpp;C:/Users/devol/Desktop/oRO/src/common/utils.cpp;C:/Users/devol/Desktop/oRO/src/common/msg_conf.cpp;C:/Users/devol/Desktop/oRO/src/common/cli.cpp;C:/Users/devol/Desktop/oRO/src/common/utilities.cpp;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/grammar.c;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/libconfig.c;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/scanctx.c;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/scanner.c;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/strbuf.c;C:/Users/devol/Desktop/oRO/src/common/winapi.cpp
+//common headers
+COMMON_HEADERS:INTERNAL=C:/Users/devol/Desktop/oRO/out/build/x64-Debug (default)/src/common/version.hpp;C:/Users/devol/Desktop/oRO/src/common/cbasetypes.hpp;C:/Users/devol/Desktop/oRO/src/common/mmo.hpp;C:/Users/devol/Desktop/oRO/src/common/sql.hpp
 COMMON_MINI_DEFINITIONS:INTERNAL=-DMINICORE -DLIBCONFIG_STATIC
-COMMON_MINI_HEADERS:INTERNAL=C:/Users/devol/Desktop/oRO/out/build/x64-Debug (default)/src/common/version.hpp;C:/Users/devol/Desktop/oRO/src/common/cbasetypes.hpp;C:/Users/devol/Desktop/oRO/src/common/mmo.hpp;C:/Users/devol/Desktop/oRO/src/common/core.hpp;C:/Users/devol/Desktop/oRO/src/common/malloc.hpp;C:/Users/devol/Desktop/oRO/src/common/showmsg.hpp;C:/Users/devol/Desktop/oRO/src/common/strlib.hpp;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/grammar.h;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/libconfig.h;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/parsectx.h;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/scanctx.h;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/scanner.h;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/strbuf.h;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/wincompat.h;/winapi.hpp
+COMMON_MINI_HEADERS:INTERNAL=C:/Users/devol/Desktop/oRO/out/build/x64-Debug (default)/src/common/version.hpp;C:/Users/devol/Desktop/oRO/src/common/cbasetypes.hpp;C:/Users/devol/Desktop/oRO/src/common/mmo.hpp;C:/Users/devol/Desktop/oRO/src/common/core.hpp;C:/Users/devol/Desktop/oRO/src/common/malloc.hpp;C:/Users/devol/Desktop/oRO/src/common/showmsg.hpp;C:/Users/devol/Desktop/oRO/src/common/strlib.hpp;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/grammar.h;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/libconfig.h;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/parsectx.h;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/scanctx.h;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/scanner.h;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/strbuf.h;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/wincompat.h;C:/Users/devol/Desktop/oRO/src/common/winapi.hpp
 COMMON_MINI_INCLUDE_DIRS:INTERNAL=C:/Users/devol/Desktop/oRO/3rdparty/libconfig
-COMMON_MINI_SOURCES:INTERNAL=C:/Users/devol/Desktop/oRO/src/common/core.cpp;C:/Users/devol/Desktop/oRO/src/common/malloc.cpp;C:/Users/devol/Desktop/oRO/src/common/showmsg.cpp;C:/Users/devol/Desktop/oRO/src/common/strlib.cpp;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/grammar.c;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/libconfig.c;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/scanctx.c;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/scanner.c;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/strbuf.c;/winapi.cpp
+COMMON_MINI_SOURCES:INTERNAL=C:/Users/devol/Desktop/oRO/src/common/core.cpp;C:/Users/devol/Desktop/oRO/src/common/malloc.cpp;C:/Users/devol/Desktop/oRO/src/common/showmsg.cpp;C:/Users/devol/Desktop/oRO/src/common/strlib.cpp;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/grammar.c;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/libconfig.c;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/scanctx.c;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/scanner.c;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/strbuf.c;C:/Users/devol/Desktop/oRO/src/common/winapi.cpp
+//common sources
+COMMON_SOURCES:INTERNAL=C:/Users/devol/Desktop/oRO/src/common/sql.cpp
 //ADVANCED property for variable: COMMON_SOURCE_DIR
 COMMON_SOURCE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CPACK_BINARY_7Z
@@ -565,6 +617,12 @@ HAVE_CMAKE_SIZEOF_UNSIGNED_SHORT:INTERNAL=TRUE
 HAVE_GETPID:INTERNAL=1
 //Have function gettid
 HAVE_GETTID:INTERNAL=
+//ADVANCED property for variable: HAVE_LOCAL_MYSQL
+HAVE_LOCAL_MYSQL-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: HAVE_LOCAL_PCRE
+HAVE_LOCAL_PCRE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: HAVE_LOCAL_ZLIB
+HAVE_LOCAL_ZLIB-ADVANCED:INTERNAL=1
 //Test HAVE_MONOTONIC_CLOCK
 HAVE_MONOTONIC_CLOCK:INTERNAL=
 //Result of TRY_COMPILE
@@ -583,6 +641,8 @@ HAVE_SYS_TYPES_H:INTERNAL=1
 HAVE_TLS:INTERNAL=
 //Result of TRY_COMPILE
 HAVE_TLS_COMPILED:INTERNAL=FALSE
+HAVE_common:INTERNAL=ON
+HAVE_common_base:INTERNAL=ON
 INSTALL_TO:INTERNAL=subdir
 //libconfig definitions
 LIBCONFIG_DEFINITIONS:INTERNAL=-DLIBCONFIG_STATIC
@@ -594,6 +654,8 @@ LIBCONFIG_INCLUDE_DIRS-ADVANCED:INTERNAL=1
 LIBCONFIG_SOURCES:INTERNAL=C:/Users/devol/Desktop/oRO/3rdparty/libconfig/grammar.c;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/libconfig.c;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/scanctx.c;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/scanner.c;C:/Users/devol/Desktop/oRO/3rdparty/libconfig/strbuf.c
 //ADVANCED property for variable: LIBCONFIG_SOURCE_DIR
 LIBCONFIG_SOURCE_DIR-ADVANCED:INTERNAL=1
+LOGIN_SOURCE_DIR:INTERNAL=C:/Users/devol/Desktop/oRO/src/login
+MAP_SOURCE_DIR:INTERNAL=C:/Users/devol/Desktop/oRO/src/map
 //ADVANCED property for variable: MYSQL_INCLUDE_DIRS
 MYSQL_INCLUDE_DIRS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: MYSQL_LIBRARIES
@@ -629,7 +691,7 @@ Runtime_base:INTERNAL=configurations, dbs, npcs, docs, ...
 Runtime_templates:INTERNAL=conf/import and save (generated from conf/import-tmpl and save-tmpl)
 //ADVANCED property for variable: SVN_FOLDER_PATTERN
 SVN_FOLDER_PATTERN-ADVANCED:INTERNAL=1
-TARGET_LIST:INTERNAL=
+TARGET_LIST:INTERNAL=common_base;common;login-server;char-server;map-server;mapcache
 //yaml definitions
 YAML_DEFINITIONS:INTERNAL=-std=c++11
 //yaml headers
