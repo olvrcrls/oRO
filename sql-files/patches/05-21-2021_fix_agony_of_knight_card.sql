@@ -1,0 +1,1 @@
+UPDATE `item_db_re` SET `script` = 'bonus bMaxHPrate,-44; bonus bHPGainValue,200+10*getrefine(); bonus2 bHPLossRate,100,6000;', `unequip_script` = 'heal -4444,0;' WHERE (`id` = '4605');
