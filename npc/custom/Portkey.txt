@@ -3,7 +3,7 @@
 	mes .n$;
 	mes "Where would you like to go?";
 	//next;
-	switch(select("Town Square:Supply Shops:Enchant Items:Clans:Refiner/Card Removal:Training Grounds:Stylist/Echanters:Close")){
+	switch(select("Town Square:Supply Shops:Enchant Items:Clans:Refiner/Card Removal:Training Grounds:Stylist:Close")){
 		case 1: // Town Square
 			mes "[Portkey]";
 			mes "Hold on! I'll take you there in a jiffy.";
