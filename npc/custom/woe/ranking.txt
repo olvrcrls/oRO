@@ -39,8 +39,12 @@ askald,114,110,4	script	Arias	419,{
 	set .@size, query_sql( "SELECT Char_ID, PlayerName, Kills FROM woe_ranking WHERE Kills > 0 ORDER BY Kills DESC limit "+ .top, .@CharID, .@name$, .@Kills);
 	
 	mes .n$;
-	for (set .@c, 0; .@c < .@size; set .@c, .@c + 1)
-		mes "TOP ^0000FF" +(.@c + 1) + "^000000: ^0000FF" + .@name$[.@c] + "^000000 has ^FF0000" + .@Kills[.@c] + "^000000 ^000000player kills^000000";
+	if (.@size > 0) {
+		for (set .@c, 0; .@c < .@size; set .@c, .@c + 1)
+			mes "TOP ^0000FF" +(.@c + 1) + "^000000: ^0000FF" + .@name$[.@c] + "^000000 has ^FF0000" + .@Kills[.@c] + "^000000 ^000000player kills^000000";
+	} else {
+		mes "Nothing to show at the moment.";
+	}
 	close;
 	break;
 	
@@ -50,8 +54,12 @@ askald,114,110,4	script	Arias	419,{
 	set .@size, query_sql( "SELECT Char_ID, PlayerName, Deaths FROM woe_ranking WHERE Deaths > 0 ORDER BY Deaths DESC limit "+ .top, .@CharID, .@name$, .@Deaths);
 	
 	mes .n$;
+	if (.@size > 0) {
 	for (set .@c, 0; .@c < .@size; set .@c, .@c + 1)
 		mes "TOP ^0000FF" +(.@c + 1) +"^000000: ^0000FF" + .@name$[.@c] +"^000000 died ^FF0000" + .@Deaths[.@c] + "^000000 times.";
+	} else {
+		mes "Nothing to show at the moment.";
+	}
 	close;
 	break;
 	
@@ -61,8 +69,12 @@ askald,114,110,4	script	Arias	419,{
 	set .@size, query_sql( "SELECT Char_ID, PlayerName, EmpBreak FROM woe_ranking WHERE EmpBreak > 0 ORDER BY EmpBreak DESC limit "+ .top, .@CharID, .@name$, .@EmpBreak);
 	
 	mes .n$;
+	if (.@size > 0) {
 	for (set .@c, 0; .@c < .@size; set .@c, .@c + 1)
 		mes "TOP ^0000FF" +(.@c + 1) + "^000000: ^0000FF" + .@name$[.@c] + "^000000 broke ^FF0000" + .@EmpBreak[.@c] +"^000000 ^000000Emperium(s)^000000";
+	} else {
+		mes "Nothing to show at the moment.";
+	}
 	close;
 	break;
 	
