@@ -16021,7 +16021,8 @@ bool skill_check_condition_castbegin(struct map_session_data* sd, uint16 skill_i
 			}
 			break;
 		case LG_PRESTIGE:
-			if( sc && (sc->data[SC_BANDING] || sc->data[SC_INSPIRATION]) ) {
+			// if( sc && (sc->data[SC_BANDING] || sc->data[SC_INSPIRATION]) ) {
+			if ( sc && (sc->data[SC_BANDING]) ) {
 				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 				return false;
 			}
