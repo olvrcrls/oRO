@@ -14,31 +14,32 @@
 		query_sql("SELECT guild_id, emblem_id, emblem_len FROM `guild` WHERE guild_id = " + getcharid(2), .@guild_id, .@emblem_id, .@emblem_len);
 		if (.@emblem_id == 0 && .@emblem_len == 0) {
 			message strcharinfo(0), "Your guild doesn't have an emblem. You're not allowed here.";
-			message strcharinfo(0), "Setup a guild emblem before WoE then relog to take effect.";
+			message strcharinfo(0), "Setup a guild emblem before WoE then account relog to take effect.";
 			sleep2 1000;
 			warp "SavePoint",0,0;
 			end;
 		}
 
-		else if( getcharid(2) == $App_Guilds[.@i] ) {
-		.count = 0;
-		.@origin = getcharid(3);
-		addrid 3, 0, getcharid(2);
-		if (strcharinfo(3) == .checkmap$) .count++;
 
-		if ( !.@origin ) end;
-			if ( .count > 25 ) { 
-				message strcharinfo(0), "Your guild members are over the limit of " + .@limit_str$;
-				sleep2 1000;
-				warp "SavePoint", 0,0;
-			}
-		}
+		query_sql("SELECT count(*) FROM `guild_member` WHERE guild_id = " + getcharid(2), .@total_members);
+		dispbottom "Total guild members: " + .@total_members + " Limit is " + .limit;
+		if ( .@total_members > .limit ) {
+			message strcharinfo(0), "Your guild members are over the limit of " + .limit;
+			sleep2 1000;
+			warp "SavePoint", 0,0;
+		} // if above limit
+		else if (.@total_members < .min) {
+			message strcharinfo(0), "You don't have enough members to compete for War of Emperium.";
+			message strcharinfo(0), "Minimum is " +  .min  +" members inside your guild.";
+			sleep2 1000;
+			warp "SavePoint", 0,0;
+		} // else below minimum
 	end;
 OnInit:
 	setarray .@checkmap$, "arug_cas01", "arug_cas02", "arug_cas03", "arug_cas04", "arug_cas05", "schg_cas01", "schg_cas02", "schg_cas03", "schg_cas04", "schg_cas05";
 	.@len = getarraysize( .@checkmap$ );
-	.@limit = 25;
-	.@limit_str$ = .@limit;
+	set .limit, 25;
+	set .min, 12;
 	for ( .@i = 0; .@i < .@len; .@i++ ) {
 		setmapflag .@checkmap$[.@i], mf_loadevent;
 		setd "."+ .@checkmap$[.@i], 1;
