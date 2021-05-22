@@ -25,7 +25,7 @@ askald,59,117,4	script	Refine Master	851,{
 	if (countitem(22803))
 		set .@bWeaponUp,1;
 	// if (countitem(6239) || countitem(6232) || countitem(6233) || countitem(6234) || countitem(6235) || countitem(6457) || countitem(56240))
-	if (countitem(22804))
+	else if (countitem(22804))
 		set .@bArmorUp,1;
 	if (!.@bWeaponUp && !.@bArmorUp) {
 		mes "[Refine Master]";
