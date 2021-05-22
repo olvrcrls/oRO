@@ -1269,6 +1269,13 @@ int guild_change_emblem(struct map_session_data *sd,int len,const char *data) {
 	struct guild *g;
 	nullpo_ret(sd);
 
+	if (agit_flag || agit2_flag) {
+		clif_displaymessage(sd->fd, "You can't change your guild emblem during War of Emperium.");
+		return 0;
+	}
+
+
+
 	if (battle_config.require_glory_guild &&
 		!((g = sd->guild) && guild_checkskill(g, GD_GLORYGUILD)>0)) {
 		clif_skill_fail(sd,GD_GLORYGUILD,USESKILL_FAIL_LEVEL,0);
