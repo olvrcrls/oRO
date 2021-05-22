@@ -22,7 +22,6 @@
 
 
 		query_sql("SELECT count(*) FROM `guild_member` WHERE guild_id = " + getcharid(2), .@total_members);
-		dispbottom "Total guild members: " + .@total_members + " Limit is " + .limit;
 		if ( .@total_members > .limit ) {
 			message strcharinfo(0), "Your guild members are over the limit of " + .limit;
 			sleep2 1000;
