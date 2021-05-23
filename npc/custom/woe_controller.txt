@@ -42,6 +42,7 @@ OnAgitStart:
 function Disp_Owner; function Add_Zero;
 
 OnInit:
+	waitingroom "WoE Schedule",0;
 
 // -----------------------------------------------------------
 //  Configuration settings.
@@ -503,5 +504,5 @@ while(1) {
 	} }
 }
 
-askald,117,110,1	duplicate(WOE Information)	WOE Information#ask	835
+askald,133,103,1	duplicate(WOE Information)	WOE Information#ask	835
 //turbo_room,99,104,4	duplicate(WOE Information)	WOE Information#jin	835

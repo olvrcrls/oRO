@@ -55,7 +55,7 @@
 	} // close switch
 } // close script
 
-askald,118,114,0	duplicate(Portkey)	Portkey#tsq	723
+askald,128,103,0	duplicate(Portkey)	Portkey#tsq	723
 askald,142,65,0	duplicate(Portkey)	Portkey#tr	723
 askald,32,161,0	duplicate(Portkey)	Portkey#en	723
 askald,55,138,0	duplicate(Portkey)	Portkey#ml	723

@@ -539,55 +539,57 @@ OnInit:
 // --------------------------------------------------
 //	Duplicates:
 // --------------------------------------------------
-alb2trea,57,70,6	duplicate(Warper)	Warper#tre	650
-alberta,122,56,4	duplicate(Warper)	Warper#alb	650
-aldebaran,145,118,4	duplicate(Warper)	Warper#alde	650
-amatsu,114,120,4	duplicate(Warper)	Warper#ama	650
-ayothaya,209,169,6	duplicate(Warper)	Warper#ayo	650
-comodo,194,158,4	duplicate(Warper)	Warper#com	650
-einbech,59,38,6	duplicate(Warper)	Warper#einbe	650
-einbroch,69,202,4	duplicate(Warper)	Warper#einbr	650
-gef_fild10,71,339,4	duplicate(Warper)	Warper#orc	650
-geffen,124,72,4	duplicate(Warper)	Warper#gef	650
-glast_01,372,308,4	duplicate(Warper)	Warper#glh	650
-gonryun,164,119,4	duplicate(Warper)	Warper#gon	650
-hugel,101,151,4	duplicate(Warper)	Warper#hug	650
-izlu2dun,110,92,4	duplicate(Warper)	Warper#izd	650
-izlude,133,144,4	duplicate(Warper)	Warper#izl	650	//Pre-RE: (132,120)
-jawaii,253,138,4	duplicate(Warper)	Warper#jaw	650
-lighthalzen,162,102,4	duplicate(Warper)	Warper#lhz	650
-louyang,208,103,6	duplicate(Warper)	Warper#lou	650
-manuk,274,146,6	duplicate(Warper)	Warper#man	650
-mid_camp,216,288,4	duplicate(Warper)	Warper#mid	650
-mjolnir_02,85,364,4	duplicate(Warper)	Warper#mjo	650
-moc_ruins,64,164,4	duplicate(Warper)	Warper#moc	650
-morocc,159,97,4	duplicate(Warper)	Warper#mor	650
-moscovia,229,191,4	duplicate(Warper)	Warper#mos	650
-nameless_n,259,213,4	duplicate(Warper)	Warper#nam	650
-niflheim,205,179,4	duplicate(Warper)	Warper#nif	650
-pay_arche,42,134,4	duplicate(Warper)	Warper#arc	650
-payon,182,108,4	duplicate(Warper)	Warper#pay	650
-payon,168,218,4	duplicate(Warper)	Warper#pay	650
-prontera,160,187,4	duplicate(Warper)	Warper#prt	650
-prt_fild05,279,223,6	duplicate(Warper)	Warper#cul	650
-rachel,135,116,4	duplicate(Warper)	Warper#rac	650
-splendide,205,153,4	duplicate(Warper)	Warper#spl	650
-thor_camp,249,76,4	duplicate(Warper)	Warper#thor	650
-umbala,91,153,3	duplicate(Warper)	Warper#umb	650
-veins,214,123,4	duplicate(Warper)	Warper#ve	650
-xmas,150,136,6	duplicate(Warper)	Warper#xmas	650
-yuno,158,48,4	duplicate(Warper)	Warper#yuno	650
+alb2trea,57,70,6	duplicate(Warper)	Warper#tre	4_F_SARAH
+alberta,122,56,4	duplicate(Warper)	Warper#alb	4_F_SARAH
+aldebaran,145,118,4	duplicate(Warper)	Warper#alde	4_F_SARAH
+amatsu,114,120,4	duplicate(Warper)	Warper#ama	4_F_SARAH
+ayothaya,209,169,6	duplicate(Warper)	Warper#ayo	4_F_SARAH
+comodo,194,158,4	duplicate(Warper)	Warper#com	4_F_SARAH
+einbech,170,123,6	duplicate(Warper)	Warper#einbe	4_F_SARAH
+einbroch,69,202,4	duplicate(Warper)	Warper#einbr	4_F_SARAH
+gef_fild10,71,339,4	duplicate(Warper)	Warper#orc	4_F_SARAH
+geffen,124,72,4	duplicate(Warper)	Warper#gef	4_F_SARAH
+glast_01,372,308,4	duplicate(Warper)	Warper#glh	4_F_SARAH
+gonryun,164,119,4	duplicate(Warper)	Warper#gon	4_F_SARAH
+hugel,101,151,4	duplicate(Warper)	Warper#hug	4_F_SARAH
+izlu2dun,110,92,4	duplicate(Warper)	Warper#izd	4_F_SARAH
+izlude,133,144,4	duplicate(Warper)	Warper#izl	4_F_SARAH	//Pre-RE: (132,120)
+jawaii,253,138,4	duplicate(Warper)	Warper#jaw	4_F_SARAH
+lighthalzen,158,103,4	duplicate(Warper)	Warper#lhz	4_F_SARAH
+louyang,208,103,6	duplicate(Warper)	Warper#lou	4_F_SARAH
+manuk,277,148,6	duplicate(Warper)	Warper#man	4_F_SARAH
+mid_camp,216,288,4	duplicate(Warper)	Warper#mid	4_F_SARAH
+mid_camp,176,248,4	duplicate(Warper)	Warper#mid1	4_F_SARAH
+mjolnir_02,85,364,4	duplicate(Warper)	Warper#mjo	4_F_SARAH
+moc_ruins,64,164,4	duplicate(Warper)	Warper#moc	4_F_SARAH
+morocc,159,97,4	duplicate(Warper)	Warper#mor	4_F_SARAH
+moscovia,229,191,4	duplicate(Warper)	Warper#mos	4_F_SARAH
+nameless_n,259,213,4	duplicate(Warper)	Warper#nam	4_F_SARAH
+niflheim,205,179,4	duplicate(Warper)	Warper#nif	4_F_SARAH
+pay_arche,42,134,4	duplicate(Warper)	Warper#arc	4_F_SARAH
+payon,182,108,4	duplicate(Warper)	Warper#pay	4_F_SARAH
+payon,168,218,4	duplicate(Warper)	Warper#pay1	4_F_SARAH
+prontera,160,187,4	duplicate(Warper)	Warper#prt	4_F_SARAH
+prt_fild05,279,223,6	duplicate(Warper)	Warper#cul	4_F_SARAH
+rachel,135,116,4	duplicate(Warper)	Warper#rac	4_F_SARAH
+splendide,205,153,4	duplicate(Warper)	Warper#spl	4_F_SARAH
+thor_camp,249,76,4	duplicate(Warper)	Warper#thor	4_F_SARAH
+umbala,91,153,3	duplicate(Warper)	Warper#umb	4_F_SARAH
+veins,214,123,4	duplicate(Warper)	Warper#ve	4_F_SARAH
+xmas,150,136,6	duplicate(Warper)	Warper#xmas	4_F_SARAH
+yuno,158,48,4	duplicate(Warper)	Warper#yuno	4_F_SARAH
 
 // --------------------------------------------------
 //	Duplicates (Renewal):
 // --------------------------------------------------
-brasilis,201,222,4	duplicate(Warper)	Warper#bra	650
-dewata,204,186,6	duplicate(Warper)	Warper#dew	650
-dicastes01,194,194,6	duplicate(Warper)	Warper#dic	650
-ecl_in01,51,60,4	duplicate(Warper)	Warper#ecl	650
-lasagna,196,187,4	duplicate(Warper)	Warper#las	650
-malangdo,134,117,6	duplicate(Warper)	Warper#mal	650
-malaya,231,204,4	duplicate(Warper)	Warper#ma	650
-mora,57,152,4	duplicate(Warper)	Warper#mora	650
-//turbo_room,106,118,3	duplicate(Warper)	Warper#mall	650
-askald,135,116,3	duplicate(Warper)	Warper#ask	650
+brasilis,201,222,4	duplicate(Warper)	Warper#bra	4_F_SARAH
+dewata,204,186,6	duplicate(Warper)	Warper#dew	4_F_SARAH
+dicastes01,194,194,6	duplicate(Warper)	Warper#dic	4_F_SARAH
+ecl_in01,51,60,4	duplicate(Warper)	Warper#ecl	4_F_SARAH
+lasagna,196,187,4	duplicate(Warper)	Warper#las	4_F_SARAH
+malangdo,120,126,6	duplicate(Warper)	Warper#mal	4_F_SARAH
+malaya,231,204,4	duplicate(Warper)	Warper#ma	4_F_SARAH
+mora,57,152,4	duplicate(Warper)	Warper#mora	4_F_SARAH
+mora,107,71,4	duplicate(Warper)	Warper#mora1	4_F_SARAH
+//turbo_room,106,118,3	duplicate(Warper)	Warper#mall	4_F_SARAH
+askald,135,116,3	duplicate(Warper)	Warper#ask	4_F_SARAH
