@@ -7218,8 +7218,8 @@
 12917,Wind_Walk_10_Scroll_Box,Wind Walk 10 Scroll Box,18,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 12219,10; },{},{}
 12918,Adrenaline_Scroll_Box,Adrenaline 5 Scroll Box,18,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 12220,10; },{},{}
 12919,Megaphone_Box,Megaphone Box,18,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 12221,10; },{},{}
-12920,Enriched_Elunium_Box,Enriched Elunium Box,18,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 7619,10; },{},{}
-12921,Enriched_Oridecon_Box,Enriched Oridecon Box,18,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 7620,10; },{},{}
+12920,Enriched_Elunium_Box,Enriched Elunium Box,18,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 6291,10; },{},{}
+12921,Enriched_Oridecon_Box,Enriched Oridecon Box,18,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 6292,10; },{},{}
 12922,Token_Of_Siegfried_Box,Token of Siegfried Box,18,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getitem 7621,10; },{},{}
 12923,Pet_Egg_Scroll_Box1,December Lucky Box,18,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getgroupitem(IG_Pet_Egg_Scroll_Box1); },{},{}
 12924,Pet_Egg_Scroll_Box2,Pet Egg Box 2,18,20,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ getgroupitem(IG_Pet_Egg_Scroll_Box2); },{},{}
