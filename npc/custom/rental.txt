@@ -22,7 +22,7 @@
 //= Please report bugs to me(ace.austria523@gmail.com)
 //============================================================
 
--	script	gbreeder	726,{
+askald,136,134,5	script	Rental	726,{
 	
 	mes	"^FF0000Universal Rental NPC^000000";
 	mes	"Greetings " + strcharinfo(0) + "!";
@@ -132,5 +132,5 @@
 }
 
 //===== Duplicates: ==========================================
-askald, 136, 134, 5	duplicate(gbreeder)	Universal Rental NPC#1	726
+prontera,154,187,4	duplicate(Rental)	Universal Rental NPC#prt	726
 //============================================================

@@ -172,8 +172,8 @@ OnInit:
 
 
 // NPC Lists
-prontera,155,181,5	script	Adv. Stylist#main	878,{
+askald,160,248,4	script	Adv. Stylist#main	878,{
 	doevent "Stylist::OnTalk";
 }
 
-askald,160,248,4	duplicate(Adv. Stylist#main)	Adv. Stylist#1	878
+// askald,160,248,4	duplicate(Adv. Stylist#main)	Adv. Stylist#1	878

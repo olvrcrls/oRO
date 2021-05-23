@@ -1961,29 +1961,29 @@ ACMD_FUNC(go)
 		{ MAP_PRONTERA,    156, 191 }, //  1=Prontera
 		{ MAP_MORROC,      156,  93 }, //  2=Morroc
 		{ MAP_GEFFEN,      119,  59 }, //  3=Geffen
-		{ MAP_PAYON,       162, 233 }, //  4=Payon
+		{ MAP_PAYON,       157, 215 }, //  4=Payon
 #ifdef RENEWAL
 		{ MAP_IZLUDE,      128, 146 }, //  5=Izlude (Renewal)
 #else
 		{ MAP_IZLUDE,      128, 114 }, //  5=Izlude
 #endif
-		{ MAP_ALDEBARAN,   140, 131 }, //  6=Al de Baran
+		{ MAP_ALDEBARAN,   140, 114 }, //  6=Al de Baran
 		{ MAP_LUTIE,       147, 134 }, //  7=Lutie
-		{ MAP_COMODO,      209, 143 }, //  8=Comodo
+		{ MAP_COMODO,      188, 149 }, //  8=Comodo
 		{ MAP_YUNO,        157,  51 }, //  9=Yuno
-		{ MAP_AMATSU,      198,  84 }, // 10=Amatsu
+		{ MAP_AMATSU,      115,  115 }, // 10=Amatsu
 		{ MAP_GONRYUN,     160, 120 }, // 11=Gonryun
 		{ MAP_UMBALA,       89, 157 }, // 12=Umbala
-		{ MAP_NIFLHEIM,     21, 153 }, // 13=Niflheim
-		{ MAP_LOUYANG,     217,  40 }, // 14=Louyang
+		{ MAP_NIFLHEIM,     205, 174 }, // 13=Niflheim
+		{ MAP_LOUYANG,     217,  100 }, // 14=Louyang
 #ifdef RENEWAL
 		{ MAP_NOVICE,       18, 26  }, // 15=Training Grounds (Renewal)
 #else
 		{ MAP_NOVICE,       53, 111 }, // 15=Training Grounds
 #endif
-		{ MAP_ALBERTA,     192, 147 }, //  16=Alberta
+		{ MAP_ALBERTA,     117, 56 }, //  16=Alberta
 		{ MAP_JAWAII,      249, 127 }, // 17=Jawaii
-		{ MAP_AYOTHAYA,    151, 117 }, // 18=Ayothaya
+		{ MAP_AYOTHAYA,    209, 164 }, // 18=Ayothaya
 		{ MAP_EINBROCH,     64, 200 }, // 19=Einbroch
 		{ MAP_LIGHTHALZEN, 158,  92 }, // 20=Lighthalzen
 		{ MAP_EINBECH,      70,  95 }, // 21=Einbech
