@@ -1,6 +1,6 @@
 askald,133,110,4	script	Login Settings	877,{
 	.@npcname$ = "["+ strnpcinfo(1) +"]";
- 	dispbottom atcommand_login +""; // debugging
+ 	// dispbottom atcommand_login +""; // debugging
 	mes .@npcname$;
 	mes "Hello, "+strcharinfo(0);
 	mes "What setting do you want to change?";
