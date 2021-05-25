@@ -21,7 +21,7 @@
 -	itemshop	PSHOP6	-1,7179,28942:500 // Shields
 -	itemshop	PSHOP7	-1,7179,12246:50 // Cards
 
-askald,122,103,4	script	Donation Exchanger	871,{
+askald,122,103,5	script	Donation Exchanger	790,{
 
 	set @s, select("Consumables:Costumes:Miscellaneous:Headgears:Armors:Shields:Cards");
 

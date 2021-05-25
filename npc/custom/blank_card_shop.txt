@@ -24,7 +24,7 @@
 -	itemshop	MSHOP9	-1,6187,22014:500 // shoes
 -	itemshop	MSHOP10	-1,6187,7179:100 // misc
 
-askald,122,106,4	script	Blank Card Exchanger	984,{
+askald,122,106,5	script	Blank Card Exchanger	984,{
 
 	set @s, select("Cards:Consumables:Costumes:Headgears:Armors:Garments:Weapons:Shields:Shoes:Misc");
 

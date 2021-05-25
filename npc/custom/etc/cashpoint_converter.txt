@@ -1,0 +1,96 @@
+/***
+  ** Script Request (Cash Trader NPC)
+  ** Link: http://rathena.org/board/topic/57101-request-cash-trader/
+  ** By Slim
+  ***/
+
+askald,122,100,5	script	Cash Point Exchanger	407,{
+	set .@coinid, 7179;
+
+	mes .n$;
+	mes "Heya, ^ff8800"+strcharinfo(0)+"^000000!,";
+	mes "Your Available Cash Points:";
+	mes "[^ff0000"+#CASHPOINTS+"^000000]";
+	emotion ET_SURPRISE;
+	next;
+	mes .n$;
+	mes "Thank you for supporting the server.";
+	emotion ET_THANKS;
+	mes "I'm responsible for converting your cash points to PODs, vice versa.";
+		switch(select("^ff0000>^000000 Close:^0000ff>^000000 Exchange to Cash Points:^0000ff>^000000 Exchange to Proof of Donation"))
+		{
+		
+			case 1: break;
+			case 2:
+				next;
+				mes .n$;
+				mes "Please input the amount of coins that you want to exchange.";
+				mes "Note: Put ^0000ff0^000000 to exit.";
+
+				L_inpcoin:
+					input @hcoins;
+					set @hhcoins,@hcoins;
+
+					if(@hhcoins == 0) { break; } 
+					if(countitem(.@coinid) < @hhcoins) { 
+						next;
+						dispbottom "You have a total of " + countitem(.@coinid) + getitemname(.@coinid) + "(s).";
+						mes .n$;
+						mes "No scamming, bro.";
+						emotion ET_SWEAT;
+						mes "* ^ff0000Please input a valid amount^000000"; mes "(Put ^0000ff0^000000 to exit).";
+						goto L_inpcoin; 
+					}
+					next;
+					delitem .@coinid,@hhcoins;
+					set #CASHPOINTS,#CASHPOINTS+@hhcoins;
+					mes .n$;
+					mes "You've exchanged (^ff0000"+@hhcoins+"^000000) "+getitemname(.@coinid)+"(s).";
+					emotion ET_MONEY;
+					mes "Total Remaining Cash Points: [^0000ff"+#CASHPOINTS+"^000000]";
+					dispbottom .n$ + ": You've exchanged ("+@hhcoins+") "+getitemname(.@coinid)+"(s).";
+					dispbottom "Total Cash Points: ["+#CASHPOINTS+"]";
+					break;
+
+			case 3:
+				next;
+				mes .n$;
+				mes "Please input the amount of cash that you want to exchange.";
+				mes "Note: Put ^0000ff0^000000 to exit.";		
+			
+				L_inpcash:
+					input @hcash;
+					set @hhcash,@hcash;
+					if(@hhcash == 0) { break; } 
+					if(#CASHPOINTS < @hhcash) {
+						next;
+						mes .n$;
+						mes "No scamming, bro.";
+						emotion ET_SWEAT;
+						mes "* ^ff0000Please input a valid amount^000000"; 
+						mes "(Put ^0000ff0^000000 to exit).";
+						goto L_inpcash; 
+					}
+
+					//I know they weight 0 but just in case you change its weight
+					if (!checkweight(.@coinid,@hhcash)) { 
+						mes "* ^ff0000You're overweight please store some items.^000000"; dispbottom .n$ + ": You're overweight please store some items."; 
+						break;
+					}
+					next;
+					set #CASHPOINTS,#CASHPOINTS - @hhcash;
+					getitem .@coinid,@hhcash;
+					mes .n$;
+					mes "You've exchanged (^ff0000"+@hhcash+"^000000) Cash Points to "+getitemname(.@coinid)+"(s).";
+					emotion ET_MONEY;
+					mes "Total Remaining Cash Points: [^0000ff"+#CASHPOINTS+"^000000]";
+					dispbottom .n$ + ": You've exchanged ("+@hhcash+") Cash Points to "+getitemname(.@coinid)+"(s).";
+					dispbottom "Total Cash Points: ["+#CASHPOINTS+"]";
+					break;	
+		}
+
+	close;
+	OnInit:
+		set .n$, "[^0000FFAndie's in-game Accountant^000000]";
+	end;
+}
