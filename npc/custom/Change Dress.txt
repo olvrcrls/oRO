@@ -4,13 +4,15 @@ askald,157,248,4	script	Change Dress	509,{
 		close;
 	}
 	mes "Hi "+strcharinfo(0)+" do you want to change your outfit?";
+	mes "My services are free for now...";
 	next;
 	if ( select ( "Yes", "No" ) == 2 ) close;
 	if ( Zeny < 10 ) {
 		mes "You need 10 Zeny";
 		close;
 	}
-	.@s = select("Primary Dress", "Second Dress") -1;
+	// .@s = select("Main Job Sprite", "Alternate Sprite", "Transcendent Sprite", "Second Class Sprite") -1;
+	.@s = select("Main Job Sprite", "Alternate Sprite") -1;
 	if ( getlook(LOOK_BODY2) == .@s ) {
 		mes "You already wearing that dress";
 		close;
