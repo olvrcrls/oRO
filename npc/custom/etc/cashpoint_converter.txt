@@ -16,7 +16,7 @@ askald,122,100,5	script	Cash Point Exchanger	407,{
 	mes .n$;
 	mes "Thank you for supporting the server.";
 	emotion ET_THANKS;
-	mes "I'm responsible for converting your cash points to PODs, vice versa.";
+	mes "I'm responsible for converting your Cash Points [CP] to PODs, vice versa.";
 		switch(select("^ff0000>^000000 Close:^0000ff>^000000 Exchange to Cash Points:^0000ff>^000000 Exchange to Proof of Donation"))
 		{
 		
@@ -24,7 +24,7 @@ askald,122,100,5	script	Cash Point Exchanger	407,{
 			case 2:
 				next;
 				mes .n$;
-				mes "Please input the amount of coins that you want to exchange.";
+				mes "Please input the amount of Proof of Donation that you want to exchange.";
 				mes "Note: Put ^0000ff0^000000 to exit.";
 
 				L_inpcoin:
@@ -38,7 +38,8 @@ askald,122,100,5	script	Cash Point Exchanger	407,{
 						mes .n$;
 						mes "No scamming, bro.";
 						emotion ET_SWEAT;
-						mes "* ^ff0000Please input a valid amount^000000"; mes "(Put ^0000ff0^000000 to exit).";
+						mes "* ^ff0000Please input a valid amount^000000"; 
+						mes "(Put ^0000ff0^000000 to exit).";
 						goto L_inpcoin; 
 					}
 					next;
@@ -55,7 +56,7 @@ askald,122,100,5	script	Cash Point Exchanger	407,{
 			case 3:
 				next;
 				mes .n$;
-				mes "Please input the amount of cash that you want to exchange.";
+				mes "Please input the amount of Cash Points that you want to convert.";
 				mes "Note: Put ^0000ff0^000000 to exit.";		
 			
 				L_inpcash:
