@@ -34,7 +34,7 @@ askald,122,100,5	script	Cash Point Exchanger	407,{
 					if(@hhcoins == 0) { break; } 
 					if(countitem(.@coinid) < @hhcoins) { 
 						next;
-						dispbottom "You have a total of " + countitem(.@coinid) + getitemname(.@coinid) + "(s).";
+						dispbottom "You have a total of " + countitem(.@coinid) + " " + getitemname(.@coinid) + "(s).";
 						mes .n$;
 						mes "No scamming, bro.";
 						emotion ET_SWEAT;
@@ -75,7 +75,8 @@ askald,122,100,5	script	Cash Point Exchanger	407,{
 
 					//I know they weight 0 but just in case you change its weight
 					if (!checkweight(.@coinid,@hhcash)) { 
-						mes "* ^ff0000You're overweight please store some items.^000000"; dispbottom .n$ + ": You're overweight please store some items."; 
+						mes "* ^ff0000You're overweight please store some items.^000000"; 
+						dispbottom .n$ + ": You're overweight please store some items."; 
 						break;
 					}
 					next;
