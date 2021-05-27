@@ -2,7 +2,7 @@
 // --------  Version 1.0        ------ //
 // --------  Written by: Wazaby ------ //
 
-askald,115,118,5	script	Guild Level Up#ask	615,{
+askald,119,114,5	script	Guild Level Up#ask	419,{
 disable_command;
 .@maxlevel = 50;
 // Checks if the character is the guild master of the specified guild.

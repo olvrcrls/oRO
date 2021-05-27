@@ -32,9 +32,11 @@ askald,131,118,4	script	Universal Rental NPC	726,{
 	} else if (!checkmadogear() && getskilllv("NC_MADOLICENCE")) setmadogear;
 	else {
 		message strcharinfo(0),"You do not meet requirements to rent.";
+		emotion ET_X;
 		end;
 	}
 	specialeffect2 EF_TEIHIT3;
+	emotion ET_OK;
 	end;
 }
 

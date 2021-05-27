@@ -1,13 +1,16 @@
 // This is a very basic script with atcommand. but works. //
 
-askald,125,118,5	script	Level Booster#ask	615,{
+askald,125,118,5	script	Level Booster#ask	811,{
 
-if (BaseLevel < 175){
-		set BaseLevel,175;
-		dispbottom "You have become stronger.";
-	}
-if (JobLevel < 70){
-		set JobLevel, 70;
-		dispbottom "You have become wiser.";
-	}
+mes "[Your Mom]";
+mes "Ara, ara~ Welcome to oRO";
+mes "Let's boost you up! <3";
+
+if (BaseLevel < 175) set BaseLevel,175;
+
+if (JobLevel < 70) set JobLevel, 70;
+
+dispbottom "Mom has blessed you, dear child.";
+emotion ET_OK;
+close;
 }

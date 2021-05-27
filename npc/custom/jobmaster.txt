@@ -491,4 +491,4 @@ OnInit:
 }
 
 //turbo_room,96,119,5	duplicate(Job Master)	Job Master#jin	461
-askald,122,117,5	duplicate(Job Master)	Job Master#ask	461
+askald,122,117,5	duplicate(Job Master)	Job Master#ask	833
