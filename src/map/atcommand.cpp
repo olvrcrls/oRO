@@ -3578,6 +3578,93 @@ ACMD_FUNC(guild)
 	return 0;
 }
 
+/*
+Command for user to invite another user to guild.
+*/
+ACMD_FUNC(guildinvite)
+{
+	int i;
+	struct guild *g;
+	struct map_session_data *target_sd;
+	nullpo_retr(-1, sd);
+
+	g = guild_search(sd->status.guild_id);
+
+	if(sd->status.guild_id == 0)
+	{
+		clif_displaymessage(fd, msg_txt(sd, 795)); // You need to be a member of a guild to use this command.
+		return -1;
+	}
+
+	if((i=guild_getposition(g,sd))<0 || !(g->position[i].mode&0x0001) )
+	{
+		clif_displaymessage(fd, msg_txt(sd, 801)); // You do not have enough authority to invite players to the guild.
+		return 0; //Invite permission.
+	}
+
+	if(message[0])
+	{
+		target_sd = map_nick2sd((char *)message, false);
+		if(target_sd != NULL)
+		{
+			if(target_sd->status.guild_id!=0)
+			{
+				clif_displaymessage(fd, msg_txt(sd, 799)); // Target player already have a guild.
+			}
+			else
+			{
+				guild_invite(sd, target_sd);
+			}
+		}
+		else
+		{
+			clif_displaymessage(fd, msg_txt(sd, 800));
+			return -1;
+		}
+	}
+	else
+	{
+		// Please enter the name of the player you wish to invite. Usage: [@guildinvite <player name>]
+		clif_displaymessage(fd, msg_txt(sd, 798)); 
+		return -1;
+	}
+	
+	return 0;
+}
+
+
+/* 
+Command for user to leave current guild
+*/
+ACMD_FUNC(leaveguild)
+{
+	struct guild *g;
+	nullpo_retr(-1, sd);
+
+	g = guild_search(sd->status.guild_id);
+	if (sd->status.guild_id == 0)
+	{
+	clif_displaymessage(fd, msg_txt(sd, 795)); // You need to be a member of a guild to use this command.
+		return -1;
+	}
+	
+	if (!strcmp(g->master, sd->status.name))
+	{
+		clif_displaymessage(fd, msg_txt(sd, 796)); // Guild masters can't directly leave the guild. Use [@breakguild] instead.
+		return -1;
+	}
+	
+	if (message[0])
+		guild_leave(sd, sd->status.guild_id, sd->status.account_id, sd->status.char_id, (char *)message);
+	else
+		guild_leave(sd, sd->status.guild_id, sd->status.account_id, sd->status.char_id, msg_txt(sd, 802));
+	
+	return 0;
+}
+
+/*
+Instantly break the guild, if the player is the guild master.
+*/
 ACMD_FUNC(breakguild)
 {
 	nullpo_retr(-1, sd);
@@ -10409,6 +10496,8 @@ void atcommand_basecommands(void) {
 	AtCommandInfo atcommand_base[] = {
 #include "../custom/atcommand_def.inc"
 		ACMD_DEF2R("warp", mapmove, ATCMD_NOCONSOLE),
+		ACMD_DEF(guildinvite),
+		ACMD_DEF(leaveguild),
 		ACMD_DEF(partybuff), // [Vykimo]
 		ACMD_DEF2("spb", partybuff), // [Vykimo]
 		ACMD_DEF2("showbuffs", partybuff), // [Vykimo]
