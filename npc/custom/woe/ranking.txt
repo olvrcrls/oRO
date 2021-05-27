@@ -133,39 +133,40 @@ OnInit: // Script Configuration
 
 OnPCKillEvent:
 	if (killerrid != getcharid(3)) {
-	if (( agitcheck() || agitcheck2() ) && compare(strcharinfo(3),"g_cas")) {
-		set points, points+.WoePoints;
-		query_sql( "SELECT * FROM woe_ranking WHERE `Char_ID` = '"+getcharid(0)+"'", .@CharID, .@Name$, .@Kills, .@Deaths, .@EmpBreak);
-		set ToTalP , .@Kills + .WoePoints;
-		
-		if(getcharid(0) == .@CharID){
-		query_sql("UPDATE `woe_ranking` SET `Kills` = '"+ToTalP+"' WHERE `Char_ID` = '"+getcharid(0)+"'");
-		}else{	
-		query_sql("INSERT INTO `woe_ranking` (`Char_ID`,`PlayerName`,`Kills`,`Deaths`,`EmpBreak`) VALUES ('"+getcharid(0)+"', '"+strcharinfo(0)+"', '"+.WoePoints+"', '"+.@Deaths+"', '"+.@EmpBreak+"')"); 
-		}
-		////////query for the deaths
-		query_sql( "SELECT `char_id`, `account_id` FROM `char` WHERE `account_id` =  '"+getcharid(3)+"' ", .@Cchar_id, .@Aid);
-		query_sql( "SELECT * FROM woe_ranking WHERE `Char_ID` = '"+.@Cchar_id+"'", .@CharID, .@Name$, .@Kills, .@Deaths, .@EmpBreak);
-		set TotalD , .@Deaths + .WoeDeduct;
-		
-		if(.@CharID != .@Cchar_id){
-		query_sql("INSERT INTO `woe_ranking` (`Char_ID`,`PlayerName`,`Kills`,`Deaths`,`EmpBreak`) VALUES ('"+.@Cchar_id+"', '"+strcharinfo(0)+"', '0', '"+TotalD+"', '"+.@EmpBreak+"')");
-		}else{
-		query_sql("UPDATE woe_ranking SET Deaths = '"+TotalD+"' WHERE `Char_ID` = '"+.@Cchar_id+"'");
-		}
-		
-		//This is the point system on the player, you can disable this anytime by adding comment " // "
-		dispbottom "You killed "+rid2name(killedrid)+" you gained "+.WoePoints+" point and You now have "+Points+" Woe Points.";
-		attachrid(killedrid);
-		set points, points-.diedeductpoint;
-		dispbottom "You are killed by "+rid2name(killerrid)+" you lost "+.diedeductpoint+" points and You now have "+Points+" Woe Points.";
-		end;
-		///////
+		if (( agitcheck() || agitcheck2() ) && compare(strcharinfo(3),"g_cas")) {
+			set points, points+.WoePoints;
+			query_sql( "SELECT * FROM woe_ranking WHERE `Char_ID` = '"+getcharid(0)+"'", .@CharID, .@Name$, .@Kills, .@Deaths, .@EmpBreak);
+			set ToTalP , .@Kills + .WoePoints;
+			
+			if(getcharid(0) == .@CharID){
+				query_sql("UPDATE `woe_ranking` SET `Kills` = '"+ToTalP+"' WHERE `Char_ID` = '"+getcharid(0)+"'");
+			}else{	
+				query_sql("INSERT INTO `woe_ranking` (`Char_ID`,`PlayerName`,`Kills`,`Deaths`,`EmpBreak`) VALUES ('"+getcharid(0)+"', '"+strcharinfo(0)+"', '"+.WoePoints+"', '"+.@Deaths+"', '"+.@EmpBreak+"')"); 
+			}
+			////////query for the deaths
+			query_sql( "SELECT `char_id`, `account_id` FROM `char` WHERE `account_id` =  '"+getcharid(3)+"' ", .@Cchar_id, .@Aid);
+			query_sql( "SELECT * FROM woe_ranking WHERE `Char_ID` = '"+.@Cchar_id+"'", .@CharID, .@Name$, .@Kills, .@Deaths, .@EmpBreak);
+			set TotalD , .@Deaths + .WoeDeduct;
+			
+			if(.@CharID != .@Cchar_id){
+				query_sql("INSERT INTO `woe_ranking` (`Char_ID`,`PlayerName`,`Kills`,`Deaths`,`EmpBreak`) VALUES ('"+.@Cchar_id+"', '"+strcharinfo(0)+"', '0', '"+TotalD+"', '"+.@EmpBreak+"')");
+			} else {
+				query_sql("UPDATE woe_ranking SET Deaths = '"+TotalD+"' WHERE `Char_ID` = '"+.@Cchar_id+"'");
+			}
+			
+			//This is the point system on the player, you can disable this anytime by adding comment " // "
+			dispbottom "You killed "+rid2name(killedrid)+" you gained "+.WoePoints+" point";
+			dispbottom "You now have a total of "+Points+" Woe Points.";
+			attachrid(killedrid);
+			set points, points-.diedeductpoint;
+			dispbottom "You are killed by "+rid2name(killerrid)+" you lost "+.diedeductpoint+" points.";
+			end;
+			///////
 
-	}
+		}
     }
     end;
 }
 
--	pointshop	GvG_Points_Shop	-1,points,1202:5;
--	pointshop	EmpBreak_Points_Shop	-1,ToTalB,2311:10
+-	pointshop	GvG_Points_Shop	-1,points,6376:1,7829:1;
+-	pointshop	EmpBreak_Points_Shop	-1,ToTalB,6376:1,7829:1;
