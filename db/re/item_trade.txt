@@ -1304,7 +1304,8 @@
 7920,507,99	// Hero's_Arsenal
 7923,499,99	// KRATHONG_
 7928,507,99	// Brazilian_Flag_
-7929,507,99	// Golden_Coin_
+// 7929,507,99	// Golden_Coin_
+7929,9,99	// Golden_Coin_
 7930,507,99	// Cowking's_Nose_Ring
 7945,475,99	// Almighty_Charm
 7949,499,99	// Woven_Wool

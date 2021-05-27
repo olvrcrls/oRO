@@ -35,3 +35,10 @@ hugel	mapflag	town
 rachel	mapflag	town
 veins	mapflag	town
 askald	mapflag	town
+mid_camp	mapflag	town
+morocc	mapflag	town
+xmas	mapflag	town
+jawaii	mapflag	town
+moscovia	mapflag	town
+manuk	mapflag	town
+splendide	mapflag	town
