@@ -186,6 +186,7 @@ ACMD_FUNC(guildskill)
 {
 	int i, skillnum = 0, skilllv = 0;
 	t_tick tick = gettick();
+	char output[CHAT_SIZE_MAX];
 
 	const struct { char skillstr[3]; int id; } skills[] = {
 		{ "BO",	10010 },
@@ -196,7 +197,7 @@ ACMD_FUNC(guildskill)
 
 	// Check for Skill ID
 	for( i = 0; i < ARRAYLENGTH(skills); i++ )
-	{
+	{	
 		if( strncmpi(message, skills[i].skillstr, 3) == 0 )
 		{
 			skillnum = skills[i].id;
@@ -205,7 +206,7 @@ ACMD_FUNC(guildskill)
 	}
 	if( !skillnum )
 	{
-		clif_displaymessage(fd, "Invalid Skill string. Use @guildskill EC/RS/RG/BO");
+		clif_displaymessage(fd, "Invalid Skill string. Use @gskill EC/RS/RG/BO");
 		return -1;
 	}
 
@@ -226,11 +227,17 @@ ACMD_FUNC(guildskill)
 		}
 	}
 
-	if( pc_cant_act(sd) || pc_issit(sd) || skill_isNotOk(skillnum, sd) || sd->ud.skilltimer != -1 || sd->sc.option&(OPTION_WEDDING|OPTION_XMAS|OPTION_SUMMER) || sd->state.only_walk || sd->sc.data[SC_BASILICA] )
+	if( pc_cant_act(sd) || pc_issit(sd) || skill_isNotOk(skillnum, sd) || sd->ud.skilltimer != INVALID_TIMER || sd->sc.option&(OPTION_WEDDING|OPTION_XMAS|OPTION_SUMMER) || sd->state.only_walk || sd->sc.data[SC_BASILICA] ) {
+		sprintf(output, "The guild skill is still in cooldown.");
+		clif_displaymessage(fd, output);
 		return -1;
+	}
 
-	if( DIFF_TICK(tick, sd->ud.canact_tick) < 0 )
+	if( DIFF_TICK(tick, sd->ud.canact_tick) < 0 ) {
+		sprintf(output, "Can not cast skill because you are currently getting hit.");
+		clif_displaymessage(fd, output);
 		return -1;
+	}
 
 	if( sd->menuskill_id )
 	{

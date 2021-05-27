@@ -155,7 +155,7 @@ Body:
   - Command: whogm
     Help: |
       Params: [match_text] - Like @who+@who2+who3, but only for GM.
-  - Command: gskill
+  - Command: guildskill
     Help: |
       Cast a guild skill instantly.
   - Command: guildspy
