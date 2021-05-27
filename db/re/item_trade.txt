@@ -769,9 +769,9 @@
 6237,507,99	// Guarana_Fruit
 6238,475,99	// Guarantee_Weapon_11Up
 6239,475,99	// Guarantee_Armor_11Up
-6240,475,99	// HD_Oridecon
-6241,475,99	// HD_Elunium
-6242,9,99	// Midgard_Coin
+6240,9,99	// HD_Oridecon
+6241,9,99	// HD_Elunium
+6242,475,99	// Midgard_Coin
 6266,507,99	// Cheat_Key
 6267,507,99	// Virtual_Key
 6268,507,99	// Mirth_Key
@@ -3276,10 +3276,10 @@
 16390,475,99	// BGum_Box_In_Mouth4
 //16391,475,99	//
 //16392,475,99	//
-16393,475,99	// HD_Ori_Box5
-16394,475,99	// HD_Ori_Box10
-16395,475,99	// HD_Elu_Box5
-16396,475,99	// HD_Elu_Box10
+16393,9,99	// HD_Ori_Box5
+16394,9,99	// HD_Ori_Box10
+16395,9,99	// HD_Elu_Box5
+16396,9,99	// HD_Elu_Box10
 16397,475,99	// Virgo_Diadem_Box
 16398,475,99	// Virgo_Crown_Box_
 16399,475,99	// Virgo_Diadem_Box_
