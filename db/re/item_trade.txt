@@ -749,13 +749,14 @@
 6183,475,99	// Hardtack_Ticket
 6184,475,99	// Zherlthsh_Ticket
 6185,475,99	// Alice_Ticket
+6187,1,99 // Blank Card
 6206,499,99	// I_Love_You
 6207,499,99	// Thank_You
 6208,499,99	// I_Respect_You
 6218,507,99	// Disin_Delivery_Box
 6219,507,99	// Para_Team_Mark
-// 6225,475,99	// HD_Carnium
-// 6226,475,99	// HD_Bradium
+6225,9,99	// HD_Carnium
+6226,9,99	// HD_Bradium
 6228,475,99	// Guarantee_Weapon_9Up
 6229,475,99	// Guarantee_Weapon_8Up
 6230,475,99	// Guarantee_Weapon_7Up
@@ -1076,6 +1077,7 @@
 7170,1,99	// Tuxedo
 7177,507,99	// Part_Of_Star's_Sob
 7178,507,99	// Star's_Sob
+7179,1,99 // Proof of Donation
 7199,499,99	// Coupon
 7275,507,99	// Ancient_Document
 7276,507,99	// Picture_Letter
@@ -1186,8 +1188,10 @@
 7603,499,99	// RO_Party_Ticket
 7614,499,99	// Special_Packing_Paper
 7618,499,99	// Monster_Crystal
-7619,475,99	// Enriched_Elunium
-7620,475,99	// Enriched_Oridecon
+// 7619,475,99	// Enriched_Elunium
+7619,9,99	// Enriched_Elunium
+// 7620,475,99	// Enriched_Oridecon
+7620,9,99	// Enriched_Oridecon
 7621,475,99	// Token_Of_Siegfried
 7622,475,99	// New_Style_Coupon
 7623,507,99	// Name_Change_Coupon
