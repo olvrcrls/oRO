@@ -4430,10 +4430,10 @@ ACMD_FUNC(mount_peco)
 			if( message[0] ) {
 				int color = atoi(message);
 				option = ( color == 2 ? OPTION_DRAGON2 :
-				           color == 3 ? OPTION_DRAGON3 :
-				           color == 4 ? OPTION_DRAGON4 :
-				           color == 5 ? OPTION_DRAGON5 :
-				                        OPTION_DRAGON1 );
+						color == 3 ? OPTION_DRAGON3 :
+						color == 4 ? OPTION_DRAGON4 :
+						color == 5 ? OPTION_DRAGON5 :
+						OPTION_DRAGON1 );
 			}
 			clif_displaymessage(sd->fd,msg_txt(sd,1119)); // You have mounted your Dragon.
 			pc_setoption(sd, sd->sc.option|option);
