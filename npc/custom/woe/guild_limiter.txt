@@ -21,15 +21,15 @@
 		}
 
 
-		query_sql("SELECT count(*) FROM `guild_member` WHERE guild_id = " + getcharid(2), .@total_members);
+		query_sql("SELECT connect_member FROM `guild` WHERE guild_id = " + getcharid(2), .@total_members);
 		if ( .@total_members > .limit ) {
 			message strcharinfo(0), "Your guild members are over the limit of " + .limit;
 			sleep2 1000;
 			warp "SavePoint", 0,0;
 		} // if above limit
 		else if (.@total_members < .min) {
-			message strcharinfo(0), "You don't have enough members to compete for War of Emperium.";
-			message strcharinfo(0), "Minimum is " +  .min  +" members inside your guild.";
+			message strcharinfo(0), "You don't have enough members online to compete for War of Emperium.";
+			message strcharinfo(0), "Minimum is " +  .min  +" members online inside your guild.";
 			sleep2 1000;
 			warp "SavePoint", 0,0;
 		} // else below minimum
