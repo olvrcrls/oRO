@@ -21,4 +21,4 @@ askald,64,138,1	shop	Ammo#jin	634,1750:2,12004:-1,12012:-1,12575:-1,12008:-1,121
 // 22803 armor refine +7
 // 22804 weapon refine +7
 
-askald,63,117,4	shop	Ticket Merchant	601,22803:10,22804:10
+askald,63,117,4	shop	Ticket Merchant	601,22803:500000,22804:500000
