@@ -22,11 +22,10 @@ askald,59,117,4	script	Refine Master	851,{
 	disable_items;
 	// 56240 + 12 refine
 	// if (countitem(6238) || countitem(6228) || countitem(6229) || countitem(6230) || countitem(6231) || countitem(6456) || countitem(56240))
-	if (countitem(22803))
-		set .@bWeaponUp,1;
+	if (countitem(22803)) set .@bWeaponUp,1;
 	// if (countitem(6239) || countitem(6232) || countitem(6233) || countitem(6234) || countitem(6235) || countitem(6457) || countitem(56240))
-	else if (countitem(22804))
-		set .@bArmorUp,1;
+	if (countitem(22804)) set .@bArmorUp,1;
+
 	if (!.@bWeaponUp && !.@bArmorUp) {
 		mes "[Refine Master]";
 		mes "Hello!";
@@ -64,14 +63,17 @@ askald,59,117,4	script	Refine Master	851,{
 	next;
 	setarray .@position$[1],"Head upper","Armor","Left hand","Right hand","Robe","Shoes","Accessory 1","Accessory 2","Head middle","Head lower";
 	setarray .@indices[1], EQI_HEAD_TOP, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_MID, EQI_HEAD_LOW;
+
 	for(set .@i,1; .@i<=10; set .@i,.@i+1)
 		set .@menu$, .@menu$+((getequipisequiped(.@indices[.@i]))?getequipname(.@indices[.@i]):.@position$[.@i]+"- [Empty]")+":";
 	set .@part, .@indices[ select(.@menu$) ];
+	
 	if (!getequipisequiped(.@part)) {
 		mes "[Refine Master]";
 		mes "You have to equip the item you want to refine.";
 		close;
 	}
+	
 	if (!getequipisenableref(.@part)) {
 		emotion ET_OTL;
 		mes "[Refine Master]";
@@ -79,14 +81,15 @@ askald,59,117,4	script	Refine Master	851,{
 		mes "This item is impossible to refine.";
 		close;
 	}
+
 	.@refineitemid = getequipid(.@part); // save id of the item
 	.@refinerycnt = getequiprefinerycnt(.@part); //save refinery count
 	setarray .@card[0], getequipcardid(.@part,0), getequipcardid(.@part,1), getequipcardid(.@part,2), getequipcardid(.@part,3);
 	switch(getequipweaponlv(.@part)) {
 	default:
 	case 0:
-		// setarray .@tickets[0],6457,6235,6234,6233,6232,22803;
-		setarray .@tickets[0],22803;
+		// setarray .@tickets[0],6457,6235,6234,6233,6232,22804;
+		setarray .@tickets[0],22804;
 		setarray .@levels[0],7; //Restricting to +7
 		set .@type$,"Armor";
 		set .@check,.@bArmorUp;
@@ -95,9 +98,9 @@ askald,59,117,4	script	Refine Master	851,{
 	case 2:
 	case 3:
 	case 4:
-		// setarray .@tickets[0],6456,6231,6230,6229,6228,6238,56240,22804;
+		// setarray .@tickets[0],6456,6231,6230,6229,6228,6238,56240,22803;
 		// setarray .@levels[0],5,6,7,8,9,11,12; //Set max safe refine limit to 12
-		setarray .@tickets[0],22804;
+		setarray .@tickets[0],22803;
 		setarray .@levels[0],7; //Set max safe refine limit to 7
 		set .@type$,"Weapon";
 		set .@check,.@bWeaponUp;
@@ -114,7 +117,7 @@ askald,59,117,4	script	Refine Master	851,{
 	mes "Please choose which ^006400"+.@type$+" Refine Ticket^000000 you want to use.";
 	next;
 	set .@menu$,"";
-	for(set .@i,0; .@i<getarraysize(.@tickets); set .@i,.@i+1)
+	for(set .@i,0; .@i < getarraysize(.@tickets); set .@i,.@i+1)
 		set .@menu$, .@menu$+getitemname(.@tickets[.@i])+":";
 	set .@select, select(.@menu$)-1;
 	set .@ticket_lv, .@levels[.@select];
