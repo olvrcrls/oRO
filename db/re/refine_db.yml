@@ -38,7 +38,6 @@ Armor:
     - Type: REFINE_COST_OVER10_HD
       Price: 100000
       Material: 6225
-      # Breakable: false
     - Type: REFINE_COST_HOLINK
       Price: 15000
       Material: 7619
@@ -116,14 +115,12 @@ WeaponLv1:
     - Type: REFINE_COST_HD
       Price: 20000
       Material: 6240
-      # Breakable: false
     - Type: REFINE_COST_ENRICHED
       Price: 2000
       Material: 7620
     - Type: REFINE_COST_OVER10_HD
       Price: 100000
       Material: 6226
-      # Breakable: false
     - Type: REFINE_COST_HOLINK
       Price: 500
       Material: 7620
@@ -170,14 +167,12 @@ WeaponLv2:
     - Type: REFINE_COST_HD
       Price: 20000
       Material: 6240
-      # Breakable: false
     - Type: REFINE_COST_ENRICHED
       Price: 2000
       Material: 7620
     - Type: REFINE_COST_OVER10_HD
       Price: 100000
       Material: 6226
-      # Breakable: false
     - Type: REFINE_COST_HOLINK
       Price: 2000
       Material: 7620
@@ -229,14 +224,12 @@ WeaponLv3:
     - Type: REFINE_COST_HD
       Price: 20000
       Material: 6240
-      # Breakable: false
     - Type: REFINE_COST_ENRICHED
       Price: 2000
       Material: 7620
     - Type: REFINE_COST_OVER10_HD
       Price: 100000
       Material: 6226
-      # Breakable: false
     - Type: REFINE_COST_HOLINK
       Price: 20000
       Material: 7620
@@ -255,37 +248,27 @@ WeaponLv3:
       EventNormalChance: 50
       EventEnrichedChance: 90
     - Level: 8
-      # NormalChance: 20
       NormalChance: 10
-      # EnrichedChance: 40
       EnrichedChance: 25
       EventNormalChance: 20
       EventEnrichedChance: 70
     - Level: 9
-      # NormalChance: 20
       NormalChance: 10
-      # EnrichedChance: 40
       EnrichedChance: 20
       EventNormalChance: 20
       EventEnrichedChance: 60
     - Level: 10
-      # NormalChance: 19
       NormalChance: 3
-      # EnrichedChance: 30
       EnrichedChance: 10
       EventNormalChance: 19
       EventEnrichedChance: 45
     - Level: 11
-      # NormalChance: 18
       NormalChance: 3
-      # EnrichedChance: 18
       EnrichedChance: 8
       EventNormalChance: 40
       EventEnrichedChance: 40
     - Level: 12
-      # NormalChance: 18
       NormalChance: 2
-      # EnrichedChance: 18
       EnrichedChance: 5
       EventNormalChance: 40
       EventEnrichedChance: 40
@@ -303,14 +286,12 @@ WeaponLv4:
     - Type: REFINE_COST_HD
       Price: 20000
       Material: 6240
-      # Breakable: false
     - Type: REFINE_COST_ENRICHED
       Price: 2000
       Material: 7620
     - Type: REFINE_COST_OVER10_HD
       Price: 100000
       Material: 6226
-      # Breakable: false
     - Type: REFINE_COST_HOLINK
       Price: 50000
       Material: 7620
@@ -334,37 +315,30 @@ WeaponLv4:
       EventNormalChance: 40
       EventEnrichedChance: 80
     - Level: 8
-      # NormalChance: 20
       NormalChance: 10
-      # EnrichedChance: 40
       EnrichedChance: 25
       EventNormalChance: 20
       EventEnrichedChance: 60
     - Level: 9
-      # NormalChance: 20
       NormalChance: 10
-      # EnrichedChance: 40
       EnrichedChance: 20
       EventNormalChance: 20
       EventEnrichedChance: 50
     - Level: 10
-      # NormalChance: 9
       NormalChance: 3
-      # EnrichedChance: 20
       EnrichedChance: 10
       EventNormalChance: 9
       EventEnrichedChance: 35
     - Level: 11
-      # NormalChance: 8
       NormalChance: 3
       EnrichedChance: 8
-      EventNormalChance: 20
-      EventEnrichedChance: 20
+      EventNormalChance: 8
+      EventEnrichedChance: 8
     - Level: 12
-      NormalChance: 8
-      EnrichedChance: 8
-      EventNormalChance: 20
-      EventEnrichedChance: 20
+      NormalChance: 2
+      EnrichedChance: 5
+      EventNormalChance: 5
+      EventEnrichedChance: 5
 Shadow:
   StatsPerLevel: 0
   RandomBonusStartLevel: 0
@@ -376,11 +350,9 @@ Shadow:
     - Type: REFINE_COST_HD
       Price: 20000
       Material: 6241
-      # Breakable: false
     - Type: REFINE_COST_ENRICHED
       Price: 20000
       Material: 7619
-      # Breakable: false
   Rates:
     - Level: 5
       NormalChance: 60
