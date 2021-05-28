@@ -103,3 +103,7 @@ OnRecvCastlear05:
 	FlagEmblem GetCastleData("arug_cas05",1);
 	end;
 }
+
+
+askald,139,103,4	duplicate(Banadis)	Banadis#askald_ban	722
+askald,136,103,4	duplicate(Viblainn)	Viblainn#askald_vib	722
