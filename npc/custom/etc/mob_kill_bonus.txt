@@ -2,14 +2,14 @@
 	OnNPCKillEvent:
 		// if (rand(99) > 9 || strnpcinfo(3) != "prt_fild01") end; // 10% chance of success, only works on prt_fild01
 
-		set .@blank_rng,rand(1,120);
+		set .@blank_rng,rand(1,99);
 		set .@pod_rng,rand(1,500);
 
 		if (.@pod_rng == 1) {
 			getitem 7179,1;
 		}
 
-		if (.@blank_rng > 5 && .@blank_rng <= 10) {
+		if (.@blank_rng > 5 && .@blank_rng <= 15) {
 			getitem 6187,1;
 			end;
 		}
