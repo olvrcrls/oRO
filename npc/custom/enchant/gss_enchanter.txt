@@ -64,7 +64,7 @@ askald,21,159,5	script	GSS Especialist	4_F_IRIS,{
 		getequipcardid(EQI_GARMENT,3);
 	.@equip_refine = getequiprefinerycnt(EQI_GARMENT);
 	.@cost_id = 6649; //Broken Horn
-	.@cost_v = 3;
+	.@cost_v = 1;
 
 	if(.@card[3] == 0){
 		mes .n$;
