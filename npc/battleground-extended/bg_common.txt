@@ -183,46 +183,79 @@ OnSun2300:
 // ================================== BattleGround Happy Hour ===================================
 // BattleGround Happy Hour
 OnDoHappyHour:
+OnClock0400:
 OnClock0500:
-OnClock1000:
+OnClock0800:
+OnClock0900:
+OnClock1600:
 OnClock1700:
-OnClock2200:
+OnClock2000:
+OnClock2100:
 	switch( gettime(DT_DAYOFWEEK) )
 	{
-	case MONDAY:
-	case WEDNESDAY:
-	case FRIDAY:
-		if( gettime(DT_HOUR) >= 20 && gettime(DT_HOUR) < 22 )
-		{
-			bgannounce "-- Battleground Happy Hour has begun --",0x00FF00;
-			setbattleflag "bg_reward_rates",120; // +20% Reward Rates
-			end;
-		}
-		
-		if( gettime(DT_HOUR) == 22 )
-		{
-			bgannounce "-- Battleground Happy Hour is over --",0x00BFFF;
-			setbattleflag "bg_reward_rates",100; // Normal Rates
-			end;
-		}
-		break;
-	case TUESDAY:
-	case THURSDAY:
-	case SATURDAY:
-		if( gettime(DT_HOUR) >= 16 && gettime(DT_HOUR) < 18 )
-		{
-			bgannounce "-- Battleground Happy Hour has begun --",0x00FF00;
-			setbattleflag "bg_reward_rates",120; // +20% Reward Rates
-			end;
-		}
-		
-		if( gettime(DT_HOUR) == 18 )
-		{
-			bgannounce "-- Battleground Happy Hour is over --",0x00BFFF;
-			setbattleflag "bg_reward_rates",100; // Normal Rates
-			end;
-		}
-		break;
+		case MONDAY:
+		case TUESDAY:
+		case WEDNESDAY:
+		case THURSDAY:
+		case FRIDAY:
+		case SATURDAY:
+		case SUNDAY:
+			if( gettime(DT_HOUR) >= 4 && gettime(DT_HOUR) < 5 )
+			{
+				bgannounce "-- Battleground Happy Hour has begun --",0x00FF00;
+				setbattleflag "bg_reward_rates",150; // +50% Reward Rates
+				end;
+			}
+			
+			if( gettime(DT_HOUR) == 5 )
+			{
+				bgannounce "-- Battleground Happy Hour is over --",0x00BFFF;
+				setbattleflag "bg_reward_rates",100; // Normal Rates
+				end;
+			}
+
+			if( gettime(DT_HOUR) >= 8 && gettime(DT_HOUR) < 9 )
+			{
+				bgannounce "-- Battleground Happy Hour has begun --",0x00FF00;
+				setbattleflag "bg_reward_rates",120; // +20% Reward Rates
+				end;
+			}
+			
+			if( gettime(DT_HOUR) == 9 )
+			{
+				bgannounce "-- Battleground Happy Hour is over --",0x00BFFF;
+				setbattleflag "bg_reward_rates",100; // Normal Rates
+				end;
+			}
+
+			if( gettime(DT_HOUR) >= 16 && gettime(DT_HOUR) < 17 )
+			{
+				bgannounce "-- Battleground Happy Hour has begun --",0x00FF00;
+				setbattleflag "bg_reward_rates",120; // +20% Reward Rates
+				end;
+			}
+			
+			if( gettime(DT_HOUR) == 17 )
+			{
+				bgannounce "-- Battleground Happy Hour is over --",0x00BFFF;
+				setbattleflag "bg_reward_rates",100; // Normal Rates
+				end;
+			}
+			
+			if( gettime(DT_HOUR) >= 20 && gettime(DT_HOUR) < 21 )
+			{
+				bgannounce "-- Battleground Happy Hour has begun --",0x00FF00;
+				setbattleflag "bg_reward_rates",150; // +50% Reward Rates
+				end;
+			}
+			
+			if( gettime(DT_HOUR) == 21 )
+			{
+				bgannounce "-- Battleground Happy Hour is over --",0x00BFFF;
+				setbattleflag "bg_reward_rates",100; // Normal Rates
+				end;
+			}
+			break;
 	}
 	end;
 
@@ -386,7 +419,7 @@ OnInit:
 	// 7773 : War Badges
 	// 7829 : Valor Badges
 	// 7828 : Bravery Badges
-	$BGREWARD_ITID = 7773;
+	$BGREWARD_ITID = 7829;
 	// *****************************************************
 	// Bg Extension
 	// ================================================
@@ -407,16 +440,16 @@ OnInit:
 	$@TD_BG_Index = -1;
 	// Battleground Modes :
 	// AddBGmode( NPC_Name, BG Label, BG ID, Min Player per team, Max Player per team, Activated? )
-	AddBGmode("Flavius_CTF",	"Capture the Flag",		"BG_CTF",	2,	20,		1);
-	AddBGmode("Flavius_TD",		"Team DeathMatch",		"BG_TDM",	2,	20,		1);
-	AddBGmode("Tierra_EOS",		"Eye of Storm",			"BG_EOE",	2,	20,		1);
-	AddBGmode("Conquest",		"Conquest",				"BG_CON",	3,	30,		1);
-	AddBGmode("KvM01_BG",		"Kreiger Von Midgard",	"BG_KVM", 	2,	20,		1);
-	AddBGmode("Flavius_SC",		"Stone Control",		"BG_SC", 	2,	20,		1);
-	AddBGmode("Tierra_DOM",		"Domination",			"BG_DOM",	2,	20,		1);
-	AddBGmode("Rush", 			"Rush",					"BG_RUSH",	3,	30,		1);
-	AddBGmode("PoringBall",		"Poring Ball",			"BG_PB",	2,	20,		$PB_AVAILABLE);
-	AddBGmode("s4_game",		"Touch Down",			"BG_TD",	2,	20,		$TD_AVAILABLE);
+	AddBGmode("Flavius_CTF",	"Capture the Flag",		"BG_CTF",	5,	50,		1);
+	AddBGmode("Flavius_TD",		"Team DeathMatch",		"BG_TDM",	5,	50,		1);
+	AddBGmode("Tierra_EOS",		"Eye of Storm",			"BG_EOE",	5,	50,		1);
+	AddBGmode("Conquest",		"Conquest",				"BG_CON",	5,	50,		1);
+	AddBGmode("KvM01_BG",		"Kreiger Von Midgard",	"BG_KVM", 	5,	50,		1);
+	AddBGmode("Flavius_SC",		"Stone Control",		"BG_SC", 	5,	50,		1);
+	AddBGmode("Tierra_DOM",		"Domination",			"BG_DOM",	5,	50,		1);
+	AddBGmode("Rush", 			"Rush",					"BG_RUSH",	5,	30,		0);
+	AddBGmode("PoringBall",		"Poring Ball",			"BG_PB",	5,	20,		$PB_AVAILABLE);
+	AddBGmode("s4_game",		"Touch Down",			"BG_TD",	5,	20,		$TD_AVAILABLE);
 	// Main Code
 	// *****************************************************
 	bindatcmd "leavebg", strnpcinfo(3)+"::OnDoLeave";
