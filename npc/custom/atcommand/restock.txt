@@ -82,7 +82,28 @@ OnAtcommand:
 					} else if (strtolower(.@atcmd_parameters$[0]) == "help" || strtolower(.@atcmd_parameters$[0]) == "h") {
 						showRestockHelp();
 					} else if (strtolower(.@atcmd_parameters$[0]) == "snapshot") {
-						dispbottom "@restock snapshot is still in progress. It will be implemented soon™️.";
+						deletearray RestockList[0],getarraysize(RestockList);
+						deletearray RestockAmountList[0],getarraysize(RestockAmountList);
+						getinventorylist;
+						for(.@i = 0; .@i < @inventorylist_id; .@i++) {
+							.@item = @inventorylist_id[.@i];
+							.@quantity = @inventorylist_amount[.@i];
+
+							if(getitemname(.@item) == "null"){
+								continue;
+							} else if(inarray(.allowedtypes[0],getiteminfo(.@item,2)) == -1) {
+								continue;
+							} else if(inarray(RestockList[0],.@item) >= 0) {
+								continue;
+							} else if(.@quantity < 1 || .@quantity > 500) {
+								.@quantity = 500;
+							}
+
+							setarray RestockList[getarraysize(RestockList)],.@item;
+							setarray RestockAmountList[getarraysize(RestockAmountList)],.@quantity;
+						} // for
+						dispbottom "Successfully snapshot your inventory items.";
+						break;
 					}
 					break;
 				case 2:
