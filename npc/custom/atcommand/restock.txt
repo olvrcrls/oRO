@@ -20,6 +20,7 @@ function	addSpace	{
 
 function	showRestockHelp	{
 	dispbottom "Command Usage : ";
+	dispbottom "@restock snapshot : reads all the valid items & its quantity in your inventory and sets up your restock list automatically.";
 	dispbottom "@restock add <itemid> <quantity> : add item to restock list";
 	dispbottom "@restock +<itemid> <quantity> : add item to restock list";
 	dispbottom "@restock remove <itemid> : remove item from restock list";
