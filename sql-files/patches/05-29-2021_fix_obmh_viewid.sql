@@ -1,0 +1,1 @@
+UPDATE `item_db_re` SET `view` = '912' WHERE (`id` = '18794');
