@@ -440,13 +440,13 @@ OnInit:
 	$@TD_BG_Index = -1;
 	// Battleground Modes :
 	// AddBGmode( NPC_Name, BG Label, BG ID, Min Player per team, Max Player per team, Activated? )
-	AddBGmode("Flavius_CTF",	"Capture the Flag",		"BG_CTF",	5,	50,		1);
-	AddBGmode("Flavius_TD",		"Team DeathMatch",		"BG_TDM",	5,	50,		1);
-	AddBGmode("Tierra_EOS",		"Eye of Storm",			"BG_EOE",	5,	50,		1);
-	AddBGmode("Conquest",		"Conquest",				"BG_CON",	5,	50,		1);
-	AddBGmode("KvM01_BG",		"Kreiger Von Midgard",	"BG_KVM", 	5,	50,		1);
-	AddBGmode("Flavius_SC",		"Stone Control",		"BG_SC", 	5,	50,		1);
-	AddBGmode("Tierra_DOM",		"Domination",			"BG_DOM",	5,	50,		1);
+	AddBGmode("Flavius_CTF",	"Capture the Flag",		"BG_CTF",	5,	138,		1);
+	AddBGmode("Flavius_TD",		"Team DeathMatch",		"BG_TDM",	5,	138,		1);
+	AddBGmode("Tierra_EOS",		"Eye of Storm",			"BG_EOE",	5,	138,		1);
+	AddBGmode("Conquest",		"Conquest",				"BG_CON",	5,	138,		1);
+	AddBGmode("KvM01_BG",		"Kreiger Von Midgard",	"BG_KVM", 	5,	138,		1);
+	AddBGmode("Flavius_SC",		"Stone Control",		"BG_SC", 	5,	138,		1);
+	AddBGmode("Tierra_DOM",		"Domination",			"BG_DOM",	5,	138,		1);
 	AddBGmode("Rush", 			"Rush",					"BG_RUSH",	5,	30,		0);
 	AddBGmode("PoringBall",		"Poring Ball",			"BG_PB",	5,	20,		$PB_AVAILABLE);
 	AddBGmode("s4_game",		"Touch Down",			"BG_TD",	5,	20,		$TD_AVAILABLE);
