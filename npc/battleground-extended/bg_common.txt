@@ -430,7 +430,7 @@ OnInit:
 	$TD_AVAILABLE = 0;
 	// ================================================
 	// Max player count difference allowed between teams ( default : 1 player )
-	.Diff = 3;
+	.Diff = 5;
 	// ================================================
 	// Min level
 	$@BG_MinLevel = 175;
