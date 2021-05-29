@@ -16,7 +16,7 @@
 -	itemshop	MSHOP1	-1,6187,12246:500 // cards
 -	itemshop	MSHOP2	-1,6187,14542:5 // consumables
 -	itemshop	MSHOP3	-1,6187,20235:1000 // costumes
--	itemshop	MSHOP4	-1,6187,5536:500 // headgears
+-	itemshop	MSHOP4	-1,6187,5536:100 // headgears
 -	itemshop	MSHOP5	-1,6187,2349:250 // armors
 -	itemshop	MSHOP6	-1,6187,2576:500 // garments
 -	itemshop	MSHOP7	-1,6187,13021:200 // weapons
