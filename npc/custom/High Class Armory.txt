@@ -34,10 +34,11 @@ askald,70,146,3	script	Glorious and Bellum	631,{
 			} // case glorious ends
 		case 2:
 			mes "[High Class Dealer]";
-			mes "Welcome to the Bellum weapons section.";
-			mes "Choose your weapon from the list.";
+			// mes "Welcome to the Bellum weapons section.";
+			// mes "Choose your weapon from the list.";
+			mes "The Vellum shop is closed for now, come back later. Meow~";
 			close2;
-			callshop "bellum",1;
+			// callshop "bellum",1;
 			end;
 		default:
 			mes "Thank you for using my service.";
