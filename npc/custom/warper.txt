@@ -466,9 +466,9 @@ menu	"Bakonawa Lake",I1, "Bangungot Hospital 2F",I2, "Buwaya Cave",I3,
 		"Devil Tower",I4, "Eclage Interior",I5, "Endless Tower",I6,
 		"Faceworms Nest",I7, "Geffen Magic Tournament",I8, "Ghost Palace",I9,
 		"Hazy Forest",I10, "Horror Toy Factory",I11, "Malangdo Culvert",I12,
-		"Nidhoggur's Nest",I13, "Octopus Cave",I14, "Old Glast Heim",I15,
-		"Orc's Memory",I16, "Sarah and Fenrir",I17, "Sara Memory",I18,
-		"Sealed Shrine",I19, "Wolfchev's Laboratory",I20;
+		"Nightmarish Jitterbug",I13,"Nidhoggur's Nest",I14, "Octopus Cave",I15, "Old Glast Heim",I16,
+		"Orc's Memory",I17, "Sarah and Fenrir",I18, "Sara Memory",I19,
+		"Sealed Shrine",I20, "Wolfchev's Laboratory",I21;
 
 I1: Restrict("RE");
 	Go("ma_scene01",172,175);
@@ -493,18 +493,21 @@ I11: Restrict("RE");
 	Go("xmas",234,298);
 I12: Restrict("RE");
 	Go("mal_in01",164,21);
-I13: Go("nyd_dun02",95,193);
-I14: Restrict("RE");
-	Go("mal_dun01",152,230);
+I13: Restrict("RE");
+	Go("moc_para01",28,90);
+
+I14: Go("nyd_dun02",95,193);
 I15: Restrict("RE");
+	Go("mal_dun01",152,230);
+I16: Restrict("RE");
 	Go("glast_01",204,268);
-I16: Go("gef_fild10",240,198);
-I17: Restrict("RE");
-	Go("dali02",92,141);
+I17: Go("gef_fild10",240,198);
 I18: Restrict("RE");
+	Go("dali02",92,141);
+I19: Restrict("RE");
 	Go("dali",133,108);
-I19: Go("monk_test",306,143);
-I20: Restrict("RE");
+I20: Go("monk_test",306,143);
+I21: Restrict("RE");
 	Go("lhz_dun04",148,269);
 
 // --------------------------------------------------
