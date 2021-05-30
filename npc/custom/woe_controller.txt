@@ -83,7 +83,7 @@ OnInit:
 	setarray .reward_amount[0],3,1500,1500,50;
 
 	// Zeny reward:
-	.reward_zeny = 10000000; // 10M
+	.reward_zeny = 50000000; // 50M
 
 // -----------------------------------------------------------
 //  Constants (leave this section alone).
