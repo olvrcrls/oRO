@@ -37,8 +37,8 @@ askald,133,110,4	script	Login Settings	877,{
 		}
 	end;
 	OnInit:
-		setarray .atname$, "Autoloot 100%", "Show Party's Buffs", "Battle Statistics", "Battle Information", "See GM Online", "@noask";
-		setarray .atcommand$, "autoloot", "showbuffs", "battlestats", "battleinfo", "whogm", "noask";
+		setarray .atname$, "Autoloot 100%", "Show Party's Buffs", "Battle Information", "See GM Online", "@noask";
+		setarray .atcommand$, "autoloot", "showbuffs", "battleinfo", "whogm", "noask";
 		.total = getarraysize(.atname$);
 	end;
 }

@@ -7,7 +7,7 @@ askald,21,159,5	script	GSS Especialist	4_F_IRIS,{
 	mes .n$;
 	mes "I'm a specialist on ^0000FFGiant Snake Skin^000000 garments.";
 	mes "Make them special, boy, 'cause you're so special.";
-	mes "I just need a tiny token of ^0000FF500,000^000000 zeny.";
+	mes "I just need a tiny token of ^0000FF500,000^000000 zeny and a ^FF2000Broken Horn^000000.";
 	next;
 
 	if(select("Enchant my garment.:I'll come back later.") == 2){

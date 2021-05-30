@@ -12,7 +12,7 @@
 		case 2: // Supply Shops
 			mes .n$;
 			mes "Hold on! I'll take you there in a jiffy.";
-			warp "askald",55,138;
+			warp "askald",64,145;
 			close2;
 			end;
 		case 3: // Enchant Items
@@ -67,7 +67,7 @@
 askald,128,103,0	duplicate(Portkey)	Portkey#tsq	723
 askald,142,65,0	duplicate(Portkey)	Portkey#tr	723
 askald,32,161,0	duplicate(Portkey)	Portkey#en	723
-askald,55,138,0	duplicate(Portkey)	Portkey#ml	723
+askald,64,145,0	duplicate(Portkey)	Portkey#ml	723
 askald,54,118,0	duplicate(Portkey)	Portkey#rf	723
 askald,167,240,0	duplicate(Portkey)	Portkey#st	723
 askald,142,156,0	duplicate(Portkey)	Portkey#ra	723
