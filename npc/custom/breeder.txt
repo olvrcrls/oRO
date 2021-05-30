@@ -10,7 +10,7 @@
 //= One-click automatic mount rentals.
 //============================================================
 
-askald,131,118,4	script	Universal Rental NPC	726,{
+askald,131,118,4	script	Universal Rental NPC	105,{
 	if (ismounting()) {
 		message strcharinfo(0),"You must first remove your mount.";
 		end;
@@ -40,37 +40,37 @@ askald,131,118,4	script	Universal Rental NPC	726,{
 	end;
 }
 
-prontera,149,187,4	duplicate(Universal Rental NPC)	Universal Rental NPC#prt	726
-morocc,161,94,4	duplicate(Universal Rental NPC)	Universal Rental NPC#moc	726
-geffen,119,72,4	duplicate(Universal Rental NPC)	Universal Rental NPC#gef	726
-payon,163,216,4	duplicate(Universal Rental NPC)	Universal Rental NPC#pay	726
-izlude,124,148,4	duplicate(Universal Rental NPC)	Universal Rental NPC#izl	726
-aldebaran,145,114,4	duplicate(Universal Rental NPC)	Universal Rental NPC#alde	726
-xmas,141,133,4	duplicate(Universal Rental NPC)	Universal Rental NPC#lutie	726
-comodo,188,157,4	duplicate(Universal Rental NPC)	Universal Rental NPC#comodo	726
-yuno,152,41,4	duplicate(Universal Rental NPC)	Universal Rental NPC#yuno	726
-amatsu,122,112,4	duplicate(Universal Rental NPC)	Universal Rental NPC#amatsu	726
-gonryun,153,118,4	duplicate(Universal Rental NPC)	Universal Rental NPC#gonryun	726
-umbala,95,158,4	duplicate(Universal Rental NPC)	Universal Rental NPC#umbala	726
-niflheim,193,179,4	duplicate(Universal Rental NPC)	Universal Rental NPC#niflheim	726
-louyang,220,105,4	duplicate(Universal Rental NPC)	Universal Rental NPC#louyang	726
-alberta,116,62,4	duplicate(Universal Rental NPC)	Universal Rental NPC#alberta	726
-jawaii,246,131,4	duplicate(Universal Rental NPC)	Universal Rental NPC#jawaii	726
-ayothaya,215,166,4	duplicate(Universal Rental NPC)	Universal Rental NPC#ayothaya	726
-einbroch,70,198,4	duplicate(Universal Rental NPC)	Universal Rental NPC#einbroch	726
-lighthalzen,154,96,4	duplicate(Universal Rental NPC)	Universal Rental NPC#lighthalzen	726
-einbech,167,127,4	duplicate(Universal Rental NPC)	Universal Rental NPC#einbech	726
-hugel,101,146,4	duplicate(Universal Rental NPC)	Universal Rental NPC#hugel	726
-rachel,135,111,4	duplicate(Universal Rental NPC)	Universal Rental NPC#rachel	726
-veins,210,121,4	duplicate(Universal Rental NPC)	Universal Rental NPC#veins	726
-moscovia,218,188,4	duplicate(Universal Rental NPC)	Universal Rental NPC#moscovia	726
-mid_camp,186,243,4	duplicate(Universal Rental NPC)	Universal Rental NPC#mid_camp	726
-manuk,272,140,4	duplicate(Universal Rental NPC)	Universal Rental NPC#manuk	726
-splendide,207,149,4	duplicate(Universal Rental NPC)	Universal Rental NPC#splendide	726
-brasilis,190,219,4	duplicate(Universal Rental NPC)	Universal Rental NPC#brasilis	726
-dicastes01,198,191,4	duplicate(Universal Rental NPC)	Universal Rental NPC#dicastes01	726
-mora,101,61,4	duplicate(Universal Rental NPC)	Universal Rental NPC#mora	726
-dewata,193,181,4	duplicate(Universal Rental NPC)	Universal Rental NPC#dewata	726
-malangdo,120,121,4	duplicate(Universal Rental NPC)	Universal Rental NPC#malangdo	726
-malaya,236,200,4	duplicate(Universal Rental NPC)	Universal Rental NPC#malaya	726
-lasagna,198,184,4	duplicate(Universal Rental NPC)	Universal Rental NPC#lasagna	726
+prontera,149,187,4	duplicate(Universal Rental NPC)	Universal Rental NPC#prt	105
+morocc,161,94,4	duplicate(Universal Rental NPC)	Universal Rental NPC#moc	105
+geffen,119,72,4	duplicate(Universal Rental NPC)	Universal Rental NPC#gef	105
+payon,163,216,4	duplicate(Universal Rental NPC)	Universal Rental NPC#pay	105
+izlude,124,148,4	duplicate(Universal Rental NPC)	Universal Rental NPC#izl	105
+aldebaran,145,114,4	duplicate(Universal Rental NPC)	Universal Rental NPC#alde	105
+xmas,141,133,4	duplicate(Universal Rental NPC)	Universal Rental NPC#lutie	105
+comodo,188,157,4	duplicate(Universal Rental NPC)	Universal Rental NPC#comodo	105
+yuno,152,41,4	duplicate(Universal Rental NPC)	Universal Rental NPC#yuno	105
+amatsu,122,112,4	duplicate(Universal Rental NPC)	Universal Rental NPC#amatsu	105
+gonryun,153,118,4	duplicate(Universal Rental NPC)	Universal Rental NPC#gonryun	105
+umbala,95,158,4	duplicate(Universal Rental NPC)	Universal Rental NPC#umbala	105
+niflheim,193,179,4	duplicate(Universal Rental NPC)	Universal Rental NPC#niflheim	105
+louyang,220,105,4	duplicate(Universal Rental NPC)	Universal Rental NPC#louyang	105
+alberta,116,62,4	duplicate(Universal Rental NPC)	Universal Rental NPC#alberta	105
+jawaii,246,131,4	duplicate(Universal Rental NPC)	Universal Rental NPC#jawaii	105
+ayothaya,215,166,4	duplicate(Universal Rental NPC)	Universal Rental NPC#ayothaya	105
+einbroch,70,198,4	duplicate(Universal Rental NPC)	Universal Rental NPC#einbroch	105
+lighthalzen,154,96,4	duplicate(Universal Rental NPC)	Universal Rental NPC#lighthalzen	105
+einbech,167,127,4	duplicate(Universal Rental NPC)	Universal Rental NPC#einbech	105
+hugel,101,146,4	duplicate(Universal Rental NPC)	Universal Rental NPC#hugel	105
+rachel,135,111,4	duplicate(Universal Rental NPC)	Universal Rental NPC#rachel	105
+veins,210,121,4	duplicate(Universal Rental NPC)	Universal Rental NPC#veins	105
+moscovia,218,188,4	duplicate(Universal Rental NPC)	Universal Rental NPC#moscovia	105
+mid_camp,186,243,4	duplicate(Universal Rental NPC)	Universal Rental NPC#mid_camp	105
+manuk,272,140,4	duplicate(Universal Rental NPC)	Universal Rental NPC#manuk	105
+splendide,207,149,4	duplicate(Universal Rental NPC)	Universal Rental NPC#splendide	105
+brasilis,190,219,4	duplicate(Universal Rental NPC)	Universal Rental NPC#brasilis	105
+dicastes01,198,191,4	duplicate(Universal Rental NPC)	Universal Rental NPC#dicastes01	105
+mora,101,61,4	duplicate(Universal Rental NPC)	Universal Rental NPC#mora	105
+dewata,193,181,4	duplicate(Universal Rental NPC)	Universal Rental NPC#dewata	105
+malangdo,120,121,4	duplicate(Universal Rental NPC)	Universal Rental NPC#malangdo	105
+malaya,236,200,4	duplicate(Universal Rental NPC)	Universal Rental NPC#malaya	105
+lasagna,198,184,4	duplicate(Universal Rental NPC)	Universal Rental NPC#lasagna	105
