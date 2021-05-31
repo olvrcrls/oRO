@@ -2002,8 +2002,9 @@ ACMD_FUNC(go)
 		{ MAP_MALAYA,      230, 198 }, // 34=Malaya Port
 		{ MAP_ECLAGE,      110,  39 }, // 35=Eclage
 		{ MAP_LASAGNA,     193, 182 },  // 36=Lasagna
-		{ MAP_JAIL,         23,  61 },   // 37=Prison
-		{ MAP_BG,		   154, 150 } // 38 = BG
+		{ MAP_VERUS,       122, 250 }, // 37 = Verus
+		{ MAP_JAIL,         23,  61 },  // 38=Prison
+		{ MAP_BG,		   154, 150 } // 39 = BG
 	};
 
 	nullpo_retr(-1, sd);
@@ -2044,7 +2045,7 @@ ACMD_FUNC(go)
 	if (strncmp(map_name, "prontera", 3) == 0) {
 		town = 1;
 	} else if (strncmp(map_name, "morocc", 4) == 0 ||
-	           strncmp(map_name, "morroc", 4) == 0) {
+		strncmp(map_name, "morroc", 4) == 0) {
 		town = 2;
 	} else if (strncmp(map_name, "geffen", 3) == 0) {
 		town = 3;
@@ -2127,7 +2128,9 @@ ACMD_FUNC(go)
 		town = 36;
 	} else if (strncmp(map_name, "askald", 3) == 0) {
 		town = 0;
-	} else if (strncmp(map_name, "bg", 2) == 0) {
+	} else if (strncmp(map_name, "verus", 3) == 0) {
+		town = 37;
+	}  else if (strncmp(map_name, "bg", 2) == 0) {
 		town = 38;
 	}
 

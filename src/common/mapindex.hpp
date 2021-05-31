@@ -32,6 +32,7 @@
 #define MAP_HUGEL "hugel"
 #define MAP_RACHEL "rachel"
 #define MAP_VEINS "veins"
+#define MAP_VERUS "verus04"
 #define MAP_JAIL "sec_pri"
 #ifdef RENEWAL
 	#define MAP_NOVICE "iz_int"
