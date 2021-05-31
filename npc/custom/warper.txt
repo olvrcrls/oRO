@@ -596,3 +596,4 @@ mora,57,152,4	duplicate(Warper)	Warper#mora	4_F_SARAH
 mora,107,71,4	duplicate(Warper)	Warper#mora1	4_F_SARAH
 //turbo_room,106,118,3	duplicate(Warper)	Warper#mall	4_F_SARAH
 askald,135,116,3	duplicate(Warper)	Warper#ask	4_F_SARAH
+verus04,116,255,3	duplicate(Warper)	Warper#verus	4_F_SARAH

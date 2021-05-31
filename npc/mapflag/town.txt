@@ -42,3 +42,4 @@ jawaii	mapflag	town
 moscovia	mapflag	town
 manuk	mapflag	town
 splendide	mapflag	town
+verus04	mapflag	town

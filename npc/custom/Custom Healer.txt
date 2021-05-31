@@ -175,3 +175,4 @@ mora,103,65,4	duplicate(Healer)	Healer#mora1	630
 askald,128,118,3	duplicate(Healer)	Healer#ask	630
 askald,152,44,3	duplicate(Healer)	Healer#ask2	630
 lasagna,188,184,3	duplicate(Healer)	Healer#lasagna	630
+verus04,122,258,3	duplicate(Healer)	Healer#verus	630

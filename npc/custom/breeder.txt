@@ -74,3 +74,4 @@ dewata,193,181,4	duplicate(Universal Rental NPC)	Universal Rental NPC#dewata	105
 malangdo,120,121,4	duplicate(Universal Rental NPC)	Universal Rental NPC#malangdo	105
 malaya,236,200,4	duplicate(Universal Rental NPC)	Universal Rental NPC#malaya	105
 lasagna,198,184,4	duplicate(Universal Rental NPC)	Universal Rental NPC#lasagna	105
+verus04,127,255,4	duplicate(Universal Rental NPC)	Universal Rental NPC#verus	105

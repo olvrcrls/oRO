@@ -57,7 +57,7 @@ OnAtcommand:
 									dispbottom "WARNING: You have no more "+getitemname(RestockList[.@i])+" in your storage.", 0xFDFD96;
 								}
 							}
-							close;
+							end;
 						}
 					} else {
 						dispbottom "You need to open your storage in order to restock.", 0xFF2000;
