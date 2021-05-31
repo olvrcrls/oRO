@@ -147,6 +147,8 @@
 4441,4		// Fallen Bishop Card
 4145,4		// Berzebub Card
 4457,4		// Naght Sieger Card
+4527,4		// Dark Coelacanth Card
+4451,4		// Entwei Crothen Card
 
 // Mini boss cards
 4198,4		// Maya Purple Card
