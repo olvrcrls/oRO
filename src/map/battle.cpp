@@ -307,26 +307,27 @@ TIMER_FUNC(battle_delay_damage_sub){
 		struct block_list* src = map_id2bl(dat->src_id);
 		struct block_list* target = map_id2bl(dat->target_id);
 
-		src = map_id2bl(dat->src_id);
-
-		if( src && target->m == src->m &&
+		if (target && !status_isdead(target)) {
+			if( src && target->m == src->m &&
 			(target->type != BL_PC || ((TBL_PC*)target)->invincible_timer == INVALID_TIMER) &&
 			check_distance_bl(src, target, dat->distance) ) //Check to see if you haven't teleported. [Skotlex]
-		{
-			//Deal damage
-			battle_damage(src, target, dat->damage, dat->delay, dat->skill_lv, dat->skill_id, dat->dmg_lv, dat->attack_type, dat->additional_effects, tick, dat->isspdamage);
-		} else if( !src && dat->skill_id == CR_REFLECTSHIELD ) { // it was monster reflected damage, and the monster died, we pass the damage to the character as expected
-			map_freeblock_lock();
-			status_fix_damage(target, target, dat->damage, dat->delay, dat->skill_id);
-			map_freeblock_unlock();
-		}
-		struct map_session_data *sd = BL_CAST(BL_PC, src);
+			{
+				//Deal damage
+				battle_damage(src, target, dat->damage, dat->delay, dat->skill_lv, dat->skill_id, dat->dmg_lv, dat->attack_type, dat->additional_effects, tick, dat->isspdamage);
+			} else if( !src && dat->skill_id == CR_REFLECTSHIELD ) { // it was monster reflected damage, and the monster died, we pass the damage to the character as expected
+				map_freeblock_lock();
+				status_fix_damage(target, target, dat->damage, dat->delay, dat->skill_id);
+				map_freeblock_unlock();
+			}
+			struct map_session_data *sd = BL_CAST(BL_PC, src);
 
-		if (sd && --sd->delayed_damage == 0 && sd->state.hold_recalc) {
-			sd->state.hold_recalc = false;
-			status_calc_pc(sd, SCO_FORCE);
+			if (sd && --sd->delayed_damage == 0 && sd->state.hold_recalc) {
+				sd->state.hold_recalc = false;
+				status_calc_pc(sd, SCO_FORCE);
+			}
 		}
 	}
+
 	ers_free(delay_damage_ers, dat);
 	return 0;
 }
