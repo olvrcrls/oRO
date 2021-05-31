@@ -146,6 +146,7 @@
 4430,4		// Ifrit Card
 4441,4		// Fallen Bishop Card
 4145,4		// Berzebub Card
+4457,4		// Naght Sieger Card
 
 // Mini boss cards
 4198,4		// Maya Purple Card
