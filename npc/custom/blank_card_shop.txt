@@ -19,7 +19,7 @@
 -	itemshop	MSHOP4	-1,6187,5536:200 // headgears
 -	itemshop	MSHOP5	-1,6187,2349:250 // armors
 -	itemshop	MSHOP6	-1,6187,2576:500 // garments
--	itemshop	MSHOP7	-1,6187,13021:200 // weapons
+-	itemshop	MSHOP7	-1,6187,1228:200 // weapons
 -	itemshop	MSHOP8	-1,6187,2168:2500 // shields
 -	itemshop	MSHOP9	-1,6187,22014:500 // shoes
 -	itemshop	MSHOP10	-1,6187,7776:120 // misc 12412
