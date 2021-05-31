@@ -2866,6 +2866,7 @@ int map_delinstancemap(int m)
 	map_free_questinfo(mapdata);
 	mapdata->damage_adjust = {};
 	mapdata->flag.clear();
+	mapdata->drop_list.clear();
 	mapdata->skill_damage.clear();
 
 	mapindex_removemap(mapdata->index);

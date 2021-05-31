@@ -2051,9 +2051,9 @@ ACMD_FUNC(go)
 	} else if (strncmp(map_name, "payon", 3) == 0) {
 		town = 4;
 	} else if (strncmp(map_name, "alberta", 3) == 0) {
-		town = 5;
-	} else if (strncmp(map_name, "izlude", 3) == 0) {
 		town = 16;
+	} else if (strncmp(map_name, "izlude", 3) == 0) {
+		town = 5;
 	} else if (strncmp(map_name, "aldebaran", 3) == 0) {
 		town = 6;
 	} else if (strncmp(map_name, "lutie", 3) == 0 ||
