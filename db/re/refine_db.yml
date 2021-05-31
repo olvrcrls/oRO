@@ -259,7 +259,7 @@ WeaponLv3:
       EventEnrichedChance: 60
     - Level: 10
       NormalChance: 3
-      EnrichedChance: 10
+      EnrichedChance: 20
       EventNormalChance: 19
       EventEnrichedChance: 45
     - Level: 11
@@ -326,7 +326,7 @@ WeaponLv4:
       EventEnrichedChance: 50
     - Level: 10
       NormalChance: 3
-      EnrichedChance: 10
+      EnrichedChance: 20
       EventNormalChance: 9
       EventEnrichedChance: 35
     - Level: 11
