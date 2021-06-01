@@ -3957,7 +3957,8 @@
 18500,507,99	// Cheer_Scarf6
 18501,507,99	// Cheer_Scarf8
 18502,507,99	// Cheer_Scarf10
-18505,507,99	// Umbala_Spirit
+// 18505,507,99	// Umbala_Spirit
+18505,9,99	// Umbala Spirit
 18506,1,99	// Hattah_Black
 18508,1,99	// Garuda_Hat
 18514,499,99	// Para_Team_Hat2
