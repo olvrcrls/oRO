@@ -150,13 +150,14 @@ set .cost, 250000; // 250k
 set .n$,"[Vicious Enchanter]";
 // ========= Random Option Slot 1 ========= 
 // - Physical
-setarray .RandOpt1_P[0],RDMOPT_WEAPON_ATTR_NOTHING, // Weapon Element - Neutral
+setarray .RandOpt1_P[0],RDMOPT_VAR_ATKPERCENT,		// ATK %
+						RDMOPT_WEAPON_ATTR_NOTHING, // Weapon Element - Neutral
 					    RDMOPT_WEAPON_ATTR_WATER,	// Weapon Element - Water
 					    RDMOPT_WEAPON_ATTR_GROUND,	// Weapon Element - Earth
 					    RDMOPT_WEAPON_ATTR_FIRE,	// Weapon Element - Fire
 					    RDMOPT_WEAPON_ATTR_WIND,	// Weapon Element - Wind
 					    RDMOPT_WEAPON_ATTR_SAINT,	// Weapon Element - Holy
-					    RDMOPT_WEAPON_ATTR_DARKNESS,// Weapon Element - Dark
+						RDMOPT_WEAPON_ATTR_DARKNESS,// Weapon Element - Dark
 					    RDMOPT_DAMAGE_PROPERTY_NOTHING_TARGET,	 	// Damage to Neutral Element
 					    RDMOPT_DAMAGE_PROPERTY_GROUND_TARGET,	 	// Damage to Earth Element
 					    RDMOPT_DAMAGE_PROPERTY_FIRE_TARGET,		 	// Damage to Fire Element
@@ -173,13 +174,14 @@ setarray .RandOpt1_P[0],RDMOPT_WEAPON_ATTR_NOTHING, // Weapon Element - Neutral
 					    // ToDo: // Recover 1000 of Damage lost from size penalties
 						
 // - Magical
-setarray .RandOpt1_M[0],RDMOPT_WEAPON_ATTR_NOTHING, // Weapon Element - Neutral
+setarray .RandOpt1_M[0],RDMOPT_VAR_MAGICATKPERCENT, // MATK %
+						RDMOPT_WEAPON_ATTR_NOTHING, // Weapon Element - Neutral
 					    RDMOPT_WEAPON_ATTR_WATER,	// Weapon Element - Water
 					    RDMOPT_WEAPON_ATTR_GROUND,	// Weapon Element - Earth
 					    RDMOPT_WEAPON_ATTR_FIRE,	// Weapon Element - Fire
 					    RDMOPT_WEAPON_ATTR_WIND,	// Weapon Element - Wind
 					    RDMOPT_WEAPON_ATTR_SAINT,	// Weapon Element - Holy
-					    RDMOPT_WEAPON_ATTR_DARKNESS,// Weapon Element - Dark
+						RDMOPT_WEAPON_ATTR_DARKNESS,// Weapon Element - Dark
 					    RDMOPT_MDAMAGE_PROPERTY_NOTHING_TARGET,	 	// Damage to Neutral Element
 					    RDMOPT_MDAMAGE_PROPERTY_GROUND_TARGET,	 	// Damage to Earth Element
 					    RDMOPT_MDAMAGE_PROPERTY_FIRE_TARGET,	 	// Damage to Fire Element
@@ -194,7 +196,7 @@ setarray .RandOpt1_M[0],RDMOPT_WEAPON_ATTR_NOTHING, // Weapon Element - Neutral
 					    RDMOPT_WEAPON_INDESTRUCTIBLE, // Weapon Instructible
 					    RDMOPT_DAMAGE_SIZE_PERFECT; // Size will be ignored
 					    // ToDo: // Recover 1000 of Damage lost from size penalties
-					  
+
 // - Ranged
 setarray .RandOpt1_R[0],RDMOPT_DAMAGE_PROPERTY_NOTHING_TARGET,	 	// Damage to Neutral Element
 					    RDMOPT_DAMAGE_PROPERTY_GROUND_TARGET,		// Damage to Earth Element
@@ -213,10 +215,10 @@ setarray .RandOpt1_R[0],RDMOPT_DAMAGE_PROPERTY_NOTHING_TARGET,	 	// Damage to Ne
 
 // - Values
 // Note: When MinV and MaxV are the same, rand() will not be used!
-setarray .RandOpt1_P_MinV[0],0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,20,0,0;
-setarray .RandOpt1_P_MaxV[0],0,0,0,0,0,0,0,20,20,20,20,20,20,20,20,20,20,20,0,0;
-setarray .RandOpt1_M_MinV[0],0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,20,0,0;
-setarray .RandOpt1_M_MaxV[0],0,0,0,0,0,0,0,20,20,20,20,20,20,20,20,20,20,20,0,0;
+setarray .RandOpt1_P_MinV[0],1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,20,0,0;
+setarray .RandOpt1_P_MaxV[0],20,0,0,0,0,0,0,0,20,20,20,20,20,20,20,20,20,20,20,0,0;
+setarray .RandOpt1_M_MinV[0],1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,20,0,0;
+setarray .RandOpt1_M_MaxV[0],20,0,0,0,0,0,0,0,20,20,20,20,20,20,20,20,20,20,20,0,0;
 setarray .RandOpt1_R_MinV[0],1,1,1,1,1,1,1,1,1,1,20,0,0;
 setarray .RandOpt1_R_MaxV[0],20,20,20,20,20,20,20,20,20,20,20,0,0;
 
@@ -268,7 +270,7 @@ setarray .RandOpt2_M[0],RDMOPT_RACE_MDAMAGE_NOTHING,// Damage to Neutral Race
 					    RDMOPT_RACE_IGNORE_MDEF_PERCENT_DRAGON,	// Bypass MDEF of Dragon Race
 						RDMOPT_CLASS_MDAMAGE_NORMAL,	// Bypass MDEF of Normal Class Enemies
 					    RDMOPT_CLASS_MDAMAGE_BOSS; // Damage to Boss monsters
-					  
+
 // - Ranged
 setarray .RandOpt2_R[0],RDMOPT_RACE_DAMAGE_NOTHING,	// Damage to Neutral Race
 					    RDMOPT_RACE_DAMAGE_UNDEAD,	// Damage to Undead Race
