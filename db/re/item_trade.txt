@@ -518,7 +518,7 @@
 5460,499,99	// Adv_Dragon_Skull
 5461,499,99	// Adv_Whisper_Mask
 5462,1,99	// Spiked_Scarf
-5463,507,99	// Rainbow_Scarf
+// 5463,507,99	// Rainbow_Scarf
 5464,1,99	// Zaha_Doll_Hat
 5467,1,99	// Helm_Of_Dragoon
 5469,1,99	// Noble_Hat
