@@ -7504,8 +7504,9 @@ unsigned char status_calc_attack_element(struct block_list *bl, struct status_ch
 		return ELE_GHOST;
 	if(sc->data[SC_TIDAL_WEAPON_OPTION] || sc->data[SC_TIDAL_WEAPON] )
 		return ELE_WATER;
-	if(sc->data[SC_PYROCLASTIC])
-		return ELE_FIRE;
+	// Uncomment to return pyroclastic into fire element
+	//if(sc->data[SC_PYROCLASTIC])
+	//	return ELE_FIRE;
 	return (unsigned char)cap_value(element,0,UCHAR_MAX);
 }
 
@@ -11143,6 +11144,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 			val2 = 3*val1; // Activation chance
 			break;
 		case SC_PYROCLASTIC:
+			skill_enchant_elemental_end(bl,type);
 			val2 += 10*val1; // atk bonus
 			val3 = 2*val1; // Chance To AutoCast Hammer Fall %
 			break;
