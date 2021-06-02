@@ -595,7 +595,7 @@ void initChangeTables(void)
 	set_sc(MH_VOLCANIC_ASH		, SC_ASH		, EFST_VOLCANIC_ASH	, SCB_DEF|SCB_DEF2|SCB_HIT|SCB_BATK|SCB_FLEE );
 	set_sc(MH_GRANITIC_ARMOR	, SC_GRANITIC_ARMOR	, EFST_GRANITIC_ARMOR	, SCB_NONE );
 	set_sc(MH_MAGMA_FLOW		, SC_MAGMA_FLOW		, EFST_MAGMA_FLOW		, SCB_NONE );
-	set_sc(MH_PYROCLASTIC		, SC_PYROCLASTIC	, EFST_PYROCLASTIC	, SCB_BATK|SCB_ATK_ELE );
+	set_sc(MH_PYROCLASTIC		, SC_PYROCLASTIC	, EFST_PYROCLASTIC	, SCB_BATK|SCB_WATK|SCB_ATK_ELE );
 	set_sc(MH_LAVA_SLIDE		, SC_BURNING        , EFST_BURNT          , SCB_MDEF );
 	set_sc(MH_NEEDLE_OF_PARALYZE	, SC_PARALYSIS		, EFST_NEEDLE_OF_PARALYZE	, SCB_DEF2 );
 	add_sc(MH_POISON_MIST		, SC_BLIND		);
@@ -12449,10 +12449,10 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 				status_damage(NULL,bl,damage,0,0,1,0);
 			}
 			break;
-		case SC_PYROCLASTIC:
-			if(bl->type == BL_PC)
-				skill_break_equip(bl,bl,EQP_WEAPON,10000,BCT_SELF);
-			break;
+		//case SC_PYROCLASTIC:
+		//	if(bl->type == BL_PC)
+		//		skill_break_equip(bl,bl,EQP_WEAPON,10000,BCT_SELF);
+		//	break;
 		case SC_RUN:
 		{
 			struct unit_data *ud = unit_bl2ud(bl);
