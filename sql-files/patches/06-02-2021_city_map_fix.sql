@@ -1,0 +1,1 @@
+UPDATE `item_db_re` SET `script` = 'skill \"AL_INCAGI\",3;' WHERE (`id` = '28354');
