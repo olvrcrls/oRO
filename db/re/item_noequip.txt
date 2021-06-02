@@ -150,7 +150,10 @@
 4527,4		// Dark Coelacanth Card
 4451,4		// Entwei Crothen Card
 4564,4		// Stalker Card
+4566,4		// Gypsy Card
+4574,4		// General Dahyun
 31023,4		// Celine Kimi Card
+
 
 // Mini boss cards
 4198,4		// Maya Purple Card
