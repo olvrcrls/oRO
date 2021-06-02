@@ -35843,6 +35843,7 @@ Body:
           Amount: 28
         - Level: 10
           Amount: 30
+      State: Shield
   - Id: 8221
     Name: ML_DEVOTION
     Description: Sacrifice
