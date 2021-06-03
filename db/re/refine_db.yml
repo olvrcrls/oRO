@@ -90,16 +90,16 @@ Armor:
       EventEnrichedChance: 25
       Bonus: 300
     - Level: 11
-      NormalChance: 3
-      EnrichedChance: 5
-      EventNormalChance: 3
-      EventEnrichedChance: 5
+      NormalChance: 13
+      EnrichedChance: 13
+      EventNormalChance: 13
+      EventEnrichedChance: 13
       Bonus: 300
     - Level: 12
-      NormalChance: 1
-      EnrichedChance: 3
-      EventNormalChance: 1
-      EventEnrichedChance: 3
+      NormalChance: 13
+      EnrichedChance: 13
+      EventNormalChance: 13
+      EventEnrichedChance: 13
       Bonus: 300
 WeaponLv1:
   StatsPerLevel: 200
@@ -330,15 +330,15 @@ WeaponLv4:
       EventNormalChance: 15
       EventEnrichedChance: 35
     - Level: 11
-      NormalChance: 3
-      EnrichedChance: 8
-      EventNormalChance: 8
-      EventEnrichedChance: 8
+      NormalChance: 50
+      EnrichedChance: 50
+      EventNormalChance: 50
+      EventEnrichedChance: 50
     - Level: 12
-      NormalChance: 2
-      EnrichedChance: 5
-      EventNormalChance: 5
-      EventEnrichedChance: 5
+      NormalChance: 35
+      EnrichedChance: 35
+      EventNormalChance: 35
+      EventEnrichedChance: 35
 Shadow:
   StatsPerLevel: 0
   RandomBonusStartLevel: 0
