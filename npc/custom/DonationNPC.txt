@@ -3,7 +3,7 @@ prontera,159,191,4	script	Donor Rewards Redeemer	987,{
 	// --- SET THESE BEFORE LOADING THE SCRIPT! ---
 	
 	// Server Name
-	set .serverName$,"oRO";
+	set .serverName$,"rAthena";
 	
 	// NPC Name to display during chat.
 	// Default: "[Donor Rewards Redeemer]"
@@ -11,7 +11,8 @@ prontera,159,191,4	script	Donor Rewards Redeemer	987,{
 	
 	// DO NOT CHANGE THIS!
 	// Default: "cp_redeemlog"
-	set .redeemTable$,"cp_redeemlog";
+	set .redeemTable$,"cp_credits";
+	set .itemTable$,"cp_redeemlog";
 	
 	// Display Credits to FluxCP Creators?
 	// Help promote our product if its useful.
@@ -32,11 +33,26 @@ prontera,159,191,4	script	Donor Rewards Redeemer	987,{
 	mes "Well hello there " + (Sex ? "good sir!" : "young madam!");
 	mes "How may I be of assistance to you on this fine day?";
 	next;
-	prompt("I wish to redeem items:Who might you be?:I am merely perusing the area");
+	prompt("I wish to redeem My Credits:Collect My items :Check my balance.");
 	mes .npcName$;
-	switch(@menu) {
+switch(@menu) {
 		case 1:
-			query_sql "SELECT `id`, `nameid`, `quantity` FROM `" + escape_sql(.redeemTable$) + "` WHERE `account_id` = " + getcharid(3) + " AND `redeemed` = 0 LIMIT " + .numRedemptionsSimul,.@id,.@nameid,.@quantity;
+			query_sql("SELECT `balance` FROM `" + escape_sql(.redeemTable$) + "` WHERE `account_id` = " + getcharid(3) + " LIMIT 0,30", .@credits);
+			if (.@credits > 0){
+			mes "How many Donation Credits do you wish to redeem?";
+			next;
+			mes .npcName$;
+			input .@withdrawCredits,1,.@credits;
+			query_sql("UPDATE `" + escape_sql(.redeemTable$) + "` SET `balance` = `balance` - " + .@withdrawCredits + " WHERE `account_id` = " + getcharid(3) + "");
+			set #CASHPOINTS,#CASHPOINTS + .@withdrawCredits;
+			mes .@withdrawCredits + "x " ;
+			} else {
+				mes "My records indicate that there are no rewards awaiting to be redeemed.";
+				mes "My deepest apologies for the misunderstanding.";
+			}
+		break;
+		case 2:
+			query_sql "SELECT `id`, `nameid`, `quantity` FROM `" + escape_sql(.itemTable$) + "` WHERE `account_id` = " + getcharid(3) + " AND `redeemed` = 0 LIMIT " + .numRedemptionsSimul,.@id,.@nameid,.@quantity;
 			if (getarraysize(.@id) > 0) {
 				mes "Items Pending Redemption: " + getarraysize(.@id);
 				for (set .@i,0; .@i < getarraysize(.@id); set .@i,.@i+1)
@@ -44,7 +60,7 @@ prontera,159,191,4	script	Donor Rewards Redeemer	987,{
 						mes "I'm terribly sorry, but you are carrying too much to accept " + (.@i ? "any more of " : " ") + "your rewards at this time.";
 						mes "Please come back with fewer items.";
 					} else {
-						query_sql "UPDATE `" + escape_sql(.redeemTable$) + "` SET `char_id` = " + getcharid(0) + ", `redeemed` = 1, `redemption_date` = NOW() WHERE `id` = " + .@id[.@i];
+						query_sql "UPDATE `" + escape_sql(.itemTable$) + "` SET `char_id` = " + getcharid(0) + ", `redeemed` = 1, `redemption_date` = NOW() WHERE `id` = " + .@id[.@i];
 						getitem .@nameid[.@i],.@quantity[.@i];
 						mes .@quantity[.@i] + "x " + getitemname(.@nameid[.@i]);
 					}
@@ -59,13 +75,9 @@ prontera,159,191,4	script	Donor Rewards Redeemer	987,{
 				mes "My deepest apologies for the misunderstanding.";
 			}
 		break;
-		case 2:
-			mes "I am here to allow for the redemption of rewards for donations to " + .serverName$ + ".";
-			mes "Donations may be made to the server via the control panel.";
-		break;
-		default:
-			mes "Very well then.";
-			mes "Good day to you.";
+		case 3:
+			query_sql("SELECT `balance` FROM `" + escape_sql(.redeemTable$) + "` WHERE `account_id` = " + getcharid(3) + " LIMIT 0,30", .@credits);
+			mes "You currently have " + .@credits + " donation credits.";
 		break;
 	}
 	close;
@@ -82,7 +94,8 @@ prontera,159,191,4	script	Donor Rewards Redeemer	987,{
 function	script	F_FluxCredits	{
 	mes "-----------------------------------";
 	mes "Powered by Flux Control Panel.";
-	mes "Copyright � 2008-2012 Matthew Harris and Nikunj Mehta.";
+	mes "Copyright © 2008-2012 Matthew Harris and Nikunj Mehta.";
 	mes "http://fluxcp.googlecode.com/";
 	return;
 }
+	
