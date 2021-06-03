@@ -101,6 +101,7 @@
 // Misc items - Zone 4
 2365,4		// Orleans_Gown
 4077,4		// Phen_Card
+2980,4		// Evil Spirit Gloves
 
 4144,4		// Osiris Card
 4147,4		// Baphomet Card
