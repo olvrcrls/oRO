@@ -38,6 +38,7 @@ askald,122,110,6	script	PVP & Battleground#j	734,{
 		menu
 		"Participate in the Battleground (^FF0000" + (bg_queue_data(getvariableofnpc(.BG_Queue,"BG_Queue_Join"),0)) + " players^000000)",L_BG,
 		"Free PVP Arena (^FF0000" + (getmapusers("x_lhz")+getmapusers("x_prt")+getmapusers("x_ra")) + " players^000000)",L_PVP,
+		"GvG Map (^FF0000" + (getmapusers("guild_vs2")) + " players^000000)",L_GVG,
 		"Cancel",-;
 		close;
 	}
@@ -66,19 +67,19 @@ L_PVP:
 	end;
 
 L_BG:
-		if( BaseLevel < 79 )
-		{
-			mes "^404040[^808080" + strnpcinfo(1) + "^404040]^000000";
-			mes "You must be minimum level base 80 to access to the battleground.";
-			close;
-		}
-		if( checkquest(8506,PLAYTIME) == 2 ) erasequest 8506;
-		if( checkquest(8506,PLAYTIME) != -1 )
-		{
-			mes "^404040[^808080" + strnpcinfo(1) + "^404040]^000000";
-			mes "A marker indicates that you have recently accessed a game mode. I can not let you access the Battleground ["+checkquest(8506,PLAYTIME)+"/3min left].";
-			close;
-		}
+	if( BaseLevel < 79 )
+	{
+		mes "^404040[^808080" + strnpcinfo(1) + "^404040]^000000";
+		mes "You must be minimum level base 80 to access to the battleground.";
+		close;
+	}
+	if( checkquest(8506,PLAYTIME) == 2 ) erasequest 8506;
+	if( checkquest(8506,PLAYTIME) != -1 )
+	{
+		mes "^404040[^808080" + strnpcinfo(1) + "^404040]^000000";
+		mes "A marker indicates that you have recently accessed a game mode. I can not let you access the Battleground ["+checkquest(8506,PLAYTIME)+"/3min left].";
+		close;
+	}
 	mes "^404040[^808080" + strnpcinfo(1) + "^404040]^000000";
 	mes "BG Rules :";
 	mes " ";
@@ -89,6 +90,14 @@ L_BG:
 	mes "- It is strictly forbidden to Double Account to booster for the PVP / WOE and BG.";
 	close2;
 	warp "bat_room",155,150;
+	end;
+
+L_GVG:
+	mes "^404040[^808080" + strnpcinfo(1) + "^404040]^000000";
+	mes "Oh, you'll practice with your guild mates, I see.";
+	mes "Please go on!";
+	close2;
+	warp "guild_vs2",49,50;
 	end;
 	
 // To prevent debug in mapserver
@@ -151,6 +160,7 @@ x_lhz,119,102,5	duplicate(PVP Exit)	PVP Exit#3	10119
 x_lhz,22,102,3	duplicate(PVP Exit)	PVP Exit#4	10119
 x_ra,121,73,3	duplicate(PVP Exit)	PVP Exit#5	10119
 x_ra,20,73,5	duplicate(PVP Exit)	PVP Exit#6	10119
+guild_vs2,49,56,5	duplicate(PVP Exit)	GvG Exit#6	10119
 
 //====================================================================================
 
