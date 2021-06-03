@@ -1,9 +1,9 @@
-prontera,159,191,4	script	Donor Rewards Redeemer	987,{
+askald,122,98,5	script	Donor Rewards Redeemer	987,{
 	// ----------------- NPC Settings -----------------
 	// --- SET THESE BEFORE LOADING THE SCRIPT! ---
 	
 	// Server Name
-	set .serverName$,"rAthena";
+	set .serverName$,"oRO";
 	
 	// NPC Name to display during chat.
 	// Default: "[Donor Rewards Redeemer]"
