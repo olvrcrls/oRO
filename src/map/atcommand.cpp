@@ -10379,7 +10379,7 @@ ACMD_FUNC(battlestats) {
 		{ "Dark resist: %3d%%", 0 },
 		{ "Ghost resist: %3d%%", 0 },
 		{ "Undead resist: %3d%%", 0 },
-		{ "Resist to all: %3d%%", 0 },
+		{ "Universal Elemental Resistance: %3d%%", 0 },
 		{ "Player Resistance: %3d%%", 0 },
 		{ "Bonus Damage to Player (not incl. cards): %3d%%", 0 },
 		{ NULL, 0 }
