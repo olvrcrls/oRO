@@ -405,7 +405,7 @@ Enchant_Armor:
 		switch(select("Yes:No")) {
 			case 1:
 				if (Zeny >= 500000 && countitem(985) >= 1) {
-					setarray .@refine_arr[0],1,2,3,4,5,6,7,8,9,7,8,9; // array of refine
+					setarray .@refine_arr[0],1,2,3,4,5,6,8,8,9,7,7,7; // array of refine
 					set .@refine_rng, rand(12);
 					.@refine = .@refine_arr[.@refine_rng];	
 					set Zeny, Zeny - 500000;
