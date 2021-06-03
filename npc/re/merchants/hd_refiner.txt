@@ -212,7 +212,7 @@ askald,70,117,3	duplicate(MightyHammer)	Mighty Hammer#ask	826
 		close;
 	}
 	// if (getequiprefinerycnt(.@part) == 20) {
-	if (getequiprefinerycnt(.@part) == 15) { // max refine is 15
+	if (getequiprefinerycnt(.@part) == 12) { // max refine is 12
 		mes "[Basta]";
 		mes "This weapon is perfect, no need to refine it anymore~";
 		close;
@@ -252,10 +252,10 @@ askald,70,117,3	duplicate(MightyHammer)	Mighty Hammer#ask	826
 		mes "[Basta]";
 		mes "I am different from the blacksmiths in others places.";
 		mes "It is impossible that the refine level will drop by, say, 3 or 4... that sounds scary.";
-		mes "Here it can only decrease by 1 level.";
+		mes "Here it can only decrease by 1 level or mostly it will stay the same.";
 		next;
 		mes "[Basta]";
-		mes "Compared to other blacksmiths, the risk is smaller.";
+		mes "Compared to other blacksmiths, the risk is very small.";
 		mes "I've given all precautions. Do you want to try it?";
 		next;
 		if(select("Yes:No") == 2) {
@@ -295,7 +295,11 @@ askald,70,117,3	duplicate(MightyHammer)	Mighty Hammer#ask	826
 		mes "I really am the best blacksmith in the whole wide world!";
 		close;
 	}
-	downrefitem .@part;
+	.@downrefine_rng = rand(1, 200);
+	if (.@downrefine_rng == 1 || getequiprefinerycnt(.@part) > 10) {
+		downrefitem .@part;
+		emotion ET_SWEAT;
+	}
 	next;
 	emotion (!rand(5))?ET_MONEY:ET_HUK;
 	mes "[Basta]";
@@ -303,7 +307,11 @@ askald,70,117,3	duplicate(MightyHammer)	Mighty Hammer#ask	826
 	next;
 	mes "[Basta]";
 	mes "Damn it!";
-	mes "Refining failed and refine level has decreased!";
+	if (.@downrefine_rng == 1 || getequiprefinerycnt(.@part) > 12) {
+		mes "Refining failed and refine level has decreased!";
+	} else {
+		mes "Refining failed but it still on its original form!";
+	}
 	mes "Even the best blacksmith in the world doesn't guarantee 100% success!";
 	mes "Too bad.";
 	next;
