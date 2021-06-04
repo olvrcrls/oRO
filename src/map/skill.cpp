@@ -16351,6 +16351,7 @@ bool skill_check_condition_castbegin(struct map_session_data* sd, uint16 skill_i
 							continue;
 					}
 					break;
+				case NC_HOVERING:
 				case NC_ACCELERATION:
 				case NC_SELFDESTRUCTION:
 				case NC_SHAPESHIFT:
