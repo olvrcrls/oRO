@@ -18795,6 +18795,7 @@ Body:
       NoDamage: true
     Flags:
       AlterRangeRadius: true
+      TargetHidden: false
     Range: 11
     Hit: Single
     HitCount: 1
@@ -18834,6 +18835,8 @@ Body:
     MaxLevel: 5
     Type: Magic
     TargetType: Attack
+    Flags:
+      TargetHidden: false
     Range: 11
     Hit: Single
     HitCount: 1
