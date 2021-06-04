@@ -1,0 +1,1 @@
+UPDATE `item_db_re` SET `script` = 'skill \"AC_CONCENTRATION\",1; .@i = getrefine()*4; bonus2 bIgnoreDefRaceRate,RC_DemiHuman,.@i; bonus2 bIgnoreDefRaceRate,RC_Player,.@i; bonus2 bIgnoreDefRaceRate,RC_Demon,.@i; bonus2 bIgnoreDefRaceRate,RC_Undead,.@i;' WHERE (`id` = '15147');
