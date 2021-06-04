@@ -48,6 +48,7 @@ askald,122,110,6	script	PVP & Battleground#j	734,{
 		menu
 		"Free PVP Arena (^FF0000" + (getmapusers("x_lhz")+getmapusers("x_prt")+getmapusers("x_ra")) + " players^000000)",L_PVP,
 		"Access the battleground room",L_BG,
+		"GvG Map (^FF0000" + (getmapusers("guild_vs2")) + " players^000000)",L_GVG,
 		"Cancel",-;
 		close;
 
