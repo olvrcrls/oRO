@@ -4331,7 +4331,8 @@ static TIMER_FUNC(skill_timerskill){
 					break;
 				case WL_CHAINLIGHTNING_ATK: {
 						skill_toggle_magicpower(src, skl->skill_id); // Only the first hit will be amplified
-						skill_attack(BF_MAGIC,src,src,target,skl->skill_id,skl->skill_lv,tick,9 - skl->type); // Hit a Lightning on the current Target
+						if (!pc_ishiding((struct map_session_data *)target))
+							skill_attack(BF_MAGIC,src,src,target,skl->skill_id,skl->skill_lv,tick,9 - skl->type); // Hit a Lightning on the current Target
 						if( skl->type < (4 + skl->skill_lv - 1) && skl->x < 3  )
 						{ // Remaining Chains Hit
 							struct block_list *nbl = NULL; // Next Target of Chain
