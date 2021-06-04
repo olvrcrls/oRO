@@ -8666,6 +8666,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 		if( type >= SC_COMMON_MIN && type <= SC_COMMON_MAX) // Confirmed.
 			return 0; // Immune to status ailments
 		switch( type ) {
+			case SC_FREEZE:
 			case SC_DEEPSLEEP:
 			case SC_BURNING:
 			case SC_FREEZING:

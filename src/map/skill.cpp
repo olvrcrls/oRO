@@ -10252,8 +10252,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 
 			if (status_get_class_(bl) == CLASS_BOSS)
 				break;
-			rate = status_get_lv(src) / 10 + rnd_value(sstatus->dex / 12, sstatus->dex / 4) + ( sd ? sd->status.job_level : 50 ) + 10 * skill_lv
-					   - (status_get_lv(bl) / 10 + rnd_value(tstatus->agi / 6, tstatus->agi / 3) + tstatus->luk / 10 + ( dstsd ? (dstsd->max_weight / 10 - dstsd->weight / 10 ) / 100 : 0));
+				// original the caster's dex is divided by 12 and 4
+			rate = status_get_lv(src) / 10 + rnd_value(sstatus->dex / 12, sstatus->dex / 8) + ( sd ? sd->status.job_level : 65 ) + 10 * skill_lv - (status_get_lv(bl) / 10 + rnd_value(tstatus->agi / 6, tstatus->agi / 3) + tstatus->luk / 10 + ( dstsd ? (dstsd->max_weight / 10 - dstsd->weight / 10 ) / 100 : 0));
 			rate = cap_value(rate, skill_lv + sstatus->dex / 20, 100);
 			clif_skill_nodamage(src,bl,skill_id,0,sc_start(src,bl,type,rate,skill_lv,skill_get_time(skill_id,skill_lv)));
 		} else if( sd )
@@ -10266,8 +10266,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 
 			if (status_get_class_(bl) == CLASS_BOSS)
 				break;
-			rate = status_get_lv(src) / 10 + rnd_value(sstatus->dex / 12, sstatus->dex / 4) + ( sd ? sd->status.job_level : 50 ) + 10 * skill_lv
-					   - (status_get_lv(bl) / 10 + rnd_value(tstatus->agi / 6, tstatus->agi / 3) + tstatus->luk / 10 + ( dstsd ? (dstsd->max_weight / 10 - dstsd->weight / 10 ) / 100 : 0));
+			rate = status_get_lv(src) / 10 + rnd_value(sstatus->dex / 12, sstatus->dex / 8) + ( sd ? sd->status.job_level : 65 ) + 10 * skill_lv - (status_get_lv(bl) / 10 + rnd_value(tstatus->agi / 6, tstatus->agi / 3) + tstatus->luk / 10 + ( dstsd ? (dstsd->max_weight / 10 - dstsd->weight / 10 ) / 100 : 0));
 			rate = cap_value(rate, skill_lv + sstatus->dex / 20, 100);
 			if (clif_skill_nodamage(src,bl,skill_id,0,sc_start(src,bl,type,rate,skill_lv,skill_get_time(skill_id,skill_lv)))) {
 				int sp = 100 * skill_lv;
@@ -12782,6 +12781,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, uint16 skill_id, ui
 			map_foreachinshootrange(unit_changetarget, src, AREA_SIZE, BL_MOB, src, &group->unit->bl); // Release all targets against the caster
 			skill_blown(src, src, skill_get_blewcount(skill_id, skill_lv), unit_getdir(src), BLOWN_IGNORE_NO_KNOCKBACK); // Don't stop the caster from backsliding if special_state.no_knockback is active
 			clif_skill_nodamage(src,src,skill_id,skill_lv,sc_start(src,src,type,100,skill_lv,skill_get_time2(skill_id,skill_lv)));
+			sc_start(src, src, type, 100, skill_lv, skill_get_time(skill_id, skill_lv));
 		}
 		break;
 
