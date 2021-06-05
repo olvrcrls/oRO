@@ -1,0 +1,1 @@
+UPDATE `mob_db_re` SET `LUK` = '0' WHERE (`ID` = '1288');
