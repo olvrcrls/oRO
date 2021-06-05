@@ -2873,7 +2873,7 @@ void pc_exeautobonus(struct map_session_data *sd, std::vector<s_autobonus> *bonu
 
 	autobonus->active = add_timer(gettick()+autobonus->duration, pc_endautobonus, sd->bl.id, (intptr_t)bonus);
 	sd->state.autobonus |= autobonus->pos;
-	status_calc_pc(sd,SCO_NONE);
+	status_calc_pc(sd,SCO_FORCE);
 }
 
 /**
@@ -2894,7 +2894,7 @@ TIMER_FUNC(pc_endautobonus){
 		}
 	}
 	
-	status_calc_pc(sd,SCO_NONE);
+	status_calc_pc(sd,SCO_FORCE);
 	return 0;
 }
 
@@ -10764,25 +10764,27 @@ static void pc_unequipitem_sub(struct map_session_data *sd, int n, int flag) {
 		sd->state.autobonus &= ~sd->inventory.u.items_inventory[n].equip; //Check for activated autobonus [Inkfish]
 
 	sd->inventory.u.items_inventory[n].equip = 0;
-	pc_checkallowskill(sd);
+	if (!(flag & 4))
+		pc_checkallowskill(sd);
 	iflag = sd->npc_item_flag;
 
-	/* check for combos (MUST be before status_calc_pc) */
+	// Check for combos (MUST be before status_calc_pc)
 	if (sd->inventory_data[n]) {
-		if (sd->inventory_data[n]->combos_count) {
+		if (!sd->inventory_data[n]->combos_count) {
 			if (pc_removecombo(sd, sd->inventory_data[n]))
 				status_calc = true;
 		}
+
 		if (itemdb_isspecial(sd->inventory.u.items_inventory[n].card[0]))
-			; //No cards
+			; // No cards
 		else {
 			for (i = 0; i < MAX_SLOTS; i++) {
-				struct item_data *data;
+				item_data *data;
 
 				if (!sd->inventory.u.items_inventory[n].card[i])
 					continue;
-				if ((data = itemdb_exists(sd->inventory.u.items_inventory[n].card[i])) != NULL) {
-					if (data->combos_count) {
+				if ((data = itemdb_exists(sd->inventory.u.items_inventory[n].card[i])) != nullptr) {
+					if (!data->combos_count) {
 						if (pc_removecombo(sd, data))
 							status_calc = true;
 					}
