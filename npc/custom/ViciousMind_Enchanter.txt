@@ -302,11 +302,11 @@ setarray .RandOpt2_R[0],RDMOPT_RACE_DAMAGE_NOTHING,	// Damage to Neutral Race
 // - Values
 // Note: When MinV and MaxV are the same, rand() will not be used!
 setarray .RandOpt2_P_MinV[0],1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,16,20;
-setarray .RandOpt2_P_MaxV[0],20,20,20,20,20,20,20,20,20,20,30,30,30,30,30,30,30,30,30,30,25,20;
+setarray .RandOpt2_P_MaxV[0],20,20,20,20,20,20,20,20,20,20,30,30,30,30,30,30,30,30,30,30,30,30;
 setarray .RandOpt2_M_MinV[0],1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,16,20;
-setarray .RandOpt2_M_MaxV[0],20,20,20,20,20,20,20,20,20,20,30,30,30,30,30,30,30,30,30,30,25,20;
+setarray .RandOpt2_M_MaxV[0],20,20,20,20,20,20,20,20,20,20,30,30,30,30,30,30,30,30,30,30,30,30;
 setarray .RandOpt2_R_MinV[0],1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,16,20;
-setarray .RandOpt2_R_MaxV[0],20,20,20,20,20,20,20,20,20,20,30,30,30,30,30,30,30,30,30,30,25,20;
+setarray .RandOpt2_R_MaxV[0],20,20,20,20,20,20,20,20,20,20,30,30,30,30,30,30,30,30,30,30,30,30;
 
 // ========= Random Option Slot 3 ========= 
 // - Physical
