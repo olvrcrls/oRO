@@ -17065,6 +17065,8 @@ struct s_skill_condition skill_get_requirement(struct map_session_data* sd, uint
 		case SR_GATEOFHELL:
 			if( sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_FALLENEMPIRE )
 				req.sp -= req.sp * 10 / 100;
+			else
+				req.sp += req.sp * 10 / 100;
 			break;
 		case SO_SUMMON_AGNI:
 		case SO_SUMMON_AQUA:
