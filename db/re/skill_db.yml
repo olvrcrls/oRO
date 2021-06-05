@@ -17925,11 +17925,12 @@ Body:
     Name: RK_DRAGONBREATH
     Description: Dragon Breath
     MaxLevel: 10
-    Type: Weapon
+    Type: Misc
     TargetType: Ground
     DamageFlags:
       Splash: true
       IgnoreFlee: true
+      IgnoreAtkCard: true
     Flags:
       TargetTrap: true
     Range: 9
@@ -31787,11 +31788,12 @@ Body:
     Name: RK_DRAGONBREATH_WATER
     Description: Dragon Breath - Water
     MaxLevel: 10
-    Type: Weapon
+    Type: Misc
     TargetType: Ground
     DamageFlags:
       Splash: true
       IgnoreFlee: true
+      IgnoreAtkCard: true
     Flags:
       TargetTrap: true
     Range: 9
