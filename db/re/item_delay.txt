@@ -114,3 +114,4 @@
 14649,5000,SC_REUSE_LIMIT_A // Guyak Pudding 1hr 5s
 14650,5000,SC_REUSE_LIMIT_A // Budget Nutriboost 5s
 14651,5000,SC_REUSE_LIMIT_A // Nutriboost Lite 5s
+12279,2500,SC_REUSE_LIMIT_A // Undead Scroll 2.5s
