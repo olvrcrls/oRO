@@ -10379,9 +10379,9 @@ ACMD_FUNC(battlestats) {
 		{ "Dark resist: %3d%%", 0 },
 		{ "Ghost resist: %3d%%", 0 },
 		{ "Undead resist: %3d%%", 0 },
-		{ "Universal Elemental Resistance: %3d%%", 0 },
 		{ "Player Resistance: %3d%%", 0 },
 		{ "Bonus Damage to Player (not incl. cards): %3d%%", 0 },
+		{ "Ignore Player's DEF rate: %3d%%", 0 },
 		{ NULL, 0 }
 	};
 	memset(xrace, '\0', sizeof(xrace));
@@ -10415,19 +10415,19 @@ ACMD_FUNC(battlestats) {
 	output_table[20].value = sd->dsprate;
 	output_table[21].value = sd->bonus.add_heal_rate;
 	output_table[22].value = sd->bonus.short_weapon_damage_return + (sd->sc.data ? (sd->sc.data[SC_REFLECTSHIELD] ? sd->sc.data[SC_REFLECTSHIELD]->val1 : 0) : 0);
-	output_table[23].value = (sd->subele[ELE_NEUTRAL] + sd->subele_script[ELE_NEUTRAL]);
-	output_table[24].value = (sd->subele[ELE_WATER] + sd->subele_script[ELE_WATER]);
-	output_table[25].value = (sd->subele[ELE_EARTH] + sd->subele_script[ELE_EARTH]);
-	output_table[26].value = (sd->subele[ELE_FIRE] + sd->subele_script[ELE_FIRE]);
-	output_table[27].value = (sd->subele[ELE_WIND] + sd->subele_script[ELE_WIND]);
-	output_table[28].value = (sd->subele[ELE_POISON] + sd->subele_script[ELE_POISON]);
-	output_table[29].value = (sd->subele[ELE_HOLY] + sd->subele_script[ELE_HOLY]);
-	output_table[30].value = (sd->subele[ELE_DARK] + sd->subele_script[ELE_DARK]);
-	output_table[31].value = (sd->subele[ELE_GHOST] + sd->subele_script[ELE_GHOST]);
-	output_table[32].value = (sd->subele[ELE_UNDEAD] + sd->subele_script[ELE_UNDEAD]);
-	output_table[33].value = (sd->subele[ELE_ALL] + sd->subele_script[ELE_ALL]);
-	output_table[34].value = (sd->subrace[RC_PLAYER]);
-	output_table[35].value = (sd->addrace[RC_PLAYER]);
+	output_table[23].value = (sd->subele[ELE_NEUTRAL] + sd->subele_script[ELE_NEUTRAL] + sd->subele[ELE_ALL] + sd->subele_script[ELE_ALL]);
+	output_table[24].value = (sd->subele[ELE_WATER] + sd->subele_script[ELE_WATER] + sd->subele[ELE_ALL] + sd->subele_script[ELE_ALL]);
+	output_table[25].value = (sd->subele[ELE_EARTH] + sd->subele_script[ELE_EARTH] + sd->subele[ELE_ALL] + sd->subele_script[ELE_ALL]);
+	output_table[26].value = (sd->subele[ELE_FIRE] + sd->subele_script[ELE_FIRE] + sd->subele[ELE_ALL] + sd->subele_script[ELE_ALL]);
+	output_table[27].value = (sd->subele[ELE_WIND] + sd->subele_script[ELE_WIND] + sd->subele[ELE_ALL] + sd->subele_script[ELE_ALL]);
+	output_table[28].value = (sd->subele[ELE_POISON] + sd->subele_script[ELE_POISON] + sd->subele[ELE_ALL] + sd->subele_script[ELE_ALL]);
+	output_table[29].value = (sd->subele[ELE_HOLY] + sd->subele_script[ELE_HOLY] + sd->subele[ELE_ALL] + sd->subele_script[ELE_ALL]);
+	output_table[30].value = (sd->subele[ELE_DARK] + sd->subele_script[ELE_DARK] + sd->subele[ELE_ALL] + sd->subele_script[ELE_ALL]);
+	output_table[31].value = (sd->subele[ELE_GHOST] + sd->subele_script[ELE_GHOST] + sd->subele[ELE_ALL] + sd->subele_script[ELE_ALL]);
+	output_table[32].value = (sd->subele[ELE_UNDEAD] + sd->subele_script[ELE_UNDEAD] + sd->subele[ELE_ALL] + sd->subele_script[ELE_ALL]);
+	output_table[33].value = (sd->subrace[RC_PLAYER]);
+	output_table[34].value = (sd->addrace[RC_PLAYER]);
+	output_table[35].value = (sd->ignore_def_by_race[RC_PLAYER]);
 
 	sprintf(xrace, "Race: %s", mrace[sd->battle_status.race]);
 	sprintf(xelement, "Element: %s (Lv. %u)", melement[sd->battle_status.def_ele], sd->battle_status.ele_lv);
