@@ -221,8 +221,8 @@ setarray .RandOpt1_R[0],RDMOPT_DAMAGE_PROPERTY_NOTHING_TARGET,	 	// Damage to Ne
 // Note: When MinV and MaxV are the same, rand() will not be used!
 setarray .RandOpt1_P_MinV[0],1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,20,0,0;
 setarray .RandOpt1_P_MaxV[0],10,0,0,0,0,0,0,0,20,20,20,20,20,20,20,20,20,20,20,0,0;
-setarray .RandOpt1_M_MinV[0],1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,20,0,0;
-setarray .RandOpt1_M_MaxV[0],10,0,0,0,0,0,0,0,20,20,20,20,20,20,20,20,20,20,20,0,0;
+setarray .RandOpt1_M_MinV[0],1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,20,1,1,0,0;
+setarray .RandOpt1_M_MaxV[0],10,0,0,0,0,0,0,0,20,20,20,20,20,20,20,20,20,20,20,20,20,0,0;
 setarray .RandOpt1_R_MinV[0],1,1,1,1,1,1,1,1,1,1,20,0,0;
 setarray .RandOpt1_R_MaxV[0],20,20,20,20,20,20,20,20,20,20,20,0,0;
 
