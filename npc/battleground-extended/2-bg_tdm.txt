@@ -76,12 +76,12 @@ OnValidateScore:
 
 	if( .Team2_Score <= 0 )
 	{ // Team 1 Won
-		callfunc("Reward_BG",15,6,getd("$@" + strnpcinfo(0)));
+		callfunc("Reward_BG",250,100,getd("$@" + strnpcinfo(0)));
 		mapannounce "bg_tdm","The " + bg_get_data($@BG_Team1,2) + " army has won the Battle of Flavius TD!",1,bg_get_data($@BG_Team1,4);
 	}
 	else if( .Team1_Score <= 0 )
 	{ // Team 2 Won
-		callfunc("Reward_BG",6,15,getd("$@" + strnpcinfo(0)));
+		callfunc("Reward_BG",100,250,getd("$@" + strnpcinfo(0)));
 		mapannounce "bg_tdm","The " + bg_get_data($@BG_Team2,2) + " army has won the Battle of Flavius TD!",1,bg_get_data($@BG_Team2,4);
 	}
 	else if( .@Team2Count == 0 )
@@ -112,17 +112,17 @@ OnTimer900000:
 OnPrematureEnd:
 	if( .Team1_Score > .Team2_Score )
 	{ // Team 1 Won
-		callfunc("Reward_BG",15,6,1);
+		callfunc("Reward_BG",250,100,1);
 		mapannounce "bg_tdm","The " + bg_get_data($@BG_Team1,2) + " army has won the Battle of Flavius TD!",1,bg_get_data($@BG_Team1,4);
 	}
 	else if( .Team1_Score < .Team2_Score )
 	{ // Team 2 Won
-		callfunc("Reward_BG",6,15,1);
+		callfunc("Reward_BG",100,250,1);
 		mapannounce "bg_tdm","The " + bg_get_data($@BG_Team2,2) + " army has won the Battle of Flavius TD!",1,bg_get_data($@BG_Team2,4);
 	}
 	else
 	{
-		callfunc("Reward_BG",6,6,1);
+		callfunc("Reward_BG",150,150,1);
 		mapannounce "bg_tdm","The battle is over. This is a Tie...!",1,0x808000;
 	}
 	donpcevent "Flavius_TD::OnMatchEnd";

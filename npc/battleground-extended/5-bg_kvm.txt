@@ -124,7 +124,7 @@ OnTimer5000:
 
 OnTimer26000:
 	mapannounce "bg_kvm","The Battle will start in 4 seconds!!",1,0x00BFFF;
-	set $@BG_Status, 2; // Empêche les gens d'entrer de l'exterieur
+	set $@BG_Status, 2; // Empï¿½che les gens d'entrer de l'exterieur
 	end;
 
 OnTimer27000:
@@ -183,7 +183,7 @@ OnPrematureEnd:
 		stopnpctimer;
 		sleep 2000;
 		mapannounce "bg_kvm","The time is out! This is a Tie...",1,0x00BFFF;
-		callfunc("Reward_BG",6,6,getd("$@" + strnpcinfo(0)));
+		callfunc("Reward_BG",150,150,getd("$@" + strnpcinfo(0)));
 		donpcevent "KvM01_BG::OnStop";
 	}
 	end;
@@ -193,7 +193,7 @@ OnGuillaumeWin:
 	set $@KvM01BG_Victory, 1;
 	stopnpctimer;
 	sleep 2000;
-	callfunc("Reward_BG",9,3,getd("$@" + strnpcinfo(0)));
+	callfunc("Reward_BG",250,100,getd("$@" + strnpcinfo(0)));
 	mapannounce "bg_kvm","The " + bg_get_data($@BG_Team1,2) + " army has won the Battle of Kreiger Von Midgard!",1,bg_get_data($@BG_Team1,4);
 	donpcevent "KvM01_BG::OnStop";
 	end;
@@ -203,7 +203,7 @@ OnCroixWin:
 	set $@KvM01BG_Victory, 2;
 	stopnpctimer;
 	sleep 2000;
-	callfunc("Reward_BG",3,9,getd("$@" + strnpcinfo(0)));
+	callfunc("Reward_BG",100,250,getd("$@" + strnpcinfo(0)));
 	
 	mapannounce "bg_kvm","The " + bg_get_data($@BG_Team2,2) + " army has won the Battle of Kreiger Von Midgard!",1,bg_get_data($@BG_Team2,4);
 	donpcevent "KvM01_BG::OnStop";
