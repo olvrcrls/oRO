@@ -65,6 +65,14 @@
 	sc_end	SC_HALLUCINATION;
 	sc_end	SC_MANDRAGORA;
 	sc_end	SC_BLEEDING;
+	sc_end	SC_LEECHESEND
+	sc_end	SC_MAGICMUSHROOM;
+	sc_end	SC_PARALYSE;
+	sc_end	SC_PYREXIA;
+	sc_end	SC_DEATHHURT;
+	sc_end	SC_VENOMBLEED;
+	sc_end	SC_TOXIN;
+	sc_end	SC_OBLIVIONCURSE;
 
 //	give players buff ... don't give too much otherwise player wanna spam
 	.@time = 300000; // the buff last 5 minutes
@@ -176,3 +184,4 @@ askald,128,118,3	duplicate(Healer)	Healer#ask	630
 askald,152,44,3	duplicate(Healer)	Healer#ask2	630
 lasagna,188,184,3	duplicate(Healer)	Healer#lasagna	630
 verus04,122,258,3	duplicate(Healer)	Healer#verus	630
+bat_room,156,156,4	duplicate(Healer)	Healer#BG	630
