@@ -1745,7 +1745,7 @@
 2521,Angel's_Warmth,Angelic Cardigan,4,10000,,400,,5,,1,0x00000001,63,2,4,,20,1,0,{ bonus bHPrecovRate,5; },{},{}
 2522,Undershirt,Undershirt,4,20000,,150,,5,,0,0xFFFFFFFF,63,2,4,,0,1,0,{ bonus bMdef,1; },{},{}
 2523,Undershirt_,Undershirt,4,20000,,150,,5,,1,0xFFFFFFFF,63,2,4,,0,1,0,{ bonus bMdef,1; },{},{}
-2524,Valkyrie_Manteau,Valkyrian Manteau,4,0,,500,,10,,1,0xFFFFFFFF,18,2,4,,0,1,4,{ bonus bUnbreakableGarment; if(BaseClass==Job_Mage||BaseClass==Job_Archer||BaseClass==Job_Acolyte) bonus bFlee2,5+(getequiprefinerycnt(EQI_GARMENT)*2); else if(BaseClass==Job_Swordman||BaseClass==Job_Merchant||BaseClass==Job_Thief) bonus bShortWeaponDamageReturn,5+(getequiprefinerycnt(EQI_GARMENT)*2); },{},{}
+2524,Valkyrie_Manteau,Valkyrian Manteau,4,0,,500,,10,,1,0xFFFFFFFE,18,2,4,,0,1,1,{ bonus bUnbreakableGarment; if(BaseClass==Job_Mage||BaseClass==Job_Archer||BaseClass==Job_Acolyte) bonus bFlee2,5+(getequiprefinerycnt(EQI_GARMENT)*2); else if(BaseClass==Job_Swordman||BaseClass==Job_Merchant||BaseClass==Job_Thief) bonus bShortWeaponDamageReturn,5+(getequiprefinerycnt(EQI_GARMENT)*2); },{},{}
 2525,Cape_Of_Ancient_Lord_,Ancient Cape,4,82000,,600,,9,,1,0xFFFFFFFE,63,2,4,,40,1,0,{ bonus bAgi,1; },{},{}
 2526,Dragon_Scale_Coat,Coat of Dragon Scale,4,20,,10,,14,,0,0xFFFFFFFF,63,2,4,,50,1,0,{ bonus bMaxHP,300; },{},{}
 2527,Dragon_Breath,Dragon Breath,4,20,,600,,16,,1,0xFFFFFFFE,18,2,4,,48,1,0,{ bonus2 bSubRace,RC_Dragon,15; },{},{}
