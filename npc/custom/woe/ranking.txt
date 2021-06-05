@@ -34,9 +34,9 @@ askald,114,110,4	script	Arias	419,{
 	if (getgmlevel() == 99) { set .@menu$, .@menu$ + "Reset Data"; }
 	switch(select(.@menu$)) {
 	case 1:
-	query_sql "CREATE TABLE IF NOT EXISTS `woe_ranking` ( `Char_ID` int(11) unsigned NOT NULL DEFAULT '0', `PlayerName` varchar(255) NULL DEFAULT '', `Kills` varchar(255) NULL DEFAULT '', `Deaths` varchar(255) NULL DEFAULT '', `EmpBreak` varchar(255) NULL DEFAULT '', PRIMARY KEY (`Char_ID`) ) ENGINE=MyISAM";
+	query_sql "CREATE TABLE IF NOT EXISTS `woe_ranking` ( `Char_ID` int(11) unsigned NOT NULL DEFAULT '0', `PlayerName` varchar(255) NULL DEFAULT 0, `Kills` INT NULL DEFAULT 0, `Deaths` INT NULL DEFAULT 0, `EmpBreak` INT NULL DEFAULT 0, PRIMARY KEY (`Char_ID`) ) ENGINE=MyISAM";
 	query_sql( "DELETE FROM `woe_ranking` WHERE `PlayerName` NOT IN ( SELECT `name` FROM `char` )" ); 
-	set .@size, query_sql( "SELECT Char_ID, PlayerName, Kills FROM woe_ranking WHERE Kills > 0 ORDER BY Kills DESC limit "+ .top, .@CharID, .@name$, .@Kills);
+	set .@size, query_sql( "SELECT Char_ID, PlayerName, Kills FROM woe_ranking WHERE Kills > 0 ORDER BY Kills DESC LIMIT "+ .top, .@CharID, .@name$, .@Kills);
 	
 	mes .n$;
 	if (.@size > 0) {
