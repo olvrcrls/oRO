@@ -1260,8 +1260,8 @@
 7825,475,99	// Heroic_Stone
 7826,499,99	// Continental_Guard_Paper
 7827,499,99	// Mineral_Report
-7828,499,99	// BF_Badge1
-7829,499,99	// BF_Badge2
+7828,9,99	// BF_Badge1
+7829,9,99	// BF_Badge2
 7839,499,99	// Crystal_Key
 7840,507,99	// Valkyrie_Gift
 7841,499,99	// Spotted_Paper
