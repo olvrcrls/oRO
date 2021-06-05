@@ -1236,7 +1236,7 @@
 7767,475,99	// Chung_E_Cake
 7773,499,99	// War_Badge
 7775,475,99	// Spring_Rabbit_Ticket
-7776,475,99	// Max_Weight_Up_Scroll
+7776,9,99	// Max_Weight_Up_Scroll
 7779,475,99	// Gold_Key_TW
 7780,475,99	// Silver_Key
 7784,475,99	// Fawner_Coupon1
@@ -2072,7 +2072,7 @@
 13707,475,99	// Super_Pet_Egg8
 13708,475,99	// Pet_Egg_Scroll_E
 13709,475,99	// BRO_Package_1
-13710,475,99	// Max_Weight_Up_Box
+13710,9,99	// Max_Weight_Up_Box
 13711,475,99	// Small_Life_Potion_Box
 13712,475,99	// Small_Life_Potion_Box30
 13713,475,99	// Small_Life_Potion_Box50
