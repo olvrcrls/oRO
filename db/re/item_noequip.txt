@@ -80,6 +80,41 @@
 14590,4		// Pty_Assumptio_Scroll
 
 //----------------------------------------------------------------------------
+// Bio 5 Cards
+//----------------------------------------------------------------------------
+4684,4	// True Eremes
+4685,4	// True Margaretha Sorin
+4686,4	// True Kathryne Keyron
+4687,4	// True Cecil
+4688,4	// True Howard
+4689,4	// True Seyren
+4690,4	// True Randel
+4691,4	// True Flamel
+4692,4	// True Celia
+4693,4	// True Chen
+4694,4	// True Gertie
+4695,4	// True Trentini
+4696,4	// True Alphoccio
+
+//----------------------------------------------------------------------------
+// Bio 5 Headgears
+//----------------------------------------------------------------------------
+18971,4	// Old Rune Circlet
+18972,4 // Old Mitra
+18973,4 // Old Driver's Band RED
+18974,4 // Old Driver's Band YELLOW
+18975,4 // Old Shadow Handicraft
+18976,4	// Old Maestro Song
+18977,4	// Old Midas Whisper
+18978,4	// Old Magic Stone
+18979,4	// Old Blazing Soul
+18980,4	// Old Wind Whisper
+18981,4	// Old Dying Swan
+18982,4	// Old Bone Circlet
+18983,4	// Old Casket of Protection
+18984,4	// Old Camouflauge Bunny Hood
+
+//----------------------------------------------------------------------------
 //	War of Emperium
 //----------------------------------------------------------------------------
 // God Items
@@ -154,6 +189,7 @@
 4566,4		// Gypsy Card
 4574,4		// General Dahyun
 31023,4		// Celine Kimi Card
+4697,4		// Charleston Card
 
 
 // Mini boss cards
