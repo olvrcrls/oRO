@@ -3,7 +3,7 @@
 		// if (rand(99) > 9 || strnpcinfo(3) != "prt_fild01") end; // 10% chance of success, only works on prt_fild01
 
 		set .@blank_rng,rand(1,130);
-		set .@pod_rng,rand(1,200);
+		set .@pod_rng,rand(1,2000);
 
 		if (.@pod_rng == 1) {
 			getitem 7179,1;
