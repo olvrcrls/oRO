@@ -692,6 +692,13 @@ void bg_team_rewards(int bg_id, int nameid, int amount, int kafrapoints, int que
 
 		if( nameid && amount > 0 )
 		{
+			if (bg_result == 0)
+				pc_getzeny(sd,(int)25000000,LOG_TYPE_SCRIPT,NULL); // Gives 25M to winner participants.
+			if (bg_result == 2)
+				pc_getzeny(sd,(int)10000000,LOG_TYPE_SCRIPT,NULL); // Gives 10M to loser participants.
+			if (bg_result == 1)
+				pc_getzeny(sd,(int)10000000,LOG_TYPE_SCRIPT,NULL); // Gives 10M to tie result.
+
 			get_amount = amount;
 			if( rank ) get_amount += get_amount / 100;
 
