@@ -33449,7 +33449,7 @@ Body:
     TargetType: Self
     DamageFlags:
       NoDamage: true
-    Cooldown: 10000
+    Cooldown: 2000
     FixedCastTime: 60
     CastTimeFlags:
       IgnoreDex: true
