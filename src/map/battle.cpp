@@ -3410,7 +3410,11 @@ static void battle_calc_multi_attack(struct Damage* wd, struct block_list *src,s
 			if (sc && sc->data[SC_KAGEMUSYA])
 				max_rate = sc->data[SC_KAGEMUSYA]->val1 * 10; // Same rate as even levels of TF_DOUBLE
 			else
+#ifdef RENEWAL
+				max_rate = max(7 * skill_lv, sd->bonus.double_rate);
+#else
 				max_rate = max(5 * skill_lv, sd->bonus.double_rate);
+#endif
 
 			if( rnd()%100 < max_rate ) {
 				wd->div_ = skill_get_num(TF_DOUBLE,skill_lv?skill_lv:1);
@@ -3458,6 +3462,16 @@ static void battle_calc_multi_attack(struct Damage* wd, struct block_list *src,s
 			if( tsc && tsc->data[SC_JYUMONJIKIRI] )
 				wd->div_ = wd->div_ * -1;// needs more info
 			break;
+#ifdef RENEWAL
+		case AS_POISONREACT:
+			skill_lv = pc_checkskill(sd, TF_DOUBLE);
+			if (skill_lv > 0) {
+				if (rnd()%100 < (7 * skill_lv)) {
+					wd->div_++;
+				}
+			}
+		break;
+#endif
 	}
 }
 
@@ -5625,7 +5639,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 			break;
 		case SR_GATEOFHELL: {
 			struct status_data *sstatus = status_get_status_data(src);
-			double bonus = 1 + skill_lv * 2 / 10;
+			int64 bonus = 1 + skill_lv * 2 / 10;
 
 			ATK_ADD(wd.damage, wd.damage2, sstatus->max_hp - sstatus->hp);
 			if(sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_FALLENEMPIRE) {
