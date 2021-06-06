@@ -601,7 +601,7 @@ void bg_team_getitem(int bg_id, int nameid, int amount)
 
 	if( amount < 1 || (bg = bg_team_search(bg_id)) == NULL || (id = itemdb_exists(nameid)) == NULL )
 		return;
-	if( nameid != 7828 && nameid != 7829 && nameid != 7773 )
+	if( nameid != 7828 && nameid != 7829 && nameid != 7773 && nameid != 6187 )
 		return;
 	if( battle_config.bg_reward_rates != 100 )
 		amount = amount * battle_config.bg_reward_rates / 100;
