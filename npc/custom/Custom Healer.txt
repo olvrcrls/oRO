@@ -65,7 +65,7 @@
 	sc_end	SC_HALLUCINATION;
 	sc_end	SC_MANDRAGORA;
 	sc_end	SC_BLEEDING;
-	sc_end	SC_LEECHESEND
+	sc_end	SC_LEECHESEND;
 	sc_end	SC_MAGICMUSHROOM;
 	sc_end	SC_PARALYSE;
 	sc_end	SC_PYREXIA;
