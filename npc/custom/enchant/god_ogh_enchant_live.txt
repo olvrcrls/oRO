@@ -1,0 +1,169 @@
+// Temporal shoes slotted - npc enchant
+askald,98,149,5	script	Goddess Himelmez	4_F_HIMEL,{
+	disable_items;
+	if ((MaxWeight - Weight) < 1000) {
+		mes "Your bag is too heavy. Reduce some weight and come back.";
+		close;
+	}
+	if (checkweight(1201,1) == 0) {
+		mes "You seem to be carrying too many items. Put some items in storage and come back again.";
+		close;
+	}
+	// requirements
+	.@coagulated_id = 6608;// Coagulated_Spell
+	.@polluted_id = 6755;// Polluted_Spell
+	.@valor_badges = 7829; // Valor Badge
+	.@cost_zeny = 50000000;
+
+	mes .n$;
+	mes "I deal with the Temporal Boots with socket only.";
+	mes "I'll enchant your boots with a high cost and get what you want specifically.";
+	next;
+	mes .n$;
+	mes "So, you sore RNG loser what's up?";
+	next;
+	if (select( "How does the enchanting work?", "Give effect to my Temporal Boots" ) == 1) {
+		mes .n$;
+		mes "You should ask Hugin's magic master all the basic things. I want deeper conversation about enchating work.";
+		next;
+		mes .n$;
+		mes "I need 4 items. ^0000ff" + callfunc("F_InsertComma",.@cost_zeny) + ", " + getitemname(.@polluted_id) + ", " + getitemname(.@coagulated_id) + ", Temporal Boots(Socket) Series^000000. If you don't have any of these, I cannot help you.";
+		next;
+		mes .n$;
+		mes "It's my small hobby.. To enchant Socketed Temporal Boots using polluted and coagulated spell.";
+		next;
+		mes .n$;
+		mes "Of course, you must cope with bigger risk of destruction whenever you'd like to enchant again and again.";
+		next;
+		mes .n$;
+		mes "The enchant order is same as Hugin's magic master's enchantment. Please refer to his explanation.";
+		close;
+	}
+	.@equip_id = getequipid(EQI_SHOES);
+
+	switch(.@equip_id) {
+	case 22006:	// Temporal_Str_Boots_
+	case 22007:	// Temporal_Vit_Boots_
+	case 22008:	// Temporal_Dex_Boots_
+	case 22009:	// Temporal_Int_Boots_
+	case 22010:	// Temporal_Agi_Boots_
+	case 22011:	// Temporal_Luk_Boots_
+		break;
+	case -1:
+		mes .n$;
+		mes "Are you wearing the item?";
+		close;
+	default:
+		mes .n$;
+		mes "This is not the right item for this enchant. Remember, only those 6 types of Temporal Boots with socket are available for hidden enchanting..";
+		close;			
+	}
+
+	// enchants IDs
+	// Fighting_Spirit7	Expert_Archer4	Spell5	MHP2		DelayafterAttack4Lv	Luck6
+	setarray .@enchant_1[0],4822,4835,4826,4862,4881,4755;
+
+	setarray .@enchant_2[0],4875,4877,4878,4876,4879,4880;
+	// Bear's Power, Speed of Light, Muscle Fool, Runaway Magic , Hawk Eye, Lucky Day
+
+	// Chances of success (official value unknown)
+	setarray .@chances[0],100,100,100,100,100,100;
+
+	// data of item equipped
+	.@equip_name$ = getequipname(EQI_SHOES);
+	setarray .@card[0],
+		getequipcardid(EQI_SHOES,0),
+		getequipcardid(EQI_SHOES,1),
+		getequipcardid(EQI_SHOES,2),
+		getequipcardid(EQI_SHOES,3);
+	.@equip_refine = getequiprefinerycnt(EQI_SHOES);
+	if (.@card[2] > 0) {
+		mes .n$;
+		mes "These boots have already passed the enchanting limit. We can't enchant them any more.";
+		close;
+	}
+	if (.@card[3] == 0) {// 4th slot 1st try enchanting
+		.@amount_coag = 73;
+		.@amount_poll = 14;
+		.@amount_badges = 1000;
+
+		mes .n$;
+		mes "For the 1st enchanting, you need ^0000ff" + .@amount_poll + " " + getitemname(.@polluted_id) + ", " + .@amount_coag + " " + getitemname(.@coagulated_id) + ", " + .@amount_badges + " " + getitemname(.@valor_badges) +  ", and " + callfunc("F_InsertComma",.@cost_zeny) + " zeny^000000.";
+		next;
+		.@s = select( "Quit", "Fighting Spirit", "Archery", "Spell", "Vitality", "Attack Speed", "Lucky" ) - 2;
+		if (.@s == -1) {
+			mes .n$;
+			mes "Ok, come back when you are ready.";
+			close;
+		}
+		mes .n$;
+		mes "Are you sure this is your choice?";
+		.@confirm = select("Fudge, no.", "YES");
+		if (.@confirm == -1) {
+			mes .n$;
+			mes "Okay, think it over and come back later.";
+			close;
+		}
+		.@card[3] = .@enchant_1[.@s];
+	}
+	else {
+		.@amount_coag = 50;
+		.@amount_poll = 10;
+		.@amount_badges = 1000;
+
+		mes .n$;
+		mes "For the 2nd enchanting, you need ^0000ff" + .@amount_poll + " " + getitemname(.@polluted_id) + ", " + .@amount_coag + " " + getitemname(.@coagulated_id) + ", " + .@amount_badges + " " + getitemname(.@valor_badges) +  ", and " + callfunc("F_InsertComma",.@cost_zeny) + " zeny^000000.";
+		next;
+		.@s = select( "Quit", "Bear's Power", "Speed of Light", "Muscle Fool", "Runaway Magic", "Hawk Eye", "Lucky Day" ) - 2;
+		if (.@s == -1) {
+			mes .n$;
+			mes "Ok, come back when you are ready.";
+			close;
+		}
+		mes .n$;
+		mes "Are you sure this is your choice?";
+		.@confirm = select("Fudge, no.", "YES");
+		if (.@confirm == -1) {
+			mes .n$;
+			mes "Okay, think it over and come back later.";
+			close;
+		}
+		
+		.@card[2] = .@enchant_2[.@s];
+	}
+	if (countitem(.@coagulated_id) < .@amount_coag) {
+		mes .n$;
+		mes "Hmm, you are missing ^FF0000" + (.@amount_coag - countitem(.@coagulated_id)) + " " + getitemname(.@coagulated_id) + "^000000 items. Go get more, and then we can talk about more enchants.";
+		close;
+	}
+	if (countitem(.@polluted_id) < .@amount_poll) {
+		mes .n$;
+		mes "Hmm, you are missing ^FF0000" + (.@amount_poll - countitem(.@polluted_id)) + " " + getitemname(.@polluted_id) + "^000000 items. Go get more, and then we can talk about more enchants.";
+		close;
+	}
+	if (Zeny < .@cost_zeny) {
+		mes .n$;
+		mes "You must bring ^FF0000" + callfunc("F_InsertComma",.@cost_zeny) + " zeny^000000. Nothing is free you know...";
+		close;
+	}
+	if (countitem(.@valor_badges) < .@amount_badges) {
+		mes .n$;
+		mes "Hmm, you are missing ^FF0000" + (.@amount_badges - countitem(.@valor_badges)) + " " + getitemname(.@valor_badges) + "^000000 items. Go get more, and then we can talk about more enchants.";
+		close;
+	}
+	delitem .@coagulated_id, .@amount_coag;
+	delitem .@polluted_id, .@amount_poll;
+	delitem .@valor_badges, .@amount_badges;
+	Zeny -= .@cost_zeny;
+	
+	delequip EQI_SHOES;
+		specialeffect2 EF_REPAIRWEAPON;
+	mes "[Hugin's Magician]";
+	mes "Good Luck Have Fun!!";
+	getitem2 .@equip_id,1,1,.@equip_refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
+	close;
+
+OnInit:
+	set.n$, "[Goddess Himelmez]";
+	end;
+}
