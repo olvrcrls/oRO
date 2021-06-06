@@ -29840,14 +29840,14 @@ Body:
       IgnoreDex: true
       IgnoreStatus: true
       IgnoreItemBonus: true
-  - Id: 5072
-    Name: AB_VITUPERATUM
-    Description: Vituperatum
-    MaxLevel: 1
-  - Id: 5073
-    Name: AB_CONVENIO
-    Description: Convenio
-    MaxLevel: 1
+#  - Id: 5072
+#    Name: AB_VITUPERATUM
+#    Description: Vituperatum
+#    MaxLevel: 1
+#  - Id: 5073
+#    Name: AB_CONVENIO
+#    Description: Convenio
+#    MaxLevel: 1
   - Id: 8001
     Name: HLIF_HEAL
     Description: Healing Touch

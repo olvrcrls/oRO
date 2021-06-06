@@ -33459,74 +33459,74 @@ Body:
       IgnoreDex: true
       IgnoreStatus: true
       IgnoreItemBonus: true
-//  - Id: 5072
-//    Name: AB_VITUPERATUM
-//    Description: Vituperatum
-//    MaxLevel: 5
-//    Type: Magic
-//    TargetType: Attack
-//    DamageFlags:
-//      NoDamage: true
-//      Splash: true
-//    Range: 9
-//    Hit: Single
-//    SplashArea:
-//      - Level: 1
-//        Area: 1
-//      - Level: 2
-//        Area: 1
-//      - Level: 3
-//        Area: 1
-//      - Level: 4
-//        Area: 2
-//      - Level: 5
-//        Area: 2
-//    CastCancel: true
-//    CastTime: 1000
-//    AfterCastActDelay: 1000
-//    Duration1: 600000
-//    Cooldown: 5000
-//    FixedCastTime:
-//      - Level: 1
-//        Time: 3000
-//      - Level: 2
-//        Time: 2500
-//      - Level: 3
-//        Time: 2000
-//      - Level: 4
-//        Time: 1500
-//      - Level: 5
-//        Time: 1000
-//    Requires:
-//      SpCost:
-//        - Level: 1
-//          Amount: 144
-//        - Level: 2
-//          Amount: 120
-//        - Level: 3
-//          Amount: 106
-//        - Level: 4
-//          Amount: 92
-//        - Level: 5
-//          Amount: 78
-//      ItemCost:
-//        - Item: Blue_Gemstone
-//          Amount: 1
-  // - Id: 5073
-  //  Name: AB_CONVENIO
-  //  Description: Convenio
-  //  MaxLevel: 1
-  //  TargetType: Self
-  //  DamageFlags:
-  //    NoDamage: true
-  //  Hit: Single
-  //  CastCancel: true
-  //  CastTime: 2000
-  //  AfterCastActDelay: 1000
-  //  Cooldown: 5000
-  //  FixedCastTime: 2000
-  //  Requires:
-  //    SpCost: 70
+#  - Id: 5072
+#    Name: AB_VITUPERATUM
+#    Description: Vituperatum
+#    MaxLevel: 5
+#    Type: Magic
+#    TargetType: Attack
+#    DamageFlags:
+#      NoDamage: true
+#      Splash: true
+#    Range: 9
+#    Hit: Single
+#    SplashArea:
+#      - Level: 1
+#        Area: 1
+#      - Level: 2
+#        Area: 1
+#      - Level: 3
+#        Area: 1
+#      - Level: 4
+#        Area: 2
+#      - Level: 5
+#        Area: 2
+#    CastCancel: true
+#    CastTime: 1000
+#    AfterCastActDelay: 1000
+#    Duration1: 600000
+#    Cooldown: 5000
+#    FixedCastTime:
+#      - Level: 1
+#        Time: 3000
+#      - Level: 2
+#        Time: 2500
+#      - Level: 3
+#        Time: 2000
+#      - Level: 4
+#        Time: 1500
+#      - Level: 5
+#        Time: 1000
+#    Requires:
+#      SpCost:
+#        - Level: 1
+#          Amount: 144
+#        - Level: 2
+#          Amount: 120
+#        - Level: 3
+#          Amount: 106
+#        - Level: 4
+#          Amount: 92
+#        - Level: 5
+#          Amount: 78
+#      ItemCost:
+#        - Item: Blue_Gemstone
+#          Amount: 1
+  # - Id: 5073
+  #  Name: AB_CONVENIO
+  #  Description: Convenio
+  #  MaxLevel: 1
+  #  TargetType: Self
+  #  DamageFlags:
+  #    NoDamage: true
+  #  Hit: Single
+  #  CastCancel: true
+  #  CastTime: 2000
+  #  AfterCastActDelay: 1000
+  #  Cooldown: 5000
+  #  FixedCastTime: 2000
+  #  Requires:
+  #    SpCost: 70
   - Id: 8001
     Name: HLIF_HEAL
     Description: Healing Touch

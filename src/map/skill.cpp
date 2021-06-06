@@ -11508,49 +11508,49 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 		}
 		break;
 
-	case AB_VITUPERATUM:
-		if (flag&1)
-			clif_skill_nodamage(src, bl, skill_id, skill_lv, sc_start(src, bl, type, 100, skill_lv, skill_get_time(skill_id, skill_lv)));
-		else {
-			map_foreachinrange(skill_area_sub, bl, skill_get_splash(skill_id, skill_lv), BL_CHAR, src, skill_id, skill_lv, tick, flag|BCT_ENEMY|1, skill_castend_nodamage_id);
-			clif_skill_nodamage(src, bl, skill_id, skill_lv, 1);
-		}
-		break;
+	//case AB_VITUPERATUM:
+	//	if (flag&1)
+	//		clif_skill_nodamage(src, bl, skill_id, skill_lv, sc_start(src, bl, type, 100, skill_lv, skill_get_time(skill_id, skill_lv)));
+	//	else {
+	//		map_foreachinrange(skill_area_sub, bl, skill_get_splash(skill_id, skill_lv), BL_CHAR, src, skill_id, skill_lv, tick, flag|BCT_ENEMY|1, skill_castend_nodamage_id);
+	//		clif_skill_nodamage(src, bl, skill_id, skill_lv, 1);
+	//	}
+	//	break;
 
-	case AB_CONVENIO:
-		if (sd) {
-			party_data *p = party_search(sd->status.party_id);
-			int i = 0, count = 0;
+	//case AB_CONVENIO:
+	//	if (sd) {
+	//		party_data *p = party_search(sd->status.party_id);
+	//		int i = 0, count = 0;
 
-			// Only usable in party
-			if (p == nullptr) {
-				clif_skill_fail(sd, skill_id, USESKILL_FAIL_LEVEL, 0);
-				break;
-			}
+	//		// Only usable in party
+	//		if (p == nullptr) {
+	//			clif_skill_fail(sd, skill_id, USESKILL_FAIL_LEVEL, 0);
+	//			break;
+	//		}
 
 			// Only usable as party leader.
-			ARR_FIND(0, MAX_PARTY, i, p->data[i].sd == sd);
-			if (i == MAX_PARTY || !p->party.member[i].leader) {
-				clif_skill_fail(sd, skill_id, USESKILL_FAIL_LEVEL, 0);
-				break;
-			}
+	//		ARR_FIND(0, MAX_PARTY, i, p->data[i].sd == sd);
+	//		if (i == MAX_PARTY || !p->party.member[i].leader) {
+	//			clif_skill_fail(sd, skill_id, USESKILL_FAIL_LEVEL, 0);
+	//			break;
+	//		}
 
 			// Do the teleport part
-			for (i = 0; i < MAX_PARTY; ++i) {
-				map_session_data *pl_sd = p->data[i].sd;
+	//		for (i = 0; i < MAX_PARTY; ++i) {
+	//			map_session_data *pl_sd = p->data[i].sd;
 
-				if (pl_sd == nullptr || pl_sd == sd || pl_sd->status.party_id != p->party.party_id || pc_isdead(pl_sd) ||
-					sd->bl.m != pl_sd->bl.m)
-					continue;
-				if (!(map_getmapflag(sd->bl.m, MF_NOTELEPORT) || map_getmapflag(sd->bl.m, MF_PVP) || map_getmapflag(sd->bl.m, MF_BATTLEGROUND) || map_flag_gvg2(sd->bl.m))) {
-					pc_setpos(pl_sd, map_id2index(sd->bl.m), sd->bl.x, sd->bl.y, CLR_TELEPORT);
-					count++;
-				}
-			}
-			if (!count)
-				clif_skill_fail(sd, skill_id, USESKILL_FAIL_LEVEL, 0);
-		}
-		break;
+	//			if (pl_sd == nullptr || pl_sd == sd || pl_sd->status.party_id != p->party.party_id || pc_isdead(pl_sd) ||
+	//				sd->bl.m != pl_sd->bl.m)
+	//				continue;
+	//			if (!(map_getmapflag(sd->bl.m, MF_NOTELEPORT) || map_getmapflag(sd->bl.m, MF_PVP) || map_getmapflag(sd->bl.m, MF_BATTLEGROUND) || map_flag_gvg2(sd->bl.m))) {
+	//				pc_setpos(pl_sd, map_id2index(sd->bl.m), sd->bl.x, sd->bl.y, CLR_TELEPORT);
+	//				count++;
+	//			}
+	//		}
+	//		if (!count)
+	//			clif_skill_fail(sd, skill_id, USESKILL_FAIL_LEVEL, 0);
+	//	}
+	//	break;
 	default:
 		ShowWarning("skill_castend_nodamage_id: Unknown skill used:%d\n",skill_id);
 		clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
