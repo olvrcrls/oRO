@@ -165,7 +165,7 @@ rachel,125,116,6	duplicate(Healer)	Healer#rac	630
 splendide,201,153,4	duplicate(Healer)	Healer#spl	630
 thor_camp,249,74,4	duplicate(Healer)	Healer#thor	630
 umbala,98,150,3	duplicate(Healer)	Healer#umb	630
-veins,217,121,4	duplicate(Healer)	Healer#ve	630
+veins,200,127,5	duplicate(Healer)	Healer#ve	630
 xmas,143,136,4	duplicate(Healer)	Healer#xmas	630
 yuno,164,45,4	duplicate(Healer)	Healer#yuno	630
 

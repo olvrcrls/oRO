@@ -106,6 +106,6 @@ payon,180,106,3	duplicate(GuildWarehouse)	Guild Warehouse Manager#payon	896
 prontera,150,191,3	duplicate(GuildWarehouse)	Guild Warehouse Manager#prontera	896
 rachel,123,145,3	duplicate(GuildWarehouse)	Guild Warehouse Manager#rachel	896
 umbala,106,160,3	duplicate(GuildWarehouse)	Guild Warehouse Manager#umbala	896
-veins,205,130,3	duplicate(GuildWarehouse)	Guild Warehouse Manager#veins	896
+// veins,205,130,3	duplicate(GuildWarehouse)	Guild Warehouse Manager#veins	896
 xmas,155,140,5	duplicate(GuildWarehouse)	Guild Warehouse Manager#xmas	896
 yuno,176,187,3	duplicate(GuildWarehouse)	Guild Warehouse Manager#yuno	896

@@ -154,7 +154,7 @@ OnTouch:
 rachel,119,131,3	duplicate(Royal Messenger#e16_pr)	Royal Messenger#e16_ra	4_M_ZONDAOYAJI,5,5
 aldebaran,159,113,3	duplicate(Royal Messenger#e16_pr)	Royal Messenger#e16_ald	4_M_ZONDAOYAJI,5,5
 alberta,119,59,3	duplicate(Royal Messenger#e16_pr)	Royal Messenger#e16_alb	4_M_ZONDAOYAJI,5,5
-veins,200,108,5	duplicate(Royal Messenger#e16_pr)	Royal Messenger#e16_ve	4_M_ZONDAOYAJI,5,5
+// veins,200,108,5	duplicate(Royal Messenger#e16_pr)	Royal Messenger#e16_ve	4_M_ZONDAOYAJI,5,5
 geffen,123,68,3	duplicate(Royal Messenger#e16_pr)	Royal Messenger#e16_ge	4_M_ZONDAOYAJI,5,5
 payon,168,65,3	duplicate(Royal Messenger#e16_pr)	Royal Messenger#e16_pa	4_M_ZONDAOYAJI,5,5
 morocc,152,97,5	duplicate(Royal Messenger#e16_pr)	Royal Messenger#e16_mo	4_M_ZONDAOYAJI,5,5
@@ -2621,65 +2621,65 @@ prt_lib_q,110,58,4	script	Document#EP161DBOOK	CLEAR_NPC,{
 	next;
 	select("Keep reading.");
 	mes "Suspect Interrogation Record";
-	mes "Suspect: ¡á¡á¡á(Prisoner No.: 243AD265)";
+	mes "Suspect: ï¿½ï¿½ï¿½ï¿½(Prisoner No.: 243AD265)";
 	mes "In regard to the monster above, ^2EA4FFthe charges include taking of bribery, embezzlement, violence.^000000";
-	mes "On day ¡á¡á¡á¡á¡á, Paladin ¡á¡á¡á in the Royal Crusader Office had Crusader ¡á¡á¡á participate and informed the suspect that he/she has the right to remain silent to interrogate the suspect. What is set forth below is the statement of the suspect.";
+	mes "On day ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, Paladin ï¿½ï¿½ï¿½ï¿½ in the Royal Crusader Office had Crusader ï¿½ï¿½ï¿½ï¿½ participate and informed the suspect that he/she has the right to remain silent to interrogate the suspect. What is set forth below is the statement of the suspect.";
 	next;
 	mes "It's all colored in black except a few modifiers and it's illegible.";
 	next;
 	select("Keep reading.");
 	mes "Suspect Interrogation Record";
-	mes "Suspect: ¡á¡á¡á(Prisoner No.: 267BD184)";
+	mes "Suspect: ï¿½ï¿½ï¿½ï¿½(Prisoner No.: 267BD184)";
 	mes "In regard to the monster above, ^2EA4FFthe charges include marriage fraud and marriage scam.^000000";
-	mes "On day ¡á¡á¡á¡á¡á, Paladin ¡á¡á¡á in the Royal Crusader Office had Crusader ¡á¡á¡á participate and informed the suspect that he/she has the right to remain silent to interrogate the suspect. What is set forth below is the statement of the suspect.";
+	mes "On day ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, Paladin ï¿½ï¿½ï¿½ï¿½ in the Royal Crusader Office had Crusader ï¿½ï¿½ï¿½ï¿½ participate and informed the suspect that he/she has the right to remain silent to interrogate the suspect. What is set forth below is the statement of the suspect.";
 	next;
 	mes "It's all colored in black except a few modifiers and it's illegible.";
 	next;
 	select("Keep reading.");
 	mes "Suspect Interrogation Record";
-	mes "Suspect: ¡á¡á¡á(Prisoner No.: 265CM154)";
+	mes "Suspect: ï¿½ï¿½ï¿½ï¿½(Prisoner No.: 265CM154)";
 	mes "In regard to the monster above, ^2EA4FFthe charge includes the corruption of public morals.^000000";
-	mes "On day ¡á¡á¡á¡á¡á, Paladin ¡á¡á¡á in the Royal Crusader Office had Crusader ¡á¡á¡á participate and informed the suspect that he/she has the right to remain silent to interrogate the suspect. What is set forth below is the statement of the suspect.";
+	mes "On day ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, Paladin ï¿½ï¿½ï¿½ï¿½ in the Royal Crusader Office had Crusader ï¿½ï¿½ï¿½ï¿½ participate and informed the suspect that he/she has the right to remain silent to interrogate the suspect. What is set forth below is the statement of the suspect.";
 	next;
 	mes "It's all colored in black except a few modifiers and it's illegible.";
 	next;
 	select("Keep reading.");
 	mes "Suspect Interrogation Record";
-	mes "Suspect: ¡á¡á¡á(Prisoner No.: 243DV17)";
-	mes "In regard to the monster above, ^2EA4FFthe charge includes ¡á¡á¡á.^000000";
-	mes "On day ¡á¡á¡á¡á¡á, Paladin ¡á¡á¡á in the Royal Crusader Office had Crusader ¡á¡á¡á participate and informed the suspect that he/she has the right to remain silent to interrogate the suspect. What is set forth below is the statement of the suspect.";
+	mes "Suspect: ï¿½ï¿½ï¿½ï¿½(Prisoner No.: 243DV17)";
+	mes "In regard to the monster above, ^2EA4FFthe charge includes ï¿½ï¿½ï¿½ï¿½.^000000";
+	mes "On day ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, Paladin ï¿½ï¿½ï¿½ï¿½ in the Royal Crusader Office had Crusader ï¿½ï¿½ï¿½ï¿½ participate and informed the suspect that he/she has the right to remain silent to interrogate the suspect. What is set forth below is the statement of the suspect.";
 	next;
 	mes "It's all colored in black except a few modifiers and it's illegible.";
 	next;
 	select("Keep reading.");
 	mes "Suspect Interrogation Record";
-	mes "Suspect: ¡á¡á¡á(Prisoner No.: 95EB72)";
+	mes "Suspect: ï¿½ï¿½ï¿½ï¿½(Prisoner No.: 95EB72)";
 	mes "In regard to the monster above, ^2EA4FFthe charges include property damage and town invasion.^000000";
-	mes "On day ¡á¡á¡á¡á¡á, Paladin ¡á¡á¡á in the Royal Crusader Office had Crusader ¡á¡á¡á participate and informed the suspect that he/she has the right to remain silent to interrogate the suspect. What is set forth below is the statement of the suspect.";
+	mes "On day ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, Paladin ï¿½ï¿½ï¿½ï¿½ in the Royal Crusader Office had Crusader ï¿½ï¿½ï¿½ï¿½ participate and informed the suspect that he/she has the right to remain silent to interrogate the suspect. What is set forth below is the statement of the suspect.";
 	next;
 	mes "It's all colored in black except a few modifiers and it's illegible.";
 	next;
 	select("Keep reading.");
 	mes "Suspect Interrogation Record";
-	mes "Suspect: ¡á¡á¡á(Prisoner No.: 117FM188)";
+	mes "Suspect: ï¿½ï¿½ï¿½ï¿½(Prisoner No.: 117FM188)";
 	mes "In regard to the monster above, ^2EA4FFthe charge includes hysteria and emotional blowup^000000";
-	mes "On day ¡á¡á¡á¡á¡á, Paladin ¡á¡á¡á in the Royal Crusader Office had Crusader ¡á¡á¡á participate and informed the suspect that he/she has the right to remain silent to interrogate the suspect. What is set forth below is the statement of the suspect.";
+	mes "On day ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, Paladin ï¿½ï¿½ï¿½ï¿½ in the Royal Crusader Office had Crusader ï¿½ï¿½ï¿½ï¿½ participate and informed the suspect that he/she has the right to remain silent to interrogate the suspect. What is set forth below is the statement of the suspect.";
 	next;
 	mes "It's all colored in black except a few modifiers and it's illegible.";
 	next;
 	select("Keep reading.");
 	mes "Suspect Interrogation Record";
-	mes "Suspect: ¡á¡á¡á(Prisoner No.: 103GD214)";
+	mes "Suspect: ï¿½ï¿½ï¿½ï¿½(Prisoner No.: 103GD214)";
 	mes "In regard to the monster above, ^2EA4FFthe charges include property damage and town invasion.^000000";
-	mes "On day ¡á¡á¡á¡á¡á, Paladin ¡á¡á¡á in the Royal Crusader Office had Crusader ¡á¡á¡á participate and informed the suspect that he/she has the right to remain silent to interrogate the suspect. What is set forth below is the statement of the suspect.";
+	mes "On day ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, Paladin ï¿½ï¿½ï¿½ï¿½ in the Royal Crusader Office had Crusader ï¿½ï¿½ï¿½ï¿½ participate and informed the suspect that he/she has the right to remain silent to interrogate the suspect. What is set forth below is the statement of the suspect.";
 	next;
 	mes "It's all colored in black except a few modifiers and it's illegible.";
 	next;
 	select("Keep reading.");
 	mes "Suspect Interrogation Record";
-	mes "Suspect: ¡á¡á¡á(Prisoner No.: 55HK115)";
+	mes "Suspect: ï¿½ï¿½ï¿½ï¿½(Prisoner No.: 55HK115)";
 	mes "In regard to the monster above, ^2EA4FFthe charges include fake experience certificates, fraud^000000";
-	mes "On day ¡á¡á¡á¡á¡á, Paladin ¡á¡á¡á in the Royal Crusader Office had Crusader ¡á¡á¡á participate and informed the suspect that he/she has the right to remain silent to interrogate the suspect. What is set forth below is the statement of the suspect.";
+	mes "On day ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, Paladin ï¿½ï¿½ï¿½ï¿½ in the Royal Crusader Office had Crusader ï¿½ï¿½ï¿½ï¿½ participate and informed the suspect that he/she has the right to remain silent to interrogate the suspect. What is set forth below is the statement of the suspect.";
 	next;
 	mes "It's all colored in black except a few modifiers and it's illegible.";
 	next;
