@@ -8316,7 +8316,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 					case SC_SOULUNITY:		case SC_SOULSHADOW:		case SC_SOULFAIRY:
 					case SC_SOULFALCON:		case SC_SOULGOLEM:		case SC_USE_SKILL_SP_SPA:
 					case SC_USE_SKILL_SP_SHA:	case SC_SP_SHA:		case SC_INTRAVISION:
-
+					case SC_EXTRACT_SALAMINE_JUICE:	case SC_PROMOTE_HEALTH_RESERCH:
+					case SC_ENERGY_DRINK_RESERCH:	case SC_VITATA_500:
 #ifdef RENEWAL
 					case SC_EXTREMITYFIST2:
 #endif
@@ -9878,7 +9879,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 					case SC_USE_SKILL_SP_SHA:	case SC_SP_SHA:
 					case SC_STRANGELIGHTS:		case SC_DECORATION_OF_MUSIC:	case SC_GN_CARTBOOST:
 					case SC_RECOGNIZEDSPELL:	case SC_CHASEWALK2: case SC_ACTIVE_MONSTER_TRANSFORM:
-					case SC_INTRAVISION:
+					case SC_INTRAVISION:	case SC_EXTRACT_SALAMINE_JUICE:	case SC_PROMOTE_HEALTH_RESERCH:
+					case SC_ENERGY_DRINK_RESERCH: case SC_VITATA_500:
 #ifdef RENEWAL
 					case SC_EXTREMITYFIST2:
 #endif
