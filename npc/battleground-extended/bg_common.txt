@@ -35,13 +35,19 @@ function	script	Reward_BG	{
 	
 		if(.@total1 > .@total2) {
 			bg_reward($@BG_Team1,$BGREWARD_ITID,.@total1+.@nb_joueurs,0,0,"",0,getarg(2),0);
+			bg_reward($@BG_Team1,$BGREWARD_BLANKS,.@total1+.@nb_joueurs,0,0,"",0,getarg(2),0);
 			bg_reward($@BG_Team2,$BGREWARD_ITID,.@total2+.@nb_joueurs,0,0,"",0,getarg(2),2);
+			bg_reward($@BG_Team2,$BGREWARD_BLANKS,.@total2+.@nb_joueurs,0,0,"",0,getarg(2),2);
 		} else if(.@total1 < .@total2) {
 			bg_reward($@BG_Team1,$BGREWARD_ITID,.@total1+.@nb_joueurs,0,0,"",0,getarg(2),2);
+			bg_reward($@BG_Team1,$BGREWARD_BLANKS,.@total1+.@nb_joueurs,0,0,"",0,getarg(2),2);
 			bg_reward($@BG_Team2,$BGREWARD_ITID,.@total2+.@nb_joueurs,0,0,"",0,getarg(2),0);
+			bg_reward($@BG_Team2,$BGREWARD_BLANKS,.@total2+.@nb_joueurs,0,0,"",0,getarg(2),0);
 		} else {
 			bg_reward($@BG_Team1,$BGREWARD_ITID,.@total1+.@nb_joueurs,0,0,"",0,getarg(2),1);
 			bg_reward($@BG_Team2,$BGREWARD_ITID,.@total2+.@nb_joueurs,0,0,"",0,getarg(2),1);
+			bg_reward($@BG_Team1,$BGREWARD_BLANKS,.@total1+.@nb_joueurs,0,0,"",0,getarg(2),1);
+			bg_reward($@BG_Team2,$BGREWARD_BLANKS,.@total2+.@nb_joueurs,0,0,"",0,getarg(2),1);
 		}
 		
 		deletearray $@bgmembers$;
@@ -420,6 +426,10 @@ OnInit:
 	// 7829 : Valor Badges
 	// 7828 : Bravery Badges
 	$BGREWARD_ITID = 7829;
+
+	// Extra Rewards
+	$BGREWARD_BLANKS = 6187;
+
 	// *****************************************************
 	// Bg Extension
 	// ================================================
