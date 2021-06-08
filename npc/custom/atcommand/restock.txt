@@ -47,6 +47,10 @@ OnAtcommand:
 							for(.@i = 0; .@i < getarraysize(RestockList); .@i++) {
 								.@amount = RestockAmountList[.@i] - countitem(RestockList[.@i]);
 								.@storage_count = storagecountitem(RestockList[.@i]);
+								if (!.@storage_count > .@amount) {
+									// dispbottom "@restocking "+getitemname(RestockList[.@i])+" failed, your item in your inventory is greater than your restock list.";
+									continue;
+								}
 								if (.@storage_count > 0) {
 									if (.@storage_count < .@amount) .@amount = .@storage_count;
 
