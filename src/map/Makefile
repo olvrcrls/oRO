@@ -70,18 +70,18 @@ obj:
 
 map-server: obj $(MAP_DIR_OBJ) $(COMMON_AR) $(LIBCONFIG_AR) $(YAML_CPP_AR)
 	@echo "	LD	map-server"
-	@g++  -L/usr/lib -o ../../map-server $(MAP_DIR_OBJ) $(COMMON_AR) $(LIBCONFIG_AR) $(YAML_CPP_AR) -lpcre -lpthread -lz  -ldl -lpcre -L/usr/lib/x86_64-linux-gnu/ -lmariadb
+	@g++  -g -L/usr/lib -o ../../map-server $(MAP_DIR_OBJ) $(COMMON_AR) $(LIBCONFIG_AR) $(YAML_CPP_AR) -lpcre -lpthread -lz  -ldl -lpcre -L/usr/lib/x86_64-linux-gnu/ -lmariadb
 
 
 # map object files
 #cause this one failling otherwise
 obj/npc.o: npc.cpp $(MAP_H) $(COMMON_H) $(LIBCONFIG_H) $(YAML_CPP_H)
 	@echo "	CXX	$< (custom rule)"
-	@g++ -std=c++11  -I../common -DHAS_TLS -fno-strict-aliasing -DHAVE_SETRLIMIT -DHAVE_STRNLEN -DPACKETVER=20180620 -DSOCKET_EPOLL  -I/usr/include -DHAVE_MONOTONIC_CLOCK $(COMMON_INCLUDE) $(LIBCONFIG_INCLUDE) $(PCRE_CFLAGS) $(YAML_CPP_INCLUDE) -I/usr/include/mariadb -I/usr/include/mariadb/mysql  -I../common -DHAS_TLS -fno-strict-aliasing -DHAVE_SETRLIMIT -DHAVE_STRNLEN -DPACKETVER=20180620 -DSOCKET_EPOLL  -I/usr/include -DHAVE_MONOTONIC_CLOCK -c $(OUTPUT_OPTION) $<
+	@g++ -std=c++11  -I../common -DHAS_TLS -fno-strict-aliasing -DHAVE_SETRLIMIT -DHAVE_STRNLEN -DPACKETVER=20180621 -ggdb -DDEBUG  -I/usr/include -DHAVE_MONOTONIC_CLOCK $(COMMON_INCLUDE) $(LIBCONFIG_INCLUDE) $(PCRE_CFLAGS) $(YAML_CPP_INCLUDE) -I/usr/include/mariadb -I/usr/include/mariadb/mysql  -I../common -DHAS_TLS -fno-strict-aliasing -DHAVE_SETRLIMIT -DHAVE_STRNLEN -DPACKETVER=20180621 -ggdb -DDEBUG  -I/usr/include -DHAVE_MONOTONIC_CLOCK -c $(OUTPUT_OPTION) $<
 	
 obj/%.o: %.cpp $(MAP_H) $(COMMON_H) $(LIBCONFIG_H) $(YAML_CPP_H)
 	@echo "	CXX	$<"
-	@g++ -g -O2 -std=c++11 $(COMMON_INCLUDE) $(LIBCONFIG_INCLUDE) $(PCRE_CFLAGS) $(YAML_CPP_INCLUDE) -I/usr/include/mariadb -I/usr/include/mariadb/mysql  -I../common -DHAS_TLS -fno-strict-aliasing -DHAVE_SETRLIMIT -DHAVE_STRNLEN -DPACKETVER=20180620 -DSOCKET_EPOLL  -I/usr/include -DHAVE_MONOTONIC_CLOCK -c $(OUTPUT_OPTION) $<
+	@g++ -g -O2 -std=c++11 $(COMMON_INCLUDE) $(LIBCONFIG_INCLUDE) $(PCRE_CFLAGS) $(YAML_CPP_INCLUDE) -I/usr/include/mariadb -I/usr/include/mariadb/mysql  -I../common -DHAS_TLS -fno-strict-aliasing -DHAVE_SETRLIMIT -DHAVE_STRNLEN -DPACKETVER=20180621 -ggdb -DDEBUG  -I/usr/include -DHAVE_MONOTONIC_CLOCK -c $(OUTPUT_OPTION) $<
 
 # missing object files
 $(COMMON_AR):
