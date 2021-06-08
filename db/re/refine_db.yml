@@ -330,15 +330,15 @@ WeaponLv4:
       EventNormalChance: 15
       EventEnrichedChance: 35
     - Level: 11
-      NormalChance: 50
-      EnrichedChance: 50
-      EventNormalChance: 50
-      EventEnrichedChance: 50
+      NormalChance: 40
+      EnrichedChance: 40
+      EventNormalChance: 40
+      EventEnrichedChance: 40
     - Level: 12
-      NormalChance: 35
-      EnrichedChance: 35
-      EventNormalChance: 35
-      EventEnrichedChance: 35
+      NormalChance: 20
+      EnrichedChance: 20
+      EventNormalChance: 20
+      EventEnrichedChance: 20
 Shadow:
   StatsPerLevel: 0
   RandomBonusStartLevel: 0
