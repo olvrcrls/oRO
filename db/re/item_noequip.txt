@@ -190,6 +190,7 @@
 4574,4		// General Dahyun
 31023,4		// Celine Kimi Card
 4697,4		// Charleston Card
+4590,4		// Bangungot Card
 
 
 // Mini boss cards
