@@ -90,16 +90,16 @@ Armor:
       EventEnrichedChance: 25
       Bonus: 300
     - Level: 11
-      NormalChance: 13
-      EnrichedChance: 13
-      EventNormalChance: 13
-      EventEnrichedChance: 13
+      NormalChance: 10
+      EnrichedChance: 10
+      EventNormalChance: 10
+      EventEnrichedChance: 10
       Bonus: 300
     - Level: 12
-      NormalChance: 13
-      EnrichedChance: 13
-      EventNormalChance: 13
-      EventEnrichedChance: 13
+      NormalChance: 8
+      EnrichedChance: 8
+      EventNormalChance: 8
+      EventEnrichedChance: 8
       Bonus: 300
 WeaponLv1:
   StatsPerLevel: 200
