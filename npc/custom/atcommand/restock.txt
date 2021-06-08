@@ -2,12 +2,16 @@
 //= @restock command
 //===== By: ==================================================
 //= Mastagoon
+//===== Revised By: ==========================================
+//= Andie
 //===== Description: =========================================
 //= @restock command to get certain items from your storage
-//===== Current Version: =====================================
-//= 1.0
-//===== TODO: ================================================
-//=	@restock SNAPSHOT
+//===== Versions: ============================================
+//= 1.0 Implement to only be invokable at towns.
+//============================================================
+//=	1.1 @restock snapshot implemented
+//============================================================
+//=	1.2 Fixed negative items being dropped
 //============================================================
 -	script	restock_atcmd	-1,{	
 function	addSpace	{
