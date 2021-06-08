@@ -1,0 +1,84 @@
+//===== eAthena Script =======================================
+//= Custom-Currency Multi-Shop
+//===== By: ==================================================
+//= Euphy
+//===== Current Version: =====================================
+//= 1.2
+//===== Description: =========================================
+//= Allows for better organization in a single shop call.
+//= Note that there are two configuration areas.
+//============================================================
+
+// -------------------- Config 1 --------------------
+// For each shop added, copy this VSHOPX dummy data.
+// Write your shop names in the select() function.
+
+-	itemshop	VSHOP1	-1,7829,6226:3000 // etc.
+-	itemshop	VSHOP2	-1,7829,14648:200 // Weapons
+-	itemshop	VSHOP3	-1,7829,18599:3000 // Headgears
+
+askald,133,104,4	script	Valor Badges Exchanger	4_M_HEINRICH,{
+
+	set @s, select("Etc.:Weapons:Headgears");
+
+// --------------------------------------------------
+
+	message strcharinfo(0),"This shop only accepts "+getitemname(.VCurrency[@s])+".";
+	dispbottom "You have "+countitem(.VCurrency[@s])+" "+getitemname(.VCurrency[@s])+".";
+	callshop "VSHOP"+@s,1;
+	npcshopattach "VSHOP"+@s;
+	end;
+
+OnBuyItem:
+	set .@i,0;
+	while (.@i < getarraysize(@bought_nameid)) {
+		set .@j, 0;
+		while (.@j < getarraysize(getd(".Shop"+@s))) {
+			if(getd(".Shop"+@s+"["+.@j+"]") == @bought_nameid[.@i]) {
+				set @itemcost, (getd(".Shop"+@s+"["+(.@j+1)+"]") * @bought_quantity[.@i]);
+				set @totalcost, @totalcost + @itemcost;
+				break; }
+			set .@j, .@j+2; }
+		set .@i, .@i+1; }
+	if (@totalcost > countitem(.VCurrency[@s])) dispbottom "You don't have enough "+getitemname(.VCurrency[@s])+".";
+	else {
+		set .@i,0;
+		while (.@i < getarraysize(@bought_nameid)) {
+			getitem @bought_nameid[.@i], @bought_quantity[.@i];
+			dispbottom "Purchased "+@bought_quantity[.@i]+"x "+getitemname(@bought_nameid[.@i])+".";
+			set .@i, .@i+1; }
+		delitem .VCurrency[@s], @totalcost; }
+	set @totalcost, 0;
+	deletearray @bought_nameid[0], 128;
+	deletearray @bought_quantity[0], 128;
+	end;
+
+OnInit:
+
+// -------------------- Config 2 --------------------
+// Currency:  The ID of each shop currency,
+//    in the same order as the shops.
+// Shop order follows that of the select() call,
+//   and is formatted "ID1,Count1,ID2,Count2,..."
+
+	setarray .VCurrency[1],7829,7829,7829; // Currencies per shop
+
+	setarray .VShop1[0],6225,3000; // Etc.
+
+	setarray .VShop2[0],12622,1500; // Consumables
+
+	setarray .VShop3[0],18611,3000,18507,3000; // Middle Headgears
+
+
+// --------------------------------------------------
+
+	set .@i,1;
+	while (.@i <= getarraysize(.VCurrency)) {
+		set .@j,0;
+		while (.@j < getarraysize(getd(".VShop"+.@i))) {
+			npcshopdelitem "VSHOP"+.@i,7829;
+			npcshopadditem "VSHOP"+.@i, getd(".VShop"+.@i+"["+.@j+"]"), getd(".VShop"+.@i+"["+(.@j+1)+"]");
+			set .@j, .@j+2; }
+		set .@i, .@i+1; }
+	end;
+}

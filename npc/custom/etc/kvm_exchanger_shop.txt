@@ -1,0 +1,84 @@
+//===== eAthena Script =======================================
+//= Custom-Currency Multi-Shop
+//===== By: ==================================================
+//= Euphy
+//===== Current Version: =====================================
+//= 1.2
+//===== Description: =========================================
+//= Allows for better organization in a single shop call.
+//= Note that there are two configuration areas.
+//============================================================
+
+// -------------------- Config 1 --------------------
+// For each shop added, copy this KSHOPX dummy data.
+// Write your shop names in the select() function.
+
+-	itemshop	KSHOP1	-1,6376,7829:1 // etc.
+-	itemshop	KSHOP2	-1,6376,14648:200 // Consumables
+-	itemshop	KSHOP3	-1,6376,18599:1500 // Middle Headgears
+
+askald,133,107,4	script	KvM Points Exchanger	1_F_SIGNZISK,{
+
+	set @s, select("Etc.:Consumables:Middle Headgears");
+
+// --------------------------------------------------
+
+	message strcharinfo(0),"This shop only accepts "+getitemname(.KCurrency[@s])+".";
+	dispbottom "You have "+countitem(.KCurrency[@s])+" "+getitemname(.KCurrency[@s])+".";
+	callshop "KSHOP"+@s,1;
+	npcshopattach "KSHOP"+@s;
+	end;
+
+OnBuyItem:
+	set .@i,0;
+	while (.@i < getarraysize(@bought_nameid)) {
+		set .@j, 0;
+		while (.@j < getarraysize(getd(".Shop"+@s))) {
+			if(getd(".Shop"+@s+"["+.@j+"]") == @bought_nameid[.@i]) {
+				set @itemcost, (getd(".Shop"+@s+"["+(.@j+1)+"]") * @bought_quantity[.@i]);
+				set @totalcost, @totalcost + @itemcost;
+				break; }
+			set .@j, .@j+2; }
+		set .@i, .@i+1; }
+	if (@totalcost > countitem(.KCurrency[@s])) dispbottom "You don't have enough "+getitemname(.KCurrency[@s])+".";
+	else {
+		set .@i,0;
+		while (.@i < getarraysize(@bought_nameid)) {
+			getitem @bought_nameid[.@i], @bought_quantity[.@i];
+			dispbottom "Purchased "+@bought_quantity[.@i]+"x "+getitemname(@bought_nameid[.@i])+".";
+			set .@i, .@i+1; }
+		delitem .KCurrency[@s], @totalcost; }
+	set @totalcost, 0;
+	deletearray @bought_nameid[0], 128;
+	deletearray @bought_quantity[0], 128;
+	end;
+
+OnInit:
+
+// -------------------- Config 2 --------------------
+// Currency:  The ID of each shop currency,
+//    in the same order as the shops.
+// Shop order follows that of the select() call,
+//   and is formatted "ID1,Count1,ID2,Count2,..."
+
+	setarray .KCurrency[1],6376,6376,6376; // Currencies per shop
+
+	setarray .KShop1[0],6187,1; // Etc.
+
+	setarray .KShop2[0],12622,1500; // Consumables
+
+	setarray .KShop3[0],18611,1500,18507,1500; // Middle Headgears
+
+
+// --------------------------------------------------
+
+	set .@i,1;
+	while (.@i <= getarraysize(.KCurrency)) {
+		set .@j,0;
+		while (.@j < getarraysize(getd(".KShop"+.@i))) {
+			npcshopdelitem "KSHOP"+.@i,6376;
+			npcshopadditem "KSHOP"+.@i, getd(".KShop"+.@i+"["+.@j+"]"), getd(".KShop"+.@i+"["+(.@j+1)+"]");
+			set .@j, .@j+2; }
+		set .@i, .@i+1; }
+	end;
+}
