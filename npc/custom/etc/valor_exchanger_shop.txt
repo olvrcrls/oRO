@@ -13,13 +13,15 @@
 // For each shop added, copy this VSHOPX dummy data.
 // Write your shop names in the select() function.
 
--	itemshop	VSHOP1	-1,7829,6226:3000 // etc.
--	itemshop	VSHOP2	-1,7829,14648:200 // Weapons
--	itemshop	VSHOP3	-1,7829,18599:3000 // Headgears
+-	itemshop	VSHOP1	-1,7829,6226:1000 // etc.
+-	itemshop	VSHOP2	-1,7829,12279:50 // Consumables 
+-	itemshop	VSHOP3	-1,7829,18600:3000 // Headgears
+-	itemshop	VSHOP4	-1,7829,18599:3000 // Middle Headgears
+-	itemshop	VSHOP5	-1,7829,1546:5000 // Weapons
 
 askald,133,104,4	script	Valor Badges Exchanger	4_M_HEINRICH,{
 
-	set @s, select("Etc.:Weapons:Headgears");
+	set @s, select("Etc.:Consumables:Headgears:Middle Headgears:Weapons");
 
 // --------------------------------------------------
 
@@ -61,13 +63,17 @@ OnInit:
 // Shop order follows that of the select() call,
 //   and is formatted "ID1,Count1,ID2,Count2,..."
 
-	setarray .VCurrency[1],7829,7829,7829; // Currencies per shop
+	setarray .VCurrency[1],7829,7829,7829,7829,7829; // Currencies per shop
 
-	setarray .VShop1[0],6225,3000; // Etc.
+	setarray .VShop1[0],6225,1000,7619,1500,7620,1500,6240,1750,6241,1750,12675,3000; // Etc.
 
-	setarray .VShop2[0],12622,1500; // Consumables
+	setarray .VShop2[0],14648,200,12622,3000; // Consumables
 
-	setarray .VShop3[0],18611,3000,18507,3000; // Middle Headgears
+	setarray .VShop3[0],18601,3000; // Headgears
+
+	setarray .VShop4[0],18611,3000,18507,3000; // Middle Headgears
+
+	setarray .VShop5[0],1577,5000,1640,5000,1281,5000,1826,5000,1187,5000,1310,5000,1641,5000,2002,5000,1827,5000,13416,5000,13177,5000,13042,5000,13179,5000,1927,5000,13418,5000,1743,5000,1282,5000,1486,5000,1981,5000,13417,5000,13176,5000,13178,5000,13307,5000,1426,5000,1382,5000,1576,5000,13037,5000,1738,5000,1923,5000;
 
 
 // --------------------------------------------------
