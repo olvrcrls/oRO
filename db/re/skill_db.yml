@@ -27536,6 +27536,7 @@ Body:
     DamageFlags:
       Splash: true
       IgnoreFlee: true
+      IgnoreDefense: true
     Range:
       - Level: 1
         Size: 7
