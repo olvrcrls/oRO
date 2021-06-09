@@ -13,11 +13,11 @@
 // For each shop added, copy this VSHOPX dummy data.
 // Write your shop names in the select() function.
 
--	itemshop	VSHOP1	-1,7829,6226:1000 // etc.
--	itemshop	VSHOP2	-1,7829,12279:50 // Consumables 
--	itemshop	VSHOP3	-1,7829,18600:3000 // Headgears
--	itemshop	VSHOP4	-1,7829,18599:3000 // Middle Headgears
--	itemshop	VSHOP5	-1,7829,1546:5000 // Weapons
+-	itemshop	VSHOP1	-1,7829,7179:500,6226:1000,6225:1000,7619:1500,7620:1500,6240:1750,6241:1750,12675:3000,6232:6000 // etc.
+-	itemshop	VSHOP2	-1,7829,12279:50,14648:200,12622:3000 // Consumables 
+-	itemshop	VSHOP3	-1,7829,18600:3000,18601:3000 // Headgears
+-	itemshop	VSHOP4	-1,7829,18599:3000,18611:3000,18507:3000 // Middle Headgears
+-	itemshop	VSHOP5	-1,7829,1546:5000,1577:5000,1640:5000,1281:5000,1826:5000,1187:5000,1310:5000,1641:5000,2002:5000,1827:5000,13416:5000,13177:5000,13042:5000,13179:5000,1927:5000,13418:5000,1743:5000,1282:5000,1486:5000,1981:5000,13417:5000,13176:5000,13178:5000,13307:5000,1426:5000,1382:5000,1576:5000,13037:5000,1738:5000,1923:5000 // Weapons
 
 askald,133,104,4	script	Valor Badges Exchanger	4_M_HEINRICH,{
 
@@ -25,66 +25,10 @@ askald,133,104,4	script	Valor Badges Exchanger	4_M_HEINRICH,{
 
 // --------------------------------------------------
 
-	message strcharinfo(0),"This shop only accepts "+getitemname(.VCurrency[@s])+".";
-	dispbottom "You have "+countitem(.VCurrency[@s])+" "+getitemname(.VCurrency[@s])+".";
+	message strcharinfo(0),"This shop only accepts "+getitemname(7829)+".";
+	dispbottom "You have "+countitem(7829)+" "+getitemname(7829)+".";
 	callshop "VSHOP"+@s,1;
 	npcshopattach "VSHOP"+@s;
 	end;
 
-OnBuyItem:
-	set .@i,0;
-	while (.@i < getarraysize(@bought_nameid)) {
-		set .@j, 0;
-		while (.@j < getarraysize(getd(".Shop"+@s))) {
-			if(getd(".Shop"+@s+"["+.@j+"]") == @bought_nameid[.@i]) {
-				set @itemcost, (getd(".Shop"+@s+"["+(.@j+1)+"]") * @bought_quantity[.@i]);
-				set @totalcost, @totalcost + @itemcost;
-				break; }
-			set .@j, .@j+2; }
-		set .@i, .@i+1; }
-	if (@totalcost > countitem(.VCurrency[@s])) dispbottom "You don't have enough "+getitemname(.VCurrency[@s])+".";
-	else {
-		set .@i,0;
-		while (.@i < getarraysize(@bought_nameid)) {
-			getitem @bought_nameid[.@i], @bought_quantity[.@i];
-			dispbottom "Purchased "+@bought_quantity[.@i]+"x "+getitemname(@bought_nameid[.@i])+".";
-			set .@i, .@i+1; }
-		delitem .VCurrency[@s], @totalcost; }
-	set @totalcost, 0;
-	deletearray @bought_nameid[0], 128;
-	deletearray @bought_quantity[0], 128;
-	end;
-
-OnInit:
-
-// -------------------- Config 2 --------------------
-// Currency:  The ID of each shop currency,
-//    in the same order as the shops.
-// Shop order follows that of the select() call,
-//   and is formatted "ID1,Count1,ID2,Count2,..."
-
-	setarray .VCurrency[1],7829,7829,7829,7829,7829; // Currencies per shop
-
-	setarray .VShop1[0],6225,1000,7619,1500,7620,1500,6240,1750,6241,1750,12675,3000,6232,6000; // Etc.
-
-	setarray .VShop2[0],14648,200,12622,3000; // Consumables
-
-	setarray .VShop3[0],18601,3000; // Headgears
-
-	setarray .VShop4[0],18611,3000,18507,3000; // Middle Headgears
-
-	setarray .VShop5[0],1577,5000,1640,5000,1281,5000,1826,5000,1187,5000,1310,5000,1641,5000,2002,5000,1827,5000,13416,5000,13177,5000,13042,5000,13179,5000,1927,5000,13418,5000,1743,5000,1282,5000,1486,5000,1981,5000,13417,5000,13176,5000,13178,5000,13307,5000,1426,5000,1382,5000,1576,5000,13037,5000,1738,5000,1923,5000;
-
-
-// --------------------------------------------------
-
-	set .@i,1;
-	while (.@i <= getarraysize(.VCurrency)) {
-		set .@j,0;
-		while (.@j < getarraysize(getd(".VShop"+.@i))) {
-			npcshopdelitem "VSHOP"+.@i,7829;
-			npcshopadditem "VSHOP"+.@i, getd(".VShop"+.@i+"["+.@j+"]"), getd(".VShop"+.@i+"["+(.@j+1)+"]");
-			set .@j, .@j+2; }
-		set .@i, .@i+1; }
-	end;
 }
