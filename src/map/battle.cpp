@@ -4499,8 +4499,9 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 		case SU_PICKYPECK:
 		case SU_PICKYPECK_DOUBLE_ATK:
 			skillratio += 100 + 100 * skill_lv;
-			if (status_get_hp(target) < status_get_max_hp(target) >> 1)
-				skillratio *= 2;
+			// Disable 2x bonus damage on 50% HP target.
+			//if (status_get_hp(target) < status_get_max_hp(target) >> 1)
+			//	skillratio *= 2;
 			if (sd && pc_checkskill(sd, SU_SPIRITOFLIFE))
 				skillratio += skillratio * status_get_hp(src) / status_get_max_hp(src);
 			break;
@@ -6763,7 +6764,11 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 			{
 				struct Damage atk = battle_calc_weapon_attack(src, target, skill_id, skill_lv, 0);
 				struct Damage matk = battle_calc_magic_attack(src, target, skill_id, skill_lv, 0);
-				md.damage = 7 * ((atk.damage/skill_lv + matk.damage/skill_lv) * tstatus->vit / 100 );
+				int target_vit = tstatus->vit;
+				if (target_vit > 120) {
+					target_vit = 120;
+				}
+				md.damage = 7 * ((atk.damage/skill_lv + matk.damage/skill_lv) * target_vit / 100 );
 
 				// AD benefits from endow/element but damage is forced back to neutral
 				md.damage = battle_attr_fix(src, target, md.damage, ELE_NEUTRAL, tstatus->def_ele, tstatus->ele_lv);
