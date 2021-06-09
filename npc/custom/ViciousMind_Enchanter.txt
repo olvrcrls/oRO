@@ -322,7 +322,8 @@ setarray .RandOpt3_P[0],RDMOPT_VAR_STRAMOUNT, // STR
 					    RDMOPT_VAR_PLUSASPDPERCENT,	// ASPD %
 						RDMOPT_DEC_SPELL_CAST_TIME,	// Variable Cast Time -%
 					    RDMOPT_DEC_SPELL_DELAY_TIME,// Cast Delay -%
-					    RDMOPT_DEC_SP_CONSUMPTION;	// Skill SP Cost -%
+					    RDMOPT_DEC_SP_CONSUMPTION,	// Skill SP Cost -%
+						RDMOPT_RANGE_ATTACK_DAMAGE_TARGET; // Ranged Damage +%
 						
 // - Magical
 setarray .RandOpt3_M[0],RDMOPT_VAR_STRAMOUNT, // STR
@@ -355,11 +356,11 @@ setarray .RandOpt3_R[0],RDMOPT_VAR_STRAMOUNT, // STR
 
 // - Values
 // Note: When MinV and MaxV are the same, rand() will not be used!
-setarray .RandOpt3_P_MinV[0],1,1,1,1,1,1,4,10,1,1,1,5,5;
-setarray .RandOpt3_P_MaxV[0],10,10,10,10,10,10,47,19,20,5,20,20,5;
+setarray .RandOpt3_P_MinV[0],1,1,1,1,1,1,4,10,1,1,1,5,5,1;
+setarray .RandOpt3_P_MaxV[0],10,10,10,10,10,10,50,19,20,5,20,20,5,20;
 setarray .RandOpt3_M_MinV[0],1,1,1,1,1,1,4,1,5,5;
 setarray .RandOpt3_M_MaxV[0],10,10,10,10,10,10,50,20,20,5;
 setarray .RandOpt3_R_MinV[0],1,1,1,1,1,1,4,4,10,1,1,1,5,5,13;
-setarray .RandOpt3_R_MaxV[0],10,10,10,10,10,10,47,50,19,20,5,20,20,5,20;
+setarray .RandOpt3_R_MaxV[0],10,10,10,10,10,10,50,50,19,20,5,20,20,5,20;
 end;
 }
