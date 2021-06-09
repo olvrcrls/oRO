@@ -2873,7 +2873,7 @@ void pc_exeautobonus(struct map_session_data *sd, std::vector<s_autobonus> *bonu
 
 	autobonus->active = add_timer(gettick()+autobonus->duration, pc_endautobonus, sd->bl.id, (intptr_t)bonus);
 	sd->state.autobonus |= autobonus->pos;
-	status_calc_pc(sd,SCO_FORCE);
+	status_calc_pc(sd,SCO_NONE);
 }
 
 /**
@@ -2894,7 +2894,7 @@ TIMER_FUNC(pc_endautobonus){
 		}
 	}
 	
-	status_calc_pc(sd,SCO_FORCE);
+	status_calc_pc(sd,SCO_NONE);
 	return 0;
 }
 
@@ -10837,7 +10837,7 @@ static void pc_unequipitem_sub(struct map_session_data *sd, int n, int flag) {
  * @return True on success or false on failure
  */
 bool pc_unequipitem(struct map_session_data *sd, int n, int flag) {
-	int i, iflag;
+	int i, pos;
 	bool status_calc = false;
 
 	nullpo_retr(false,sd);
@@ -10846,7 +10846,7 @@ bool pc_unequipitem(struct map_session_data *sd, int n, int flag) {
 		clif_unequipitemack(sd,0,0,0);
 		return false;
 	}
-	if (!sd->inventory.u.items_inventory[n].equip) {
+	if (!(pos = sd->inventory.u.items_inventory[n].equip)) {
 		clif_unequipitemack(sd,n,0,0);
 		return false; //Nothing to unequip
 	}
@@ -10866,16 +10866,13 @@ bool pc_unequipitem(struct map_session_data *sd, int n, int flag) {
 	if (battle_config.battle_log)
 		ShowInfo("unequip %d %x:%x\n",n,pc_equippoint(sd,n),sd->inventory.u.items_inventory[n].equip);
 
-	if (!sd->inventory.u.items_inventory[n].equip) { //Nothing to unequip
-		clif_unequipitemack(sd, n, 0, 0);
-		return false;
-	}
+	
 	for(i = 0; i < EQI_MAX; i++) {
-		if (sd->inventory.u.items_inventory[n].equip & equip_bitmask[i])
+		if (pos & equip_bitmask[i])
 			sd->equip_index[i] = -1;
 	}
 
-	if(sd->inventory.u.items_inventory[n].equip & EQP_HAND_R) {
+	if(pos & EQP_HAND_R) {
 		sd->weapontype1 = 0;
 		sd->status.weapon = sd->weapontype2;
 		pc_calcweapontype(sd);
@@ -10883,21 +10880,21 @@ bool pc_unequipitem(struct map_session_data *sd, int n, int flag) {
 		if( !battle_config.dancing_weaponswitch_fix )
 			status_change_end(&sd->bl, SC_DANCING, INVALID_TIMER); // Unequipping => stop dancing.
 	}
-	if(sd->inventory.u.items_inventory[n].equip & EQP_HAND_L) {
+	if(pos & EQP_HAND_L) {
 		sd->status.shield = sd->weapontype2 = 0;
 		pc_calcweapontype(sd);
 		clif_changelook(&sd->bl,LOOK_SHIELD,sd->status.shield);
 	}
 
-	if(sd->inventory.u.items_inventory[n].equip & EQP_SHOES)
+	if(pos & EQP_SHOES)
 		clif_changelook(&sd->bl,LOOK_SHOES,0);
 
-	clif_unequipitemack(sd,n,sd->inventory.u.items_inventory[n].equip,1);
+	clif_unequipitemack(sd,n,pos,1);
 	pc_set_costume_view(sd);
 
 	status_change_end(&sd->bl,SC_HEAT_BARREL,INVALID_TIMER);
 	// On weapon change (right and left hand)
-	if ((sd->inventory.u.items_inventory[n].equip & EQP_ARMS) && sd->inventory_data[n]->type == IT_WEAPON) {
+	if ((pos & EQP_ARMS) && sd->inventory_data[n]->type == IT_WEAPON) {
 		if (!sd->sc.data[SC_SEVENWIND] || sd->sc.data[SC_ASPERSIO]) //Check for seven wind (but not level seven!)
 			skill_enchant_elemental_end(&sd->bl, SC_NONE);
 		status_change_end(&sd->bl, SC_FEARBREEZE, INVALID_TIMER);
@@ -10905,76 +10902,24 @@ bool pc_unequipitem(struct map_session_data *sd, int n, int flag) {
 	}
 
 	// On armor change
-	if (sd->inventory.u.items_inventory[n].equip & EQP_ARMOR) {
+	if (pos & EQP_ARMOR) {
 		if (sd->sc.data[SC_HOVERING] && sd->inventory_data[n]->nameid == ITEMID_HOVERING_BOOSTER)
 			status_change_end(&sd->bl, SC_HOVERING, INVALID_TIMER);
 		//status_change_end(&sd->bl, SC_BENEDICTIO, INVALID_TIMER); // No longer is removed? Need confirmation
 		status_change_end(&sd->bl, SC_ARMOR_RESIST, INVALID_TIMER);
 	}
 
+	// On equipment change
+#ifndef RENEWAL
+	if (!(flag & 4))
+		status_change_end(&sd->bl, SC_CONCENTRATION, INVALID_TIMER);
+#endif
+
 	// On ammo change
 	if (sd->inventory_data[n]->type == IT_AMMO && (sd->inventory_data[n]->nameid != ITEMID_SILVER_BULLET || sd->inventory_data[n]->nameid != ITEMID_PURIFICATION_BULLET || sd->inventory_data[n]->nameid != ITEMID_SILVER_BULLET_))
 		status_change_end(&sd->bl, SC_P_ALTER, INVALID_TIMER);
 
-	if (sd->state.autobonus&sd->inventory.u.items_inventory[n].equip)
-		sd->state.autobonus &= ~sd->inventory.u.items_inventory[n].equip; //Check for activated autobonus [Inkfish]
-
-	sd->inventory.u.items_inventory[n].equip = 0;
-	iflag = sd->npc_item_flag;
-
-	/* check for combos (MUST be before status_calc_pc) */
-	if ( sd->inventory_data[n] ) {
-		if( sd->inventory_data[n]->combos_count ) {
-			if( pc_removecombo(sd,sd->inventory_data[n]) )
-				status_calc = true;
-		}
-		if(itemdb_isspecial(sd->inventory.u.items_inventory[n].card[0]))
-			; //No cards
-		else {
-			for( i = 0; i < MAX_SLOTS; i++ ) {
-				struct item_data *data;
-
-				if (!sd->inventory.u.items_inventory[n].card[i])
-					continue;
-				if ( ( data = itemdb_exists(sd->inventory.u.items_inventory[n].card[i]) ) != NULL ) {
-					if( data->combos_count ) {
-						if( pc_removecombo(sd,data) )
-							status_calc = true;
-					}
-				}
-			}
-		}
-	}
-
-	if(flag&1 || status_calc) {
-		pc_checkallowskill(sd);
-		status_calc_pc(sd,SCO_NONE);
-	}
-
-	if(sd->sc.data[SC_SIGNUMCRUCIS] && !battle_check_undead(sd->battle_status.race,sd->battle_status.def_ele))
-		status_change_end(&sd->bl, SC_SIGNUMCRUCIS, INVALID_TIMER);
-
-	//OnUnEquip script [Skotlex]
-	if (sd->inventory_data[n]) {
-		if (sd->inventory_data[n]->unequip_script)
-			run_script(sd->inventory_data[n]->unequip_script,0,sd->bl.id,fake_nd->bl.id);
-		if(itemdb_isspecial(sd->inventory.u.items_inventory[n].card[0]))
-			; //No cards
-		else {
-			for( i = 0; i < MAX_SLOTS; i++ ) {
-				struct item_data *data;
-				if (!sd->inventory.u.items_inventory[n].card[i])
-					continue;
-
-				if ( ( data = itemdb_exists(sd->inventory.u.items_inventory[n].card[i]) ) != NULL ) {
-					if( data->unequip_script )
-						run_script(data->unequip_script,0,sd->bl.id,fake_nd->bl.id);
-				}
-
-			}
-		}
-	}
-	sd->npc_item_flag = iflag;
+	pc_unequipitem_sub(sd, n, flag);
 
 	return true;
 }
@@ -11211,7 +11156,7 @@ void pc_check_available_item(struct map_session_data *sd, uint8 type)
 			}
 			if (!sd->storage.u.items_storage[i].unique_id && !itemdb_isstackable(nameid))
 				sd->storage.u.items_storage[i].unique_id = pc_generate_unique_id(sd);
- 		}
+		}
 	}
 }
 
