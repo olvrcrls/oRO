@@ -18977,6 +18977,7 @@ int skill_delunitgroup_(struct skill_unit_group *group, const char* file, int li
 					status_change_end(target, SC_SPIDERWEB, INVALID_TIMER);
 			}
 		}
+		break;
 		case SG_SUN_WARM:
 		case SG_MOON_WARM:
 		case SG_STAR_WARM:
