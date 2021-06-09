@@ -40,7 +40,7 @@ OnInit:
 	end;
 
 OnAtcommand:
-	if (getmapflag(strcharinfo(3), mf_town)) {
+	if (getmapflag(strcharinfo(3), mf_town) || getmapflag(strcharinfo(3), mf_battleground)) {
 			switch(.@atcmd_numparameters) {
 				case 0:	// @restock command
 					if (is_storage_open() == 1) {
