@@ -2,15 +2,23 @@
 
 askald,125,118,5	script	Level Booster#ask	811,{
 
-mes "[Your Mom]";
-mes "Ara, ara~ Welcome to oRO";
-mes "Let's boost you up! <3";
+	if (BaseLevel < 175 || JobLevel < 65) {
+		mes "[Your Mom]";
+		mes "Ara, ara~ Welcome to oRO";
+		mes "Let's boost you up! <3";
 
-if (BaseLevel < 175) set BaseLevel,175;
+		if (BaseLevel < 175) set BaseLevel,175;
 
-if (JobLevel < 70) set JobLevel, 70;
+		if (JobLevel < 70) set JobLevel, 70;
 
-dispbottom "Mom has blessed you, dear child.";
-emotion ET_OK;
-close;
+		dispbottom "Mom has blessed you, dear child.";
+		emotion ET_OK;
+		close;
+	} else {
+		mes "[Your Mom]";
+		mes "You are already maxed.";
+		mes "Stop sapping more of my power!";
+		emotion ET_STARE;
+		close;
+	}
 }
