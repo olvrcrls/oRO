@@ -2003,8 +2003,8 @@ ACMD_FUNC(go)
 		{ MAP_ECLAGE,      110,  39 }, // 35=Eclage
 		{ MAP_LASAGNA,     193, 182 },  // 36=Lasagna
 		{ MAP_VERUS,       122, 250 }, // 37 = Verus
-		{ MAP_JAIL,         23,  61 },  // 38=Prison
-		{ MAP_BG,		   154, 150 } // 39 = BG
+		{ MAP_BG,		   154, 150 }, // 38 = BG
+		{ MAP_JAIL,         23,  61 }  // 39=Prison
 	};
 
 	nullpo_retr(-1, sd);
