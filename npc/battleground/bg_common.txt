@@ -318,14 +318,14 @@ bat_room,253,211,0	warp	bat32	1,1,bat_room,154,149
 
 // Kafra
 //============================================================
-bat_room,148,147,4	script	Kafra Staff::kaf_bat	861,{
+bat_room,150,157,4	script	Battleground Kafra Staff::kaf_bat	861,{
 	cutin "kafra_09",2;
 	callfunc "F_Kafra",0,2,1,150,0;
 }
 
 // Repairman
 //============================================================
-bat_room,138,144,4	script	Repairman#bg	86,{
+bat_room,159,152,4	script	Repairman#bg	86,{
 	callfunc "repairmain","Repairman";
 	end;
 }

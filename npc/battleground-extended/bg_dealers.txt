@@ -712,7 +712,7 @@ bat_room,1,1,3	itemshop	HeroismExchanger	111,7773,1187:5000,1281:5000,1282:5000,
 //	end;
 //}
 
-bat_room,148,153,4	script	Location::Mount_Rent	875,{
+bat_room,148,153,4	script	Remount::Mount_Rent	875,{
 	if (bgcheck()){
 		setmadogear;
 		setcart;
@@ -721,50 +721,50 @@ bat_room,148,153,4	script	Location::Mount_Rent	875,{
 		setriding;
 		specialeffect2 911;
 	} else {
-		mes "[^1AAF9BLocation^000000]";
+		mes "[^1AAF9BRemount^000000]";
 		mes "I work only during Battleground, please come back later.";
 	}
 	end;
 }
 
-bat_room,163,152,2	script	Exchange Machine#bg	564,{
-	input .@cb,0,100000;
-	if(.@cb == 0) end;
+//bat_room,163,152,2	script	Exchange Machine#bg	564,{
+//	input .@cb,0,100000;
+//	if(.@cb == 0) end;
 	// 7804 : Battleground Badges
 	// 7773 : War Badges
 	// 7829 : Valor Badges
 	// 7828 : Bravery Badges
-	switch(select("War Badges:Valor Badges:Bravery Badges")) {
-		case 1:
-			if(countitem(7804) >= .@cb) {
-				delitem 7804, .@cb; 
-				getitem 7773, .@cb;
-				.@ok = 1;
-			}
-			break;
-		case 2:
-			if(countitem(7804) >= .@cb) {
-				delitem 7804, .@cb; 
-				getitem 7829, .@cb;
-				.@ok = 1;
-			}
-			break;
-		case 3:
-			if(countitem(7804) >= .@cb) {
-				delitem 7804, .@cb; 
-				getitem 7828, .@cb;
-				.@ok = 1;
-			}
-			break;
-	}
-	if(.@ok) {
-		specialeffect 618;
-		dispbottom "[Exchange Machine] You successfully exchanged " + .@cb + " Battleground Badge(s).";
-	} else
-		dispbottom "[Exchange Machine] No enough Battleground Badges for the exchange.";
-	end;
-	
-OnInit:
-    waitingroom "BG Badges Exchanger",0;
-	end;
-}
+//	switch(select("War Badges:Valor Badges:Bravery Badges")) {
+//		case 1:
+//			if(countitem(7804) >= .@cb) {
+//				delitem 7804, .@cb; 
+//				getitem 7773, .@cb;
+//				.@ok = 1;
+//			}
+//			break;
+//		case 2:
+//			if(countitem(7804) >= .@cb) {
+//				delitem 7804, .@cb; 
+//				getitem 7829, .@cb;
+//				.@ok = 1;
+//			}
+//			break;
+//		case 3:
+//			if(countitem(7804) >= .@cb) {
+//				delitem 7804, .@cb; 
+//				getitem 7828, .@cb;
+//				.@ok = 1;
+//			}
+//			break;
+//	}
+//	if(.@ok) {
+//		specialeffect 618;
+//		dispbottom "[Exchange Machine] You successfully exchanged " + .@cb + " Battleground Badge(s).";
+//	} else
+//		dispbottom "[Exchange Machine] No enough Battleground Badges for the exchange.";
+//	end;
+//	
+//OnInit:
+//    waitingroom "BG Badges Exchanger",0;
+//	end;
+//}
