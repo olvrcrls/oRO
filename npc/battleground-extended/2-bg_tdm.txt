@@ -53,8 +53,8 @@ OnReady:
 		end;
 
 	initnpctimer;
-	set .Team1_Score, 35;
-	set .Team2_Score, 35;
+	set .Team1_Score, 20;
+	set .Team2_Score, 20;
 	bg_updatescore "bg_tdm",.Team1_Score,.Team2_Score;
 	sleep 2000;
 	bg_warp $@BG_Team1,"bg_tdm",53,128;
@@ -133,11 +133,11 @@ OnMatchEnd:
 	donpcevent "#guitd_respawn::OnBGStop";
 	donpcevent "#crotd_respawn::OnBGStop";
 	set $@BG_Status, 2;
-	set .Team1_Score, 35;
-	set .Team2_Score, 35;
+	set .Team1_Score, 20;
+	set .Team2_Score, 20;
 	sleep 5000;
 	donpcevent "BG_Queue_Join::OnRotate";
-	bg_updatescore "bg_tdm",35,35;
+	bg_updatescore "bg_tdm",20,20;
 	end;
 }
 
