@@ -450,16 +450,16 @@ OnInit:
 	$@TD_BG_Index = -1;
 	// Battleground Modes :
 	// AddBGmode( NPC_Name, BG Label, BG ID, Min Player per team, Max Player per team, Activated? )
-	AddBGmode("Flavius_CTF",	"Capture the Flag",		"BG_CTF",	5,	138,		0);
-	AddBGmode("Flavius_TD",		"Team DeathMatch",		"BG_TDM",	5,	138,		1);
-	AddBGmode("Tierra_EOS",		"Eye of Storm",			"BG_EOE",	5,	138,		0);
-	AddBGmode("Conquest",		"Conquest",				"BG_CON",	5,	138,		0);
-	AddBGmode("KvM01_BG",		"Kreiger Von Midgard",	"BG_KVM", 	5,	138,		1);
-	AddBGmode("Flavius_SC",		"Stone Control",		"BG_SC", 	5,	138,		0);
-	AddBGmode("Tierra_DOM",		"Domination",			"BG_DOM",	5,	138,		0);
-	AddBGmode("Rush", 			"Rush",					"BG_RUSH",	5,	30,		0);
-	AddBGmode("PoringBall",		"Poring Ball",			"BG_PB",	5,	20,		$PB_AVAILABLE);
-	AddBGmode("s4_game",		"Touch Down",			"BG_TD",	5,	20,		$TD_AVAILABLE);
+	AddBGmode("Flavius_CTF",	"Capture the Flag",		"BG_CTF",	3,	69,		0);
+	AddBGmode("Flavius_TD",		"Team DeathMatch",		"BG_TDM",	3,	69,		1);
+	AddBGmode("Tierra_EOS",		"Eye of Storm",			"BG_EOE",	3,	69,		0);
+	AddBGmode("Conquest",		"Conquest",				"BG_CON",	3,	69,		0);
+	AddBGmode("KvM01_BG",		"Kreiger Von Midgard",	"BG_KVM", 	3,	69,		1);
+	AddBGmode("Flavius_SC",		"Stone Control",		"BG_SC", 	3,	69,		0);
+	AddBGmode("Tierra_DOM",		"Domination",			"BG_DOM",	3,	69,		0);
+	AddBGmode("Rush", 			"Rush",					"BG_RUSH",	3,	30,		0);
+	AddBGmode("PoringBall",		"Poring Ball",			"BG_PB",	3,	20,		$PB_AVAILABLE);
+	AddBGmode("s4_game",		"Touch Down",			"BG_TD",	3,	20,		$TD_AVAILABLE);
 	// Main Code
 	// *****************************************************
 	bindatcmd "leavebg", strnpcinfo(3)+"::OnDoLeave";
