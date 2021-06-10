@@ -1953,6 +1953,8 @@ Body:
     MaxLevel: 10
     Type: Weapon
     TargetType: Self
+    Flags:
+      AllowOnMado: true
     DamageFlags:
       NoDamage: true
       Splash: true
