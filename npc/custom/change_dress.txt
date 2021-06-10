@@ -1,5 +1,5 @@
 askald,157,248,4	script	Change Dress	509,{
-	if ( !(eaclass() & EAJL_THIRD) || BaseJob == Job_SuperNovice ) {
+	if ( !(eaclass() & EAJL_THIRD) || BaseJob == Job_SuperNovice || BaseJob == Job_Star_Gladiator || BaseJob == Job_Star_Gladiator2 || BaseJob == Job_Soul_Linker ) {
 		mes "I'm sorry, but you do not have 3rd class.";
 		close;
 	}
