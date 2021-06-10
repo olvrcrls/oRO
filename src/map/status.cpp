@@ -2340,6 +2340,8 @@ bool status_check_skilluse(struct block_list *src, struct block_list *target, ui
 						return false; // Works against insect and demon but not against bosses
 					if (tsc->data[SC__FEINTBOMB] && (is_boss || is_detect))
 						return false; // Works against all
+					if (tsc->data[SC__FEINTBOMB] && tsd->special_state.perfect_hiding)
+						return false;
 					if ((tsc->data[SC_CAMOUFLAGE] || tsc->data[SC_STEALTHFIELD] || tsc->data[SC_SUHIDE]) && !(is_boss || is_detect) && (!skill_id || (!flag && src)))
 						return false; // Insect, demon, and boss can detect
 				}
@@ -8872,8 +8874,8 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 		if(sc->data[SC_DECREASEAGI])
 			return 0;
 	// If the you want to enable increase agi on mado gear
-	// case SC_INCREASEAGI:
-	// case SC_CONCENTRATE:
+	//case SC_INCREASEAGI:
+	//case SC_CONCENTRATE:
 	case SC_SPEARQUICKEN:
 	case SC_TRUESIGHT:
 	// case SC_WINDWALK:
