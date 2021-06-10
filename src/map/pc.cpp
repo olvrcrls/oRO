@@ -2067,8 +2067,14 @@ void pc_calc_skilltree(struct map_session_data *sd)
 		uint16 skill_id = skill.second->nameid;
 		uint16 idx = skill_get_index(skill_id);
 
-		if( sd->status.skill[idx].flag != SKILL_FLAG_PLAGIARIZED && sd->status.skill[idx].flag != SKILL_FLAG_PERM_GRANTED ) //Don't touch these
-			sd->status.skill[idx].id = 0; //First clear skills.
+		if( sd->status.skill[idx].flag != SKILL_FLAG_PLAGIARIZED && sd->status.skill[idx].flag != SKILL_FLAG_PERM_GRANTED ) { //Don't touch these
+			#if PACKETVER_RE_NUM >= 20190807 || PACKETVER_ZERO_NUM >= 20190918
+						if (sd->status.skill[idx].flag == SKILL_FLAG_TEMPORARY || sd->status.skill[idx].flag == SKILL_FLAG_PERMANENT)
+							clif_deleteskill(sd, skill_id,1);
+			#endif
+						sd->status.skill[idx].id = 0; //First clear skills.
+		}
+
 		/* permanent skills that must be re-checked */
 		if( sd->status.skill[idx].flag == SKILL_FLAG_PERM_GRANTED ) {
 			if (skill_id == 0) {
@@ -10721,7 +10727,7 @@ bool pc_equipitem(struct map_session_data *sd,short n,int req_pos,bool equipswit
 		}
 	}
 
-	status_calc_pc(sd,SCO_NONE);
+	status_calc_pc(sd,SCO_FORCE);
 	if (flag) //Update skill data
 		clif_skillinfoblock(sd);
 
@@ -10764,27 +10770,25 @@ static void pc_unequipitem_sub(struct map_session_data *sd, int n, int flag) {
 		sd->state.autobonus &= ~sd->inventory.u.items_inventory[n].equip; //Check for activated autobonus [Inkfish]
 
 	sd->inventory.u.items_inventory[n].equip = 0;
-	if (!(flag & 4))
-		pc_checkallowskill(sd);
+	pc_checkallowskill(sd);
 	iflag = sd->npc_item_flag;
 
-	// Check for combos (MUST be before status_calc_pc)
+	/* check for combos (MUST be before status_calc_pc) */
 	if (sd->inventory_data[n]) {
-		if (!sd->inventory_data[n]->combos_count) {
+		if (sd->inventory_data[n]->combos_count) {
 			if (pc_removecombo(sd, sd->inventory_data[n]))
 				status_calc = true;
 		}
-
 		if (itemdb_isspecial(sd->inventory.u.items_inventory[n].card[0]))
-			; // No cards
+			; //No cards
 		else {
 			for (i = 0; i < MAX_SLOTS; i++) {
-				item_data *data;
+				struct item_data *data;
 
 				if (!sd->inventory.u.items_inventory[n].card[i])
 					continue;
-				if ((data = itemdb_exists(sd->inventory.u.items_inventory[n].card[i])) != nullptr) {
-					if (!data->combos_count) {
+				if ((data = itemdb_exists(sd->inventory.u.items_inventory[n].card[i])) != NULL) {
+					if (data->combos_count) {
 						if (pc_removecombo(sd, data))
 							status_calc = true;
 					}
@@ -10793,10 +10797,8 @@ static void pc_unequipitem_sub(struct map_session_data *sd, int n, int flag) {
 		}
 	}
 
-	if (flag & 1 || status_calc) {
-		pc_checkallowskill(sd);
+	if (status_calc)
 		status_calc_pc(sd, SCO_NONE);
-	}
 
 	if (sd->sc.data[SC_SIGNUMCRUCIS] && !battle_check_undead(sd->battle_status.race, sd->battle_status.def_ele))
 		status_change_end(&sd->bl, SC_SIGNUMCRUCIS, INVALID_TIMER);
@@ -10822,6 +10824,8 @@ static void pc_unequipitem_sub(struct map_session_data *sd, int n, int flag) {
 		}
 	}
 
+	if (flag & 1)
+		status_calc_pc(sd, SCO_FORCE);
 	sd->npc_item_flag = iflag;
 }
 
@@ -10838,7 +10842,6 @@ static void pc_unequipitem_sub(struct map_session_data *sd, int n, int flag) {
  */
 bool pc_unequipitem(struct map_session_data *sd, int n, int flag) {
 	int i, pos;
-	bool status_calc = false;
 
 	nullpo_retr(false,sd);
 
@@ -10864,9 +10867,8 @@ bool pc_unequipitem(struct map_session_data *sd, int n, int flag) {
 	}
 
 	if (battle_config.battle_log)
-		ShowInfo("unequip %d %x:%x\n",n,pc_equippoint(sd,n),sd->inventory.u.items_inventory[n].equip);
+		ShowInfo("unequip %d %x:%x\n",n,pc_equippoint(sd,n),pos);
 
-	
 	for(i = 0; i < EQI_MAX; i++) {
 		if (pos & equip_bitmask[i])
 			sd->equip_index[i] = -1;
@@ -10879,8 +10881,18 @@ bool pc_unequipitem(struct map_session_data *sd, int n, int flag) {
 		clif_changelook(&sd->bl,LOOK_WEAPON,sd->status.weapon);
 		if( !battle_config.dancing_weaponswitch_fix )
 			status_change_end(&sd->bl, SC_DANCING, INVALID_TIMER); // Unequipping => stop dancing.
+#ifdef RENEWAL
+		if (battle_config.switch_remove_edp&2) {
+#else
+		if (battle_config.switch_remove_edp&1) {
+#endif
+			status_change_end(&sd->bl, SC_EDP, INVALID_TIMER);
+		}
 	}
 	if(pos & EQP_HAND_L) {
+		if (sd->status.shield && battle_getcurrentskill(&sd->bl) == LG_SHIELDSPELL)
+			unit_skillcastcancel(&sd->bl, 0); // Cancel Shield Spell if player swaps shields.
+
 		sd->status.shield = sd->weapontype2 = 0;
 		pc_calcweapontype(sd);
 		clif_changelook(&sd->bl,LOOK_SHIELD,sd->status.shield);
@@ -10895,6 +10907,27 @@ bool pc_unequipitem(struct map_session_data *sd, int n, int flag) {
 	status_change_end(&sd->bl,SC_HEAT_BARREL,INVALID_TIMER);
 	// On weapon change (right and left hand)
 	if ((pos & EQP_ARMS) && sd->inventory_data[n]->type == IT_WEAPON) {
+		if (battle_config.ammo_unequip && !(flag & 4)) {
+			switch (sd->inventory_data[n]->look) {
+				case W_BOW:
+				case W_MUSICAL:
+				case W_WHIP:
+				case W_REVOLVER:
+				case W_RIFLE:
+				case W_GATLING:
+				case W_SHOTGUN:
+				case W_GRENADE: {
+					short idx = sd->equip_index[EQI_AMMO];
+
+					if (idx >= 0) {
+						sd->equip_index[EQI_AMMO] = -1;
+						clif_unequipitemack(sd, idx, sd->inventory.u.items_inventory[idx].equip, 1);
+						pc_unequipitem_sub(sd, idx, 0);
+					}
+				}
+				break;
+			}
+		}
 		if (!sd->sc.data[SC_SEVENWIND] || sd->sc.data[SC_ASPERSIO]) //Check for seven wind (but not level seven!)
 			skill_enchant_elemental_end(&sd->bl, SC_NONE);
 		status_change_end(&sd->bl, SC_FEARBREEZE, INVALID_TIMER);
@@ -10908,12 +10941,6 @@ bool pc_unequipitem(struct map_session_data *sd, int n, int flag) {
 		//status_change_end(&sd->bl, SC_BENEDICTIO, INVALID_TIMER); // No longer is removed? Need confirmation
 		status_change_end(&sd->bl, SC_ARMOR_RESIST, INVALID_TIMER);
 	}
-
-	// On equipment change
-#ifndef RENEWAL
-	if (!(flag & 4))
-		status_change_end(&sd->bl, SC_CONCENTRATION, INVALID_TIMER);
-#endif
 
 	// On ammo change
 	if (sd->inventory_data[n]->type == IT_AMMO && (sd->inventory_data[n]->nameid != ITEMID_SILVER_BULLET || sd->inventory_data[n]->nameid != ITEMID_PURIFICATION_BULLET || sd->inventory_data[n]->nameid != ITEMID_SILVER_BULLET_))
