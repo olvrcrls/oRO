@@ -9,12 +9,12 @@
 // ==============================================================================
 
 //  Mapflags
-bat_room	mapflag	nomemo
-bat_room	mapflag	nowarpto
-bat_room	mapflag	nowarp
+// bat_room	mapflag	nomemo
+// bat_room	mapflag	nowarpto
+// bat_room	mapflag	nowarp
 bat_room	mapflag	nobranch
 bat_room	mapflag	nopenalty
-bat_room	mapflag	noteleport
+// bat_room	mapflag	noteleport
 bat_room	mapflag	nosave	SavePoint
 bat_room	mapflag	town
 
