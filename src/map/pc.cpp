@@ -2879,7 +2879,7 @@ void pc_exeautobonus(struct map_session_data *sd, std::vector<s_autobonus> *bonu
 
 	autobonus->active = add_timer(gettick()+autobonus->duration, pc_endautobonus, sd->bl.id, (intptr_t)bonus);
 	sd->state.autobonus |= autobonus->pos;
-	status_calc_pc(sd,SCO_NONE);
+	status_calc_pc(sd,SCO_FORCE);
 }
 
 /**
@@ -2900,7 +2900,7 @@ TIMER_FUNC(pc_endautobonus){
 		}
 	}
 	
-	status_calc_pc(sd,SCO_NONE);
+	status_calc_pc(sd,SCO_FORCE);
 	return 0;
 }
 
@@ -3088,7 +3088,7 @@ void pc_bonus(struct map_session_data *sd,int type,int val)
 	nullpo_retv(sd);
 
 	status = &sd->base_status;
-
+	ShowInfo("Item bonus type: %d\n",type);
 	switch(type){
 		case SP_STR:
 		case SP_AGI:
@@ -3100,6 +3100,7 @@ void pc_bonus(struct map_session_data *sd,int type,int val)
 				sd->param_bonus[type-SP_STR]+=val;
 			break;
 		case SP_ATK1:
+			// TODO:
 			if(!sd->state.lr_flag) {
 				bonus = status->rhw.atk + val;
 				status->rhw.atk = cap_value(bonus, 0, USHRT_MAX);
@@ -5528,7 +5529,7 @@ bool pc_isUseitem(struct map_session_data *sd,int n)
 int pc_useitem(struct map_session_data *sd,int n)
 {
 	t_tick tick = gettick();
-	int amount,char_id;
+	int amount;
 	unsigned short nameid;
 	struct script_code *script;
 	struct item item;
@@ -5555,24 +5556,12 @@ int pc_useitem(struct map_session_data *sd,int n)
 	if (item.nameid == 0 || item.amount <= 0)
 		return 0;
 
-	if( sd->state.only_walk )
-		return 0;
-
 	if( !pc_isUseitem(sd,n) )
 		return 0;
 
 	// Store information for later use before it is lost (via pc_delitem) [Paradox924X]
 	nameid = id->nameid;
 
-	if( item.card[0] == CARD0_CREATE )
-	{ // Do not allow use BG - Ancient Items on invalid maps
-		char_id = MakeDWord(item.card[2],item.card[3]);
-		if( battle_config.bg_reserved_char_id && char_id == battle_config.bg_reserved_char_id && !map_bg_items(sd->bl.m) )
-			return 0;
-		if( battle_config.woe_reserved_char_id && char_id == battle_config.woe_reserved_char_id && !map_gvg_items(sd->bl.m) )
-			return 0;
-	}
-	
 	if (nameid != ITEMID_NAUTHIZ && sd->sc.opt1 > 0 && sd->sc.opt1 != OPT1_STONEWAIT && sd->sc.opt1 != OPT1_BURNING)
 		return 0;
 
@@ -5623,12 +5612,8 @@ int pc_useitem(struct map_session_data *sd,int n)
 		else
 			clif_useitemack(sd, n, 0, false);
 	}
-	if( item.card[0] == CARD0_CREATE && char_id && (char_id == battle_config.bg_reserved_char_id || char_id == battle_config.woe_reserved_char_id || pc_famerank(MakeDWord(item.card[2],item.card[3]), MAPID_ALCHEMIST)) )
-	{
+	if (item.card[0]==CARD0_CREATE && pc_famerank(MakeDWord(item.card[2],item.card[3]), MAPID_ALCHEMIST))
 	    potion_flag = 2; // Famous player's potions have 50% more efficiency
-		 if (sd->sc.data[SC_SPIRIT] && sd->sc.data[SC_SPIRIT]->val2 == SL_ROGUE)
-			 potion_flag = 3; //Even more effective potions.
-	}
 
 	//Update item use time.
 	sd->canuseitem_tick = tick + battle_config.item_use_interval;
