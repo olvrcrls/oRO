@@ -2879,7 +2879,7 @@ void pc_exeautobonus(struct map_session_data *sd, std::vector<s_autobonus> *bonu
 
 	autobonus->active = add_timer(gettick()+autobonus->duration, pc_endautobonus, sd->bl.id, (intptr_t)bonus);
 	sd->state.autobonus |= autobonus->pos;
-	status_calc_pc(sd,SCO_FORCE);
+	status_calc_pc(sd,SCO_NONE);
 }
 
 /**
@@ -2900,7 +2900,7 @@ TIMER_FUNC(pc_endautobonus){
 		}
 	}
 	
-	status_calc_pc(sd,SCO_FORCE);
+	status_calc_pc(sd,SCO_NONE);
 	return 0;
 }
 
@@ -3088,7 +3088,7 @@ void pc_bonus(struct map_session_data *sd,int type,int val)
 	nullpo_retv(sd);
 
 	status = &sd->base_status;
-	ShowInfo("Item bonus type: %d\n",type);
+
 	switch(type){
 		case SP_STR:
 		case SP_AGI:
@@ -3100,7 +3100,6 @@ void pc_bonus(struct map_session_data *sd,int type,int val)
 				sd->param_bonus[type-SP_STR]+=val;
 			break;
 		case SP_ATK1:
-			// TODO:
 			if(!sd->state.lr_flag) {
 				bonus = status->rhw.atk + val;
 				status->rhw.atk = cap_value(bonus, 0, USHRT_MAX);
@@ -3712,10 +3711,7 @@ void pc_bonus(struct map_session_data *sd,int type,int val)
 				sd->special_state.no_walk_delay = 1;
 			break;
 		default:
-			if (running_npc_stat_calc_event) {
-				ShowWarning("pc_bonus: unknown bonus type %d %d in OnPCStatCalcEvent!\n", type, val);
-			}
-			else if (current_equip_combo_pos > 0) {
+			if (current_equip_combo_pos > 0) {
 				ShowWarning("pc_bonus: unknown bonus type %d %d in a combo with item #%d\n", type, val, sd->inventory_data[pc_checkequip( sd, current_equip_combo_pos )]->nameid);
 			}
 			else if (current_equip_card_id > 0 || current_equip_item_index > 0) {
@@ -3752,18 +3748,12 @@ void pc_bonus2(struct map_session_data *sd,int type,int type2,int val)
 		break;
 	case SP_ADDRACE: // bonus2 bAddRace,r,x;
 		PC_BONUS_CHK_RACE(type2,SP_ADDRACE);
-		if(!sd->state.lr_flag || sd->state.lr_flag == 3) {
+		if(!sd->state.lr_flag || sd->state.lr_flag == 3)
 			sd->right_weapon.addrace[type2]+=val;
-			sd->addrace[type2] += val;
-		}
-		else if(sd->state.lr_flag == 1) {
+		else if(sd->state.lr_flag == 1)
 			sd->left_weapon.addrace[type2]+=val;
-			sd->addrace[type2] += val;
-		}
-		else if(sd->state.lr_flag == 2) {
+		else if(sd->state.lr_flag == 2)
 			sd->arrow_addrace[type2]+=val;
-			sd->addrace[type2] += val;
-		}
 		break;
 	case SP_ADDCLASS: // bonus2 bAddClass,c,x;
 		PC_BONUS_CHK_CLASS(type2,SP_ADDCLASS);
@@ -4306,10 +4296,7 @@ void pc_bonus2(struct map_session_data *sd,int type,int type2,int val)
 			sd->dropaddclass[type2] += val;
 		break;
 	default:
-		if (running_npc_stat_calc_event) {
-			ShowWarning("pc_bonus2: unknown bonus type %d %d %d in OnPCStatCalcEvent!\n", type, type2, val);
-		}
-		else if (current_equip_combo_pos > 0) {
+		if (current_equip_combo_pos > 0) {
 			ShowWarning("pc_bonus2: unknown bonus type %d %d %d in a combo with item #%d\n", type, type2, val, sd->inventory_data[pc_checkequip( sd, current_equip_combo_pos )]->nameid);
 		} 
 		else if (current_equip_card_id > 0 || current_equip_item_index > 0) {
@@ -4443,10 +4430,7 @@ void pc_bonus3(struct map_session_data *sd,int type,int type2,int type3,int val)
 		sd->norecover_state_race[type2].tick = val;
 		break;
 	default:
-		if (running_npc_stat_calc_event) {
-			ShowWarning("pc_bonus3: unknown bonus type %d %d %d %d in OnPCStatCalcEvent!\n", type, type2, type3, val);
-		}
-		else if (current_equip_combo_pos > 0) {
+		if (current_equip_combo_pos > 0) {
 			ShowWarning("pc_bonus3: unknown bonus type %d %d %d %d in a combo with item #%d\n", type, type2, type3, val, sd->inventory_data[pc_checkequip( sd, current_equip_combo_pos )]->nameid);
 		}
 		else if (current_equip_card_id > 0 || current_equip_item_index > 0) {
@@ -4529,10 +4513,7 @@ void pc_bonus4(struct map_session_data *sd,int type,int type2,int type3,int type
 		break;
 
 	default:
-		if (running_npc_stat_calc_event) {
-			ShowWarning("pc_bonus4: unknown bonus type %d %d %d %d %d in OnPCStatCalcEvent!\n", type, type2, type3, type4, val);
-		}
-		else if (current_equip_combo_pos > 0) {
+		if (current_equip_combo_pos > 0) {
 			ShowWarning("pc_bonus4: unknown bonus type %d %d %d %d %d in a combo with item #%d\n", type, type2, type3, type4, val, sd->inventory_data[pc_checkequip( sd, current_equip_combo_pos )]->nameid);
 		}
 		else if (current_equip_card_id > 0 || current_equip_item_index > 0) {
@@ -4581,10 +4562,7 @@ void pc_bonus5(struct map_session_data *sd,int type,int type2,int type3,int type
 		break;
 
 	default:
-		if (running_npc_stat_calc_event) {
-			ShowWarning("pc_bonus5: unknown bonus type %d %d %d %d %d %d in OnPCStatCalcEvent!\n", type, type2, type3, type4, type5, val);
-		}
-		else if (current_equip_combo_pos > 0) {
+		if (current_equip_combo_pos > 0) {
 			ShowWarning("pc_bonus5: unknown bonus type %d %d %d %d %d %d in a combo with item #%d\n", type, type2, type3, type4, type5, val, sd->inventory_data[pc_checkequip( sd, current_equip_combo_pos )]->nameid);
 		}
 		else if (current_equip_card_id > 0 || current_equip_item_index > 0) {
@@ -5529,7 +5507,7 @@ bool pc_isUseitem(struct map_session_data *sd,int n)
 int pc_useitem(struct map_session_data *sd,int n)
 {
 	t_tick tick = gettick();
-	int amount;
+	int amount,char_id;
 	unsigned short nameid;
 	struct script_code *script;
 	struct item item;
@@ -5556,12 +5534,26 @@ int pc_useitem(struct map_session_data *sd,int n)
 	if (item.nameid == 0 || item.amount <= 0)
 		return 0;
 
+	if( sd->state.only_walk )
+		return 0;
+
 	if( !pc_isUseitem(sd,n) )
 		return 0;
 
 	// Store information for later use before it is lost (via pc_delitem) [Paradox924X]
 	nameid = id->nameid;
 
+	ShowInfo("Used an item %d current amount %d\n", nameid, item.amount);
+
+	if( item.card[0] == CARD0_CREATE )
+	{ // Do not allow use BG - Ancient Items on invalid maps
+		char_id = MakeDWord(item.card[2],item.card[3]);
+		if( battle_config.bg_reserved_char_id && char_id == battle_config.bg_reserved_char_id && !map_bg_items(sd->bl.m) )
+			return 0;
+		if( battle_config.woe_reserved_char_id && char_id == battle_config.woe_reserved_char_id && !map_gvg_items(sd->bl.m) )
+			return 0;
+	}
+	
 	if (nameid != ITEMID_NAUTHIZ && sd->sc.opt1 > 0 && sd->sc.opt1 != OPT1_STONEWAIT && sd->sc.opt1 != OPT1_BURNING)
 		return 0;
 
@@ -5612,8 +5604,12 @@ int pc_useitem(struct map_session_data *sd,int n)
 		else
 			clif_useitemack(sd, n, 0, false);
 	}
-	if (item.card[0]==CARD0_CREATE && pc_famerank(MakeDWord(item.card[2],item.card[3]), MAPID_ALCHEMIST))
+	if( item.card[0] == CARD0_CREATE && char_id && (char_id == battle_config.bg_reserved_char_id || char_id == battle_config.woe_reserved_char_id || pc_famerank(MakeDWord(item.card[2],item.card[3]), MAPID_ALCHEMIST)) )
+	{
 	    potion_flag = 2; // Famous player's potions have 50% more efficiency
+		 if (sd->sc.data[SC_SPIRIT] && sd->sc.data[SC_SPIRIT]->val2 == SL_ROGUE)
+			 potion_flag = 3; //Even more effective potions.
+	}
 
 	//Update item use time.
 	sd->canuseitem_tick = tick + battle_config.item_use_interval;
@@ -5621,6 +5617,7 @@ int pc_useitem(struct map_session_data *sd,int n)
 		sd->canusecashfood_tick = tick + battle_config.cashfood_use_interval;
 
 	run_script(script,0,sd->bl.id,fake_nd->bl.id);
+	status_calc_pc(sd, SCO_FORCE);
 	potion_flag = 0;
 	return 1;
 }
@@ -8295,6 +8292,7 @@ void pc_close_npc(struct map_session_data *sd,int flag)
 	}
 }
 
+
 void pc_battle_info(struct map_session_data *tsd, struct map_session_data *ssd, uint16 skill_id)
 {
 	char output[256];
@@ -10783,7 +10781,7 @@ static void pc_unequipitem_sub(struct map_session_data *sd, int n, int flag) {
 	}
 
 	if (status_calc)
-		status_calc_pc(sd, SCO_NONE);
+		status_calc_pc(sd, SCO_FORCE);
 
 	if (sd->sc.data[SC_SIGNUMCRUCIS] && !battle_check_undead(sd->battle_status.race, sd->battle_status.def_ele))
 		status_change_end(&sd->bl, SC_SIGNUMCRUCIS, INVALID_TIMER);
@@ -11168,7 +11166,7 @@ void pc_check_available_item(struct map_session_data *sd, uint8 type)
 			}
 			if (!sd->storage.u.items_storage[i].unique_id && !itemdb_isstackable(nameid))
 				sd->storage.u.items_storage[i].unique_id = pc_generate_unique_id(sd);
-		}
+ 		}
 	}
 }
 

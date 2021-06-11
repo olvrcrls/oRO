@@ -62,7 +62,7 @@ static struct status_data dummy_status;
 short current_equip_item_index; /// Contains inventory index of an equipped item. To pass it into the EQUP_SCRIPT [Lupus]
 unsigned int current_equip_combo_pos; /// For combo items we need to save the position of all involved items here
 int current_equip_card_id; /// To prevent card-stacking (from jA) [Skotlex]
-bool running_npc_stat_calc_event; /// Indicate if OnPCStatCalcEvent is running.
+
 // We need it for new cards 15 Feb 2005, to check if the combo cards are insrerted into the CURRENT weapon only to avoid cards exploits
 short current_equip_opt_index; /// Contains random option index of an equipped item. [Secret]
 
@@ -679,7 +679,6 @@ void initChangeTables(void)
 	set_sc( AB_DUPLELIGHT		, SC_DUPLELIGHT		, EFST_DUPLELIGHT		, SCB_NONE );
 	set_sc( AB_SECRAMENT		, SC_SECRAMENT		, EFST_AB_SECRAMENT, SCB_NONE );
 	set_sc( AB_OFFERTORIUM		, SC_OFFERTORIUM	, EFST_OFFERTORIUM	, SCB_NONE );
-	//add_sc( AB_VITUPERATUM		, SC_AETERNA );
 
 	/* Warlock */
 	add_sc( WL_WHITEIMPRISON	, SC_WHITEIMPRISON	);
@@ -2340,8 +2339,6 @@ bool status_check_skilluse(struct block_list *src, struct block_list *target, ui
 						return false; // Works against insect and demon but not against bosses
 					if (tsc->data[SC__FEINTBOMB] && (is_boss || is_detect))
 						return false; // Works against all
-					if (tsc->data[SC__FEINTBOMB] && tsd->special_state.perfect_hiding)
-						return false;
 					if ((tsc->data[SC_CAMOUFLAGE] || tsc->data[SC_STEALTHFIELD] || tsc->data[SC_SUHIDE]) && !(is_boss || is_detect) && (!skill_id || (!flag && src)))
 						return false; // Insect, demon, and boss can detect
 				}
@@ -3646,10 +3643,6 @@ int status_calc_pc_sub(struct map_session_data* sd, enum e_status_calc_opt opt)
 	pc_delautobonus(sd, sd->autobonus, true);
 	pc_delautobonus(sd, sd->autobonus2, true);
 	pc_delautobonus(sd, sd->autobonus3, true);
-
-	running_npc_stat_calc_event = true;
-	npc_script_event(sd, NPCE_STATCALC);
-	running_npc_stat_calc_event = false;
 
 	// Parse equipment
 	for (i = 0; i < EQI_MAX; i++) {
@@ -8668,7 +8661,6 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 		if( type >= SC_COMMON_MIN && type <= SC_COMMON_MAX) // Confirmed.
 			return 0; // Immune to status ailments
 		switch( type ) {
-			case SC_FREEZE:
 			case SC_DEEPSLEEP:
 			case SC_BURNING:
 			case SC_FREEZING:
@@ -8846,11 +8838,11 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 	case SC_OVERTHRUST:
 		if (sc->data[SC_MAXOVERTHRUST])
 			return 0; // Overthrust can't take effect if under Max Overthrust. [Skotlex]
-	// Enabling mech skills when on mado gear. Uncomment to disable mado gear to use mech skills.
-	// case SC_MAXOVERTHRUST:
-	// 	if( sc->option&OPTION_MADOGEAR )
-	// 		return 0; // Overthrust and Overthrust Max cannot be used on Mado Gear [Ind]
-	// break;
+	// Enabling mech skills when on mado gear. Uncomment to disable mado gear to use WS skills.
+	//case SC_MAXOVERTHRUST:
+	//	if( sc->option&OPTION_MADOGEAR )
+	//		return 0; // Overthrust and Overthrust Max cannot be used on Mado Gear [Ind]
+	break;
 	case SC_ADRENALINE:
 		if (sc->data[SC_QUAGMIRE] ||
 			sc->data[SC_DECREASEAGI]
@@ -8873,14 +8865,13 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 	case SC_TWOHANDQUICKEN:
 		if(sc->data[SC_DECREASEAGI])
 			return 0;
-	// If the you want to enable increase agi on mado gear
 	//case SC_INCREASEAGI:
 	//case SC_CONCENTRATE:
 	case SC_SPEARQUICKEN:
 	case SC_TRUESIGHT:
-	// case SC_WINDWALK:
-	// case SC_CARTBOOST:
-	// case SC_ASSNCROS:
+	case SC_WINDWALK:
+	//case SC_CARTBOOST:
+	//case SC_ASSNCROS:
 		if (sc->option&OPTION_MADOGEAR)
 			return 0; // Mado is immune to Wind Walk, Cart Boost, etc (others above) [Ind]
 		if (sc->data[SC_QUAGMIRE])
@@ -10232,7 +10223,8 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 		{
 			struct block_list *d_bl;
 			struct status_change *d_sc;
-			// Devotion status inheritance. These 5 statuses are inherited by the devotee whenever deveoted by RG.
+			// Devotion status inheritance. These 5 statuses are inherited by the devotee whenever devoted by RG.
+
 			if( (d_bl = map_id2bl(val1)) && (d_sc = status_get_sc(d_bl)) && d_sc->count ) { // Inherits Status From Source
 				const enum sc_type types[] = { SC_AUTOGUARD, SC_DEFENDER, SC_REFLECTSHIELD, SC_ENDURE, SC_MAGICMIRROR };
 				// int i = (map_flag_gvg2(bl->m) || map_getmapflag(bl->m, MF_BATTLEGROUND))?2:3;
@@ -10909,7 +10901,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 			tick_time = 5000; // [GodLesZ] tick time
 			break;
 		case SC_MAGNETICFIELD:
-			// val3 = tick / 1000;
+			//val3 = tick / 1000;
 			tick_time = 1000; // [GodLesZ] tick time
 			val4 = tick / tick_time;
 			break;
@@ -12107,9 +12099,10 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 		npc_touchnext_areanpc(sd,false); // Run OnTouch_ on next char in range
 	if (sd && sd->status.party_id && (
 		type == SC_BLESSING || type == SC_INCREASEAGI || type == SC_CP_WEAPON || type == SC_CP_SHIELD ||
-		type == SC_CP_ARMOR || type == SC_CP_HELM || type == SC_SPIRIT || type == SC_DEVOTION || type == SC_SECRAMENT ||
-		type == SC_STRIKING || type == SC_PNEUMA || type == SC_EXPIATIO || type == SC_ASPERSIO)
-		) {
+		type == SC_CP_ARMOR || type == SC_CP_HELM || type == SC_SPIRIT || type == SC_DEVOTION || 
+		type == SC_STRIKING || type == SC_PNEUMA || type == SC_EXPIATIO || type == SC_SECRAMENT ||
+		type == SC_ASPERSIO)
+		 ) {
 		struct party_data* p = party_search(sd->status.party_id);
 		clif_party_info(p, NULL);
 	}
@@ -12354,6 +12347,7 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 
 	sc = status_get_sc(bl);
 	status = status_get_status_data(bl);
+	//ShowInfo("Status change END on id: %d.\n", type);
 
 	if(type < 0 || type >= SC_MAX || !sc || !(sce = sc->data[type]))
 		return 0;
@@ -12454,10 +12448,10 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 				status_damage(NULL,bl,damage,0,0,1,0);
 			}
 			break;
-		//case SC_PYROCLASTIC:
-		//	if(bl->type == BL_PC)
-		//		skill_break_equip(bl,bl,EQP_WEAPON,10000,BCT_SELF);
-		//	break;
+		// case SC_PYROCLASTIC:
+		// 	if(bl->type == BL_PC)
+		// 		skill_break_equip(bl,bl,EQP_WEAPON,10000,BCT_SELF);
+		// 	break;
 		case SC_RUN:
 		{
 			struct unit_data *ud = unit_bl2ud(bl);
@@ -13190,14 +13184,18 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 
 	if(opt_flag&2 && sd && !sd->state.warping && map_getcell(bl->m,bl->x,bl->y,CELL_CHKNPC))
 		npc_touch_areanpc(sd,bl->m,bl->x,bl->y); // Trigger on-touch event.
+
 	if (sd && sd->status.party_id && (
 		type == SC_BLESSING || type == SC_INCREASEAGI || type == SC_CP_WEAPON || type == SC_CP_SHIELD ||
-		type == SC_CP_ARMOR || type == SC_CP_HELM || type == SC_SPIRIT || type == SC_DEVOTION || type == SC_SECRAMENT ||
-		type == SC_STRIKING || type == SC_PNEUMA || type == SC_EXPIATIO || type == SC_ASPERSIO)
+		type == SC_CP_ARMOR || type == SC_CP_HELM || type == SC_SPIRIT || type == SC_DEVOTION ||
+		type == SC_STRIKING || type == SC_PNEUMA || type == SC_EXPIATIO ||  type == SC_SECRAMENT ||
+		type == SC_ASPERSIO
+		)
 		) {
 		struct party_data* p = party_search(sd->status.party_id);
 		clif_party_info(p, NULL);
 	}
+	
 	ers_free(sc_data_ers, sce);
 	return 1;
 }
@@ -13877,10 +13875,12 @@ TIMER_FUNC(status_change_timer){
 			map_freeblock_lock();
 			if (!status_charge(bl, 0, 50))
 				status_zap(bl, 0, status->sp);
-			
+
 			if (sc->data[type])
 				sc_timer_next(1000 + tick);
 			map_freeblock_lock();
+
+			sc_timer_next(1000 + tick);
 			return 0;
 		}
 		break;
@@ -14158,13 +14158,13 @@ TIMER_FUNC(status_change_timer){
 			struct block_list *star_caster = map_id2bl(sce->val2);
 			struct skill_unit *star_aoe = (struct skill_unit *)map_id2bl(sce->val3);
 
+			//if (!star_caster || status_isdead(star_caster) || star_caster->m != bl->m)
 			if (star_caster == nullptr || status_isdead(star_caster) || star_caster->m != bl->m || star_aoe == nullptr)
 				break;
 
 			sc_timer_next(500 + tick);
-			
 
-			// Attack after timer to prevent errors
+			// Attack after timer to prevent errors.
 			skill_attack(BF_WEAPON, star_caster, &star_aoe->bl, bl, SJ_BOOKOFCREATINGSTAR, sce->val1, tick, 0);
 			return 0;
 		}
