@@ -60,11 +60,11 @@ OnAtcommand:
 
 									getitem RestockList[.@i],.@amount;
 									storagedelitem RestockList[.@i],.@amount; // successful @restock
-									message strcharinfo(0), "Successfully restocked your items.";
 								} else {
 									dispbottom "WARNING: You have no more "+getitemname(RestockList[.@i])+" in your storage.", 0xFDFD96;
 								}
 							}
+							message strcharinfo(0), "Successfully restocked your items.";
 							end;
 						}
 					} else {
