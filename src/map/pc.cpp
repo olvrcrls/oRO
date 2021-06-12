@@ -1026,7 +1026,21 @@ int pc_equippoint_sub(struct map_session_data *sd,struct item_data* id){
 int pc_equippoint(struct map_session_data *sd,int n){
 	nullpo_ret(sd);
 
-	return pc_equippoint_sub(sd,sd->inventory_data[n]);
+	int ep = pc_equippoint_sub(sd, sd->inventory_data[n]);
+	int char_id = 0;
+
+	// Costume item edit
+	if (battle_config.reserved_costume_id &&
+		sd->inventory.u.items_inventory[n].card[0] == CARD0_CREATE &&
+		(char_id = MakeDWord(sd->inventory.u.items_inventory[n].card[2], sd->inventory.u.items_inventory[n].card[3])) == battle_config.reserved_costume_id)
+	{ // Costume Item - Converted
+		if (ep&EQP_HEAD_TOP) { ep &= ~EQP_HEAD_TOP; ep |= EQP_COSTUME_HEAD_TOP; }
+		if (ep&EQP_HEAD_LOW) { ep &= ~EQP_HEAD_LOW; ep |= EQP_COSTUME_HEAD_LOW; }
+		if (ep&EQP_HEAD_MID) { ep &= ~EQP_HEAD_MID; ep |= EQP_COSTUME_HEAD_MID; }
+		if (ep&EQP_GARMENT) { ep &= ~EQP_GARMENT; ep |= EQP_COSTUME_GARMENT; }
+	} // End edit
+
+	return ep;
 }
 
 /**
@@ -1538,8 +1552,14 @@ uint8 pc_isequip(struct map_session_data *sd,int n)
 	}
 
 	//Not equipable by class. [Skotlex]
-	if (!(1ULL << (sd->class_&MAPID_BASEMASK)&item->class_base[(sd->class_&JOBL_2_1) ? 1 : ((sd->class_&JOBL_2_2) ? 2 : 0)]))
-		return ITEM_EQUIP_ACK_FAIL;
+		// costumes should ignore class restrictions
+	if ((!(item->equip & EQP_COSTUME_HELM) && !(item->equip & EQP_COSTUME_GARMENT)) 
+		&& !(
+		(battle_config.reserved_costume_id &&
+			sd->inventory.u.items_inventory[n].card[0] == CARD0_CREATE &&
+			(MakeDWord(sd->inventory.u.items_inventory[n].card[2], sd->inventory.u.items_inventory[n].card[3])) == battle_config.reserved_costume_id))
+		)
+			if (!(1ULL << (sd->class_&MAPID_BASEMASK)&item->class_base[(sd->class_&JOBL_2_1) ? 1 : ((sd->class_&JOBL_2_2) ? 2 : 0)]))
 
 	if (!pc_isItemClass(sd, item))
 		return ITEM_EQUIP_ACK_FAIL;
@@ -2795,8 +2815,10 @@ bool pc_addautobonus(std::vector<s_autobonus> &bonus, const char *script, short 
 	entry.active = INVALID_TIMER;
 	entry.atk_type = flag;
 	entry.pos = pos;
-	entry.bonus_script = aStrdup(script);
-	entry.other_script = (other_script ? aStrdup(other_script) : NULL);
+	if (!(pos & EQP_COSTUME_HELM) && !(pos & EQP_COSTUME_GARMENT)) {
+		entry.bonus_script = aStrdup(script);
+		entry.other_script = (other_script ? aStrdup(other_script) : NULL);
+	}
 
 	bonus.push_back(entry);
 
@@ -2864,6 +2886,7 @@ void pc_exeautobonus(struct map_session_data *sd, std::vector<s_autobonus> *bonu
 	if (autobonus->active != INVALID_TIMER)
 		delete_timer(autobonus->active, pc_endautobonus);
 
+
 	if( autobonus->other_script )
 	{
 		int j;
@@ -2873,7 +2896,7 @@ void pc_exeautobonus(struct map_session_data *sd, std::vector<s_autobonus> *bonu
 			if(sd->equip_index[j] >= 0)
 				equip_pos_idx |= sd->inventory.u.items_inventory[sd->equip_index[j]].equip;
 		}
-		if((equip_pos_idx&autobonus->pos) == autobonus->pos)
+		if((equip_pos_idx&autobonus->pos) == autobonus->pos && !(autobonus->pos & EQP_COSTUME_HELM))
 			script_run_autobonus(autobonus->other_script,sd,autobonus->pos);
 	}
 
@@ -5142,7 +5165,9 @@ enum e_additem_result pc_additem(struct map_session_data *sd,struct item *item,i
 
 	log_pick_pc(sd, log_type, amount, &sd->inventory.u.items_inventory[i]);
 
-	sd->weight += w;
+	if (!(id->equip & EQP_COSTUME_HELM))
+		sd->weight += w;
+
 	clif_updatestatus(sd,SP_WEIGHT);
 	//Auto-equip
 	if(id->flag.autoequip)
@@ -5186,7 +5211,9 @@ char pc_delitem(struct map_session_data *sd,int n,int amount,int type, short rea
 	log_pick_pc(sd, log_type, -amount, &sd->inventory.u.items_inventory[n]);
 
 	sd->inventory.u.items_inventory[n].amount -= amount;
-	sd->weight -= sd->inventory_data[n]->weight*amount ;
+	if (!(sd->inventory_data[n]->equip & EQP_COSTUME_HELM))
+		sd->weight -= sd->inventory_data[n]->weight*amount;
+		
 	if( sd->inventory.u.items_inventory[n].amount <= 0 ){
 		if(sd->inventory.u.items_inventory[n].equip)
 			pc_unequipitem(sd,n,2|(!(type&4) ? 1 : 0));
@@ -10710,7 +10737,8 @@ bool pc_equipitem(struct map_session_data *sd,short n,int req_pos,bool equipswit
 		}
 	}
 
-	status_calc_pc(sd,SCO_FORCE);
+	if (!(pos & EQP_COSTUME_HELM) && !(pos & EQP_COSTUME_GARMENT))
+		status_calc_pc(sd,SCO_FORCE);
 	if (flag) //Update skill data
 		clif_skillinfoblock(sd);
 

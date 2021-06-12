@@ -4,7 +4,7 @@
 #include "instance.hpp"
 
 #include <stdlib.h>
-
+#include <math.h>
 #include "../common/cbasetypes.hpp"
 #include "../common/db.hpp"
 #include "../common/ers.hpp"  // ers_destroy
@@ -550,6 +550,26 @@ int instance_addmap(unsigned short instance_id) {
 	}
 
 	return im->cnt_map;
+}
+
+/**
+ * Fills outname with the name of the instance map name
+ * @param map_id: Mapid to use
+ * @param instance_id: Instance id
+ * @param outname: Pointer to allocated memory that will be filled in
+ */
+void instance_generate_mapname(int map_id, int instance_id, char outname[MAP_NAME_LENGTH]) {
+
+#if MAX_MAP_PER_SERVER > 9999
+	#error This algorithm is only safe for up to 9999 maps, change at your own risk.
+#endif
+	// Safe up to 9999 maps per map-server
+	static const int prefix_length = 4;
+	// Full map name length - prefix length - seperator character - zero termination
+	static const int suffix_length = MAP_NAME_LENGTH - prefix_length - 1 - 1;
+	static const int prefix_limit = pow(10, prefix_length);
+	static const int suffix_limit = pow(10, suffix_length);
+	safesnprintf(outname, MAP_NAME_LENGTH, "%0*u#%0*u", prefix_length, map_id % prefix_limit, suffix_length, instance_id % suffix_limit);
 }
 
 

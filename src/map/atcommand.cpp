@@ -1352,7 +1352,7 @@ ACMD_FUNC(heal)
 ACMD_FUNC(item)
 {
 	char item_name[100];
-	int number = 0, bound = BOUND_NONE;
+	int number = 0, bound = BOUND_NONE, costume = 0;
 	char flag = 0;
 	struct item item_tmp;
 	struct item_data *item_data[10];
@@ -1387,10 +1387,30 @@ ACMD_FUNC(item)
 	itemlist = strtok(item_name, ":");
 	while (itemlist != NULL && j<10) {
 		if ((item_data[j] = itemdb_searchname(itemlist)) == NULL &&
-		    (item_data[j] = itemdb_exists(atoi(itemlist))) == NULL){
+		    (item_data[j] = itemdb_exists(atoi(itemlist))) == NULL) {
 			clif_displaymessage(fd, msg_txt(sd,19)); // Invalid item ID or name.
 			return -1;
 		}
+
+		// Costume item edit
+		if (!strcmpi(command + 1, "costumeitem")) {
+			if (!battle_config.reserved_costume_id) {
+				clif_displaymessage(fd, "Costume convertion is disabled.");
+				return -1;
+			}
+			if (!(item_data[j]->equip&EQP_HEAD_LOW) &&
+				!(item_data[j]->equip&EQP_HEAD_MID) &&
+				!(item_data[j]->equip&EQP_HEAD_TOP) &&
+				!(item_data[j]->equip&EQP_COSTUME_HEAD_LOW) &&
+				!(item_data[j]->equip&EQP_COSTUME_HEAD_MID) &&
+				!(item_data[j]->equip&EQP_COSTUME_HEAD_TOP))
+			{
+				clif_displaymessage(fd, "You cannot costume this item. Costume only work for headgears.");
+				return -1;
+			}
+			costume = 1;
+		} // end edit
+
 		itemlist = strtok(NULL, ":"); //next itemline
 		j++;
 	}
@@ -1412,6 +1432,12 @@ ACMD_FUNC(item)
 				item_tmp.nameid = item_id;
 				item_tmp.identify = 1;
 				item_tmp.bound = bound;
+				// Costume item edit
+				if (costume == 1) {
+					item_tmp.card[0] = CARD0_CREATE;
+					item_tmp.card[2] = GetWord(battle_config.reserved_costume_id, 0);
+					item_tmp.card[3] = GetWord(battle_config.reserved_costume_id, 1);
+				}
 				if ((flag = pc_additem(sd, &item_tmp, get_count, LOG_TYPE_COMMAND)))
 					clif_additem(sd, 0, 0, flag);
 			}
@@ -10470,7 +10496,7 @@ ACMD_FUNC(partybuff)
 		clif_displaymessage(fd, msg_txt(sd, 1073)); // Displaying party member's buffs enabled.
 		clif_displaymessage(fd, "You will now receive party buff information:");
 		clif_displaymessage(fd, "F = Full Chemical Protection");
-		clif_displaymessage(fd, "+ = Blessing, - = Agility Up, \u00b1 = Blessing and Agility Up");
+		clif_displaymessage(fd, "+ = Blessing, - = Agility Up");
 		clif_displaymessage(fd, "$ = Sacrament, ? = Aspersio");
 		clif_displaymessage(fd, "x = Expiatio, D = Devotion");
 		clif_displaymessage(fd, "P = Pneuma, ! = Striking");
@@ -10532,6 +10558,7 @@ void atcommand_basecommands(void) {
 		ACMD_DEF(heal),
 		ACMD_DEF(item),
 		ACMD_DEF(item2),
+		ACMD_DEF2("costumeitem", item),
 		ACMD_DEF2("itembound",item),
 		ACMD_DEF2("itembound2",item2),
 		ACMD_DEF(itemreset),

@@ -618,6 +618,7 @@ struct Battle_Config
 	int homunculus_evo_intimacy_need;
 	int homunculus_evo_intimacy_reset;
 	int monster_loot_search_type;
+	int reserved_costume_id; // Costume ID to be edited
 	int feature_roulette;
 	int monster_hp_bars_info;
 	int min_body_style;

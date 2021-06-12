@@ -3386,7 +3386,8 @@ bool status_calc_weight(struct map_session_data *sd, enum e_status_calc_weight_o
 		for(i = 0; i < MAX_INVENTORY; i++) {
 			if (!sd->inventory.u.items_inventory[i].nameid || sd->inventory_data[i] == NULL)
 				continue;
-			sd->weight += sd->inventory_data[i]->weight * sd->inventory.u.items_inventory[i].amount;
+			if (!(sd->inventory_data[i]->equip & EQP_COSTUME_HELM))
+				sd->weight += sd->inventory_data[i]->weight * sd->inventory.u.items_inventory[i].amount;
 		}
 	}
 
@@ -3797,7 +3798,7 @@ int status_calc_pc_sub(struct map_session_data* sd, enum e_status_calc_opt opt)
 		current_equip_combo_pos = 0;
 		if (index < 0)
 			continue;
-		if (i == EQI_AMMO)
+		if ((i == EQI_AMMO) || (i == EQI_COSTUME_HEAD_TOP) || (i == EQI_COSTUME_HEAD_MID) || (i == EQI_COSTUME_HEAD_LOW) || (i == EQI_COSTUME_GARMENT)) // Costume item edit
 			continue;
 		if (pc_is_same_equip_index((enum equip_index)i, sd->equip_index, index))
 			continue;
@@ -13178,8 +13179,7 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 					status_calc_bl(bl, calc_flag);
 					break;
 			}
-		} else
-			status_calc_bl(bl, calc_flag, SCO_FORCE);
+		}
 	}
 
 	if(opt_flag&4) // Out of hiding, invoke on place.

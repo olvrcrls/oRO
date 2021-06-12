@@ -7619,12 +7619,14 @@ void clif_party_info(struct party_data* p, struct map_session_data *sd)
 	{
 		if ((target = p->data[i].sd)) {
 			strcpy(output, "(");
-			if (target->sc.data[SC_BLESSING] && target->sc.data[SC_INCREASEAGI]) {
-				strcat(output, "\u00b1");
-			} else {
-				if (target->sc.data[SC_BLESSING]) strcat(output, "+");
-				if (target->sc.data[SC_INCREASEAGI]) strcat(output, "-");
-			} // check if target has both buffs of bless and agi first
+			//if (target->sc.data[SC_BLESSING] && target->sc.data[SC_INCREASEAGI]) {
+			//	strcat(output, "\u00b1");
+			//} else {
+			//	if (target->sc.data[SC_BLESSING]) strcat(output, "+");
+			//	if (target->sc.data[SC_INCREASEAGI]) strcat(output, "-");
+			//} // check if target has both buffs of bless and agi first
+			if (target->sc.data[SC_BLESSING]) strcat(output, "+");
+			if (target->sc.data[SC_INCREASEAGI]) strcat(output, "-");
 
 			if (target->sc.data[SC_STRIKING]) strcat(output, "!");
 			if (target->sc.data[SC_PNEUMA]) strcat(output, "P");
