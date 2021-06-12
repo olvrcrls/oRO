@@ -319,12 +319,12 @@ TIMER_FUNC(battle_delay_damage_sub){
 				status_fix_damage(target, target, dat->damage, dat->delay, dat->skill_id);
 				map_freeblock_unlock();
 			}
-			struct map_session_data *sd = BL_CAST(BL_PC, src);
+		}
+		struct map_session_data *sd = BL_CAST(BL_PC, src);
 
-			if (sd && --sd->delayed_damage == 0 && sd->state.hold_recalc) {
-				sd->state.hold_recalc = false;
-				status_calc_pc(sd, SCO_FORCE);
-			}
+		if (sd && --sd->delayed_damage == 0 && sd->state.hold_recalc) {
+			sd->state.hold_recalc = false;
+			status_calc_pc(sd, SCO_FORCE);
 		}
 	}
 
