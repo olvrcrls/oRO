@@ -12347,7 +12347,6 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 
 	sc = status_get_sc(bl);
 	status = status_get_status_data(bl);
-	//ShowInfo("Status change END on id: %d.\n", type);
 
 	if(type < 0 || type >= SC_MAX || !sc || !(sce = sc->data[type]))
 		return 0;
@@ -12441,13 +12440,13 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 		}
 			break;
 		case SC_GRANITIC_ARMOR:
-			{
-				int damage = status->max_hp*sce->val3/100;
-				if(status->hp < damage) // to not kill him
-					damage = status->hp-1;
-				status_damage(NULL,bl,damage,0,0,1,0);
-			}
-			break;
+		{
+			int damage = status->max_hp*sce->val3/100;
+			if(status->hp < damage) // to not kill him
+			damage = status->hp-1;
+			status_damage(NULL,bl,damage,0,0,1,0);
+		}
+		break;
 		// case SC_PYROCLASTIC:
 		// 	if(bl->type == BL_PC)
 		// 		skill_break_equip(bl,bl,EQP_WEAPON,10000,BCT_SELF);
@@ -13167,16 +13166,20 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 			}
 		}
 	}
+
 	if (calc_flag) {
-		switch (type) {
-		case SC_MAGICPOWER:
-			//If Mystical Amplification ends, MATK is immediately recalculated
-			status_calc_bl_(bl, calc_flag, SCO_FORCE);
-			break;
-		default:
-			status_calc_bl(bl, calc_flag);
-			break;
-		}
+		if (sd) {
+			switch (type) {
+				case SC_MAGICPOWER:
+					//If Mystical Amplification ends, MATK is immediately recalculated
+					status_calc_bl_(bl, calc_flag, SCO_FORCE);
+					break;
+				default:
+					status_calc_bl(bl, calc_flag);
+					break;
+			}
+		} else
+			status_calc_bl(bl, calc_flag, SCO_FORCE);
 	}
 
 	if(opt_flag&4) // Out of hiding, invoke on place.
