@@ -74,6 +74,7 @@
 	sc_end	SC_TOXIN;
 	sc_end	SC_OBLIVIONCURSE;
 	sc_end	SC_STEELBODY;
+	sc_end	SC_DECREASEAGI;
 
 //	give players buff ... don't give too much otherwise player wanna spam
 	.@time = 300000; // the buff last 5 minutes
