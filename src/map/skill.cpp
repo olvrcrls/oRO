@@ -6898,7 +6898,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 
 	case TK_JUMPKICK:
 		/* Check if the target is an enemy; if not, skill should fail so the character doesn't unit_movepos (exploitable) */
-		if( battle_check_target(src, bl, BCT_ENEMY) > 0 ) {
+		// if( battle_check_target(src, bl, BCT_ENEMY) > 0 ) {
+		if ( battle_check_target(src, bl, BCT_ENEMY) > 0 || battle_check_target(src, bl, BCT_ALLY) > 0) {
 			if( unit_movepos(src, bl->x, bl->y, 2, 1) ) {
 				skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,flag);
 				clif_blown(src);
