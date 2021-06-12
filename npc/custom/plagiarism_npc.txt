@@ -2,9 +2,11 @@
 set .@skill_level,getskilllv( "RG_PLAGIARISM" );
 mes "[Copy Cat]";
 mes "I provide skill to Stalker Class.";
+
 if( !.@skill_level ){
 mes "[Copy Cat]";
 mes "But only who have ^FF0000Plagiarism skill^000000 can use this services.";
+close;
 
 }else{
     mes "";
@@ -16,8 +18,8 @@ mes "But only who have ^FF0000Plagiarism skill^000000 can use this services.";
         close;
     }
     mes "[Copy Cat]";
-    mes "are you sure you want to copy "+ .skill$[.@menu * 3] +"?";
-    mes "you'll need to relogin again";
+    mes "Are you sure you want to copy "+ .skill$[.@menu * 3] +"?";
+    mes "You'll need to RELOGIN your character again";
     next;
     if ( select ( "Yes", "No" ) == 2 ) close;
     set CLONE_SKILL, .skill$[.@menu * 3 +1];
@@ -29,9 +31,9 @@ mes "But only who have ^FF0000Plagiarism skill^000000 can use this services.";
 OnInit:
     setarray .skill$,
 	"Flying Side Kick", 421, 7,
-        "Fire Bolt", 19, 10,
-        "Cold Bolt", 14, 10,
-        "Lightning Bolt", 20, 10,
+    "Fire Bolt", 19, 10,
+    "Cold Bolt", 14, 10,
+    "Lightning Bolt", 20, 10,
 	"Jupitel Thunder", 84, 5,
 	"Lord Of Vermillion", 85, 10,
 	"Storm Gust", 89, 10,
@@ -46,4 +48,4 @@ OnInit:
 }
 
 // Duplicates
-askald,119,131,4	duplicate(Plagiarism Master)	Plagiarism Master#ask	4_F_GELKA
+askald,119,131,4	duplicate(Plagiarism Master)	Plagiarism Master#ask	803
