@@ -33453,6 +33453,8 @@ Body:
     DamageFlags:
       NoDamage: true
     Cooldown: 2000
+    Flags:
+      AllowOnMado: true
     FixedCastTime: 60
     CastTimeFlags:
       IgnoreDex: true
