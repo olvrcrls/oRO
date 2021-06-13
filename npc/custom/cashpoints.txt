@@ -10,6 +10,7 @@ OnPointGet:
 		set @consecutive_hour,0;
 		if(.@mes$=="") {
 			dispbottom set(.@mes$,"You are not receiving reward points because you are either vending, chatting, or idle.");
+			end;
 		}
 	}
 
