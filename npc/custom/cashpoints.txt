@@ -1,3 +1,10 @@
+//===== rAthena Script ======================================= 
+//= Hourly AFK Rewards
+//===== Changelogs: ==========================================
+//= 1.0 Initial release
+//============================================================
+//= TODO: Have an IP check to only reward one account.
+
 -	script	hourlypoints	-1,{
 //--Start of the Script
 OnPCLoginEvent:
