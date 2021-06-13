@@ -668,7 +668,7 @@ void bg_team_rewards(int bg_id, int nameid, int amount, int kafrapoints, int que
 	}
 
 	memset(&it,0,sizeof(it));
-	if( nameid == 7804 || nameid == 7828 || nameid == 7829 || nameid == 7773 )
+	if( nameid == 7804 || nameid == 7828 || nameid == 7829 || nameid == 7773 || nameid == 6187 || nameid == 7179)
 	{
 		it.nameid = nameid;
 		it.identify = 1;
