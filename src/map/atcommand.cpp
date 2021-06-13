@@ -1989,7 +1989,7 @@ ACMD_FUNC(go)
 		{ MAP_EINBECH,     172, 129 }, // 21=Einbech
 		{ MAP_HUGEL,        96, 145 }, // 22=Hugel
 		{ MAP_RACHEL,      130, 110 }, // 23=Rachel
-		{ MAP_VEINS,       207, 122 }, // 24=Veins
+		{ MAP_VEINS,       202, 122 }, // 24=Veins
 		{ MAP_MOSCOVIA,    223, 184 }, // 25=Moscovia
 		{ MAP_MIDCAMP,     180, 240 }, // 26=Midgard Camp
 		{ MAP_MANUK,       282, 138 }, // 27=Manuk
