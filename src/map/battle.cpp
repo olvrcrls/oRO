@@ -3257,7 +3257,7 @@ static void battle_calc_skill_base_damage(struct Damage* wd, struct block_list *
 			}
 			break;
 		case NC_SELFDESTRUCTION: {
-				int damagevalue = (skill_lv + 1) * ((sd ? pc_checkskill(sd,NC_MAINFRAME) : 0) + 8) * (status_get_sp(src) + sstatus->vit);
+				int damagevalue = (skill_lv + 1) * ((sd ? pc_checkskill(sd,NC_MAINFRAME) : 0) + 8) * (status_get_sp(src) + sstatus->vit) * 2;
 
 				if(status_get_lv(src) > 100)
 					damagevalue = damagevalue * status_get_lv(src) / 100;
@@ -4186,8 +4186,6 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 					skillratio += -100 + (hp + sp) / 4;
 				RE_LVL_DMOD(100);
 			}
-			if (sc->data[SC_GT_REVITALIZE])
-				skillratio += skillratio * 30 / 100;
 			break;
 		case SR_SKYNETBLOW:
 			//ATK [{(Skill Level x 80) + (Caster AGI)} x Caster Base Level / 100] %
@@ -4232,8 +4230,6 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			else
 				skillratio += -100 + 500 * skill_lv;
 			RE_LVL_DMOD(100);
-			if (sc->data[SC_GT_REVITALIZE])
-				skillratio += skillratio * 30 / 100;
 			break;
 		case SR_GENTLETOUCH_QUIET:
 			skillratio += -100 + 100 * skill_lv + status_get_dex(src);

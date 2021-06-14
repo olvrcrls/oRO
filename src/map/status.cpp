@@ -10935,7 +10935,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 			val2 = 2 * val1; // MaxHP: [(Skill Level * 2)]%
 			val3 = val1 * 30 + 50; // Natural HP recovery increase: [(Skill Level x 30) + 50] %
 			// The stat def is not shown in the status window and it is processed differently
-			val4 = val1 * 20; // STAT DEF increase
+			val4 = (status->vit / 4) * val1; // STAT DEF increase
 			break;
 		case SC_PYROTECHNIC_OPTION:
 			val2 = 60; // Eatk Renewal (Atk2)
