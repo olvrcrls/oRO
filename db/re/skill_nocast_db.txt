@@ -99,7 +99,10 @@
 2453,8	//SO_VACUUM_EXTREME
 2300,8	//SC_DIMENSIONDOOR
 5063,8	//WE_CALLALLFAMILY
-5023,8	//SU_LOPE
+// 5023,8	//SU_LOPE
+5052,8	//SU_SPIRITOFLIFE
+5054,8	//SU_SPIRITOFLAND
+5056,8	//SU_SPIRITOFSEA
 462,8	//SL_KAIZEL
 
 //----------------------------------------------------------------------------
