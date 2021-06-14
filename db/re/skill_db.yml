@@ -23993,25 +23993,25 @@ Body:
     Element: Weapon
     SplashArea:
       - Level: 1
-        Area: 1
+        Area: 3
       - Level: 2
-        Area: 1
+        Area: 3
       - Level: 3
-        Area: 1
+        Area: 3
       - Level: 4
-        Area: 1
+        Area: 3
       - Level: 5
-        Area: 1
+        Area: 3
       - Level: 6
-        Area: 2
+        Area: 5
       - Level: 7
-        Area: 2
+        Area: 5
       - Level: 8
-        Area: 2
+        Area: 5
       - Level: 9
-        Area: 2
+        Area: 5
       - Level: 10
-        Area: 2
+        Area: 5
     CopyFlags:
       Skill:
         Reproduce: true
@@ -24662,10 +24662,20 @@ Body:
     Hit: Single
     HitCount: 1
     CastCancel: true
-    CastTime: 1000
+    CastTime: 2000
     AfterCastActDelay: 1000
     Duration1: 240000
-    Cooldown: 1000
+    Cooldown:
+      - Level: 1
+        Time: 200000
+      - Level: 2
+        Time: 180000
+      - Level: 3
+        Time: 160000
+      - Level: 4
+        Time: 140000
+      - Level: 5
+        Time: 120000
     FixedCastTime: 1000
     Requires:
       SpCost:
@@ -24679,7 +24689,7 @@ Body:
           Amount: 70
         - Level: 5
           Amount: 80
-      SpiritSphereCost: 1
+      SpiritSphereCost: 2
   - Id: 2517
     Name: SR_HOWLINGOFLION
     Description: Howling of Lion
