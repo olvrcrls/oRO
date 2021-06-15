@@ -1,0 +1,1 @@
+UPDATE `item_db_re` SET `script` = 'bonus2 bSubRace,RC_DemiHuman,5; bonus2 bSubRace,RC_Player,5; bonus2 bAddSize,Size_Medium,10; if(getrefine()>=12){ bonus bShortWeaponDamageReturn,5; }' WHERE (`id` = '18910');
