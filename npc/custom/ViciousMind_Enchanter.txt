@@ -35,6 +35,8 @@
 //= NovaRo for their Information regarding the possible Options.
 //============================================================
 askald,36,172,4	script	Vicious Mind Enchanter	101,{
+disable_command;
+disable_items;
 
 mes .n$;
 mes "Greetings, "+strcharinfo(0)+"!";
