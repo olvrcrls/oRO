@@ -32383,6 +32383,7 @@ Body:
     Range: 9
     Hit: Single
     HitCount: 1
+    Cooldown: 1000
     Element:
       - Level: 1
         Element: Earth
@@ -32396,9 +32397,9 @@ Body:
         Element: Ghost
     CastCancel: true
     CastTime: 2000
-    AfterCastActDelay: 1000
+    AfterCastActDelay: 1500
     Duration2: 120000
-    FixedCastTime: -1
+    FixedCastTime: 500
     Requires:
       SpCost: 40
   - Id: 5027
