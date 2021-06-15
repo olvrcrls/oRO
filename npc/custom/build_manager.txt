@@ -1,36 +1,46 @@
 askald,137,125,3	script	Build Manager	808,{
 function ManageBuild;
 
+mes .n$;
 mes "Select Your Services";
 next;
 switch( select( ( .BMMode & 1 )?"^FF0000Save & Switch Builds^000000":"",
 				( .BMMode & 2 )?"^0000FFReset Status^000000":"",	
 				( .BMMode & 4 )?"^0000FFReset Skills^000000":"")){
 	Case 1:
-		for( set .@i,1; .@i <= .MaxSlots; set .@i,.@i + 1 )
+		if (BaseLevel == 175) {
+			for( set .@i,1; .@i <= .MaxSlots; set .@i,.@i + 1 )
 			set .@Menu$,.@Menu$ + (( getd( "Slot_"+.@i+"$" ) == "" )?"^FF0000Empty Slot^000000":getd( "Slot_"+.@i+"$" ) )+":";
-		set .@Slot,select( .@Menu$ );
-		do{
-			next;
-			mes "Build : ^FF0000"+(( getd( "Slot_"+.@Slot+"$" ) == "" )?"Slot "+.@Slot:getd( "Slot_"+.@Slot+"$" ) )+"^000000";
-			mes "STR - ^0000FF"+getd( "STR_"+.@Slot )+"^000000      INT - ^0000FF"+getd( "INT_"+.@Slot )+"^000000";
-			mes "AGI - ^0000FF"+getd( "AGI_"+.@Slot )+"^000000      DEX - ^0000FF"+getd( "DEX_"+.@Slot )+"^000000";
-			mes "VIT - ^0000FF"+getd( "VIT_"+.@Slot )+"^000000      LUK - ^0000FF"+getd( "LUK_"+.@Slot )+"^000000";
-			mes " ";
-			mes "Remaining Points : ^0000FF"+getd( "STATS_"+.@Slot )+"^000000";
-			set .@Option,select(( getd( "Slot_"+.@Slot+"$" ) == "" )?"":"^0000FFSwitch",
-								( getd( "Slot_"+.@Slot+"$" ) == "" )?"Save":"",
-								( getd( "Slot_"+.@Slot+"$" ) == "" )?"":"^FF0000Clear" );
-			ManageBuild( .@Slot,.@Option);
-		}while( .@Option != 1 );
+			set .@Slot,select( .@Menu$ );
+			do{
+				next;
+				mes .n$;
+				mes "Build : ^FF0000"+(( getd( "Slot_"+.@Slot+"$" ) == "" )?"Slot "+.@Slot:getd( "Slot_"+.@Slot+"$" ) )+"^000000";
+				mes "STR - ^0000FF"+getd( "STR_"+.@Slot )+"^000000      INT - ^0000FF"+getd( "INT_"+.@Slot )+"^000000";
+				mes "AGI - ^0000FF"+getd( "AGI_"+.@Slot )+"^000000      DEX - ^0000FF"+getd( "DEX_"+.@Slot )+"^000000";
+				mes "VIT - ^0000FF"+getd( "VIT_"+.@Slot )+"^000000      LUK - ^0000FF"+getd( "LUK_"+.@Slot )+"^000000";
+				mes " ";
+				mes "Remaining Points : ^0000FF"+getd( "STATS_"+.@Slot )+"^000000";
+				set .@Option,select(( getd( "Slot_"+.@Slot+"$" ) == "" )?"":"^0000FFSwitch",
+									( getd( "Slot_"+.@Slot+"$" ) == "" )?"Save":"",
+									( getd( "Slot_"+.@Slot+"$" ) == "" )?"":"^FF0000Clear" );
+				ManageBuild( .@Slot,.@Option);
+			}while( .@Option != 1 );
+		} else {
+			mes .n$;
+			mes "You are still weak. Come back when you're ^FF0000level 175^000000";
+			close;
+		}
 		break;
 	Case 2:
 		ResetStatus;
-		mes "Status has been Reseted.";
+		mes .n$;
+		mes "Status has been reset.";
 		break;
 	Case 3:
 		ResetSkill;
-		mes "Skills has been Reseted.";
+		mes .n$;
+		mes "Skills has been reset.";
 		break;
 }
 close;
@@ -57,7 +67,7 @@ switch( getarg(1) ){
 			setd( "LUK_"+getarg(0) ),readparam(bLuk);
 			setd( "STATS_"+getarg(0) ),StatusPoint;
 		if( .Length[0] < .Length[1] && .Length[0] ){
-			mes "Input a ^FF0000Name^000000 for this Slot.";
+			mes "Input a ^FF0000Name^000000 for this slot.";
 			mes "Name Length : "+.Length[0]+" ~ "+.Length[1]+" Chars";
 			do{
 				input getd( "Slot_"+getarg(0)+"$" );
@@ -65,10 +75,10 @@ switch( getarg(1) ){
 		}else{
 			setd( "Slot_"+getarg(0)+"$" ),"Build "+getarg(0);
 		}
-		message strcharinfo(0),"Build has been ^FF0000Saved^000000.";
+		message strcharinfo(0),"Build has been ^FF0000SAVED^000000.";
 		break;
 	Case 3:	//	Remove Build
-		message strcharinfo(0),"Build has been ^FF0000Cleared^000000.";
+		message strcharinfo(0),"Build has been ^FF0000CLEARED^000000.";
 			setd( "STR_"+getarg(0) ),0;
 			setd( "AGI_"+getarg(0) ),0;
 			setd( "VIT_"+getarg(0) ),0;
@@ -93,6 +103,8 @@ set .BMMode,7;
 set .MaxSlots,3;
 // Enable Stats Slot Rename + Max Name Length ( 0 = Disable )
 setarray .Length,4,26; // Min. ~ Max. Words.
+
+set .n$, "[Build Manager]";
 end;
 
 }
