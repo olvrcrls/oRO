@@ -34,6 +34,8 @@
 2300,1	//SC_DIMENSIONDOOR
 2301,1  //SC_CHAOSPANIC
 2303,1	//SC_BLOODYLUST
+219,1	//RG_INTIMIDATE
+489,1	//TAROTCARD
 
 //----------------------------------------------------------------------------
 // PVP
