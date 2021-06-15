@@ -104,8 +104,8 @@ OnAtcommand:
 								continue;
 							} else if(inarray(RestockList[0],.@item) >= 0) {
 								continue;
-							} else if(.@quantity < 1 || .@quantity > 500) {
-								.@quantity = 500;
+							} else if(.@quantity < 1 || .@quantity > 1000) {
+								.@quantity = 1000;
 							}
 
 							setarray RestockList[getarraysize(RestockList)],.@item;
@@ -151,8 +151,8 @@ OnAtcommand:
 					} else if(inarray(RestockList[0],.@item) >= 0) {
 						dispbottom "Item '"+getitemname(.@item)+"' (id:"+.@item+") already in list.", 0xFDFD96;
 						break;
-					} else if(.@quantity < 1 || .@quantity > 500) {
-						dispbottom "Please enter valid quantity value (1 - 500)", 0xFDFD96;
+					} else if(.@quantity < 1 || .@quantity > 1000) {
+						dispbottom "Please enter valid quantity value (1 - 1000)", 0xFDFD96;
 						break;
 					}
 					//passed all checks
