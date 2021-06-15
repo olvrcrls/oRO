@@ -93,8 +93,9 @@ OnAtcommand:
 					} else if (strtolower(.@atcmd_parameters$[0]) == "snapshot") {
 						deletearray RestockList[0],getarraysize(RestockList);
 						deletearray RestockAmountList[0],getarraysize(RestockAmountList);
-						getinventorylist;
-						for(.@i = 0; .@i < @inventorylist_id; .@i++) {
+						getinventorylist(getcharid(0));
+						.@inventory_size = getarraysize(@inventorylist_id);
+						for(.@i = 0; .@i < .@inventory_size; .@i++) {
 							.@item = @inventorylist_id[.@i];
 							.@quantity = @inventorylist_amount[.@i];
 
