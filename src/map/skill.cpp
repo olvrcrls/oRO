@@ -16107,7 +16107,16 @@ bool skill_check_condition_castbegin(struct map_session_data* sd, uint16 skill_i
 				if( sd->spiritball > 0 )
 					sd->spiritball_old = require.spiritball;
 
-				int sp_consume = skill_lv + 10 * sd->status.max_sp / 100;
+				int sp_consume = (skill_lv + 10) * (sd->status.max_sp / 100);
+				require.sp += sp_consume;
+			}
+			break;
+
+		case SR_TIGERCANNON:
+			{
+				int hp_consume = ((skill_lv * 2) + 10) * (sd->status.max_hp / 100);
+				int sp_consume = (skill_lv + 5) * (sd->status.max_sp / 100);
+				require.hp += hp_consume;
 				require.sp += sp_consume;
 			}
 			break;
@@ -17078,12 +17087,19 @@ struct s_skill_condition skill_get_requirement(struct map_session_data* sd, uint
 			break;
 		case SR_GATEOFHELL:
 		{
-			int sp_consume = skill_lv + 10 * sd->status.max_sp / 100;
+			int sp_consume = (skill_lv + 10) * (sd->status.max_sp / 100);
 			if( sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_FALLENEMPIRE )
 				req.sp -= sp_consume;
 			else
 				req.sp += sp_consume;
 			break;
+		}
+		case SR_TIGERCANNON:
+		{
+			int hp_consume = ((skill_lv * 2) + 10) * (sd->status.max_hp / 100);
+			int sp_consume = (skill_lv + 5) * (sd->status.max_sp / 100);
+			req.hp += hp_consume;
+			req.sp += sp_consume;
 		}
 		case SO_SUMMON_AGNI:
 		case SO_SUMMON_AQUA:
