@@ -16103,8 +16103,13 @@ bool skill_check_condition_castbegin(struct map_session_data* sd, uint16 skill_i
 			}
 			break;
 		case SR_GATEOFHELL:
-			if( sd->spiritball > 0 )
-				sd->spiritball_old = require.spiritball;
+			{
+				if( sd->spiritball > 0 )
+					sd->spiritball_old = require.spiritball;
+
+				int sp_consume = skill_lv + 10 * sd->status.max_sp / 100;
+				require.sp += sp_consume;
+			}
 			break;
 		case SC_MANHOLE:
 		case SC_DIMENSIONDOOR:
@@ -17072,11 +17077,14 @@ struct s_skill_condition skill_get_requirement(struct map_session_data* sd, uint
 			req.spiritball = sd->spiritball?sd->spiritball:1;
 			break;
 		case SR_GATEOFHELL:
+		{
+			int sp_consume = skill_lv + 10 * sd->status.max_sp / 100;
 			if( sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_FALLENEMPIRE )
-				req.sp -= req.sp * 10 / 100;
+				req.sp -= sp_consume;
 			else
-				req.sp += req.sp * 10 / 100;
+				req.sp += sp_consume;
 			break;
+		}
 		case SO_SUMMON_AGNI:
 		case SO_SUMMON_AQUA:
 		case SO_SUMMON_VENTUS:
