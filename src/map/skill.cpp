@@ -4449,8 +4449,11 @@ static TIMER_FUNC(skill_timerskill){
 			{
 				case GN_CRAZYWEED_ATK:
 					{
-						int dummy = 1, i = skill_get_unit_range(skl->skill_id,skl->skill_lv);
-						map_foreachinarea(skill_cell_overlap, src->m, skl->x-i, skl->y-i, skl->x+i, skl->y+i, BL_SKILL, skl->skill_id, &dummy, src);
+						// int dummy = 1, i = skill_get_unit_range(skl->skill_id,skl->skill_lv); // This is the original/official behavior.
+						// map_foreachinarea(skill_cell_overlap, src->m, skl->x-i, skl->y-i, skl->x+i, skl->y+i, BL_SKILL, skl->skill_id, &dummy, src);
+						// Custom: Make the crazy weed vines non-RNG
+						int dummy = 1, i = skill_get_splash(skl->skill_id,skl->skill_lv);
+						map_foreachinallarea(skill_cell_overlap, src->m, skl->x-i, skl->y-i, skl->x+i, skl->y+i, BL_SKILL, skl->skill_id, &dummy, src);
 					}
 				case WL_EARTHSTRAIN:
 					skill_unitsetting(src,skl->skill_id,skl->skill_lv,skl->x,skl->y,(skl->type<<16)|skl->flag);
@@ -18177,9 +18180,10 @@ static int skill_cell_overlap(struct block_list *bl, va_list ap)
 				}
 			}
 			break;
+		// case GN_CRAZYWEED_ATK:
+		// 	if (skill_get_unit_flag(unit->group->skill_id, UF_CRAZYWEEDIMMUNE))
+		// 		break;
 		case GN_CRAZYWEED_ATK:
-			if (skill_get_unit_flag(unit->group->skill_id, UF_CRAZYWEEDIMMUNE))
-				break;
 		case HW_GANBANTEIN:
 		case LG_EARTHDRIVE:
 			// Officially songs/dances are removed
