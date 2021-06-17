@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `guild_castle_histories`(
 	`guild_id` INT(10) UNSIGNED NOT NULL,
 	`name` VARCHAR(150) NOT NULL,
 	`guild_leader_id` INT(10) UNSIGNED NULL,
-	`castle_id` INT(10) UNSIGNED NOT NULL,
+	`castle` VARCHAR(150) NOT NULL,
 	`created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`updated_at` DATETIME NULL on update CURRENT_TIMESTAMP,
 	PRIMARY KEY(`guild_castle_history_id`)
