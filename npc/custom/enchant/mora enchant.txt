@@ -515,12 +515,13 @@ L_Socket:
 		}
 		delitem 6380,1; //Mora_Coin
 		set Zeny, Zeny-100000;
-		delequip .@part;
+		//delequip .@part;
 		if (.@enchant == 9) {
 			specialeffect2 EF_SUI_EXPLOSION;
 			mes "[Artifact Researcher]";
-			mes "This!";
- 			mes "I... I'm sorry but the equipment has been destroyed.";
+			mes "That!";
+ 			//mes "I... I'm sorry but the equipment has been destroyed.";
+			mes "That was close...! The item could have broken. We aren't going to break any today.";
 			close;
 		}
 		if (.@enchant == 0) {
