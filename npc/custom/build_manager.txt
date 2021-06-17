@@ -108,3 +108,5 @@ set .n$, "[Build Manager]";
 end;
 
 }
+
+askald,146,65,4	duplicate(Build Manager)	Build Manager#training	808
