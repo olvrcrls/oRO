@@ -850,7 +850,8 @@ enum e_castle_data : uint8 {
 	CD_ENABLED_KAFRA, ///< Is 1 if a Kafra was hired for this castle, 0 otherwise
 	CD_ENABLED_GUARDIAN00, ///< Is 1 if the 1st guardian is present (Soldier Guardian)
 	// The others in between are not needed in src, but are exported for the script engine
-	CD_MAX = CD_ENABLED_GUARDIAN00 + MAX_GUARDIANS
+	CD_MAX = CD_ENABLED_GUARDIAN00 + MAX_GUARDIANS,
+	CD_CASTLE_ID //< Castle ID
 };
 
 /// Guild Permissions
