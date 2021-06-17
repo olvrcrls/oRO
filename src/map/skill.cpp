@@ -4449,8 +4449,11 @@ static TIMER_FUNC(skill_timerskill){
 			{
 				case GN_CRAZYWEED_ATK:
 					{
-						int dummy = 1, i = skill_get_unit_range(skl->skill_id,skl->skill_lv);
-						map_foreachinarea(skill_cell_overlap, src->m, skl->x-i, skl->y-i, skl->x+i, skl->y+i, BL_SKILL, skl->skill_id, &dummy, src);
+						// int dummy = 1, i = skill_get_unit_range(skl->skill_id,skl->skill_lv); // This is the original/official behavior.
+						// map_foreachinarea(skill_cell_overlap, src->m, skl->x-i, skl->y-i, skl->x+i, skl->y+i, BL_SKILL, skl->skill_id, &dummy, src);
+						// Custom: Make the crazy weed vines non-RNG
+						int dummy = 1, i = skill_get_splash(skl->skill_id,skl->skill_lv);
+						map_foreachinallarea(skill_cell_overlap, src->m, skl->x-i, skl->y-i, skl->x+i, skl->y+i, BL_SKILL, skl->skill_id, &dummy, src);
 					}
 				case WL_EARTHSTRAIN:
 					skill_unitsetting(src,skl->skill_id,skl->skill_lv,skl->x,skl->y,(skl->type<<16)|skl->flag);
@@ -6233,7 +6236,8 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 				sc_start(src, src, SC_DORAM_WALKSPEED, 100, 50, skill_get_time(SU_SPIRITOFLAND, 1));
 		}
 		skill_attack(skill_get_type(skill_id), src, src, bl, skill_id, skill_lv, tick, flag);
-		if (status_get_lv(src) > 29 && (rnd() % 100 < (int)((status_get_lv(src) / 30) * 10 + 10)))
+		// if (status_get_lv(src) > 29 && (rnd() % 100 < (int)((status_get_lv(src) / 30) * 10 + 10)))
+		if (status_get_lv(src) > 29 && (rnd() % 150 < (int)((status_get_lv(src) / 50) + 10)))
 			skill_addtimerskill(src, tick + skill_get_delay(skill_id, skill_lv), bl->id, 0, 0, skill_id, skill_lv, skill_get_type(skill_id), flag);
 		break;
 
@@ -16099,8 +16103,22 @@ bool skill_check_condition_castbegin(struct map_session_data* sd, uint16 skill_i
 			}
 			break;
 		case SR_GATEOFHELL:
-			if( sd->spiritball > 0 )
-				sd->spiritball_old = require.spiritball;
+			{
+				if( sd->spiritball > 0 )
+					sd->spiritball_old = require.spiritball;
+
+				int sp_consume = (skill_lv + 10) * (sd->status.max_sp / 100);
+				require.sp += sp_consume;
+			}
+			break;
+
+		case SR_TIGERCANNON:
+			{
+				int hp_consume = ((skill_lv * 2) + 10) * (sd->status.max_hp / 100);
+				int sp_consume = (skill_lv + 5) * (sd->status.max_sp / 100);
+				require.hp += hp_consume;
+				require.sp += sp_consume;
+			}
 			break;
 		case SC_MANHOLE:
 		case SC_DIMENSIONDOOR:
@@ -17068,11 +17086,21 @@ struct s_skill_condition skill_get_requirement(struct map_session_data* sd, uint
 			req.spiritball = sd->spiritball?sd->spiritball:1;
 			break;
 		case SR_GATEOFHELL:
+		{
+			int sp_consume = (skill_lv + 10) * (sd->status.max_sp / 100);
 			if( sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_FALLENEMPIRE )
-				req.sp -= req.sp * 10 / 100;
+				req.sp -= sp_consume;
 			else
-				req.sp += req.sp * 10 / 100;
+				req.sp += sp_consume;
 			break;
+		}
+		case SR_TIGERCANNON:
+		{
+			int hp_consume = ((skill_lv * 2) + 10) * (sd->status.max_hp / 100);
+			int sp_consume = (skill_lv + 5) * (sd->status.max_sp / 100);
+			req.hp += hp_consume;
+			req.sp += sp_consume;
+		}
 		case SO_SUMMON_AGNI:
 		case SO_SUMMON_AQUA:
 		case SO_SUMMON_VENTUS:
@@ -18176,9 +18204,10 @@ static int skill_cell_overlap(struct block_list *bl, va_list ap)
 				}
 			}
 			break;
+		// case GN_CRAZYWEED_ATK:
+		// 	if (skill_get_unit_flag(unit->group->skill_id, UF_CRAZYWEEDIMMUNE))
+		// 		break;
 		case GN_CRAZYWEED_ATK:
-			if (skill_get_unit_flag(unit->group->skill_id, UF_CRAZYWEEDIMMUNE))
-				break;
 		case HW_GANBANTEIN:
 		case LG_EARTHDRIVE:
 			// Officially songs/dances are removed

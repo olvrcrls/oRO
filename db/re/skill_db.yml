@@ -23993,25 +23993,25 @@ Body:
     Element: Weapon
     SplashArea:
       - Level: 1
-        Area: 3
+        Area: 1
       - Level: 2
-        Area: 3
+        Area: 1
       - Level: 3
-        Area: 3
+        Area: 1
       - Level: 4
-        Area: 3
+        Area: 1
       - Level: 5
-        Area: 3
+        Area: 1
       - Level: 6
-        Area: 5
+        Area: 2
       - Level: 7
-        Area: 5
+        Area: 2
       - Level: 8
-        Area: 5
+        Area: 2
       - Level: 9
-        Area: 5
+        Area: 2
       - Level: 10
-        Area: 5
+        Area: 2
     CopyFlags:
       Skill:
         Reproduce: true
@@ -27871,7 +27871,7 @@ Body:
     Range: 11
     Hit: Single
     HitCount: 1
-    SplashArea: 5
+    SplashArea: 9
     CopyFlags:
       Skill:
         Reproduce: true
@@ -32383,6 +32383,7 @@ Body:
     Range: 9
     Hit: Single
     HitCount: 1
+    Cooldown: 1000
     Element:
       - Level: 1
         Element: Earth
@@ -32396,9 +32397,9 @@ Body:
         Element: Ghost
     CastCancel: true
     CastTime: 2000
-    AfterCastActDelay: 1000
+    AfterCastActDelay: 1500
     Duration2: 120000
-    FixedCastTime: -1
+    FixedCastTime: 500
     Requires:
       SpCost: 40
   - Id: 5027
