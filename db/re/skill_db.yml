@@ -18060,6 +18060,7 @@ Body:
     Duration1: 30000
     Duration2: 30000
     FixedCastTime: 1000
+    AfterCastDelay: 1000
     CastTimeFlags:
       IgnoreDex: true
       IgnoreStatus: true
@@ -18079,6 +18080,7 @@ Body:
     Duration1: 60000
     Duration2: 120000
     FixedCastTime: 1000
+    AfterCastDelay: 1000
     CastTimeFlags:
       IgnoreDex: true
       IgnoreStatus: true
@@ -18116,6 +18118,7 @@ Body:
     Duration1: 180000
     Duration2: 10000
     FixedCastTime: 2000
+    AfterCastActDelay: 2000
     CastTimeFlags:
       IgnoreDex: true
       IgnoreStatus: true
