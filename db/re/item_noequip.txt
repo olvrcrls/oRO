@@ -95,6 +95,20 @@
 4694,4	// True Gertie
 4695,4	// True Trentini
 4696,4	// True Alphoccio
+// Disable in BG
+4684,8	// True Eremes
+4685,8	// True Margaretha Sorin
+4686,8	// True Kathryne Keyron
+4687,8	// True Cecil
+4688,8	// True Howard
+4689,8	// True Seyren
+4690,8	// True Randel
+4691,8	// True Flamel
+4692,8	// True Celia
+4693,8	// True Chen
+4694,8	// True Gertie
+4695,8	// True Trentini
+4696,8	// True Alphoccio
 
 //----------------------------------------------------------------------------
 // Bio 5 Headgears
@@ -113,6 +127,21 @@
 18982,4	// Old Bone Circlet
 18983,4	// Old Casket of Protection
 18984,4	// Old Camouflauge Bunny Hood
+// Disable in BG
+18971,8	// Old Rune Circlet
+18972,8 // Old Mitra
+18973,8 // Old Driver's Band RED
+18974,8 // Old Driver's Band YELLOW
+18975,8 // Old Shadow Handicraft
+18976,8	// Old Maestro Song
+18977,8	// Old Midas Whisper
+18978,8	// Old Magic Stone
+18979,8	// Old Blazing Soul
+18980,8	// Old Wind Whisper
+18981,8	// Old Dying Swan
+18982,8	// Old Bone Circlet
+18983,8	// Old Casket of Protection
+18984,8	// Old Camouflauge Bunny Hood
 
 //----------------------------------------------------------------------------
 //	War of Emperium
