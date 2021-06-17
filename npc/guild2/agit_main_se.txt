@@ -620,8 +620,22 @@ OnStartArena:
 	// Disable Kafra
 	disablenpc "Kafra Employee#"+strnpcinfo(2);
 
+	// Announce that the Emperium is destroyed, and respawn all but new castle-occupants.
+	announce "The emperium has been destroyed by [" + strcharinfo(0) + "].",bc_map|bc_woe;
+
 	announce "The ["+getguildname(.@GID)+"] guild conquered the ["+.@region$+" "+charat(strnpcinfo(2),3)+"] stronghold of "+getcastlename(strnpcinfo(4))+"!",bc_all|bc_woe;
 	mapannounce strnpcinfo(4),"The emperium has been shattered!",bc_map,"0x00FF00",FW_NORMAL,20,0,40;
+
+	// Record the emperium break
+	query_sql("SELECT `char_id`, `name`, `emperium_break`, `kill`, `death` FROM `woe_ranking` WHERE `name` = '" + strcharinfo(0) + "';", .@player_id, .@player_name$, .@emperium_break, .@kill, .@death);
+	set .@GID,getcharid(2);
+	
+	if(.@player_name$ == strcharinfo(0)){
+		query_sql("UPDATE `woe_ranking` SET `emperium_break` = `emperium_break` + 1 WHERE `char_id` = "+.@player_id);
+	}else{
+		query_sql("INSERT INTO `woe_ranking` (`char_id`,`name`,`kill`,`death`,`emperium_break`) VALUES (" + getcharid(0) + ",'"+strcharinfo(0)+"',0,0,1)"); 
+	}
+
 	donpcevent "Manager#"+strnpcinfo(4)+"::OnReset";
 	maprespawnguildid strnpcinfo(4),getcastledata(strnpcinfo(4),CD_GUILD_ID),2;
 	donpcevent "Manager#"+strnpcinfo(4)+"::OnRecvCastle2";

@@ -102,15 +102,13 @@ OnStartArena:
 OnAgitBreak:
 	// set .@GID,getcharid(2);
 	// Custom WoE break script starts here.
-	query_sql("SELECT * FROM woe_ranking WHERE `PlayerName` = '"+strcharinfo(0)+"'", .@CharID, .@Name$, .@Kills, .@Deaths, .@EmpBreak);
-	set .WoeBreakPoints, 1;
-	set ToTalB , .@EmpBreak + .WoeBreakPoints;
+	query_sql("SELECT `char_id`, `name`, emperium_break, kill, death FROM woe_ranking WHERE `name` = '"+strcharinfo(0)+"'", .@player_id, .@player_name$, .@emperium_break, .@kill, .@death);
 	set .@GID,getcharid(2);
 	
 	if(.@Name$ == strcharinfo(0)){
-		query_sql("UPDATE `woe_ranking` SET `EmpBreak` = '"+ToTalB+"' WHERE `PlayerName` = '"+strcharinfo(0)+"'");
+		query_sql("UPDATE `woe_ranking` SET `emperium_break` = `emperium_break` + 1 WHERE `char_id` = "+.@player_id);
 	}else{
-		query_sql("INSERT INTO `woe_ranking` (`Char_ID`,`PlayerName`,`Kills`,`Deaths`,`EmpBreak`) VALUES ('"+getcharid(0)+"', '"+strcharinfo(0)+"', "+.@Kills+", "+.@Deaths+", "+ToTalB+")"); 
+		query_sql("INSERT INTO `woe_ranking` (`char_id`,`name`,`kill`,`death`,`emperium_break`) VALUES ("+getcharid(0)+",'"+strcharinfo(0)+"',0,0,1)"); 
 	}
 
 
