@@ -184,6 +184,16 @@ OnReward:
 	for(set .@i,0; .@i<getarraysize(.Castles$); set .@i,.@i+1) {
 		if (getarg(0)&(1<<.@i)) {
 			set .@gid, getcastledata(.Castles$[.@i],1);
+			// Recording the statistics for guild history and guild ranking:
+			set .@record, query_sql("SELECT `guild_id` FROM `guild_ranking` WHERE `guild_id` = " + .@gid, .@guild_id_ranking);
+			if (.@record > 0) {
+				query_sql("UPDATE `guild_ranking` SET `castles_owned` = `castles_owned` + 1 WHERE `guild_id` = " + .@gid);
+			} else {
+				query_sql("INSERT INTO `guild_ranking`(`guild_id`,`name`,`guild_leader_id`,`castles_owned`) VALUES (" + .@gid + ",'" + getguildName(.@gid) + "',"+ getguildmasterid(.@gid) +",1);");
+			}
+		
+			query_sql("INSERT INTO `guild_castle_histories`(`guild_id`, `name`, `guild_leader_id`, `castle`) VALUES (" + .@gid + ",'" + getguildname(.@gid) + "'," + getguildmasterid(.@gid) + ",'" + .Castles$[.@i] + "');");
+
 			if (!.@gid) continue;
 
 			getguildmember( .@gid, 1, .@cid );

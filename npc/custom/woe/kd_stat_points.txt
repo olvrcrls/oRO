@@ -1,0 +1,193 @@
+//===== rAthena Script =======================================
+//= WoE Statistics Recorder
+//===== By: ==================================================
+//= Andie
+//===== Current Version: =====================================
+//= 1.0 
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: =========================================
+//= An overhaul of passively recording statistics while WoE
+//= TODO: 
+//= Make the NPC a Siege Shop.
+//= Record kill points / assist points to purchase on shop.
+//============================================================
+-	script	WoE Stat	-1,{
+	mes .n$;
+	mes "I am the one who records what happens inside the castle.";
+	mes "Which statistic would you like to look at?";
+	next;
+	set .@selection$, "Most Kills:Most Deaths:Most Emperium Breaks:Guild Ranking";
+	if (getgmlevel() >= 99) {
+		set .@selection$, .@selection$ + ":Truncate Data";
+	}
+
+	switch(select(.@selection$)) {
+		/** We divide the result by 2 because of the two events is happening which double triggers the stat recording
+			OnPCKillEvent and OnPCDieEvent
+		*/
+		case 1:
+		{
+			set .@result, query_sql("SELECT `char_id`, `name`, `kill` FROM `woe_ranking` WHERE `kill` > 0 AND `kill` IS NOT NULL ORDER BY `kill` DESC LIMIT " + .limit, .@player_id, .@player$, .@kill);
+
+			mes .n$;
+			if (.@result > 0) {
+				for (set .@i, 0; .@i < .@result; set .@i, .@i+1) {
+					.@check_kill_even = .@kill[.@i] % 2;
+					if (.@check_kill_even > 0) {
+						.@kill = (.@kill[.@i] / 2) + 1;
+					} else {
+						.@kill = .@kill[.@i] / 2;
+					}
+					mes "Rank #" + (.@i + 1) + " ^7289DA" + .@player$[.@i] + "^000000: " + .@kill[.@i] + " slained.";
+				} // for
+			} else {
+				mes "There is nothing to show at the moment. Come back later.";
+				close;
+			}
+		}
+		break;
+
+		case 2: 
+		{
+			set .@result, query_sql("SELECT `char_id`, `name`, `death` FROM `woe_ranking` WHERE `death` > 0 AND `death` IS NOT NULL ORDER BY `death` DESC LIMIT " + .limit, .@player_id, .@player$, .@death);
+
+			mes .n$;
+			if (.@result > 0) {
+				for (set .@i, 0; .@i < .@result; set .@i, .@i+1) {
+					.@check_death_even = (.@death[.@i] % 2);
+					if (.@check_death_even > 0) {
+						.@death = (.@death[.@i] / 2) + 1;
+					} else {
+						.@death = .@death[.@i] / 2;
+					}
+					mes "Rank #" + (.@i + 1) + " ^7289DA" + .@player$[.@i] + "^000000: " + .@death + " deaths.";
+				} // for
+			} else {
+				mes "There is nothing to show at the moment. Come back later.";
+				close;
+			}
+		}
+		break;
+
+		case 3: 
+		{
+			set .@result, query_sql("SELECT `char_id`, `name`, `emperium_break` FROM `woe_ranking` WHERE `emperium_break` > 0 AND `emperium_break` IS NOT NULL ORDER BY `emperium_break` DESC LIMIT " + .limit, .@player_id, .@player$, .@emperium_break);
+
+			mes .n$;
+			if (.@result > 0) {
+				for (set .@i, 0; .@i < .@result; set .@i, .@i+1) {
+					mes "Rank #" + (.@i + 1) + " ^7289DA" + .@player$[.@i] + "^000000: " + .@emperium_break[.@i] + " emperiums.";
+				} // for
+			} else {
+				mes "There is nothing to show at the moment. Come back later.";
+				close;
+			}
+		}
+		break;
+
+		case 4:
+		{
+			set .@result, query_sql("SELECT `guild_id`, `name`, `castles_owned` FROM `guild_ranking` ORDER BY `castles_owned` DESC LIMIT " + .limit, .@guild_id, .@guild$, .@castles_owned);
+
+			mes .n$;
+			if (.@result > 0) {
+				for (set .@i, 0; .@i < .@result; set .@i, .@i+1) {
+					mes "Rank #" + (.@i + 1) + " ^7289DA" + .@guild$[.@i] + "^000000: " + .@castles_owned[.@i] + " wins.";
+				}
+				close;
+			} else {
+				mes "There is nothing to show at the moment. Come back later.";
+				close;
+			}
+		}
+
+		case 5:
+		{
+			mes .n$;
+			mes "Are you sure about this, master?";
+			switch(select("No:Absolutely, truncate it."))
+			{
+				case 1:
+				{
+					close;
+					end;
+				}
+				break;
+
+				case 2:
+				{
+					next;
+					query_sql("TRUNCATE `woe_ranking`;");
+					mes .n$;
+					mes "Done. WoE ranking table has been cleared and clean again.";
+					close;
+					end;
+				}
+				break;
+			}
+		}
+		break;
+
+		default:
+			end;
+			break;
+	} // switch
+
+
+OnPCKillEvent:
+	// We will only record during WoE and the kills happens inside castle.
+	if (killerrid != getcharid(3)) {
+		if ((agitcheck() || agitcheck2()) && compare(strcharinfo(3),"g_cas")) {
+			query_sql("SELECT `char_id`, `name`, `kill`, `death`, `emperium_break` FROM `woe_ranking` WHERE `char_id` = " + getcharid(0) + " LIMIT 1;", .@player_id, .@player_name$, .@player_kill, .@player_death, .@player_emperium_break);
+
+			if (.@player_id == getcharid(0)) {
+				// Update the existing record.
+				query_sql("UPDATE `woe_ranking` SET `kill` = `kill` + 1 WHERE `char_id` = " + .@player_id);
+				end;
+			} else {
+				// New record for a player.
+				query_sql("INSERT INTO `woe_ranking`(`char_id`, `name`, `kill`, `death`, `emperium_break`) VALUES (" + getcharid(0) + ",'" + strcharinfo(0) +"',1,0,0);");
+				end;
+			} // if else
+		} else {
+			end;
+		}
+	} else {
+		end;
+	}
+
+OnPCDieEvent:
+	// We will only record the deaths during WoE and inside the castle only
+	if (killerrid != getcharid(3)) {
+		if ((agitcheck() || agitcheck2()) && compare(strcharinfo(3),"g_cas")) {
+			query_sql("SELECT `char_id`, `name`, `kill`, `death`, `emperium_break` FROM `woe_ranking` WHERE `char_id` = " + getcharid(0) + " LIMIT 1;", .@player_id, .@player_name$, .@player_kill, .@player_death, .@player_emperium_break);
+
+			if (.@player_id == getcharid(0)) {
+				// Update the existing record.
+				query_sql("UPDATE `woe_ranking` SET `death` = `death` + 1 WHERE `char_id` = " + .@player_id);
+				end;
+			} else {
+				// New record for a player.
+				query_sql("INSERT INTO `woe_ranking`(`char_id`, `name`, `kill`, `death`, `emperium_break`) VALUES (" + getcharid(0) + ",'" + strcharinfo(0) +"',0,1,0);");
+				end;
+			} // if else
+		}
+		end;
+	} else {
+		end;
+	}
+
+OnInit:
+	set .n$, "[WoE Accountant]"; // Your NPC's name.
+	set .limit, 25; // Set how much data should be fetched from DB
+	set .kill_point, 1; // How much points should the player get from killing
+	set .death_deduction, 1; // How much points should deduct if the player dies
+	set .enable_deduction, 0; // Should we deduct points from dying?
+	waitingroom "WoE Statistics",0;
+	end;
+
+}
+
+
+askald,117,110,5	duplicate(WoE Stat)	Arias#askald_npc	65
