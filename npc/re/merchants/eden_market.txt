@@ -287,8 +287,11 @@ moc_para01,106,38,4	script	Market Group Hustler#ent	4_M_YOYOROGUE,{
 	case 1:
 		mes "[Hustler]";
 		mes "Moving~!";
-		close2;
-		warp "paramk",97,17;
+		next;
+		//close2;
+		//warp "paramk",97,17;
+		mes "[Hustler]";
+		mes "Oops! This market is not available.";
 		end;
 	case 2:
 		mes "[Hustler]";
