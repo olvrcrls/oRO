@@ -13,7 +13,7 @@ askald,98,149,5	script	Goddess Himelmez	4_F_HIMEL,{
 	.@coagulated_id = 6608;// Coagulated_Spell
 	.@polluted_id = 6755;// Polluted_Spell
 	.@valor_badges = 7829; // Valor Badge
-	.@cost_zeny = 50000000;
+	.@cost_zeny = 50000000; // 50M
 
 	mes .n$;
 	mes "I deal with the Temporal Boots with socket only.";
@@ -164,6 +164,6 @@ askald,98,149,5	script	Goddess Himelmez	4_F_HIMEL,{
 	close;
 
 OnInit:
-	set.n$, "[Goddess Himelmez]";
+	set .n$, "[Goddess Himelmez]";
 	end;
 }
