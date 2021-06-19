@@ -1,0 +1,2 @@
+-- Fix Red Pom Band on magic race damage bonus
+UPDATE `item_db_re` SET `script` = 'bonus bMdef,5; bonus bMatkRate,5; .@r = getrefine(); if (.@r < 5) { bonus2 bMagicAddRace,RC_DemiHuman,5; bonus2 bMagicAddRace,RC_Player,5; bonus2 bSubRace,RC_DemiHuman,5; bonus2 bSubRace,RC_Player,5; } else { bonus2 bMagicAddRace,RC_DemiHuman,(.@r + 1); bonus2 bMagicAddRace,RC_Player,(.@r + 1); bonus2 bSubRace,RC_DemiHuman,(.@r + 1); bonus2 bSubRace,RC_Player,(.@r + 1); }' WHERE (`id` = '18601');
