@@ -247,6 +247,18 @@
 	specialeffect2 EF_REPAIRWEAPON;
 	close;
 
+
+Enchant_Accessory:
+	setarray .@acc_enchants[0],
+	4702,	// 0 STR+3
+	4732,	// 1 AGI+3
+	4742,	// 2 VIT+3
+	4712,	// 3 INT+3
+	4722,	// 4 DEX+3
+	4752;	// 5 LUK+3
+
+	end;
+
 Enchant_Armor:
 	.@item_id = getequipid(EQI_ARMOR);
 	.@refine = getequiprefinerycnt(EQI_ARMOR);
@@ -273,14 +285,6 @@ Enchant_Armor:
 		29002,	// 15 Rune of Intellect Lv 3
 		29005,	// 16 Rune of Dexterity Lv 3
 		29008;	// 17 Rune of Luck Lv 3
-
-	setarray .@acc_enchants[0],
-		4702,	// 0 STR+3
-		4732,	// 1 AGI+3
-		4742,	// 2 VIT+3
-		4712,	// 3 INT+3
-		4722,	// 4 DEX+3
-	    4752;	// 5 LUK+3
 
 	if (.@item_id == -1) {
 		mes .@n$;
