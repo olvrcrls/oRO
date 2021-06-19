@@ -27894,7 +27894,7 @@ Body:
     Range: 11
     Hit: Single
     HitCount: 1
-    SplashArea: 9
+    SplashArea: 4
     CopyFlags:
       Skill:
         Reproduce: true
