@@ -41,3 +41,6 @@ que_swat	mapflag	nowarp
 // Rockridge
 un_myst	mapflag	nowarp
 rockmi2	mapflag	nowarp
+
+
+paramk	mapflag	nowarp
