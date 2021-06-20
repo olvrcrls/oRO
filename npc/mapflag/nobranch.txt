@@ -28,6 +28,7 @@ aldeba_in	mapflag	nobranch
 ama_in01	mapflag	nobranch
 ama_in02	mapflag	nobranch
 ama_test	mapflag	nobranch
+askald	mapflag	nobranch
 cmd_in01	mapflag	nobranch
 cmd_in02	mapflag	nobranch
 gef_tower	mapflag	nobranch

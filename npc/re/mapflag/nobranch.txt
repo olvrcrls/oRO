@@ -215,3 +215,6 @@ lasa_dun_q	mapflag	nobranch
 
 // Soul Reaper Job Change
 1@soul	mapflag	nobranch
+
+// Askald
+askald	mapflag	nobranch

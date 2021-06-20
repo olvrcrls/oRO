@@ -35,11 +35,11 @@
 				for (set .@i, 0; .@i < .@result; set .@i, .@i+1) {
 					.@check_kill_even = .@kill[.@i] % 2;
 					if (.@check_kill_even > 0) {
-						.@kill = (.@kill[.@i] / 2) + 1;
+						.@kill_display = (.@kill[.@i] / 2) + 1;
 					} else {
-						.@kill = .@kill[.@i] / 2;
+						.@kill_display = .@kill[.@i] / 2;
 					}
-					mes "Rank #" + (.@i + 1) + " ^7289DA" + .@player$[.@i] + "^000000: " + .@kill[.@i] + " slained.";
+					mes "Rank #" + (.@i + 1) + " ^7289DA" + .@player$[.@i] + "^000000: " + .@kill_display + " slained.";
 				} // for
 			} else {
 				mes "There is nothing to show at the moment. Come back later.";
@@ -57,11 +57,11 @@
 				for (set .@i, 0; .@i < .@result; set .@i, .@i+1) {
 					.@check_death_even = (.@death[.@i] % 2);
 					if (.@check_death_even > 0) {
-						.@death = (.@death[.@i] / 2) + 1;
+						.@death_display = (.@death[.@i] / 2) + 1;
 					} else {
-						.@death = .@death[.@i] / 2;
+						.@death_display = .@death[.@i] / 2;
 					}
-					mes "Rank #" + (.@i + 1) + " ^7289DA" + .@player$[.@i] + "^000000: " + .@death + " deaths.";
+					mes "Rank #" + (.@i + 1) + " ^7289DA" + .@player$[.@i] + "^000000: " + .@death_display + " deaths.";
 				} // for
 			} else {
 				mes "There is nothing to show at the moment. Come back later.";
