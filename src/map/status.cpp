@@ -8674,6 +8674,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 			case SC_OBLIVIONCURSE:
 			case SC_MARSHOFABYSS:
 			case SC_MANDRAGORA:
+			case SC_FREEZE:
 				return 0;
 		}
 	}
