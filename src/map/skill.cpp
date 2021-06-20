@@ -5138,6 +5138,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 	case RA_WUGDASH:
 	case NC_VULCANARM:
 	case NC_COLDSLOWER:
+	case NC_ARMSCANNON:
 	case NC_SELFDESTRUCTION:
 	case NC_AXETORNADO:
 	case GC_ROLLINGCUTTER:
@@ -5165,7 +5166,6 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 	case RL_R_TRIP:
 	case RL_HAMMER_OF_GOD:
 	case MH_XENO_SLASHER:
-	case NC_ARMSCANNON:
 	case SU_SCRATCH:
 	case SU_LUNATICCARROTBEAT:
 	case SU_LUNATICCARROTBEAT2:
@@ -5239,7 +5239,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 				case NPC_REVERBERATION_ATK:
 				case WM_REVERBERATION_MELEE:
 				case WM_REVERBERATION_MAGIC:
-				case NC_ARMSCANNON:
+				//case NC_ARMSCANNON:
 					skill_area_temp[1] = 0;
 					starget = splash_target(src);
 					break;
@@ -9593,7 +9593,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 
 	case RK_LUXANIMA:
 		{
-			sc_type runes[] = { SC_MILLENNIUMSHIELD, SC_REFRESH, SC_GIANTGROWTH, SC_STONEHARDSKIN, SC_VITALITYACTIVATION, SC_ABUNDANCE };
+			//TODO: Test STONEHARD SKIN when LUX'd
+			enum sc_type runes[] = { SC_MILLENNIUMSHIELD, SC_REFRESH, SC_GIANTGROWTH, SC_STONEHARDSKIN, SC_VITALITYACTIVATION, SC_ABUNDANCE };
 
 			if (sd == NULL || sd->status.party_id == 0 || flag&1) {
 				if (src->id == bl->id) // Don't give it back to the RK
