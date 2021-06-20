@@ -18060,6 +18060,7 @@ Body:
     Duration1: 30000
     Duration2: 30000
     FixedCastTime: 1000
+    AfterCastDelay: 1000
     CastTimeFlags:
       IgnoreDex: true
       IgnoreStatus: true
@@ -18079,6 +18080,7 @@ Body:
     Duration1: 60000
     Duration2: 120000
     FixedCastTime: 1000
+    AfterCastDelay: 1000
     CastTimeFlags:
       IgnoreDex: true
       IgnoreStatus: true
@@ -18116,6 +18118,7 @@ Body:
     Duration1: 180000
     Duration2: 10000
     FixedCastTime: 2000
+    AfterCastActDelay: 2000
     CastTimeFlags:
       IgnoreDex: true
       IgnoreStatus: true
@@ -24423,7 +24426,27 @@ Body:
     MaxLevel: 10
     Type: Weapon
     TargetType: Attack
-    Range: 7
+    Range:
+        - Level: 1
+          Size: 2
+        - Level: 2
+          Size: 2
+        - Level: 3
+          Size: 3
+        - Level: 4
+          Size: 3
+        - Level: 5
+          Size: 4
+        - Level: 6
+          Size: 4
+        - Level: 7
+          Size: 5
+        - Level: 8
+          Size: 5
+        - Level: 9
+          Size: 6
+        - Level: 10
+          Size: 7
     Hit: Multi_Hit
     HitCount: -7
     Element: Weapon
@@ -27871,7 +27894,7 @@ Body:
     Range: 11
     Hit: Single
     HitCount: 1
-    SplashArea: 9
+    SplashArea: 4
     CopyFlags:
       Skill:
         Reproduce: true
@@ -27939,7 +27962,28 @@ Body:
     Hit: Single
     HitCount: 1
     Element: Earth
-    SplashArea: 4
+    SplashArea: 2
+    ActiveInstance:
+      - Level: 1
+        Max: 5
+      - Level: 2
+        Max: 6
+      - Level: 3
+        Max: 6
+      - Level: 4
+        Max: 7
+      - Level: 5
+        Max: 7
+      - Level: 6
+        Max: 8
+      - Level: 7
+        Max: 8
+      - Level: 8
+        Max: 9
+      - Level: 9
+        Max: 9
+      - Level: 10
+        Max: 10
     CopyFlags:
       Skill:
         Reproduce: true
@@ -28441,6 +28485,8 @@ Body:
     HitCount: 1
     CastCancel: true
     Duration1: 60000
+    Flags:
+        IgnoreLandProtector: true
     CastDelayFlags:
       IgnoreDex: true
       IgnoreStatus: true

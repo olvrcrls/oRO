@@ -2171,7 +2171,7 @@ bool status_check_skilluse(struct block_list *src, struct block_list *target, ui
 				return false;
 			break;
 		case AL_TELEPORT:
-		case ALL_ODINS_POWER:
+		//case ALL_ODINS_POWER: // enable odin's power while under the land protector.
 			// Should fail when used on top of Land Protector [Skotlex]
 			if (src && map_getcell(src->m, src->x, src->y, CELL_CHKLANDPROTECTOR)
 				&& !status_has_mode(status,MD_STATUS_IMMUNE)
@@ -13810,8 +13810,9 @@ TIMER_FUNC(status_change_timer){
 
 	case SC_CRYSTALIZE:
 		if( --(sce->val4) >= 0 ) { // Drains 2% of HP and 1% of SP every seconds.
-			if (!status_charge(bl, status->max_hp * 2 / 100, status->max_sp / 100))
-				break;
+			// if (!status_charge(bl, status->max_hp * 2 / 100, status->max_sp / 100))
+			// 	break;
+			status_charge(bl, status->max_hp * 2 / 100, status->max_sp / 100);
 			sc_timer_next(1000 + tick);
 			return 0;
 		}
