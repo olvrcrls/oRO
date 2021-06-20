@@ -28485,6 +28485,8 @@ Body:
     HitCount: 1
     CastCancel: true
     Duration1: 60000
+    Flags:
+        IgnoreLandProtector: true
     CastDelayFlags:
       IgnoreDex: true
       IgnoreStatus: true
