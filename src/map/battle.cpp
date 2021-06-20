@@ -3709,6 +3709,7 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 		case MO_EXTREMITYFIST:
 			skillratio += 100 * (7 + sstatus->sp / 10);
 			skillratio = min(500000,skillratio); //We stop at roughly 50k SP for overflow protection
+			skillratio *= 2; // Doubles the damage from the SP.
 			break;
 		case MO_TRIPLEATTACK:
 			skillratio += 20 * skill_lv;
@@ -6761,8 +6762,9 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 				struct Damage atk = battle_calc_weapon_attack(src, target, skill_id, skill_lv, 0);
 				struct Damage matk = battle_calc_magic_attack(src, target, skill_id, skill_lv, 0);
 				int target_vit = tstatus->vit;
-				if (target_vit > 120) {
-					target_vit = 120;
+				// NERF: Capping the vit
+				if (target_vit > 350) {
+					target_vit = 350;
 				}
 				md.damage = 7 * ((atk.damage/skill_lv + matk.damage/skill_lv) * target_vit / 100 );
 
