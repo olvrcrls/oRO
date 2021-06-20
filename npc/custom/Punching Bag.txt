@@ -39,10 +39,3 @@ OnTimer5000:
 	}
 	initnpctimer;
 }
-
-//Prontera previous: 844
-askald,157,48,0	duplicate(PunchingBag#0)	PunchingBag#1	978
-askald,152,55,0	duplicate(PunchingBag#0)	PunchingBag#2	978
-askald,152,48,0	duplicate(PunchingBag#0)	PunchingBag#3	978
-askald,147,55,0	duplicate(PunchingBag#0)	PunchingBag#4	978
-askald,147,48,0	duplicate(PunchingBag#0)	PunchingBag#5	978
