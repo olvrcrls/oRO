@@ -396,53 +396,53 @@ OnEnable:
 OnTimer1500:
 	npctalk "Heinrich: Who are you?", 'npc_heinrich2$;
 	end;
-OnTimer4500:
+OnTimer2000:
 	npctalk "Himelmez: Well well~ Am I interrupting you? Weren't you expecting me?", 'npc_himelmez1$;
 	end;
-OnTimer10000:
+OnTimer3000:
 	npctalk "Varmundt: Himelmez!! Already!", 'npc_varmundt1$;
 	end;
-OnTimer17500:
+OnTimer400:
 	npctalk "Himelmez: My name is Lisa Kahn Himelmez. Master of Dullahan, Dead man's Valkyrie, that's what they call me.", 'npc_himelmez1$;
 	end;
-OnTimer22000:
+OnTimer5000:
 	npctalk "Heinrich: Aren't you a little too feminine to be the Ruler of death? We are not afraid of you...", 'npc_heinrich2$;
 	end;
-OnTimer28500:
+OnTimer6000:
 	npctalk "Himelmez: Let's see if you can relax like that after you find out where your king is.", 'npc_himelmez1$;
 	end;
-OnTimer36000:
+OnTimer7000:
 	npctalk "Heinrich: What?", 'npc_heinrich2$;
 	end;
-OnTimer41000:
+OnTimer8000:
 	npctalk "Himelmez: Hmm, now I have your attention do I not?", 'npc_himelmez1$;
 	end;
-OnTimer47000:
+OnTimer9000:
 	npctalk "Himelmez: You don't want the king's position, just wait for him to come back. I like your purity.", 'npc_himelmez1$;
 	end;
-OnTimer54000:
+OnTimer10000:
 	npctalk "Himelmez: It's a pity to meet you in a situation like this.", 'npc_himelmez1$;
 	end;
-OnTimer59000:
+OnTimer11000:
 	npctalk "Heinrich: My king is visiting the Rune-Midgarts royal family. He's not back yet.", 'npc_heinrich2$;
 	end;
-OnTimer66500:
+OnTimer12000:
 	npctalk "Heinrich: And now you are trying to trick me, what has happened to him?!", 'npc_heinrich2$;
 	end;
-OnTimer71500:
+OnTimer13000:
 	npctalk "Himelmez: Well~ I would love to sit down and explain for you, but I'm kind of busy today~", 'npc_himelmez1$;
 	end;
-OnTimer78000:
+OnTimer14000:
 	npctalk "Himelmez: I have business to take care of. My minions will treat you well enough for me~", 'npc_himelmez1$;
 	end;
-OnTimer84500:
+OnTimer15000:
 	npctalk "Heinrich: She probably already knows where the Ymir's heart piece is.", 'npc_heinrich2$;
 	disablenpc 'npc_himelmez1$;
 	end;
-OnTimer90500:
+OnTimer16000:
 	npctalk "Heinrich: All Khalitzburg and White Knights should follow me now...", 'npc_heinrich2$;
 	end;
-OnTimer92000:
+OnTimer20000:
 	for (.@i = 1; .@i <= 20; .@i += 4) {
 		hideonnpc instance_npcname("Khalitzburg Knightage#" + .@i);
 		hideonnpc instance_npcname("Khalitzburg Knightage#" + (.@i+1));
