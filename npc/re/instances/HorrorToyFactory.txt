@@ -700,7 +700,7 @@ OnStart:
 			close;
 		}
 		close2;
-		setpcblock PCBLOCK_NPC, true;
+		setpcblock PCBLOCK_NPC, false;
 		switch(.@num) {
 		case 1:
 			npctalk "Worker: Ah! Grandpa? He's a real good man. He oiled us everyday and cleaned the dust very often.";
@@ -742,7 +742,6 @@ OnStart:
 			npctalk "Worker: Grandpa... I miss him. Grandpa, Grandpa...";
 			break;
 		}
-		sleep2 3000;
 		disablenpc instance_npcname( strnpcinfo(0) );
 		if ('worker[.@num] == 0) {
 			'worker[.@num] = 1;
