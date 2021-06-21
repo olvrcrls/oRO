@@ -4180,7 +4180,7 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 				// unsigned int hp = sstatus->max_hp * (12 + (skill_lv * 2)) / 100,
 				// 			 sp = sstatus->max_sp * (5 + skill_lv) / 100;
 				// Adjusted formula:
-				unsigned int hp = sstatus->max_hp * (7 + (skill_lv * 2)) / 100,
+				unsigned int hp = sstatus->max_hp * (5 + (skill_lv * 2)) / 100,
 							 sp = sstatus->max_sp * (2 + skill_lv) / 100;
 
 				if (wd->miscflag&8)
