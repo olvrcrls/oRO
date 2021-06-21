@@ -9594,7 +9594,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 	case RK_LUXANIMA:
 		{
 			//TODO: Test STONEHARD SKIN when LUX'd
-			enum sc_type runes[] = { SC_MILLENNIUMSHIELD, SC_REFRESH, SC_GIANTGROWTH, SC_STONEHARDSKIN, SC_VITALITYACTIVATION, SC_ABUNDANCE };
+			sc_type runes[] = { SC_MILLENNIUMSHIELD, SC_REFRESH, SC_GIANTGROWTH, SC_STONEHARDSKIN, SC_VITALITYACTIVATION, SC_ABUNDANCE };
 
 			if (sd == NULL || sd->status.party_id == 0 || flag&1) {
 				if (src->id == bl->id) // Don't give it back to the RK
@@ -9615,8 +9615,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 				if (result != -1) {
 					skill_area_temp[5] = result;
 					status_change_end(src, runes[result], INVALID_TIMER);
-					party_foreachsamemap(skill_area_sub, sd, skill_get_splash(skill_id, skill_lv), src, skill_id, skill_lv, tick, flag|BCT_PARTY|1, skill_castend_nodamage_id);
-					clif_skill_nodamage(src, src, skill_id, skill_lv, 1);
+					party_foreachsamemap(skill_area_sub,sd,skill_get_splash(skill_id,skill_lv),src,skill_id,skill_lv,tick,flag|BCT_PARTY|1,skill_castend_nodamage_id);
+					clif_skill_nodamage(src, src, skill_id, skill_lv,1);
 				}
 			}
 		}
