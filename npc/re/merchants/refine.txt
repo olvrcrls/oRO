@@ -351,11 +351,43 @@ function	script	refinenew	{
 	next;
 	switch(select("Oridecon to Bradium.:Elunium to Carnium.:Purified Bradium to Carnium.:No thanks.")) {
 	case 1:
-		setarray .@i[0],984,3,6224;  //Oridecon -> Bradium
-		break;
+		if (countitem(984) > 2) {
+			.@remainder = countitem(984) % 3;
+			.@total_get = countitem(984) / 3;
+			.@total_del = countitem(984) - .@remainder;
+			delitem 984,.@total_del;  //Oridecon
+			getitem 6223,.@total_get; // Bradium
+			mes "["+ .@npc_name$ +"]";
+			mes "Here's your Bradium.";
+			mes "You're welcome to come";
+			mes "back whenever you want.";
+			close;
+		}
+		else {
+			mes "["+ .@npc_name$ +"]";
+			mes "You're kidding me, right?";
+			mes "I just told you that I need 3 Oridecon to make a Bradium.";
+			close;
+		}	
 	case 2:
-		setarray .@i[0],985,3,6223;  //Elunium -> Carnium
-		break;
+		if (countitem(985) > 2) {
+			.@remainder = countitem(985) % 3;
+			.@total_get = countitem(985) / 3;
+			.@total_del = countitem(985) - .@remainder;
+			delitem 985,.@total_del;  //Elunium
+			getitem 6223,.@total_get; // Carnium
+			mes "["+ .@npc_name$ +"]";
+			mes "Here's your Carnium.";
+			mes "You're welcome to come";
+			mes "back whenever you want.";
+			close;
+		}
+		else {
+			mes "["+ .@npc_name$ +"]";
+			mes "You're kidding me, right?";
+			mes "I just told you that I need 3 Elunium to make a Carnium.";
+			close;
+		}	
 	case 3:
 		setarray .@i[0],6090,1,6223; //Purified_Bradium -> Carnium
 		break;
