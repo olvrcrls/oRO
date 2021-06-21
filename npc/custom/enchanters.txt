@@ -323,6 +323,7 @@ Enchant_Armor:
 				407, 29007,	// Rune of Luck Lv 2
 				412,  4996,	// Rune of Strength Lv 3
 				432,  4999,	// Rune of Agility Lv 3
+				455, 29011,	// Rune of Vitality Lv 3
 				452, 29002,	// Rune of Intellect Lv 3
 				467, 29005,	// Rune of Dexterity Lv 3
 				477, 29008;	// Rune of Luck Lv 3

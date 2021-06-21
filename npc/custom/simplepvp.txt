@@ -10,7 +10,7 @@
 	switch(select("Enter PvP Room:Cancel")) {
 		case 1:
 			warp "pvp_y_8-2", 0, 0;
-			announce " Player: " + strcharinfo(0)+ " has entered the PVP room.", bc_all;
+			announce strcharinfo(0)+ " has entered the PVP room.", bc_all;
 			break;
 		case 2:
 			end;
