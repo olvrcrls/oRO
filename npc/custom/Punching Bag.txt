@@ -21,8 +21,14 @@ OnInit:
 	monster strnpcinfo(4),.@d[UNPC_X],.@d[UNPC_Y],"Punching Bag",2411,1,strnpcinfo(0)+"::OnMyMobDead";
 	.@dupid = atoi(strnpcinfo(2));
 	.gid[.@dupid] = $@mobid[0];
-	.mhp[.@dupid] = strmobinfo(4,2412);
-	setunitdata .gid[.@dupid],UMOB_MODE,.@d[UMOB_MODE]|0x4000000|0x0200000; // Set MD_STATUS_IMMUNE (0x4000000) because EDP/burn/%MHP based status can skew the DPS counter so much.
+	.mhp[.@dupid] = strmobinfo(4,2411);
+	setunitdata .gid[.@dupid],UMOB_MODE,.@d[UMOB_MODE]|0x4000000|0x0200000|0x0400000; // Set MD_STATUS_IMMUNE (0x4000000) because EDP/burn/%MHP based status can skew the DPS counter so much.
+	setunitdata .gid[.@dupid],UMOB_RACE,.@d[UMOB_RACE]|0x0000007; // Set unit to Player
+	setunitdata .gid[.@dupid],UMOB_SHIELD,.@d[UMOB_SHIELD]|0x0000859; // 30% Demi-Human resist
+	setunitdata .gid[.@dupid],UMOB_WEAPON,.@d[UMOB_WEAPON]|0x00004CC; // 30% Demi-Human resist
+	setunitdata .gid[.@dupid],UMOB_HEADTOP,.@d[UMOB_HEADTOP]|0x000158E; // 12% Demi-Human resist
+	setunitdata .gid[.@dupid],UMOB_HEADBOTTOM,.@d[UMOB_HEADBOTTOM]|0x00048EE; // 3% Demi-Human resist
+	setunitdata .gid[.@dupid],UMOB_ROBE,.@d[UMOB_ROBE]|0x00050E3; // 5% Demi-Human resist
 	initnpctimer;
 	end;
 	
@@ -41,3 +47,8 @@ OnTimer5000:
 }
 
 //Prontera previous: 844
+askald,157,48,0	duplicate(PunchingBag#0)	PunchingBag#1	844
+askald,152,55,0	duplicate(PunchingBag#0)	PunchingBag#2	844
+askald,152,48,0	duplicate(PunchingBag#0)	PunchingBag#3	844
+askald,147,55,0	duplicate(PunchingBag#0)	PunchingBag#4	844
+askald,147,48,0	duplicate(PunchingBag#0)	PunchingBag#5	844

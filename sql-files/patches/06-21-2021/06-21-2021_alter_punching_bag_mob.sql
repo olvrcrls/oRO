@@ -1,0 +1,1 @@
+UPDATE `mob_db_re` SET `kName` = 'Dummy 175', `iName` = 'Dummy 175', `LV` = '175' WHERE (`ID` = '2411');
