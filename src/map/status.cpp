@@ -10089,7 +10089,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 					int i;
 					for (i = 0; i < MAX_DEVOTION; i++) { // See if there are devoted characters, and pass the status to them. [Skotlex]
 						if (sd->devotion[i] && (tsd = map_id2sd(sd->devotion[i])))
-							status_change_start(src,&tsd->bl,type,10000,val1,val2,val3,val4,tick,SCSTART_NOAVOID);
+							status_change_start(src,&tsd->bl,type,10000,val1,val2,val3,val4,tick,SCSTART_NOAVOID|SCSTART_NOICON);
 					}
 				}
 			}
@@ -10232,8 +10232,11 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 				int i = 4;
 				while( i >= 0 ) {
 					enum sc_type type2 = types[i];
-					if( d_sc->data[type2] )
-						status_change_start(d_bl, bl, type2, 10000, d_sc->data[type2]->val1, 0, 0, (type2 == SC_REFLECTSHIELD ? 1 : 0), skill_get_time(status_sc2skill(type2),d_sc->data[type2]->val1), (type2 == SC_DEFENDER) ? SCSTART_NOAVOID : SCSTART_NOAVOID|SCSTART_NOICON);
+
+					if( d_sc->data[type2] ) {
+						int sub_val3 = type2 == SC_DEFENDER ? d_sc->data[type2]->val3 : 0;
+						status_change_start(d_bl, bl, type2, 10000, d_sc->data[type2]->val1, d_sc->data[type2]->val2, sub_val3, (type2 == SC_REFLECTSHIELD ? 1 : 0), skill_get_time(status_sc2skill(type2),d_sc->data[type2]->val1), SCSTART_NOAVOID|SCSTART_NOICON);
+					}
 					i--;
 				}
 			}
