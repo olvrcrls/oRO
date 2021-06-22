@@ -3709,7 +3709,7 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 		case MO_EXTREMITYFIST:
 			skillratio += 100 * (7 + sstatus->sp / 10);
 			skillratio = min(500000,skillratio); //We stop at roughly 50k SP for overflow protection
-			skillratio *= 2; // Doubles the damage from the SP.
+			skillratio *= 1.5; // Doubles the damage from the SP.
 			break;
 		case MO_TRIPLEATTACK:
 			skillratio += 20 * skill_lv;
