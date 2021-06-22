@@ -17451,7 +17451,7 @@ int skill_delayfix(struct block_list *bl, uint16 skill_id, uint16 skill_lv)
 			break;
 		case SR_DRAGONCOMBO:
 		case SR_FALLENEMPIRE:
-			time = 380;
+			time = 150;
 			// if (time == 0)
 				// time = 1500;
 			// time -= (4 * status_get_agi(bl) + 2 * status_get_dex(bl));
