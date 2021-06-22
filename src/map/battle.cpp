@@ -6767,8 +6767,8 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 				struct Damage matk = battle_calc_magic_attack(src, target, skill_id, skill_lv, 0);
 				int target_vit = tstatus->vit;
 				// NERF: Capping the vit
-				if (target_vit > 350) {
-					target_vit = 350;
+				if (target_vit > 165) {
+					target_vit = 165;
 				}
 				md.damage = 7 * ((atk.damage/skill_lv + matk.damage/skill_lv) * target_vit / 100 );
 
