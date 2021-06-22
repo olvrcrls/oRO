@@ -5603,7 +5603,6 @@ static unsigned short status_calc_str(struct block_list *bl, struct status_chang
 
 	if(sc->data[SC_HARMONIZE]) {
 		str -= sc->data[SC_HARMONIZE]->val2;
-		//return (unsigned short)cap_value(str,0,USHRT_MAX);
 	}
 	if(sc->data[SC_INCALLSTATUS])
 		str += sc->data[SC_INCALLSTATUS]->val1;
@@ -5683,7 +5682,6 @@ static unsigned short status_calc_agi(struct block_list *bl, struct status_chang
 
 	if(sc->data[SC_HARMONIZE]) {
 		agi -= sc->data[SC_HARMONIZE]->val2;
-		//return (unsigned short)cap_value(agi,0,USHRT_MAX);
 	}
 	if(sc->data[SC_CONCENTRATE] && !sc->data[SC_QUAGMIRE])
 		agi += (agi-sc->data[SC_CONCENTRATE]->val3)*sc->data[SC_CONCENTRATE]->val2/100;
@@ -5761,7 +5759,6 @@ static unsigned short status_calc_vit(struct block_list *bl, struct status_chang
 
 	if(sc->data[SC_HARMONIZE]) {
 		vit -= sc->data[SC_HARMONIZE]->val2;
-		//return (unsigned short)cap_value(vit,0,USHRT_MAX);
 	}
 	if(sc->data[SC_INCALLSTATUS])
 		vit += sc->data[SC_INCALLSTATUS]->val1;
@@ -5829,7 +5826,6 @@ static unsigned short status_calc_int(struct block_list *bl, struct status_chang
 
 	if(sc->data[SC_HARMONIZE]) {
 		int_ -= sc->data[SC_HARMONIZE]->val2;
-		//return (unsigned short)cap_value(int_,0,USHRT_MAX);
 	}
 	if(sc->data[SC_INCALLSTATUS])
 		int_ += sc->data[SC_INCALLSTATUS]->val1;
@@ -5912,7 +5908,6 @@ static unsigned short status_calc_dex(struct block_list *bl, struct status_chang
 
 	if(sc->data[SC_HARMONIZE]) {
 		dex -= sc->data[SC_HARMONIZE]->val2;
-		//return (unsigned short)cap_value(dex,0,USHRT_MAX);
 	}
 	if(sc->data[SC_CONCENTRATE] && !sc->data[SC_QUAGMIRE])
 		dex += (dex-sc->data[SC_CONCENTRATE]->val4)*sc->data[SC_CONCENTRATE]->val2/100;
@@ -5992,7 +5987,6 @@ static unsigned short status_calc_luk(struct block_list *bl, struct status_chang
 
 	if(sc->data[SC_HARMONIZE]) {
 		luk -= sc->data[SC_HARMONIZE]->val2;
-		//return (unsigned short)cap_value(luk,0,USHRT_MAX);
 	}
 	if(sc->data[SC_CURSE])
 		return 0;
