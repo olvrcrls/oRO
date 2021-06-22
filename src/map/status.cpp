@@ -8620,6 +8620,7 @@ void status_display_remove(struct block_list *bl, enum sc_type type) {
  */
 int status_change_start(struct block_list* src, struct block_list* bl,enum sc_type type,int rate,int val1,int val2,int val3,int val4,t_tick duration,unsigned char flag) {
 	struct map_session_data *sd = NULL;
+	struct map_session_data *ssd = NULL;
 	struct status_change* sc;
 	struct status_change_entry* sce;
 	struct status_data *status;
@@ -10574,10 +10575,16 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 			val2 = 500 + 100 * val1;
 			break;
 		case SC_STONEHARDSKIN:
-			if (!status_charge(bl, status->hp / 5, 0)) // 20% of HP
-				return 0;
-			if (sd)
+			if (sd && pc_checkskill(sd, RK_RUNEMASTERY)) {
 				val1 = sd->status.job_level * pc_checkskill(sd, RK_RUNEMASTERY) / 4; // DEF/MDEF Increase
+			}
+
+			if (!status_charge(bl, status->hp / 5, 0)) {
+				return 0;
+			} else {
+				ssd = BL_CAST(BL_PC, src);
+				val1 = ssd->status.job_level * pc_checkskill(ssd, RK_RUNEMASTERY) / 4;
+			} // 20% of HP
 			break;
 		case SC_REFRESH:
 			status_heal(bl, status_get_max_hp(bl) * 25 / 100, 0, 1);
