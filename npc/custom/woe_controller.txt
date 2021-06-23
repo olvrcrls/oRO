@@ -71,19 +71,19 @@ OnInit:
 // -----------------------------------------------------------
 
 	// Combine values as needed (e.g. 1|8 = 1+8 = 9).
-	set .Options, 11;
+	set .Options, 1;
 
 	// Rewards per castle.
 	//   setarray .reward_id[0],     <itemID>{,<itemID>,...}
 	//   setarray .reward_amount[0], <amount>{,<amount>,...}
 	
 	// WoE rewards are: Basic Siege Supply Box, KVM Badge, Blank Card, Proof of Donation
-	setarray .reward_id[0],12675,6376,6187,7179;
+	setarray .reward_id[0],12675,6376,6187,7179,6226,6225;
 	
-	setarray .reward_amount[0],3,1500,1500,100;
+	setarray .reward_amount[0],3,1500,1500,100,5,5;
 
 	// Zeny reward:
-	.reward_zeny = 50000000; // 50M
+	.reward_zeny = 100000000; // 100M
 
 // -----------------------------------------------------------
 //  Constants (leave this section alone).
@@ -251,6 +251,7 @@ OnReward:
 					}
 					Zeny += .reward_zeny;
 					dispbottom "You have been rewarded for conquering " + .@castle_name$ + ".";
+					dispbottom "Come again for the next War of Emperium to defend your castle!";
 					detachrid;
 				}
 			}
