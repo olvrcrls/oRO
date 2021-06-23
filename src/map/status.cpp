@@ -12105,10 +12105,10 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 		npc_touchnext_areanpc(sd,false); // Run OnTouch_ on next char in range
 	if (sd && sd->status.party_id && (
 		type == SC_BLESSING || type == SC_INCREASEAGI || type == SC_CP_WEAPON || type == SC_CP_SHIELD ||
-		type == SC_CP_ARMOR || type == SC_CP_HELM || type == SC_SPIRIT || type == SC_DEVOTION || 
-		type == SC_STRIKING || type == SC_PNEUMA || type == SC_EXPIATIO || type == SC_SECRAMENT ||
-		type == SC_ASPERSIO)
-		 ) {
+		type == SC_CP_ARMOR || type == SC_CP_HELM || type == SC_DEVOTION || 
+		type == SC_STRIKING || type == SC_SECRAMENT || type == SC_EXPIATIO)
+		// || type == SC_PNEUMA || type == SC_ASPERSIO || type == SC_SPIRIT)
+		) {
 		struct party_data* p = party_search(sd->status.party_id);
 		clif_party_info(p, NULL);
 	}
