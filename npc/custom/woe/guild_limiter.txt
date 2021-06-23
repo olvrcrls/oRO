@@ -3,15 +3,15 @@
 // This part ejects players when they are in the map 
 	OnPCLoadMapEvent:
 		if (getgmlevel() >= 99) end;
-		
-		if (getcharid(2) == 0) {
-			message strcharinfo(0), "You don't have a guild. You're not allowed here.";
-			sleep2 1000;
-			warp "SavePoint", 0,0;
-			end;
-		}
 
 		if (agitcheck() || agitcheck2()) {
+			if (getcharid(2) == 0) {
+				message strcharinfo(0), "You don't have a guild. You're not allowed here.";
+				sleep2 1000;
+				warp "SavePoint", 0,0;
+				end;
+			}
+
 			query_sql("SELECT guild_id, emblem_id, emblem_len FROM `guild` WHERE guild_id = " + getcharid(2), .@guild_id, .@emblem_id, .@emblem_len);
 			if (.@emblem_id == 0 && .@emblem_len == 0) {
 				message strcharinfo(0), "Your guild doesn't have an emblem. You're not allowed here.";
