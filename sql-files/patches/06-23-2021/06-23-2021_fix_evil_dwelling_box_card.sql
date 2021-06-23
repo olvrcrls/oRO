@@ -1,0 +1,1 @@
+UPDATE `item_db_re` SET `script` = 'bonus bMaxHP,-1225; bonus3 bAddEff,Eff_Curse,500,ATF_MAGIC;' WHERE (`id` = '31018');
