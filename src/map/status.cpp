@@ -8263,11 +8263,11 @@ t_tick status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_
 			break;
 		case SC_CURSE:
 			// Special property: immunity when luk is zero
-			if (status->luk == 0)
-				return 0;
+			// if (status->luk == 0)
+			// 	return 0;
 			sc_def = status->luk*100;
-			sc_def2 = status->luk*10 - status_get_lv(src)*10; // Curse only has a level penalty and no resistance
-			tick_def = status->vit*100;
+			sc_def2 = status->luk*10 + status_get_lv(bl)*10 - status_get_lv(src)*10; // Curse only has a level penalty and no resistance
+			// tick_def = status->vit*100;
 			tick_def2 = status->luk*10;
 			break;
 		case SC_BLIND:
@@ -8731,7 +8731,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 	undead_flag = battle_check_undead(status->race,status->def_ele);
 	// Check for immunities / sc fails
 	switch (type) {
-	case SC_DECREASEAGI:
+	//case SC_DECREASEAGI: // Make Guyak or other speed potions be not immune to decrease agi.
 	case SC_QUAGMIRE:
 	case SC_DONTFORGETME:
 	case SC_CREATINGSTAR:
@@ -9199,6 +9199,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 		// Also blocks the ones below...
 	case SC_DECREASEAGI:
 		if (type == SC_DECREASEAGI) {
+			status_change_end(bl, SC_GN_CARTBOOST, INVALID_TIMER);
 			status_change_end(bl, SC_DECREASEAGI, INVALID_TIMER);
 			status_change_end(bl, SC_ADORAMUS, INVALID_TIMER);
 		}
@@ -9546,7 +9547,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 			case SC_STUN:
 			case SC_SLEEP:
 			case SC_POISON:
-			case SC_CURSE:
+			//case SC_CURSE:
 			case SC_SILENCE:
 			case SC_CONFUSION:
 			case SC_BLIND:
