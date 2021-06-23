@@ -8243,6 +8243,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 			skill_produce_mix(sd, skill_id, ITEMID_FIRE_BOTTLE, 0, 0, 0, 50, fire_idx-1);
 		}
 		break;
+
 	case SA_DISPELL:
 		if (flag&1 || (i = skill_get_splash(skill_id, skill_lv)) < 1) {
 			if (sd && dstsd && !map_flag_vs(sd->bl.m) && (!sd->duel_group || sd->duel_group != dstsd->duel_group) && (!sd->status.party_id || sd->status.party_id != dstsd->status.party_id))
@@ -8256,6 +8257,11 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 				break;
 			}
+
+			// Has no effect if the target is hiding
+			if (pc_ishiding(dstsd))
+				break;
+
 			if(status_isimmune(bl))
 				break;
 
@@ -9597,7 +9603,6 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 
 	case RK_LUXANIMA:
 		{
-			//TODO: Test STONEHARD SKIN when LUX'd
 			sc_type runes[] = { SC_MILLENNIUMSHIELD, SC_REFRESH, SC_GIANTGROWTH, SC_STONEHARDSKIN, SC_VITALITYACTIVATION, SC_ABUNDANCE };
 
 			if (sd == NULL || sd->status.party_id == 0 || flag&1) {
