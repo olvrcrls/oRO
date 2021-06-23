@@ -182,7 +182,7 @@ L_Socket:
 		}
 		switch(.@enchant_type) {
 		case 1: //Attack
-			     if (.@slot == 4) set .@i, rand(1,525);
+			if (.@slot == 4) set .@i, rand(1,525);
 			else if (.@slot == 3) set .@i, rand(301,655);
 			else if (.@slot == 2) set .@i, rand(451,750);
 			else {
@@ -206,10 +206,10 @@ L_Socket:
 			else if (.@i < 666) set .@enchant,4820; //Fighting_Spirit5
 			else if (.@i < 668) set .@enchant,4705; //Strength6
 			else if (.@i < 670) set .@enchant,4821; //Fighting_Spirit6
-			else set .@enchant,9;
+			else set .@enchant,0;
 			break;
 		case 2: //Critical
-			     if (.@slot == 4) set .@i, rand(1,470);
+			if (.@slot == 4) set .@i, rand(1,470);
 			else if (.@slot == 3) set .@i, rand(201,610);
 			else if (.@slot == 2) set .@i, rand(381,750);
 			else {
@@ -233,10 +233,10 @@ L_Socket:
 			else if (.@i < 611) set .@enchant,4817; //Sharp2
 			else if (.@i < 616) set .@enchant,4703; //Strength4
 			else if (.@i < 618) set .@enchant,4816; //Sharp3
-			else set .@enchant,9;
+			else set .@enchant,0;
 			break;
 		case 3: //Evasion
-			     if (.@slot == 4) set .@i, rand(1,525);
+			if (.@slot == 4) set .@i, rand(1,525);
 			else if (.@slot == 3) set .@i, rand(301,670);
 			else if (.@slot == 2) set .@i, rand(451,800);
 			else {
@@ -263,7 +263,7 @@ L_Socket:
 			else set .@enchant,9;
 			break;
 		case 4: //Healer
-			     if (.@slot == 4) set .@i, rand(1,375);
+			if (.@slot == 4) set .@i, rand(1,375);
 			else if (.@slot == 3) set .@i, rand(201,535);
 			else if (.@slot == 2) set .@i, rand(301,650);
 			else {
@@ -287,10 +287,10 @@ L_Socket:
 			else if (.@i < 546) set .@enchant,4851; //Heal_Amount4
 			else if (.@i < 548) set .@enchant,4806; //Matk3
 			else if (.@i < 550) set .@enchant,4852; //Heal_Amount5
-			else set .@enchant,9;
+			else set .@enchant,0;
 			break;
 		case 5: //Spell 1
-			     if (.@slot == 4) set .@i, rand(1,600);
+			if (.@slot == 4) set .@i, rand(1,600);
 			else if (.@slot == 3) set .@i, rand(401,760);
 			else if (.@slot == 2) set .@i, rand(401,766);
 			else {
@@ -314,10 +314,10 @@ L_Socket:
 			else if (.@i < 763) set .@enchant,4713; //Inteligence4
 			else if (.@i < 765) set .@enchant,4723; //Dexterity4
 			else if (.@i < 767) set .@enchant,4812; //Spell4
-			else set .@enchant,9;
+			else set .@enchant,0;
 			break;
 		case 6: //Assist 1
-			     if (.@slot == 4) set .@i, rand(1,520);
+			if (.@slot == 4) set .@i, rand(1,520);
 			else if (.@slot == 3) set .@i, rand(321,720);
 			else if (.@slot == 2) set .@i, rand(521,850);
 			else {
@@ -325,7 +325,7 @@ L_Socket:
 				mes "An unknown error has occurred.";
 				close;
 			}
-			     if (.@i < 81)  set .@enchant,4792; //Def6
+			if (.@i < 81)  set .@enchant,4792; //Def6
 			else if (.@i < 161) set .@enchant,4787; //Mdef4
 			else if (.@i < 241) set .@enchant,4801; //SP100
 			else if (.@i < 321) set .@enchant,4796; //HP200
@@ -341,10 +341,10 @@ L_Socket:
 			else if (.@i < 731) set .@enchant,4701; //Strength2
 			else if (.@i < 741) set .@enchant,4721; //Dexterity2
 			else if (.@i < 751) set .@enchant,4731; //Agility2
-			else set .@enchant,9;
+			else set .@enchant,0;
 			break;
 		case 7: //Assist 2
-			     if (.@slot == 4) set .@i, rand(1,520);
+			if (.@slot == 4) set .@i, rand(1,520);
 			else if (.@slot == 3) set .@i, rand(321,720);
 			else if (.@slot == 2) set .@i, rand(521,850);
 			else {
@@ -352,7 +352,7 @@ L_Socket:
 				mes "An unknown error has occurred.";
 				close;
 			}
-			     if (.@i < 81)  set .@enchant,4792; //Def6
+			if (.@i < 81)  set .@enchant,4792; //Def6
 			else if (.@i < 161) set .@enchant,4787; //Mdef4
 			else if (.@i < 241) set .@enchant,4801; //SP100
 			else if (.@i < 321) set .@enchant,4796; //HP200
@@ -368,10 +368,10 @@ L_Socket:
 			else if (.@i < 731) set .@enchant,4711; //Inteligence2
 			else if (.@i < 741) set .@enchant,4721; //Dexterity2
 			else if (.@i < 751) set .@enchant,4741; //Vitality2
-			else set .@enchant,9;
+			else set .@enchant,0;
 			break;
 		case 8: //Strength
-			     if (.@slot == 4) set .@i, rand(1,525);
+			if (.@slot == 4) set .@i, rand(1,525);
 			else if (.@slot == 3) set .@i, rand(301,685);
 			else if (.@slot == 2) set .@i, rand(451,800);
 			else {
@@ -395,10 +395,10 @@ L_Socket:
 			//else if (.@i < 686) set .@enchant,01; // ??
 			else if (.@i < 688) set .@enchant,4744; //Vitality5
 			//else if (.@i < 690) set .@enchant,02; // ??
-			else set .@enchant,9;
+			else set .@enchant,0;
 			break;
 		case 9: //Range
-			     if (.@slot == 4) set .@i, rand(1,470);
+			if (.@slot == 4) set .@i, rand(1,470);
 			else if (.@slot == 3) set .@i, rand(201,610);
 			else if (.@slot == 2) set .@i, rand(321,750);
 			else {
@@ -406,7 +406,7 @@ L_Socket:
 				mes "An unknown error has occurred.";
 				close;
 			}
-			     if (.@i < 101) set .@enchant,4750; //Luck1
+			if (.@i < 101) set .@enchant,4750; //Luck1
 			else if (.@i < 201) set .@enchant,4720; //Dexterity1
 			else if (.@i < 261) set .@enchant,4751; //Luck2
 			else if (.@i < 321) set .@enchant,4721; //Dexterity2
@@ -422,7 +422,7 @@ L_Socket:
 			else if (.@i < 611) set .@enchant,4834; //Expert_Archer3
 			else if (.@i < 616) set .@enchant,4724; //Dexterity5
 			else if (.@i < 618) set .@enchant,4835; //Expert_Archer4
-			else set .@enchant,9;
+			else set .@enchant,4835;
 			break;
 		case 10: //Physical
 			     if (.@slot == 4) set .@i, rand(1,600);
@@ -449,7 +449,7 @@ L_Socket:
 			else if (.@i < 816) set .@enchant,4733; //Agility4
 			else if (.@i < 831) set .@enchant,4753; //Luck4
 			else if (.@i < 833) set .@enchant,4807; //Atk_Speed1
-			else set .@enchant,9;
+			else set .@enchant,0;
 			break;
 		case 11: //Spell 2
 			     if (.@slot == 4) set .@i, rand(1,600);
@@ -476,7 +476,7 @@ L_Socket:
 			else if (.@i < 763) set .@enchant,4714; //Inteligence5
 			else if (.@i < 765) set .@enchant,4724; //Dexterity5
 			else if (.@i < 767) set .@enchant,4806; //Matk3
-			else set .@enchant,9;
+			else set .@enchant,0;
 			break;
 		default:
 			mes "[Artifact Researcher]";
