@@ -94,7 +94,8 @@ askald,40,172,4	script	Mayomayo#mal	555,{
 			case 1223: callsub L_Socket,2,2;	// Forturn_Sword
 			case 1228: callsub L_Socket,2,2;	// Combat_Knife
 			case 1234: callsub L_Socket,2,2;	// Moonlight_Sword
-			case 1230: callsub L_Socket,4,2;	// House_Auger
+			case 1230: callsub L_Socket,4,2;	// House_Auger / Ice Pick[0]
+			case 13017: callsub L_Socket,4,2;	// Ice Pick [1]
 			case 1231: callsub L_Socket,4,2;	// Bazerald
 			case 13062: callsub L_Socket,4,2;	// Ancient_Dagger
 		}
@@ -324,13 +325,13 @@ askald,40,172,4	script	Mayomayo#mal	555,{
 	case 19:	// Gatling guns
 	case 20:	// Shotguns
 	case 21:	// Grenade launchers
-		// switch(@mal_equip_id) {
-		// 	case 13138: callsub L_Socket,4,2;	// Dark_Rose
-		// 	case 28223: callsub L_Socket,4,2;	// Finisher
-		// 	case 28224: callsub L_Socket,4,2;	// Dustfire
-		// 	case 28225: callsub L_Socket,4,2;	// Burning_Rose
-		// 	case 28226: callsub L_Socket,4,2;	// Avenger
-		// }
+		switch(@mal_equip_id) {
+		 	case 13138: callsub L_Socket,4,2;	// Dark_Rose
+		 	case 28223: callsub L_Socket,4,2;	// Finisher
+		 	case 28224: callsub L_Socket,4,2;	// Dustfire
+		 	case 28225: callsub L_Socket,4,2;	// Burning_Rose
+		 	case 28226: callsub L_Socket,4,2;	// Avenger
+		}
 		break;
 	}
 	mes "[Guata]";
