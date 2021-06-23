@@ -8731,7 +8731,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 	undead_flag = battle_check_undead(status->race,status->def_ele);
 	// Check for immunities / sc fails
 	switch (type) {
-	case SC_DECREASEAGI:
+	//case SC_DECREASEAGI: // Make Guyak or other speed potions be not immune to decrease agi.
 	case SC_QUAGMIRE:
 	case SC_DONTFORGETME:
 	case SC_CREATINGSTAR:
@@ -9199,6 +9199,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 		// Also blocks the ones below...
 	case SC_DECREASEAGI:
 		if (type == SC_DECREASEAGI) {
+			status_change_end(bl, SC_GN_CARTBOOST, INVALID_TIMER);
 			status_change_end(bl, SC_DECREASEAGI, INVALID_TIMER);
 			status_change_end(bl, SC_ADORAMUS, INVALID_TIMER);
 		}
