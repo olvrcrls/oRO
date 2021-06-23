@@ -43,6 +43,11 @@ askald,100,155,5	script	Vicious Enchants PHD	4_M_FAIRYSCHOLAR,{
 		1600, // Rod
 		2026; // Two Handed Staff
 
+
+	//== First Slot choices
+	setarray .@first_slot_options[0],
+		
+
 	//== Cost
 	.@valor_badge_qty = 2000;
 	.@pod_qty = 50;
@@ -81,8 +86,18 @@ askald,100,155,5	script	Vicious Enchants PHD	4_M_FAIRYSCHOLAR,{
 			mes "You do not have enough sincerity! Where's the complete requirements!?";
 			close;
 		}
-		mes "Oh good, let's proceed then...";
+			mes "Oh good, let's proceed then...";
+			mes "But I need to know which enchant slot do you want to modify?";
+			.@slot = select("1st Enchant Option:2nd Enchant Option:3rd Enchant Option") - 1;
+			close;
+		}
 	}
 
 	close;
 }
+
+
+/*
+Snippets:
+setrandomoption(.@part,0,getd(".RandOpt1_"+.@Type$+"["+.@Opt1+"]"),.@Opt1_V,0);
+*/
