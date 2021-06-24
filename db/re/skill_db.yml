@@ -23832,7 +23832,6 @@ Body:
         Reproduce: true
     Duration1: 5000
     FixedCastTime: -1
-    AfterCastActDelay: 750
     Requires:
       SpCost:
         - Level: 1
@@ -23965,7 +23964,7 @@ Body:
       - Level: 5
         Time: 2500
     FixedCastTime: -1
-    AfterCastActDelay: 600
+    AfterCastActDelay: 200
     Requires:
       SpCost:
         - Level: 1

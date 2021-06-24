@@ -17518,7 +17518,7 @@ int skill_delayfix(struct block_list *bl, uint16 skill_id, uint16 skill_lv)
 
 	if (!(delaynodex&2)) {
 		if (sc && sc->count) {
-			if (sc->data[SC_POEMBRAGI] && skill_id != SR_DRAGONCOMBO && skill_id != SR_FALLENEMPIRE && skill_id != SR_TIGERCANNON)
+			if (sc->data[SC_POEMBRAGI] && skill_id != SR_FALLENEMPIRE && skill_id != SR_TIGERCANNON)
 				time -= time * sc->data[SC_POEMBRAGI]->val3 / 100;
 			if (sc->data[SC_WIND_INSIGNIA] && sc->data[SC_WIND_INSIGNIA]->val1 == 3 && skill_get_type(skill_id) == BF_MAGIC && skill_get_ele(skill_id, skill_lv) == ELE_WIND)
 				time /= 2; // After Delay of Wind element spells reduced by 50%.
