@@ -7525,7 +7525,7 @@ Body:
     Description: Snap
     MaxLevel: 1
     TargetType: Ground
-    AfterCastActDelay: 50
+    AfterCastActDelay: 100
     DamageFlags:
       NoDamage: true
     Range: 18
