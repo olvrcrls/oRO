@@ -8250,7 +8250,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 				break; // Outside PvP it should only affect party members and no skill fail message
 			clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
 			if((dstsd && (dstsd->class_&MAPID_UPPERMASK) == MAPID_SOUL_LINKER)
-				|| (tsc && tsc->data[SC_SPIRIT] && tsc->data[SC_SPIRIT]->val2 == SL_ROGUE) //Rogue's spirit defends againt dispel.
+				|| (tsc && tsc->data[SC_SPIRIT] && tsc->data[SC_SPIRIT]->val2 == SL_ROGUE) //Rogue's spirit defends against dispel.
 				|| rnd()%100 >= 50+10*skill_lv)
 			{
 				if (sd)
@@ -8259,8 +8259,11 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 			}
 
 			// Has no effect if the target is hiding
-			if (pc_ishiding(dstsd))
-				break;
+			// TODO: Fix this one as this one crashing the server. Commented out for now.
+			// if (pc_ishiding(dstsd)) {
+			// 	clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
+			// 	break;
+			// }
 
 			if(status_isimmune(bl))
 				break;
