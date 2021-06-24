@@ -11623,6 +11623,11 @@ static int8 skill_castend_id_check(struct block_list *src, struct block_list *ta
 		return USESKILL_FAIL_MAX; // Don't show a skill fail message (NoDamage type doesn't consume requirements)
 
 	switch (skill_id) {
+		case PF_SPIDERWEB:
+		case SA_DISPELL:
+			if (tsc && tsc->option&OPTION_HIDE)
+				return USESKILL_FAIL_TOTARGET;
+			break;
 		case AL_HEAL:
 		case AL_INCAGI:
 		case AL_DECAGI:
