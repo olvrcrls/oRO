@@ -3708,8 +3708,7 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			break;
 		case MO_EXTREMITYFIST:
 			skillratio += 100 * (7 + sstatus->sp / 10);
-			skillratio = min(500000,skillratio); //We stop at roughly 50k SP for overflow protection
-			skillratio *= 1.5; // Doubles the damage from the SP.
+			skillratio = (min(500000,skillratio) * 1.5); //We stop at roughly 50k SP for overflow protection
 			break;
 		case MO_TRIPLEATTACK:
 			skillratio += 20 * skill_lv;
@@ -4183,7 +4182,7 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 				unsigned int hp = sstatus->max_hp * (12 + (skill_lv * 2)) / 100,
 							 sp = sstatus->max_sp * (5 + skill_lv) / 100;
 
-				if (wd->miscflag&4)
+				if (wd->miscflag&8)
 					// Base_Damage = [((Caster consumed HP + SP) / 2) x Caster Base Level / 100] %
 					skillratio += -100 + (hp + sp) / 2;
 				else
@@ -5634,7 +5633,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 			break;
 		case SR_TIGERCANNON:
 			// (Tiger Cannon skill level x 240) + (Target Base Level x 40)
-			if (wd.miscflag&4) {
+			if (wd.miscflag&8) {
 				ATK_ADD(wd.damage, wd.damage2, skill_lv * 500 + status_get_lv(target) * 40);
 			} else
 				ATK_ADD(wd.damage, wd.damage2, skill_lv * 240 + status_get_lv(target) * 40);
@@ -5723,6 +5722,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 		case MC_CARTREVOLUTION:
 		case MO_INVESTIGATE:
 		case CR_ACIDDEMONSTRATION:
+		case SR_TIGERCANNON: // Forced tiger cannon to be neutral
 		case SR_GATEOFHELL:
 		case GN_FIRE_EXPANSION_ACID:
 		case KO_BAKURETSU:

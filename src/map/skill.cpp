@@ -8243,19 +8243,28 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 			skill_produce_mix(sd, skill_id, ITEMID_FIRE_BOTTLE, 0, 0, 0, 50, fire_idx-1);
 		}
 		break;
+
 	case SA_DISPELL:
 		if (flag&1 || (i = skill_get_splash(skill_id, skill_lv)) < 1) {
 			if (sd && dstsd && !map_flag_vs(sd->bl.m) && (!sd->duel_group || sd->duel_group != dstsd->duel_group) && (!sd->status.party_id || sd->status.party_id != dstsd->status.party_id))
 				break; // Outside PvP it should only affect party members and no skill fail message
 			clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
 			if((dstsd && (dstsd->class_&MAPID_UPPERMASK) == MAPID_SOUL_LINKER)
-				|| (tsc && tsc->data[SC_SPIRIT] && tsc->data[SC_SPIRIT]->val2 == SL_ROGUE) //Rogue's spirit defends againt dispel.
+				|| (tsc && tsc->data[SC_SPIRIT] && tsc->data[SC_SPIRIT]->val2 == SL_ROGUE) //Rogue's spirit defends against dispel.
 				|| rnd()%100 >= 50+10*skill_lv)
 			{
 				if (sd)
 					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 				break;
 			}
+
+			// Has no effect if the target is hiding
+			// TODO: Fix this one as this one crashing the server. Commented out for now.
+			// if (pc_ishiding(dstsd)) {
+			// 	clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
+			// 	break;
+			// }
+
 			if(status_isimmune(bl))
 				break;
 
@@ -9597,7 +9606,6 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 
 	case RK_LUXANIMA:
 		{
-			//TODO: Test STONEHARD SKIN when LUX'd
 			sc_type runes[] = { SC_MILLENNIUMSHIELD, SC_REFRESH, SC_GIANTGROWTH, SC_STONEHARDSKIN, SC_VITALITYACTIVATION, SC_ABUNDANCE };
 
 			if (sd == NULL || sd->status.party_id == 0 || flag&1) {
@@ -11615,6 +11623,11 @@ static int8 skill_castend_id_check(struct block_list *src, struct block_list *ta
 		return USESKILL_FAIL_MAX; // Don't show a skill fail message (NoDamage type doesn't consume requirements)
 
 	switch (skill_id) {
+		case PF_SPIDERWEB:
+		case SA_DISPELL:
+			if (tsc && tsc->option&OPTION_HIDE)
+				return USESKILL_FAIL_TOTARGET;
+			break;
 		case AL_HEAL:
 		case AL_INCAGI:
 		case AL_DECAGI:
@@ -17450,7 +17463,6 @@ int skill_delayfix(struct block_list *bl, uint16 skill_id, uint16 skill_lv)
 		case SR_TIGERCANNON:
 			time = 100;
 			break;
-		case SR_DRAGONCOMBO:
 		case SR_FALLENEMPIRE:
 			time = 150;
 			// if (time == 0)
@@ -17506,7 +17518,7 @@ int skill_delayfix(struct block_list *bl, uint16 skill_id, uint16 skill_lv)
 
 	if (!(delaynodex&2)) {
 		if (sc && sc->count) {
-			if (sc->data[SC_POEMBRAGI] && skill_id != SR_DRAGONCOMBO && skill_id != SR_FALLENEMPIRE && skill_id != SR_TIGERCANNON)
+			if (sc->data[SC_POEMBRAGI] && skill_id != SR_FALLENEMPIRE && skill_id != SR_TIGERCANNON)
 				time -= time * sc->data[SC_POEMBRAGI]->val3 / 100;
 			if (sc->data[SC_WIND_INSIGNIA] && sc->data[SC_WIND_INSIGNIA]->val1 == 3 && skill_get_type(skill_id) == BF_MAGIC && skill_get_ele(skill_id, skill_lv) == ELE_WIND)
 				time /= 2; // After Delay of Wind element spells reduced by 50%.
