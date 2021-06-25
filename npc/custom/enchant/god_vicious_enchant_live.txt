@@ -88,7 +88,7 @@ askald,100,155,5	script	Vicious Enchants PHD	4_M_FAIRYSCHOLAR,{
 
 
 	//== First slot menu choices
-	setarray .@first_slot_menu_options[0],
+	setarray .@first_slot_menu_options$[0],
 		"Nullify Weapon's Size Penalty",
 		"Weapon is indestructible in battle",
 		//== Weapon Endow
@@ -101,27 +101,27 @@ askald,100,155,5	script	Vicious Enchants PHD	4_M_FAIRYSCHOLAR,{
 		"Weapon Element - Shadow",
 		"Weapon Element - Poison",
 		//== Physical
-		"<Physical> Damage Against <^FF2000Poison^000000> Element Target",
-		"<Physical> Damage Against <^FF2000Neutral^000000> Element Target",
-		"<Physical> Damage Against <^FF2000Earth^000000> Element Target",
-		"<Physical> Damage Against <^FF2000Fire^000000> Element Target",
-		"<Physical> Damage Against <^FF2000Water^000000> Element Target",
-		"<Physical> Damage Against <^FF2000Wind^000000> Element Target",
-		"<Physical> Damage Against <^FF2000Holy^000000> Element Target",
-		"<Physical> Damage Against <^FF2000Shadow^000000> Element Target",
-		"<Physical> Damage Against <^FF2000Ghost^000000> Element Target",
-		"<Physical> Damage Against <^FF2000Undead^000000> Element Target",
+		"^7289DA<Physical>^000000 Damage Against <^FF2000Poison^000000> Target",
+		"^7289DA<Physical>^000000 Damage Against <^FF2000Neutral^000000> Target",
+		"^7289DA<Physical>^000000 Damage Against <^FF2000Earth^000000> Target",
+		"^7289DA<Physical>^000000 Damage Against <^FF2000Fire^000000> Target",
+		"^7289DA<Physical>^000000 Damage Against <^FF2000Water^000000> Target",
+		"^7289DA<Physical>^000000 Damage Against <^FF2000Wind^000000> Target",
+		"^7289DA<Physical>^000000 Damage Against <^FF2000Holy^000000> Target",
+		"^7289DA<Physical>^000000 Damage Against <^FF2000Shadow^000000> Target",
+		"^7289DA<Physical>^000000 Damage Against <^FF2000Ghost^000000> Target",
+		"^7289DA<Physical>^000000 Damage Against <^FF2000Undead^000000> Target",
 		//== Magical
-		"<Magical> Damage Against <^FF2000Poison^000000> Element Target",
-		"<Magical> Damage Against <^FF2000Neutral^000000> Element Target",
-		"<Magical> Damage Against <^FF2000Earth^000000> Element Target",
-		"<Magical> Damage Against <^FF2000Fire^000000> Element Target",
-		"<Magical> Damage Against <^FF2000Water^000000> Element Target",
-		"<Magical> Damage Against <^FF2000Wind^000000> Element Target",
-		"<Magical> Damage Against <^FF2000Holy^000000> Element Target",
-		"<Magical> Damage Against <^FF2000Shadow^000000> Element Target",
-		"<Magical> Damage Against <^FF2000Ghost^000000> Element Target",
-		"<Magical> Damage Against <^FF2000Undead^000000> Element Target",
+		"^7289DA<Magical>^000000 Damage Against <^FF2000Poison^000000> Target",
+		"^7289DA<Magical>^000000 Damage Against <^FF2000Neutral^000000> Target",
+		"^7289DA<Magical>^000000 Damage Against <^FF2000Earth^000000> Target",
+		"^7289DA<Magical>^000000 Damage Against <^FF2000Fire^000000> Target",
+		"^7289DA<Magical>^000000 Damage Against <^FF2000Water^000000> Target",
+		"^7289DA<Magical>^000000 Damage Against <^FF2000Wind^000000> Target",
+		"^7289DA<Magical>^000000 Damage Against <^FF2000Holy^000000> Target",
+		"^7289DA<Magical>^000000 Damage Against <^FF2000Shadow^000000> Target",
+		"^7289DA<Magical>^000000 Damage Against <^FF2000Ghost^000000> Target",
+		"^7289DA<Magical>^000000 Damage Against <^FF2000Undead^000000> Target",
 		//== ATK percent
 		"+10% ATK Rate",
 		//== MATK percent
@@ -129,6 +129,47 @@ askald,100,155,5	script	Vicious Enchants PHD	4_M_FAIRYSCHOLAR,{
 		//== Healing Rate
 		"+30% Increase healing rate";
 
+	//== First slot enchant values
+	setarray .@first_slot_values[0],
+		1, // Nullify Size Modifier
+		1, // Weapon Indestructible
+		//== Weapon Endow
+		1, // Weapon Element - Neutral
+		1, // Weapon Element - Water
+		1, // Weapon Element - Earth
+		1, // Weapon Element - Fire
+		1,	// Weapon Element - Wind
+		1,	// Weapon Element - Holy
+		1, // Weapon Element - Dark
+		1,	// Weapon Element - Poison
+		//== Physical
+		30,		// Damage to Poison Elment
+		30,	 	// Damage to Neutral Element
+		30,	 	// Damage to Earth Element
+		30,		 	// Damage to Fire Element
+		30,	 	// Damage to Water Element
+		30,		 	// Damage to Wind Element
+		30,	 	// Damage to Holy Element
+		30,	 	// Damage to Dark Element
+		30,	// Damage to Ghost Element
+		30,		// Damage to Undead Element
+		//== Magical
+		30,		// Magical Damage to Poison Elment
+		30,	 	// Magical Damage to Neutral Element
+		30,	 	// Magical Damage to Earth Element
+		30,	 	// Magical Damage to Fire Element
+		30,	 	// Magical Damage to Water Element
+		30,	 	// Magical Damage to Wind Element
+		30,		// Magical Damage to Holy Element
+		30,	// Magical Damage to Dark Element
+		30,	// Magical Damage to Ghost Element
+		30,	 	// Magical Damage to Undead Element
+		//== ATK percent
+		10, // ATK%
+		//== MATK percent
+		10, // MATK%
+		//== Healing Rate
+		30; // Healing Rate
 
 	//== Cost
 	.@valor_badge_qty = 2000;
@@ -168,15 +209,103 @@ askald,100,155,5	script	Vicious Enchants PHD	4_M_FAIRYSCHOLAR,{
 			mes "You do not have enough sincerity! Where's the complete requirements!?";
 			close;
 		}
-			mes "Oh good, let's proceed then...";
-			mes "But I need to know which enchant slot do you want to modify?";
-			.@slot = select("1st Enchant Option:2nd Enchant Option:3rd Enchant Option") - 1;
-			close;
-		}
+		mes "Oh good, let's proceed then...";
+		mes "But I need to know which enchant slot do you want to modify?";
+		.@slot = select("1st Enchant Option:2nd Enchant Option:3rd Enchant Option");
+		
+		switch(.@slot) {
+			case 1:
+				next;
+				goto Enchant_First_Slot;
+				break;
+			case 2:
+				next;
+				goto Enchant_Second_Slot;
+				break;
+			case 3:
+				next;
+				goto Enchant_Third_Slot;
+				break;
+		} // switch
 	}
 
+Enchant_First_Slot:
+	.@slot_index = 0;
+	// Form the selection options for the robe.
+	.@selection_size = getarraysize(.@first_slot_options);
+	for(.@i = 0; .@i < .@selection_size; .@i += 1) {
+		.@selection_menu$ = .@selection_menu$ + (.@i < 0 ? "" : ":") + .@first_slot_menu_options$[.@i];
+	} // for
+
+
+	mes .@n$;
+	mes "Please select on the following";
+	mes "This will determine your ^FF2000FIRST^000000 slot enchant of your Vicious Mind Weapon.";
+	.@selected_enchant = select(.@selection_menu$) - 2;
+
+	next;
+	mes .@n$;
+	mes "You have selected:";
+	mes "^7289DA" + .@first_slot_menu_options$[.@selected_enchant] + "^000000.";
+	mes "----------------------------";
+	mes "Are you sure with this?";
+	mes "No refunds!";
+	mes "You have been warned!";
+
+	.@agree = select("No, I have second thoughts:Yes, let's continue");
+	next;
+	switch(.@agree) {
+		case 1:
+			mes .@n$;
+			mes "Man, what a waste of time!";
+			mes "Come back, later then, noob";
+			close;
+			break;
+		case 2:
+			mes .@n$;
+			mes "Then I shall continue..";
+			next;
+			mes .@n$;
+			mes "Hnggghhh...";
+			mes "Haaannggghh";
+			next;
+			mes .@n$;
+			mes "Arrgghhh";
+			mes "Uwwuuuuu~";
+			next;
+			mes .@n$;
+			mes "Aaangh!!";
+			mes "Success~";
+			next;
+			mes .@n$;
+			mes "Here's your shitty weapon with its brand new ^FF2000FIRST^000000 enchant slot.";
+			setrandomoption(.@equip_part,.@slot_index,.@first_slot_options[.@selected_enchant],.@first_slot_values[.@selected_enchant],0);
+			//delitem .@valor_badge_id, .@valor_badge_qty;
+			//delitem .@pod_id, .@pod_qty;
+			//delitem .@blank_card_id, .@blank_card_qty;
+			close;
+			break;
+	} // switch
 	close;
+
+Enchant_Second_Slot:
+	.@slot_index = 1;
+	mes .@n$;
+	mes "Please select on the following";
+	mes "This will determine your ^FF2000SECOND^000000 slot enchant of your Vicious Mind Weapon.";
+
+	close;
+
+Enchant_Third_Slot:
+	.@slot_index = 2;
+	mes .@n$;
+	mes "Please select on the following";
+	mes "This will determine your ^FF2000SECOND^000000 slot enchant of your Vicious Mind Weapon.";
+
+	close;
+
 }
+	
 
 
 /*
