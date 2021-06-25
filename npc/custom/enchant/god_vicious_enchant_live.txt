@@ -46,7 +46,89 @@ askald,100,155,5	script	Vicious Enchants PHD	4_M_FAIRYSCHOLAR,{
 
 	//== First Slot choices
 	setarray .@first_slot_options[0],
-		
+		RDMOPT_DAMAGE_SIZE_PERFECT, // Nullify Size Modifier
+		RDMOPT_WEAPON_INDESTRUCTIBLE, // Weapon Indestructible
+		//== Weapon Endow
+		RDMOPT_WEAPON_ATTR_NOTHING, // Weapon Element - Neutral
+		RDMOPT_WEAPON_ATTR_WATER, // Weapon Element - Water
+		RDMOPT_WEAPON_ATTR_GROUND, // Weapon Element - Earth
+		RDMOPT_WEAPON_ATTR_FIRE, // Weapon Element - Fire
+		RDMOPT_WEAPON_ATTR_WIND,	// Weapon Element - Wind
+		RDMOPT_WEAPON_ATTR_SAINT,	// Weapon Element - Holy
+		RDMOPT_WEAPON_ATTR_DARKNESS, // Weapon Element - Dark
+		RDMOPT_WEAPON_ATTR_POISON,	// Weapon Element - Poison
+		//== Physical
+		RDMOPT_DAMAGE_PROPERTY_POISON_TARGET,		// Damage to Poison Elment
+		RDMOPT_DAMAGE_PROPERTY_NOTHING_TARGET,	 	// Damage to Neutral Element
+		RDMOPT_DAMAGE_PROPERTY_GROUND_TARGET,	 	// Damage to Earth Element
+		RDMOPT_DAMAGE_PROPERTY_FIRE_TARGET,		 	// Damage to Fire Element
+		RDMOPT_DAMAGE_PROPERTY_WATER_TARGET,	 	// Damage to Water Element
+		RDMOPT_DAMAGE_PROPERTY_WIND_TARGET,		 	// Damage to Wind Element
+		RDMOPT_DAMAGE_PROPERTY_SAINT_TARGET,	 	// Damage to Holy Element
+		RDMOPT_DAMAGE_PROPERTY_DARKNESS_TARGET,	 	// Damage to Dark Element
+		RDMOPT_DAMAGE_PROPERTY_TELEKINESIS_TARGET,	// Damage to Ghost Element
+		RDMOPT_DAMAGE_PROPERTY_UNDEAD_TARGET,		// Damage to Undead Element
+		//== Magical
+		RDMOPT_MDAMAGE_PROPERTY_POISON_TARGET,		// Magical Damage to Poison Elment
+		RDMOPT_MDAMAGE_PROPERTY_NOTHING_TARGET,	 	// Magical Damage to Neutral Element
+		RDMOPT_MDAMAGE_PROPERTY_GROUND_TARGET,	 	// Magical Damage to Earth Element
+		RDMOPT_MDAMAGE_PROPERTY_FIRE_TARGET,	 	// Magical Damage to Fire Element
+		RDMOPT_MDAMAGE_PROPERTY_WATER_TARGET,	 	// Magical Damage to Water Element
+		RDMOPT_MDAMAGE_PROPERTY_WIND_TARGET,	 	// Magical Damage to Wind Element
+		RDMOPT_MDAMAGE_PROPERTY_SAINT_TARGET,		// Magical Damage to Holy Element
+		RDMOPT_MDAMAGE_PROPERTY_DARKNESS_TARGET,	// Magical Damage to Dark Element
+		RDMOPT_MDAMAGE_PROPERTY_TELEKINESIS_TARGET,	// Magical Damage to Ghost Element
+		RDMOPT_MDAMAGE_PROPERTY_UNDEAD_TARGET,	 	// Magical Damage to Undead Element
+		//== ATK percent
+		RDMOPT_VAR_ATKPERCENT, // ATK%
+		//== MATK percent
+		RDMOPT_VAR_MAGICATKPERCENT, // MATK%
+		//== Healing Rate
+		RDMOPT_HEAL_MODIFY_PERCENT; // Healing Rate
+
+
+	//== First slot menu choices
+	setarray .@first_slot_menu_options[0],
+		"Nullify Weapon's Size Penalty",
+		"Weapon is indestructible in battle",
+		//== Weapon Endow
+		"Weapon Element - Neutral",
+		"Weapon Element - Water",
+		"Weapon Element - Earth",
+		"Weapon Element - Fire",
+		"Weapon Element - Wind",
+		"Weapon Element - Holy",
+		"Weapon Element - Shadow",
+		"Weapon Element - Poison",
+		//== Physical
+		"<Physical> Damage Against <^FF2000Poison^000000> Element Target",
+		"<Physical> Damage Against <^FF2000Neutral^000000> Element Target",
+		"<Physical> Damage Against <^FF2000Earth^000000> Element Target",
+		"<Physical> Damage Against <^FF2000Fire^000000> Element Target",
+		"<Physical> Damage Against <^FF2000Water^000000> Element Target",
+		"<Physical> Damage Against <^FF2000Wind^000000> Element Target",
+		"<Physical> Damage Against <^FF2000Holy^000000> Element Target",
+		"<Physical> Damage Against <^FF2000Shadow^000000> Element Target",
+		"<Physical> Damage Against <^FF2000Ghost^000000> Element Target",
+		"<Physical> Damage Against <^FF2000Undead^000000> Element Target",
+		//== Magical
+		"<Magical> Damage Against <^FF2000Poison^000000> Element Target",
+		"<Magical> Damage Against <^FF2000Neutral^000000> Element Target",
+		"<Magical> Damage Against <^FF2000Earth^000000> Element Target",
+		"<Magical> Damage Against <^FF2000Fire^000000> Element Target",
+		"<Magical> Damage Against <^FF2000Water^000000> Element Target",
+		"<Magical> Damage Against <^FF2000Wind^000000> Element Target",
+		"<Magical> Damage Against <^FF2000Holy^000000> Element Target",
+		"<Magical> Damage Against <^FF2000Shadow^000000> Element Target",
+		"<Magical> Damage Against <^FF2000Ghost^000000> Element Target",
+		"<Magical> Damage Against <^FF2000Undead^000000> Element Target",
+		//== ATK percent
+		"+10% ATK Rate",
+		//== MATK percent
+		"+10% MATK Rate",
+		//== Healing Rate
+		"+30% Increase healing rate";
+
 
 	//== Cost
 	.@valor_badge_qty = 2000;

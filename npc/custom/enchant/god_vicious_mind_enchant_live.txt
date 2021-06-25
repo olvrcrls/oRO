@@ -185,7 +185,7 @@ setarray .RandOpt1_M[0],RDMOPT_VAR_MAGICATKPERCENT, // MATK %
 					    RDMOPT_WEAPON_ATTR_SAINT,	// Weapon Element - Holy
 						RDMOPT_WEAPON_ATTR_DARKNESS,// Weapon Element - Dark
 						RDMOPT_WEAPON_ATTR_POISON,	// Weapon Element - Poison
-						RDMOPT_DAMAGE_PROPERTY_POISON_TARGET,		// Damage to Poison Elment
+						RDMOPT_MDAMAGE_PROPERTY_POISON_TARGET,		// Damage to Poison Elment
 					    RDMOPT_MDAMAGE_PROPERTY_NOTHING_TARGET,	 	// Damage to Neutral Element
 					    RDMOPT_MDAMAGE_PROPERTY_GROUND_TARGET,	 	// Damage to Earth Element
 					    RDMOPT_MDAMAGE_PROPERTY_FIRE_TARGET,	 	// Damage to Fire Element
