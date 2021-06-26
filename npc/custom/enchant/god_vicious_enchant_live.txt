@@ -271,6 +271,94 @@ askald,100,155,5	script	Vicious Mind	4_M_FAIRYSCHOLAR,{
 		//== Magical Bypass [normal]
 		30; // Bypass MDEF of Normal
 
+
+	//== Third slot enchant options
+	setarray .@third_slot_options[0],
+		RDMOPT_VAR_STRAMOUNT, // STR
+		RDMOPT_VAR_AGIAMOUNT, // AGI
+		RDMOPT_VAR_VITAMOUNT, // VIT
+		RDMOPT_VAR_INTAMOUNT, // INT
+		RDMOPT_VAR_DEXAMOUNT, // DEX
+		RDMOPT_VAR_LUKAMOUNT, // LUK
+
+		//== + ATK/MATK
+		RDMOPT_VAR_ATTPOWER,  // ATK
+		RDMOPT_VAR_ATTMPOWER, // MATK
+
+		//== Crit
+		RDMOPT_VAR_CRITICALSUCCESSVALUE, // Crit Chance
+		RDMOPT_DAMAGE_CRI_TARGET,	// Crit Damage %
+
+		// ASPD
+		RDMOPT_VAR_PLUSASPDPERCENT,	// ASPD %
+		RDMOPT_VAR_PLUSASPD,	// Flat ASPD
+
+		// Cast time
+		RDMOPT_DEC_SPELL_CAST_TIME,	// Variable Cast Time -%
+		RDMOPT_DEC_SPELL_DELAY_TIME,// Cast Delay -%
+
+		RDMOPT_DEC_SP_CONSUMPTION,	// Skill SP Cost -%
+		RDMOPT_RANGE_ATTACK_DAMAGE_TARGET; // Ranged Damage +%
+
+	//== Third slot menu options
+	setarray .@third_slot_menu_options$[0],
+		"+10 STR", // STR
+		"+10 AGI", // AGI
+		"+10 VIT", // VIT
+		"+10 INT", // INT
+		"+10 DEX", // DEX
+		"+10 LUK", // LUK
+
+		//== + ATK/MATK
+		"+50 ATK",  // ATK
+		"+50 MATK", // MATK
+
+		//== Crit
+		"+20 Critical Chance", // Crit Chance
+		"+20% Critical Damage",	// Crit Damage %
+
+		// ASPD
+		"+5% ASPD",	// ASPD %
+		"+5 ASPD",	// Flat ASPD
+
+		// Cast time
+		"-20% Variable Cast Time",	// Variable Cast Time -%
+		"-20% After Cast Delay",// Cast Delay -%
+
+		"-10% Skill SP Coast",	// Skill SP Cost -%
+		"+20% Ranged Damage"; // Ranged Damage +%
+
+	//== Third slot menu values
+	setarray .@third_slot_values[0],
+		10, // STR
+		10, // AGI
+		10, // VIT
+		10, // INT
+		10, // DEX
+		10, // LUK
+
+		//== + ATK/MATK
+		50,  // ATK
+		50, // MATK
+
+		//== Crit
+		20, // Crit Chance
+		20,	// Crit Damage %
+
+		// ASPD
+		5,	// ASPD %
+		5,	// Flat ASPD
+
+		// Cast time
+		20,	// Variable Cast Time -%
+		20,// Cast Delay -%
+
+		10,	// Skill SP Cost -%
+		20; // Ranged Damage +%
+
+
+
+
 	mes .@n$;
 	mes "Greetings, weak mortal.";
 	mes "I see you can't get your desired enchants on your ^FF0000Vicious Mind Weapon^000000!";
@@ -328,7 +416,7 @@ askald,100,155,5	script	Vicious Mind	4_M_FAIRYSCHOLAR,{
 
 Enchant_First_Slot:
 	.@slot_index = 0;
-	// Form the selection options for the robe.
+	// Form the selection options for the weapon.
 	.@selection_size = getarraysize(.@first_slot_options);
 	for(.@i = 0; .@i < .@selection_size; .@i += 1) {
 		.@selection_menu$ = .@selection_menu$ + (.@i < 0 ? "" : ":") + .@first_slot_menu_options$[.@i];
@@ -373,9 +461,9 @@ Enchant_First_Slot:
 			mes .@n$;
 			mes "Here's your shitty weapon with its brand new ^FF2000FIRST^000000 enchant slot.";
 			setrandomoption(.@equip_part,.@slot_index,.@first_slot_options[.@selected_enchant],.@first_slot_values[.@selected_enchant],0);
-			delitem .@valor_badge_id, .@valor_badge_qty;
-			delitem .@pod_id, .@pod_qty;
-			delitem .@blank_card_id, .@blank_card_qty;
+			//delitem .@valor_badge_id, .@valor_badge_qty;
+			//delitem .@pod_id, .@pod_qty;
+			//delitem .@blank_card_id, .@blank_card_qty;
 			close;
 			break;
 	} // switch
@@ -383,7 +471,7 @@ Enchant_First_Slot:
 
 Enchant_Second_Slot:
 	.@slot_index = 1;
-	// Form the selection options for the robe.
+	// Form the selection options for the weapon.
 	.@selection_size = getarraysize(.@second_slot_options);
 	for(.@i = 0; .@i < .@selection_size; .@i += 1) {
 		.@selection_menu$ = .@selection_menu$ + (.@i < 0 ? "" : ":") + .@second_slot_menu_options$[.@i];
@@ -427,23 +515,64 @@ Enchant_Second_Slot:
 			mes .@n$;
 			mes "Here's your shitty weapon with its brand new ^FF2000SECOND^000000 enchant slot.";
 			setrandomoption(.@equip_part,.@slot_index,.@second_slot_options[.@selected_enchant],.@second_slot_values[.@selected_enchant],0);
-			delitem .@valor_badge_id, .@valor_badge_qty;
-			delitem .@pod_id, .@pod_qty;
-			delitem .@blank_card_id, .@blank_card_qty;
+			//delitem .@valor_badge_id, .@valor_badge_qty;
+			//delitem .@pod_id, .@pod_qty;
+			//delitem .@blank_card_id, .@blank_card_qty;
 			close;
 			break;
 	} // switch
-	close;
-
-	close;
 
 Enchant_Third_Slot:
 	.@slot_index = 2;
+	// Form the selection options for the weapon.
+	.@selection_size = getarraysize(.@third_slot_options);
+	for(.@i = 0; .@i < .@selection_size; .@i += 1) {
+		.@selection_menu$ = .@selection_menu$ + (.@i < 0 ? "" : ":") + .@third_slot_menu_options$[.@i];
+	} // for
 	mes .@n$;
 	mes "Please select on the following";
 	mes "This will determine your ^FF2000THIRD^000000 slot enchant of your Vicious Mind Weapon.";
+	.@selected_enchant = select(.@selection_menu$) - 2;
 
-	close;
+	next;
+	mes .@n$;
+	mes "You have selected:";
+	mes "^7289DA" + .@third_slot_menu_options$[.@selected_enchant] + "^000000.";
+	mes "----------------------------";
+	mes "Are you sure with this?";
+	mes "No refunds!";
+	mes "You have been warned!";
+
+	.@agree = select("No, I have second thoughts:Yes, let's continue");
+	next;
+	switch(.@agree) {
+		case 1:
+			mes .@n$;
+			mes "Man, what a waste of time!";
+			mes "Come back, later then, noob";
+			close;
+			break;
+		case 2:
+			mes .@n$;
+			mes "Then I shall continue..";
+			next;
+			mes .@n$;
+			mes "Hnggghhh...";
+			mes "Haaannggghh";
+			next;
+			mes .@n$;
+			mes "Aaangh!!";
+			mes "Success~";
+			next;
+			mes .@n$;
+			mes "Here's your shitty weapon with its brand new ^FF2000THIRD^000000 enchant slot.";
+			setrandomoption(.@equip_part,.@slot_index,.@third_slot_options[.@selected_enchant],.@third_slot_values[.@selected_enchant],0);
+			//delitem .@valor_badge_id, .@valor_badge_qty;
+			//delitem .@pod_id, .@pod_qty;
+			//delitem .@blank_card_id, .@blank_card_qty;
+			close;
+			break;
+	} // switch
 
 }
 	
