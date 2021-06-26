@@ -1,365 +1,577 @@
-//===== rAthena Script =======================================
-//= Vicious Mind Weapon Random Option Enchanter
-//===== By ===================================================
-//= llchrisll
-//===== Version ==============================================
-//= 1.0 - Initial Version
-//===== Tested With ==========================================
-//= rAthena 03/26/2018 Revision
-//= GIT Hash: 333f0dddc8353663eacba0423751988c9bc38e34
-//===== Description ==========================================
-//= This script handles the random options for the Vicious Mind Weapons
-//  until rAthena changes the way the Random Option Database is handled.
-//= Instead of defining every possible random option for each option slot
-//  this enchanter will be used.
-//===== Comments =============================================
-//= ...
-/* db/import/mob_db.txt:
-// Sky Fortress Instance Mobs
-// Original by Alayne, Drops updated by [llchrisll] based on Nova Ro Wiki,
-// since divine-pride.net also doesn't have every Weapon Drop listed.
-//3473,AS_D_RAGGED_GOLEM,Stefan J.E Wolf,Stefan J.E Wolf,160,10000000,1,0,0,3,2800,3200,100,68,100,50,100,100,110,50,10,12,2,6,88,0x6203885,500,1500,500,1000,0,0,0,0,0,0,0,984,5000,985,5000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-//3474,AS_BLOODY_KNIGHT,Immortal Cursed Knight,Immortal Cursed Knight,160,10000000,1,7513,8457,2,4785,4977,138,53,102,104,72,57,98,57,10,12,1,6,47,0x6203885,500,1500,500,1000,0,0,0,0,0,0,0,985,500,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-//3475,AS_WIND_GHOST,Immortal Wind Ghost,Immortal Wind Ghost,160,10000000,1,9086,17532,5,2513,3315,105,41,100,63,35,99,106,61,10,12,1,6,47,0x6203885,500,1500,500,1000,0,0,0,0,0,0,0,984,5000,985,5000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-//3476,AS_ZOMBIE,Immortal Zombie Soldier,Immortal Zombie Soldier,160,405694,1,10570,10100,1,1504,1625,128,84,5,99,39,48,30,24,10,12,1,6,47,0x6203885,500,1500,500,1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-//3477,AS_IMMORTAL_CORPS,Immortal Fortress Legion,Immortal Fortress Legion,160,405694,1,11040,10730,1,1851,2022,103,25,109,76,61,53,98,30,10,12,1,6,47,0x6203885,500,1500,500,1000,0,0,0,0,0,0,0,28706,50,28008,50,13455,50,1400,50,21016,50,0,0,0,0,0,0,0,0,0,0
-//3478,AS_ZOMBIE_SLAUGHTER,Immortal Fortress Key Keeper,Immortal Fortress Key Keeper,160,423332,1,11040,10730,1,1851,2022,103,25,109,76,61,53,98,30,10,12,1,6,47,0x6203885,500,1500,500,1000,0,0,0,0,0,0,0,6960,10000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-//3479,AS_ZOMBIE_MASTER,Immortal Zombie Assaulter,Immortal Zombie Assaulter,160,405694,1,11500,10100,1,1653,3274,140,44,155,126,89,108,213,76,10,12,1,6,47,0x6203885,500,1500,500,1000,0,0,0,0,0,0,0,28605,50,13328,50,1800,50,1450,50,16041,50,0,0,0,0,0,0,0,0,0,0
-//3480,AS_CURSED_SOLDIER,Immortal Cursed Zombie,Immortal Cursed Zombie,160,405694,1,10101,10003,1,1850,3451,81,87,119,87,86,60,94,55,10,12,1,6,47,0x6203885,500,1500,500,1000,0,0,0,0,0,0,0,18121,100,13128,50,1600,50,2026,50,28107,50,0,0,0,0,0,0,0,0,0,0
-//3481,AS_EVIL_SHADOW1,Immortal Nightmare Shadow,Immortal Nightmare Shadow,160,423330,1,6666,7332,2,1444,1944,106,44,44,166,44,44,166,44,10,12,1,6,47,0x6203885,500,1500,500,1000,0,0,0,0,0,0,0,985,10000,1996,50,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-//3482,AS_EVIL_SHADOW2,Immortal Angry Shadow,Immortal Angry Shadow,160,388054,1,279836,260199,1,2730,3990,80,180,155,88,110,135,154,59,10,12,1,6,47,0x6203885,500,1500,500,1000,0,0,0,0,0,0,0,1900,50,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-//3483,AS_EVIL_SHADOW3,Immortal Death Shadow,Immortal Death Shadow,160,423330,1,280009,267592,1,3020,4265,80,150,165,82,110,122,154,52,10,12,1,6,47,0x6203885,500,1500,500,1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-//3484,AS_D_RAGGED_GOLEM,Stefan J.E Wolf,Stefan J.E Wolf,160,20000000,1,2800090,2675920,3,4500,6500,100,68,200,100,200,200,220,100,10,12,2,6,88,0x6203885,500,1500,500,1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-*/
-//===== Credits ==============================================
-//= NovaRo for their Information regarding the possible Options.
-//============================================================
-askald,98,151,5	script	Vicious Mind Enchanter	459,{
+//===================================================
+//= Specific Enchanter for Vicious Mind Weapons
+//= This will grant any enchants on the scope of
+//= Vicious Mind weapons to any VM weapons.
+//= This is soley for mostly PVP and MVP hunting enchants
+//===================================================
+//= 1.0 [Andie]
+//===================================================
 
-mes .n$;
-mes "Greetings, "+strcharinfo(0)+"!";
-mes "I can enchant your ^0000FFVicious Mind Weapon^000000 for only ^FF0000250,000 zeny^000000.";
-if(select("- Enchant Vicious Weapons:- Nevermind") - 1) close;
-next;
-mes .n$;
-mes "To apply an random properity to an Vicious Weapon, you need to have it equipped in your right hand.";
-mes "Also be warned, that what you get and with which value is completely random!";
-next;
-mes .n$;
-mes "First, let's see what you have equipped...:";
-next;
-set .@part,EQI_HAND_R; // Save equip location
-mes .n$;
-if (Zeny < .cost) {
-	mes "You don't have enough funds for my service.";
-	close;
-	end;
-}
-if(!getequipid(.@part)) {
-	mes "You don't have anything equipped!";
-	close;
-}
-switch(getequipid(.@part)) {
-	case 1400: // Spear
-	case 1450: // Lance
-	case 1800: // Knuckle
-	case 13455: // Saber
-	case 16041: // Mace
-	case 18121: // Bow
-	case 21016: // Two-Handed Sword
-	case 28008: // Katar
-	case 28107: // Two-Handed Axe
-	case 28706: // Dagger
-	set .@Type$,"P";
-	break;
-	
-	case 1600: // Rod
-	case 2026: // Two-Handed Staff
-	case 28605: // Book
-	set .@Type$,"M";
-	break;
-	
-	case 1900: // Violin
-	case 1996: // Wire
-	case 13128: // Revolver
-	case 13328: // Huuma Shuriken
-	set .@Type$,"R";
-	break;
-	
-	default:
-	mes "This is not an Vicious Weapon, please be sure to equip one and come back again.";
-	close;
-}
-mes "Equipped Weapon: "+getitemname(getequipid(.@part));
-set .@ropt1,getequiprandomoption(.@part,0,ROA_ID);
-set .@ropt2,getequiprandomoption(.@part,1,ROA_ID);
-set .@ropt3,getequiprandomoption(.@part,2,ROA_ID);
+askald,100,155,5	script	Vicious Mind	4_M_FAIRYSCHOLAR,{
+	disable_command; disable_items;
+	//== Init variables
+	.@n$ = "^7289DA[Vicious Mind Steroids Enhancement]^000000";
 
-if(.@ropt1 || .@ropt2 || .@ropt2) {
-	mes " ";
-	mes "You current enchants will be lost.";
-	mes "Are you sure you want to continue?";
-	switch(select("Yes:No")){
-	case 1:
-		goto Enchant;
-	case 2:
-		mes "Bye";
+	.@valor_badge_id = 7829;
+	.@pod_id = 7179;
+	.@blank_card_id = 6187;
+
+	//== Cost
+	.@valor_badge_qty = 3000;
+	.@pod_qty = 100;
+	.@blank_card_qty = 1000;
+
+	.@equip_part = EQI_HAND_R;
+	.@weapon_id = getequipid(.@equip_part);
+
+	//== IDs of the vicious mind weapons, TODO: Please be sure this matches your database item IDs.
+	setarray .@vm_weapons[0],
+		1400, // Spear
+		1450, // Lance
+		1800, // Knuckle
+		28008, // Katar
+		21016, // Two-handed sword
+
+
+		13328, // Huuma Shuriken
+		28605, // Book
+		28706, // Dagger
+
+		13455, // Saber
+		16041, // Mace
+		28107, // Two-handed Axe
+
+		18121, // Bow
+		13128, // Revolver
+		1996, // Wire
+		1900, // Violin
+
+		1600, // Rod
+		2026; // Two Handed Staff
+
+
+	//== First Slot options
+	setarray .@first_slot_options[0],
+		RDMOPT_DAMAGE_SIZE_PERFECT, // Nullify Size Modifier
+		RDMOPT_WEAPON_INDESTRUCTIBLE, // Weapon Indestructible
+		//== Weapon Endow
+		RDMOPT_WEAPON_ATTR_NOTHING, // Weapon Element - Neutral
+		RDMOPT_WEAPON_ATTR_WATER, // Weapon Element - Water
+		RDMOPT_WEAPON_ATTR_GROUND, // Weapon Element - Earth
+		RDMOPT_WEAPON_ATTR_FIRE, // Weapon Element - Fire
+		RDMOPT_WEAPON_ATTR_WIND,	// Weapon Element - Wind
+		RDMOPT_WEAPON_ATTR_SAINT,	// Weapon Element - Holy
+		RDMOPT_WEAPON_ATTR_DARKNESS, // Weapon Element - Dark
+		RDMOPT_WEAPON_ATTR_POISON,	// Weapon Element - Poison
+		//== Physical
+		RDMOPT_DAMAGE_PROPERTY_POISON_TARGET,		// Damage to Poison Elment
+		RDMOPT_DAMAGE_PROPERTY_NOTHING_TARGET,	 	// Damage to Neutral Element
+		RDMOPT_DAMAGE_PROPERTY_GROUND_TARGET,	 	// Damage to Earth Element
+		RDMOPT_DAMAGE_PROPERTY_FIRE_TARGET,		 	// Damage to Fire Element
+		RDMOPT_DAMAGE_PROPERTY_WATER_TARGET,	 	// Damage to Water Element
+		RDMOPT_DAMAGE_PROPERTY_WIND_TARGET,		 	// Damage to Wind Element
+		RDMOPT_DAMAGE_PROPERTY_SAINT_TARGET,	 	// Damage to Holy Element
+		RDMOPT_DAMAGE_PROPERTY_DARKNESS_TARGET,	 	// Damage to Dark Element
+		RDMOPT_DAMAGE_PROPERTY_TELEKINESIS_TARGET,	// Damage to Ghost Element
+		RDMOPT_DAMAGE_PROPERTY_UNDEAD_TARGET,		// Damage to Undead Element
+		//== Magical
+		RDMOPT_MDAMAGE_PROPERTY_POISON_TARGET,		// Magical Damage to Poison Elment
+		RDMOPT_MDAMAGE_PROPERTY_NOTHING_TARGET,	 	// Magical Damage to Neutral Element
+		RDMOPT_MDAMAGE_PROPERTY_GROUND_TARGET,	 	// Magical Damage to Earth Element
+		RDMOPT_MDAMAGE_PROPERTY_FIRE_TARGET,	 	// Magical Damage to Fire Element
+		RDMOPT_MDAMAGE_PROPERTY_WATER_TARGET,	 	// Magical Damage to Water Element
+		RDMOPT_MDAMAGE_PROPERTY_WIND_TARGET,	 	// Magical Damage to Wind Element
+		RDMOPT_MDAMAGE_PROPERTY_SAINT_TARGET,		// Magical Damage to Holy Element
+		RDMOPT_MDAMAGE_PROPERTY_DARKNESS_TARGET,	// Magical Damage to Dark Element
+		RDMOPT_MDAMAGE_PROPERTY_TELEKINESIS_TARGET,	// Magical Damage to Ghost Element
+		RDMOPT_MDAMAGE_PROPERTY_UNDEAD_TARGET,	 	// Magical Damage to Undead Element
+		//== ATK percent
+		RDMOPT_VAR_ATKPERCENT, // ATK%
+		//== MATK percent
+		RDMOPT_VAR_MAGICATKPERCENT, // MATK%
+		//== Healing Rate
+		RDMOPT_HEAL_MODIFY_PERCENT; // Healing Rate
+
+
+	//== First slot menu choices
+	setarray .@first_slot_menu_options$[0],
+		"Nullify Weapon's Size Penalty",
+		"Weapon is indestructible in battle",
+		//== Weapon Endow
+		"Weapon Element - Neutral",
+		"Weapon Element - Water",
+		"Weapon Element - Earth",
+		"Weapon Element - Fire",
+		"Weapon Element - Wind",
+		"Weapon Element - Holy",
+		"Weapon Element - Shadow",
+		"Weapon Element - Poison",
+		//== Physical
+		"^7289DA<ATK>^000000 Damage Against <^FF2000Poison^000000> Target",
+		"^7289DA<ATK>^000000 Damage Against <^FF2000Neutral^000000> Target",
+		"^7289DA<ATK>^000000 Damage Against <^FF2000Earth^000000> Target",
+		"^7289DA<ATK>^000000 Damage Against <^FF2000Fire^000000> Target",
+		"^7289DA<ATK>^000000 Damage Against <^FF2000Water^000000> Target",
+		"^7289DA<ATK>^000000 Damage Against <^FF2000Wind^000000> Target",
+		"^7289DA<ATK>^000000 Damage Against <^FF2000Holy^000000> Target",
+		"^7289DA<ATK>^000000 Damage Against <^FF2000Shadow^000000> Target",
+		"^7289DA<ATK>^000000 Damage Against <^FF2000Ghost^000000> Target",
+		"^7289DA<ATK>^000000 Damage Against <^FF2000Undead^000000> Target",
+		//== Magical
+		"^7289DA<MATK>^000000 Damage Against <^FF2000Poison^000000> Target",
+		"^7289DA<MATK>^000000 Damage Against <^FF2000Neutral^000000> Target",
+		"^7289DA<MATK>^000000 Damage Against <^FF2000Earth^000000> Target",
+		"^7289DA<MATK>^000000 Damage Against <^FF2000Fire^000000> Target",
+		"^7289DA<MATK>^000000 Damage Against <^FF2000Water^000000> Target",
+		"^7289DA<MATK>^000000 Damage Against <^FF2000Wind^000000> Target",
+		"^7289DA<MATK>^000000 Damage Against <^FF2000Holy^000000> Target",
+		"^7289DA<MATK>^000000 Damage Against <^FF2000Shadow^000000> Target",
+		"^7289DA<MATK>^000000 Damage Against <^FF2000Ghost^000000> Target",
+		"^7289DA<MATK>^000000 Damage Against <^FF2000Undead^000000> Target",
+		//== ATK percent
+		"+10% ATK Rate",
+		//== MATK percent
+		"+10% MATK Rate",
+		//== Healing Rate
+		"+20% Increase healing rate";
+
+	//== First slot enchant values
+	setarray .@first_slot_values[0],
+		1, // Nullify Size Modifier
+		1, // Weapon Indestructible
+		//== Weapon Endow
+		1, // Weapon Element - Neutral
+		1, // Weapon Element - Water
+		1, // Weapon Element - Earth
+		1, // Weapon Element - Fire
+		1,	// Weapon Element - Wind
+		1,	// Weapon Element - Holy
+		1, // Weapon Element - Dark
+		1,	// Weapon Element - Poison
+		//== Physical
+		20,		// Damage to Poison Elment
+		20,	 	// Damage to Neutral Element
+		20,	 	// Damage to Earth Element
+		20,		 	// Damage to Fire Element
+		20,	 	// Damage to Water Element
+		20,		 	// Damage to Wind Element
+		20,	 	// Damage to Holy Element
+		20,	 	// Damage to Dark Element
+		20,	// Damage to Ghost Element
+		20,		// Damage to Undead Element
+		//== Magical
+		20,		// Magical Damage to Poison Elment
+		20,	 	// Magical Damage to Neutral Element
+		20,	 	// Magical Damage to Earth Element
+		20,	 	// Magical Damage to Fire Element
+		20,	 	// Magical Damage to Water Element
+		20,	 	// Magical Damage to Wind Element
+		20,		// Magical Damage to Holy Element
+		20,	// Magical Damage to Dark Element
+		20,	// Magical Damage to Ghost Element
+		20,	 	// Magical Damage to Undead Element
+		//== ATK percent
+		10, // ATK%
+		//== MATK percent
+		10, // MATK%
+		//== Healing Rate
+		20; // Healing Rate
+
+	//== Second Slot enchant options
+	setarray .@second_slot_options[0],
+		//== Physical damage to [race]
+		RDMOPT_RACE_DAMAGE_HUMAN,	// Damage to Human Race
+		//== Magical damage to [race]
+		RDMOPT_RACE_MDAMAGE_HUMAN,	// Damage to Human Race
+		//== Physical Bonus to Boss
+		RDMOPT_CLASS_DAMAGE_BOSS_TARGET, // Damage to Boss monsters
+		//== Magical Bonus to Boss
+		RDMOPT_CLASS_MDAMAGE_BOSS, // Damage to Boss monsters
+		//== Physical Bypass DEF Normal monster
+		RDMOPT_CLASS_DAMAGE_NORMAL_TARGET,
+		//== Magical Bypass DEF Normal monster
+		RDMOPT_CLASS_MDAMAGE_NORMAL,
+
+		//== Physical Bypass [race]
+		RDMOPT_RACE_IGNORE_DEF_PERCENT_HUMAN,	// Bypass DEF of Human Race
+
+		//== Magical Bypass [race]
+		RDMOPT_RACE_IGNORE_MDEF_PERCENT_HUMAN,	// Bypass MDEF of Human Race
+
+		//== Physical Bypass [boss]
+		RDMOPT_CLASS_IGNORE_DEF_PERCENT_BOSS, // Bypass DEF of Boss
+		//== Magical Bypass [boss]
+		RDMOPT_CLASS_IGNORE_MDEF_PERCENT_BOSS, // Bypass MDEF of Boss
+		
+		//== Physical Bypass [normal]
+		RDMOPT_CLASS_IGNORE_DEF_PERCENT_NORMAL, // Bypass DEF of Normal
+		//== Magical Bypass [normal]
+		RDMOPT_CLASS_IGNORE_MDEF_PERCENT_NORMAL; // Bypass MDEF of Normal
+
+
+	//== Second slot menu choices
+	setarray .@second_slot_menu_options$[0],
+		//== Physical damage to [race]
+		"^7289DA<ATK>^000000 Damage to ^FF2000<Demi-Human>^000000 Race",
+		//== Magical damage to [race]
+		"^7289DA<MATK>^000000 Damage to ^FF2000<Demi-Human>^000000 Race",
+		//== Physical Bonus to Boss
+		"^7289DA<Physical>^000000 Damage to ^FF2000<Boss>^000000 Monster",
+		//== Magical Bonus to Boss
+		"^7289DA<Magical>^000000 Damage to ^FF2000<Boss>^000000 Monster",
+		//== Physical Bypass DEF Normal monster
+		"^7289DA<Physical>^000000 Damage to ^FF2000<Normal>^000000 Monster",
+		//== Magical Bypass DEF Normal monster
+		"^7289DA<Magical>^000000 Damage to ^FF2000<Normal>^000000 Monster",
+
+		//== Physical Bypass [race]
+		"Bypass ^7289DA<DEF>^000000 of ^FF2000<Demi-Human>^000000 Race",	// Bypass DEF of Human Race
+
+		//== Magical Bypass [race]
+		"Bypass ^7289DA<MDEF>^000000 of ^FF2000<Demi-Human>^000000 Race",	// Bypass MDEF of Human Race
+
+		//== Physical Bypass [boss]
+		"Bypass ^7289DA<DEF>^000000 of ^FF2000<Boss>^000000 Monster", // Bypass DEF of Boss
+		//== Magical Bypass [boss]
+		"Bypass ^7289DA<MDEF>^000000 of ^FF2000<Boss>^000000 Monster", // Bypass MDEF of Boss
+
+		//== Physical Bypass [boss]
+		"Bypass ^7289DA<DEF>^000000 of ^FF2000<Normal>^000000 Monster", // Bypass DEF of Normal
+		//== Magical Bypass [boss]
+		"Bypass ^7289DA<MDEF>^000000 of ^FF2000<Normal>^000000 Monster"; // Bypass MDEF of Normal
+
+	//== Second slot enchant values
+	setarray .@second_slot_values[0],
+		//== Physical damage to [race]
+		20,	// Damage to Human Race
+		//== Magical damage to [race]
+		20,	// Damage to Human Race
+		//== Physical Bonus to Boss
+		20, // Damage to Boss monsters
+		//== Magical Bonus to Boss
+		20, // Damage to Boss monsters
+		//== Physical Damage Bonus to Normal monster
+		20,
+		//== Magical Damage Bonus to Normal monster
+		20,
+
+		//== Physical Bypass [race]
+		30,	// Bypass DEF of Human Race
+
+		//== Magical Bypass [race]
+		30,	// Bypass MDEF of Human Race
+
+		//== Physical Bypass [boss]
+		30, // Bypass DEF of Boss
+		//== Magical Bypass [boss]
+		30, // Bypass MDEF of Boss
+		
+		//== Physical Bypass [normal]
+		30, // Bypass DEF of Normal
+		//== Magical Bypass [normal]
+		30; // Bypass MDEF of Normal
+
+
+	//== Third slot enchant options
+	setarray .@third_slot_options[0],
+		RDMOPT_VAR_STRAMOUNT, // STR
+		RDMOPT_VAR_AGIAMOUNT, // AGI
+		RDMOPT_VAR_VITAMOUNT, // VIT
+		RDMOPT_VAR_INTAMOUNT, // INT
+		RDMOPT_VAR_DEXAMOUNT, // DEX
+		RDMOPT_VAR_LUKAMOUNT, // LUK
+
+		//== + ATK/MATK
+		RDMOPT_VAR_ATTPOWER,  // ATK
+		RDMOPT_VAR_ATTMPOWER, // MATK
+
+		//== Crit
+		RDMOPT_VAR_CRITICALSUCCESSVALUE, // Crit Chance
+		RDMOPT_DAMAGE_CRI_TARGET,	// Crit Damage %
+
+		// ASPD
+		RDMOPT_VAR_PLUSASPDPERCENT,	// ASPD %
+		RDMOPT_VAR_PLUSASPD,	// Flat ASPD
+
+		// Cast time
+		RDMOPT_DEC_SPELL_CAST_TIME,	// Variable Cast Time -%
+		RDMOPT_DEC_SPELL_DELAY_TIME,// Cast Delay -%
+
+		RDMOPT_DEC_SP_CONSUMPTION,	// Skill SP Cost -%
+		RDMOPT_RANGE_ATTACK_DAMAGE_TARGET; // Ranged Damage +%
+
+	//== Third slot menu options
+	setarray .@third_slot_menu_options$[0],
+		"+10 STR", // STR
+		"+10 AGI", // AGI
+		"+10 VIT", // VIT
+		"+10 INT", // INT
+		"+10 DEX", // DEX
+		"+10 LUK", // LUK
+
+		//== + ATK/MATK
+		"+50 ATK",  // ATK
+		"+50 MATK", // MATK
+
+		//== Crit
+		"+20 Critical Chance", // Crit Chance
+		"+20% Critical Damage",	// Crit Damage %
+
+		// ASPD
+		"+5% ASPD",	// ASPD %
+		"+5 ASPD",	// Flat ASPD
+
+		// Cast time
+		"-20% Variable Cast Time",	// Variable Cast Time -%
+		"-20% After Cast Delay",// Cast Delay -%
+
+		"-10% Skill SP Coast",	// Skill SP Cost -%
+		"+20% Ranged Damage"; // Ranged Damage +%
+
+	//== Third slot menu values
+	setarray .@third_slot_values[0],
+		10, // STR
+		10, // AGI
+		10, // VIT
+		10, // INT
+		10, // DEX
+		10, // LUK
+
+		//== + ATK/MATK
+		50,  // ATK
+		50, // MATK
+
+		//== Crit
+		20, // Crit Chance
+		20,	// Crit Damage %
+
+		// ASPD
+		5,	// ASPD %
+		5,	// Flat ASPD
+
+		// Cast time
+		20,	// Variable Cast Time -%
+		20,// Cast Delay -%
+
+		10,	// Skill SP Cost -%
+		20; // Ranged Damage +%
+
+
+
+
+	mes .@n$;
+	mes "Greetings, weak mortal.";
+	mes "I see you can't get your desired enchants on your ^FF0000Vicious Mind Weapon^000000!";
+	next;
+	
+	mes .@n$;
+	mes "I have an array of enchants on its MAX potential that I can give to you.";
+	next;
+
+	mes .@n$;
+	mes "These are my requirements to enchant your ^7289DAVicious Mind Weapon^000000:";
+	mes "^FF0000" + .@valor_badge_qty + "^000000 " + getitemname(.@valor_badge_id) + "(" + .@valor_badge_id + ")";
+	mes "^FF0000" + .@pod_qty + "^000000 " + getitemname(.@pod_id)  + "(" + .@pod_id + ")";
+	mes "^FF0000" + .@blank_card_qty + "^000000 " + getitemname(.@blank_card_id)  + "(" + .@blank_card_id + ")";
+	next;
+
+	mes .@n$;
+	mes "Do you want to enhance your thing?";
+	.@selection = select("No, way:Yes, let's continue on the deal.");
+	if (.@selection == 1) {
 		close;
 	}
-	//mes "I'm sorry, but this weapon already has bonus properities applied.";
-	//mes "Please choose a different one.";
-	//close;
-}
-Enchant:
-next;
-// Randomize each Option Slot:
-// Random Option 1
-set Zeny,Zeny - .cost;
-set .@Opt1,rand(getarraysize(getd(".RandOpt1_"+.@Type$)));
-if(getd(".RandOpt1_"+.@Type$+"_MinV["+.@Opt1+"]") != getd(".RandOpt1_"+.@Type$+"_MaxV["+.@Opt1+"]"))
-	set .@Opt1_V,rand(getd(".RandOpt1_"+.@Type$+"_MinV["+.@Opt1+"]"),getd(".RandOpt1_"+.@Type$+"_MaxV["+.@Opt1+"]"));
-else 
-	set .@Opt1_V,getd(".RandOpt1_"+.@Type$+"_MaxV["+.@Opt1+"]");
-	
-// Random Option 2
-set .@Opt2,rand(getarraysize(getd(".RandOpt2_"+.@Type$)));
-if(getd(".RandOpt2_"+.@Type$+"_MinV["+.@Opt2+"]") != getd(".RandOpt2_"+.@Type$+"_MaxV["+.@Opt2+"]"))
-	set .@Opt2_V,rand(getd(".RandOpt2_"+.@Type$+"_MinV["+.@Opt2+"]"),getd(".RandOpt2_"+.@Type$+"_MaxV["+.@Opt2+"]"));
-else 
-	set .@Opt2_V,getd(".RandOpt2_"+.@Type$+"_MaxV["+.@Opt2+"]");
-	
-// Random Option 3
-set .@Opt3,rand(getarraysize(getd(".RandOpt3_"+.@Type$)));
-if(getd(".RandOpt3_"+.@Type$+"_MinV["+.@Opt3+"]") != getd(".RandOpt3_"+.@Type$+"_MaxV["+.@Opt3+"]"))
-	set .@Opt3_V,rand(getd(".RandOpt3_"+.@Type$+"_MinV["+.@Opt3+"]"),getd(".RandOpt3_"+.@Type$+"_MaxV["+.@Opt3+"]"));
-else 
-	set .@Opt3_V,getd(".RandOpt3_"+.@Type$+"_MaxV["+.@Opt3+"]");
+	next;
 
-// Apply options to equipped weapon
-setrandomoption(.@part,0,getd(".RandOpt1_"+.@Type$+"["+.@Opt1+"]"),.@Opt1_V,0);
-setrandomoption(.@part,1,getd(".RandOpt2_"+.@Type$+"["+.@Opt2+"]"),.@Opt2_V,0);
-setrandomoption(.@part,2,getd(".RandOpt3_"+.@Type$+"["+.@Opt3+"]"),.@Opt3_V,0);
-mes .n$;
-mes "Random bonus properities have been applied on your \""+getitemname(getequipid(.@part))+"\" successfully.";
-next;
-mes "Please come back again, I can re-roll your enchants if you're not satisfied.";
-end;
+	if (inarray(.@vm_weapons[0], .@weapon_id) == -1) {
+		mes .@n$;
+		mes "You are not presenting me a Vicious Mind weapon!";
+		close;
+	} else {
+		mes .@n$;
 
-OnInit:
-set .cost, 250000; // 250k
-set .n$,"[Vicious Enchanter]";
-// ========= Random Option Slot 1 ========= 
-// - Physical
-setarray .RandOpt1_P[0],RDMOPT_VAR_ATKPERCENT,		// ATK %
-						RDMOPT_WEAPON_ATTR_NOTHING, // Weapon Element - Neutral
-					    RDMOPT_WEAPON_ATTR_WATER,	// Weapon Element - Water
-					    RDMOPT_WEAPON_ATTR_GROUND,	// Weapon Element - Earth
-					    RDMOPT_WEAPON_ATTR_FIRE,	// Weapon Element - Fire
-					    RDMOPT_WEAPON_ATTR_WIND,	// Weapon Element - Wind
-					    RDMOPT_WEAPON_ATTR_SAINT,	// Weapon Element - Holy
-						RDMOPT_WEAPON_ATTR_DARKNESS,// Weapon Element - Dark
-						RDMOPT_WEAPON_ATTR_POISON,	// Weapon Element - Poison
-						RDMOPT_DAMAGE_PROPERTY_POISON_TARGET,		// Damage to Poison Elment
-					    RDMOPT_DAMAGE_PROPERTY_NOTHING_TARGET,	 	// Damage to Neutral Element
-					    RDMOPT_DAMAGE_PROPERTY_GROUND_TARGET,	 	// Damage to Earth Element
-					    RDMOPT_DAMAGE_PROPERTY_FIRE_TARGET,		 	// Damage to Fire Element
-					    RDMOPT_DAMAGE_PROPERTY_WATER_TARGET,	 	// Damage to Water Element
-					    RDMOPT_DAMAGE_PROPERTY_WIND_TARGET,		 	// Damage to Wind Element
-					    RDMOPT_DAMAGE_PROPERTY_POISON_TARGET,	 	// Damage to Poison Element
-					    RDMOPT_DAMAGE_PROPERTY_SAINT_TARGET,	 	// Damage to Holy Element
-					    RDMOPT_DAMAGE_PROPERTY_DARKNESS_TARGET,	 	// Damage to Dark Element
-					    RDMOPT_DAMAGE_PROPERTY_TELEKINESIS_TARGET,	// Damage to Ghost Element
-					    RDMOPT_DAMAGE_PROPERTY_UNDEAD_TARGET,		// Damage to Undead Element
-					    RDMOPT_HEAL_MODIFY_PERCENT, // Heal Power %
-					    RDMOPT_WEAPON_INDESTRUCTIBLE, // Weapon Instructible
-					    RDMOPT_DAMAGE_SIZE_PERFECT; // Size will be ignored
-					    // ToDo: // Recover 1000 of Damage lost from size penalties
-						
-// - Magical
-setarray .RandOpt1_M[0],RDMOPT_VAR_MAGICATKPERCENT, // MATK %
-						RDMOPT_WEAPON_ATTR_NOTHING, // Weapon Element - Neutral
-					    RDMOPT_WEAPON_ATTR_WATER,	// Weapon Element - Water
-					    RDMOPT_WEAPON_ATTR_GROUND,	// Weapon Element - Earth
-					    RDMOPT_WEAPON_ATTR_FIRE,	// Weapon Element - Fire
-					    RDMOPT_WEAPON_ATTR_WIND,	// Weapon Element - Wind
-					    RDMOPT_WEAPON_ATTR_SAINT,	// Weapon Element - Holy
-						RDMOPT_WEAPON_ATTR_DARKNESS,// Weapon Element - Dark
-						RDMOPT_WEAPON_ATTR_POISON,	// Weapon Element - Poison
-						RDMOPT_MDAMAGE_PROPERTY_POISON_TARGET,		// Damage to Poison Elment
-					    RDMOPT_MDAMAGE_PROPERTY_NOTHING_TARGET,	 	// Damage to Neutral Element
-					    RDMOPT_MDAMAGE_PROPERTY_GROUND_TARGET,	 	// Damage to Earth Element
-					    RDMOPT_MDAMAGE_PROPERTY_FIRE_TARGET,	 	// Damage to Fire Element
-					    RDMOPT_MDAMAGE_PROPERTY_WATER_TARGET,	 	// Damage to Water Element
-					    RDMOPT_MDAMAGE_PROPERTY_WIND_TARGET,	 	// Damage to Wind Element
-					    RDMOPT_MDAMAGE_PROPERTY_POISON_TARGET,		// Damage to Poison Element
-					    RDMOPT_MDAMAGE_PROPERTY_SAINT_TARGET,		// Damage to Holy Element
-					    RDMOPT_MDAMAGE_PROPERTY_DARKNESS_TARGET,	// Damage to Dark Element
-					    RDMOPT_MDAMAGE_PROPERTY_TELEKINESIS_TARGET,	// Damage to Ghost Element
-					    RDMOPT_MDAMAGE_PROPERTY_UNDEAD_TARGET,	 	// Damage to Undead Element
-					    RDMOPT_HEAL_MODIFY_PERCENT, // Heal Power %
-					    RDMOPT_WEAPON_INDESTRUCTIBLE, // Weapon Instructible
-					    RDMOPT_DAMAGE_SIZE_PERFECT; // Size will be ignored
-					    // ToDo: // Recover 1000 of Damage lost from size penalties
+		if (countitem(.@valor_badge_id) < .@valor_badge_qty || countitem(.@pod_id) < .@pod_qty || countitem(.@blank_card_id) < .@blank_card_qty) {
+			mes "You do not have enough sincerity! Where's the complete requirements!?";
+			close;
+		}
+		mes "Oh good, let's proceed then...";
+		mes "But I need to know which enchant slot do you want to modify?";
+		.@slot = select("1st Enchant Option:2nd Enchant Option:3rd Enchant Option");
+		
+		switch(.@slot) {
+			case 1:
+				next;
+				goto Enchant_First_Slot;
+				break;
+			case 2:
+				next;
+				goto Enchant_Second_Slot;
+				break;
+			case 3:
+				next;
+				goto Enchant_Third_Slot;
+				break;
+		} // switch
+	}
 
-// - Ranged
-setarray .RandOpt1_R[0],RDMOPT_DAMAGE_PROPERTY_NOTHING_TARGET,	 	// Damage to Neutral Element
-					    RDMOPT_DAMAGE_PROPERTY_GROUND_TARGET,		// Damage to Earth Element
-					    RDMOPT_DAMAGE_PROPERTY_FIRE_TARGET,		 	// Damage to Fire Element
-					    RDMOPT_DAMAGE_PROPERTY_WATER_TARGET,		// Damage to Water Element
-					    RDMOPT_DAMAGE_PROPERTY_WIND_TARGET,		 	// Damage to Wind Element
-					    RDMOPT_DAMAGE_PROPERTY_POISON_TARGET,		// Damage to Poison Element
-					    RDMOPT_DAMAGE_PROPERTY_SAINT_TARGET,		// Damage to Holy Element
-					    RDMOPT_DAMAGE_PROPERTY_DARKNESS_TARGET,	 	// Damage to Dark Element
-					    RDMOPT_DAMAGE_PROPERTY_TELEKINESIS_TARGET,	// Damage to Ghost Element
-					    RDMOPT_DAMAGE_PROPERTY_UNDEAD_TARGET,		// Damage to Undead Element
-					    RDMOPT_HEAL_MODIFY_PERCENT, // Heal Power %
-					    RDMOPT_WEAPON_INDESTRUCTIBLE, // Weapon Instructible
-					    RDMOPT_DAMAGE_SIZE_PERFECT; // Size will be ignored
-					    // ToDo: // Recover 1000 of Damage lost from size penalties
+Enchant_First_Slot:
+	.@slot_index = 0;
+	// Form the selection options for the weapon.
+	.@selection_size = getarraysize(.@first_slot_options);
+	for(.@i = 0; .@i < .@selection_size; .@i += 1) {
+		.@selection_menu$ = .@selection_menu$ + (.@i < 0 ? "" : ":") + .@first_slot_menu_options$[.@i];
+	} // for
 
-// - Values
-// Note: When MinV and MaxV are the same, rand() will not be used!
-setarray .RandOpt1_P_MinV[0],1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,20,0,0;
-setarray .RandOpt1_P_MaxV[0],10,0,0,0,0,0,0,0,20,20,20,20,20,20,20,20,20,20,20,0,0;
-setarray .RandOpt1_M_MinV[0],1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,20,1,1,0,0;
-setarray .RandOpt1_M_MaxV[0],10,0,0,0,0,0,0,0,20,20,20,20,20,20,20,20,20,20,20,20,20,0,0;
-setarray .RandOpt1_R_MinV[0],1,1,1,1,1,1,1,1,1,1,20,0,0;
-setarray .RandOpt1_R_MaxV[0],20,20,20,20,20,20,20,20,20,20,20,0,0;
 
-// ========= Random Option Slot 2 ========= 
-// - Physical
-setarray .RandOpt2_P[0],RDMOPT_RACE_DAMAGE_NOTHING,	// Damage to Neutral Race
-					    RDMOPT_RACE_DAMAGE_UNDEAD,	// Damage to Undead Race
-					    RDMOPT_RACE_DAMAGE_ANIMAL,	// Damage to Animal Race
-					    RDMOPT_RACE_DAMAGE_PLANT,	// Damage to Plant Race
-					    RDMOPT_RACE_DAMAGE_INSECT,	// Damage to Insect Race
-					    RDMOPT_RACE_DAMAGE_FISHS,	// Damage to Fish Race
-					    RDMOPT_RACE_DAMAGE_DEVIL,	// Damage to Demon Race
-					    RDMOPT_RACE_DAMAGE_HUMAN,	// Damage to Human Race
-					    RDMOPT_RACE_DAMAGE_ANGEL,	// Damage to Angel Race
-					    RDMOPT_RACE_DAMAGE_DRAGON,	// Damage to Dragon Race
-						RDMOPT_RACE_IGNORE_DEF_PERCENT_NOTHING,	// Bypass DEF of Neutral Race
-					    RDMOPT_RACE_IGNORE_DEF_PERCENT_UNDEAD,	// Bypass DEF of Undead Race
-					    RDMOPT_RACE_IGNORE_DEF_PERCENT_ANIMAL,	// Bypass DEF of Animal Race
-					    RDMOPT_RACE_IGNORE_DEF_PERCENT_PLANT,	// Bypass DEF of Plant Race
-					    RDMOPT_RACE_IGNORE_DEF_PERCENT_INSECT,	// Bypass DEF of Insect Race
-					    RDMOPT_RACE_IGNORE_DEF_PERCENT_FISHS,	// Bypass DEF of Fish Race
-					    RDMOPT_RACE_IGNORE_DEF_PERCENT_DEVIL,	// Bypass DEF of Demon Race
-					    RDMOPT_RACE_IGNORE_DEF_PERCENT_HUMAN,	// Bypass DEF of Human Race
-					    RDMOPT_RACE_IGNORE_DEF_PERCENT_ANGEL,	// Bypass DEF of Angel Race
-					    RDMOPT_RACE_IGNORE_DEF_PERCENT_DRAGON,	// Bypass DEF of Dragon Race
-					    RDMOPT_CLASS_DAMAGE_NORMAL_TARGET,	// Bypass DEF of Normal Class Enemies
-					    RDMOPT_CLASS_DAMAGE_BOSS_TARGET; // Damage to Boss monsters
-						
-// - Magical
-setarray .RandOpt2_M[0],RDMOPT_RACE_MDAMAGE_NOTHING,// Damage to Neutral Race
-					    RDMOPT_RACE_MDAMAGE_UNDEAD,	// Damage to Undead Race
-					    RDMOPT_RACE_MDAMAGE_ANIMAL,	// Damage to Animal Race
-					    RDMOPT_RACE_MDAMAGE_PLANT,	// Damage to Plant Race
-					    RDMOPT_RACE_MDAMAGE_INSECT,	// Damage to Insect Race
-					    RDMOPT_RACE_MDAMAGE_FISHS,	// Damage to Fish Race
-					    RDMOPT_RACE_MDAMAGE_DEVIL,	// Damage to Devil Race
-					    RDMOPT_RACE_MDAMAGE_HUMAN,	// Damage to Human Race
-					    RDMOPT_RACE_MDAMAGE_ANGEL,	// Damage to Angel Race
-					    RDMOPT_RACE_MDAMAGE_DRAGON,	// Damage to Dragon Race
-						RDMOPT_RACE_IGNORE_MDEF_PERCENT_NOTHING,	// Bypass MDEF of Neutral Race
-					    RDMOPT_RACE_IGNORE_MDEF_PERCENT_UNDEAD,	// Bypass MDEF of Undead Race
-					    RDMOPT_RACE_IGNORE_MDEF_PERCENT_ANIMAL,	// Bypass MDEF of Animal Race
-					    RDMOPT_RACE_IGNORE_MDEF_PERCENT_PLANT,	// Bypass MDEF of Plant Race
-					    RDMOPT_RACE_IGNORE_MDEF_PERCENT_INSECT,	// Bypass MDEF of Insect Race
-					    RDMOPT_RACE_IGNORE_MDEF_PERCENT_FISHS,	// Bypass MDEF of Fish Race
-					    RDMOPT_RACE_IGNORE_MDEF_PERCENT_DEVIL,	// Bypass MDEF of Demon Race
-					    RDMOPT_RACE_IGNORE_MDEF_PERCENT_HUMAN,	// Bypass MDEF of Human Race
-					    RDMOPT_RACE_IGNORE_MDEF_PERCENT_ANGEL,	// Bypass MDEF of Angel Race
-					    RDMOPT_RACE_IGNORE_MDEF_PERCENT_DRAGON,	// Bypass MDEF of Dragon Race
-						RDMOPT_CLASS_MDAMAGE_NORMAL,	// Bypass MDEF of Normal Class Enemies
-					    RDMOPT_CLASS_MDAMAGE_BOSS; // Damage to Boss monsters
+	mes .@n$;
+	mes "Please select on the following";
+	mes "This will determine your ^FF2000FIRST^000000 slot enchant of your Vicious Mind Weapon.";
+	.@selected_enchant = select(.@selection_menu$) - 2;
 
-// - Ranged
-setarray .RandOpt2_R[0],RDMOPT_RACE_DAMAGE_NOTHING,	// Damage to Neutral Race
-					    RDMOPT_RACE_DAMAGE_UNDEAD,	// Damage to Undead Race
-					    RDMOPT_RACE_DAMAGE_ANIMAL,	// Damage to Animal Race
-					    RDMOPT_RACE_DAMAGE_PLANT,	// Damage to Plant Race
-					    RDMOPT_RACE_DAMAGE_INSECT,	// Damage to Insect Race
-					    RDMOPT_RACE_DAMAGE_FISHS,	// Damage to Fish Race
-					    RDMOPT_RACE_DAMAGE_DEVIL,	// Damage to Demon Race
-					    RDMOPT_RACE_DAMAGE_HUMAN,	// Damage to Human Race
-					    RDMOPT_RACE_DAMAGE_ANGEL,	// Damage to Angel Race
-					    RDMOPT_RACE_DAMAGE_DRAGON,	// Damage to Dragon Race
-						RDMOPT_RACE_IGNORE_DEF_PERCENT_NOTHING,	// Bypass DEF of Neutral Race
-					    RDMOPT_RACE_IGNORE_DEF_PERCENT_UNDEAD,	// Bypass DEF of Undead Race
-					    RDMOPT_RACE_IGNORE_DEF_PERCENT_ANIMAL,	// Bypass DEF of Animal Race
-					    RDMOPT_RACE_IGNORE_DEF_PERCENT_PLANT,	// Bypass DEF of Plant Race
-					    RDMOPT_RACE_IGNORE_DEF_PERCENT_INSECT,	// Bypass DEF of Insect Race
-					    RDMOPT_RACE_IGNORE_DEF_PERCENT_FISHS,	// Bypass DEF of Fish Race
-					    RDMOPT_RACE_IGNORE_DEF_PERCENT_DEVIL,	// Bypass DEF of Demon Race
-					    RDMOPT_RACE_IGNORE_DEF_PERCENT_HUMAN,	// Bypass DEF of Human Race
-					    RDMOPT_RACE_IGNORE_DEF_PERCENT_ANGEL,	// Bypass DEF of Angel Race
-					    RDMOPT_RACE_IGNORE_DEF_PERCENT_DRAGON,	// Bypass DEF of Dragon Race
-					    RDMOPT_CLASS_DAMAGE_NORMAL_TARGET,	// Bypass DEF of Normal Class Enemies
-					    RDMOPT_CLASS_DAMAGE_BOSS_TARGET; // Damage to Boss monsters
+	next;
+	mes .@n$;
+	mes "You have selected:";
+	mes "^7289DA" + .@first_slot_menu_options$[.@selected_enchant] + "^000000.";
+	mes "----------------------------";
+	mes "Are you sure with this?";
+	mes "No refunds!";
+	mes "You have been warned!";
 
-// - Values
-// Note: When MinV and MaxV are the same, rand() will not be used!
-setarray .RandOpt2_P_MinV[0],1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,16,20;
-setarray .RandOpt2_P_MaxV[0],20,20,20,20,20,20,20,20,20,20,30,30,30,30,30,30,30,30,30,30,30,30;
-setarray .RandOpt2_M_MinV[0],1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,16,20;
-setarray .RandOpt2_M_MaxV[0],20,20,20,20,20,20,20,20,20,20,30,30,30,30,30,30,30,30,30,30,30,30;
-setarray .RandOpt2_R_MinV[0],1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,16,20;
-setarray .RandOpt2_R_MaxV[0],20,20,20,20,20,20,20,20,20,20,30,30,30,30,30,30,30,30,30,30,30,30;
+	.@agree = select("No, I have second thoughts:Yes, let's continue");
+	next;
+	switch(.@agree) {
+		case 1:
+			mes .@n$;
+			mes "Man, what a waste of time!";
+			mes "Come back, later then, noob";
+			close;
+			break;
+		case 2:
+			mes .@n$;
+			mes "Then I shall continue..";
+			next;
+			mes .@n$;
+			mes "Hnggghhh...";
+			mes "Haaannggghh";
+			next;
+			mes .@n$;
+			mes "Aaangh!!";
+			mes "Success~";
+			next;
+			mes .@n$;
+			mes "Here's your shitty weapon with its brand new ^FF2000FIRST^000000 enchant slot.";
+			setrandomoption(.@equip_part,.@slot_index,.@first_slot_options[.@selected_enchant],.@first_slot_values[.@selected_enchant],0);
+			delitem .@valor_badge_id, .@valor_badge_qty;
+			delitem .@pod_id, .@pod_qty;
+			delitem .@blank_card_id, .@blank_card_qty;
+			close;
+			break;
+	} // switch
+	close;
 
-// ========= Random Option Slot 3 ========= 
-// - Physical
-setarray .RandOpt3_P[0],RDMOPT_VAR_STRAMOUNT, // STR
-					    RDMOPT_VAR_AGIAMOUNT, // AGI
-					    RDMOPT_VAR_VITAMOUNT, // VIT
-					    RDMOPT_VAR_INTAMOUNT, // INT
-					    RDMOPT_VAR_DEXAMOUNT, // DEX
-					    RDMOPT_VAR_LUKAMOUNT, // LUK
-					    RDMOPT_VAR_ATTPOWER,  // ATK
-					    RDMOPT_VAR_CRITICALSUCCESSVALUE, // Crit Chance
-					    RDMOPT_DAMAGE_CRI_TARGET,	// Crit Damage %
-					    RDMOPT_VAR_PLUSASPDPERCENT,	// ASPD %
-						RDMOPT_DEC_SPELL_CAST_TIME,	// Variable Cast Time -%
-					    RDMOPT_DEC_SPELL_DELAY_TIME,// Cast Delay -%
-					    RDMOPT_DEC_SP_CONSUMPTION;	// Skill SP Cost -%
-						
-// - Magical
-setarray .RandOpt3_M[0],RDMOPT_VAR_STRAMOUNT, // STR
-					    RDMOPT_VAR_AGIAMOUNT, // AGI
-					    RDMOPT_VAR_VITAMOUNT, // VIT
-					    RDMOPT_VAR_INTAMOUNT, // INT
-					    RDMOPT_VAR_DEXAMOUNT, // DEX
-					    RDMOPT_VAR_LUKAMOUNT, // LUK
-					    RDMOPT_VAR_ATTMPOWER, // MATK
-						RDMOPT_DEC_SPELL_CAST_TIME,	// Variable Cast Time -%
-					    RDMOPT_DEC_SPELL_DELAY_TIME,// Cast Delay -%
-					    RDMOPT_DEC_SP_CONSUMPTION;	// Skill SP Cost -%
-					  
-// - Ranged
-setarray .RandOpt3_R[0],RDMOPT_VAR_STRAMOUNT, // STR
-					    RDMOPT_VAR_AGIAMOUNT, // AGI
-					    RDMOPT_VAR_VITAMOUNT, // VIT
-					    RDMOPT_VAR_INTAMOUNT, // INT
-					    RDMOPT_VAR_DEXAMOUNT, // DEX
-					    RDMOPT_VAR_LUKAMOUNT, // LUK
-					    RDMOPT_VAR_ATTPOWER,  // ATK
-						RDMOPT_VAR_ATTMPOWER, // MATK
-					    RDMOPT_VAR_CRITICALSUCCESSVALUE, // Crit Chance
-					    RDMOPT_DAMAGE_CRI_TARGET,	// Crit Damage %
-					    RDMOPT_VAR_PLUSASPDPERCENT,	// ASPD %
-						RDMOPT_DEC_SPELL_CAST_TIME,	// Variable Cast Time -%
-					    RDMOPT_DEC_SPELL_DELAY_TIME,// Cast Delay -%
-					    RDMOPT_DEC_SP_CONSUMPTION,	// Skill SP Cost -%
-						RDMOPT_RANGE_ATTACK_DAMAGE_TARGET; // Ranged Damage +%
+Enchant_Second_Slot:
+	.@slot_index = 1;
+	// Form the selection options for the weapon.
+	.@selection_size = getarraysize(.@second_slot_options);
+	for(.@i = 0; .@i < .@selection_size; .@i += 1) {
+		.@selection_menu$ = .@selection_menu$ + (.@i < 0 ? "" : ":") + .@second_slot_menu_options$[.@i];
+	} // for
 
-// - Values
-// Note: When MinV and MaxV are the same, rand() will not be used!
-setarray .RandOpt3_P_MinV[0],1,1,1,1,1,1,4,10,1,1,1,5,5;
-setarray .RandOpt3_P_MaxV[0],10,10,10,10,10,10,47,19,20,5,20,20,5;
-setarray .RandOpt3_M_MinV[0],1,1,1,1,1,1,4,1,5,5;
-setarray .RandOpt3_M_MaxV[0],10,10,10,10,10,10,50,20,20,5;
-setarray .RandOpt3_R_MinV[0],1,1,1,1,1,1,4,4,10,1,1,1,5,5,13;
-setarray .RandOpt3_R_MaxV[0],10,10,10,10,10,10,47,50,19,20,5,20,20,5,20;
-end;
+	mes .@n$;
+	mes "Please select on the following";
+	mes "This will determine your ^FF2000SECOND^000000 slot enchant of your Vicious Mind Weapon.";
+	.@selected_enchant = select(.@selection_menu$) - 2;
+
+	next;
+	mes .@n$;
+	mes "You have selected:";
+	mes "^7289DA" + .@second_slot_menu_options$[.@selected_enchant] + "^000000.";
+	mes "----------------------------";
+	mes "Are you sure with this?";
+	mes "No refunds!";
+	mes "You have been warned!";
+
+	.@agree = select("No, I have second thoughts:Yes, let's continue");
+	next;
+	switch(.@agree) {
+		case 1:
+			mes .@n$;
+			mes "Man, what a waste of time!";
+			mes "Come back, later then, noob";
+			close;
+			break;
+		case 2:
+			mes .@n$;
+			mes "Then I shall continue..";
+			next;
+			mes .@n$;
+			mes "Hnggghhh...";
+			mes "Haaannggghh";
+			next;
+			mes .@n$;
+			mes "Aaangh!!";
+			mes "Success~";
+			next;
+			mes .@n$;
+			mes "Here's your shitty weapon with its brand new ^FF2000SECOND^000000 enchant slot.";
+			setrandomoption(.@equip_part,.@slot_index,.@second_slot_options[.@selected_enchant],.@second_slot_values[.@selected_enchant],0);
+			delitem .@valor_badge_id, .@valor_badge_qty;
+			delitem .@pod_id, .@pod_qty;
+			delitem .@blank_card_id, .@blank_card_qty;
+			close;
+			break;
+	} // switch
+
+Enchant_Third_Slot:
+	.@slot_index = 2;
+	// Form the selection options for the weapon.
+	.@selection_size = getarraysize(.@third_slot_options);
+	for(.@i = 0; .@i < .@selection_size; .@i += 1) {
+		.@selection_menu$ = .@selection_menu$ + (.@i < 0 ? "" : ":") + .@third_slot_menu_options$[.@i];
+	} // for
+	mes .@n$;
+	mes "Please select on the following";
+	mes "This will determine your ^FF2000THIRD^000000 slot enchant of your Vicious Mind Weapon.";
+	.@selected_enchant = select(.@selection_menu$) - 2;
+
+	next;
+	mes .@n$;
+	mes "You have selected:";
+	mes "^7289DA" + .@third_slot_menu_options$[.@selected_enchant] + "^000000.";
+	mes "----------------------------";
+	mes "Are you sure with this?";
+	mes "No refunds!";
+	mes "You have been warned!";
+
+	.@agree = select("No, I have second thoughts:Yes, let's continue");
+	next;
+	switch(.@agree) {
+		case 1:
+			mes .@n$;
+			mes "Man, what a waste of time!";
+			mes "Come back, later then, noob";
+			close;
+			break;
+		case 2:
+			mes .@n$;
+			mes "Then I shall continue..";
+			next;
+			mes .@n$;
+			mes "Hnggghhh...";
+			mes "Haaannggghh";
+			next;
+			mes .@n$;
+			mes "Aaangh!!";
+			mes "Success~";
+			next;
+			mes .@n$;
+			mes "Here's your shitty weapon with its brand new ^FF2000THIRD^000000 enchant slot.";
+			setrandomoption(.@equip_part,.@slot_index,.@third_slot_options[.@selected_enchant],.@third_slot_values[.@selected_enchant],0);
+			delitem .@valor_badge_id, .@valor_badge_qty;
+			delitem .@pod_id, .@pod_qty;
+			delitem .@blank_card_id, .@blank_card_qty;
+			close;
+			break;
+	} // switch
+
 }
