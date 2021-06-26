@@ -318,7 +318,7 @@ askald,100,155,5	script	Vicious Mind	4_M_FAIRYSCHOLAR,{
 		"+20% Critical Damage",	// Crit Damage %
 
 		// ASPD
-		"+5% ASPD",	// ASPD %
+		"-5% Delay after attack",	// ASPD %
 		"+5 ASPD",	// Flat ASPD
 
 		// Cast time
