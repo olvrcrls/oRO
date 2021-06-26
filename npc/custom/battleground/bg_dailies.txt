@@ -93,8 +93,8 @@ OnInit:
 	set .n$, "[Battleground Dailies]";
 	set .bg_dailies_wins, 10; // Needed win to claim dailies
 	set .ip_restriction,1; // IP Restriction - Set 1 to enable / set 0 to disable
-	setarray .bg_dailies_rewards[0],7179,7829; // Rewards in item ID
-	setarray .bg_dailies_rewards_qty[0],25,1000; // Quantity of rewards
+	setarray .bg_dailies_rewards[0],7179,7829,6187; // Rewards in item ID
+	setarray .bg_dailies_rewards_qty[0],10,1000,2500; // Quantity of rewards
 	waitingroom "BG Dailies", 0;
 }
 
