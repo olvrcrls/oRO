@@ -2,6 +2,7 @@
 //= Specific Enchanter for Vicious Mind Weapons
 //= This will grant any enchants on the scope of
 //= Vicious Mind weapons to any VM weapons.
+//= This is soley for mostly PVP and MVP hunting enchants
 //===================================================
 //= 1.0 [Andie]
 //===================================================
@@ -23,7 +24,7 @@ askald,100,155,5	script	Vicious Mind	4_M_FAIRYSCHOLAR,{
 	.@equip_part = EQI_HAND_R;
 	.@weapon_id = getequipid(.@equip_part);
 
-	//== IDs of the vicious mind weapons
+	//== IDs of the vicious mind weapons, TODO: Please be sure this matches your database item IDs.
 	setarray .@vm_weapons[0],
 		1400, // Spear
 		1450, // Lance
@@ -209,7 +210,6 @@ askald,100,155,5	script	Vicious Mind	4_M_FAIRYSCHOLAR,{
 
 
 	//== Second slot menu choices
-	//TODO: Trim down the 2nd enchant list. Remove the useless races. Do the same on the 1st enchant listing.
 	setarray .@second_slot_menu_options$[0],
 		//== Physical damage to [race]
 		"^7289DA<ATK>^000000 Damage to ^FF2000<Demi-Human>^000000 Race",
@@ -461,9 +461,9 @@ Enchant_First_Slot:
 			mes .@n$;
 			mes "Here's your shitty weapon with its brand new ^FF2000FIRST^000000 enchant slot.";
 			setrandomoption(.@equip_part,.@slot_index,.@first_slot_options[.@selected_enchant],.@first_slot_values[.@selected_enchant],0);
-			//delitem .@valor_badge_id, .@valor_badge_qty;
-			//delitem .@pod_id, .@pod_qty;
-			//delitem .@blank_card_id, .@blank_card_qty;
+			delitem .@valor_badge_id, .@valor_badge_qty;
+			delitem .@pod_id, .@pod_qty;
+			delitem .@blank_card_id, .@blank_card_qty;
 			close;
 			break;
 	} // switch
@@ -515,9 +515,9 @@ Enchant_Second_Slot:
 			mes .@n$;
 			mes "Here's your shitty weapon with its brand new ^FF2000SECOND^000000 enchant slot.";
 			setrandomoption(.@equip_part,.@slot_index,.@second_slot_options[.@selected_enchant],.@second_slot_values[.@selected_enchant],0);
-			//delitem .@valor_badge_id, .@valor_badge_qty;
-			//delitem .@pod_id, .@pod_qty;
-			//delitem .@blank_card_id, .@blank_card_qty;
+			delitem .@valor_badge_id, .@valor_badge_qty;
+			delitem .@pod_id, .@pod_qty;
+			delitem .@blank_card_id, .@blank_card_qty;
 			close;
 			break;
 	} // switch
@@ -567,18 +567,11 @@ Enchant_Third_Slot:
 			mes .@n$;
 			mes "Here's your shitty weapon with its brand new ^FF2000THIRD^000000 enchant slot.";
 			setrandomoption(.@equip_part,.@slot_index,.@third_slot_options[.@selected_enchant],.@third_slot_values[.@selected_enchant],0);
-			//delitem .@valor_badge_id, .@valor_badge_qty;
-			//delitem .@pod_id, .@pod_qty;
-			//delitem .@blank_card_id, .@blank_card_qty;
+			delitem .@valor_badge_id, .@valor_badge_qty;
+			delitem .@pod_id, .@pod_qty;
+			delitem .@blank_card_id, .@blank_card_qty;
 			close;
 			break;
 	} // switch
 
 }
-	
-
-
-/*
-Snippets:
-setrandomoption(.@part,0,getd(".RandOpt1_"+.@Type$+"["+.@Opt1+"]"),.@Opt1_V,0);
-*/
