@@ -132,7 +132,7 @@ askald,100,155,5	script	Vicious Mind	4_M_FAIRYSCHOLAR,{
 		//== MATK percent
 		"+10% MATK Rate",
 		//== Healing Rate
-		"+30% Increase healing rate";
+		"+20% Increase healing rate";
 
 	//== First slot enchant values
 	setarray .@first_slot_values[0],
@@ -220,9 +220,9 @@ askald,100,155,5	script	Vicious Mind	4_M_FAIRYSCHOLAR,{
 		//== Magical Bonus to Boss
 		"^7289DA<Magical>^000000 Damage to ^FF2000<Boss>^000000 Monster",
 		//== Physical Bypass DEF Normal monster
-		"Bypass ^7289DA<DEF>^000000 Normal Monster",
+		"^7289DA<Physical>^000000 Damage to ^FF2000<Normal>^000000 Monster",
 		//== Magical Bypass DEF Normal monster
-		"Bypass ^7289DA<MDEF>^000000 Normal Monster",
+		"^7289DA<Magical>^000000 Damage to ^FF2000<Normal>^000000 Monster",
 
 		//== Physical Bypass [race]
 		"Bypass ^7289DA<DEF>^000000 of ^FF2000<Demi-Human>^000000 Race",	// Bypass DEF of Human Race
@@ -249,11 +249,11 @@ askald,100,155,5	script	Vicious Mind	4_M_FAIRYSCHOLAR,{
 		//== Physical Bonus to Boss
 		20, // Damage to Boss monsters
 		//== Magical Bonus to Boss
-		30, // Damage to Boss monsters
-		//== Physical Bypass DEF Normal monster
-		30,
-		//== Magical Bypass DEF Normal monster
-		30,
+		20, // Damage to Boss monsters
+		//== Physical Damage Bonus to Normal monster
+		20,
+		//== Magical Damage Bonus to Normal monster
+		20,
 
 		//== Physical Bypass [race]
 		30,	// Bypass DEF of Human Race
