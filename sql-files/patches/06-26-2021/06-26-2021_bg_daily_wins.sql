@@ -7,5 +7,5 @@ CREATE TABLE IF NOT EXISTS `bg_daily_wins`(
 	`claimed` TINYINT(1) DEFAULT 0,
 	`created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`updated_at` DATETIME NULL on update CURRENT_TIMESTAMP,
-	PRIMARY KEY(`bg_daily_wind_id`)
+	PRIMARY KEY(`bg_daily_win_id`)
 );
