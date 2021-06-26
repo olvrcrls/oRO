@@ -122,7 +122,7 @@ OnMinute00:
 			if (gettime(DT_DAYOFWEEK) == $WOE_CONTROL[.@i] && gettime(DT_HOUR) == $WOE_CONTROL[.@i+2]) {
 			OnWOEEnd:
 				announce "The War Of Emperium is over!",bc_all|bc_woe;
-				announce "Winners please check your RODEX for your rewards!",bc_all|bc_woe;
+				announce "Winners please check your INVENTORY for your rewards!",bc_all|bc_woe;
 				AgitEnd; AgitEnd2;
 				sleep 1000;
 				for(set .@j,0; .@j<getarraysize(.Castles$); set .@j,.@j+1) {
