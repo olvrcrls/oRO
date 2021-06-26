@@ -23992,7 +23992,7 @@ Body:
     Range: 1
     Hit: Single
     HitCount: 1
-    Element: Weapon
+    Element: Neutral
     SplashArea:
       - Level: 1
         Area: 1
