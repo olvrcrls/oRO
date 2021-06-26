@@ -29,6 +29,7 @@ function	script	Reward_BG	{
 	
 		.@total1 = getarg(0);
 		.@total2 = getarg(1);
+		.@current_date$ = gettimestr("%Y-%m-%d", 21); // 2020-01-01
 
 		// Rewards constants
 		.@nb_joueurs = (bg_get_data($@BG_Team1,0) + bg_get_data($@BG_Team2,0))/2;
@@ -57,6 +58,19 @@ function	script	Reward_BG	{
 				set getd(getvariableofnpc(.BG_VAR$[getarg(2)],"BG_Queue_Join")),getd(getvariableofnpc(.BG_VAR$[getarg(2)],"BG_Queue_Join"))+1;
 				dispbottom "[" + getvariableofnpc(.BG_Names$[getarg(2)],"BG_Queue_Join")+ "] Participation score : " + getd(getvariableofnpc(.BG_VAR$[getarg(2)],"BG_Queue_Join")) + " participation(s)";
 				detachrid;
+
+				if (.@total1 > .@total2) {
+					.@account_id = getcharid(3, $@bgmembers$[.@i]);
+					.@char_id = getcharid(0, $@bgmembers$[.@i]);
+					.@login_ip$ = getcharip(.@char_id); // get the login IP for IP checking.
+					if (query_sql("SELECT `account_id` FROM `bg_daily_wins` WHERE `account_id` = " + .@account_id + " AND DATE(`created_at`) = '" + .@current_date$ + "';") < 1) {
+						// If there are no records yet then we insert a brand new record.
+						query_sql("INSERT INTO `bg_daily_wins`(`account_id`,`win`,`last_ip`) VALUES (" + .@account_id + ",1,'" + .@login_ip$ + "');");
+					} else {
+						// Update the existing record
+						query_sql("UPDATE `bg_daily_wins` SET `win` = `win` + 1 WHERE `account_id` = " + .@account_id);
+					}
+				}
 			}
 		}
 		deletearray $@bgmembers$;
@@ -66,6 +80,18 @@ function	script	Reward_BG	{
 				set getd(getvariableofnpc(.BG_VAR$[getarg(2)],"BG_Queue_Join")),getd(getvariableofnpc(.BG_VAR$[getarg(2)],"BG_Queue_Join"))+1;
 				dispbottom "[" + getvariableofnpc(.BG_Names$[getarg(2)],"BG_Queue_Join")+ "] Participation score : " + getd(getvariableofnpc(.BG_VAR$[getarg(2)],"BG_Queue_Join")) + " participation(s)";
 				detachrid;
+				if (.@total2 > .@total1) {
+					.@account_id = getcharid(3, $@bgmembers$[.@i]);
+					.@char_id = getcharid(0, $@bgmembers$[.@i]);
+					.@login_ip$ = getcharip(.@char_id); // get the login IP for IP checking.
+					if (query_sql("SELECT `account_id` FROM `bg_daily_wins` WHERE `account_id` = " + .@account_id + " AND DATE(`created_at`) = '" + .@current_date$ + "';") < 1) {
+						// If there are no records yet then we insert a brand new record.
+						query_sql("INSERT INTO `bg_daily_wins`(`account_id`,`win`,`last_ip`) VALUES (" + .@account_id + ",1,'" + .@login_ip$ + "');");
+					} else {
+						// Update the existing record
+						query_sql("UPDATE `bg_daily_wins` SET `win` = `win` + 1 WHERE `account_id` = " + .@account_id);
+					}
+				}
 			}
 		}
 		

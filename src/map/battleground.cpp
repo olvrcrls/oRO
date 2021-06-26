@@ -692,6 +692,7 @@ void bg_team_rewards(int bg_id, int nameid, int amount, int kafrapoints, int que
 
 		if( nameid && amount > 0 )
 		{
+			//ShowInfo("Battle result %d, User ID %d\n", bg_result, sd->bl.id);
 			if (bg_result == 0)
 				pc_getzeny(sd,(int)25000000,LOG_TYPE_SCRIPT,NULL); // Gives 25M to winner participants.
 			if (bg_result == 2)

@@ -45,7 +45,7 @@
 	mes "I give Daily Rewards for ^1ABC9C" + .bg_dailies_wins + "^000000 BG wins!";
 	mes "------";
 	mes "What's your agenda with me now?";
-	.@select = select("Check my daily wins status:Cancel"); // TODO: Add participation rewards
+	.@select = select("Check & claim my BG daily win rewards:Cancel"); // TODO: Add participation rewards
 	next;
 
 	switch(.@select) {
@@ -94,7 +94,7 @@ OnInit:
 	set .bg_dailies_wins, 10; // Needed win to claim dailies
 	set .ip_restriction,1; // IP Restriction - Set 1 to enable / set 0 to disable
 	setarray .bg_dailies_rewards[0],7179,7829; // Rewards in item ID
-	setarray .bg_dailies_rewards_qty[0],15,1000; // Quantity of rewards
+	setarray .bg_dailies_rewards_qty[0],25,1000; // Quantity of rewards
 	waitingroom "BG Dailies", 0;
 }
 
