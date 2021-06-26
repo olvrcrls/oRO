@@ -6,10 +6,10 @@
 //= 1.0 [Andie]
 //===================================================
 
-askald,100,155,5	script	Vicious Enchants PHD	4_M_FAIRYSCHOLAR,{
+askald,100,155,5	script	Vicious Mind	4_M_FAIRYSCHOLAR,{
 	disable_command; disable_items;
 	//== Init variables
-	.@n$ = "^7289DA[Has PHD in Vicious Enchants]^000000";
+	.@n$ = "^7289DA[Vicious Mind Steroids Enhancement]^000000";
 
 	.@valor_badge_id = 7829;
 	.@pod_id = 7179;
@@ -148,58 +148,40 @@ askald,100,155,5	script	Vicious Enchants PHD	4_M_FAIRYSCHOLAR,{
 		1, // Weapon Element - Dark
 		1,	// Weapon Element - Poison
 		//== Physical
-		30,		// Damage to Poison Elment
-		30,	 	// Damage to Neutral Element
-		30,	 	// Damage to Earth Element
-		30,		 	// Damage to Fire Element
-		30,	 	// Damage to Water Element
-		30,		 	// Damage to Wind Element
-		30,	 	// Damage to Holy Element
-		30,	 	// Damage to Dark Element
-		30,	// Damage to Ghost Element
-		30,		// Damage to Undead Element
+		20,		// Damage to Poison Elment
+		20,	 	// Damage to Neutral Element
+		20,	 	// Damage to Earth Element
+		20,		 	// Damage to Fire Element
+		20,	 	// Damage to Water Element
+		20,		 	// Damage to Wind Element
+		20,	 	// Damage to Holy Element
+		20,	 	// Damage to Dark Element
+		20,	// Damage to Ghost Element
+		20,		// Damage to Undead Element
 		//== Magical
-		30,		// Magical Damage to Poison Elment
-		30,	 	// Magical Damage to Neutral Element
-		30,	 	// Magical Damage to Earth Element
-		30,	 	// Magical Damage to Fire Element
-		30,	 	// Magical Damage to Water Element
-		30,	 	// Magical Damage to Wind Element
-		30,		// Magical Damage to Holy Element
-		30,	// Magical Damage to Dark Element
-		30,	// Magical Damage to Ghost Element
-		30,	 	// Magical Damage to Undead Element
+		20,		// Magical Damage to Poison Elment
+		20,	 	// Magical Damage to Neutral Element
+		20,	 	// Magical Damage to Earth Element
+		20,	 	// Magical Damage to Fire Element
+		20,	 	// Magical Damage to Water Element
+		20,	 	// Magical Damage to Wind Element
+		20,		// Magical Damage to Holy Element
+		20,	// Magical Damage to Dark Element
+		20,	// Magical Damage to Ghost Element
+		20,	 	// Magical Damage to Undead Element
 		//== ATK percent
 		10, // ATK%
 		//== MATK percent
 		10, // MATK%
 		//== Healing Rate
-		30; // Healing Rate
+		20; // Healing Rate
 
 	//== Second Slot enchant options
 	setarray .@second_slot_options[0],
 		//== Physical damage to [race]
-		RDMOPT_RACE_DAMAGE_NOTHING,	// Damage to Neutral Race
-		RDMOPT_RACE_DAMAGE_UNDEAD,	// Damage to Undead Race
-		RDMOPT_RACE_DAMAGE_ANIMAL,	// Damage to Animal Race
-		RDMOPT_RACE_DAMAGE_PLANT,	// Damage to Plant Race
-		RDMOPT_RACE_DAMAGE_INSECT,	// Damage to Insect Race
-		RDMOPT_RACE_DAMAGE_FISHS,	// Damage to Fish Race
-		RDMOPT_RACE_DAMAGE_DEVIL,	// Damage to Demon Race
 		RDMOPT_RACE_DAMAGE_HUMAN,	// Damage to Human Race
-		RDMOPT_RACE_DAMAGE_ANGEL,	// Damage to Angel Race
-		RDMOPT_RACE_DAMAGE_DRAGON,	// Damage to Dragon Race
 		//== Magical damage to [race]
-		RDMOPT_RACE_MDAMAGE_NOTHING,// Damage to Neutral Race
-		RDMOPT_RACE_MDAMAGE_UNDEAD,	// Damage to Undead Race
-		RDMOPT_RACE_MDAMAGE_ANIMAL,	// Damage to Animal Race
-		RDMOPT_RACE_MDAMAGE_PLANT,	// Damage to Plant Race
-		RDMOPT_RACE_MDAMAGE_INSECT,	// Damage to Insect Race
-		RDMOPT_RACE_MDAMAGE_FISHS,	// Damage to Fish Race
-		RDMOPT_RACE_MDAMAGE_DEVIL,	// Damage to Devil Race
 		RDMOPT_RACE_MDAMAGE_HUMAN,	// Damage to Human Race
-		RDMOPT_RACE_MDAMAGE_ANGEL,	// Damage to Angel Race
-		RDMOPT_RACE_MDAMAGE_DRAGON,	// Damage to Dragon Race
 		//== Physical Bonus to Boss
 		RDMOPT_CLASS_DAMAGE_BOSS_TARGET, // Damage to Boss monsters
 		//== Magical Bonus to Boss
@@ -210,28 +192,10 @@ askald,100,155,5	script	Vicious Enchants PHD	4_M_FAIRYSCHOLAR,{
 		RDMOPT_CLASS_MDAMAGE_NORMAL,
 
 		//== Physical Bypass [race]
-		RDMOPT_RACE_IGNORE_DEF_PERCENT_NOTHING,	// Bypass DEF of Neutral Race
-		RDMOPT_RACE_IGNORE_DEF_PERCENT_UNDEAD,	// Bypass DEF of Undead Race
-		RDMOPT_RACE_IGNORE_DEF_PERCENT_ANIMAL,	// Bypass DEF of Animal Race
-		RDMOPT_RACE_IGNORE_DEF_PERCENT_PLANT,	// Bypass DEF of Plant Race
-		RDMOPT_RACE_IGNORE_DEF_PERCENT_INSECT,	// Bypass DEF of Insect Race
-		RDMOPT_RACE_IGNORE_DEF_PERCENT_FISHS,	// Bypass DEF of Fish Race
-		RDMOPT_RACE_IGNORE_DEF_PERCENT_DEVIL,	// Bypass DEF of Demon Race
 		RDMOPT_RACE_IGNORE_DEF_PERCENT_HUMAN,	// Bypass DEF of Human Race
-		RDMOPT_RACE_IGNORE_DEF_PERCENT_ANGEL,	// Bypass DEF of Angel Race
-		RDMOPT_RACE_IGNORE_DEF_PERCENT_DRAGON,	// Bypass DEF of Dragon Race
 
 		//== Magical Bypass [race]
-		RDMOPT_RACE_IGNORE_MDEF_PERCENT_NOTHING,	// Bypass MDEF of Neutral Race
-		RDMOPT_RACE_IGNORE_MDEF_PERCENT_UNDEAD,	// Bypass MDEF of Undead Race
-		RDMOPT_RACE_IGNORE_MDEF_PERCENT_ANIMAL,	// Bypass MDEF of Animal Race
-		RDMOPT_RACE_IGNORE_MDEF_PERCENT_PLANT,	// Bypass MDEF of Plant Race
-		RDMOPT_RACE_IGNORE_MDEF_PERCENT_INSECT,	// Bypass MDEF of Insect Race
-		RDMOPT_RACE_IGNORE_MDEF_PERCENT_FISHS,	// Bypass MDEF of Fish Race
-		RDMOPT_RACE_IGNORE_MDEF_PERCENT_DEVIL,	// Bypass MDEF of Demon Race
 		RDMOPT_RACE_IGNORE_MDEF_PERCENT_HUMAN,	// Bypass MDEF of Human Race
-		RDMOPT_RACE_IGNORE_MDEF_PERCENT_ANGEL,	// Bypass MDEF of Angel Race
-		RDMOPT_RACE_IGNORE_MDEF_PERCENT_DRAGON,	// Bypass MDEF of Dragon Race
 
 		//== Physical Bypass [boss]
 		RDMOPT_CLASS_IGNORE_DEF_PERCENT_BOSS, // Bypass DEF of Boss
@@ -245,29 +209,12 @@ askald,100,155,5	script	Vicious Enchants PHD	4_M_FAIRYSCHOLAR,{
 
 
 	//== Second slot menu choices
+	//TODO: Trim down the 2nd enchant list. Remove the useless races. Do the same on the 1st enchant listing.
 	setarray .@second_slot_menu_options$[0],
 		//== Physical damage to [race]
-		"^7289DA<ATK>^000000 Damage to ^FF2000<Formless>^000000 Race",
-		"^7289DA<ATK>^000000 Damage to ^FF2000<Undead>^000000 Race",
-		"^7289DA<ATK>^000000 Damage to ^FF2000<Brute>^000000 Race",
-		"^7289DA<ATK>^000000 Damage to ^FF2000<Plant>^000000 Race",
-		"^7289DA<ATK>^000000 Damage to ^FF2000<Insect>^000000 Race",
-		"^7289DA<ATK>^000000 Damage to ^FF2000<Fish>^000000 Race",
-		"^7289DA<ATK>^000000 Damage to ^FF2000<Demon>^000000 Race",
 		"^7289DA<ATK>^000000 Damage to ^FF2000<Demi-Human>^000000 Race",
-		"^7289DA<ATK>^000000 Damage to ^FF2000<Angel>^000000 Race",
-		"^7289DA<ATK>^000000 Damage to ^FF2000<Dragon>^000000 Race",
 		//== Magical damage to [race]
-		"^7289DA<MATK>^000000 Damage to ^FF2000<Formless>^000000 Race",
-		"^7289DA<MATK>^000000 Damage to ^FF2000<Undead>^000000 Race",
-		"^7289DA<MATK>^000000 Damage to ^FF2000<Brute>^000000 Race",
-		"^7289DA<MATK>^000000 Damage to ^FF2000<Plant>^000000 Race",
-		"^7289DA<MATK>^000000 Damage to ^FF2000<Insect>^000000 Race",
-		"^7289DA<MATK>^000000 Damage to ^FF2000<Fish>^000000 Race",
-		"^7289DA<MATK>^000000 Damage to ^FF2000<Demon>^000000 Race",
 		"^7289DA<MATK>^000000 Damage to ^FF2000<Demi-Human>^000000 Race",
-		"^7289DA<MATK>^000000 Damage to ^FF2000<Angel>^000000 Race",
-		"^7289DA<MATK>^000000 Damage to ^FF2000<Dragon>^000000 Race",
 		//== Physical Bonus to Boss
 		"^7289DA<Physical>^000000 Damage to ^FF2000<Boss>^000000 Monster",
 		//== Magical Bonus to Boss
@@ -278,28 +225,10 @@ askald,100,155,5	script	Vicious Enchants PHD	4_M_FAIRYSCHOLAR,{
 		"Bypass ^7289DA<MDEF>^000000 Normal Monster",
 
 		//== Physical Bypass [race]
-		"Bypass ^7289DA<DEF>^000000 of ^FF2000<Formless>^000000 Race",	// Bypass DEF of Neutral Race
-		"Bypass ^7289DA<DEF>^000000 of ^FF2000<Undead>^000000 Race",	// Bypass DEF of Undead Race
-		"Bypass ^7289DA<DEF>^000000 of ^FF2000<Brute>^000000 Race",	// Bypass DEF of Animal Race
-		"Bypass ^7289DA<DEF>^000000 of ^FF2000<Plant>^000000 Race",	// Bypass DEF of Plant Race
-		"Bypass ^7289DA<DEF>^000000 of ^FF2000<Insect>^000000 Race",	// Bypass DEF of Insect Race
-		"Bypass ^7289DA<DEF>^000000 of ^FF2000<Fish>^000000 Race",	// Bypass DEF of Fish Race
-		"Bypass ^7289DA<DEF>^000000 of ^FF2000<Demon>^000000 Race",	// Bypass DEF of Demon Race
 		"Bypass ^7289DA<DEF>^000000 of ^FF2000<Demi-Human>^000000 Race",	// Bypass DEF of Human Race
-		"Bypass ^7289DA<DEF>^000000 of ^FF2000<Angel>^000000 Race",	// Bypass DEF of Angel Race
-		"Bypass ^7289DA<DEF>^000000 of ^FF2000<Dragon>^000000 Race",	// Bypass DEF of Dragon Race
 
 		//== Magical Bypass [race]
-		"Bypass ^7289DA<MDEF>^000000 of ^FF2000<Formless>^000000 Race",	// Bypass MDEF of Neutral Race
-		"Bypass ^7289DA<MDEF>^000000 of ^FF2000<Undead>^000000 Race",	// Bypass MDEF of Undead Race
-		"Bypass ^7289DA<MDEF>^000000 of ^FF2000<Brute>^000000 Race",	// Bypass MDEF of Animal Race
-		"Bypass ^7289DA<MDEF>^000000 of ^FF2000<Plant>^000000 Race",	// Bypass MDEF of Plant Race
-		"Bypass ^7289DA<MDEF>^000000 of ^FF2000<Insect>^000000 Race",	// Bypass MDEF of Insect Race
-		"Bypass ^7289DA<MDEF>^000000 of ^FF2000<Fish>^000000 Race",	// Bypass MDEF of Fish Race
-		"Bypass ^7289DA<MDEF>^000000 of ^FF2000<Demon>^000000 Race",	// Bypass MDEF of Demon Race
 		"Bypass ^7289DA<MDEF>^000000 of ^FF2000<Demi-Human>^000000 Race",	// Bypass MDEF of Human Race
-		"Bypass ^7289DA<MDEF>^000000 of ^FF2000<Angel>^000000 Race",	// Bypass MDEF of Angel Race
-		"Bypass ^7289DA<MDEF>^000000 of ^FF2000<Dragon>^000000 Race",	// Bypass MDEF of Dragon Race
 
 		//== Physical Bypass [boss]
 		"Bypass ^7289DA<DEF>^000000 of ^FF2000<Boss>^000000 Monster", // Bypass DEF of Boss
@@ -314,29 +243,11 @@ askald,100,155,5	script	Vicious Enchants PHD	4_M_FAIRYSCHOLAR,{
 	//== Second slot enchant values
 	setarray .@second_slot_values[0],
 		//== Physical damage to [race]
-		30,	// Damage to Neutral Race
-		30,	// Damage to Undead Race
-		30,	// Damage to Animal Race
-		30,	// Damage to Plant Race
-		30,	// Damage to Insect Race
-		30,	// Damage to Fish Race
-		30,	// Damage to Demon Race
-		30,	// Damage to Human Race
-		30,	// Damage to Angel Race
-		30,	// Damage to Dragon Race
+		20,	// Damage to Human Race
 		//== Magical damage to [race]
-		30,// Damage to Neutral Race
-		30,	// Damage to Undead Race
-		30,	// Damage to Animal Race
-		30,	// Damage to Plant Race
-		30,	// Damage to Insect Race
-		30,	// Damage to Fish Race
-		30,	// Damage to Devil Race
-		30,	// Damage to Human Race
-		30,	// Damage to Angel Race
-		30,	// Damage to Dragon Race
+		20,	// Damage to Human Race
 		//== Physical Bonus to Boss
-		30, // Damage to Boss monsters
+		20, // Damage to Boss monsters
 		//== Magical Bonus to Boss
 		30, // Damage to Boss monsters
 		//== Physical Bypass DEF Normal monster
@@ -345,28 +256,10 @@ askald,100,155,5	script	Vicious Enchants PHD	4_M_FAIRYSCHOLAR,{
 		30,
 
 		//== Physical Bypass [race]
-		30,	// Bypass DEF of Neutral Race
-		30,	// Bypass DEF of Undead Race
-		30,	// Bypass DEF of Animal Race
-		30,	// Bypass DEF of Plant Race
-		30,	// Bypass DEF of Insect Race
-		30,	// Bypass DEF of Fish Race
-		30,	// Bypass DEF of Demon Race
 		30,	// Bypass DEF of Human Race
-		30,	// Bypass DEF of Angel Race
-		30,	// Bypass DEF of Dragon Race
 
 		//== Magical Bypass [race]
-		30,	// Bypass MDEF of Neutral Race
-		30,	// Bypass MDEF of Undead Race
-		30,	// Bypass MDEF of Animal Race
-		30,	// Bypass MDEF of Plant Race
-		30,	// Bypass MDEF of Insect Race
-		30,	// Bypass MDEF of Fish Race
-		30,	// Bypass MDEF of Demon Race
 		30,	// Bypass MDEF of Human Race
-		30,	// Bypass MDEF of Angel Race
-		30,	// Bypass MDEF of Dragon Race
 
 		//== Physical Bypass [boss]
 		30, // Bypass DEF of Boss
@@ -395,13 +288,17 @@ askald,100,155,5	script	Vicious Enchants PHD	4_M_FAIRYSCHOLAR,{
 	next;
 
 	mes .@n$;
-	mes "Do you want to enhance it?";
+	mes "Do you want to enhance your thing?";
 	.@selection = select("No, way:Yes, let's continue on the deal.");
+	if (.@selection == 1) {
+		close;
+	}
 	next;
 
 	if (inarray(.@vm_weapons[0], .@weapon_id) == -1) {
 		mes .@n$;
 		mes "You are not presenting me a Vicious Mind weapon!";
+		close;
 	} else {
 		mes .@n$;
 
@@ -470,10 +367,6 @@ Enchant_First_Slot:
 			mes "Haaannggghh";
 			next;
 			mes .@n$;
-			mes "Arrgghhh";
-			mes "Uwwuuuuu~";
-			next;
-			mes .@n$;
 			mes "Aaangh!!";
 			mes "Success~";
 			next;
@@ -510,8 +403,37 @@ Enchant_Second_Slot:
 	mes "No refunds!";
 	mes "You have been warned!";
 
-	//.@agree = select("No, I have second thoughts:Yes, let's continue");
-	//next;
+	.@agree = select("No, I have second thoughts:Yes, let's continue");
+	next;
+	switch(.@agree) {
+		case 1:
+			mes .@n$;
+			mes "Man, what a waste of time!";
+			mes "Come back, later then, noob";
+			close;
+			break;
+		case 2:
+			mes .@n$;
+			mes "Then I shall continue..";
+			next;
+			mes .@n$;
+			mes "Hnggghhh...";
+			mes "Haaannggghh";
+			next;
+			mes .@n$;
+			mes "Aaangh!!";
+			mes "Success~";
+			next;
+			mes .@n$;
+			mes "Here's your shitty weapon with its brand new ^FF2000SECOND^000000 enchant slot.";
+			setrandomoption(.@equip_part,.@slot_index,.@second_slot_options[.@selected_enchant],.@second_slot_values[.@selected_enchant],0);
+			delitem .@valor_badge_id, .@valor_badge_qty;
+			delitem .@pod_id, .@pod_qty;
+			delitem .@blank_card_id, .@blank_card_qty;
+			close;
+			break;
+	} // switch
+	close;
 
 	close;
 
@@ -519,7 +441,7 @@ Enchant_Third_Slot:
 	.@slot_index = 2;
 	mes .@n$;
 	mes "Please select on the following";
-	mes "This will determine your ^FF2000SECOND^000000 slot enchant of your Vicious Mind Weapon.";
+	mes "This will determine your ^FF2000THIRD^000000 slot enchant of your Vicious Mind Weapon.";
 
 	close;
 
