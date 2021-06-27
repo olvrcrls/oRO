@@ -16718,34 +16718,47 @@ bool skill_check_condition_castend(struct map_session_data* sd, uint16 skill_id,
  *  type&1: consume the others (before skill was used);
  *  type&2: consume items (after skill was used)
  */
-void skill_consume_requirement(struct map_session_data *sd, uint16 skill_id, uint16 skill_lv, short type)
+
+void skill_consume_requirement(struct map_session_data* sd, uint16 skill_id, uint16 skill_lv, short type)
 {
 	struct s_skill_condition require;
+	int rankFlag = 0;
 
 	nullpo_retv(sd);
 
-	require = skill_get_requirement(sd,skill_id,skill_lv);
+	if (map_allowed_woe(sd->bl.m) && sd->status.guild_id)
+		rankFlag = 1;
+	else if (map_getmapflag(sd->bl.m, MF_BATTLEGROUND) && sd->bg_id)
+		rankFlag = 2;
 
-	if( type&1 ) {
-		switch( skill_id ) {
-			case CG_TAROTCARD: // TarotCard will consume sp in skill_cast_nodamage_id [Inkfish]
-			case MC_IDENTIFY:
+	require = skill_get_requirement(sd, skill_id, skill_lv);
+
+	if (type & 1) {
+		switch (skill_id) {
+		case CG_TAROTCARD: // TarotCard will consume sp in skill_cast_nodamage_id [Inkfish]
+		case MC_IDENTIFY:
+			require.sp = 0;
+			break;
+		case MO_KITRANSLATION:
+			//Spiritual Bestowment only uses spirit sphere when giving it to someone
+			require.spiritball = 0;
+			//Fall through
+		default:
+			if (sd->state.autocast)
 				require.sp = 0;
-				break;
-			case MO_KITRANSLATION:
-				//Spiritual Bestowment only uses spirit sphere when giving it to someone
-				require.spiritball = 0;
-				//Fall through
-			default:
-				if(sd->state.autocast)
-					require.sp = 0;
 			break;
 		}
-		if(require.hp || require.sp)
+		if (require.hp || require.sp)
 			status_zap(&sd->bl, require.hp, require.sp);
 
-		/*if(require.spiritball > 0)
-			pc_delspiritball(sd,require.spiritball,0);*/
+		if (require.sp)
+		{
+			if (rankFlag == 1)
+				add2limit(sd->status.wstats.sp_used, require.sp, UINT_MAX);
+			else if (rankFlag == 2)
+				add2limit(sd->status.bgstats.sp_used, require.sp, UINT_MAX);
+		}
+
 		if (require.spiritball > 0) { // Skills that require certain types of spheres to use
 			switch (skill_id) { // Skills that require soul spheres.
 			case SP_SOULGOLEM:
@@ -16768,61 +16781,105 @@ void skill_consume_requirement(struct map_session_data *sd, uint16 skill_id, uin
 				pc_delspiritball(sd, require.spiritball, 0);
 				break;
 			}
+			if (rankFlag == 1)
+				add2limit(sd->status.wstats.spiritb_used, require.spiritball, UINT_MAX);
+			else if (rankFlag == 2)
+				add2limit(sd->status.bgstats.spiritb_used, require.spiritball, UINT_MAX);
 		}
-		else if(require.spiritball == -1) {
+		else if (require.spiritball == -1) {
 			sd->spiritball_old = sd->spiritball;
-			pc_delspiritball(sd,sd->spiritball,0);
+			pc_delspiritball(sd, sd->spiritball, 0);
+			if (sd->spiritball > 0 && rankFlag == 1)
+				add2limit(sd->status.wstats.spiritb_used, sd->spiritball, UINT_MAX);
+			else if (sd->spiritball > 0 && rankFlag == 2)
+				add2limit(sd->status.bgstats.spiritb_used, sd->spiritball, UINT_MAX);
 		}
 
-		if(require.zeny > 0)
+		if (require.zeny > 0)
 		{
-			if( skill_id == NJ_ZENYNAGE )
+			if (skill_id == NJ_ZENYNAGE)
 				require.zeny = 0; //Zeny is reduced on skill_attack.
-			if( sd->status.zeny < require.zeny )
+			if (sd->status.zeny < require.zeny)
 				require.zeny = sd->status.zeny;
-			pc_payzeny(sd,require.zeny,LOG_TYPE_CONSUME,NULL);
+
+			if (rankFlag == 1)
+				add2limit(sd->status.wstats.zeny_used, require.zeny, UINT_MAX);
+			else if (rankFlag == 2)
+				add2limit(sd->status.bgstats.zeny_used, require.zeny, UINT_MAX);
+
+			pc_payzeny(sd, require.zeny, LOG_TYPE_CONSUME, NULL);
 		}
 	}
 
-	if( type&2 ) {
-		struct status_change *sc = &sd->sc;
-		int n,i;
+	if (type & 2) {
+		struct status_change* sc = &sd->sc;
+		int n, i;
 
-		if( !sc->count )
+		if (!sc->count)
 			sc = NULL;
 
-		for( i = 0; i < MAX_SKILL_ITEM_REQUIRE; ++i )
+		for (i = 0; i < MAX_SKILL_ITEM_REQUIRE; ++i)
 		{
-			if( !require.itemid[i] )
+			if (!require.itemid[i])
 				continue;
 
-			if( itemdb_group_item_exists(IG_GEMSTONE, require.itemid[i]) && skill_id != HW_GANBANTEIN && sc && sc->data[SC_SPIRIT] && sc->data[SC_SPIRIT]->val2 == SL_WIZARD )
+			if (itemdb_group_item_exists(IG_GEMSTONE, require.itemid[i]) && skill_id != HW_GANBANTEIN && sc && sc->data[SC_SPIRIT] && sc->data[SC_SPIRIT]->val2 == SL_WIZARD)
 				continue; //Gemstones are checked, but not substracted from inventory.
 
-			switch( skill_id ){
-				case SA_SEISMICWEAPON:
-					if( sc && sc->data[SC_UPHEAVAL_OPTION] && rnd()%100 < 50 )
-						continue;
-					break;
-				case SA_FLAMELAUNCHER:
-				case SA_VOLCANO:
-					if( sc && sc->data[SC_TROPIC_OPTION] && rnd()%100 < 50 )
-						continue;
-					break;
-				case SA_FROSTWEAPON:
-				case SA_DELUGE:
-					if( sc && sc->data[SC_CHILLY_AIR_OPTION] && rnd()%100 < 50 )
-						continue;
-					break;
-				case SA_LIGHTNINGLOADER:
-				case SA_VIOLENTGALE:
-					if( sc && sc->data[SC_WILD_STORM_OPTION] && rnd()%100 < 50 )
-						continue;
-					break;
+			switch (skill_id) {
+			case SA_SEISMICWEAPON:
+				if (sc && sc->data[SC_UPHEAVAL_OPTION] && rnd() % 100 < 50)
+					continue;
+				break;
+			case SA_FLAMELAUNCHER:
+			case SA_VOLCANO:
+				if (sc && sc->data[SC_TROPIC_OPTION] && rnd() % 100 < 50)
+					continue;
+				break;
+			case SA_FROSTWEAPON:
+			case SA_DELUGE:
+				if (sc && sc->data[SC_CHILLY_AIR_OPTION] && rnd() % 100 < 50)
+					continue;
+				break;
+			case SA_LIGHTNINGLOADER:
+			case SA_VIOLENTGALE:
+				if (sc && sc->data[SC_WILD_STORM_OPTION] && rnd() % 100 < 50)
+					continue;
+				break;
 			}
 
-			if( (n = pc_search_inventory(sd,require.itemid[i])) >= 0 )
-				pc_delitem(sd,n,require.amount[i],0,1,LOG_TYPE_CONSUME);
+			if ((n = pc_search_inventory(sd, require.itemid[i])) >= 0)
+				pc_delitem(sd, n, require.amount[i], 0, 1, LOG_TYPE_CONSUME);
+
+			if (rankFlag) {
+				switch (require.itemid[i])
+				{
+				case ITEMID_POISON_BOTTLE:
+					if (rankFlag == 1)
+						add2limit(sd->status.wstats.poison_bottles, require.amount[i], UINT_MAX);
+					else
+						add2limit(sd->status.bgstats.poison_bottles, require.amount[i], UINT_MAX);
+					break;
+				case ITEMID_YELLOW_GEMSTONE:
+					if (rankFlag == 1)
+						add2limit(sd->status.wstats.yellow_gemstones, require.amount[i], UINT_MAX);
+					else
+						add2limit(sd->status.bgstats.yellow_gemstones, require.amount[i], UINT_MAX);
+					break;
+				case ITEMID_RED_GEMSTONE:
+					if (rankFlag == 1)
+						add2limit(sd->status.wstats.red_gemstones, require.amount[i], UINT_MAX);
+					else
+						add2limit(sd->status.bgstats.red_gemstones, require.amount[i], UINT_MAX);
+					break;
+				case ITEMID_BLUE_GEMSTONE:
+					if (rankFlag == 1)
+						add2limit(sd->status.wstats.blue_gemstones, require.amount[i], UINT_MAX);
+					else
+						add2limit(sd->status.bgstats.blue_gemstones, require.amount[i], UINT_MAX);
+					break;
+				}
+			}
 		}
 	}
 }
