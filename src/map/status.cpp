@@ -14329,6 +14329,16 @@ void status_change_clear_buffs(struct block_list* bl, uint8 type)
 
 		switch (i) {
 			// Stuff that cannot be removed
+
+			/* Prevent removal of buffs provided by PP Up */
+			case SC_INCHEALRATE:
+			case SC_DEF_RATE:
+			case SC_MDEF_RATE:
+			/* Prevent removal of buffs provided by the food buffs */
+			case SC_ATKPOTION:
+			case SC_MATKPOTION:
+			case SC_SPEEDUP1:
+			case SC_SPEEDUP0:
 			case SC_WEIGHT50:
 			case SC_WEIGHT90:
 			case SC_COMBO:
