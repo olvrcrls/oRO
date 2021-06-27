@@ -8237,7 +8237,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 				break;
 			}
-			clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
+		clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
 			skill_produce_mix(sd, skill_id, ITEMID_ALCOHOL, 0, 0, 0, 100, alcohol_idx-1);
 			skill_produce_mix(sd, skill_id, ITEMID_ACID_BOTTLE, 0, 0, 0, 50, acid_idx-1);
 			skill_produce_mix(sd, skill_id, ITEMID_FIRE_BOTTLE, 0, 0, 0, 50, fire_idx-1);
@@ -8253,17 +8253,14 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 				|| (tsc && tsc->data[SC_SPIRIT] && tsc->data[SC_SPIRIT]->val2 == SL_ROGUE) //Rogue's spirit defends against dispel.
 				|| rnd()%100 >= 50+10*skill_lv)
 			{
-				if (sd)
-					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
+				if (tsc->data[SC_ARMOR_RESIST])
+					status_change_end(bl, (sc_type)SC_ARMOR_RESIST, INVALID_TIMER); // Erase Undead Elemental Scroll effect even if the chaser is linked.
+
+				// if (sd)
+				// 	clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
+
 				break;
 			}
-
-			// Has no effect if the target is hiding
-			// TODO: Fix this one as this one crashing the server. Commented out for now.
-			// if (pc_ishiding(dstsd)) {
-			// 	clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
-			// 	break;
-			// }
 
 			if(status_isimmune(bl))
 				break;
@@ -8279,6 +8276,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 				if (!tsc->data[i])
 					continue;
 				switch (i) {
+					case SC_ATKPOTION:
+					case SC_MATKPOTION:
 					case SC_WEIGHT50:		case SC_WEIGHT90:		case SC_HALLUCINATION:
 					case SC_STRIPWEAPON:	case SC_STRIPSHIELD:	case SC_STRIPARMOR:
 					case SC_STRIPHELM:		case SC_CP_WEAPON:		case SC_CP_SHIELD:
@@ -9845,7 +9844,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 				if (!tsc->data[i])
 					continue;
 				switch (i) {
-					case SC__STRIPACCESSORY:
+					case SC__STRIPACCESSORY:	case SC_PRESERVE:	case SC_ATKPOTION:
+					case SC_MATKPOTION:
 					case SC_WEIGHT50:		case SC_WEIGHT90:		case SC_HALLUCINATION:
 					case SC_STRIPWEAPON:		case SC_STRIPSHIELD:		case SC_STRIPARMOR:
 					case SC_STRIPHELM:		case SC_CP_WEAPON:		case SC_CP_SHIELD:
@@ -13864,7 +13864,7 @@ static int skill_unit_onplace(struct skill_unit *unit, struct block_list *bl, t_
 
 	tstatus = status_get_status_data(bl);
 
-	if( (skill_get_type(sg->skill_id) == BF_MAGIC && map_getcell(unit->bl.m, unit->bl.x, unit->bl.y, CELL_CHKLANDPROTECTOR) && sg->skill_id != SA_LANDPROTECTOR) ||
+	if( (skill_get_type(sg->skill_id) == BF_MAGIC && ((battle_config.land_protector_behavior) ? map_getcell(bl->m, bl->x, bl->y, CELL_CHKLANDPROTECTOR) : map_getcell(unit->bl.m, unit->bl.x, unit->bl.y, CELL_CHKLANDPROTECTOR)) && sg->skill_id != SA_LANDPROTECTOR) ||
 		map_getcell(bl->m, bl->x, bl->y, CELL_CHKMAELSTROM) )
 		return 0; //AoE skills are ineffective. [Skotlex]
 
@@ -18220,7 +18220,7 @@ static int skill_cell_overlap(struct block_list *bl, va_list ap)
 				std::shared_ptr<s_skill_db> skill = skill_db.find(unit->group->skill_id);
 
 				//It deletes everything except traps and barriers
-				if ((!skill->inf2[INF2_ISTRAP] && !skill->inf2[INF2_IGNORELANDPROTECTOR]) || unit->group->skill_id == WZ_FIREPILLAR || unit->group->skill_id == GN_HELLS_PLANT || unit->group->skill_id == GN_THORNS_TRAP) {
+				if ((!skill->inf2[INF2_ISTRAP] && !skill->inf2[INF2_IGNORELANDPROTECTOR]) || unit->group->skill_id == WZ_FIREPILLAR || unit->group->skill_id == GN_HELLS_PLANT || unit->group->skill_id == GN_THORNS_TRAP || unit->group->skill_id == SC_BLOODYLUST) {
 					if (skill->unit_flag[UF_RANGEDSINGLEUNIT]) {
 						if (unit->val2&(1 << UF_RANGEDSINGLEUNIT))
 							skill_delunitgroup(unit->group);
@@ -19206,7 +19206,7 @@ int skill_unit_timer_sub_onplace(struct block_list* bl, va_list ap)
 
 	std::shared_ptr<s_skill_db> skill = skill_db.find(group->skill_id);
 
-	if( !(skill->inf2[INF2_ISSONG] || skill->inf2[INF2_ISTRAP]) && !skill->inf2[INF2_IGNORELANDPROTECTOR] && group->skill_id != NC_NEUTRALBARRIER && map_getcell(unit->bl.m, unit->bl.x, unit->bl.y, CELL_CHKLANDPROTECTOR) )
+	if( !(skill->inf2[INF2_ISSONG] || skill->inf2[INF2_ISTRAP]) && !skill->inf2[INF2_IGNORELANDPROTECTOR] && group->skill_id != NC_NEUTRALBARRIER && (battle_config.land_protector_behavior ? map_getcell(bl->m, bl->x, bl->y, CELL_CHKLANDPROTECTOR) : map_getcell(unit->bl.m, unit->bl.x, unit->bl.y, CELL_CHKLANDPROTECTOR)) )
 		return 0; //AoE skills are ineffective. [Skotlex]
 
 	if( battle_check_target(&unit->bl,bl,group->target_flag) <= 0 )
