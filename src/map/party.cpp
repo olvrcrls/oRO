@@ -358,7 +358,8 @@ int party_recv_info(struct party* sp, uint32 char_id)
 		if( sd->party_creating ){
 			clif_party_option(p,sd,0x100);
 		}
-		clif_party_info(p,NULL);
+		// clif_party_info(p,NULL);
+		clif_party_info(p,sd);
 
 		if( p->instance_id != 0 )
 			instance_reqinfo(sd,p->instance_id);
@@ -845,6 +846,8 @@ int party_changeleader(struct map_session_data *sd, struct map_session_data *tsd
 	// Update info.
 	intif_party_leaderchange(p->party.party_id,p->party.member[tmi].account_id,p->party.member[tmi].char_id);
 	clif_party_info(p,NULL);
+	clif_party_info(p, sd);
+	clif_party_info(p, tsd);
 
 	return 1;
 }
@@ -898,6 +901,7 @@ void party_send_movemap(struct map_session_data *sd)
 		//Note that this works because this function is invoked before connect_new is cleared.
 		clif_party_option(p,sd,0x100);
 		clif_party_info(p,sd);
+		clif_party_info(p, NULL);
 		clif_party_member_info(p,sd);
 	}
 
