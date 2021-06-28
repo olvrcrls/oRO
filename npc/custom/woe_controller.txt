@@ -239,7 +239,8 @@ OnReward:
 						setd ".@str_"+.@cid[.@j],1;
 						message rid2name(.@aid[.@j]),"You've got mail!";
 					}
-				} else if (isloggedin(.@aid[.@j],.@cid[.@j])) {
+				//} else if (isloggedin(.@aid[.@j],.@cid[.@j])) {
+				} else {
 					attachrid( .@aid[.@j], true );
 					.@name$ = strcharinfo( 0 );
 					.@castle_name$ = getcastlename(.Castles$[.@i]);
