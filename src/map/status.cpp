@@ -8312,9 +8312,9 @@ t_tick status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_
 		case SC_WHITEIMPRISON:
 			if( tick == 5000 ) // 100% on caster
 				break;
-			if( bl->type == BL_PC )
-				tick_def2 = status_get_lv(bl)*20 + status->vit*25 + status->agi*10;
-			else
+			// if( bl->type == BL_PC )
+			// 	tick_def2 = status_get_lv(bl)*20 + status->vit*25 + status->agi*10;
+			// else
 				tick_def2 = (status->vit + status->luk)*50;
 			break;
 		case SC_BURNING:
@@ -8451,6 +8451,9 @@ t_tick status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_
 
 	// Minimum durations
 	switch (type) {
+		case SC_WHITEIMPRISON:
+			tick = i64max(tick, 2000);
+			break;
 		case SC_ANKLE:
 		case SC_MARSHOFABYSS:
 			tick = i64max(tick, 5000); // Minimum duration 5s
