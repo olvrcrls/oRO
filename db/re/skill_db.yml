@@ -7525,7 +7525,7 @@ Body:
     Description: Snap
     MaxLevel: 1
     TargetType: Ground
-    AfterCastActDelay: 150
+    AfterCastActDelay: 100
     DamageFlags:
       NoDamage: true
     Range: 18
@@ -23832,7 +23832,6 @@ Body:
         Reproduce: true
     Duration1: 5000
     FixedCastTime: -1
-    AfterCastActDelay: 750
     Requires:
       SpCost:
         - Level: 1
@@ -23965,7 +23964,7 @@ Body:
       - Level: 5
         Time: 2500
     FixedCastTime: -1
-    AfterCastActDelay: 600
+    AfterCastActDelay: 200
     Requires:
       SpCost:
         - Level: 1
@@ -23993,7 +23992,7 @@ Body:
     Range: 1
     Hit: Single
     HitCount: 1
-    Element: Weapon
+    Element: Neutral
     SplashArea:
       - Level: 1
         Area: 1
@@ -24006,15 +24005,15 @@ Body:
       - Level: 5
         Area: 1
       - Level: 6
-        Area: 2
+        Area: 1
       - Level: 7
-        Area: 2
+        Area: 1
       - Level: 8
-        Area: 2
+        Area: 1
       - Level: 9
-        Area: 2
+        Area: 1
       - Level: 10
-        Area: 2
+        Area: 1
     CopyFlags:
       Skill:
         Reproduce: true

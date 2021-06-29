@@ -8237,25 +8237,31 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 				break;
 			}
-			clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
+		clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
 			skill_produce_mix(sd, skill_id, ITEMID_ALCOHOL, 0, 0, 0, 100, alcohol_idx-1);
 			skill_produce_mix(sd, skill_id, ITEMID_ACID_BOTTLE, 0, 0, 0, 50, acid_idx-1);
 			skill_produce_mix(sd, skill_id, ITEMID_FIRE_BOTTLE, 0, 0, 0, 50, fire_idx-1);
 		}
 		break;
+
 	case SA_DISPELL:
 		if (flag&1 || (i = skill_get_splash(skill_id, skill_lv)) < 1) {
 			if (sd && dstsd && !map_flag_vs(sd->bl.m) && (!sd->duel_group || sd->duel_group != dstsd->duel_group) && (!sd->status.party_id || sd->status.party_id != dstsd->status.party_id))
 				break; // Outside PvP it should only affect party members and no skill fail message
 			clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
 			if((dstsd && (dstsd->class_&MAPID_UPPERMASK) == MAPID_SOUL_LINKER)
-				|| (tsc && tsc->data[SC_SPIRIT] && tsc->data[SC_SPIRIT]->val2 == SL_ROGUE) //Rogue's spirit defends againt dispel.
+				|| (tsc && tsc->data[SC_SPIRIT] && tsc->data[SC_SPIRIT]->val2 == SL_ROGUE) //Rogue's spirit defends against dispel.
 				|| rnd()%100 >= 50+10*skill_lv)
 			{
-				if (sd)
-					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
+				if (tsc->data[SC_ARMOR_RESIST])
+					status_change_end(bl, (sc_type)SC_ARMOR_RESIST, INVALID_TIMER); // Erase Undead Elemental Scroll effect even if the chaser is linked.
+
+				// if (sd)
+				// 	clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
+
 				break;
 			}
+
 			if(status_isimmune(bl))
 				break;
 
@@ -8270,6 +8276,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 				if (!tsc->data[i])
 					continue;
 				switch (i) {
+					case SC_ATKPOTION:
+					case SC_MATKPOTION:
 					case SC_WEIGHT50:		case SC_WEIGHT90:		case SC_HALLUCINATION:
 					case SC_STRIPWEAPON:	case SC_STRIPSHIELD:	case SC_STRIPARMOR:
 					case SC_STRIPHELM:		case SC_CP_WEAPON:		case SC_CP_SHIELD:
@@ -9597,7 +9605,6 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 
 	case RK_LUXANIMA:
 		{
-			//TODO: Test STONEHARD SKIN when LUX'd
 			sc_type runes[] = { SC_MILLENNIUMSHIELD, SC_REFRESH, SC_GIANTGROWTH, SC_STONEHARDSKIN, SC_VITALITYACTIVATION, SC_ABUNDANCE };
 
 			if (sd == NULL || sd->status.party_id == 0 || flag&1) {
@@ -9837,7 +9844,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 				if (!tsc->data[i])
 					continue;
 				switch (i) {
-					case SC__STRIPACCESSORY:
+					case SC__STRIPACCESSORY:	case SC_PRESERVE:	case SC_ATKPOTION:
+					case SC_MATKPOTION:
 					case SC_WEIGHT50:		case SC_WEIGHT90:		case SC_HALLUCINATION:
 					case SC_STRIPWEAPON:		case SC_STRIPSHIELD:		case SC_STRIPARMOR:
 					case SC_STRIPHELM:		case SC_CP_WEAPON:		case SC_CP_SHIELD:
@@ -11615,6 +11623,11 @@ static int8 skill_castend_id_check(struct block_list *src, struct block_list *ta
 		return USESKILL_FAIL_MAX; // Don't show a skill fail message (NoDamage type doesn't consume requirements)
 
 	switch (skill_id) {
+		case PF_SPIDERWEB:
+		case SA_DISPELL:
+			if (tsc && tsc->option&OPTION_HIDE)
+				return USESKILL_FAIL_TOTARGET;
+			break;
 		case AL_HEAL:
 		case AL_INCAGI:
 		case AL_DECAGI:
@@ -13584,7 +13597,8 @@ struct skill_unit_group *skill_unitsetting(struct block_list *src, uint16 skill_
 		break;
 	case WM_POEMOFNETHERWORLD:	// Can't be placed on top of Land Protector.
 		if( skill_id == WM_POEMOFNETHERWORLD && map_flag_gvg2(src->m) )
-			target = BCT_ALL;
+			// target = BCT_ALL
+			target = BCT_ENEMY;
 	case WM_SEVERE_RAINSTORM:
 	case SO_WATER_INSIGNIA:
 	case SO_FIRE_INSIGNIA:
@@ -13850,7 +13864,7 @@ static int skill_unit_onplace(struct skill_unit *unit, struct block_list *bl, t_
 
 	tstatus = status_get_status_data(bl);
 
-	if( (skill_get_type(sg->skill_id) == BF_MAGIC && map_getcell(unit->bl.m, unit->bl.x, unit->bl.y, CELL_CHKLANDPROTECTOR) && sg->skill_id != SA_LANDPROTECTOR) ||
+	if( (skill_get_type(sg->skill_id) == BF_MAGIC && ((battle_config.land_protector_behavior) ? map_getcell(bl->m, bl->x, bl->y, CELL_CHKLANDPROTECTOR) : map_getcell(unit->bl.m, unit->bl.x, unit->bl.y, CELL_CHKLANDPROTECTOR)) && sg->skill_id != SA_LANDPROTECTOR) ||
 		map_getcell(bl->m, bl->x, bl->y, CELL_CHKMAELSTROM) )
 		return 0; //AoE skills are ineffective. [Skotlex]
 
@@ -17449,9 +17463,8 @@ int skill_delayfix(struct block_list *bl, uint16 skill_id, uint16 skill_lv)
 		case SR_TIGERCANNON:
 			time = 100;
 			break;
-		case SR_DRAGONCOMBO:
 		case SR_FALLENEMPIRE:
-			time = 150;
+			time = 200;
 			// if (time == 0)
 				// time = 1500;
 			// time -= (4 * status_get_agi(bl) + 2 * status_get_dex(bl));
@@ -17505,7 +17518,7 @@ int skill_delayfix(struct block_list *bl, uint16 skill_id, uint16 skill_lv)
 
 	if (!(delaynodex&2)) {
 		if (sc && sc->count) {
-			if (sc->data[SC_POEMBRAGI] && skill_id != SR_DRAGONCOMBO && skill_id != SR_FALLENEMPIRE && skill_id != SR_TIGERCANNON)
+			if (sc->data[SC_POEMBRAGI] && skill_id != SR_FALLENEMPIRE && skill_id != SR_TIGERCANNON)
 				time -= time * sc->data[SC_POEMBRAGI]->val3 / 100;
 			if (sc->data[SC_WIND_INSIGNIA] && sc->data[SC_WIND_INSIGNIA]->val1 == 3 && skill_get_type(skill_id) == BF_MAGIC && skill_get_ele(skill_id, skill_lv) == ELE_WIND)
 				time /= 2; // After Delay of Wind element spells reduced by 50%.
@@ -18207,7 +18220,7 @@ static int skill_cell_overlap(struct block_list *bl, va_list ap)
 				std::shared_ptr<s_skill_db> skill = skill_db.find(unit->group->skill_id);
 
 				//It deletes everything except traps and barriers
-				if ((!skill->inf2[INF2_ISTRAP] && !skill->inf2[INF2_IGNORELANDPROTECTOR]) || unit->group->skill_id == WZ_FIREPILLAR || unit->group->skill_id == GN_HELLS_PLANT || unit->group->skill_id == GN_THORNS_TRAP) {
+				if ((!skill->inf2[INF2_ISTRAP] && !skill->inf2[INF2_IGNORELANDPROTECTOR]) || unit->group->skill_id == WZ_FIREPILLAR || unit->group->skill_id == GN_HELLS_PLANT || unit->group->skill_id == GN_THORNS_TRAP || unit->group->skill_id == SC_BLOODYLUST) {
 					if (skill->unit_flag[UF_RANGEDSINGLEUNIT]) {
 						if (unit->val2&(1 << UF_RANGEDSINGLEUNIT))
 							skill_delunitgroup(unit->group);
@@ -19193,7 +19206,7 @@ int skill_unit_timer_sub_onplace(struct block_list* bl, va_list ap)
 
 	std::shared_ptr<s_skill_db> skill = skill_db.find(group->skill_id);
 
-	if( !(skill->inf2[INF2_ISSONG] || skill->inf2[INF2_ISTRAP]) && !skill->inf2[INF2_IGNORELANDPROTECTOR] && group->skill_id != NC_NEUTRALBARRIER && map_getcell(unit->bl.m, unit->bl.x, unit->bl.y, CELL_CHKLANDPROTECTOR) )
+	if( !(skill->inf2[INF2_ISSONG] || skill->inf2[INF2_ISTRAP]) && !skill->inf2[INF2_IGNORELANDPROTECTOR] && group->skill_id != NC_NEUTRALBARRIER && (battle_config.land_protector_behavior ? map_getcell(bl->m, bl->x, bl->y, CELL_CHKLANDPROTECTOR) : map_getcell(unit->bl.m, unit->bl.x, unit->bl.y, CELL_CHKLANDPROTECTOR)) )
 		return 0; //AoE skills are ineffective. [Skotlex]
 
 	if( battle_check_target(&unit->bl,bl,group->target_flag) <= 0 )

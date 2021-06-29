@@ -8312,9 +8312,9 @@ t_tick status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_
 		case SC_WHITEIMPRISON:
 			if( tick == 5000 ) // 100% on caster
 				break;
-			if( bl->type == BL_PC )
-				tick_def2 = status_get_lv(bl)*20 + status->vit*25 + status->agi*10;
-			else
+			// if( bl->type == BL_PC )
+			// 	tick_def2 = status_get_lv(bl)*20 + status->vit*25 + status->agi*10;
+			// else
 				tick_def2 = (status->vit + status->luk)*50;
 			break;
 		case SC_BURNING:
@@ -8451,6 +8451,9 @@ t_tick status_get_sc_def(struct block_list *src, struct block_list *bl, enum sc_
 
 	// Minimum durations
 	switch (type) {
+		case SC_WHITEIMPRISON:
+			tick = i64max(tick, 2000);
+			break;
 		case SC_ANKLE:
 		case SC_MARSHOFABYSS:
 			tick = i64max(tick, 5000); // Minimum duration 5s
@@ -12105,12 +12108,13 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 		npc_touchnext_areanpc(sd,false); // Run OnTouch_ on next char in range
 	if (sd && sd->status.party_id && (
 		type == SC_BLESSING || type == SC_INCREASEAGI || type == SC_CP_WEAPON || type == SC_CP_SHIELD ||
-		type == SC_CP_ARMOR || type == SC_CP_HELM || type == SC_SPIRIT || type == SC_DEVOTION || 
-		type == SC_STRIKING || type == SC_PNEUMA || type == SC_EXPIATIO || type == SC_SECRAMENT ||
-		type == SC_ASPERSIO)
-		 ) {
+		type == SC_CP_ARMOR || type == SC_CP_HELM || type == SC_DEVOTION || 
+		type == SC_STRIKING || type == SC_SECRAMENT || type == SC_EXPIATIO
+		)
+	) {
 		struct party_data* p = party_search(sd->status.party_id);
 		clif_party_info(p, NULL);
+		clif_party_info(p, sd);
 	}
 	return 1;
 }
@@ -14329,6 +14333,16 @@ void status_change_clear_buffs(struct block_list* bl, uint8 type)
 
 		switch (i) {
 			// Stuff that cannot be removed
+
+			/* Prevent removal of buffs provided by PP Up */
+			case SC_INCHEALRATE:
+			case SC_DEF_RATE:
+			case SC_MDEF_RATE:
+			/* Prevent removal of buffs provided by the food buffs */
+			case SC_ATKPOTION:
+			case SC_MATKPOTION:
+			case SC_SPEEDUP1:
+			case SC_SPEEDUP0:
 			case SC_WEIGHT50:
 			case SC_WEIGHT90:
 			case SC_COMBO:

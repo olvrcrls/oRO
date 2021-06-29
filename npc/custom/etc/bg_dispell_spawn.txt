@@ -66,6 +66,7 @@ bat_room,154,150,0	script	BGDispell	-1,2,2,{
 		sc_end	SC_DECREASEAGI;
 		sc_end	SC_MARSHOFABYSS;
 		sc_end	SC_ENERGYCOAT;
+		sc_end	SC_MINDBREAKER;
 
 		// Repair all equipment of the player
 		repairall

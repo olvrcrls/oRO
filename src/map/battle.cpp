@@ -3708,8 +3708,7 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			break;
 		case MO_EXTREMITYFIST:
 			skillratio += 100 * (7 + sstatus->sp / 10);
-			skillratio = min(500000,skillratio); //We stop at roughly 50k SP for overflow protection
-			skillratio *= 1.5; // Doubles the damage from the SP.
+			skillratio = (min(500000,skillratio) * 1.5); //We stop at roughly 50k SP for overflow protection
 			break;
 		case MO_TRIPLEATTACK:
 			skillratio += 20 * skill_lv;
@@ -4180,10 +4179,10 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 				// unsigned int hp = sstatus->max_hp * (12 + (skill_lv * 2)) / 100,
 				// 			 sp = sstatus->max_sp * (5 + skill_lv) / 100;
 				// Adjusted formula:
-				unsigned int hp = sstatus->max_hp * (12 + (skill_lv * 2)) / 100,
-							 sp = sstatus->max_sp * (5 + skill_lv) / 100;
+				unsigned int hp = sstatus->max_hp * (9 + (skill_lv * 2)) / 100,
+							 sp = sstatus->max_sp * (3 + skill_lv) / 100;
 
-				if (wd->miscflag&4)
+				if (wd->miscflag&8)
 					// Base_Damage = [((Caster consumed HP + SP) / 2) x Caster Base Level / 100] %
 					skillratio += -100 + (hp + sp) / 2;
 				else
@@ -5634,14 +5633,20 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 			break;
 		case SR_TIGERCANNON:
 			// (Tiger Cannon skill level x 240) + (Target Base Level x 40)
-			if (wd.miscflag&4) {
-				ATK_ADD(wd.damage, wd.damage2, skill_lv * 500 + status_get_lv(target) * 40);
+			if (wd.miscflag&8) {
+				// original formula:
+				// ATK_ADD(wd.damage, wd.damage2, skill_lv * 500 + status_get_lv(target) * 40);
+				// nerf formula:
+				ATK_ADD(wd.damage, wd.damage2, skill_lv * 380 + status_get_lv(target) * 40);
 			} else
-				ATK_ADD(wd.damage, wd.damage2, skill_lv * 240 + status_get_lv(target) * 40);
+				// original formula:
+				// ATK_ADD(wd.damage, wd.damage2, skill_lv * 240 + status_get_lv(target) * 40);
+				// nerf formula:
+				ATK_ADD(wd.damage, wd.damage2, skill_lv * 180 + status_get_lv(target) * 40);
 			break;
 		case SR_GATEOFHELL: {
 			struct status_data *sstatus = status_get_status_data(src);
-			int64 bonus = 1 + skill_lv * 2 / 10;
+			int64 bonus = 100 + skill_lv * 20 / 100;
 
 			ATK_ADD(wd.damage, wd.damage2, sstatus->max_hp - sstatus->hp);
 			if(sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_FALLENEMPIRE) {
@@ -5723,6 +5728,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 		case MC_CARTREVOLUTION:
 		case MO_INVESTIGATE:
 		case CR_ACIDDEMONSTRATION:
+		case SR_TIGERCANNON: // Forced tiger cannon to be neutral
 		case SR_GATEOFHELL:
 		case GN_FIRE_EXPANSION_ACID:
 		case KO_BAKURETSU:
@@ -7088,57 +7094,64 @@ struct Damage battle_calc_attack(int attack_type,struct block_list *bl,struct bl
  *	Refined and optimized by helvetica
  */
 int64 battle_calc_return_damage(struct block_list* bl, struct block_list *src, int64 *dmg, int flag, uint16 skill_id, bool status_reflect){
-	struct map_session_data* sd;
+	if (bl == nullptr || src == nullptr)
+		return 0;
+
+	map_session_data *sd = BL_CAST(BL_PC, bl);
+	status_change *sc = status_get_sc(bl), *ssc = status_get_sc(src);
+
+
+	if (sc) {
+		if (sc->data[SC_WHITEIMPRISON])
+			return 0; // White Imprison does not reflect any damage
+		if (sc->data[SC_KYOMU] && (ssc == nullptr || !ssc->data[SC_SHIELDSPELL_DEF])) // Nullify reflecting ability except for Shield Spell - Def
+			return 0;
+	}
+
 	int64 rdamage = 0, damage = *dmg;
-	int max_damage = status_get_max_hp(bl);
-	struct status_change *sc, *ssc;
-
-	sd = BL_CAST(BL_PC, bl);
-	sc = status_get_sc(bl);
-	ssc = status_get_sc(src);
-
-	if (sc && sc->data[SC_WHITEIMPRISON])
-		return 0; // White Imprison does not reflect any damage
+#ifdef RENEWAL
+	int64 max_damage = status_get_max_hp(bl);
+#endif
 
 	if (flag & BF_SHORT) {//Bounces back part of the damage.
-		if ( (skill_get_inf2(skill_id, INF2_ISTRAP) || !status_reflect) && sd && sd->bonus.short_weapon_damage_return ) {
+		if ( !status_reflect && sd && sd->bonus.short_weapon_damage_return )
 			rdamage += damage * sd->bonus.short_weapon_damage_return / 100;
-			rdamage = i64max(rdamage,1);
-		} else if( status_reflect && sc && sc->count ) {
-			if( sc->data[SC_REFLECTSHIELD] ) {
-				struct status_change_entry *sce_d;
-				struct block_list *d_bl = NULL;
+		else if (status_reflect && sc && sc->count ) {
+			if( sc->data[SC_REFLECTSHIELD] && sc->data[SC_DEVOTION] ) {
+				struct status_change_entry *sce_d = sc->data[SC_DEVOTION];
+				struct block_list *d_bl = map_id2bl(sce_d->val1);
 
-				if( (sce_d = sc->data[SC_DEVOTION]) && (d_bl = map_id2bl(sce_d->val1)) &&
-					((d_bl->type == BL_MER && ((TBL_MER*)d_bl)->master && ((TBL_MER*)d_bl)->master->bl.id == bl->id) ||
-					(d_bl->type == BL_PC && ((TBL_PC*)d_bl)->devotion[sce_d->val2] == bl->id)) )
-				{ //Don't reflect non-skill attack if has SC_REFLECTSHIELD from Devotion bonus inheritance
-					if( (!skill_id && battle_config.devotion_rdamage_skill_only && sc->data[SC_REFLECTSHIELD]->val4) ||
-						!check_distance_bl(bl,d_bl,sce_d->val3) )
+				// Don't reflect non-skill attack if has SC_REFLECTSHIELD from Devotion bonus inheritance
+				if (d_bl && ((d_bl->type == BL_MER && ((TBL_MER *)d_bl)->master && ((TBL_MER *)d_bl)->master->bl.id == bl->id) || (d_bl->type == BL_PC && ((TBL_PC *)d_bl)->devotion[sce_d->val2] == bl->id))) {
+					if ((skill_id == 0 && battle_config.devotion_rdamage_skill_only && sc->data[SC_REFLECTSHIELD]->val4) || !check_distance_bl(bl, d_bl, sce_d->val3))
 						return 0;
 				}
 			}
-			if( sc->data[SC_REFLECTDAMAGE] && !skill_get_inf2(skill_id, INF2_ISTRAP)) {
-				if( rnd()%100 <= sc->data[SC_REFLECTDAMAGE]->val1*10 + 30 ){
-					max_damage = (int64)max_damage * status_get_lv(bl) / 100;
-					rdamage = (*dmg) * sc->data[SC_REFLECTDAMAGE]->val2 / 100;
-					if( --(sc->data[SC_REFLECTDAMAGE]->val3) < 1)
-						status_change_end(bl,SC_REFLECTDAMAGE,INVALID_TIMER);
+			if (sc->data[SC_REFLECTDAMAGE] && !skill_get_inf2(skill_id, INF2_ISTRAP)) {
+				if (rnd() % 100 <= sc->data[SC_REFLECTDAMAGE]->val1 * 10 + 30) {
+					rdamage += damage * sc->data[SC_REFLECTDAMAGE]->val2 / 100;
+#ifdef RENEWAL
+					max_damage = max_damage * status_get_lv(bl) / 100;
+					rdamage = cap_value(rdamage, 1, max_damage);
+#endif
+					if (--(sc->data[SC_REFLECTDAMAGE]->val3) < 1)
+						status_change_end(bl, SC_REFLECTDAMAGE, INVALID_TIMER);
 				}
 			} else {
-				if ( sc->data[SC_REFLECTSHIELD] && skill_id != WS_CARTTERMINATION ) {
+				if (sc->data[SC_REFLECTSHIELD] && skill_id != WS_CARTTERMINATION) {
 					// Don't reflect non-skill attack if has SC_REFLECTSHIELD from Devotion bonus inheritance
-					if (!skill_id && battle_config.devotion_rdamage_skill_only && sc->data[SC_REFLECTSHIELD]->val4)
-						rdamage = 0;
+					if (skill_id == 0 && battle_config.devotion_rdamage_skill_only && sc->data[SC_REFLECTSHIELD]->val4)
+						return 0;
 					else {
 						rdamage += damage * sc->data[SC_REFLECTSHIELD]->val2 / 100;
-						if (rdamage < 1)
-							rdamage = 1;
+#ifdef RENEWAL
+						rdamage = cap_value(rdamage, 1, max_damage);
+#endif
 					}
 				}
 
-				if (sc->data[SC_DEATHBOUND] && skill_id != WS_CARTTERMINATION && skill_id != GN_HELLS_PLANT_ATK && !status_bl_has_mode(src,MD_STATUS_IMMUNE)) {
-					if (distance_bl(src,bl) <= 0 || !map_check_dir(map_calc_dir(bl,src->x,src->y), unit_getdir(bl))) {
+				if (sc->data[SC_DEATHBOUND] && skill_id != WS_CARTTERMINATION && skill_id != GN_HELLS_PLANT_ATK && !status_bl_has_mode(src, MD_STATUS_IMMUNE)) {
+					if (distance_bl(src, bl) <= 0 || !map_check_dir(map_calc_dir(bl,src->x,src->y), unit_getdir(bl))) {
 						int64 rd1 = 0;
 
 						rd1 = min(damage,status_get_max_hp(bl)) * sc->data[SC_DEATHBOUND]->val2 / 100; // Amplify damage.
@@ -7147,20 +7160,23 @@ int64 battle_calc_return_damage(struct block_list* bl, struct block_list *src, i
 						skill_blown(bl, src, skill_get_blewcount(RK_DEATHBOUND, 1), unit_getdir(src), BLOWN_NONE);
 						status_change_end(bl, SC_DEATHBOUND, INVALID_TIMER);
 						rdamage += rd1 * 70 / 100; // Target receives 70% of the amplified damage. [Rytech]
+#ifdef RENEWAL
+						rdamage = cap_value(rdamage, 1, max_damage);
+#endif
 					}
 				}
 
-				if( sc->data[SC_SHIELDSPELL_DEF] && sc->data[SC_SHIELDSPELL_DEF]->val1 == 2 && !status_bl_has_mode(src,MD_STATUS_IMMUNE) ){
-						rdamage += damage * sc->data[SC_SHIELDSPELL_DEF]->val2 / 100;
-						if (rdamage < 1) rdamage = 1;
+				if (sc->data[SC_SHIELDSPELL_DEF] && sc->data[SC_SHIELDSPELL_DEF]->val1 == 2 && !status_bl_has_mode(src, MD_STATUS_IMMUNE)) {
+					rdamage += damage * sc->data[SC_SHIELDSPELL_DEF]->val2 / 100;
+#ifdef RENEWAL
+					rdamage = cap_value(rdamage, 1, max_damage);
+#endif
 				}
 			}
 		}
 	} else {
-		if (!status_reflect && sd && sd->bonus.long_weapon_damage_return) {
+		if (!status_reflect && sd && sd->bonus.long_weapon_damage_return)
 			rdamage += damage * sd->bonus.long_weapon_damage_return / 100;
-			if (rdamage < 1) rdamage = 1;
-		}
 	}
 
 	if (ssc && ssc->data[SC_INSPIRATION]) {
@@ -7177,9 +7193,12 @@ int64 battle_calc_return_damage(struct block_list* bl, struct block_list *src, i
 
 	if (sc && sc->data[SC_MAXPAIN]) {
 		rdamage = damage * sc->data[SC_MAXPAIN]->val1 * 10 / 100;
+#ifdef RENEWAL
+			rdamage = cap_value(rdamage, 1, max_damage);
+#endif
 	}
 
-	return cap_value(min(rdamage,max_damage),INT_MIN,INT_MAX);
+	return i64max(rdamage, 1); // Always deal at least 1 damage
 }
 
 /**
@@ -8612,6 +8631,7 @@ static const struct _battle_data {
 	{ "cashshop_show_points",               &battle_config.cashshop_show_points,            0,      0,      1,              },
 	{ "mail_show_status",                   &battle_config.mail_show_status,                0,      0,      2,              },
 	{ "client_limit_unit_lv",               &battle_config.client_limit_unit_lv,            0,      0,      BL_ALL,         },
+	{ "land_protector_behavior",            &battle_config.land_protector_behavior,         0,      0,      1,              },
 // BattleGround Settings
 	{ "bg_update_interval",                 &battle_config.bg_update_interval,              1000,   100,    INT_MAX,        },
 	{ "bg_short_attack_damage_rate",        &battle_config.bg_short_damage_rate,            80,     0,      INT_MAX,        },

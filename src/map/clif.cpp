@@ -7619,34 +7619,35 @@ void clif_party_info(struct party_data* p, struct map_session_data *sd)
 	for (i = 0, c = 0; i < MAX_PARTY; i++)
 	{
 		if ((target = p->data[i].sd)) {
-			strcpy(output, "(");
+			strcpy(output, "");
+			if (target->sc.data[SC_CP_WEAPON] && target->sc.data[SC_CP_SHIELD] && target->sc.data[SC_CP_ARMOR] && target->sc.data[SC_CP_HELM]) strcat(output, "F");
+
+			if (target->sc.data[SC_DEVOTION]) strcat(output, "D");
+
 			if (target->sc.data[SC_BLESSING] && target->sc.data[SC_INCREASEAGI]) {
-				strcat(output, "\u00b1");
+				strcat(output, "@");
 			} else {
 				if (target->sc.data[SC_BLESSING]) strcat(output, "+");
 				if (target->sc.data[SC_INCREASEAGI]) strcat(output, "-");
 			} // check if target has both buffs of bless and agi first
-
+			
+			if (target->sc.data[SC_SECRAMENT]) strcat(output, "$");
 			if (target->sc.data[SC_STRIKING]) strcat(output, "!");
-			if (target->sc.data[SC_PNEUMA]) strcat(output, "P");
 			if (target->sc.data[SC_EXPIATIO]) strcat(output, "x");
 
-			if (target->sc.data[SC_ASPERSIO]) strcat(output, "?");
-
-			if (target->sc.data[SC_CP_WEAPON] && target->sc.data[SC_CP_SHIELD] && target->sc.data[SC_CP_ARMOR] && target->sc.data[SC_CP_HELM]) strcat(output, "F");
+			//if (target->sc.data[SC_ASPERSIO]) strcat(output, "?");
+			//if (target->sc.data[SC_PNEUMA]) strcat(output, "P");
 			// if (target->sc.data[SC_SPIRIT]) strcat(output, "S");
-			if (target->sc.data[SC_DEVOTION]) strcat(output, "D");
-			if (target->sc.data[SC_SECRAMENT]) strcat(output, "$");
-			strcat(output, ") ");
+			strcat(output, " ");
 			strncat(output, target->status.name, NAME_LENGTH);
-			safestrncpy(WBUFCP(buf, PRE_SIZE + i * M_SIZE + 4), output, NAME_LENGTH);
+			safestrncpy(WBUFCP(buf, PRE_SIZE + i * M_SIZE + 4), output, NAME_LENGTH + 10);
 		}
 	}
 
 	if (sd && sd->state.spb)
 		clif_send(buf, WBUFW(buf, 2), &sd->bl, SELF);
 	else if (party_sd)
-		clif_send(buf, WBUFW(buf, 2), &party_sd->bl, PARTY_BUFF_INFO);
+		clif_send(buf, WBUFW(buf, 2), &party_sd->bl, PARTY);
 }
 
 
