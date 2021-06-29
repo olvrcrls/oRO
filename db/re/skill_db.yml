@@ -24005,15 +24005,15 @@ Body:
       - Level: 5
         Area: 1
       - Level: 6
-        Area: 2
+        Area: 1
       - Level: 7
-        Area: 2
+        Area: 1
       - Level: 8
-        Area: 2
+        Area: 1
       - Level: 9
-        Area: 2
+        Area: 1
       - Level: 10
-        Area: 2
+        Area: 1
     CopyFlags:
       Skill:
         Reproduce: true
