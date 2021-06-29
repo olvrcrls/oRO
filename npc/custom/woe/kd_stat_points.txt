@@ -180,7 +180,7 @@ OnPCDieEvent:
 
 OnInit:
 	set .n$, "[WoE Accountant]"; // Your NPC's name.
-	set .limit, 25; // Set how much data should be fetched from DB
+	set .limit, 120; // Set how much data should be fetched from DB
 	set .kill_point, 1; // How much points should the player get from killing
 	set .death_deduction, 1; // How much points should deduct if the player dies
 	set .enable_deduction, 0; // Should we deduct points from dying?
