@@ -247,13 +247,13 @@ askald,100,155,5	script	Vicious Mind	4_M_FAIRYSCHOLAR,{
 		//== Magical damage to [race]
 		20,	// Damage to Human Race
 		//== Physical Bonus to Boss
-		20, // Damage to Boss monsters
+		30, // Damage to Boss monsters
 		//== Magical Bonus to Boss
-		20, // Damage to Boss monsters
+		30, // Damage to Boss monsters
 		//== Physical Damage Bonus to Normal monster
-		20,
+		30,
 		//== Magical Damage Bonus to Normal monster
-		20,
+		30,
 
 		//== Physical Bypass [race]
 		30,	// Bypass DEF of Human Race

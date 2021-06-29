@@ -66,7 +66,7 @@
 		mes "You are a great fellow to deal with. I want to save enough money to bail myself out. Any customers are welcome here.";
 		next;
 		mes .@n$;
-		mes "I enhance the three items, Flattery Robe, Invective Robe and Prontera Badge for Honor Mark.";
+		mes "I enhance the three items, Flattery Robe, Abusive Robe, Consultation Robe for Honor Mark.";
 		next;
 		mes .@n$;
 		mes "I guess I don't need to explain about it anymore. Just bring the equipment you want to enhance to me.";
@@ -84,7 +84,7 @@
 		mes "Listen carefully. I won't say twice.";
 		next;
 		mes .@n$;
-		mes "I'll enhance one of the Flattery Robe or Invective Robe slot for 20 Honor Marks. I can enhance up to 2 slots. And I take 10 Honor Marks for the reset. Do you follow me so far?";
+		mes "I'll enhance one of the Flattery Robe or Abusive Robe, Consultation Robe slot for 20 Honor Marks. I can enhance up to 2 slots. And I take 10 Honor Marks for the reset. Do you follow me so far?";
 		next;
 		mes .@n$;
 		mes "Next, for the Prontera Badge. I'll take 5 Honor Marks to enhance 1 slot. I can enhance up to 2 slots. And I take 10 Honor Marks for the reset.";
@@ -108,7 +108,7 @@
 		break;
 	case 3:
 		mes .@n$;
-		mes "You need 10 Honor Marks to reset Invective Robe or Flattery Robe. The equipment won't be destroyed. The bound cards and the refinement level would remain the same as well.";
+		mes "You need 10 Honor Marks to reset Abusive Robe, Consultation Robe or Flattery Robe. The equipment won't be destroyed. The bound cards and the refinement level would remain the same as well.";
 		break;
 	}
 	next;
