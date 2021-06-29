@@ -4179,8 +4179,8 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 				// unsigned int hp = sstatus->max_hp * (12 + (skill_lv * 2)) / 100,
 				// 			 sp = sstatus->max_sp * (5 + skill_lv) / 100;
 				// Adjusted formula:
-				unsigned int hp = sstatus->max_hp * (12 + (skill_lv * 2)) / 100,
-							 sp = sstatus->max_sp * (5 + skill_lv) / 100;
+				unsigned int hp = sstatus->max_hp * (9 + (skill_lv * 2)) / 100,
+							 sp = sstatus->max_sp * (3 + skill_lv) / 100;
 
 				if (wd->miscflag&8)
 					// Base_Damage = [((Caster consumed HP + SP) / 2) x Caster Base Level / 100] %
@@ -5634,9 +5634,15 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 		case SR_TIGERCANNON:
 			// (Tiger Cannon skill level x 240) + (Target Base Level x 40)
 			if (wd.miscflag&8) {
-				ATK_ADD(wd.damage, wd.damage2, skill_lv * 500 + status_get_lv(target) * 40);
+				// original formula:
+				// ATK_ADD(wd.damage, wd.damage2, skill_lv * 500 + status_get_lv(target) * 40);
+				// nerf formula:
+				ATK_ADD(wd.damage, wd.damage2, skill_lv * 380 + status_get_lv(target) * 40);
 			} else
-				ATK_ADD(wd.damage, wd.damage2, skill_lv * 240 + status_get_lv(target) * 40);
+				// original formula:
+				// ATK_ADD(wd.damage, wd.damage2, skill_lv * 240 + status_get_lv(target) * 40);
+				// nerf formula:
+				ATK_ADD(wd.damage, wd.damage2, skill_lv * 180 + status_get_lv(target) * 40);
 			break;
 		case SR_GATEOFHELL: {
 			struct status_data *sstatus = status_get_status_data(src);

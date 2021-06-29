@@ -17464,7 +17464,7 @@ int skill_delayfix(struct block_list *bl, uint16 skill_id, uint16 skill_lv)
 			time = 100;
 			break;
 		case SR_FALLENEMPIRE:
-			time = 150;
+			time = 200;
 			// if (time == 0)
 				// time = 1500;
 			// time -= (4 * status_get_agi(bl) + 2 * status_get_dex(bl));
