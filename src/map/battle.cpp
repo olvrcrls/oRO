@@ -1525,7 +1525,7 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 		if (!damage)
 			return 0;
 
-		if( (sce = sc->data[SC_LIGHTNINGWALK]) && (flag&BF_LONG) && !(flag&BF_MAGIC) && rnd()%100 < sce->val1 ) {
+		if( (sce = sc->data[SC_LIGHTNINGWALK]) && (flag&BF_LONG) && !(flag&BF_MAGIC) && rnd()%100 < sce->val1 && (!map_getmapflag(sd->bl.m, MF_GVG) && !map_getmapflag(sd->bl.m, MF_BATTLEGROUND))) {
 			int dx[8] = { 0,-1,-1,-1,0,1,1,1 };
 			int dy[8] = { 1,1,0,-1,-1,-1,0,1 };
 			uint8 dir = map_calc_dir(bl, src->x, src->y);
@@ -4153,14 +4153,14 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			break;
 		case SR_EARTHSHAKER:
 			if (tsc && ((tsc->option&(OPTION_HIDE|OPTION_CLOAK|OPTION_CHASEWALK)) || tsc->data[SC_CAMOUFLAGE] || tsc->data[SC_STEALTHFIELD] || tsc->data[SC__SHADOWFORM])) {
-				//[(Skill Level x 300) x (Caster Base Level / 100) + (Caster STR x 3)] %
-				skillratio += -100 + 300 * skill_lv;
+				//[(Skill Level x 150) x (Caster Base Level / 100) + (Caster INT x 3)] %
+				skillratio += -100 + 150 * skill_lv;
 				RE_LVL_DMOD(100);
-				skillratio += status_get_str(src) * 3;
-			} else { //[(Skill Level x 400) x (Caster Base Level / 100) + (Caster STR x 2)] %
-				skillratio += -100 + 400 * skill_lv;
+				skillratio += status_get_int(src) * 3;
+			} else { //[(Skill Level x 50) x (Caster Base Level / 100) + (Caster INT x 2)] %
+				skillratio += -100 + 50 * skill_lv;
 				RE_LVL_DMOD(100);
-				skillratio += status_get_str(src) * 2;
+				skillratio += status_get_int(src) * 2;
 			}
 			break;
 
@@ -4198,15 +4198,13 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			break;
 
 		case SR_RAMPAGEBLASTER:
-			if (tsc && tsc->data[SC_EARTHSHAKER]) {
-				skillratio += 1400 + 550 * skill_lv;
+			if (sc && sc->data[SC_EXPLOSIONSPIRITS]) {
+				skillratio += -100 + (20 * sc->data[SC_EXPLOSIONSPIRITS]->val1 + 20 * skill_lv) * ((sd) ? sd->spiritball_old : 1);
 				RE_LVL_DMOD(120);
 			} else {
-				skillratio += 900 + 350 * skill_lv;
+				skillratio += -100 + (20 * skill_lv) * ((sd) ? sd->spiritball_old : 1);
 				RE_LVL_DMOD(150);
 			}
-			if (sc->data[SC_GT_CHANGE])
-				skillratio += skillratio * 30 / 100;
 			break;
 		case SR_KNUCKLEARROW:
 			if (wd->miscflag&4) { // ATK [(Skill Level x 150) + (1000 x Target current weight / Maximum weight) + (Target Base Level x 5) x (Caster Base Level / 150)] %
@@ -4221,8 +4219,6 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 					skillratio += 400 + 100 * skill_lv;
 				RE_LVL_DMOD(100);
 			}
-			if (sc->data[SC_GT_CHANGE])
-				skillratio += skillratio * 30 / 100;
 			break;
 		case SR_WINDMILL: // ATK [(Caster Base Level + Caster DEX) x Caster Base Level / 100] %
 			skillratio += -100 + status_get_lv(src) + status_get_dex(src);
