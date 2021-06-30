@@ -7110,12 +7110,12 @@ int64 battle_calc_return_damage(struct block_list* bl, struct block_list *src, i
 #endif
 
 	if (flag & BF_SHORT) {//Bounces back part of the damage.
-		if ( !status_reflect && sd && sd->bonus.short_weapon_damage_return )
+		if (!status_reflect && sd && sd->bonus.short_weapon_damage_return)
 			rdamage += damage * sd->bonus.short_weapon_damage_return / 100;
-		else if (status_reflect && sc && sc->count ) {
-			if( sc->data[SC_REFLECTSHIELD] && sc->data[SC_DEVOTION] ) {
-				struct status_change_entry *sce_d = sc->data[SC_DEVOTION];
-				struct block_list *d_bl = map_id2bl(sce_d->val1);
+		else if (status_reflect && sc && sc->count) {
+			if (sc->data[SC_REFLECTSHIELD] && sc->data[SC_DEVOTION]) {
+				status_change_entry *sce_d = sc->data[SC_DEVOTION];
+				block_list *d_bl = map_id2bl(sce_d->val1);
 
 				// Don't reflect non-skill attack if has SC_REFLECTSHIELD from Devotion bonus inheritance
 				if (d_bl && ((d_bl->type == BL_MER && ((TBL_MER *)d_bl)->master && ((TBL_MER *)d_bl)->master->bl.id == bl->id) || (d_bl->type == BL_PC && ((TBL_PC *)d_bl)->devotion[sce_d->val2] == bl->id))) {
@@ -7126,8 +7126,9 @@ int64 battle_calc_return_damage(struct block_list* bl, struct block_list *src, i
 			if (sc->data[SC_REFLECTDAMAGE] && !skill_get_inf2(skill_id, INF2_ISTRAP)) {
 				if (rnd() % 100 <= sc->data[SC_REFLECTDAMAGE]->val1 * 10 + 30) {
 					rdamage += damage * sc->data[SC_REFLECTDAMAGE]->val2 / 100;
-#ifdef RENEWAL
 					max_damage = max_damage * status_get_lv(bl) / 100;
+					rdamage += damage * sc->data[SC_REFLECTDAMAGE]->val2 / 100;
+#ifdef RENEWAL
 					rdamage = cap_value(rdamage, 1, max_damage);
 #endif
 					if (--(sc->data[SC_REFLECTDAMAGE]->val3) < 1)
@@ -7179,8 +7180,6 @@ int64 battle_calc_return_damage(struct block_list* bl, struct block_list *src, i
 		rdamage += damage / 100;
 #ifdef RENEWAL
 		rdamage = cap_value(rdamage, 1, max_damage);
-#else
-		rdamage = i64max(rdamage,1);
 #endif
 	}
 
@@ -7189,12 +7188,13 @@ int64 battle_calc_return_damage(struct block_list* bl, struct block_list *src, i
 
 	if (sc && sc->data[SC_MAXPAIN]) {
 		rdamage = damage * sc->data[SC_MAXPAIN]->val1 * 10 / 100;
+
 #ifdef RENEWAL
 			rdamage = cap_value(rdamage, 1, max_damage);
 #endif
 	}
 
-	return i64max(rdamage, 1); // Always deal at least 1 damage
+	return i64max(rdamage, 0); // Always deal at least 1 damage
 }
 
 /**
