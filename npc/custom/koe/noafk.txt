@@ -1,0 +1,59 @@
+//=====================================================================================================
+//= Idle/AFK kicker in specific maps.
+//==== By ========================================================================================
+//= Mokona, sader1992, Stolao
+//==== For ========================================================================================
+//= Mirage, Mokona
+//==== Version ========================================================================================
+//= 1.2
+//===== Compatible With ===============================================================================
+//= rAthena
+//==== Description ====================================================================================
+//= A script to check all characters in specific maps on a timer.
+//==== Changelog ======================================================================================
+//= 1.0  Initial Version
+//= 1.1  Logic now uses configurable map array instead of hardcoded map
+//= 1.2	 Errors fixed; instructions added; ready for release
+//=====================================================================================================
+-	script	Looper::timelooper	-1,{
+OnInit:
+	initnpctimer;
+	
+	//Configure how many seconds a player can stay AFK.
+	//After this many seconds, ANTI-AFK deals with the player.
+	.LimitInSeconds = 120;
+	
+	//Configure map list here.
+	//Place each map here, one per line with a "," at the end.
+	//The last map must NOT HAVE a "," at the end!
+	setarray .maplist$[0], 
+		"guild_vs1",
+		"valkyrie_vs",
+		"freya_vs",
+		"payg_vs",
+		"ra_koe"
+		;
+
+end;
+
+// Timer 5000 means that the server will check every 5 seconds.
+OnTimer5000:
+    freeloop(1);
+	
+	for (.@j=0; .@j < getarraysize(.maplist$); .@j++){
+		deletearray .@account_id[0];
+		getmapunits(BL_PC,.maplist$[.@j],.@account_id);
+		for(.@i=0;.@i<getarraysize(.@account_id);.@i++){
+			if(checkidle(convertpcinfo(.@account_id[.@i],CPC_NAME)) >= .LimitInSeconds){
+				
+				.@charname$ = convertpcinfo(.@account_id[.@i],CPC_CHAR);
+				
+				//change here what to do with an afk character!
+				dispbottom "You have been idled for 2 minutes.",0xEB8F0C,convertpcinfo(.@account_id[.@i],CPC_CHAR);
+				warp "SavePoint",0,0,.@charname$;	
+			}
+		}
+	}
+    setnpctimer 0;
+end;
+}
