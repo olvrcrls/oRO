@@ -17934,6 +17934,7 @@ Body:
       Splash: true
       IgnoreFlee: true
       IgnoreAtkCard: true
+      IgnoreDefense: true
     Flags:
       TargetTrap: true
     Range: 9
@@ -31862,6 +31863,7 @@ Body:
       Splash: true
       IgnoreFlee: true
       IgnoreAtkCard: true
+      IgnoreDefense: true
     Flags:
       TargetTrap: true
     Range: 9
