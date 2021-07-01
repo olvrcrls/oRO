@@ -10,7 +10,6 @@ RDMOPT_VAR_VITAMOUNT,{ bonus bVit,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_VAR_INTAMOUNT,{ bonus bInt,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_VAR_DEXAMOUNT,{ bonus bDex,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_VAR_LUKAMOUNT,{ bonus bLuk,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_VAR_ALLSTAT, {bonus bAllStats,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_VAR_MAXHPPERCENT,{ bonus bMaxHPrate,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_VAR_MAXSPPERCENT,{ bonus bMaxSPrate,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_VAR_HPACCELERATION,{ bonus bHPrecovRate,getrandomoptinfo(ROA_VALUE); }
