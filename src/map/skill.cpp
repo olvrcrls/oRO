@@ -8277,7 +8277,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 					continue;
 				switch (i) {
 					case SC_ATKPOTION:
-					case SC_MATKPOTION:
+					case SC_MATKPOTION:		case SC_SU_STOOP:
 					case SC_WEIGHT50:		case SC_WEIGHT90:		case SC_HALLUCINATION:
 					case SC_STRIPWEAPON:	case SC_STRIPSHIELD:	case SC_STRIPARMOR:
 					case SC_STRIPHELM:		case SC_CP_WEAPON:		case SC_CP_SHIELD:
