@@ -4,6 +4,8 @@
 // GroupID,ItemID,Rate{,Amount,Random,isAnnounced,Duration,GUID,isBound,isNamed}
 
 // BG LOOT BOX DROPS
+//-- The Box itself
+IG_BG_LOOT_BOX,14652,69,1 // Ares Gift
 //-- Ores
 //-- HD Oridecon / Elunium
 IG_BG_LOOT_BOX,16394,25,1 // 1 boxes HD Oridecon 10pcs
@@ -38,7 +40,7 @@ IG_BG_LOOT_BOX,16261,13,2 // 2 boxes HD Carnium 10pcs
 IG_BG_LOOT_BOX,16261,11,3 // 3 boxes HD Carnium 10pcs
 IG_BG_LOOT_BOX,16261,10,4 // 4 boxes HD Carnium 10pcs
 IG_BG_LOOT_BOX,16261,18,5 // 5 boxes HD Carnium 10pcs
-IG_BG_LOOT_BOX,16261,1,10 // 10 boxes HD Carnium 10pcs
+IG_BG_LOOT_BOX,16261,5,10 // 10 boxes HD Carnium 10pcs
 
 IG_BG_LOOT_BOX,16258,25,1 // 1 boxes HD Bradium 5pcs
 IG_BG_LOOT_BOX,16258,20,2 // 2 boxes HD Bradium 5pcs
@@ -49,12 +51,28 @@ IG_BG_LOOT_BOX,16260,13,2 // 2 boxes HD Bradium 10pcs
 IG_BG_LOOT_BOX,16260,11,3 // 3 boxes HD Bradium 10pcs
 IG_BG_LOOT_BOX,16260,10,4 // 4 boxes HD Bradium 10pcs
 IG_BG_LOOT_BOX,16260,18,5 // 5 boxes HD Bradium 10pcs
-IG_BG_LOOT_BOX,16260,1,10 // 10 boxes HD Bradium 10pcs
+IG_BG_LOOT_BOX,16260,5,10 // 10 boxes HD Bradium 10pcs
+
+//-- Enriched Elunium
+IG_BG_LOOT_BOX,14219,30,1 // 1 box of 5pcs Enriched Elunium
+IG_BG_LOOT_BOX,14219,25,2 // 2 box of 5pcs Enriched Elunium
+IG_BG_LOOT_BOX,14219,20,3 // 3 box of 5pcs Enriched Elunium
+IG_BG_LOOT_BOX,14219,15,4 // 4 box of 5pcs Enriched Elunium
+IG_BG_LOOT_BOX,14219,10,5 // 5 box of 5pcs Enriched Elunium
+
+//-- Enriched Oridecon
+IG_BG_LOOT_BOX,14220,30,1 // 1 box of 5pcs Enriched Oridecon
+IG_BG_LOOT_BOX,14220,25,2 // 2 box of 5pcs Enriched Oridecon
+IG_BG_LOOT_BOX,14220,20,3 // 3 box of 5pcs Enriched Oridecon
+IG_BG_LOOT_BOX,14220,15,4 // 4 box of 5pcs Enriched Oridecon
+IG_BG_LOOT_BOX,14220,10,5 // 5 box of 5pcs Enriched Oridecon
+
+
 //-- Meme Drop
-IG_BG_LOOT_BOX,12016,80,10 // 10 Speed Potion
-IG_BG_LOOT_BOX,12016,75,5 // 5 Speed Potions
-IG_BG_LOOT_BOX,909,69,69 // 69 Jellopy
-IG_BG_LOOT_BOX,7049,69,69 // 69 Stones
+IG_BG_LOOT_BOX,12016,30,10 // 10 Speed Potion
+IG_BG_LOOT_BOX,12016,30,5 // 5 Speed Potions
+IG_BG_LOOT_BOX,909,25,69 // 69 Jellopy
+IG_BG_LOOT_BOX,7049,25,69 // 69 Stones
 
 //-- Costumes
 IG_BG_LOOT_BOX,31151,1,1 // Cheshire Cat Ears
@@ -78,8 +96,8 @@ IG_BG_LOOT_BOX,14648,1,1 // 1 pc PP up
 IG_BG_LOOT_BOX,14648,10,5 // 5 pcs PP up
 IG_BG_LOOT_BOX,14648,15,3 // 3 pcs PP up
 //-- POD
+IG_BG_LOOT_BOX,7179,25,25 // 25 pcs PODs
 IG_BG_LOOT_BOX,7179,35,50 // 50 pcs PODs
-IG_BG_LOOT_BOX,7179,25,25 // 50 pcs PODs
 IG_BG_LOOT_BOX,7179,5,100 // 100 pcs PODs
 IG_BG_LOOT_BOX,7179,1,500 // 500 pcs PODs
 //-- Foods
