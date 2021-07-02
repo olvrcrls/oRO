@@ -39,7 +39,7 @@
 		if (getmonsterinfo(killedrid, MOB_MVPEXP)) {
 			goto Reward_MVP_Kill;
 			end;
-		} else end; // if the mob killed is an
+		} else end; // if the mob killed is a MVP.
 
 	Reward_MVP_Kill:
 		if (compare(strcharinfo(3), "@")) {
@@ -66,33 +66,33 @@
 					if (.ip_restriction && .@current_member_char_id) {
 						if (inarray(.@check_ip_array$[0], .@current_member_ip$) == -1) {
 							if (strcharinfo(3,.@current_member_char_id) == .@mvp_map$) {
-								dispbottom "You have killed a MVP monster. Here's spoil reward for your effort.",0x7289DA,.@current_member_char_id;
+								dispbottom "You have killed a MVP monster. Here's spoils of war reward for your effort.",0x7289DA,.@current_member_char_id;
 								set .@check_ip_array$[.@i],.@current_member_ip$;
 								getitem .mvp_loot_box_id,.@loot_qty,.@current_member_account_id;	
 							} else {
-								dispbottom "You are not on the same map of the MVP. Leeching service is not allowed.",0xFF2000,.@current_member_char_id;
+								dispbottom "You are not on the same map of the MVP. Leeching is not allowed.",0xFF2000,.@current_member_char_id;
 							}
 						}
 						else 
-							dispbottom "The system detected that you're running a multiple account to get multiple rewards. This is forbidden.",0xFF2000,.@current_member_char_id;
+							dispbottom "The system detected that you're running multiple accounts to get multiple rewards. This method is forbidden.",0xFF2000,.@current_member_char_id;
 					} else {
 						if (strcharinfo(3,.@current_member_char_id) == .@mvp_map$) {
-							dispbottom "You have killed a MVP monster. Here's spoil reward for your effort.",0x7289DA,.@current_member_char_id;
+							dispbottom "You have killed a MVP monster. Here's spoils of war reward for your effort.",0x7289DA,.@current_member_char_id;
 							getitem .mvp_loot_box_id,.@loot_qty,.@current_member_account_id;
 						} else {
-							dispbottom "You are not on the MVP's map presence. Leeching service is not allowed.",0xFF2000,.@current_member_char_id;
+							dispbottom "You are not on the MVP's map presence. Leeching is not allowed.",0xFF2000,.@current_member_char_id;
 							continue;
 						}
 					} // if IP restricted
 				} // for
 			} else {
-				dispbottom "You have killed a MVP monster. Here's spoil reward for your effort.",0x7289DA;
+				dispbottom "You have killed a MVP monster. Here's spoils of war reward for your effort.",0x7289DA;
 				getitem .mvp_loot_box_id,1;
 			} // check if the player is in a party
 		} // if else
 
 	OnInit:
-		.ip_restriction = 1;
+		.ip_restriction = 1; // Set 1 to enable restriction, 0 to disable.
 		.bonus_drop_item_id = 6187; // Blank Card
 		.mvp_loot_box_id = 14653; // Inberun's Gift
 }
