@@ -13,7 +13,7 @@
 // For each shop added, copy this VSHOPX dummy data.
 // Write your shop names in the select() function.
 
--	itemshop	VSHOP1	-1,7829,6187:1,7179:250,6226:1000,6225:1000,7619:1500,7620:1500,6240:1750,6241:1750,12675:3000,6232:6000 // etc.
+-	itemshop	VSHOP1	-1,7829,6187:1,7179:250,6226:500,6225:500,7619:1000,7620:1000,6240:1200,6241:1200,12675:3000,6232:6000 // etc.
 -	itemshop	VSHOP2	-1,7829,12279:50,14648:200,12622:3000 // Consumables 
 -	itemshop	VSHOP3	-1,7829,18600:3000,18601:3000,18561:3000,18856:10000 // Headgears
 -	itemshop	VSHOP4	-1,7829,18599:3000,18611:3000,18507:3000 // Middle Headgears

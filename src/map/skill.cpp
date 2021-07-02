@@ -3838,10 +3838,10 @@ int64 skill_attack (int attack_type, struct block_list* src, struct block_list *
 				break;
 			case SU_BITE:
 			case SU_SCRATCH:
-			case SU_SV_STEMSPEAR:
+			//case SU_SV_STEMSPEAR:
 			case SU_SCAROFTAROU:
-			case SU_PICKYPECK:
-				if (status_get_lv(src) > 29 && rnd() % 100 < 10 * status_get_lv(src) / 30)
+			//case SU_PICKYPECK:
+				if (status_get_lv(src) > 29 && (rnd() % 100 < (10 * status_get_lv(src) / 30)))
 					skill_addtimerskill(src, tick + dmg.amotion + skill_get_delay(skill_id, skill_lv), bl->id, 0, 0, skill_id, skill_lv, attack_type, flag|2);
 				break;
 		}
@@ -8277,7 +8277,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 					continue;
 				switch (i) {
 					case SC_ATKPOTION:
-					case SC_MATKPOTION:
+					case SC_MATKPOTION:		case SC_SU_STOOP:
 					case SC_WEIGHT50:		case SC_WEIGHT90:		case SC_HALLUCINATION:
 					case SC_STRIPWEAPON:	case SC_STRIPSHIELD:	case SC_STRIPARMOR:
 					case SC_STRIPHELM:		case SC_CP_WEAPON:		case SC_CP_SHIELD:
