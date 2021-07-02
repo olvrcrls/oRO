@@ -1,6 +1,13 @@
 //-------------------------------------------
 // Mob kill bonus
 //------------------------------------------
+// This script grants a global item drop
+// whenever a player kill any mob on the map
+//------------------------------------------
+// Includes MVP hunting with reward system
+// and party system where rewards scale
+// the more the party members are.
+//------------------------------------------
 // [Andie]
 //------------------------------------------
 
@@ -46,7 +53,7 @@
 				.@total_members = $@partymembercount;
 				.@mvp_map$ = strcharinfo(3); // The killer's map
 				if (.@total_members > 1)
-					.@loot_qty = rand(1,5); // RNG if that the players can receive up to 5 loot boxes maximum each.
+					.@loot_qty = rand(1,.@total_members); // RNG if that the players can receive up to X loot boxes maximum each.
 				else
 					.@loot_qty = 1;
 
