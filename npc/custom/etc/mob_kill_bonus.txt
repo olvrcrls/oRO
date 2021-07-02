@@ -57,7 +57,6 @@
 					.@current_member_char_id = $@partymembercid[.@i];
 					.@current_member_ip$ = getcharip(.@current_member_char_id);
 					if (.ip_restriction && .@current_member_char_id) {
-						dispbottom "Current IP: " + .@current_member_ip$;
 						if (inarray(.@check_ip_array$[0], .@current_member_ip$) == -1) {
 							if (strcharinfo(3,.@current_member_char_id) == .@mvp_map$) {
 								dispbottom "You have killed a MVP monster. Here's spoil reward for your effort.",0x7289DA,.@current_member_char_id;
