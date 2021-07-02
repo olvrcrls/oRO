@@ -1,29 +1,92 @@
+//-------------------------------------------
+// Mob kill bonus
+//------------------------------------------
+// [Andie]
+//------------------------------------------
+
 -	script	MobKillBonus	-1,{
 	OnNPCKillEvent:
 		// if (rand(99) > 9 || strnpcinfo(3) != "prt_fild01") end; // 10% chance of success, only works on prt_fild01
 
+		// We RNG count whenever a player kills a mob on the map then we provide them a bonus drop.
 		set .@blank_rng,rand(1,300);
-		set .@pod_rng,rand(1,9999);
-
-		if (.@pod_rng == 1) {
-			getitem 7179,1;
-		}
 
 		if (.@blank_rng > 5 && .@blank_rng <= 15) {
-			getitem 6187,1;
+			getitem .bonus_drop_item_id,1;
 			end;
 		}
 		else if (.@blank_rng <= 5 && .@blank_rng > 1) {
-			getitem 6187,2;
+			getitem .bonus_drop_item_id,2;
 			end;
 		}
 		else if (.@blank_rng == 1) {
-			getitem 6187,5;
+			getitem .bonus_drop_item_id,5;
 			end;
 		}
 		else if (.@blank_rng == 69) {
-			getitem 6187,10;
+			getitem .bonus_drop_item_id,10;
 			end;
 		}
-	}
-	
+
+		//TODO: Add a code where to determine if the mob killed is an MVP, see if the player is in a party with unique individuals then reward them as well.
+		if (getmonsterinfo(killedrid, MOB_MVPEXP)) {
+			goto Reward_MVP_Kill;
+			end;
+		} else end; // if the mob killed is an
+
+	Reward_MVP_Kill:
+		if (compare(strcharinfo(3), "@")) {
+			dispbottom "You are on an instance map. There will be no MVP kill rewards given. This is only reserved for open-field MVP monsters.";
+			end;
+		} else {
+			// Getting all the party members if the character is in a party
+			if (getcharid(1) != 0) {
+				getpartymember getcharid(1), 1;
+				getpartymember getcharid(1), 2;
+				.@total_members = $@partymembercount;
+				.@mvp_map$ = strcharinfo(3); // The killer's map
+				if (.@total_members > 1)
+					.@loot_qty = rand(1,5); // RNG if that the players can receive up to 5 loot boxes maximum each.
+				else
+					.@loot_qty = 1;
+				dispbottom "Total members: " + .@total_members;
+				set .@check_ip_array$[0],null;
+
+				for(.@i = 0; .@i < .@total_members; .@i = .@i + 1) {
+					.@current_member_account_id = $@partymemberaid[.@i];
+					.@current_member_char_id = $@partymembercid[.@i];
+					.@current_member_ip$ = getcharip(.@current_member_char_id);
+					if (.ip_restriction && .@current_member_char_id) {
+						dispbottom "Current IP: " + .@current_member_ip$;
+						if (inarray(.@check_ip_array$[0], .@current_member_ip$) == -1) {
+							if (strcharinfo(3,.@current_member_char_id) == .@mvp_map$) {
+								dispbottom "You have killed a MVP monster. Here's spoil reward for your effort.",0x7289DA,.@current_member_char_id;
+								set .@check_ip_array$[.@i],.@current_member_ip$;
+								getitem .mvp_loot_box_id,.@loot_qty,.@current_member_account_id;	
+							} else {
+								dispbottom "You are not on the same map of the MVP. Leeching service is not allowed.",0xFF2000,.@current_member_char_id;
+							}
+						}
+						else 
+							dispbottom "The system detected that you're running a multiple account to get multiple rewards. This is forbidden.",0xFF2000,.@current_member_char_id;
+					} else {
+						if (strcharinfo(3,.@current_member_char_id) == .@mvp_map$) {
+							dispbottom "You have killed a MVP monster. Here's spoil reward for your effort.",0x7289DA,.@current_member_char_id;
+							getitem .mvp_loot_box_id,.@loot_qty,.@current_member_account_id;
+						} else {
+							dispbottom "You are not on the MVP's map presence. Leeching service is not allowed.",0xFF2000,.@current_member_char_id;
+							continue;
+						}
+					} // if IP restricted
+				} // for
+			} else {
+				dispbottom "You have killed a MVP monster. Here's spoil reward for your effort.",0x7289DA;
+				getitem .mvp_loot_box_id,1;
+			} // check if the player is in a party
+		} // if else
+
+	OnInit:
+		.ip_restriction = 1;
+		.bonus_drop_item_id = 6187; // Blank Card
+		.mvp_loot_box_id = 14653; // Inberun's Gift
+}
