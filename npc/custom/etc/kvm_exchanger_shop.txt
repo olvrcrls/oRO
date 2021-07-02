@@ -13,7 +13,7 @@
 // For each shop added, copy this KSHOPX dummy data.
 // Write your shop names in the select() function.
 
--	itemshop	KSHOP1	-1,6376,7829:1,6187:1,6226:500,6225:500,7619:750,7620:750,6240:875,6241:875 // etc.
+-	itemshop	KSHOP1	-1,6376,7829:1,6187:1,6226:250,6225:250,7619:500,7620:500,6240:600,6241:600 // etc.
 -	itemshop	KSHOP2	-1,6376,14648:200,12622:1500 // Consumables
 -	itemshop	KSHOP3	-1,6376,18600:1500,18601:1500,18561:1500,18856:5000 // Headgears
 -	itemshop	KSHOP4	-1,6376,18599:1500,18611:1500,18507:1500 // Middle Headgears
