@@ -53,8 +53,8 @@ IG_BG_Loot_Box,16260,1,10 // 10 boxes HD Bradium 10pcs
 //-- Meme Drop
 IG_BG_Loot_Box,12016,80,10 // 10 Speed Potion
 IG_BG_Loot_Box,12016,75,5 // 5 Speed Potions
-
-
+IG_BG_Loot_Box,909,69,69 // 69 Jellopy
+IG_BG_Loot_Box,7049,69,69 // 69 Stones
 
 //-- Costumes
 IG_BG_Loot_Box,31151,1,1 // Cheshire Cat Ears
@@ -89,6 +89,87 @@ IG_BG_Loot_Box,6376,25,100 // 100pcs KvM Badge
 IG_BG_Loot_Box,6376,25,500 // 500pcs KvM Badge
 IG_BG_Loot_Box,6376,10,1000 // 1000pcs KvM Badge
 
+
+//-- MVP Drop Box --//
+//-- Foods
+IG_MVP_Loot_Box,14647,50,1 // 1pc Nutriboost Plus
+IG_MVP_Loot_Box,14647,30,3 // 3pcs Nutriboost Plus
+IG_MVP_Loot_Box,14647,10,5 // 5pcs Nutriboost Plus
+IG_MVP_Loot_Box,14647,5,10 // 10pcs Nutriboost Plus
+
+
+//-- Costumes
+IG_MVP_Loot_Box,20500,1,1 // Arch Angel Wings
+IG_MVP_Loot_Box,31550,1,1 // Tone of Gold
+IG_MVP_Loot_Box,31308,1,1 // Protect Feathers
+IG_MVP_Loot_Box,31602,1,1 // Eleanor Wig
+
+//-- POD
+IG_MVP_Loot_Box,7179,40,100 // 100 pcs PODs
+
+//-- Convex Mirror
+IG_MVP_Loot_Box,12214,40,5 // 5 pcs Convex Mirror
+IG_MVP_Loot_Box,12214,60,10 // 10 pcs Convex Mirror
+
+//-- Blank Card
+IG_MVP_Loot_Box,6187,80,100 // Blank Card 100 pcs.
+IG_MVP_Loot_Box,6187,50,500 // Blank Card 500 pcs.
+IG_MVP_Loot_Box,6187,10,1000 // Blank Card 1k pcs.
+IG_MVP_Loot_Box,6187,1,5000 // Blank Card 5k pcs.
+
+IG_MVP_Loot_Box,7829,80,100 // Valor Badge 100 pcs.
+IG_MVP_Loot_Box,7829,50,500 // Valor Badge 500 pcs.
+IG_MVP_Loot_Box,7829,10,1000 // Valor Badge 1k pcs.
+IG_MVP_Loot_Box,7829,1,5000 // Valor Badge 5k pcs.
+
+//-- HD Oridecon / Elunium
+IG_MVP_Loot_Box,16394,25,1 // 1 boxes HD Oridecon 10pcs
+IG_MVP_Loot_Box,17104,15,2 // 2 boxes HD Oridecon 10pcs
+IG_MVP_Loot_Box,17104,25,3 // 3 boxes HD Oridecon 10pcs
+
+IG_MVP_Loot_Box,17247,25,1 // 1 boxes HD Oridecon 30pcs
+IG_MVP_Loot_Box,17247,15,2 // 2 boxes HD Oridecon 30pcs
+IG_MVP_Loot_Box,17104,5,3 // 3 boxes HD Oridecon 30pcs
+
+IG_MVP_Loot_Box,17104,2,1 // 1 box HD Oridecon 50pcs
+IG_MVP_Loot_Box,17104,1,2 // 2 boxes HD Oridecon 50pcs
+
+IG_MVP_Loot_Box,16396,3,1 // 1 box HD Elunium 10pcs
+IG_MVP_Loot_Box,16396,2,2 // 2 boxes HD Elunium 10pcs
+IG_MVP_Loot_Box,16396,3,3 // 3 boxes HD Elunium 10pcs
+
+IG_MVP_Loot_Box,17246,25,1 // 1 boxes HD Elunium 30pcs
+IG_MVP_Loot_Box,17246,15,2 // 2 boxes HD Elunium 30pcs
+IG_MVP_Loot_Box,17246,5,3 // 3 boxes HD Elunium 30pcs
+
+IG_MVP_Loot_Box,17105,2,1 // 1 box HD Elunium 50pcs
+IG_MVP_Loot_Box,17105,1,2 // 2 boxes HD Elunium 50pcs
+
+//-- HD Carnium / Bradium
+IG_MVP_Loot_Box,16259,25,1 // 1 boxes HD Carnium 5pcs
+IG_MVP_Loot_Box,16259,20,2 // 2 boxes HD Carnium 5pcs
+IG_MVP_Loot_Box,16259,15,3 // 3 boxes HD Carnium 5pcs
+
+IG_MVP_Loot_Box,16261,15,1 // 1 boxes HD Carnium 10pcs
+IG_MVP_Loot_Box,16261,13,2 // 2 boxes HD Carnium 10pcs
+IG_MVP_Loot_Box,16261,11,3 // 3 boxes HD Carnium 10pcs
+IG_MVP_Loot_Box,16261,10,4 // 4 boxes HD Carnium 10pcs
+IG_MVP_Loot_Box,16261,18,5 // 5 boxes HD Carnium 10pcs
+IG_MVP_Loot_Box,16261,1,10 // 10 boxes HD Carnium 10pcs
+
+IG_MVP_Loot_Box,16258,25,1 // 1 boxes HD Bradium 5pcs
+IG_MVP_Loot_Box,16258,20,2 // 2 boxes HD Bradium 5pcs
+IG_MVP_Loot_Box,16258,15,3 // 3 boxes HD Bradium 5pcs
+
+IG_MVP_Loot_Box,16260,15,1 // 1 boxes HD Bradium 10pcs
+IG_MVP_Loot_Box,16260,13,2 // 2 boxes HD Bradium 10pcs
+IG_MVP_Loot_Box,16260,11,3 // 3 boxes HD Bradium 10pcs
+IG_MVP_Loot_Box,16260,10,4 // 4 boxes HD Bradium 10pcs
+IG_MVP_Loot_Box,16260,18,5 // 5 boxes HD Bradium 10pcs
+IG_MVP_Loot_Box,16260,1,10 // 10 boxes HD Bradium 10pcs
+
+IG_MVP_Loot_Box,909,69,69 // 69 Jellopy
+IG_MVP_Loot_Box,7049,69,69 // 69 Stones
 
 
 
