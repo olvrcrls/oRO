@@ -28,7 +28,7 @@
 			end;
 		}
 
-		//TODO: Add a code where to determine if the mob killed is an MVP, see if the player is in a party with unique individuals then reward them as well.
+		// Evaluating if the mob killed is an MVP then perform the Loot Box system.
 		if (getmonsterinfo(killedrid, MOB_MVPEXP)) {
 			goto Reward_MVP_Kill;
 			end;
@@ -49,7 +49,7 @@
 					.@loot_qty = rand(1,5); // RNG if that the players can receive up to 5 loot boxes maximum each.
 				else
 					.@loot_qty = 1;
-				dispbottom "Total members: " + .@total_members;
+
 				set .@check_ip_array$[0],null;
 
 				for(.@i = 0; .@i < .@total_members; .@i = .@i + 1) {
