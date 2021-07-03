@@ -17112,7 +17112,7 @@ struct s_skill_condition skill_get_requirement(struct map_session_data* sd, uint
 		{
 			int sp_consume = (skill_lv + 10) * (sd->status.max_sp / 100);
 			if( sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_FALLENEMPIRE )
-				req.sp -= sp_consume;
+				req.sp += sp_consume;
 			else
 				req.sp += sp_consume;
 			break;
