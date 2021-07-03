@@ -69,8 +69,8 @@ function	script	Reward_BG	{
 						dispbottom "Daily Battleground Wins: 1",0x7289DA,.@char_id;
 					} else {
 						// Update the existing record
-						query_sql("UPDATE `bg_daily_wins` SET `win` = `win` + 1 WHERE `account_id` = " + .@account_id);
-						query_sql("SELECT `win` FROM `bg_daily_wins` WHERE `account_id` = " + .@account_id, .@total_wins);
+						query_sql("UPDATE `bg_daily_wins` SET `win` = `win` + 1 WHERE `account_id` = " + .@account_id + " AND DATE(`created_at`) = '" + .@current_date$ + "';");
+						query_sql("SELECT `win` FROM `bg_daily_wins` WHERE `account_id` = " + .@account_id  + " AND DATE(`created_at`) = '" + .@current_date$ + "';", .@total_wins);
 						dispbottom "Daily Battleground Wins: " + .@total_wins,0x7289DA,.@char_id;
 					}
 				}
@@ -93,8 +93,8 @@ function	script	Reward_BG	{
 						dispbottom "Daily Battleground Wins: 1",0x7289DA,.@char_id;
 					} else {
 						// Update the existing record
-						query_sql("UPDATE `bg_daily_wins` SET `win` = `win` + 1 WHERE `account_id` = " + .@account_id);
-						query_sql("SELECT `win` FROM `bg_daily_wins` WHERE `account_id` = " + .@account_id, .@total_wins);
+						query_sql("UPDATE `bg_daily_wins` SET `win` = `win` + 1 WHERE `account_id` = " + .@account_id + " AND DATE(`created_at`) = '" + .@current_date$ + "';");
+						query_sql("SELECT `win` FROM `bg_daily_wins` WHERE `account_id` = " + .@account_id  + " AND DATE(`created_at`) = '" + .@current_date$ + "';", .@total_wins);
 						dispbottom "Daily Battleground Wins: " + .@total_wins,0x7289DA,.@char_id;
 					}
 				}
