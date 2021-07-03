@@ -3251,7 +3251,8 @@ static void battle_calc_skill_base_damage(struct Damage* wd, struct block_list *
 					damagevalue = damagevalue * (100 + 5 * (pc_checkskill(sd,RK_DRAGONTRAINING) - 1)) / 100;
 				ATK_ADD(wd->damage, wd->damage2, damagevalue);
 #ifdef RENEWAL
-				ATK_ADD(wd->weaponAtk, wd->weaponAtk2, damagevalue);
+				// ATK_ADD(wd->weaponAtk, wd->weaponAtk2, damagevalue);
+				ATK_ADD(wd->equipAtk, wd->weaponAtk2, damagevalue);
 #endif
 				wd->flag |= BF_LONG;
 			}

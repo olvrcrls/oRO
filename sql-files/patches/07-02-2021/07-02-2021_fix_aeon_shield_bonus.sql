@@ -1,0 +1,2 @@
+-- Fix the Shield of Aeon not giving poison and undead resistance.
+UPDATE `item_db_re` SET `script` = 'bonus2 bSubEle,Ele_Neutral,10; bonus2 bSubEle,Ele_Fire,10; bonus2 bSubEle,Ele_Water,10; bonus2 bSubEle,Ele_Wind,10; bonus2 bSubEle,Ele_Earth,10; bonus2 bSubEle,Ele_Dark,10; bonus2 bSubEle,Ele_Holy,10; bonus2 bSubEle,Ele_Ghost,10; bonus2 bSubEle,Ele_Poison,10; bonus2 bSubEle,Ele_Undead,10; bonus bMaxHP,500; bonus bMaxSP,50; if(getrefine()>=14) skill \"MG_STONECURSE\",5;' WHERE (`id` = '2190');

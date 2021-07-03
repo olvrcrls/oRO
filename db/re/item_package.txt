@@ -3,6 +3,204 @@
 // Structure of Database:
 // GroupID,ItemID,Rate{,Amount,Random,isAnnounced,Duration,GUID,isBound,isNamed}
 
+// BG LOOT BOX DROPS
+//-- The Box itself
+IG_BG_LOOT_BOX,14652,69,1 // Ares Gift
+//-- Ores
+//-- HD Oridecon / Elunium
+IG_BG_LOOT_BOX,16394,25,1 // 1 boxes HD Oridecon 10pcs
+IG_BG_LOOT_BOX,17104,15,2 // 2 boxes HD Oridecon 10pcs
+IG_BG_LOOT_BOX,17104,25,3 // 3 boxes HD Oridecon 10pcs
+
+IG_BG_LOOT_BOX,17247,25,1 // 1 boxes HD Oridecon 30pcs
+IG_BG_LOOT_BOX,17247,15,2 // 2 boxes HD Oridecon 30pcs
+IG_BG_LOOT_BOX,17104,5,3 // 3 boxes HD Oridecon 30pcs
+
+IG_BG_LOOT_BOX,17104,2,1 // 1 box HD Oridecon 50pcs
+IG_BG_LOOT_BOX,17104,1,2 // 2 boxes HD Oridecon 50pcs
+
+IG_BG_LOOT_BOX,16396,3,1 // 1 box HD Elunium 10pcs
+IG_BG_LOOT_BOX,16396,2,2 // 2 boxes HD Elunium 10pcs
+IG_BG_LOOT_BOX,16396,3,3 // 3 boxes HD Elunium 10pcs
+
+IG_BG_LOOT_BOX,17246,25,1 // 1 boxes HD Elunium 30pcs
+IG_BG_LOOT_BOX,17246,15,2 // 2 boxes HD Elunium 30pcs
+IG_BG_LOOT_BOX,17246,5,3 // 3 boxes HD Elunium 30pcs
+
+IG_BG_LOOT_BOX,17105,2,1 // 1 box HD Elunium 50pcs
+IG_BG_LOOT_BOX,17105,1,2 // 2 boxes HD Elunium 50pcs
+
+//-- HD Carnium / Bradium
+IG_BG_LOOT_BOX,16259,25,1 // 1 boxes HD Carnium 5pcs
+IG_BG_LOOT_BOX,16259,20,2 // 2 boxes HD Carnium 5pcs
+IG_BG_LOOT_BOX,16259,15,3 // 3 boxes HD Carnium 5pcs
+
+IG_BG_LOOT_BOX,16261,15,1 // 1 boxes HD Carnium 10pcs
+IG_BG_LOOT_BOX,16261,13,2 // 2 boxes HD Carnium 10pcs
+IG_BG_LOOT_BOX,16261,11,3 // 3 boxes HD Carnium 10pcs
+IG_BG_LOOT_BOX,16261,10,4 // 4 boxes HD Carnium 10pcs
+IG_BG_LOOT_BOX,16261,18,5 // 5 boxes HD Carnium 10pcs
+IG_BG_LOOT_BOX,16261,5,10 // 10 boxes HD Carnium 10pcs
+
+IG_BG_LOOT_BOX,16258,25,1 // 1 boxes HD Bradium 5pcs
+IG_BG_LOOT_BOX,16258,20,2 // 2 boxes HD Bradium 5pcs
+IG_BG_LOOT_BOX,16258,15,3 // 3 boxes HD Bradium 5pcs
+
+IG_BG_LOOT_BOX,16260,15,1 // 1 boxes HD Bradium 10pcs
+IG_BG_LOOT_BOX,16260,13,2 // 2 boxes HD Bradium 10pcs
+IG_BG_LOOT_BOX,16260,11,3 // 3 boxes HD Bradium 10pcs
+IG_BG_LOOT_BOX,16260,10,4 // 4 boxes HD Bradium 10pcs
+IG_BG_LOOT_BOX,16260,18,5 // 5 boxes HD Bradium 10pcs
+IG_BG_LOOT_BOX,16260,5,10 // 10 boxes HD Bradium 10pcs
+
+//-- Enriched Elunium
+IG_BG_LOOT_BOX,14219,30,1 // 1 box of 5pcs Enriched Elunium
+IG_BG_LOOT_BOX,14219,25,2 // 2 box of 5pcs Enriched Elunium
+IG_BG_LOOT_BOX,14219,20,3 // 3 box of 5pcs Enriched Elunium
+IG_BG_LOOT_BOX,14219,15,4 // 4 box of 5pcs Enriched Elunium
+IG_BG_LOOT_BOX,14219,10,5 // 5 box of 5pcs Enriched Elunium
+
+//-- Enriched Oridecon
+IG_BG_LOOT_BOX,14220,30,1 // 1 box of 5pcs Enriched Oridecon
+IG_BG_LOOT_BOX,14220,25,2 // 2 box of 5pcs Enriched Oridecon
+IG_BG_LOOT_BOX,14220,20,3 // 3 box of 5pcs Enriched Oridecon
+IG_BG_LOOT_BOX,14220,15,4 // 4 box of 5pcs Enriched Oridecon
+IG_BG_LOOT_BOX,14220,10,5 // 5 box of 5pcs Enriched Oridecon
+
+
+//-- Meme Drop
+IG_BG_LOOT_BOX,12016,30,10 // 10 Speed Potion
+IG_BG_LOOT_BOX,12016,30,5 // 5 Speed Potions
+IG_BG_LOOT_BOX,909,25,69 // 69 Jellopy
+IG_BG_LOOT_BOX,7049,25,69 // 69 Stones
+
+//-- Costumes
+IG_BG_LOOT_BOX,31151,1,1 // Cheshire Cat Ears
+IG_BG_LOOT_BOX,20248,1,1 // Black Hair of Strong
+IG_BG_LOOT_BOX,20249,1,1 // Red Hair of Strong
+IG_BG_LOOT_BOX,20250,1,1 // White Hair of Strong
+IG_BG_LOOT_BOX,31565,1,1 // Crowned Princess Ribbon
+IG_BG_LOOT_BOX,19721,1,1 // Darkness Helm
+//-- Valor Badges
+IG_BG_LOOT_BOX,7829,80,100 // Valor Badge 100 pcs.
+IG_BG_LOOT_BOX,7829,50,500 // Valor Badge 500 pcs.
+IG_BG_LOOT_BOX,7829,10,1000 // Valor Badge 1k pcs.
+IG_BG_LOOT_BOX,7829,1,5000 // Valor Badge 5k pcs.
+//-- Blank Card
+IG_BG_LOOT_BOX,6187,80,500 // Blank Card 500 pcs.
+IG_BG_LOOT_BOX,6187,50,1000 // Blank Card 1000 pcs.
+IG_BG_LOOT_BOX,6187,10,2500 // Blank Card 2500 pcs.
+IG_BG_LOOT_BOX,6187,1,5000 // Blank Card 5k pcs.
+//-- PP Up
+IG_BG_LOOT_BOX,14648,1,1 // 1 pc PP up
+IG_BG_LOOT_BOX,14648,10,5 // 5 pcs PP up
+IG_BG_LOOT_BOX,14648,15,3 // 3 pcs PP up
+//-- POD
+IG_BG_LOOT_BOX,7179,25,25 // 25 pcs PODs
+IG_BG_LOOT_BOX,7179,35,50 // 50 pcs PODs
+IG_BG_LOOT_BOX,7179,5,100 // 100 pcs PODs
+IG_BG_LOOT_BOX,7179,1,500 // 500 pcs PODs
+//-- Foods
+IG_BG_LOOT_BOX,14647,50,1 // 1pc Nutriboost Plus
+IG_BG_LOOT_BOX,14647,30,3 // 3pcs Nutriboost Plus
+IG_BG_LOOT_BOX,14647,10,5 // 5pcs Nutriboost Plus
+IG_BG_LOOT_BOX,14647,5,10 // 10pcs Nutriboost Plus
+//-- Guyak Pudding
+IG_BG_LOOT_BOX,14649,5,5 // 5pcs Guyak Pudding 1hr
+//-- KvM Badge
+IG_BG_LOOT_BOX,6376,50,50 // 50pcs KvM Badge
+IG_BG_LOOT_BOX,6376,25,100 // 100pcs KvM Badge
+IG_BG_LOOT_BOX,6376,25,500 // 500pcs KvM Badge
+IG_BG_LOOT_BOX,6376,10,1000 // 1000pcs KvM Badge
+
+
+//-- MVP Drop Box --//
+//-- Foods
+IG_MVP_LOOT_BOX,14647,50,1 // 1pc Nutriboost Plus
+IG_MVP_LOOT_BOX,14647,30,3 // 3pcs Nutriboost Plus
+IG_MVP_LOOT_BOX,14647,10,5 // 5pcs Nutriboost Plus
+IG_MVP_LOOT_BOX,14647,5,10 // 10pcs Nutriboost Plus
+
+
+//-- Costumes
+IG_MVP_LOOT_BOX,20500,1,1 // Arch Angel Wings
+IG_MVP_LOOT_BOX,31550,1,1 // Tone of Gold
+IG_MVP_LOOT_BOX,31308,1,1 // Protect Feathers
+IG_MVP_LOOT_BOX,31602,1,1 // Eleanor Wig
+
+//-- POD
+IG_MVP_LOOT_BOX,7179,60,25 // 100 pcs PODs
+IG_MVP_LOOT_BOX,7179,10,50 // 100 pcs PODs
+IG_MVP_LOOT_BOX,7179,1,100 // 100 pcs PODs
+
+//-- Convex Mirror
+IG_MVP_LOOT_BOX,12214,40,5 // 5 pcs Convex Mirror
+IG_MVP_LOOT_BOX,12214,60,10 // 10 pcs Convex Mirror
+
+//-- Blank Card
+IG_MVP_LOOT_BOX,6187,80,100 // Blank Card 100 pcs.
+IG_MVP_LOOT_BOX,6187,50,500 // Blank Card 500 pcs.
+IG_MVP_LOOT_BOX,6187,10,1000 // Blank Card 1k pcs.
+IG_MVP_LOOT_BOX,6187,1,5000 // Blank Card 5k pcs.
+
+IG_MVP_LOOT_BOX,7829,80,100 // Valor Badge 100 pcs.
+IG_MVP_LOOT_BOX,7829,50,500 // Valor Badge 500 pcs.
+IG_MVP_LOOT_BOX,7829,10,1000 // Valor Badge 1k pcs.
+IG_MVP_LOOT_BOX,7829,1,5000 // Valor Badge 5k pcs.
+
+//-- HD Oridecon / Elunium
+IG_MVP_LOOT_BOX,16394,25,1 // 1 boxes HD Oridecon 10pcs
+IG_MVP_LOOT_BOX,17104,15,2 // 2 boxes HD Oridecon 10pcs
+IG_MVP_LOOT_BOX,17104,25,3 // 3 boxes HD Oridecon 10pcs
+
+IG_MVP_LOOT_BOX,17247,25,1 // 1 boxes HD Oridecon 30pcs
+IG_MVP_LOOT_BOX,17247,15,2 // 2 boxes HD Oridecon 30pcs
+IG_MVP_LOOT_BOX,17104,5,3 // 3 boxes HD Oridecon 30pcs
+
+IG_MVP_LOOT_BOX,17104,2,1 // 1 box HD Oridecon 50pcs
+IG_MVP_LOOT_BOX,17104,1,2 // 2 boxes HD Oridecon 50pcs
+
+IG_MVP_LOOT_BOX,16396,3,1 // 1 box HD Elunium 10pcs
+IG_MVP_LOOT_BOX,16396,2,2 // 2 boxes HD Elunium 10pcs
+IG_MVP_LOOT_BOX,16396,3,3 // 3 boxes HD Elunium 10pcs
+
+IG_MVP_LOOT_BOX,17246,25,1 // 1 boxes HD Elunium 30pcs
+IG_MVP_LOOT_BOX,17246,15,2 // 2 boxes HD Elunium 30pcs
+IG_MVP_LOOT_BOX,17246,5,3 // 3 boxes HD Elunium 30pcs
+
+IG_MVP_LOOT_BOX,17105,2,1 // 1 box HD Elunium 50pcs
+IG_MVP_LOOT_BOX,17105,1,2 // 2 boxes HD Elunium 50pcs
+
+//-- HD Carnium / Bradium
+IG_MVP_LOOT_BOX,16259,25,1 // 1 boxes HD Carnium 5pcs
+IG_MVP_LOOT_BOX,16259,20,2 // 2 boxes HD Carnium 5pcs
+IG_MVP_LOOT_BOX,16259,15,3 // 3 boxes HD Carnium 5pcs
+
+IG_MVP_LOOT_BOX,16261,15,1 // 1 boxes HD Carnium 10pcs
+IG_MVP_LOOT_BOX,16261,13,2 // 2 boxes HD Carnium 10pcs
+IG_MVP_LOOT_BOX,16261,11,3 // 3 boxes HD Carnium 10pcs
+IG_MVP_LOOT_BOX,16261,10,4 // 4 boxes HD Carnium 10pcs
+IG_MVP_LOOT_BOX,16261,18,5 // 5 boxes HD Carnium 10pcs
+IG_MVP_LOOT_BOX,16261,1,10 // 10 boxes HD Carnium 10pcs
+
+IG_MVP_LOOT_BOX,16258,25,1 // 1 boxes HD Bradium 5pcs
+IG_MVP_LOOT_BOX,16258,20,2 // 2 boxes HD Bradium 5pcs
+IG_MVP_LOOT_BOX,16258,15,3 // 3 boxes HD Bradium 5pcs
+
+IG_MVP_LOOT_BOX,16260,15,1 // 1 boxes HD Bradium 10pcs
+IG_MVP_LOOT_BOX,16260,13,2 // 2 boxes HD Bradium 10pcs
+IG_MVP_LOOT_BOX,16260,11,3 // 3 boxes HD Bradium 10pcs
+IG_MVP_LOOT_BOX,16260,10,4 // 4 boxes HD Bradium 10pcs
+IG_MVP_LOOT_BOX,16260,18,5 // 5 boxes HD Bradium 10pcs
+IG_MVP_LOOT_BOX,16260,1,10 // 10 boxes HD Bradium 10pcs
+
+IG_MVP_LOOT_BOX,909,69,69 // 69 Jellopy
+IG_MVP_LOOT_BOX,7049,69,69 // 69 Stones
+
+
+
+//----------------------------------------
+
 IG_Special_Box,12107,3,1,1	// 1x Wrapped_Mask
 IG_Special_Box,678,10,2,1	// 2x Poison_Bottle
 IG_Special_Box,12105,5,1,1	// 1x Set_Of_Taiming_Item
