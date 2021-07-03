@@ -66,9 +66,12 @@ function	script	Reward_BG	{
 					if (query_sql("SELECT `account_id` FROM `bg_daily_wins` WHERE `account_id` = " + .@account_id + " AND DATE(`created_at`) = '" + .@current_date$ + "';") < 1) {
 						// If there are no records yet then we insert a brand new record.
 						query_sql("INSERT INTO `bg_daily_wins`(`account_id`,`win`,`last_ip`) VALUES (" + .@account_id + ",1,'" + .@login_ip$ + "');");
+						dispbottom "Daily Battleground Wins: 1",0x7289DA,.@char_id;
 					} else {
 						// Update the existing record
 						query_sql("UPDATE `bg_daily_wins` SET `win` = `win` + 1 WHERE `account_id` = " + .@account_id);
+						query_sql("SELECT `win` FROM `bg_daily_wins` WHERE `account_id` = " + .@account_id, .@total_wins);
+						dispbottom "Daily Battleground Wins: " + .@total_wins,0x7289DA,.@char_id;
 					}
 				}
 			}
@@ -87,9 +90,12 @@ function	script	Reward_BG	{
 					if (query_sql("SELECT `account_id` FROM `bg_daily_wins` WHERE `account_id` = " + .@account_id + " AND DATE(`created_at`) = '" + .@current_date$ + "';") < 1) {
 						// If there are no records yet then we insert a brand new record.
 						query_sql("INSERT INTO `bg_daily_wins`(`account_id`,`win`,`last_ip`) VALUES (" + .@account_id + ",1,'" + .@login_ip$ + "');");
+						dispbottom "Daily Battleground Wins: 1",0x7289DA,.@char_id;
 					} else {
 						// Update the existing record
 						query_sql("UPDATE `bg_daily_wins` SET `win` = `win` + 1 WHERE `account_id` = " + .@account_id);
+						query_sql("SELECT `win` FROM `bg_daily_wins` WHERE `account_id` = " + .@account_id, .@total_wins);
+						dispbottom "Daily Battleground Wins: " + .@total_wins,0x7289DA,.@char_id;
 					}
 				}
 			}
@@ -219,6 +225,8 @@ OnClock0400:
 OnClock0500:
 OnClock0800:
 OnClock0900:
+OnClock1200:
+OnClock1300:
 OnClock1600:
 OnClock1700:
 OnClock2000:
@@ -254,6 +262,20 @@ OnClock2100:
 			}
 			
 			if( gettime(DT_HOUR) == 9 )
+			{
+				bgannounce "-- Battleground Happy Hour is over --",0x00BFFF;
+				setbattleflag "bg_reward_rates",100; // Normal Rates
+				end;
+			}
+
+			if( gettime(DT_HOUR) >= 12 && gettime(DT_HOUR) < 13 )
+			{
+				bgannounce "-- Battleground Happy Hour has begun --",0x00FF00;
+				setbattleflag "bg_reward_rates",180; // +80% Reward Rates
+				end;
+			}
+			
+			if( gettime(DT_HOUR) == 13 )
 			{
 				bgannounce "-- Battleground Happy Hour is over --",0x00BFFF;
 				setbattleflag "bg_reward_rates",100; // Normal Rates
@@ -443,7 +465,7 @@ OnInit:
 	// Min Votes to start choosing mode in vote mode
 	$Min_Votes_To_Start = 2;
 	// Activate or disable @joinredteam/@joinblueteam
-	$JOIN_REDBLUE_TEAM = 1;
+	$JOIN_REDBLUE_TEAM = 0;
 	// Rewards when premature end (0 players in one team) ?
 	$PREMATURE_REWARDS = 1;
 	// Reward item id
