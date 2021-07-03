@@ -465,7 +465,7 @@ OnInit:
 	// Min Votes to start choosing mode in vote mode
 	$Min_Votes_To_Start = 2;
 	// Activate or disable @joinredteam/@joinblueteam
-	$JOIN_REDBLUE_TEAM = 1;
+	$JOIN_REDBLUE_TEAM = 0;
 	// Rewards when premature end (0 players in one team) ?
 	$PREMATURE_REWARDS = 1;
 	// Reward item id
