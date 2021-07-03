@@ -5543,7 +5543,7 @@ int pc_useitem(struct map_session_data *sd,int n)
 	// Store information for later use before it is lost (via pc_delitem) [Paradox924X]
 	nameid = id->nameid;
 
-	ShowInfo("Used an item %d current amount %d\n", nameid, item.amount);
+	//ShowInfo("Used an item %d current amount %d\n", nameid, item.amount);
 
 	if( item.card[0] == CARD0_CREATE )
 	{ // Do not allow use BG - Ancient Items on invalid maps
