@@ -8693,6 +8693,7 @@
 14651,Nutriboost LITE,Nutriboost LITE,2,10,0,1,,,,,0xFFFFFFFF,63,2,,,,,,{ sc_start SC_ATKPOTION, 1800000, 30; sc_start SC_MATKPOTION, 1800000, 30; sc_start SC_SIROMA_ICE_TEA, 1800000, 20; sc_start SC_PUTTI_TAILS_NOODLES, 1800000, 20; sc_start SC_COCKTAIL_WARG_BLOOD, 1800000, 20; sc_start SC_MINOR_BBQ, 1800000, 20; sc_start SC_SAVAGE_STEAK, 1800000, 20; sc_start SC_DROCERA_HERB_STEAMED, 1800000, 20; sc_start SC_FOOD_STR_CASH, 1800000, 10; sc_start SC_FOOD_AGI_CASH, 1800000, 10; sc_start SC_FOOD_INT_CASH, 1800000, 10; sc_start SC_FOOD_DEX_CASH, 1800000, 10; sc_start SC_FOOD_LUK_CASH, 1800000, 10; sc_start SC_FOOD_VIT_CASH, 1800000, 10; sc_start SC_SPEEDUP1,1800000,50; },{},{}
 14652,Ares_Gift,Ares Gift,2,20,,0,,,,,0xFFFFFFFF,63,2,,,,,,{ getgroupitem(IG_BG_LOOT_BOX); },{},{}
 14653,Inberun_Gift,Inberun Gift,2,20,,0,,,,,0xFFFFFFFF,63,2,,,,,,{ getgroupitem(IG_MVP_LOOT_BOX); },{},{}
+14654,WoE_Reward,WoE Reward,2,20,,0,,,,,0xFFFFFFFF,63,2,,,,,,{ getgroupitem(IG_WOE_REWARD_BOX); },{},{}
 
 
 14663,Scroll_Sealed_Dark_Lord,Scroll Sealed Dark Lord,18,10,,10,,,,0,0xFFFFFFFF,63,2,,,,,,{ /*TODO: Confirm the rates*/ getitem callfunc("F_Rand",6228,6232,4488,4169,19739,24032,24033,24031,24030,24028,24029,24028,24027),1; },{},{}
