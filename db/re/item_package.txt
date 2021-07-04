@@ -134,7 +134,7 @@ IG_MVP_LOOT_BOX,14647,5,10 // 10pcs Nutriboost Plus
 IG_MVP_LOOT_BOX,20500,1,1 // Arch Angel Wings
 IG_MVP_LOOT_BOX,31550,1,1 // Tone of Gold
 IG_MVP_LOOT_BOX,31308,1,1 // Protect Feathers
-IG_MVP_LOOT_BOX,31602,1,1 // Eleanor Wig
+IG_MVP_LOOT_BOX,31062,1,1 // Eleanor Wig
 
 //-- POD
 IG_MVP_LOOT_BOX,7179,60,25 // 100 pcs PODs
