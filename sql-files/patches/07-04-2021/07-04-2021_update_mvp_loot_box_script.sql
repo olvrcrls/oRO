@@ -1,0 +1,1 @@
+UPDATE `item_db_re` SET `script` = 'getgroupitem(IG_MVP_LOOT_BOX);' WHERE (`id` = '14653');

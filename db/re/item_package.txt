@@ -3,6 +3,14 @@
 // Structure of Database:
 // GroupID,ItemID,Rate{,Amount,Random,isAnnounced,Duration,GUID,isBound,isNamed}
 
+//WOE REWARD BOX DROPS
+IG_WOE_REWARD_BOX,12675,0,3,0 // Weapon Box
+IG_WOE_REWARD_BOX,6376,0,1500,0 // KVM Badge
+IG_WOE_REWARD_BOX,6187,0,1500,0 // Blank Card
+IG_WOE_REWARD_BOX,7179,0,100,0 // POD
+IG_WOE_REWARD_BOX,6226,0,10,0 // Enriched Carnium
+IG_WOE_REWARD_BOX,6225,0,10,0 // Enriched Bradium
+
 // BG LOOT BOX DROPS
 //-- The Box itself
 IG_BG_LOOT_BOX,14652,69,1 // Ares Gift

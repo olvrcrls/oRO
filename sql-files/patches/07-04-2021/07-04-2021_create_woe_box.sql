@@ -1,0 +1,1 @@
+INSERT INTO `item_db_re` (`id`, `name_english`, `name_japanese`, `type`, `price_buy`, `weight`, `equip_jobs`, `equip_upper`, `equip_genders`, `script`) VALUES ('14654', 'WoE_Reward', 'WoE Reward', '2', '20', '0', '4294967295', '63', '2', 'getgroupitem(IG_WOE_REWARD_BOX);');
