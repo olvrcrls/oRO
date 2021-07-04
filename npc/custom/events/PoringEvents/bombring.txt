@@ -1,7 +1,7 @@
 -	script	Bombring	-1,{
 OnInit:
 	set .eventstarted, 0;
-	set $bombring_reward,7539;
+	set $bombring_reward,22681;
 	bindatcmd "enablebombring","Bombring::OnGMStart";
 	bindatcmd "disablebombring","Bombring::OnGMStop";
 	hideonnpc "The Baaam#qz";
@@ -24,7 +24,7 @@ OnTimer0000:
 	if (.eventstarted == 1) 
 		end;
 	announce "The Baaam: The bombring event has started!",bc_all;
-	announce "The Baaam: Come to Kami-sama's Palace to join!",bc_all;
+	announce "The Baaam: Come to Askald's Event Square to join!",bc_all;
 	announce "The Baaam: "+.x+" minute/s remaining before it starts!",bc_all;
 	set .x, .x - 1;
 	end;
@@ -120,9 +120,9 @@ OnTimer31000:
 OnPCDieEvent:
 	if (strcharinfo(3) == "quiz_02") {
 		mapannounce "quiz_02","The Baaam: "+strcharinfo(0)+" has been blown up!!",bc_all;
-		dispbottom "You will receive 5 Poring Coins for participating in this event.";
-		getitem $bombring_reward,5;
-		warp "kamizama",152,141;
+		dispbottom "You will receive 2 Hokage eggs for participating in this event.";
+		getitem $bombring_reward,2;
+		warp "askald",128,114;
 		if (getmapusers("quiz_02") <= 1) {
 			stopnpctimer;
 			set .eventstarted, 0;
@@ -147,20 +147,15 @@ OnGMStop:
 quiz_02,59,345,5	script	The Baaam#qz	856,{
 mes "[The Baaam]";
 mes "Ha! You were really good back there!";
-mes "Here's 25 Poring Coins for entertaining me.";
+mes "Here's 25 Hokage Eggs for entertaining me.";
 next;
 mes "You have received ^00FF00"+getitemname($bombring_reward)+"^000000!";
 getitem $bombring_reward,25;
-warp "kamizama",152,141;
+warp "askald",128,114;
 end;
-//mes "[The Baaam]";
-//mes "Now get out of here before I make you explode!";
-//next;
-//warp "kamizama",152,141;
-//end;
 }
 
-kamizama,152,156,5	script	The Baaam#prt	801,{
+askald,31,224,5	script	The Baaam#prt	801,{
 mes "[The Baaam]";
 mes "Hi! Wanna join the Bombring event?";
 Switch(Select("Yes!:What is it about?:Nah, not interested.")) {
@@ -177,9 +172,9 @@ Switch(Select("Yes!:What is it about?:Nah, not interested.")) {
 		next;
 		mes "[The Baaam]";
 		mes "If you win, you will get:";
-		mes "5x ^00FF00"+getitemname($bombring_reward)+"^000000!";
+		mes "10x ^00FF00"+getitemname($bombring_reward)+"^000000!";
 		mes "If you die, you will still get:";
-		mes "25x ^00FF00"+getitemname($bombring_reward)+" for participating the event^000000.";
+		mes "2x ^00FF00"+getitemname($bombring_reward)+" for participating in the event^000000.";
 		close;
 		break;
 	case 3:
