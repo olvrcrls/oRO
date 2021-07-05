@@ -90,7 +90,7 @@ function	script	Func_Prizes	{
 //-- Core Script
 //==================================
 
-prontera,164,171,4	script	Event Information	835,{
+askald,24,236,4	script	Event Information	835,{
 	function Func_Countdown;
 	function Func_Add_Time;
 	freeloop(1);
@@ -477,25 +477,25 @@ OnEndEvent:	//-- End Event
 		$@CurrentEvent *= -1;
 	switch($@CurrentEvent){
 		default:
-			mapwarp .EnterMap$[$@CurrentEvent],"askald",128,108;
+			mapwarp .EnterMap$[$@CurrentEvent],"askald",24,230;
 		case 1:	case 8:	case 7:
 			break;
 		case 2:	case 6:	case 9:
 		case 16:	case 17:
 			killmonsterall .EnterMap$[$@CurrentEvent];
-			mapwarp .EnterMap$[$@CurrentEvent],"askald",128,108;
+			mapwarp .EnterMap$[$@CurrentEvent],"askald",24,230;
 			break;
 		case 11:
 			killmonster .Map$[11],strnpcinfo(3)+"::OnShroomKilled";
-			mapwarp .EnterMap$[$@CurrentEvent],"askald",128,108;
+			mapwarp .EnterMap$[$@CurrentEvent],"askald",24,230;
 			break;
 		case 12:
 			killmonster .Map$[11],strnpcinfo(3)+"::OnBaphoKilled";
-			mapwarp .EnterMap$[$@CurrentEvent],"askald",128,108;
+			mapwarp .EnterMap$[$@CurrentEvent],"askald",24,230;
 			break;
 		case 14:
 			killmonster .Map$[14],strnpcinfo(3)+"::OnKilled";
-			mapwarp .EnterMap$[$@CurrentEvent],"askald",128,108;
+			mapwarp .EnterMap$[$@CurrentEvent],"askald",24,230;
 			break;
 	}
 	announce "Sorry a GM has stopped the "+ .EventName$[$@CurrentEvent] +".",bc_all|bc_blue;
@@ -667,13 +667,13 @@ OnEmpStart:	//-- Emperium Event
 OnZombieStart:	//-- Zombie Event
 //==================================
 
-	mapwarp .EnterMap$[2],"askald",128,108;
+	mapwarp .EnterMap$[2],"askald",24,230;
 	$@CurrentEvent = 2;
 	Func_Countdown;
 	$@CurrentEvent = -2;
 	if(getmapusers(.EnterMap$[2]) < .MinPlayers[2]){
 		mapannounce .EnterMap$[2],.EventName$[2]+" Stopped! Not Enough Players Joined the "+.EventName$[2]+"!",bc_blue;
-		mapwarp .EnterMap$[2],"askald",128,108;
+		mapwarp .EnterMap$[2],"askald",24,230;
 	} else {
 		mapannounce .EnterMap$[2],"Rules are simple, don't die before the end of round 10!",bc_blue;
 		sleep 25000;
@@ -704,7 +704,7 @@ OnZombieStart:	//-- Zombie Event
 		}
 	}
 	$@CurrentEvent = 0;
-	mapwarp .EnterMap$[2],"askald",128,108;
+	mapwarp .EnterMap$[2],"askald",24,230;
 	end;
 
 OnKillZombie:
@@ -718,7 +718,7 @@ OnKillZombie:
 OnDiceStart:	//-- Dice Event 
 //==================================
 
-	mapwarp .EnterMap$[3],"askald",128,108;
+	mapwarp .EnterMap$[3],"askald",24,230;
 	$@CurrentEvent = 3;
 	for ( .@i = 0; .@i < getarraysize( .bombflag ); .@i++ )
 		setmapflag .EnterMap$[5], .bombflag[.@i];
@@ -726,7 +726,7 @@ OnDiceStart:	//-- Dice Event
 	$@CurrentEvent = -3;
 	if(getmapusers(.EnterMap$[3]) < .MinPlayers[3]){
 		mapannounce .EnterMap$[3],"Event Stopped! Not Enough Players Joined the "+.EventName$[3]+"!",bc_blue;
-		mapwarp .EnterMap$[3],"askald",128,108;
+		mapwarp .EnterMap$[3],"askald",24,230;
 		$@CurrentEvent = 0;
 	} else {
 		mapannounce .EnterMap$[3],"Ok the rules of "+.EventName$[3]+" are as follows",bc_blue;
@@ -758,21 +758,21 @@ OnDiceStart:	//-- Dice Event
 			$DiceCount[.@i]++;
 			mapannounce .EnterMap$[3],"0... Good Bye Box "+.@i,bc_blue;
 			switch(.@i){
-				case 1:	areawarp .EnterMap$[3],183,81,191,58,"askald",128,108;	break;
-				case 2:	areawarp .EnterMap$[3],192,81,203,58,"askald",128,108;	break;
-				case 3:	areawarp .EnterMap$[3],204,81,215,58,"askald",128,108;	break;
-				case 4:	areawarp .EnterMap$[3],216,81,227,58,"askald",128,108;	break;
+				case 1:	areawarp .EnterMap$[3],183,81,191,58,"askald",24,230;	break;
+				case 2:	areawarp .EnterMap$[3],192,81,203,58,"askald",24,230;	break;
+				case 3:	areawarp .EnterMap$[3],204,81,215,58,"askald",24,230;	break;
+				case 4:	areawarp .EnterMap$[3],216,81,227,58,"askald",24,230;	break;
 			}
-			areawarp .EnterMap$[3],0,0,183,400,"askald",128,108;
-			areawarp .EnterMap$[3],0,82,400,400,"askald",128,108;
-			areawarp .EnterMap$[3],0,58,400,0,"askald",128,108;
-			areawarp .EnterMap$[3],227,0,400,400,"askald",128,108;
+			areawarp .EnterMap$[3],0,0,183,400,"askald",24,230;
+			areawarp .EnterMap$[3],0,82,400,400,"askald",24,230;
+			areawarp .EnterMap$[3],0,58,400,0,"askald",24,230;
+			areawarp .EnterMap$[3],227,0,400,400,"askald",24,230;
 /*
-			areawarp .EnterMap$[3],182,94,228,88,"askald",128,108;	//Upper Area
-			areawarp .EnterMap$[3],185,87,188,82,"askald",128,108;	//Stairs 1
-			areawarp .EnterMap$[3],197,87,200,82,"askald",128,108;	//Stairs 2
-			areawarp .EnterMap$[3],209,87,212,82,"askald",128,108;	//Stairs 3
-			areawarp .EnterMap$[3],221,87,224,82,"askald",128,108;	//Stairs 4
+			areawarp .EnterMap$[3],182,94,228,88,"askald",24,230;	//Upper Area
+			areawarp .EnterMap$[3],185,87,188,82,"askald",24,230;	//Stairs 1
+			areawarp .EnterMap$[3],197,87,200,82,"askald",24,230;	//Stairs 2
+			areawarp .EnterMap$[3],209,87,212,82,"askald",24,230;	//Stairs 3
+			areawarp .EnterMap$[3],221,87,224,82,"askald",24,230;	//Stairs 4
 */
 			if(getmapusers(.EnterMap$[3]) <= 1){
 				.@1234 += 100;
@@ -788,7 +788,7 @@ OnDiceStart:	//-- Dice Event
 				Func_Prizes(getcharid(0),.EventName$[3]);
 		}
 		$@CurrentEvent = 0;
-		mapwarp .EnterMap$[3],"askald",128,108;
+		mapwarp .EnterMap$[3],"askald",24,230;
 	}
 	for ( .@i = 6; .@i < getarraysize( .bombflag ); .@i++ )
 		removemapflag .EnterMap$[5], .bombflag[.@i];
@@ -799,7 +799,7 @@ OnPvPStart:	//-- PvP Event
 //==================================
 
 	killmonster .EnterMap$[4],"All";
-	mapwarp .EnterMap$[4],"askald",128,108;
+	mapwarp .EnterMap$[4],"askald",24,230;
 	pvpoff .EnterMap$[4];
 	$@CurrentEvent = 4;
 	Func_Countdown;
@@ -844,14 +844,14 @@ OnPvPStart:	//-- PvP Event
 	}
 	pvpoff .EnterMap$[4];
 	$@CurrentEvent = 0;
-	mapwarp .EnterMap$[4],"askald",128,108;
+	mapwarp .EnterMap$[4],"askald",24,230;
 	end;
 
 //==================================
 OnMazeStart:	//-- Maze Event
 //==================================
 
-	mapwarp .EnterMap$[5],"askald",128,108;
+	mapwarp .EnterMap$[5],"askald",24,230;
 	enablenpc "mazeroadblock";
 	disablenpc "Event_Agent#Maze";
 	$@CurrentEvent = 5;
@@ -877,7 +877,7 @@ OnMazeStart:	//-- Maze Event
 		removemapflag .EnterMap$[5], .bombflag[.@i];
 	disablenpc "Event_Agent#Maze";
 	sleep 5000;
-	mapwarp .EnterMap$[5],"askald",128,108;
+	mapwarp .EnterMap$[5],"askald",24,230;
 	$@CurrentEvent = 0;
 	end;
 
@@ -886,7 +886,7 @@ OnPoringStart:	//-- Poring Event
 //==================================
 
 	killmonsterall .EnterMap$[6];
-	mapwarp .EnterMap$[6],"askald",128,108;
+	mapwarp .EnterMap$[6],"askald",24,230;
 	$@CurrentEvent = 6;
 	pvpoff .EnterMap$[6];
 	for ( .@i = 0; .@i < getarraysize( .bombflag ); .@i++ )
@@ -923,12 +923,12 @@ OnPoringStart:	//-- Poring Event
 		removemapflag .EnterMap$[6], .bombflag[.@i];
 	$@CurrentEvent = 0;
 	sleep 5000;
-	mapwarp .EnterMap$[6],"askald",128,108;
+	mapwarp .EnterMap$[6],"askald",24,230;
 	end;
 
 OnKillWrong:
 	monster .EnterMap$[6],0,0,.Poring$[rand(1,getarraysize($@Mobs))],1725,1,strnpcinfo(3)+"::OnKillWrong";
-	warp "askald",128,108;
+	warp "askald",24,230;
 	end;
 
 OnKillRight:
@@ -941,10 +941,10 @@ OnKillRight:
 			removemapflag .EnterMap$[6], .bombflag[.@i];
 		$@CurrentEvent = 0;
 		sleep 5000;
-		mapwarp .EnterMap$[6],"askald",128,108;
+		mapwarp .EnterMap$[6],"askald",24,230;
 		end;
 	}
-	warp "askald",128,108;
+	warp "askald",24,230;
 	end;
 
 //==================================
@@ -971,7 +971,7 @@ OnLuckyStart:	//-- Lucky Event
 OnBombStart:	//-- Bombring Event
 //==================================
 
-	mapwarp .EnterMap$[9],"askald",128,108;
+	mapwarp .EnterMap$[9],"askald",24,230;
 	$@CurrentEvent = 9;
 	for ( .@i = 0; .@i < getarraysize( .bombflag ); .@i++ )
 		setmapflag .EnterMap$[9], .bombflag[.@i];
@@ -980,7 +980,7 @@ OnBombStart:	//-- Bombring Event
 	.@totalplayers = getmapusers(.EnterMap$[9]);
 	if(.@totalplayers < .MinPlayers[9]){
 		mapannounce .EnterMap$[9],"Event Stopped! Not Enough Players Joined the "+.EventName$[9]+"!",bc_blue;
-		mapwarp .EnterMap$[9],"askald",128,108;
+		mapwarp .EnterMap$[9],"askald",24,230;
 	} else {
 		mapannounce .EnterMap$[9],"Okay listen up, this is how it works.",bc_blue;
 		sleep 2000;
@@ -1016,14 +1016,14 @@ OnBombStart:	//-- Bombring Event
 	for ( .@i = 6; .@i < getarraysize( .bombflag ); .@i++ )
 		removemapflag .EnterMap$[9], .bombflag[.@i];
 	$@CurrentEvent = 0;
-	mapwarp .EnterMap$[9],"askald",128,108;
+	mapwarp .EnterMap$[9],"askald",24,230;
 	end;
 
 //==================================
 OnHuntStart:	//-- Man Hunt Event
 //==================================
 
-	mapwarp .EnterMap$[10],"askald",128,108;
+	mapwarp .EnterMap$[10],"askald",24,230;
 	$@CurrentEvent = 10;
 	Func_Countdown;
 	$@CurrentEvent = -10;
@@ -1070,7 +1070,7 @@ OnHuntStart:	//-- Man Hunt Event
 		}
 	}
 	sleep 5000;
-	mapwarp .EnterMap$[10],"askald",128,108;
+	mapwarp .EnterMap$[10],"askald",24,230;
 	$@CurrentEvent = 0;
 	end;
 
@@ -1146,7 +1146,7 @@ OnBaphoKilled:
 OnCandyStart:	//-- Grab the Candy
 //==================================
 
-	mapwarp .EnterMap$[13],"askald",128,108;
+	mapwarp .EnterMap$[13],"askald",24,230;
 	$@CurrentEvent = 13;
 	for ( .@i = 0; .@i < getarraysize( .bombflag ); .@i++ )
 		setmapflag .EnterMap$[16], .bombflag[.@i];
@@ -1205,7 +1205,7 @@ OnCandyStart:	//-- Grab the Candy
 	sleep 5000;
 	for ( .@i = 6; .@i < getarraysize( .bombflag ); .@i++ )
 		removemapflag .EnterMap$[16], .bombflag[.@i];
-	mapwarp .EnterMap$[13],"askald",128,108;
+	mapwarp .EnterMap$[13],"askald",24,230;
 	deletearray .register_aid;
 	.register_count = 0;
 	$@CurrentEvent = 0;
@@ -1292,7 +1292,7 @@ OnKilled:
 OnDisguiseStart: //-- Disguise
 //==================================
 
-	mapwarp .EnterMap$[15],"askald",128,108;
+	mapwarp .EnterMap$[15],"askald",24,230;
 	$@CurrentEvent = 15;
 	Func_Countdown;
 	$@CurrentEvent = -15;
@@ -1314,7 +1314,7 @@ OnDisguiseStart: //-- Disguise
 	}
 	disablenpc $@DisguiseNpc$;
 	sleep 5000;
-	mapwarp .EnterMap$[15],"askald",128,108;
+	mapwarp .EnterMap$[15],"askald",24,230;
 	$@CurrentEvent = 0;
 	end;
 
@@ -1325,7 +1325,7 @@ OnFabreStart:	//-- Fabre Event
 	killmonsterall .EnterMap$[16];
 	deletearray .register_aid;
 	.register_count = 0;
-	mapwarp .EnterMap$[16],"askald",128,108;
+	mapwarp .EnterMap$[16],"askald",24,230;
 	$@CurrentEvent = 16;
 	pvpoff .EnterMap$[16];
 	for ( .@i = 0; .@i < getarraysize( .bombflag ); .@i++ )
@@ -1379,7 +1379,7 @@ OnFabreStart:	//-- Fabre Event
 	}
 	for ( .@i = 6; .@i < getarraysize( .bombflag ); .@i++ )
 		removemapflag .EnterMap$[16], .bombflag[.@i];
-	mapwarp .EnterMap$[13],"askald",128,108;
+	mapwarp .EnterMap$[13],"askald",24,230;
 	deletearray .register_aid;
 	.register_count = 0;
 	$@CurrentEvent = 0;
@@ -1405,7 +1405,7 @@ OnDevilStart:	//-- Devil Square
 //==================================
 
 	killmonsterall .EnterMap$[17];
-	mapwarp .EnterMap$[17],"askald",128,108;
+	mapwarp .EnterMap$[17],"askald",24,230;
 	pvpoff .EnterMap$[4];
 	for ( .@i = 0; .@i < getarraysize( .devilflag ); .@i++ )
 		setmapflag .EnterMap$[17], .devilflag[.@i];
@@ -1446,7 +1446,7 @@ OnDevilStart:	//-- Devil Square
 	for ( .@i = 6; .@i < getarraysize( .devilflag ); .@i++ )
 		removemapflag .EnterMap$[17], .devilflag[.@i];
 	sleep 5000;
-	mapwarp .EnterMap$[17],"askald",128,108;
+	mapwarp .EnterMap$[17],"askald",24,230;
 	end;
  
 OnDevilDead:
@@ -1521,7 +1521,7 @@ OnTreasureDead:
 		addrid(5,0,.EnterMap$[17]);
 		Func_Prizes(getcharid(0),.EventName$[17]);
 		sleep2 10000;
-		warp "askald",128,108;
+		warp "askald",24,230;
 	}
 	$@CurrentEvent = 0;
 	end;
@@ -1599,7 +1599,7 @@ OnPCDieEvent:	//-- On player death
 	if(isequipped(51055))
 		DracoFail++;
 	if(($@CurrentEvent == -4 && strcharinfo(3) == .EnterMap$[4]) || ($@CurrentEvent == -2 && strcharinfo(3) == .EnterMap$[2]))
-		warp "askald",128,108;
+		warp "askald",24,230;
 	if($@CurrentEvent == -10 && getcharid(3) == $@Target ){
 		Func_Prizes(getcharid(0,rid2name(killerrid)),.EventName$[10]);
 		$@Target = -1;
@@ -1923,9 +1923,9 @@ OnTouch_:
 	if($@CurrentEvent == -5){
 		$@CurrentEvent = 0;
 		Func_Prizes(getcharid(0),"Maze Event");
-		mapwarp "maze","askald",128,108;
+		mapwarp "maze","askald",24,230;
 	}
-	warp "askald",128,108;
+	warp "askald",24,230;
 	end;
 }
 
@@ -2071,7 +2071,7 @@ OnCorrect:
 		setnpctimer 0;
 		stopnpctimer;
 		npctalk "Disguise Event : Thank you all for playing. That was the last round of the Disguise Event. Come play again later.";
-		mapwarp "pvp_n_1-5","askald",128,108;
+		mapwarp "pvp_n_1-5","askald",24,230;
 		end;
 	}
 	setnpcdisplay "Disguise Event",795;
