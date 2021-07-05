@@ -1,0 +1,65 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+.vs
+
+# Build folder(s)
+/build
+
+# Conf folder file(s)
+/conf/inter_athena.conf
+/conf/login_athena.conf
+/conf/map_athena.conf
+/conf/char_athena.conf
+/conf/subnet_athena.conf
+
+# Build file(s)
+char-server.ilk
+char-server.pdb
+csv2yaml.ilk
+csv2yaml.pdb
+login-server.ilk
+login-server.pdb
+map-server.ilk
+map-server.pdb
+mapcache.ilk
+mapcache.pdb
+
+# dlls
+/libmysql.dll
+/pcre8.dll
+/zlib.dll
+
+# CMakeFiles
+/CMakeFiles/
+out/
+yamlupgrade.pdb
