@@ -2,7 +2,7 @@
 	mes .n$;
 	mes "Where would you like to go?";
 	//next;
-	switch(select("Town Square:Supply Shops:PvM Items/Enchants:Clans:Refiner/Card Removal:Training Grounds:Stylist:Quest Shops:Godly Enchanters:Close")){
+	switch(select("Town Square:Supply Shops:PvM Items/Enchants:Clans:Refiner/Card Removal:Training Grounds:Stylist:Quest Shops:Godly Enchanters:Fun Events:Close")){
 		case 1: // Town Square
 			mes .n$;
 			mes "Hold on! I'll take you there in a jiffy.";
@@ -57,6 +57,11 @@
 			warp "askald",107,151;
 			close2;
 			end;
+		case 10: // Fun Events
+			mes .n$;
+			mes "You seem like a fun loving person :3";
+			warp "askald",24,230;
+			close2;
 		default:
 			mes .n$;
 			mes "Are you scared to teleport?";
@@ -79,3 +84,4 @@ askald,167,240,0	duplicate(Portkey)	Portkey#st	723
 askald,142,156,0	duplicate(Portkey)	Portkey#ra	723
 askald,203,136,0	duplicate(Portkey)	Portkey#quest	723
 askald,107,151,0	duplicate(Portkey)	Portkey#special_enchant	723
+askald,16,230,0	duplicate(Portkey)	Portkey#events	723
