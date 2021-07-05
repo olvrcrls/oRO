@@ -90,7 +90,7 @@ function	script	Func_Prizes	{
 //-- Core Script
 //==================================
 
-askald,24,236,4	script	Event Information	835,{
+askald,24,236,4	script	GM Alice	835,{
 	function Func_Countdown;
 	function Func_Add_Time;
 	freeloop(1);
@@ -261,7 +261,7 @@ OnJoinEvent:	//-- Join Event
 //==================================
 
 	if($@CurrentEvent < 1){
-		mes "[ Wazaby ]","Sorry no event is running.";
+		mes "[ GM Alice ]","Sorry no event is running.";
 		close;
 	} else {
 		.@c = checkhomcall();
@@ -275,7 +275,7 @@ OnJoinEvent:	//-- Join Event
 		else if((Baselevel > 10 || JobLevel > 10 || Class != Job_Novice ) && $@CurrentEvent == 2)
 			mes "[ "+ .EventName$[$@CurrentEvent] +" ]","Sorry you must be a Novice Level 10/10 or lower.";
 		else if($@CurrentEvent < 1)
-			mes "[ Wazaby ]","Sorry event closed before you hit yes.";
+			mes "[ GM Alice ]","Sorry event closed before you hit yes.";
 		else if(.@c != 1 && .@c != -1 && ($@CurrentEvent == 2 || $@CurrentEvent == 6 || $@CurrentEvent == 9 || $@CurrentEvent == 16))
 			mes "[ "+ .EventName$[$@CurrentEvent] +" ]","No homunculus allowed, put it away before joining.";
 		else {
@@ -286,7 +286,7 @@ OnJoinEvent:	//-- Join Event
 						setmadogear 0;
 					} else {
 						next;
-						mes "[ Wazaby ]","Seems you're in a Mado Gear and cant seem to carry a voucher, either remove the Mado Gear or come back when you can hold the voucher.";
+						mes "[ GM Alice ]","Seems you're in a Mado Gear and cant seem to carry a voucher, either remove the Mado Gear or come back when you can hold the voucher.";
 						close;
 					}
 				}
@@ -296,7 +296,7 @@ OnJoinEvent:	//-- Join Event
 						setdragon 0;
 					} else {
 						next;
-						mes "[ Wazaby ]","Seems you're on a Dragon and can't seem to carry a voucher, either remove you're Dragon or come back when you can hold the voucher.";
+						mes "[ GM Alice ]","Seems you're on a Dragon and can't seem to carry a voucher, either remove you're Dragon or come back when you can hold the voucher.";
 						close;
 					}
 				}			
@@ -306,7 +306,7 @@ OnJoinEvent:	//-- Join Event
 						setoption Option_Wugrider,0;
 					} else {
 						next;
-						mes "[ Wazaby ]","Seems you're on a Wug and can't seem to carry a voucher, either remove you're Wug or come back when you can hold the voucher.";
+						mes "[ GM Alice ]","Seems you're on a Wug and can't seem to carry a voucher, either remove you're Wug or come back when you can hold the voucher.";
 						close;
 					}
 				}
@@ -316,7 +316,7 @@ OnJoinEvent:	//-- Join Event
 						setmounting;
 					} else {
 						next;
-						mes "[ Wazaby ]","Seems you're mounted and can't seem to carry a voucher, either remove you're mount or come back when you can hold the voucher.";
+						mes "[ GM Alice ]","Seems you're mounted and can't seem to carry a voucher, either remove you're mount or come back when you can hold the voucher.";
 						close;
 					}
 				}
@@ -326,7 +326,7 @@ OnJoinEvent:	//-- Join Event
 						setriding 0;
 					} else {
 						next;
-						mes "[ Wazaby ]","Seems you're mounted and can't seem to carry a voucher, either remove you're mount or come back when you can hold the voucher.";
+						mes "[ GM Alice ]","Seems you're mounted and can't seem to carry a voucher, either remove you're mount or come back when you can hold the voucher.";
 						close;
 					}
 				}
@@ -336,7 +336,7 @@ OnJoinEvent:	//-- Join Event
 						setfalcon 0;
 					} else {
 						next;
-						mes "[ Wazaby ]","Seems you have  a falcon and can't seem to carry a voucher, either remove you're falcon or come back when you can hold the voucher.";
+						mes "[ GM Alice ]","Seems you have  a falcon and can't seem to carry a voucher, either remove you're falcon or come back when you can hold the voucher.";
 						close;
 					}
 				}
@@ -357,7 +357,7 @@ OnJoinEvent:	//-- Join Event
 					setcart 0;
 				} else {
 					next;
-					mes "[ Wazaby ]","Seems you have cart and can't seem to carry a voucher, either remove you're cart or come back when you can hold the voucher.";
+					mes "[ GM Alice ]","Seems you have cart and can't seem to carry a voucher, either remove you're cart or come back when you can hold the voucher.";
 					close;
 				}	
 			}
@@ -470,7 +470,7 @@ OnEndEvent:	//-- End Event
 //==================================
 
 	if($@CurrentEvent == 0){
-		mes "[ Wazaby ]","Sorry no event is running.";
+		mes "[ GM Alice ]","Sorry no event is running.";
 		close;
 	}
 	if($@CurrentEvent < 0)
@@ -508,11 +508,11 @@ OnRunEvent:	//-- GM Run
 //==================================
 
 	if($@CurrentEvent)
-		mes "[ Wazaby ]","Sorry an event is already running";
+		mes "[ GM Alice ]","Sorry an event is already running";
 	else if(agitcheck() || agitcheck2())
-		mes "[ Wazaby ]","Sorry cannot run event during woe";
+		mes "[ GM Alice ]","Sorry cannot run event during woe";
 	else {
-		mes "[ Wazaby ]","Pick an Event.";
+		mes "[ GM Alice ]","Pick an Event.";
 		.@i = select(implode(.ColorName$,": ~ ") +":Bug Test") - 1;
 	}
 	deletearray .register_aid;
@@ -1640,9 +1640,9 @@ OnInit:		//-- Config
 	// Rewards are Mailed to winners
 	// Ro Dex Supports 5 Items
 	// Old Mail & Direct DO NOT support multiple items
-	setarray $@RewardID	,33001,0,0,0,0;
-	setarray $@RewardQNT	,    10,0,0,0,0;
-	$@RewardZeny = 100000000;
+	setarray $@RewardID	,40001,7179,40002,40003,0;
+	setarray $@RewardQNT	,    20,10,10,5,0;
+	$@RewardZeny = 25000000;
 
 	// Not Adding Card / Random Bonus Support Yet, bug me if you really want it.
 
@@ -1745,7 +1745,7 @@ OnInit:		//-- Config
 	//	so 10 will become 100 in last wave
 	//	and mobs are not killed between
 	//	so 10 will have 550 spawned in last wave
-	setarray .Zombies,25155,10,1423,5,1298,1;
+	setarray .Zombies,1298,10,1423,5,1298,1;
 
 	// Fake Poring Names
 	setarray .Poring$,	"Porjng","P0ring","Porlng","Porimg","Porinq",
@@ -2117,4 +2117,4 @@ OnInit:
 //-- Event Shops
 //==================================
 
-prt_in,136,31,3	itemshop	Event Costume Shop	877,33001,20350:10,20351:10,20352:10,20353:10,20354:10,20355:10,20356:10,20357:10,20358:10,20359:10,20360:10,20361:10,20362:10,20363:10,20364:10,20365:10,20366:10,20367:10,20368:10,20369:10,20370:10,31063:10,31064:10,31065:10,31066:10,31067:10,31068:10,31069:10,31070:10,31071:10,31072:10,31073:10,31074:10,31075:10,31076:10,31077:10,31078:10,31079:10,31080:10,31081:10,31082:10,31083:10,31084:10,31085:10,31086:10,31329:30,31407:30,31062:50,31405:50,31149:50,31406:50,19291:100
+askald,30,232,3	itemshop	Event Costume Shop	877,40001,20350:100,20351:100,20352:100,20353:100,20354:100,20355:100,20356:100,20357:100,20358:100,20359:100,20360:100,20361:100,20362:100,20363:100,20364:100,20365:100,20366:100,20367:100,20368:100,20369:100,20370:100,31063:100,31064:100,31065:100,31066:100,31067:100,31068:100,31069:100,31070:100,31071:100,31072:100,31073:100,31074:100,31075:100,31076:100,31077:100,31078:100,31079:100,31080:100,31081:100,31082:100,31083:100,31084:100,31085:100,31086:100,31329:300,31407:300,31062:500,31405:500,31149:500,31406:500
