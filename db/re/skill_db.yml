@@ -17928,7 +17928,7 @@ Body:
     Name: RK_DRAGONBREATH
     Description: Dragon Breath
     MaxLevel: 10
-    Type: Misc
+    Type: Weapon
     TargetType: Ground
     DamageFlags:
       Splash: true
@@ -31857,7 +31857,7 @@ Body:
     Name: RK_DRAGONBREATH_WATER
     Description: Dragon Breath - Water
     MaxLevel: 10
-    Type: Misc
+    Type: Weapon
     TargetType: Ground
     DamageFlags:
       Splash: true
