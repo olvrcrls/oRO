@@ -733,6 +733,9 @@ enum e_random_item_group {
 	IG_PRIZEOFHERO,
 	IG_PRIVATE_AIRSHIP,
 	IG_TOKEN_OF_SIEGFRIED,
+	IG_EVENT_SHADOW,
+	IG_EVENT_FROST,
+	IG_EVENT_SLIME,
 };
 
 /// Enum for bound/sell restricted selling

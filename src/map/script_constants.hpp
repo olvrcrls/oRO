@@ -4971,6 +4971,9 @@
 	export_constant(IG_PRIZEOFHERO);
 	export_constant(IG_PRIVATE_AIRSHIP);
 	export_constant(IG_TOKEN_OF_SIEGFRIED);
+	export_constant(IG_EVENT_SHADOW);
+	export_constant(IG_EVENT_FROST);
+	export_constant(IG_EVENT_SLIME);
 
 	/* unit stop walking */
 	export_constant(USW_NONE);
