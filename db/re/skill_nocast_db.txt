@@ -70,6 +70,7 @@
 2300,4	//SC_DIMENSIONDOOR
 5063,4	//WE_CALLALLFAMILY
 462,4	//SL_KAIZEL
+290,4 //ABRACADABRA
 
 //----------------------------------------------------------------------------
 // Battlegrounds
