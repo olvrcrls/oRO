@@ -1642,7 +1642,7 @@ OnInit:		//-- Config
 	// Old Mail & Direct DO NOT support multiple items
 	setarray $@RewardID	,40001,7179,40002,40003,0;
 	setarray $@RewardQNT	,    20,10,10,5,0;
-	$@RewardZeny = 25000000;
+	$@RewardZeny = 10000000;
 
 	// Not Adding Card / Random Bonus Support Yet, bug me if you really want it.
 
