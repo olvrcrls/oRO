@@ -4975,6 +4975,7 @@
 	// Loot box fo BG and MVP (Ares & Inberun boxes)
 	export_constant(IG_BG_LOOT_BOX);
 	export_constant(IG_MVP_LOOT_BOX);
+	export_constant(IG_WOE_REWARD_BOX);
 
 	// Avi's Changes / Event Manager
 	export_constant(IG_EVENT_SHADOW);

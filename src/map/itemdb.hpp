@@ -737,6 +737,7 @@ enum e_random_item_group {
 	// Loot box for BG MVP (Ares & Inberun's gift)
 	IG_BG_LOOT_BOX,
 	IG_MVP_LOOT_BOX,
+	IG_WOE_REWARD_BOX,
 
 	// Other Avi's changes / Event Manager
 	IG_EVENT_SHADOW,

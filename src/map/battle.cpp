@@ -633,7 +633,7 @@ int battle_calc_cardfix(int attack_type, struct block_list *src, struct block_li
 		*tstatus; ///< Target status data
 	int64 original_damage;
 
-	if( !damage )
+	if( !damage || damage == 1 )
 		return 0;
 
 	original_damage = damage;
@@ -796,28 +796,28 @@ int battle_calc_cardfix(int attack_type, struct block_list *src, struct block_li
 					else {
 						//! CHECKME: If 'left_cardfix_to_right' is yes, doesn't need to check NK_IGNOREELEMENT?
 						//if( !nk[&]K_IGNOREELEMENT) ) { // Affected by Element modifier bonuses
-							int ele_fix = sd->right_weapon.addele[tstatus->def_ele] + sd->left_weapon.addele[tstatus->def_ele]
-										+ sd->right_weapon.addele[ELE_ALL] + sd->left_weapon.addele[ELE_ALL];
+						int ele_fix = sd->right_weapon.addele[tstatus->def_ele] + sd->left_weapon.addele[tstatus->def_ele]
+									+ sd->right_weapon.addele[ELE_ALL] + sd->left_weapon.addele[ELE_ALL];
 
-							for (const auto &it : sd->right_weapon.addele2) {
-								if (it.ele != tstatus->def_ele)
-									continue;
-								if (!(((it.flag)&flag)&BF_WEAPONMASK &&
-									((it.flag)&flag)&BF_RANGEMASK &&
-									((it.flag)&flag)&BF_SKILLMASK))
-									continue;
-								ele_fix += it.rate;
-							}
-							for (const auto &it : sd->left_weapon.addele2) {
-								if (it.ele != tstatus->def_ele)
-									continue;
-								if (!(((it.flag)&flag)&BF_WEAPONMASK &&
-									((it.flag)&flag)&BF_RANGEMASK &&
-									((it.flag)&flag)&BF_SKILLMASK))
-									continue;
-								ele_fix += it.rate;
-							}
-							cardfix = cardfix * (100 + ele_fix) / 100;
+						for (const auto &it : sd->right_weapon.addele2) {
+							if (it.ele != tstatus->def_ele)
+								continue;
+							if (!(((it.flag)&flag)&BF_WEAPONMASK &&
+								((it.flag)&flag)&BF_RANGEMASK &&
+								((it.flag)&flag)&BF_SKILLMASK))
+								continue;
+							ele_fix += it.rate;
+						}
+						for (const auto &it : sd->left_weapon.addele2) {
+							if (it.ele != tstatus->def_ele)
+								continue;
+							if (!(((it.flag)&flag)&BF_WEAPONMASK &&
+								((it.flag)&flag)&BF_RANGEMASK &&
+								((it.flag)&flag)&BF_SKILLMASK))
+								continue;
+							ele_fix += it.rate;
+						}
+						cardfix = cardfix * (100 + ele_fix) / 100;
 						//}
 						cardfix = cardfix * (100 + sd->right_weapon.addrace[tstatus->race] + sd->left_weapon.addrace[tstatus->race] +
 							sd->right_weapon.addrace[RC_ALL] + sd->left_weapon.addrace[RC_ALL]) / 100;
@@ -943,8 +943,8 @@ int battle_calc_cardfix(int attack_type, struct block_list *src, struct block_li
 	}
 
 #undef APPLY_CARDFIX
-
-	return (int)cap_value(damage - original_damage, INT_MIN, INT_MAX);
+	int result_damage = damage - original_damage;
+	return (int)cap_value(result_damage, INT_MIN, INT_MAX);
 }
 
 /**
@@ -1095,7 +1095,7 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 		if(flag&BF_MISC && sd->special_state.no_misc_damage)
 			damage -= damage * sd->special_state.no_misc_damage / 100;
 
-		if(!damage)
+		if(!damage || damage == 1)
 			return 0;
 	}
 
@@ -1522,7 +1522,7 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 		if( sc->data[SC_MEIKYOUSISUI] && rnd()%100 < 40 ) // custom value
 			damage = 0;
 
-		if (!damage)
+		if (!damage || damage == 1)
 			return 0;
 
 		if( (sce = sc->data[SC_LIGHTNINGWALK]) && (flag&BF_LONG) && !(flag&BF_MAGIC) && rnd()%100 < sce->val1 && (!map_getmapflag(sd->bl.m, MF_GVG) && !map_getmapflag(sd->bl.m, MF_BATTLEGROUND))) {
@@ -1765,7 +1765,7 @@ bool battle_can_hit_gvg_target(struct block_list *src,struct block_list *bl,uint
  */
 int64 battle_calc_gvg_damage(struct block_list *src,struct block_list *bl,int64 damage,uint16 skill_id,int flag)
 {
-	if (!damage) //No reductions to make.
+	if (!damage || damage == 1) //No reductions to make.
 		return 0;
 
 	if (!battle_can_hit_gvg_target(src,bl,skill_id,flag))
@@ -1787,7 +1787,7 @@ int64 battle_calc_gvg_damage(struct block_list *src,struct block_list *bl,int64 
 		if (flag & BF_LONG)
 			damage = damage * battle_config.gvg_long_damage_rate / 100;
 	}
-	damage = i64max(damage,1);
+	damage = i64max(damage,0);
 	return damage;
 }
 
@@ -2569,7 +2569,6 @@ static std::bitset<NK_MAX> battle_skill_get_damage_properties(uint16 skill_id, i
 
 			tmp_nk.set(NK_IGNOREATKCARD);
 			tmp_nk.set(NK_IGNOREFLEE);
-
 			return tmp_nk;
 		} else
 			return 0;
