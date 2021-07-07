@@ -1752,7 +1752,8 @@ OnInit:		//-- Config
 				"Poporing","This One","Right","Kill Me","Poning",
 				"qoring","Pooring","Pouring","Polling","~Poring~",
 				"Winner","Prize","Porirg","Paring","Notice Me Senpai",
-				"Pickle","Puring","Ponirg","Poning","P o r i n g";
+				"Pickle","Puring","Ponirg","Poning","P o r i n g","My mom beats me",
+				"My dad beats me","Porign", "Proing";
 
 	// Number of poring to Spawn in Find the poring Event
 	.PoringSpawn = 2;
