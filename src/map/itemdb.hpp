@@ -733,8 +733,20 @@ enum e_random_item_group {
 	IG_PRIZEOFHERO,
 	IG_PRIVATE_AIRSHIP,
 	IG_TOKEN_OF_SIEGFRIED,
+
+	// Loot box for BG MVP (Ares & Inberun's gift)
 	IG_BG_LOOT_BOX,
-	IG_MVP_LOOT_BOX
+	IG_MVP_LOOT_BOX,
+
+	// Other Avi's changes / Event Manager
+	IG_EVENT_SHADOW,
+	IG_EVENT_FROST,
+	IG_EVENT_SLIME,
+	IG_Super_Pet_SHADOW,
+	IG_Super_Card_Pet_SHADOW,
+	IG_Super_Pet_SHADOW_2,
+	IG_Costama_SHADOW8,
+	IG_Costama_SHADOW9,
 };
 
 /// Enum for bound/sell restricted selling

@@ -4971,8 +4971,20 @@
 	export_constant(IG_PRIZEOFHERO);
 	export_constant(IG_PRIVATE_AIRSHIP);
 	export_constant(IG_TOKEN_OF_SIEGFRIED);
+
+	// Loot box fo BG and MVP (Ares & Inberun boxes)
 	export_constant(IG_BG_LOOT_BOX);
 	export_constant(IG_MVP_LOOT_BOX);
+
+	// Avi's Changes / Event Manager
+	export_constant(IG_EVENT_SHADOW);
+	export_constant(IG_EVENT_FROST);
+	export_constant(IG_EVENT_SLIME);
+	export_constant(IG_Super_Pet_SHADOW);
+	export_constant(IG_Super_Card_Pet_SHADOW);
+	export_constant(IG_Super_Pet_SHADOW_2);
+	export_constant(IG_Costama_SHADOW8);
+	export_constant(IG_Costama_SHADOW9);
 
 	/* unit stop walking */
 	export_constant(USW_NONE);
@@ -5024,6 +5036,7 @@
 	export_constant(ACHIEVEINFO_LEVEL);
 	export_constant(ACHIEVEINFO_SCORE);
 	export_constant(ACHIEVEINFO_MAX);
+
 
 	/* refine cost types */
 	export_constant(REFINE_COST_NORMAL);
