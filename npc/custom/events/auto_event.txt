@@ -342,9 +342,9 @@ OnJoinEvent:	//-- Join Event
 				}
 				if(geteleminfo(1) > 0)
 					unitkill geteleminfo(1);
-				callfunc("dispell");
+				sc_end_sc_all;
 			} else if($@CurrentEvent == 2)
-				callfunc("dispell");
+				sc_end_sc_all;
 			.register_aid[ .register_count ] = getcharid(3);
 			.register_count++;
 			if($@CurrentEvent == 13){
@@ -642,7 +642,7 @@ OnEmpStart:	//-- Emperium Event
 		freeloop(1);
 		for(.@i = 0; .@i < .@waitingroom_usercount; .@i++){
 			attachrid(.@waitingroom_users[.@i]);
-			callfunc("dispell");
+			sc_end_sc_all;
 			if(instance_id(IM_CHAR))
 				instance_destroy(IM_CHAR);
 			instance_create("Emp Breaker",IM_CHAR);
