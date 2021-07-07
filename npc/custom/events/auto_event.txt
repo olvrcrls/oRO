@@ -90,7 +90,7 @@ function	script	Func_Prizes	{
 //-- Core Script
 //==================================
 
-askald,24,236,4	script	GM Alice	835,{
+askald,24,236,4	script	GM Alice	430,{
 	function Func_Countdown;
 	function Func_Add_Time;
 	freeloop(1);
