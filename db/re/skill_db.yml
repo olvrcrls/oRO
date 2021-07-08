@@ -13841,7 +13841,7 @@ Body:
         Count: 9
       - Level: 10
         Count: 10
-    Element: Weapon
+    Element: Neutral
     CastCancel: true
     AfterCastActDelay: 1000
     FixedCastTime: 1000
