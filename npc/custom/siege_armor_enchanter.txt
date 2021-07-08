@@ -1,0 +1,128 @@
+//===== rAthena Script ======================================= 
+//= Siege Armor Enchanter
+//===== By: ================================================== 
+//= Rime [Used GMT enchanter as template]
+//===== Current Version: ===================================== 
+//= 1.0 (Initial release)
+//===== Additional Comments: ================================= 
+// - I have no idea what I'm doing
+//============================================================
+
+bat_room,158,142,4	script	Baron Geisler	4_F_03,{  //Setup the coordinates & NPC Sprite
+	//cutin "baron_geisler", 2;
+	disable_command; disable_items;
+	
+	//Item IDs
+	.@valor_badge_id = 7829;
+	.@pod_id = 7179;
+	
+	//Cost
+	.@valor_badge_qty = 1000;
+	.@pod_qty = 25;
+	
+	
+	//Dialogues
+	.@npc$ = "[ ^0000FFBaron Geisler^000000 ]";
+	mes .@npc$,
+		"Hello, This is Baron Geisler and I Can enchant your Siege Armor for you. Ano? Putangina niyo! TARA NA!!";
+	mes "Bring me these items:";
+	mes "^FF0000" + .@valor_badge_qty + "^000000 " + getitemname(.@valor_badge_id) + "(" + .@valor_badge_id + ")";
+	mes "^FF0000" + .@pod_qty + "^000000 " + getitemname(.@pod_id)  + "(" + .@pod_id + ")";
+	next;
+	switch(select("Cancel.","Enchant Siege Armor")) {
+		case 1:
+			mes .@npc$,
+				"Please drop by anytime.";
+			close;
+		break;
+		
+		case 2:// Enchant Siege Armor
+			set .@part,EQI_ARMOR; // Save equip location
+			mes .@npc$;
+			.@itemEqId = getequipid(.@part);
+			if(!.@itemEqId) {
+				mes "I don't see anything, please make sure you've equipped the item. Are you blind?";
+				close;
+			}
+			switch(.@itemEqId) {
+				case 15046: // Siege Plate
+				case 15047: // Siege Suit
+				case 15048: // Siege Robe
+					goto Enchant_Siege_Armor;
+				break;
+				
+				default:
+					mes "I don't see anything, please make sure you've equipped the item. Are you blind?";
+					close;
+			}
+			
+	} // switch
+
+Enchant_Siege_Armor:
+	set .@ropt1,getequiprandomoption(.@part,0,ROA_ID);
+	set .@ropt2,getequiprandomoption(.@part,1,ROA_ID);
+	.@str$ = "";
+	if(.@ropt1 || .@ropt2) {
+		.@str$ += " is already enchanted.";
+	}
+	next;
+	if(select("No.","Continue.") == 1){
+		mes .@npc$,
+			"Please drop by anytime.";
+		close;
+	}
+
+	if((countitem(.@valor_badge_id) < .@valor_badge_qty || countitem(.@pod_id) < .@pod_qty)) {
+		mes .@npc$,
+			"Scammer amputa";
+		close;
+	}
+
+	.@opt1rand = rand(getarraysize(.RandOpt1_Armor)-1);
+	.@opt2rand = rand(getarraysize(.RandOpt1_Armor)-1);
+	.@Opt1 = .RandOpt1_Armor[.@opt1rand];
+	.@Opt2 = .RandOpt2_Armor[.@opt2rand];
+	.@Opt1_V = rand(.RandOpt1_Armor_minV[.@opt1rand],.RandOpt1_Armor_maxV[.@opt1rand]);
+	.@Opt2_V = rand(.RandOpt2_Armor_minV[.@opt2rand],.RandOpt2_Armor_maxV[.@opt2rand]);
+	setrandomoption(.@part,0,.@Opt1,.@Opt1_V,0);
+	setrandomoption(.@part,1,.@Opt2,.@Opt2_V,0);
+	specialeffect2 1031;
+	mes .@npc$,
+		"There you are, come back any time and try your luck again!";
+	delitem .@valor_badge_id, .@valor_badge_qty;
+	delitem .@pod_id, .@pod_qty;
+	close;
+	
+
+OnInit:
+	setarray .RandOpt1_Armor[0],RDMOPT_VAR_STRAMOUNT, 			// str 1 ~ 3
+								RDMOPT_VAR_AGIAMOUNT,			// agi 1 ~ 3
+								RDMOPT_VAR_VITAMOUNT,			// vit 1 ~ 3
+								RDMOPT_VAR_INTAMOUNT,			// int 1 ~ 3
+								RDMOPT_VAR_DEXAMOUNT,			// dex 1 ~ 3
+								RDMOPT_VAR_LUKAMOUNT,			// luk 1 ~ 3
+								RDMOPT_VAR_ALLSTAT,				// All Stat 1~3
+								RDMOPT_VAR_MAXHPPERCENT,		// MAX HP 1% ~ 5%
+								RDMOPT_VAR_MAXSPPERCENT;		// MAX SP 1% ~ 5%
+								
+						
+	setarray .RandOpt1_Armor_minV[0],1,1,1,1,1,1,1,1;
+	setarray .RandOpt1_Armor_maxV[0],3,3,3,3,3,3,3,5;
+
+
+
+
+	//setarray .RandOpt2_Armor[0],RDMOPT_VAR_ITEMDEFPOWER,		// Def 20 ~ 60
+								//RDMOPT_VAR_MDEFPOWER,			// Magic Def 5 ~ 10
+								//RDMOPT_BODY_INDESTRUCTIBLE,		// Unbreakable Armor
+								//RDMOPT_BODY_ATTR_WATER,			// Water Property
+								//RDMOPT_BODY_ATTR_FIRE,			// Fire Property
+								//RDMOPT_BODY_ATTR_GROUND,		// Earth Property
+							//	RDMOPT_BODY_ATTR_WIND;			// Wind Property
+								
+	//setarray .RandOpt2_Armor_minV[0],50,50,15,15,20,5,5,5,0,0,0,0,0;
+	//setarray .RandOpt2_Armor_maxV[0],100,100,30,30,60,10,10,10,0,0,0,0,0;
+							
+
+	end;
+}
