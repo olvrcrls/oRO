@@ -3,7 +3,9 @@
 	.@char_id = getcharid(0);
 	.@account_id = getcharid(3);
 	.@current_date$ = gettimestr("%Y-%m-%d", 21); // 2020-01-01
-
+	.@wins = 0;
+	.@claimed = 0;
+	
 	// Check if the player using the NPC is logged in.
 	if (isloggedin(.@account_id,.@char_id)) {
 		.@login_ip$ = getcharip(.@char_id); // get the login IP for IP checking.
@@ -12,21 +14,16 @@
 			.@check_sql$ = "SELECT `win`, `claimed` FROM `bg_daily_wins` WHERE `last_ip` = '" + .@login_ip$ + "' AND DATE(`created_at`) = '" + .@current_date$ + "';";
 		else
 			.@check_sql$ = "SELECT `win`, `claimed` FROM `bg_daily_wins` WHERE `account_id` = " + .@account_id + " AND DATE(`created_at`) = '" + .@current_date$ + "' AND `last_ip` = '" + .@login_ip$ +"';";
-		
+			
 		if (query_sql(.@check_sql$, .@wins, .@claimed) < 1) {
 			// No record for today then we insert a new record
 			query_sql("INSERT INTO `bg_daily_wins`(`account_id`, `last_ip`, `created_at`) VALUES (" + .@account_id + ",'" + .@login_ip$ + "','" + .@current_date$ + "')");
-			.@wins = 0;
-			.@claimed = 0;
 		} else {
 			// Fetch and evaluate if the user is qualified to get the dailies. We will perform a double check on IP restriction here.
 			if (! .ip_restriction)
 				query_sql("SELECT `win`, `claimed` FROM `bg_daily_wins` WHERE `account_id` = " + .@account_id + " AND DATE(`created_at`) = '" + .@current_date$ + "';", .@wins, .@claimed);
 			else {
-				query_sql("SELECT `win`, `claimed`, count(*) as `claim_count` FROM `bg_daily_wins` WHERE `last_ip` = '" + .@login_ip$ + "' AND DATE(`created_at`) = '" + .@current_date$ + "';", .@wins, .@claimed, .@claim_count);
-				if (.@claim_count > 1) {
-					.@claimed = 1; // Set it already claimed.
-				}
+				query_sql("SELECT SUM(`win`) as `win`, `claimed` FROM `bg_daily_wins` WHERE `last_ip` = '" + .@login_ip$ + "' AND DATE(`created_at`) = '" + .@current_date$ + "' ORDER BY `updated_at`;", .@wins, .@claimed);
 			}
 		}
 	} else {
@@ -35,7 +32,7 @@
 		mes "Are you a magician?";
 		close;
 	}// if logged in
-	dispbottom "Your Total BG Wins for today (Server date: " + .@current_date$ + "): " + .@wins + " win(s).";
+	dispbottom "Your Total BG Wins for today (Server Date: " + .@current_date$ + "): " + .@wins + " win(s).";
 
 	// Process start
 	mes .n$;
@@ -45,14 +42,22 @@
 	mes "I give Daily Rewards for ^1ABC9C" + .bg_dailies_wins + "^000000 BG wins!";
 	mes "------";
 	mes "What's your agenda with me now?";
-	.@select = select("Check & claim my BG daily win rewards:Cancel"); // TODO: Add participation rewards
+	.@select = select("Check my dailies progress:Claim my BG daily win rewards:Cancel");
 	next;
 
 	switch(.@select) {
 		case 1:
 			mes .n$;
+			mes "Let's see..";
+			next;
+			mes .n$;
+			mes "Your total wins for today is ^E74C3C" + .@wins + "^000000.";
+			close;
+			break;
+		case 2:
+			mes .n$;
 			mes "Hmm, let's see..";
-			mes "Your total wins for today is ^E74C3C" + .@wins + "^000000 wins.";
+			// mes "Your total wins for today is ^E74C3C" + .@wins + "^000000 wins.";
 			next;
 			if (.@wins >= .bg_dailies_wins) {
 				mes .n$;
@@ -80,7 +85,7 @@
 			}
 			close;
 			break;
-		case 2:
+		case 3:
 			mes .n$;
 			mes "Hmm.. Alright";
 			close;
@@ -94,7 +99,19 @@ OnInit:
 	set .bg_dailies_wins, 10; // Needed win to claim dailies
 	set .ip_restriction,1; // IP Restriction - Set 1 to enable / set 0 to disable
 	setarray .bg_dailies_rewards[0],7179,7829,6187,14652; // Rewards in item ID
-	setarray .bg_dailies_rewards_qty[0],10,1000,2500,1; // Quantity of rewards
+	setarray .bg_dailies_rewards_qty[0],10,1000,2500,10; // Quantity of rewards
+
+
+	setarray .bg_dailies_rewards_tier1[0],7773;
+	setarray .bg_dailies_rewards_tier1[0],10;
+
+	setarray .bg_dailies_rewards_tier2[0],7773;
+	setarray .bg_dailies_rewards_tier2[0],25;
+
+	setarray .bg_dailies_rewards_tier3[0],7773;
+	setarray .bg_dailies_rewards_tier3[0],50;
+
+
 	waitingroom "BG Dailies", 0;
 }
 
