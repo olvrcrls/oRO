@@ -77,6 +77,10 @@
 	sc_end	SC_DECREASEAGI;
 	sc_end  SC_MARSHOFABYSS;
 	sc_end	SC_MINDBREAKER;
+	sc_end	SC_AETERNA;
+	sc_end	SC_CRYSTALIZE;
+	sc_end	SC_THORNSTRAP;
+	sc_end	SC_SV_ROOTTWIST;
 
 //	give players buff ... don't give too much otherwise player wanna spam
 	.@time = 300000; // the buff last 5 minutes
