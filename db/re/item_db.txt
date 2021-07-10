@@ -5735,7 +5735,7 @@
 7770,Sweet_Rice,Sweet Rice,3,0,,10,,,,,,,,,,,,,{},{},{}
 7771,Lotus_Leaf,Lotus Leaf,3,0,,10,,,,,,,,,,,,,{},{},{}
 7772,String,String,3,0,,10,,,,,,,,,,,,,{},{},{}
-7773,War_Badge,Wat Badge,3,0,,0,,,,,,,,,,,,,{},{},{}
+7773,War_Badge,War Badge,3,0,,0,,,,,,,,,,,,,{},{},{}
 7774,Chung_E_Ticket,Green Maiden Ticket,3,0,,10,,,,,,,,,,,,,{},{},{}
 7775,Spring_Rabbit_Ticket,Spring Rabbit Ticket,3,0,,10,,,,,,,,,,,,,{},{},{}
 7776,Max_Weight_Up_Scroll,Gym Pass,3,0,,10,,,,,,,,,,,,,{},{},{}
