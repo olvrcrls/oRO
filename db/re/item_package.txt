@@ -5,11 +5,13 @@
 
 //Tier 1 Rewards for BG
 //-- Guaranteed Rewards
-IG_BG_TIER_1,14652,0,5,0 // Guaranteed 5pcs. Ares Gift
+IG_BG_TIER_1,14647,0,3,0 // 3 pcs Nutriboost Plus
+IG_BG_TIER_1,14648,0,5,0 // 5pcs PP Up
+IG_BG_TIER_1,14652,0,10,0 // Guaranteed 10pcs. Ares Gift
 IG_BG_TIER_1,16261,0,2,0 // 2 boxes HD Carnium 10pcs
-IG_BG_TIER_1,16260,0,2,0 // 2 boxes HD Carnium 10pcs
+IG_BG_TIER_1,16260,0,2,0 // 2 boxes HD Bradium 10pcs
 
-
+//-- War Badges
 IG_BG_TIER_1,7773,50,5 // 5pcs War Badge
 IG_BG_TIER_1,7773,30,10 // 10pcs War Badge
 IG_BG_TIER_1,7773,20,15 // 15pcs War Badge
@@ -21,25 +23,65 @@ IG_BG_TIER_1,7179,15,25 // 25 POD
 IG_BG_TIER_1,7179,10,25 // 50 POD
 
 //-- Costume
-IG_BG_TIER_1,20468,1,1 // Costume Black Eremes Scarf
-IG_BG_TIER_1,31057,1,1 // Costume Black Eremes Scarf
+IG_BG_TIER_1,20468,1,1 // Costume You in ONE
 IG_BG_TIER_1,19590,1,1 // Costume Maiden's Twin Ribbon
 IG_BG_TIER_1,20404,1,1 // Costume Blessing of Angel
 
 
+//-- Cyclop's Eye
+IG_BG_TIER_1,5135,1,1 // Cyclop's Eye
+
 
 //IG_BG_TIER_2
+//-- Guaranteed Rewards
+IG_BG_TIER_2,14647,0,5,0 // 5 pcs Nutriboost Plus
+IG_BG_TIER_2,14648,0,10,0 // 10pcs PP Up
+IG_BG_TIER_2,14652,0,20,0 // Guaranteed 20pcs. Ares Gift
+IG_BG_TIER_2,16261,0,5,0 // 5 boxes HD Carnium 10pcs
+IG_BG_TIER_2,16260,0,5,0 // 5 boxes HD Bradium 10pcs
+IG_BG_TIER_2,7773,0,10,0 // 10 pcs War Badge
+
+//-- War Badges
+IG_BG_TIER_2,7773,40,20 // 20 pcs War Badge
+IG_BG_TIER_2,7773,35,30 // 30 pcs War Badge
+IG_BG_TIER_2,7773,30,40 // 40 pcs War Badge
+IG_BG_TIER_2,7773,25,50 // 50 pcs War Badge
 
 //-- Costume
-//IG_BG_TIER_2,20499,1,1 // Costume Cat Ears Hat
-//IG_BG_TIER_2,19929,1,1 // Costume Classic Black Ribbon
-//IG_BG_TIER_2,31479,1,1 // Costume Countless Stars	
+IG_BG_TIER_2,20499,1,1 // Costume Cat Ears Hat
+IG_BG_TIER_2,19929,1,1 // Costume Classic Black Ribbon
+IG_BG_TIER_2,31479,1,1 // Costume Countless Stars
+
+//-- Cyclop's Eye
+IG_BG_TIER_2,5135,5,1 // Cyclop's Eye
+
 
 //IG_BG_TIER_3
+//-- Guaranteed Rewards
+IG_BG_TIER_1,14647,0,10,0 // 10 pcs Nutriboost Plus
+IG_BG_TIER_3,14648,0,20,0 // 20pcs PP Up
+IG_BG_TIER_3,14652,0,30,0 // Guaranteed 30pcs. Ares Gift
+IG_BG_TIER_3,16261,0,8,0 // 8 boxes HD Carnium 10pcs
+IG_BG_TIER_3,16260,0,8,0 // 8 boxes HD Bradium 10pcs
+IG_BG_TIER_3,7773,0,20,0 // 20 pcs War Badge
+
+//-- War Badges
+IG_BG_TIER_3,7773,40,30 // 30 pcs War Badge
+IG_BG_TIER_3,7773,35,40 // 40 pcs War Badge
+IG_BG_TIER_3,7773,30,50 // 30 pcs War Badge
+IG_BG_TIER_3,7773,5,100 // 100 pcs War Badge
+
 //-- Costume
-//IG_BG_TIER_3,31509,1,1 // Costume Fawn Ears
-//IG_BG_TIER_3,31395,1,1 // Costume Book of Magic
-//IG_BG_TIER_3,31056,1,1 // Costume Exploding Crimson Wave
+IG_BG_TIER_1,31057,1,1 // Costume Black Eremes Scarf
+IG_BG_TIER_3,31509,1,1 // Costume Fawn Ears
+IG_BG_TIER_3,31395,1,1 // Costume Book of Magic
+IG_BG_TIER_3,31056,1,1 // Costume Exploding Crimson Wave
+
+//-- Cyclop's Eye
+IG_BG_TIER_3,5135,10,1 // Cyclop's Eye
+
+
+
 
 //WOE REWARD BOX DROPS
 IG_WOE_REWARD_BOX,12675,0,3,0 // Weapon Box
@@ -49,6 +91,7 @@ IG_WOE_REWARD_BOX,7179,0,100,0 // POD
 IG_WOE_REWARD_BOX,7773,0,100,0 // 50pcs War Badge
 IG_WOE_REWARD_BOX,6226,0,10,0 // Enriched Carnium
 IG_WOE_REWARD_BOX,6225,0,10,0 // Enriched Bradium
+IG_WOE_REWARD_BOX,7773,0,100,0 // 100 pcs War Badge
 
 // BG LOOT BOX DROPS
 //-- The Box itself
