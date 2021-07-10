@@ -60,7 +60,6 @@
 			// mes "Your total wins for today is ^E74C3C" + .@wins + "^000000 wins.";
 			next;
 			if (.@wins >= .bg_dailies_wins) {
-				//TODO: Evaluate the total wins and see if it passes the evaluation to receive tier reward system.
 				mes .n$;
 				if (.@claimed) {
 					mes "You have claimed your daily rewards for today.";
