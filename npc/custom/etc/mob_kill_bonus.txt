@@ -84,6 +84,9 @@
 								set .@check_ip_array$[.@i],.@current_member_ip$;
 								getitem .mvp_loot_box_id,.@loot_qty,.@current_member_account_id;	
 							} else {
+								.@loot_qty -= 1;
+								if (.@loot_qty < 1)
+									.@loot_qty = 1;
 								dispbottom "You are not on the same map of the MVP. Leeching is not allowed.",0xFF2000,.@current_member_char_id;
 							}
 						} else {
