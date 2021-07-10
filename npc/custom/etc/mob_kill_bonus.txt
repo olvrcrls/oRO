@@ -65,16 +65,20 @@
 					.@current_member_ip$ = getcharip(.@current_member_char_id);
 					if (.ip_restriction && .@current_member_char_id) {
 						if (inarray(.@check_ip_array$[0], .@current_member_ip$) == -1) {
-							if (strcharinfo(3,.@current_member_char_id) == .@mvp_map$) {
+							if (strcharinfo(3,.@current_member_char_id) == .@mvp_map$ && isloggedin(.@current_member_char_id)) {
 								dispbottom "You have killed a MVP monster. Here's spoils of war reward for your effort.",0x7289DA,.@current_member_char_id;
 								set .@check_ip_array$[.@i],.@current_member_ip$;
 								getitem .mvp_loot_box_id,.@loot_qty,.@current_member_account_id;	
 							} else {
 								dispbottom "You are not on the same map of the MVP. Leeching is not allowed.",0xFF2000,.@current_member_char_id;
 							}
+						} else {
+							dispbottom "The system detected that you're running multiple accounts or with offline members to get multiple rewards. This method is forbidden.",0xFF2000,.@current_member_char_id;
+							// We will reduce the loot quantity since the member is from a multiple account on the same IP or the member is offline
+							.@loot_qty -= 1;
+							if (.@loot_qty < 1)
+								.@loot_qty = 1;
 						}
-						else 
-							dispbottom "The system detected that you're running multiple accounts to get multiple rewards. This method is forbidden.",0xFF2000,.@current_member_char_id;
 					} else {
 						if (strcharinfo(3,.@current_member_char_id) == .@mvp_map$) {
 							dispbottom "You have killed a MVP monster. Here's spoils of war reward for your effort.",0x7289DA,.@current_member_char_id;
