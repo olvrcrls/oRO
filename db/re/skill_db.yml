@@ -23176,7 +23176,7 @@ Body:
     Hit: Single
     HitCount: 1
     SplashArea: 2
-    AfterCastActDelay: 1000
+    Cooldown: 1000
     FixedCastTime: -1
     Requires:
       SpCost:
