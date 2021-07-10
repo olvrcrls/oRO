@@ -28,8 +28,9 @@ IG_BG_TIER_1,19590,1,1 // Costume Maiden's Twin Ribbon
 IG_BG_TIER_1,20404,1,1 // Costume Blessing of Angel
 
 
-//-- Cyclop's Eye
+//-- Equipment
 IG_BG_TIER_1,5135,1,1 // Cyclop's Eye
+IG_BG_TIER_1,5800,10,1 // Blush of Groom
 
 
 //IG_BG_TIER_2
@@ -52,8 +53,9 @@ IG_BG_TIER_2,20499,1,1 // Costume Cat Ears Hat
 IG_BG_TIER_2,19929,1,1 // Costume Classic Black Ribbon
 IG_BG_TIER_2,31479,1,1 // Costume Countless Stars
 
-//-- Cyclop's Eye
+//-- Equipment
 IG_BG_TIER_2,5135,5,1 // Cyclop's Eye
+IG_BG_TIER_2,5800,20,1 // Blush of Groom
 
 
 //IG_BG_TIER_3
@@ -77,8 +79,9 @@ IG_BG_TIER_3,31509,1,1 // Costume Fawn Ears
 IG_BG_TIER_3,31395,1,1 // Costume Book of Magic
 IG_BG_TIER_3,31056,1,1 // Costume Exploding Crimson Wave
 
-//-- Cyclop's Eye
+//-- Equipment
 IG_BG_TIER_3,5135,10,1 // Cyclop's Eye
+IG_BG_TIER_3,5800,30,1 // Blush of Groom
 
 
 
