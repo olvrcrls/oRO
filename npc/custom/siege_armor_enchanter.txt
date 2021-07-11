@@ -8,43 +8,49 @@
 // - I have no idea what I'm doing
 //============================================================
 
-bat_room,158,142,4	script	Baron Geisler	4_F_03,{  //Setup the coordinates & NPC Sprite
+-	script	SiegeArmorEnchanter	-1,{  //Setup the coordinates & NPC Sprite
 	//cutin "baron_geisler", 2;
 	disable_command; disable_items;
-	
-	//Item IDs
-	.@valor_badge_id = 7829;
-	.@pod_id = 7179;
-	
-	//Cost
-	.@valor_badge_qty = 1000;
-	.@pod_qty = 25;
 	
 	
 	//Dialogues
 	.@npc$ = "[ ^0000FFBaron Geisler^000000 ]";
 	mes .@npc$,
-		"Hello, This is Baron Geisler and I Can enchant your Siege Armor for you. Ano? Putangina niyo! TARA NA!!";
+	"Hello, This is Baron Geisler and I can enhance your ^FF2000<+" + .refine_restriction + ">^000000 Siege Gears for you.";
 	mes "Bring me these items:";
-	mes "^FF0000" + .@valor_badge_qty + "^000000 " + getitemname(.@valor_badge_id) + "(" + .@valor_badge_id + ")";
-	mes "^FF0000" + .@pod_qty + "^000000 " + getitemname(.@pod_id)  + "(" + .@pod_id + ")";
-	next;
-	switch(select("Cancel.","Enchant Siege Armor")) {
+	mes "^FF0000" + .valor_badge_qty + "^000000 " + getitemname(.valor_badge_id) + "(" + .valor_badge_id + ")";
+	mes "^FF0000" + .pod_qty + "^000000 " + getitemname(.pod_id)  + "(" + .pod_id + ")";
+	mes	"Ano? Putangina niyo! TARA NA!!";
+	//switch(select("Cancel.","Possible Enchancements","Enchant Siege Armor","Enchant Siege Garment","Enchant Siege Footgear")) {
+	switch(select("Cancel.","Possible Enchancements","Enchant Siege Armor")) {
 		case 1:
 			mes .@npc$,
 				"Please drop by anytime.";
 			close;
-		break;
+			break;
+
+		case 2: // Enchant_List
+			goto Enchant_List;
+			break;
 		
-		case 2:// Enchant Siege Armor
-			set .@part,EQI_ARMOR; // Save equip location
+		case 3:// Enchant Siege Armor
+			set .@equip,EQI_ARMOR; // Save equip location
 			mes .@npc$;
-			.@itemEqId = getequipid(.@part);
-			if(!.@itemEqId) {
+			.@item_id = getequipid(.@equip);
+			.@refine_level = getequiprefinerycnt(.@equip);
+
+			if(! .@item_id) {
 				mes "I don't see anything, please make sure you've equipped the item. Are you blind?";
 				close;
 			}
-			switch(.@itemEqId) {
+
+			if (.@refine_level < .refine_restriction) {
+				mes "I only refine the most refined siege armors!";
+				mes "Come back when your armor is refined at <^3498DB+12^000000>";
+				close;
+			}
+
+			switch(.@item_id) {
 				case 15046: // Siege Plate
 				case 15047: // Siege Suit
 				case 15048: // Siege Robe
@@ -55,61 +61,153 @@ bat_room,158,142,4	script	Baron Geisler	4_F_03,{  //Setup the coordinates & NPC 
 					mes "I don't see anything, please make sure you've equipped the item. Are you blind?";
 					close;
 			}
-			
+			break;
+
+		case 4: // Enchant Siege Garment
+			set .@equip,EQI_GARMENT;
+			mes .@npc$;
+			.@item_id = getequipid(.@equip);
+
+			if (! .@item_id) {
+				mes "You do not have a ^2ECC71Siege Garment^000000 on you.";
+				close;
+			}
+
+			switch(.@item_id) {
+				case 2586: // Siege Manteau
+				case 2587: // Siege Muffler
+					goto Enchant_Siege_Garment;
+				break;
+
+				default:
+					mes "You do not have a ^2ECC71Siege Garment^000000 on you.";
+					close;
+					break;
+			}
+			break;
+		case 5: // Enchant Siege Foot Gear
+			set .@equip,EQI_SHOES;
+			mes .@npc$;
+			.@item_id = getequipid(.@equip);
+
+			if (! .@item_id) {
+				mes "You do not have a ^2ECC71Siege Footgear^000000 on you.";
+				close;
+			}
+
+			switch(.@item_id) {
+				case 2483: // Siege Siege Greaves
+				case 2484: // Siege Boots
+				case 2485: // Siege Shoes
+					goto Enchant_Siege_Footgear;
+				break;
+
+				default:
+					mes "You do not have a ^2ECC71Siege Footgear^000000 on you.";
+					close;
+					break;
+			}
+			break;
 	} // switch
 
-Enchant_Siege_Armor:
-	set .@ropt1,getequiprandomoption(.@part,0,ROA_ID);
-	set .@ropt2,getequiprandomoption(.@part,1,ROA_ID);
-	.@str$ = "";
-	if(.@ropt1 || .@ropt2) {
-		.@str$ += " is already enchanted.";
-	}
+
+Enchant_List:
 	next;
-	if(select("No.","Continue.") == 1){
+	mes .@npc$;
+	mes "Here are the following possible enchancements:";
+	mes "~ +1-5 STR";
+	mes "~ +1-5 AGI";
+	mes "~ +1-5 VIT";
+	mes "~ +1-5 INT";
+	mes "~ +1-5 DEX";
+	mes "~ +1-5 LUK";
+	mes "~ +1-5% Max HP";
+	mes "~ +1-5% Max SP";
+	mes "~ +1-3 All Stats";
+	mes "~ Indestructible in battle";
+	close;
+
+Enchant_Siege_Footgear:
+	mes "Enchanting Siege Footgear.";
+	close;
+
+Enchant_Siege_Garment:
+	mes "Enchanting Siege Garment";
+	close;
+
+Enchant_Siege_Armor:
+	next;
+	mes .@npc$;
+	mes "I will enchant your armor now for the following cost:";
+	mes "-----------------------------";
+	mes .valor_badge_qty + " pcs. of ^FF2000" + getitemname(.valor_badge_id) + "^000000";
+	mes .pod_qty + " pcs of ^FF2000" + getitemname(.pod_id) + "^000000";
+	next;
+	if(select("Cancel.","Continue.") == 1){
 		mes .@npc$,
 			"Please drop by anytime.";
 		close;
 	}
 
-	if((countitem(.@valor_badge_id) < .@valor_badge_qty || countitem(.@pod_id) < .@pod_qty)) {
-		mes .@npc$,
-			"Scammer amputa";
+	if((countitem(.valor_badge_id) < .valor_badge_qty || countitem(.pod_id) < .pod_qty)) {
+		mes .@npc$;
+		mes "You don't have the proper requirements for this deal.";
+		mes "---------------";
+		mes "Scammer amputa";
 		close;
 	}
 
 	.@opt1rand = rand(getarraysize(.RandOpt1_Armor)-1);
 	.@opt2rand = rand(getarraysize(.RandOpt1_Armor)-1);
+
+	dispbottom "Option 1: " + .@opt1rand + " | Option 2: " + .@opt2rand;
 	.@Opt1 = .RandOpt1_Armor[.@opt1rand];
-	.@Opt2 = .RandOpt2_Armor[.@opt2rand];
+	.@Opt2 = .RandOpt1_Armor[.@opt2rand];
+
+	if (.@Opt1 == RDMOPT_BODY_INDESTRUCTIBLE && .@Opt2 == RDMOPT_BODY_INDESTRUCTIBLE) {
+		.@Opt1 = .RandOpt1_Armor[rand(getarraysize(.RandOpt1_Armor)-1)];
+		.@Opt2 = .RandOpt1_Armor[rand(getarraysize(.RandOpt1_Armor)-1)];
+	}
+
 	.@Opt1_V = rand(.RandOpt1_Armor_minV[.@opt1rand],.RandOpt1_Armor_maxV[.@opt1rand]);
-	.@Opt2_V = rand(.RandOpt2_Armor_minV[.@opt2rand],.RandOpt2_Armor_maxV[.@opt2rand]);
-	setrandomoption(.@part,0,.@Opt1,.@Opt1_V,0);
-	setrandomoption(.@part,1,.@Opt2,.@Opt2_V,0);
+	.@Opt2_V = rand(.RandOpt1_Armor_minV[.@opt2rand],.RandOpt1_Armor_maxV[.@opt2rand]);
+	setrandomoption(.@equip,0,.@Opt1,.@Opt1_V,0);
+	setrandomoption(.@equip,1,.@Opt2,.@Opt2_V,0);
 	specialeffect2 1031;
 	mes .@npc$,
 		"There you are, come back any time and try your luck again!";
-	delitem .@valor_badge_id, .@valor_badge_qty;
-	delitem .@pod_id, .@pod_qty;
+	delitem .valor_badge_id, .valor_badge_qty;
+	delitem .pod_id, .pod_qty;
 	close;
 	
 
 OnInit:
-	setarray .RandOpt1_Armor[0],RDMOPT_VAR_STRAMOUNT, 			// str 1 ~ 3
-								RDMOPT_VAR_AGIAMOUNT,			// agi 1 ~ 3
-								RDMOPT_VAR_VITAMOUNT,			// vit 1 ~ 3
-								RDMOPT_VAR_INTAMOUNT,			// int 1 ~ 3
-								RDMOPT_VAR_DEXAMOUNT,			// dex 1 ~ 3
-								RDMOPT_VAR_LUKAMOUNT,			// luk 1 ~ 3
+	//Item IDs
+	.valor_badge_id = 7829;
+	.pod_id = 7179;
+
+	//Cost
+	.valor_badge_qty = 1000;
+	.pod_qty = 1;
+
+	//Restrictions
+	.refine_restriction = 12;
+
+	waitingroom "Siege Enchanter",0;
+
+	setarray .RandOpt1_Armor[0],RDMOPT_VAR_STRAMOUNT, 			// str 1 ~ 5
+								RDMOPT_VAR_AGIAMOUNT,			// agi 1 ~ 5
+								RDMOPT_VAR_VITAMOUNT,			// vit 1 ~ 5
+								RDMOPT_VAR_INTAMOUNT,			// int 1 ~ 5
+								RDMOPT_VAR_DEXAMOUNT,			// dex 1 ~ 5
+								RDMOPT_VAR_LUKAMOUNT,			// luk 1 ~ 5
 								RDMOPT_VAR_ALLSTAT,				// All Stat 1~3
 								RDMOPT_VAR_MAXHPPERCENT,		// MAX HP 1% ~ 5%
-								RDMOPT_VAR_MAXSPPERCENT;		// MAX SP 1% ~ 5%
-								
+								RDMOPT_VAR_MAXSPPERCENT,		// MAX SP 1% ~ 5%
+								RDMOPT_BODY_INDESTRUCTIBLE;		// Unbreakable Armor
 						
-	setarray .RandOpt1_Armor_minV[0],1,1,1,1,1,1,1,1;
-	setarray .RandOpt1_Armor_maxV[0],3,3,3,3,3,3,3,5;
-
-
+	setarray .RandOpt1_Armor_minV[0],1,1,1,1,1,1,1,1,1,0;
+	setarray .RandOpt1_Armor_maxV[0],5,5,5,5,5,5,3,5,5,0;
 
 
 	//setarray .RandOpt2_Armor[0],RDMOPT_VAR_ITEMDEFPOWER,		// Def 20 ~ 60
@@ -126,3 +224,5 @@ OnInit:
 
 	end;
 }
+
+bat_room,158,142,4	duplicate(SiegeArmorEnchanter)	Baron Geisler#bat_room	459
