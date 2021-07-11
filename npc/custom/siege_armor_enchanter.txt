@@ -115,15 +115,15 @@ Enchant_List:
 	next;
 	mes .@npc$;
 	mes "Here are the following possible enchancements:";
-	mes "~ +1-5 STR";
-	mes "~ +1-5 AGI";
-	mes "~ +1-5 VIT";
-	mes "~ +1-5 INT";
-	mes "~ +1-5 DEX";
-	mes "~ +1-5 LUK";
+	mes "~ +1-3 STR";
+	mes "~ +1-3 AGI";
+	mes "~ +1-3 VIT";
+	mes "~ +1-3 INT";
+	mes "~ +1-3 DEX";
+	mes "~ +1-3 LUK";
 	mes "~ +1-5% Max HP";
 	mes "~ +1-5% Max SP";
-	mes "~ +1-3 All Stats";
+	mes "~ +1-2 All Stats";
 	mes "~ Indestructible in battle";
 	close;
 
@@ -194,19 +194,19 @@ OnInit:
 
 	waitingroom "Siege Enchanter",0;
 
-	setarray .RandOpt1_Armor[0],RDMOPT_VAR_STRAMOUNT, 			// str 1 ~ 5
-								RDMOPT_VAR_AGIAMOUNT,			// agi 1 ~ 5
-								RDMOPT_VAR_VITAMOUNT,			// vit 1 ~ 5
-								RDMOPT_VAR_INTAMOUNT,			// int 1 ~ 5
-								RDMOPT_VAR_DEXAMOUNT,			// dex 1 ~ 5
-								RDMOPT_VAR_LUKAMOUNT,			// luk 1 ~ 5
-								RDMOPT_VAR_ALLSTAT,				// All Stat 1~3
+	setarray .RandOpt1_Armor[0],RDMOPT_VAR_STRAMOUNT, 			// str 1 ~ 3
+								RDMOPT_VAR_AGIAMOUNT,			// agi 1 ~ 3
+								RDMOPT_VAR_VITAMOUNT,			// vit 1 ~ 3
+								RDMOPT_VAR_INTAMOUNT,			// int 1 ~ 3
+								RDMOPT_VAR_DEXAMOUNT,			// dex 1 ~ 3
+								RDMOPT_VAR_LUKAMOUNT,			// luk 1 ~ 3
+								RDMOPT_VAR_ALLSTAT,				// All Stat 1~2
 								RDMOPT_VAR_MAXHPPERCENT,		// MAX HP 1% ~ 5%
 								RDMOPT_VAR_MAXSPPERCENT,		// MAX SP 1% ~ 5%
 								RDMOPT_BODY_INDESTRUCTIBLE;		// Unbreakable Armor
 						
 	setarray .RandOpt1_Armor_minV[0],1,1,1,1,1,1,1,1,1,0;
-	setarray .RandOpt1_Armor_maxV[0],5,5,5,5,5,5,3,5,5,0;
+	setarray .RandOpt1_Armor_maxV[0],3,3,3,3,3,3,2,5,5,0;
 
 
 	//setarray .RandOpt2_Armor[0],RDMOPT_VAR_ITEMDEFPOWER,		// Def 20 ~ 60
