@@ -160,7 +160,6 @@ Enchant_Siege_Armor:
 	.@opt1rand = rand(getarraysize(.RandOpt1_Armor)-1);
 	.@opt2rand = rand(getarraysize(.RandOpt1_Armor)-1);
 
-	dispbottom "Option 1: " + .@opt1rand + " | Option 2: " + .@opt2rand;
 	.@Opt1 = .RandOpt1_Armor[.@opt1rand];
 	.@Opt2 = .RandOpt1_Armor[.@opt2rand];
 
