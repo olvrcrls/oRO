@@ -4974,6 +4974,9 @@
 	export_constant(IG_BG_LOOT_BOX);
 	export_constant(IG_MVP_LOOT_BOX);
 	export_constant(IG_WOE_REWARD_BOX);
+	export_constant(IG_BG_TIER_1);
+	export_constant(IG_BG_TIER_2);
+	export_constant(IG_BG_TIER_3);
 
 	/* unit stop walking */
 	export_constant(USW_NONE);
