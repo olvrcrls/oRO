@@ -922,6 +922,26 @@ inline bool mapdata_bg_items(struct map_data *mapdata) {
 	return false;
 }
 
+inline bool mapdata_gvg_items(struct map_data *mapdata) {
+	if (mapdata == nullptr)
+		return false;
+
+	if (mapdata->flag[MF_GVG] || ((agit_flag || agit2_flag || agit3_flag) && mapdata->flag[MF_GVG_CASTLE]) || mapdata->flag[MF_ALLOW_WOE_ITEMS])
+		return true;
+
+	return false;
+}
+
+inline bool mapdata_bg_items(struct map_data *mapdata) {
+	if (mapdata == nullptr)
+		return false;
+
+	if (mapdata->flag[MF_BATTLEGROUND] || mapdata->flag[MF_ALLOW_BG_ITEMS])
+		return true;
+
+	return false;
+}
+
 /// Backwards compatibility
 inline bool map_flag_vs(int16 m) {
 	if (m < 0)

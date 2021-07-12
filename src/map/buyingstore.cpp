@@ -458,6 +458,13 @@ void buyingstore_trade(struct map_session_data* sd, uint32 account_id, unsigned 
 			return;
 		}
 
+		if( sd->inventory.u.items_inventory[index].card[0] == CARD0_CREATE && (char_id = MakeDWord(sd->inventory.u.items_inventory[index].card[2],sd->inventory.u.items_inventory[index].card[3])) > 0 && (char_id == battle_config.bg_reserved_char_id || char_id == battle_config.woe_reserved_char_id) )
+		{ // Items where creator's ID is important
+			clif_buyingstore_trade_failed_seller(sd, BUYINGSTORE_TRADE_SELLER_FAILED, nameid);
+			clif_displaymessage(sd->fd,"Cannot Trade event reserved Items (Battleground, WoE).");
+			return;
+		}
+
 		ARR_FIND( 0, pl_sd->buyingstore.slots, listidx, pl_sd->buyingstore.items[listidx].nameid == nameid );
 		if( listidx == pl_sd->buyingstore.slots || pl_sd->buyingstore.items[listidx].amount == 0 )
 		{// there is no such item or the buyer has already bought all of them
@@ -507,7 +514,7 @@ void buyingstore_trade(struct map_session_data* sd, uint32 account_id, unsigned 
 	for( i = 0; i < count; i++ )
 	{// itemlist: <index>.W <name id>.W <amount>.W
 		unsigned short nameid, amount;
-		int index;
+		int index, char_id;
 
 		index  = RBUFW(itemlist,i*6+0)-2;
 		nameid = RBUFW(itemlist,i*6+2);

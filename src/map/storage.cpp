@@ -328,6 +328,25 @@ int storage_additem2(struct map_session_data *sd, struct item* item_data, int am
 
 	return 0;
 }
+/*==========================================
+ * Add an item to the storage
+ *------------------------------------------*/
+int storage_additem2(struct map_session_data *sd, struct item* item_data, int amount)
+{
+	nullpo_ret(sd);
+	nullpo_ret(item_data);
+
+	if( sd->storage.amount > sd->storage.max_amount )
+		return 0;
+	if( item_data->nameid <= 0 || amount <= 0 )
+		return 0;
+	if( amount > MAX_AMOUNT )
+		return 0;
+	if( storage_additem(sd,&sd->storage,item_data,amount) == 0 )
+		return 1;
+
+	return 0;
+}
 
 /**
  * Make a player delete an item from his storage

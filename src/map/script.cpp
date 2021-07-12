@@ -13748,6 +13748,40 @@ BUILDIN_FUNC(bg_flagemblem) {
 	return SCRIPT_CMD_SUCCESS;
 }
 
+/// for bg
+BUILDIN_FUNC(bg_flagemblem) {
+	TBL_NPC* nd;
+	int g_id = script_getnum(st,2);
+	struct battleground_data *bgd;
+
+	if( script_hasdata(st,3) )
+		nd = npc_name2id(script_getstr(st,3));
+	else
+		nd = map_id2nd(st->oid);
+
+	if(g_id < 0) return true;
+	if( nd == NULL ) {
+		ShowError("script:flagemblem: npc %d not found\n", st->oid);
+	} else if( nd->subtype != NPCTYPE_SCRIPT ) {
+		ShowError("script:flagemblem: unexpected subtype %d for npc %d '%s'\n", nd->subtype, st->oid, nd->exname);
+	} else {
+		if((bgd = bg_team_search(g_id)) != NULL) {
+			bool changed;
+			g_id = (bgd->g->guild_id);
+			changed = ( nd->u.scr.guild_id != g_id )?true:false;
+			nd->u.scr.guild_id = g_id;
+			clif_guild_emblem_area(&nd->bl);
+			
+			/* guild flag caching */
+			if( g_id ) /* adding a id */
+				guild_flag_add(nd);
+			else if( changed ) /* removing a flag */
+				guild_flag_remove(nd);
+		}
+	}
+	return SCRIPT_CMD_SUCCESS;
+}
+
 BUILDIN_FUNC(getcastlename)
 {
 	const char* mapname = mapindex_getmapname(script_getstr(st,2),NULL);
@@ -18236,6 +18270,37 @@ BUILDIN_FUNC(pcblock)
 	return SCRIPT_CMD_SUCCESS;
 }
 
+BUILDIN_FUNC(pcblock)
+{
+	int id = 0, flag, type;
+	TBL_PC *sd = NULL;
+
+	type = script_getnum(st,2);
+	flag = script_getnum(st,3);
+	if( script_hasdata(st,4) )
+		id = script_getnum(st,4);
+
+	if( id && (sd = map_id2sd(id)) == NULL )
+		return SCRIPT_CMD_SUCCESS;
+	else
+		script_rid2sd(sd);
+
+	if( sd == NULL )
+		return SCRIPT_CMD_SUCCESS;
+
+	switch( type )
+	{
+		case 0: sd->ud.state.blockedmove = flag > 0; break;
+		case 1: 
+			sd->state.only_walk = flag > 0; 
+			sd->ud.state.blockedskill = flag > 0; 
+			pc_stop_attack(sd); //Stop attacking
+			break;
+	}
+ 
+	return SCRIPT_CMD_SUCCESS;
+}
+
 BUILDIN_FUNC(pcfollow)
 {
 	TBL_PC *sd;
@@ -21022,6 +21087,19 @@ BUILDIN_FUNC(bg_join) {
 	else
 		script_pushint(st, false);
 
+	return SCRIPT_CMD_SUCCESS;
+}
+
+BUILDIN_FUNC(bg_team_reveal)
+{
+	struct battleground_data *bg;
+	int bg_id;
+
+	bg_id = script_getnum(st,2);
+	if( (bg = bg_team_search(bg_id)) == NULL )
+		return SCRIPT_CMD_SUCCESS;
+
+	bg->reveal_pos = true; // Reveal Position Mode
 	return SCRIPT_CMD_SUCCESS;
 }
 
