@@ -40,13 +40,13 @@ IG_BG_TIER_2,14648,0,10,0 // 10pcs PP Up
 IG_BG_TIER_2,14652,0,20,0 // Guaranteed 20pcs. Ares Gift
 IG_BG_TIER_2,16261,0,5,0 // 5 boxes HD Carnium 10pcs
 IG_BG_TIER_2,16260,0,5,0 // 5 boxes HD Bradium 10pcs
-IG_BG_TIER_2,7773,0,10,0 // 10 pcs War Badge
+IG_BG_TIER_2,7773,0,5,0 // 5 pcs War Badge
 
 //-- War Badges
 IG_BG_TIER_2,7773,40,20 // 20 pcs War Badge
 IG_BG_TIER_2,7773,35,30 // 30 pcs War Badge
 IG_BG_TIER_2,7773,30,40 // 40 pcs War Badge
-IG_BG_TIER_2,7773,25,50 // 50 pcs War Badge
+IG_BG_TIER_2,7773,5,50 // 5 pcs War Badge
 
 //-- Costume
 IG_BG_TIER_2,20499,1,1 // Costume Cat Ears Hat
@@ -65,13 +65,13 @@ IG_BG_TIER_3,14648,0,20,0 // 20pcs PP Up
 IG_BG_TIER_3,14652,0,30,0 // Guaranteed 30pcs. Ares Gift
 IG_BG_TIER_3,16261,0,8,0 // 8 boxes HD Carnium 10pcs
 IG_BG_TIER_3,16260,0,8,0 // 8 boxes HD Bradium 10pcs
-IG_BG_TIER_3,7773,0,20,0 // 20 pcs War Badge
+IG_BG_TIER_3,7773,0,10,0 // 10 pcs War Badge
 
 //-- War Badges
 IG_BG_TIER_3,7773,40,30 // 30 pcs War Badge
 IG_BG_TIER_3,7773,35,40 // 40 pcs War Badge
 IG_BG_TIER_3,7773,30,50 // 30 pcs War Badge
-IG_BG_TIER_3,7773,5,100 // 100 pcs War Badge
+IG_BG_TIER_3,7773,1,100 // 100 pcs War Badge
 
 //-- Costume
 IG_BG_TIER_1,31057,1,1 // Costume Black Eremes Scarf
@@ -91,7 +91,6 @@ IG_WOE_REWARD_BOX,12675,0,3,0 // Weapon Box
 IG_WOE_REWARD_BOX,6376,0,1500,0 // KVM Badge
 IG_WOE_REWARD_BOX,6187,0,1500,0 // Blank Card
 IG_WOE_REWARD_BOX,7179,0,100,0 // POD
-IG_WOE_REWARD_BOX,7773,0,100,0 // 50pcs War Badge
 IG_WOE_REWARD_BOX,6226,0,10,0 // Enriched Carnium
 IG_WOE_REWARD_BOX,6225,0,10,0 // Enriched Bradium
 IG_WOE_REWARD_BOX,7773,0,100,0 // 100 pcs War Badge
