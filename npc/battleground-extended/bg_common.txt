@@ -516,7 +516,7 @@ OnInit:
 	AddBGmode("Flavius_TD",		"Team DeathMatch",		"BG_TDM",	5,	69,		0);
 	AddBGmode("Tierra_EOS",		"Eye of Storm",			"BG_EOE",	5,	69,		0);
 	AddBGmode("Conquest",		"Conquest",				"BG_CON",	5,	69,		0);
-	AddBGmode("KvM01_BG",		"Kreiger Von Midgard",	"BG_KVM", 	4,	26,		1);
+	AddBGmode("KvM01_BG",		"Kreiger Von Midgard",	"BG_KVM", 	4,	13,		1);
 	AddBGmode("Flavius_SC",		"Stone Control",		"BG_SC", 	5,	69,		0);
 	AddBGmode("Tierra_DOM",		"Domination",			"BG_DOM",	5,	69,		0);
 	AddBGmode("Rush", 			"Rush",					"BG_RUSH",	5,	30,		0);
