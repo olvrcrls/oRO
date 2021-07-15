@@ -20,11 +20,7 @@
 	mes "[Blacksmith Mighty Hammer]";
 	mes "Unlike others, I am a blacksmith who refines a very limited number of items.";
 	mes "I refine only items that are ^CC0000+7 to +10^000000.";
-	next;
-	mes "[Blacksmith Mighty Hammer]";
 	mes "My specialty is that even if my refining fails, the refine level decreases by 1 without losing the gear. Isn't it great?";
-	next;
-	mes "[Blacksmith Mighty Hammer]";
 	mes "So lets kick this into overdrive, what d' ya say? What item do you want to refine?";
 	next;
 	setarray .@indices[1], EQI_HEAD_TOP, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_MID, EQI_HEAD_LOW;
@@ -166,8 +162,6 @@ askald,70,117,3	duplicate(MightyHammer)	Mighty Hammer#ask	826
 	mes "I'm the best Blacksmith in the whole world, Basta.";
 	mes "But I don't provide a normal refine service.";
 	mes "I only refine equipment ^CC0000over +10^000000.";
-	next;
-	mes "[Basta]";
 	mes "Which equipment do you want to refine?";
 	next;
 	setarray .@indices[1], EQI_HEAD_TOP, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_MID, EQI_HEAD_LOW;
@@ -258,8 +252,6 @@ askald,70,117,3	duplicate(MightyHammer)	Mighty Hammer#ask	826
 		mes "I am different from the blacksmiths in others places.";
 		mes "It is impossible that the refine level will drop by, say, 3 or 4... that sounds scary.";
 		mes "Here it can only decrease by 1 level or mostly it will stay the same.";
-		next;
-		mes "[Basta]";
 		mes "Compared to other blacksmiths, the risk is very small.";
 		mes "I've given all precautions. Do you want to try it?";
 		next;
@@ -319,8 +311,6 @@ askald,70,117,3	duplicate(MightyHammer)	Mighty Hammer#ask	826
 	}
 	mes "Even the best blacksmith in the world doesn't guarantee 100% success!";
 	mes "Too bad.";
-	next;
-	mes "[Basta]";
 	mes "I'll do better next time! Don't worry!";
 	close;
 }
