@@ -188,8 +188,8 @@ IG_BG_LOOT_BOX,14648,1,1 // 1 pc PP up
 IG_BG_LOOT_BOX,14648,10,5 // 5 pcs PP up
 IG_BG_LOOT_BOX,14648,15,3 // 3 pcs PP up
 //-- POD
-IG_BG_LOOT_BOX,7179,25,25 // 25 pcs PODs
-IG_BG_LOOT_BOX,7179,35,50 // 50 pcs PODs
+IG_BG_LOOT_BOX,7179,15,25 // 25 pcs PODs
+IG_BG_LOOT_BOX,7179,10,50 // 50 pcs PODs
 IG_BG_LOOT_BOX,7179,5,100 // 100 pcs PODs
 IG_BG_LOOT_BOX,7179,1,500 // 500 pcs PODs
 //-- Foods
@@ -660,23 +660,23 @@ IG_Repair_Scroll_Box,998,0,1,0,0,0,1	// 1x Iron
 IG_Repair_Scroll_Box,756,0,1,0,0,0,1	// 1x Oridecon_Stone
 IG_Repair_Scroll_Box,999,0,1,0,0,0,1	// 1x Steel
 
-IG_Super_Pet_Egg1,2234,2,1,1,0,0,1	// 1x Tiara
-IG_Super_Pet_Egg1,2235,2,1,1,0,0,1	// 1x Crown
-IG_Super_Pet_Egg1,5007,1,1,1,0,0,1	// 1x Loard_Circlet
-IG_Super_Pet_Egg1,5074,5,1,1,0,0,1	// 1x Ear_Of_Angel's_Wing
-IG_Super_Pet_Egg1,5068,5,1,1,0,0,1	// 1x Ear_Of_Devil's_Wing
-IG_Super_Pet_Egg1,5210,20,1,1,0,0,1	// 1x Flying_Angel
-IG_Super_Pet_Egg1,4168,1,1,1,0,0,1	// 1x Dark_Lord_Card
-IG_Super_Pet_Egg1,4054,2,1,1,0,0,1	// 1x Angeling_Card
-IG_Super_Pet_Egg1,4047,2,1,1,0,0,1	// 1x Ghostring_Card
-IG_Super_Pet_Egg1,2277,80,1,1,0,0,1	// 1x Nurse_Cap
-IG_Super_Pet_Egg1,2269,45,1,1,0,0,1	// 1x Centimental_Flower
-IG_Super_Pet_Egg1,5077,50,1,1,0,0,1	// 1x Tulip_Hairpin
-IG_Super_Pet_Egg1,616,85,2,1,0,0,1	// 2x Old_Card_Album
-IG_Super_Pet_Egg1,617,130,5,1,0,0,1	// 5x Old_Violet_Box
-IG_Super_Pet_Egg1,607,170,15,1,0,0,1	// 15x Yggdrasilberry
-IG_Super_Pet_Egg1,608,170,30,1,0,0,1	// 30x Seed_Of_Yggdrasil
-IG_Super_Pet_Egg1,14508,230,10,1,0,0,1	// 10x Zeny_Scroll
+IG_Super_Pet_SHADOW,2234,2,1,1,0,0,1	// 1x Tiara
+IG_Super_Pet_SHADOW,2235,2,1,1,0,0,1	// 1x Crown
+IG_Super_Pet_SHADOW,5007,1,1,1,0,0,1	// 1x Loard_Circlet
+IG_Super_Pet_SHADOW,5074,5,1,1,0,0,1	// 1x Ear_Of_Angel's_Wing
+IG_Super_Pet_SHADOW,5068,5,1,1,0,0,1	// 1x Ear_Of_Devil's_Wing
+IG_Super_Pet_SHADOW,5210,20,1,1,0,0,1	// 1x Flying_Angel
+IG_Super_Pet_SHADOW,4168,1,1,1,0,0,1	// 1x Dark_Lord_Card
+IG_Super_Pet_SHADOW,4054,2,1,1,0,0,1	// 1x Angeling_Card
+IG_Super_Pet_SHADOW,4047,2,1,1,0,0,1	// 1x Ghostring_Card
+IG_Super_Pet_SHADOW,2277,80,1,1,0,0,1	// 1x Nurse_Cap
+IG_Super_Pet_SHADOW,2269,45,1,1,0,0,1	// 1x Centimental_Flower
+IG_Super_Pet_SHADOW,5077,50,1,1,0,0,1	// 1x Tulip_Hairpin
+IG_Super_Pet_SHADOW,616,85,2,1,0,0,1	// 2x Old_Card_Album
+IG_Super_Pet_SHADOW,617,130,5,1,0,0,1	// 5x Old_Violet_Box
+IG_Super_Pet_SHADOW,607,170,15,1,0,0,1	// 15x Yggdrasilberry
+IG_Super_Pet_SHADOW,608,170,30,1,0,0,1	// 30x Seed_Of_Yggdrasil
+IG_Super_Pet_SHADOW,14508,230,10,1,0,0,1	// 10x Zeny_Scroll
 
 IG_Super_Pet_Egg2,2246,6,1,1,0,0,1	// 1x Golden_Gear
 IG_Super_Pet_Egg2,2249,3,1,1,0,0,1	// 1x Coronet
@@ -732,26 +732,26 @@ IG_Super_Pet_Egg4,607,170,15,1,0,0,1	// 15x Yggdrasilberry
 IG_Super_Pet_Egg4,608,170,30,1,0,0,1	// 30x Seed_Of_Yggdrasil
 IG_Super_Pet_Egg4,14508,230,10,1,0,0,1	// 10x Zeny_Scroll
 
-IG_Super_Card_Pet_Egg1,4255,40,1,1,0,0,1	// 1x Orc_Lady_Card
-IG_Super_Card_Pet_Egg1,4106,30,1,1,0,0,1	// 1x Mummy_Card
-IG_Super_Card_Pet_Egg1,4055,80,1,1,0,0,1	// 1x Marina_Card
-IG_Super_Card_Pet_Egg1,4082,80,1,1,0,0,1	// 1x Desert_Wolf_Card
-IG_Super_Card_Pet_Egg1,4086,17,1,1,0,0,1	// 1x Soldier_Skeleton_Card
-IG_Super_Card_Pet_Egg1,4076,40,1,1,0,0,1	// 1x Magnolia_Card
-IG_Super_Card_Pet_Egg1,4043,7,1,1,0,0,1	// 1x Andre_Card
-IG_Super_Card_Pet_Egg1,4030,40,1,1,0,0,1	// 1x Mandragora_Card
-IG_Super_Card_Pet_Egg1,4049,50,1,1,0,0,1	// 1x Vadon_Card
-IG_Super_Card_Pet_Egg1,4147,2,1,1,0,0,1	// 1x Baphomet_Card
-IG_Super_Card_Pet_Egg1,4069,50,1,1,0,0,1	// 1x Drainliar_Card
-IG_Super_Card_Pet_Egg1,4158,20,1,1,0,0,1	// 1x Flying_Deleter_Card
-IG_Super_Card_Pet_Egg1,4166,8,1,1,0,0,1	// 1x Nightmare_Terror_Card
-IG_Super_Card_Pet_Egg1,4315,20,1,1,0,0,1	// 1x Pest_Card
-IG_Super_Card_Pet_Egg1,4105,20,1,1,0,0,1	// 1x Marc_Card
-IG_Super_Card_Pet_Egg1,4170,10,1,1,0,0,1	// 1x Dark_Frame_Card
-IG_Super_Card_Pet_Egg1,4279,5,1,1,0,0,1	// 1x Deleter_Card
-IG_Super_Card_Pet_Egg1,607,165,15,1,0,0,1	// 15x Yggdrasilberry
-IG_Super_Card_Pet_Egg1,608,166,20,1,0,0,1	// 20x Seed_Of_Yggdrasil
-IG_Super_Card_Pet_Egg1,14508,150,5,1,0,0,1	// 5x Zeny_Scroll
+IG_Super_Card_Pet_SHADOW,4255,40,1,1,0,0,1	// 1x Orc_Lady_Card
+IG_Super_Card_Pet_SHADOW,4106,30,1,1,0,0,1	// 1x Mummy_Card
+IG_Super_Card_Pet_SHADOW,4055,80,1,1,0,0,1	// 1x Marina_Card
+IG_Super_Card_Pet_SHADOW,4082,80,1,1,0,0,1	// 1x Desert_Wolf_Card
+IG_Super_Card_Pet_SHADOW,4086,17,1,1,0,0,1	// 1x Soldier_Skeleton_Card
+IG_Super_Card_Pet_SHADOW,4076,40,1,1,0,0,1	// 1x Magnolia_Card
+IG_Super_Card_Pet_SHADOW,4043,7,1,1,0,0,1	// 1x Andre_Card
+IG_Super_Card_Pet_SHADOW,4030,40,1,1,0,0,1	// 1x Mandragora_Card
+IG_Super_Card_Pet_SHADOW,4049,50,1,1,0,0,1	// 1x Vadon_Card
+IG_Super_Card_Pet_SHADOW,4147,2,1,1,0,0,1	// 1x Baphomet_Card
+IG_Super_Card_Pet_SHADOW,4069,50,1,1,0,0,1	// 1x Drainliar_Card
+IG_Super_Card_Pet_SHADOW,4158,20,1,1,0,0,1	// 1x Flying_Deleter_Card
+IG_Super_Card_Pet_SHADOW,4166,8,1,1,0,0,1	// 1x Nightmare_Terror_Card
+IG_Super_Card_Pet_SHADOW,4315,20,1,1,0,0,1	// 1x Pest_Card
+IG_Super_Card_Pet_SHADOW,4105,20,1,1,0,0,1	// 1x Marc_Card
+IG_Super_Card_Pet_SHADOW,4170,10,1,1,0,0,1	// 1x Dark_Frame_Card
+IG_Super_Card_Pet_SHADOW,4279,5,1,1,0,0,1	// 1x Deleter_Card
+IG_Super_Card_Pet_SHADOW,607,165,15,1,0,0,1	// 15x Yggdrasilberry
+IG_Super_Card_Pet_SHADOW,608,166,20,1,0,0,1	// 20x Seed_Of_Yggdrasil
+IG_Super_Card_Pet_SHADOW,14508,150,5,1,0,0,1	// 5x Zeny_Scroll
 
 IG_Super_Card_Pet_Egg2,4135,1,1,1,0,0,1	// 1x Orc_Load_Card
 IG_Super_Card_Pet_Egg2,4092,30,1,1,0,0,1	// 1x Skel_Worker_Card
@@ -1925,23 +1925,23 @@ IG_Gemi_Diadem_Scroll_Box,17082,0,1,0,0,0,1	// 1x Gemi_Diadem_Scroll
 IG_Gemi_Diadem_Scroll_Box,17082,0,1,0,0,0,1	// 1x Gemi_Diadem_Scroll
 IG_Gemi_Diadem_Scroll_Box,17082,0,1,0,0,0,1	// 1x Gemi_Diadem_Scroll
 
-IG_Super_Pet_Egg1_2,2234,70,1,1,0,0,0	// 1x Tiara
-IG_Super_Pet_Egg1_2,2235,70,1,1,0,0,0	// 1x Crown
-IG_Super_Pet_Egg1_2,5007,30,1,1,0,0,0	// 1x Loard_Circlet
-IG_Super_Pet_Egg1_2,5074,70,1,1,0,0,0	// 1x Ear_Of_Angel's_Wing
-IG_Super_Pet_Egg1_2,5068,60,1,1,0,0,0	// 1x Ear_Of_Devil's_Wing
-IG_Super_Pet_Egg1_2,5210,250,1,1,0,0,0	// 1x Flying_Angel
-IG_Super_Pet_Egg1_2,4168,1,1,1,0,0,0	// 1x Dark_Lord_Card
-IG_Super_Pet_Egg1_2,4054,2,1,1,0,0,0	// 1x Angeling_Card
-IG_Super_Pet_Egg1_2,4047,2,1,1,0,0,0	// 1x Ghostring_Card
-IG_Super_Pet_Egg1_2,2277,890,1,1,0,0,0	// 1x Nurse_Cap
-IG_Super_Pet_Egg1_2,2269,450,1,1,0,0,0	// 1x Centimental_Flower
-IG_Super_Pet_Egg1_2,5077,700,1,1,0,0,0	// 1x Tulip_Hairpin
-IG_Super_Pet_Egg1_2,616,950,2,1,0,0,0	// 2x Old_Card_Album
-IG_Super_Pet_Egg1_2,617,1500,5,1,0,0,0	// 5x Old_Violet_Box
-IG_Super_Pet_Egg1_2,607,2000,15,1,0,0,0	// 15x Yggdrasilberry
-IG_Super_Pet_Egg1_2,608,2000,30,1,0,0,0	// 30x Seed_Of_Yggdrasil
-IG_Super_Pet_Egg1_2,14508,955,10,1,0,0,0	// 10x Zeny_Scroll
+IG_Super_Pet_SHADOW_2,2234,70,1,1,0,0,0	// 1x Tiara
+IG_Super_Pet_SHADOW_2,2235,70,1,1,0,0,0	// 1x Crown
+IG_Super_Pet_SHADOW_2,5007,30,1,1,0,0,0	// 1x Loard_Circlet
+IG_Super_Pet_SHADOW_2,5074,70,1,1,0,0,0	// 1x Ear_Of_Angel's_Wing
+IG_Super_Pet_SHADOW_2,5068,60,1,1,0,0,0	// 1x Ear_Of_Devil's_Wing
+IG_Super_Pet_SHADOW_2,5210,250,1,1,0,0,0	// 1x Flying_Angel
+IG_Super_Pet_SHADOW_2,4168,1,1,1,0,0,0	// 1x Dark_Lord_Card
+IG_Super_Pet_SHADOW_2,4054,2,1,1,0,0,0	// 1x Angeling_Card
+IG_Super_Pet_SHADOW_2,4047,2,1,1,0,0,0	// 1x Ghostring_Card
+IG_Super_Pet_SHADOW_2,2277,890,1,1,0,0,0	// 1x Nurse_Cap
+IG_Super_Pet_SHADOW_2,2269,450,1,1,0,0,0	// 1x Centimental_Flower
+IG_Super_Pet_SHADOW_2,5077,700,1,1,0,0,0	// 1x Tulip_Hairpin
+IG_Super_Pet_SHADOW_2,616,950,2,1,0,0,0	// 2x Old_Card_Album
+IG_Super_Pet_SHADOW_2,617,1500,5,1,0,0,0	// 5x Old_Violet_Box
+IG_Super_Pet_SHADOW_2,607,2000,15,1,0,0,0	// 15x Yggdrasilberry
+IG_Super_Pet_SHADOW_2,608,2000,30,1,0,0,0	// 30x Seed_Of_Yggdrasil
+IG_Super_Pet_SHADOW_2,14508,955,10,1,0,0,0	// 10x Zeny_Scroll
 
 IG_Super_Pet_Egg4_2,2254,30,1,1,0,0,0	// 1x Angelic_Chain
 IG_Super_Pet_Egg4_2,2256,35,1,1,0,0,0	// 1x Magestic_Goat
@@ -4425,30 +4425,30 @@ IG_Sealed_Mind_Box,2977,1,1 // 1x Broken_Heart
 IG_Sealed_Mind_Box,2978,1,1 // 1x Kindly_Heart
 IG_Sealed_Mind_Box,18848,1,1 // 1x Fresh_Roses
 
-// Costama_Egg18
-IG_Costama_Egg18,19990,40,1,1,0,0,0	// 1x C_Snow_Rabbit_Knit_Hat
-IG_Costama_Egg18,19989,40,1,1,0,0,0	// 1x C_Mouton_Life
-IG_Costama_Egg18,19991,40,1,1,0,0,0	// 1x C_Galanthus_Guard
-IG_Costama_Egg18,19992,70,1,1,0,0,0	// 1x C_Chilly_Breath
-IG_Costama_Egg18,19780,90,1,1,0,0,0	// 1x C_Rabbit_Ear_Knit_Hat
-IG_Costama_Egg18,19985,110,1,1,0,0,0	// 1x C_Aura_Quartz_Crown
-IG_Costama_Egg18,19826,130,1,1,0,0,0	// 1x C_Ice_Wing_Ear
-IG_Costama_Egg18,19986,150,1,1,0,0,0	// 1x C_Lunatic_Hat
-IG_Costama_Egg18,19987,160,1,1,0,0,0	// 1x C_Blue_Fur_Hat
-IG_Costama_Egg18,19988,170,1,1,0,0,0	// 1x C_Elder_Crown
+// Costama_SHADOW8
+IG_Costama_SHADOW8,19990,40,1,1,0,0,0	// 1x C_Snow_Rabbit_Knit_Hat
+IG_Costama_SHADOW8,19989,40,1,1,0,0,0	// 1x C_Mouton_Life
+IG_Costama_SHADOW8,19991,40,1,1,0,0,0	// 1x C_Galanthus_Guard
+IG_Costama_SHADOW8,19992,70,1,1,0,0,0	// 1x C_Chilly_Breath
+IG_Costama_SHADOW8,19780,90,1,1,0,0,0	// 1x C_Rabbit_Ear_Knit_Hat
+IG_Costama_SHADOW8,19985,110,1,1,0,0,0	// 1x C_Aura_Quartz_Crown
+IG_Costama_SHADOW8,19826,130,1,1,0,0,0	// 1x C_Ice_Wing_Ear
+IG_Costama_SHADOW8,19986,150,1,1,0,0,0	// 1x C_Lunatic_Hat
+IG_Costama_SHADOW8,19987,160,1,1,0,0,0	// 1x C_Blue_Fur_Hat
+IG_Costama_SHADOW8,19988,170,1,1,0,0,0	// 1x C_Elder_Crown
 
-// Costama_Egg19
-IG_Costama_Egg19,20010,40,1,1,0,0,0	// 1x C_Rainbow_Wing_Ears
-IG_Costama_Egg19,20011,40,1,1,0,0,0	// 1x C_Lightning_Speed
-IG_Costama_Egg19,20012,40,1,1,0,0,0	// 1x C_Double_Horn_Helm
-IG_Costama_Egg19,19884,60,1,1,0,0,0	// 1x C_Vanargandr_Helm
-IG_Costama_Egg19,20005,90,1,1,0,0,0	// 1x C_Pegasus_Wing_Ears
-IG_Costama_Egg19,20006,110,1,1,0,0,0	// 1x C_Dark_Knight_Mask
-IG_Costama_Egg19,20007,130,1,1,0,0,0	// 1x C_Bullock_Helm_J
-IG_Costama_Egg19,19584,150,1,1,0,0,0	// 1x C_Pirate_Dagger
-IG_Costama_Egg19,20008,160,1,1,0,0,0	// 1x C_General_Helmet
-IG_Costama_Egg19,20009,170,1,1,0,0,0	// 1x C_Dragon_Skull
-IG_Costama_Egg19,20132,10,1,1,1,0,0	// 1x C_Subject_Aura
+// Costama_SHADOW9
+IG_Costama_SHADOW9,20010,40,1,1,0,0,0	// 1x C_Rainbow_Wing_Ears
+IG_Costama_SHADOW9,20011,40,1,1,0,0,0	// 1x C_Lightning_Speed
+IG_Costama_SHADOW9,20012,40,1,1,0,0,0	// 1x C_Double_Horn_Helm
+IG_Costama_SHADOW9,19884,60,1,1,0,0,0	// 1x C_Vanargandr_Helm
+IG_Costama_SHADOW9,20005,90,1,1,0,0,0	// 1x C_Pegasus_Wing_Ears
+IG_Costama_SHADOW9,20006,110,1,1,0,0,0	// 1x C_Dark_Knight_Mask
+IG_Costama_SHADOW9,20007,130,1,1,0,0,0	// 1x C_Bullock_Helm_J
+IG_Costama_SHADOW9,19584,150,1,1,0,0,0	// 1x C_Pirate_Dagger
+IG_Costama_SHADOW9,20008,160,1,1,0,0,0	// 1x C_General_Helmet
+IG_Costama_SHADOW9,20009,170,1,1,0,0,0	// 1x C_Dragon_Skull
+IG_Costama_SHADOW9,20132,10,1,1,1,0,0	// 1x C_Subject_Aura
 
 // Costama_Egg21
 IG_Flower_Blossom_Scroll,20046,40,1,1,0,0,0	// 1x C_Decoration_bluerose
@@ -4958,6 +4958,57 @@ IG_Santa_Gift,14586,500,5,1,0,0,0	// 5x Spark_Candy
 IG_Santa_Gift,12350,500,5,1,0,0,0	// 5x Angeling_Potion
 IG_Santa_Gift,12710,500,5,1,0,0,0	// 5x Guyak_Pudding
 IG_Santa_Gift,12259,500,2,1,0,0,0	// 2x Miracle_Medicine
+
+
+//-- Shadow dragon egg
+IG_EVENT_SLIME,40002,69,1 // Shadow dragon Egg - Tier 1
+IG_EVENT_FROST,40003,69,1 // Frost dragon Egg - Tier 2
+IG_EVENT_SHADOW,40004,69,1 // Slime dragon egg - Tier 3
+
+//-- Ores
+//-- HD Oridecon / Elunium
+IG_EVENT_SLIME,16394,25,1 // 1 boxes HD Oridecon 10pcs
+IG_EVENT_SLIME,17104,15,2 // 2 boxes HD Oridecon 10pcs
+IG_EVENT_SLIME,17104,25,3 // 3 boxes HD Oridecon 10pcs
+IG_EVENT_SLIME,16396,3,1 // 1 box HD Elunium 10pcs
+IG_EVENT_SLIME,16396,2,2 // 2 boxes HD Elunium 10pcs
+IG_EVENT_SLIME,16396,3,3 // 3 boxes HD Elunium 10pcs
+//-- HD Carnium / Bradium
+IG_EVENT_SLIME,16259,25,1 // 1 boxes HD Carnium 5pcs
+IG_EVENT_SLIME,16259,20,2 // 2 boxes HD Carnium 5pcs
+IG_EVENT_SLIME,16259,15,3 // 3 boxes HD Carnium 5pcs
+IG_EVENT_SLIME,16258,25,1 // 1 boxes HD Bradium 5pcs
+IG_EVENT_SLIME,16258,20,2 // 2 boxes HD Bradium 5pcs
+IG_EVENT_SLIME,16258,15,3 // 3 boxes HD Bradium 5pcs
+//-- Enriched Elunium
+IG_EVENT_SLIME,14219,30,1 // 1 box of 5pcs Enriched Elunium
+IG_EVENT_SLIME,14219,25,2 // 2 box of 5pcs Enriched Elunium
+//-- Enriched Oridecon
+IG_EVENT_SLIME,14220,30,1 // 1 box of 5pcs Enriched Oridecon
+IG_EVENT_SLIME,14220,25,2 // 2 box of 5pcs Enriched Oridecon
+//-- Meme Drop
+IG_EVENT_SLIME,12016,30,10 // 10 Speed Potion
+IG_EVENT_SLIME,12016,30,5 // 5 Speed Potions
+IG_EVENT_SLIME,909,25,69 // 69 Jellopy
+IG_EVENT_SLIME,7049,25,69 // 69 Stones
+//-- Costumes
+IG_EVENT_SLIME,20315,1,1 // Costume Analyse Eye
+IG_EVENT_SLIME,31616,1,1 // Costume Sleepy Sheep
+IG_EVENT_SLIME,20249,3,1 // Costume Valentine Cap
+IG_EVENT_SLIME,20407,3,1 // Costume Vicious mind aura (crimson)
+IG_EVENT_SLIME,31565,2,1 // Costume Archangel Wings
+IG_EVENT_SLIME,20764,2,1 // Costume FAW
+//-- PP Up
+IG_EVENT_SLIME,14648,1,1 // 1 pc PP up
+IG_EVENT_SLIME,14648,15,3 // 3 pcs PP up
+//-- POD
+IG_EVENT_SLIME,7179,25,5 // 5 pcs PODs
+IG_EVENT_SLIME,7179,35,10 // 10 pcs PODs
+//-- Foods
+IG_EVENT_SLIME,14647,50,1 // 1pc Nutriboost Plus
+IG_EVENT_SLIME,14647,30,3 // 3pcs Nutriboost Plus
+//-- Guyak Pudding
+IG_EVENT_SLIME,14649,5,5 // 5pcs Guyak Pudding 1hr
 
 // Custom Food Package
 // GroupID,ItemID,Rate{,Amount,Random,isAnnounced,Duration,GUID,isBound,isNamed}

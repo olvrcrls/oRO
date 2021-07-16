@@ -1,0 +1,198 @@
+// rAthena npc script
+// Party Information
+// Date 7.3.3018
+// By Sehrentos
+//=================================
+darkmall,90,83,3	script	Party Checker#prt1	10081,{
+//-	script	Party	Checker#prt1	-1,{
+
+	.@show_offline = 1;          // Show offline status in menu? 1=Yes 0=No
+	.@show_refresh = 1;          // Show refresh in menu? 1=Yes 0=No
+	.@party_id = getcharid(1);   // Party ID
+	
+	mes "[^FF0000 Party Checker ^000000]";
+	mes "Hi "+strcharinfo(0)+"!";
+	mes "I'm here to help you to check your party members whether they are Idling or not.";
+	next;
+
+	// Not in a party
+	if ( !.@party_id ) {
+		message strcharinfo(0), "You don't have a party.";
+		end;
+	}
+	// Copy the temporary party data
+	getpartymember .@party_id, 0; // Name
+	getpartymember .@party_id, 1; // Character ID
+	getpartymember .@party_id, 2; // Account ID
+	.@party_size = $@partymembercount;
+	copyarray .@party_member_name$[0], $@partymembername$[0], .@party_size;
+	copyarray .@party_member_cid[0], $@partymembercid[0], .@party_size;
+	copyarray .@party_member_aid[0], $@partymemberaid[0], .@party_size;
+
+	// Open Party Select Menu
+	.@select = callfunc("F_PartySelect", .@show_offline, .@show_refresh);
+
+	// Refresh selected
+	while ( .@select == -1 ) {
+		message strcharinfo(0), "Refresh menu!";
+		.@select = callfunc("F_PartySelect", .@show_offline, .@show_refresh);
+	}
+
+	// Not in a party (Leaved before select or removed)
+	if ( .@select == -2 ) {
+		message strcharinfo(0), "You don't have a party.";
+		end;
+	}
+
+	// Get more party data
+	.@party_name$ = getpartyname(.@party_id); // Party Name
+	.@party_leader_cid = getpartyleader(.@party_id, 2); // Party Leader Character ID
+	// Party Leader Name
+	.@party_leader_name$ = "[Offline]";
+	if ( .@party_leader_cid != -1 ) {
+		// strcharinfo(0,.@party_leader_cid); will fail if leader is offline!
+		for (.@i = 0; .@i < .@party_size; .@i++ ) {
+			// Match leader cid with party member cid
+			if ( .@party_leader_cid == .@party_member_cid[.@i] ) {
+				.@party_leader_name$ = .@party_member_name$[.@i];
+			}
+		}
+	}
+
+	// Check for party changes, because players can leave anytime.
+	getpartymember getcharid(1), 0; // Get names
+	.@new_party_size = $@partymembercount;
+	.@check_failed = false;
+	copyarray .@new_party_name$[0], $@partymembername$[0], .@new_party_size;
+
+	// Not in a party anymore (Leaved after select or removed)
+	if ( !getcharid(1) ) {
+		message strcharinfo(0), "You don't have a party.";
+		end;
+	}
+
+	// Check if party ID has changed
+	if (.@party_id != getcharid(1)) {
+		.@check_failed = true;
+		message strcharinfo(0), "Failed: Party ID has changed!";
+	}
+
+	// Check if party size has changed during select.
+	if (.@new_party_size != .@party_size) {
+		.@check_failed = true;
+		message strcharinfo(0), "Failed: Party size has changed!";
+	}
+
+	// Check if party member names has changed during select.
+	for (.@i = 0; .@i < .@party_size; .@i++ ) {
+		// Match new and old name
+		if ( .@new_party_name$[.@i] != .@party_member_name$[.@i] ) {
+			.@check_failed = true;
+			message strcharinfo(0), "Failed: Party member name has changed!";
+			break;
+		}
+	}
+
+	// Has any checks failed
+	if ( .@check_failed ) {
+		mes "[ " + strnpcinfo(1) + " ]";
+		mes "Your party has made changes during selection.";
+		mes "Please select again.";
+		close;
+	}
+
+	// All OK show results
+	mes "[ " + strnpcinfo(1) + " ]";
+	mes "You have selected:";
+	mes " ~ Name: " + .@party_member_name$[.@select];
+	mes " ~ Party: " + .@party_name$;
+	mes " ~ Leader: " + .@party_leader_name$;
+	if ( isloggedin(.@party_member_aid[.@select], .@party_member_cid[.@select]) ) {
+		mes " ~ Online: ^00cc36Yes^000000";
+		mes " ~ Vending: " + (checkvending(.@party_member_name$[.@select]) ? "^CC3300Yes^000000" : "^00cc36No^000000");
+		mes " ~ Chatting: " + (checkchatting(.@party_member_name$[.@select]) ? "^CC3300Yes^000000" : "^00cc36No^000000");
+		mes " ~ Idle: " + checkidle(.@party_member_name$[.@select]) + " second";
+	} else
+		mes " ~ Online: ^CC3300No^000000";
+	close;
+
+}
+
+// Function Party Select
+// callfunc("F_PartySelect", <INT_show_offline>, <INT_show_refresh>)
+// Return INT=Party index number, -1=Refresh selected, -2=Not in party
+function	script	F_PartySelect	{
+
+	.@s_offline = getarg(0, 1); // Show offline players in menu? 1=Yes 0=No
+	.@s_refresh = getarg(1, 1); // Show refresh menu item? 1=Yes 0=No
+	.@party_id = getcharid(1);  // Party ID
+
+	// Not in a party
+	if ( !.@party_id )
+		return -2;
+
+	getpartymember .@party_id, 0; // Names
+	getpartymember .@party_id, 1; // Character IDs
+	getpartymember .@party_id, 2; // Account IDs
+
+	// Copy the temporary party data
+	.@party_size = $@partymembercount;
+	copyarray .@party_member_name$[0], $@partymembername$[0], .@party_size;
+	copyarray .@party_member_cid[0], $@partymembercid[0], .@party_size;
+	copyarray .@party_member_aid[0], $@partymemberaid[0], .@party_size;
+
+	// Create menu
+	if ( .@s_refresh )
+		.@menu_party$ = "^777777[Refresh]^000000";
+	.@menu_party$ = .@menu_party$ + ":";
+
+	// Loop through each party member and add to menu
+	for ( .@i = 0; .@i < .@party_size; .@i++ ) {
+		if ( isloggedin(.@party_member_aid[.@i], .@party_member_cid[.@i]) ) {
+			if (.@s_offline)
+				.@menu_party$ = .@menu_party$ + .@party_member_name$[.@i] + " ^00cc36[ON]^000000";
+			else
+				.@menu_party$ = .@menu_party$ + .@party_member_name$[.@i];
+		} else if (.@s_offline)
+			.@menu_party$ = .@menu_party$ + .@party_member_name$[.@i] + " ^777777[OFF]^000000";
+		.@menu_party$ = .@menu_party$ + ":";
+	}
+
+	// Open select menu (-2 select start from 1 and we have [Refresh] at first)
+	.@select = select(.@menu_party$) - 2;
+
+	return .@select;
+}
+
+/*S_PartySelect:
+	mes "[ " + strnpcinfo(1) + " ]";
+
+	// Get party data
+	getpartymember .@party_id, 0; // Name
+	getpartymember .@party_id, 1; // Character ID
+	getpartymember .@party_id, 2; // Account ID
+	// Copy the temporary party data
+	.@party_size = $@partymembercount;
+	copyarray .@party_member_name$[0], $@partymembername$[0], .@party_size;
+	copyarray .@party_member_cid[0], $@partymembercid[0], .@party_size;
+	copyarray .@party_member_aid[0], $@partymemberaid[0], .@party_size;
+
+	// Create menu
+	.@menu_party$ = "^777777[Refresh]^000000:";
+
+	// Loop through each party member and add to menu
+	for ( .@i = 0; .@i < .@party_size; .@i++ ) {
+		if ( isloggedin(.@party_member_aid[.@i], .@party_member_cid[.@i]) ) {
+			.@count_online++;
+			if (.@show_offline)
+				.@menu_party$ = .@menu_party$ + .@party_member_name$[.@i] + " ^00cc36[ON]^000000";
+			else
+				.@menu_party$ = .@menu_party$ + .@party_member_name$[.@i];
+		} else if (.@show_offline)
+			.@menu_party$ = .@menu_party$ + .@party_member_name$[.@i] + " ^777777[OFF]^000000";
+		.@menu_party$ = .@menu_party$ + ":";
+	}
+
+	// Open select menu (-2 select start from 1 and we have [Refresh] at first which is 2)
+	.@select = select(.@menu_party$) - 2;
+*/

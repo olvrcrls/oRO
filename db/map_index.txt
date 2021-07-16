@@ -1071,3 +1071,7 @@ bg_rush01
 bg_rush02
 bg_rush03
 bg_rush04
+//Event maps added on 05-07-2021
+1@zombie
+maze
+
