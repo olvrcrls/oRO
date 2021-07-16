@@ -1,0 +1,1 @@
+UPDATE `item_db_re` SET `script` = 'if(isequippedcnt(27109)>1) end; bonus2 bSubDefEle,Ele_Neutral,10; bonus bMaxHP,500;' WHERE (`id` = '27109');
