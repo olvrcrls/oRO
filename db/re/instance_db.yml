@@ -301,6 +301,7 @@ Body:
       Map: 1@slw
       X: 187
       Y: 24
+ # Adding the EMP breaker instance here. Also added to the txt file
   - Id: 44
     Name: Emp Breaker
     TimeLimit: 900
