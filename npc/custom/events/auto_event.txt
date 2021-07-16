@@ -1934,7 +1934,7 @@ OnTouch_:
 //-- Cluckers Event 
 //==================================
 
-prontera,155,227,4	script	Cluckers	800,{
+askald,127,142,4	script	Cluckers	800,{
 	if ($@CurrentEvent == -7) {
 		specialeffect2 EF_HIT3;
 		switch(rand(16)) {
