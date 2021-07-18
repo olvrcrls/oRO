@@ -1275,23 +1275,25 @@
 19308:1691,{ .@r_weapon = getequiprefinerycnt(EQI_HAND_R); bonus2 bMagicAtkEle,Ele_Neutral,5*(.@r_weapon/2); }
 19308:13412,{ .@r_weapon = getequiprefinerycnt(EQI_HAND_R); bonus2 bSkillAtk,"GN_CARTCANNON",10*(.@r_weapon/2); }
 
-//19296:2554,{.@r = getequiprefinerycnt(EQI_GARMENT)/2*12; bonus2 bSkillAtk,"RA_ARROWSTORM",.@r;}
-//19296:2544,{.@r = getequiprefinerycnt(EQI_GARMENT)/2*7; bonus2 bSkillAtk,"WM_SEVERE_RAINSTORM",.@r;}
-//19296:2525,{.@r = getequiprefinerycnt(EQI_GARMENT)/2*15; bonus2 bSkillAtk,"SC_TRIANGLESHOT",.@r;}
-//19300:28000,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*20; bonus bBaseAtk,.@r;}
-//19300:13138,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*6; bonus2 bSkillAtk,"RL_FIREDANCE",.@r;}
-//19300:28101,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*15; bonus2 bSkillAtk,"NC_AXETORNADO",.@r;}
+//Fancy Feather Hat Combo Bonus
+19296:2554, { .@r_weapon = getequiprefinerycnt(EQI_HAND_R); bonus2 bSkillAtk,"GN_CARTCANNON",10*(.@r_weapon/2); }
+19296:2544, { .@r_garment = getequiprefinerycnt(EQI_GARMENT); bonus2 bSkillAtk,"WM_SEVERE_RAINSTORM",7*(.@r_garment/2); }
+19296:2525, { .@r_garment = getequiprefinerycnt(EQI_GARMENT); bonus2 bSkillAtk,"SC_TRIANGLESHOT",15*(.@r_garment/2); }
 
-//19308:1631,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*30; bonus2 bSkillAtk,"AB_ADORAMUS",.@r;}
-//19308:1631,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*10; bonus bMatk,.@r;}
-//19308:1691,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*5; bonus2 bMagicAtkEle,Ele_Neutral,.@r;}
-//19308:13412,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*10; bonus2 bSkillAtk,"GN_CARTCANNON",.@r;}
-//19263:1168,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*20; bonus bBaseAtk,.@r;}
-//19263:1171,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*20; bonus bBaseAtk,.@r;}
-//19263:1413,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*6; bonus2 bSkillAtk,"LG_BANISHINGPOINT",.@r;}
-//19263:1418,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*6; bonus2 bSkillAtk,"LG_BANISHINGPOINT",.@r;}
-//19263:1527,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*6; bonus2 bSkillAtk,"SR_TIGERCANNON",.@r;}
-//19263:16024,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*6; bonus2 bSkillAtk,"SR_TIGERCANNON",.@r;}
+//Ruff Officer Combo Bonus
+19300:28000,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*20; bonus bBaseAtk,.@r;}
+19300:13138,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*6; bonus2 bSkillAtk,"RL_FIREDANCE",.@r;}
+19300:28101,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*15; bonus2 bSkillAtk,"NC_AXETORNADO",.@r;}
+
+//General Helmet Combo Bonus
+19263:1168,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*20; bonus bBaseAtk,.@r;}
+19263:1171,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*20; bonus bBaseAtk,.@r;}
+19263:1413,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*6; bonus2 bSkillAtk,"LG_BANISHINGPOINT",.@r;}
+19263:1418,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*6; bonus2 bSkillAtk,"LG_BANISHINGPOINT",.@r;}
+19263:1527,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*6; bonus2 bSkillAtk,"SR_TIGERCANNON",.@r;}
+19263:16024,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*6; bonus2 bSkillAtk,"SR_TIGERCANNON",.@r;}
+
+//Spell Circuit Combo Bonus
 //19249:1654,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*5; bonus2 bSkillAtk,"SO_PSYCHIC_WAVE",.@r;}
 //19249:2004,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*10; bonus2 bSkillAtk,"WL_HELLINFERNO",.@r;}
 //19249:13078,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*5; bonus2 bSkillAtk,"NJ_KOUENKA",.@r;}
