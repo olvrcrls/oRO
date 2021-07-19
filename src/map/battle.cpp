@@ -1765,7 +1765,7 @@ bool battle_can_hit_gvg_target(struct block_list *src,struct block_list *bl,uint
  */
 int64 battle_calc_gvg_damage(struct block_list *src,struct block_list *bl,int64 damage,uint16 skill_id,int flag)
 {
-	if (!damage || damage == 1) //No reductions to make.
+	if (!damage) //No reductions to make.
 		return 0;
 
 	if (!battle_can_hit_gvg_target(src,bl,skill_id,flag))
@@ -1787,7 +1787,7 @@ int64 battle_calc_gvg_damage(struct block_list *src,struct block_list *bl,int64 
 		if (flag & BF_LONG)
 			damage = damage * battle_config.gvg_long_damage_rate / 100;
 	}
-	damage = i64max(damage,0);
+	damage = i64max(damage,1);
 	return damage;
 }
 

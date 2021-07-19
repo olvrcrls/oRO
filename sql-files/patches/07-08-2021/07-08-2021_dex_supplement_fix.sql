@@ -1,0 +1,1 @@
+UPDATE `item_db_re` SET `script` = 'if(isequippedcnt(2995)>1) end; bonus bUseSPrate,-10; bonus bDelayrate,-10; bonus bVariableCastrate,-10; bonus2 bSkillCooldown,\"NC_AXEBOOMERANG\",-2000;' WHERE (`id` = '2995');

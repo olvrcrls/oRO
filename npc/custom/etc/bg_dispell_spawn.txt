@@ -36,7 +36,6 @@ bat_room,154,150,0	script	BGDispell	-1,2,2,{
 		sc_end	SC_SKE;
 		sc_end	SC_SWOO;
 		sc_end	SC_SKA;
-		sc_end	SC_PYROCLASTIC;
 		sc_end	SC_STRIPWEAPON;
 		sc_end	SC_STRIPSHIELD;
 		sc_end	SC_STRIPARMOR;
@@ -64,9 +63,98 @@ bat_room,154,150,0	script	BGDispell	-1,2,2,{
 		sc_end	SC_OBLIVIONCURSE;
 		sc_end	SC_STEELBODY;
 		sc_end	SC_DECREASEAGI;
+		sc_end	SC_AETERNA;
+		sc_end	SC_PROVOKE;
+		sc_end	SC_CRYSTALIZE;
+		sc_end	SC_THORNSTRAP;
+		sc_end	SC_SV_ROOTTWIST;
+		sc_end	SC_SPIDERWEB;
+
+		// Acolyte Buffs
+		sc_end	SC_BLESSING;
+		sc_end	SC_INCREASEAGI;
+		sc_end	SC_ANGELUSH;
+		sc_end	SC_SECRAMENT;
+		sc_end	SC_EXPIATIO;
+		sc_end	SC_IMPOSITIO;
+		sc_end	SC_SUFFRAGIUM;
+		sc_end	SC_ASPERSIO;
+		sc_end	SC_KYRIE;
+		sc_end	SC_GLORIA;
+		sc_end	SC_OFFERTORIUM;
+
+		//Song Buffs
+		sc_end	SC_POEMBRAGI;
+		sc_end	SC_APPLEIDUN;
+		sc_end	SC_ASSNCROSS;
+		sc_end	SC_SERVICE4U;
+		sc_end	SC_FRIGG_SONG;
+		sc_end	SC_VOICEOFSIREN;
+		sc_end	SC_RUSHWINDMILL;
+		sc_end	SC_ECHOSONG;
+		sc_end	SC_SIEGFRIED;
+		sc_end	SC_SWINGDANCE;
+		sc_end	SC_NETHERWORLD;
+
+		//Ranger Buff
+		sc_end	SC_CONCENTRATE;
+		sc_end	SC_UNLIMIT;
+		sc_end	SC_WINDWALK;
+
+		//Merchant Buffs
+		sc_end	SC_OVERTHRUST;
+		sc_end	SC_MAXIMIZEPOWER;
+		sc_end	SC_WEAPONPERFECTION;
+		sc_end	SC_PYROCLASTIC;
+		sc_end	SC_ADRENALINE;
+		sc_end	SC_CARTBOOST;
+		sc_end	SC_GN_CARTBOOST;
+		sc_end	SC_CP_ARMOR;
+		sc_end	SC_CP_HELM;
+		sc_end	SC_CP_SHIELD;
+		sc_end	SC_CP_WEAPON;
+
+		// Mage Buffs
 		sc_end	SC_MARSHOFABYSS;
 		sc_end	SC_ENERGYCOAT;
 		sc_end	SC_MINDBREAKER;
+		sc_end	SC_STRIKING;
+		sc_end	SC_TELEKINESIS_INTENSE;
+
+		// Sura Buffs
+		sc_end	SC_GT_CHANGE;
+		sc_end	SC_GT_REVITALIZE;
+		sc_end	SC_GT_ENERGYGAIN;
+		sc_end	SC_EXPLOSIONSPIRITS;
+		sc_end	SC_RAISINGDRAGON;
+
+		//Paladin Buffs
+		sc_end	SC_AUTOGUARD;
+		sc_end	SC_REFLECTSHIELD;
+		sc_end	SC_DEFENDER;
+		sc_end	SC_ENDURE;
+		sc_end	SC_FORCEOFVANGUARD;
+		sc_end	SC_SPEARQUICKEN;
+		sc_end	SC_DEVOTION;
+		sc_end	SC_INSPIRATION;
+
+		// RK Buffs
+		sc_end	SC_GIANTGROWTH;
+		sc_end	SC_MILLENNIUMSHIELD;
+		sc_end	SC_STONEHARDSKIN;
+		sc_end	SC_REFRESH;
+		sc_end	SC_VITALITYACTIVATION;
+		sc_end	SC_FIGHTINGSPIRIT;
+		
+		// GX Buffs
+		sc_end	SC_EDP;
+		sc_end	SC_HALLUCINATIONWALK;
+		sc_end	SC_DARKCROW;
+		sc_end	SC_CLOAKINGEXCEED;
+
+		// Soul Linker Buffs
+		sc_end	SC_SPIRIT;
+
 
 		// Repair all equipment of the player
 		repairall

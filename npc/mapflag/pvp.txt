@@ -149,3 +149,5 @@ odin_tem03	mapflag	pvp
 moc_fild22	mapflag	pvp
 abbey03	mapflag	pvp
 lhz_dun03	mapflag	pvp
+gef_fild03	mapflag	pvp
+c_tower3_	mapflag	pvp

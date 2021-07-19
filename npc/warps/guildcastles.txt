@@ -407,9 +407,23 @@ sch_gld,354,89,0	warp	schg002	1,1,yuno,16,126
 schg_cas01,119,4,0	warp	schg101	1,1,sch_gld,293,100
 sch_gld,293,90,0	warp	schg102	1,1,schg_cas01,119,8
 schg_cas01,275,240,0	warp	schg103	1,1,schg_cas01,120,7
+
+//Andlangr
 schg_cas02,339,73,0	warp	schg201	1,1,sch_gld,288,252
 sch_gld,288,258,0	warp	schg202	1,1,schg_cas02,339,78
+
+//Andlangr West Entrance
+sch_gld,275,241,9	warp	schg202_west_entrance	1,1,schg_cas02,330,183
+schg_cas02,336,181,0	warp	schg202_west_exit	1,1,sch_gld,280,240
+
+//Andlangr East Entrance
+sch_gld,299,241,9	warp	schg202_east_entrance	1,1,schg_cas02,349,117
+schg_cas02,353,116,0	warp	schg202_east_exit	1,1,sch_gld,295,240
+
 schg_cas02,101,301,0	warp	schg203	1,1,schg_cas02,340,78
+
+
+
 schg_cas03,337,336,0	warp	schg301	1,1,sch_gld,97,196
 sch_gld,97,183,0	warp	schg302	1,1,schg_cas03,337,330
 schg_cas03,57,9,0	warp	schg303	1,1,schg_cas03,337,330
