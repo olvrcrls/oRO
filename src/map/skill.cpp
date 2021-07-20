@@ -18224,7 +18224,13 @@ static int skill_cell_overlap(struct block_list *bl, va_list ap)
 				std::shared_ptr<s_skill_db> skill = skill_db.find(unit->group->skill_id);
 
 				//It deletes everything except traps and barriers
-				if ((!skill->inf2[INF2_ISTRAP] && !skill->inf2[INF2_IGNORELANDPROTECTOR]) || unit->group->skill_id == WZ_FIREPILLAR || unit->group->skill_id == GN_HELLS_PLANT || unit->group->skill_id == GN_THORNS_TRAP || unit->group->skill_id == SC_BLOODYLUST) {
+				if ((!skill->inf2[INF2_ISTRAP] && !skill->inf2[INF2_IGNORELANDPROTECTOR]) || 
+						unit->group->skill_id == WZ_FIREPILLAR || 
+						unit->group->skill_id == GN_HELLS_PLANT || 
+						unit->group->skill_id == GN_THORNS_TRAP || 
+						unit->group->skill_id == SC_BLOODYLUST ||
+						unit->group->skill_id == WM_POEMOFNETHERWORLD
+					) {
 					if (skill->unit_flag[UF_RANGEDSINGLEUNIT]) {
 						if (unit->val2&(1 << UF_RANGEDSINGLEUNIT))
 							skill_delunitgroup(unit->group);
