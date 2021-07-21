@@ -37,18 +37,31 @@ function	script	Reward_BG	{
 		if(.@total1 > .@total2) {
 			bg_reward($@BG_Team1,$BGREWARD_ITID,.@total1+.@nb_joueurs,0,0,"",0,getarg(2),0);
 			bg_reward($@BG_Team1,$BGREWARD_BLANKS,.@total1+.@nb_joueurs,0,0,"",0,getarg(2),0);
+			bg_reward($@BG_Team1,$BGREWARD_ARES_GIFT,.@total1+.@nb_joueurs,0,0,"",0,getarg(2),0);
+
+
 			bg_reward($@BG_Team2,$BGREWARD_ITID,.@total2+.@nb_joueurs,0,0,"",0,getarg(2),2);
 			bg_reward($@BG_Team2,$BGREWARD_BLANKS,.@total2+.@nb_joueurs,0,0,"",0,getarg(2),2);
+			bg_reward($@BG_Team2,$BGREWARD_ARES_GIFT,.@total2+.@nb_joueurs,0,0,"",0,getarg(2),2);
 		} else if(.@total1 < .@total2) {
 			bg_reward($@BG_Team1,$BGREWARD_ITID,.@total1+.@nb_joueurs,0,0,"",0,getarg(2),2);
 			bg_reward($@BG_Team1,$BGREWARD_BLANKS,.@total1+.@nb_joueurs,0,0,"",0,getarg(2),2);
+			bg_reward($@BG_Team1,$BGREWARD_ARES_GIFT,.@total1+.@nb_joueurs,0,0,"",0,getarg(2),2);
+
+
 			bg_reward($@BG_Team2,$BGREWARD_ITID,.@total2+.@nb_joueurs,0,0,"",0,getarg(2),0);
 			bg_reward($@BG_Team2,$BGREWARD_BLANKS,.@total2+.@nb_joueurs,0,0,"",0,getarg(2),0);
+			bg_reward($@BG_Team2,$BGREWARD_ARES_GIFT,.@total2+.@nb_joueurs,0,0,"",0,getarg(2),0);
 		} else {
 			bg_reward($@BG_Team1,$BGREWARD_ITID,.@total1+.@nb_joueurs,0,0,"",0,getarg(2),1);
 			bg_reward($@BG_Team2,$BGREWARD_ITID,.@total2+.@nb_joueurs,0,0,"",0,getarg(2),1);
+
+			
 			bg_reward($@BG_Team1,$BGREWARD_BLANKS,.@total1+.@nb_joueurs,0,0,"",0,getarg(2),1);
+			bg_reward($@BG_Team1,$BGREWARD_ARES_GIFT,.@total1+.@nb_joueurs,0,0,"",0,getarg(2),1);
+
 			bg_reward($@BG_Team2,$BGREWARD_BLANKS,.@total2+.@nb_joueurs,0,0,"",0,getarg(2),1);
+			bg_reward($@BG_Team2,$BGREWARD_ARES_GIFT,.@total2+.@nb_joueurs,0,0,"",0,getarg(2),1);
 		}
 		
 		deletearray $@bgmembers$;
@@ -66,9 +79,12 @@ function	script	Reward_BG	{
 					if (query_sql("SELECT `account_id` FROM `bg_daily_wins` WHERE `account_id` = " + .@account_id + " AND DATE(`created_at`) = '" + .@current_date$ + "';") < 1) {
 						// If there are no records yet then we insert a brand new record.
 						query_sql("INSERT INTO `bg_daily_wins`(`account_id`,`win`,`last_ip`) VALUES (" + .@account_id + ",1,'" + .@login_ip$ + "');");
+						dispbottom "Daily Battleground Wins: 1",0x7289DA,.@char_id;
 					} else {
 						// Update the existing record
-						query_sql("UPDATE `bg_daily_wins` SET `win` = `win` + 1 WHERE `account_id` = " + .@account_id);
+						query_sql("UPDATE `bg_daily_wins` SET `win` = `win` + 1 WHERE `account_id` = " + .@account_id + " AND DATE(`created_at`) = '" + .@current_date$ + "';");
+						query_sql("SELECT `win` FROM `bg_daily_wins` WHERE `account_id` = " + .@account_id  + " AND DATE(`created_at`) = '" + .@current_date$ + "';", .@total_wins);
+						dispbottom "Daily Battleground Wins: " + .@total_wins,0x7289DA,.@char_id;
 					}
 				}
 			}
@@ -87,9 +103,12 @@ function	script	Reward_BG	{
 					if (query_sql("SELECT `account_id` FROM `bg_daily_wins` WHERE `account_id` = " + .@account_id + " AND DATE(`created_at`) = '" + .@current_date$ + "';") < 1) {
 						// If there are no records yet then we insert a brand new record.
 						query_sql("INSERT INTO `bg_daily_wins`(`account_id`,`win`,`last_ip`) VALUES (" + .@account_id + ",1,'" + .@login_ip$ + "');");
+						dispbottom "Daily Battleground Wins: 1",0x7289DA,.@char_id;
 					} else {
 						// Update the existing record
-						query_sql("UPDATE `bg_daily_wins` SET `win` = `win` + 1 WHERE `account_id` = " + .@account_id);
+						query_sql("UPDATE `bg_daily_wins` SET `win` = `win` + 1 WHERE `account_id` = " + .@account_id + " AND DATE(`created_at`) = '" + .@current_date$ + "';");
+						query_sql("SELECT `win` FROM `bg_daily_wins` WHERE `account_id` = " + .@account_id  + " AND DATE(`created_at`) = '" + .@current_date$ + "';", .@total_wins);
+						dispbottom "Daily Battleground Wins: " + .@total_wins,0x7289DA,.@char_id;
 					}
 				}
 			}
@@ -219,6 +238,8 @@ OnClock0400:
 OnClock0500:
 OnClock0800:
 OnClock0900:
+OnClock1200:
+OnClock1300:
 OnClock1600:
 OnClock1700:
 OnClock2000:
@@ -254,6 +275,20 @@ OnClock2100:
 			}
 			
 			if( gettime(DT_HOUR) == 9 )
+			{
+				bgannounce "-- Battleground Happy Hour is over --",0x00BFFF;
+				setbattleflag "bg_reward_rates",100; // Normal Rates
+				end;
+			}
+
+			if( gettime(DT_HOUR) >= 12 && gettime(DT_HOUR) < 13 )
+			{
+				bgannounce "-- Battleground Happy Hour has begun --",0x00FF00;
+				setbattleflag "bg_reward_rates",180; // +80% Reward Rates
+				end;
+			}
+			
+			if( gettime(DT_HOUR) == 13 )
 			{
 				bgannounce "-- Battleground Happy Hour is over --",0x00BFFF;
 				setbattleflag "bg_reward_rates",100; // Normal Rates
@@ -443,7 +478,7 @@ OnInit:
 	// Min Votes to start choosing mode in vote mode
 	$Min_Votes_To_Start = 2;
 	// Activate or disable @joinredteam/@joinblueteam
-	$JOIN_REDBLUE_TEAM = 1;
+	$JOIN_REDBLUE_TEAM = 0;
 	// Rewards when premature end (0 players in one team) ?
 	$PREMATURE_REWARDS = 1;
 	// Reward item id
@@ -455,6 +490,7 @@ OnInit:
 
 	// Extra Rewards
 	$BGREWARD_BLANKS = 6187;
+	$BGREWARD_ARES_GIFT = 14652;
 
 	// *****************************************************
 	// Bg Extension
@@ -477,10 +513,10 @@ OnInit:
 	// Battleground Modes :
 	// AddBGmode( NPC_Name, BG Label, BG ID, Min Player per team, Max Player per team, Activated? )
 	AddBGmode("Flavius_CTF",	"Capture the Flag",		"BG_CTF",	5,	69,		0);
-	AddBGmode("Flavius_TD",		"Team DeathMatch",		"BG_TDM",	5,	69,		1);
+	AddBGmode("Flavius_TD",		"Team DeathMatch",		"BG_TDM",	5,	69,		0);
 	AddBGmode("Tierra_EOS",		"Eye of Storm",			"BG_EOE",	5,	69,		0);
 	AddBGmode("Conquest",		"Conquest",				"BG_CON",	5,	69,		0);
-	AddBGmode("KvM01_BG",		"Kreiger Von Midgard",	"BG_KVM", 	3,	69,		1);
+	AddBGmode("KvM01_BG",		"Kreiger Von Midgard",	"BG_KVM", 	4,	13,		1);
 	AddBGmode("Flavius_SC",		"Stone Control",		"BG_SC", 	5,	69,		0);
 	AddBGmode("Tierra_DOM",		"Domination",			"BG_DOM",	5,	69,		0);
 	AddBGmode("Rush", 			"Rush",					"BG_RUSH",	5,	30,		0);

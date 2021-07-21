@@ -13841,7 +13841,7 @@ Body:
         Count: 9
       - Level: 10
         Count: 10
-    Element: Weapon
+    Element: Neutral
     CastCancel: true
     AfterCastActDelay: 1000
     FixedCastTime: 1000
@@ -17928,12 +17928,13 @@ Body:
     Name: RK_DRAGONBREATH
     Description: Dragon Breath
     MaxLevel: 10
-    Type: Misc
+    Type: Weapon
     TargetType: Ground
     DamageFlags:
       Splash: true
       IgnoreFlee: true
       IgnoreAtkCard: true
+      IgnoreDefense: true
     Flags:
       TargetTrap: true
     Range: 9
@@ -23175,7 +23176,7 @@ Body:
     Hit: Single
     HitCount: 1
     SplashArea: 2
-    AfterCastActDelay: 1000
+    Cooldown: 1000
     FixedCastTime: -1
     Requires:
       SpCost:
@@ -24637,7 +24638,7 @@ Body:
     Name: SR_GENTLETOUCH_CHANGE
     Description: Gentle Touch - Change
     MaxLevel: 5
-    TargetType: Self
+    TargetType: Support
     DamageFlags:
       NoDamage: true
     Range: 2
@@ -31856,12 +31857,13 @@ Body:
     Name: RK_DRAGONBREATH_WATER
     Description: Dragon Breath - Water
     MaxLevel: 10
-    Type: Misc
+    Type: Weapon
     TargetType: Ground
     DamageFlags:
       Splash: true
       IgnoreFlee: true
       IgnoreAtkCard: true
+      IgnoreDefense: true
     Flags:
       TargetTrap: true
     Range: 9
@@ -32872,6 +32874,7 @@ Body:
     SplashArea: -1
     CastCancel: true
     AfterCastActDelay: 1000
+    FixedCastTime: 1000
     Duration1:
       - Level: 1
         Time: 60000

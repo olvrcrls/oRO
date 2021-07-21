@@ -195,7 +195,7 @@ askald,21,168,5	script	Dylan	4_CAT_SAILOR5,{
 		.@card[3] = getequipcardid(EQI_ARMOR,3);
 		if (.@item_id == -1) {
 			mes "[Dylan]";
-			mes "You are taking it off.";
+			mes "I don't see anything equipped to be enhanced.";
 			close;
 		}
 		if (.@item_id != 15146 && .@item_id != 15147 && .@item_id != 15164) {
@@ -280,24 +280,25 @@ Enchant_Armor:
 		close;
 	}
 	if (.@card[2] > 0 && .@card[3] > 0) {
+		//mes "[Dylan]";
+		//mes "You already have enchants on this.";
+		//mes "Do you want to continue and re-enchant both enchants?";
+		//mes "After that I'll enchant it for the first slot!";
+		//switch(select("Yes:No")) {
+		//	case 1:
+		//		.@card[2] = 0;
+		//		.@card[3] = 0;
+		//		delequip EQI_ARMOR;
+		//		getitem2 .@item_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
+		//		equip .@item_id;
+		//		goto Enchant_Armor;
+		//	case 2:
+		//		mes "Okay. Good bye. Come back next time.";
+		//		close;
+		//}
 		mes "[Dylan]";
-		mes "You already have enchants on this.";
-		mes "Do you want to continue and re-enchant both enchants?";
-		mes "After that I'll enchant it for the first slot!";
-		switch(select("Yes:No")) {
-			case 1:
-				.@card[2] = 0;
-				.@card[3] = 0;
-				delequip EQI_ARMOR;
-				getitem2 .@item_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
-				equip .@item_id;
-				goto Enchant_Armor;
-			case 2:
-				mes "Okay. Good bye. Come back next time.";
-				close;
-		}
-	//	mes "It cannot be enhanced anymore. Do you have anything else to enhance?";
-	//	close;
+		mes "It cannot be enhanced anymore. Do you have anything else to enhance?";
+		close;
 	}
 
 	if (countitem(6919) < 20) {
@@ -398,32 +399,32 @@ Enchant_Armor:
 		}
 	}
 	// If there are two enchants already, RNG refine.
-	if (.@card[3] > 0) {
-		mes "[Dylan]";
-		mes "You will already have a max enchants, I offer you a refine RNG with a cost of ^0000FF500,000^000000 zeny and ^0000FF1 Elunium^000000!";
-		next;
-		mes "Do you want to? If not, I'll retain its original refine!";
-		switch(select("Yes:No")) {
-			case 1:
-				if (Zeny >= 500000 && countitem(985) >= 1) {
-					setarray .@refine_arr[0],1,2,3,4,5,6,8,8,9,7,7,7; // array of refine
-					set .@refine_rng, rand(12);
-					.@refine = .@refine_arr[.@refine_rng];	
-					set Zeny, Zeny - 500000;
-					delitem 985,1;
-					next;
-				} else {
-					next;
-					mes "Hey, don't mess with me. Where's your ^0000FF500,000^000000 zeny and Elunium?!";
-					mes "Anyway, I enchanted it nonetheless!";
-				}
-				break;
-			case 2:
-				mes "[Dylan]";
-				mes "Coolio! Done.";
-				break;
-		}
-	}
+	//if (.@card[3] > 0) {
+	//	mes "[Dylan]";
+	//	mes "You will already have a max enchants, I offer you a refine RNG with a cost of ^0000FF500,000^000000 zeny and ^0000FF1 Elunium^000000!";
+	//	next;
+	//	mes "Do you want to? If not, I'll retain its original refine!";
+	//	switch(select("Yes:No")) {
+	//		case 1:
+	//			if (Zeny >= 500000 && countitem(985) >= 1) {
+	//				setarray .@refine_arr[0],1,2,3,4,5,6,8,8,9,7,7,7; // array of refine
+	//				set .@refine_rng, rand(12);
+	//				.@refine = .@refine_arr[.@refine_rng];	
+	//				set Zeny, Zeny - 500000;
+	//				delitem 985,1;
+	//				next;
+	//			} else {
+	//				next;
+	//				mes "Hey, don't mess with me. Where's your ^0000FF500,000^000000 zeny and Elunium?!";
+	//				mes "Anyway, I enchanted it nonetheless!";
+	//			}
+	//			break;
+	//		case 2:
+	//			mes "[Dylan]";
+	//			mes "Coolio! Done.";
+	//			break;
+	//	}
+	//}
 	.@size = getarraysize(.@enhance);
 	.@r = rand( 1,.@enhance[.@size-2] );
 	for ( .@i = 0; .@i < .@size && .@enhance[.@i] < .@r; .@i += 2 )

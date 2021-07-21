@@ -3838,10 +3838,10 @@ int64 skill_attack (int attack_type, struct block_list* src, struct block_list *
 				break;
 			case SU_BITE:
 			case SU_SCRATCH:
-			case SU_SV_STEMSPEAR:
+			//case SU_SV_STEMSPEAR:
 			case SU_SCAROFTAROU:
-			case SU_PICKYPECK:
-				if (status_get_lv(src) > 29 && rnd() % 100 < 10 * status_get_lv(src) / 30)
+			//case SU_PICKYPECK:
+				if (status_get_lv(src) > 29 && (rnd() % 100 < (10 * status_get_lv(src) / 30)))
 					skill_addtimerskill(src, tick + dmg.amotion + skill_get_delay(skill_id, skill_lv), bl->id, 0, 0, skill_id, skill_lv, attack_type, flag|2);
 				break;
 		}
@@ -8277,7 +8277,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 					continue;
 				switch (i) {
 					case SC_ATKPOTION:
-					case SC_MATKPOTION:
+					case SC_MATKPOTION:		case SC_SU_STOOP:
 					case SC_WEIGHT50:		case SC_WEIGHT90:		case SC_HALLUCINATION:
 					case SC_STRIPWEAPON:	case SC_STRIPSHIELD:	case SC_STRIPARMOR:
 					case SC_STRIPHELM:		case SC_CP_WEAPON:		case SC_CP_SHIELD:
@@ -9845,7 +9845,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 					continue;
 				switch (i) {
 					case SC__STRIPACCESSORY:	case SC_PRESERVE:	case SC_ATKPOTION:
-					case SC_MATKPOTION:
+					case SC_MATKPOTION:		case SC_EDP:
 					case SC_WEIGHT50:		case SC_WEIGHT90:		case SC_HALLUCINATION:
 					case SC_STRIPWEAPON:		case SC_STRIPSHIELD:		case SC_STRIPARMOR:
 					case SC_STRIPHELM:		case SC_CP_WEAPON:		case SC_CP_SHIELD:
@@ -15636,6 +15636,7 @@ bool skill_check_condition_castbegin(struct map_session_data* sd, uint16 skill_i
 			break;
 		case MO_FINGEROFFENSIVE:
 		case GS_FLING:
+		case SR_RAMPAGEBLASTER:
 		case SR_RIDEINLIGHTNING:
 			if( sd->spiritball > 0 && sd->spiritball < require.spiritball )
 				sd->spiritball_old = require.spiritball = sd->spiritball;
@@ -17101,6 +17102,9 @@ struct s_skill_condition skill_get_requirement(struct map_session_data* sd, uint
 					req.spiritball = sd->spiritball; // must consume all regardless of the amount required
 			}
 			break;
+		case SR_RAMPAGEBLASTER:
+			req.spiritball = sd->spiritball?sd->spiritball:15;
+			break;
 		case LG_RAGEBURST:
 			req.spiritball = sd->spiritball?sd->spiritball:1;
 			break;
@@ -17108,7 +17112,7 @@ struct s_skill_condition skill_get_requirement(struct map_session_data* sd, uint
 		{
 			int sp_consume = (skill_lv + 10) * (sd->status.max_sp / 100);
 			if( sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_FALLENEMPIRE )
-				req.sp -= sp_consume;
+				req.sp += sp_consume;
 			else
 				req.sp += sp_consume;
 			break;

@@ -20,3 +20,4 @@ bat_b01	mapflag	battleground	2
 bat_b02	mapflag	battleground
 bat_a01	mapflag	battleground
 bat_a02	mapflag	battleground
+bg_kvm	mapflag	noemergencycall

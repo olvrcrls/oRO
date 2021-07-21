@@ -417,7 +417,7 @@ C4: setarray @c[2],134,65,240,128,153,137,111,240,208,240;
 C5: setarray @c[2],158,272,83,47,68,155,299,345,292,107;
 	Disp("Mardol:Cyr:Horn:Gefn:Banadis");
 	Pick("","aru_gld","aru_gld","aru_gld","aru_gld","aru_gld");
-C6: setarray @c[2],293,100,288,252,97,196,137,90,71,315;
+C6: setarray @c[2],293,100,288,247,97,196,137,90,71,315;
 	Disp("Himinn:Andlangr:Viblainn:Hljod:Skidbladnir");
 	Pick("","sch_gld","sch_gld","sch_gld","sch_gld","sch_gld");
 C7: Restrict("RE");

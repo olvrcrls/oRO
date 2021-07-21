@@ -270,8 +270,8 @@ setarray .RandOpt1_P_MinV[0],1,0,0,0,0,0,0,0,0,5,5,5,5,5,5,5,5,5,5,5,0,0;
 setarray .RandOpt1_P_MaxV[0],10,0,0,0,0,0,0,0,0,20,20,20,20,20,20,20,20,20,20,20,0,0;
 setarray .RandOpt1_P2_MinV[0],1,0,0,0,0,0,0,0,0,5,5,5,5,5,5,5,5,5,5,5,0,0;
 setarray .RandOpt1_P2_MaxV[0],10,0,0,0,0,0,0,0,0,20,20,20,20,20,20,20,20,20,20,20,0,0;
-setarray .RandOpt1_P3_MinV[0],1,0,0,0,0,0,0,0,0,5,5,5,5,5,5,5,5,5,5,5,0,0;
-setarray .RandOpt1_P3_MaxV[0],10,0,0,0,0,0,0,0,0,20,20,20,20,20,20,20,20,20,20,20,0,0;
+setarray .RandOpt1_P3_MinV[0],1,1,1,1,1,1,1,1,1,5,5,5,5,5,5,5,5,5,5,5,1;
+setarray .RandOpt1_P3_MaxV[0],10,1,1,1,1,1,1,1,1,20,20,20,20,20,20,20,20,20,20,20,1;
 setarray .RandOpt1_M_MinV[0],1,5,5,5,5,5,5,5,5,5,5,5,5;
 setarray .RandOpt1_M_MaxV[0],10,20,20,20,20,20,20,20,20,20,20,20,20;
 setarray .RandOpt1_R_MinV[0],1,5,5,5,5,5,5,5,5,5,5,0,0;
@@ -333,7 +333,7 @@ setarray .RandOpt2_P2[0],RDMOPT_RACE_DAMAGE_NOTHING,	// Damage to Neutral Race
 					    RDMOPT_CLASS_DAMAGE_BOSS_TARGET; // Damage to Boss monsters	
 
 // - Physical 3
-setarray .RandOpt2_P2[0],RDMOPT_RACE_DAMAGE_NOTHING,	// Damage to Neutral Race
+setarray .RandOpt2_P3[0],RDMOPT_RACE_DAMAGE_NOTHING,	// Damage to Neutral Race
 					    RDMOPT_RACE_DAMAGE_UNDEAD,	// Damage to Undead Race
 					    RDMOPT_RACE_DAMAGE_ANIMAL,	// Damage to Animal Race
 					    RDMOPT_RACE_DAMAGE_PLANT,	// Damage to Plant Race
@@ -419,8 +419,8 @@ setarray .RandOpt2_P_MinV[0],10,10,10,10,10,10,10,10,10,15,15,15,15,15,15,15,15,
 setarray .RandOpt2_P_MaxV[0],20,20,20,20,20,20,20,20,20,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30;
 setarray .RandOpt2_P2_MinV[0],10,10,10,10,10,10,10,10,10,15,15,15,15,15,15,15,15,15,15,15,15,15,1,1;
 setarray .RandOpt2_P2_MaxV[0],20,20,20,20,20,20,20,20,20,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30;
-setarray .RandOpt2_P3_MinV[0],10,10,10,10,10,10,10,10,10,15,15,15,15,15,15,15,15,15,15,15,15,15,1,1;
-setarray .RandOpt2_P3_MaxV[0],20,20,20,20,20,20,20,20,20,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30;
+setarray .RandOpt2_P3_MinV[0],10,10,10,10,10,10,10,10,10,15,15,15,15,15,15,15,15,15,15,15,15,15,1,1,1;
+setarray .RandOpt2_P3_MaxV[0],20,20,20,20,20,20,20,20,20,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30;
 setarray .RandOpt2_M_MinV[0],10,10,10,10,10,10,10,10,10,15,15,15,15,15,15,15,15,15,15,15,15,15,1,1;
 setarray .RandOpt2_M_MaxV[0],20,20,20,20,20,20,20,20,20,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30;
 setarray .RandOpt2_R_MinV[0],10,10,10,10,10,10,10,10,10,15,15,15,15,15,15,15,15,15,15,15,15,15,1,1;
