@@ -24270,6 +24270,8 @@ Body:
         Size: 10
       - Level: 4
         Size: 11
+      - Level: 5
+        Size: 12
     Hit: Single
     HitCount: 1
     Element: Weapon
