@@ -1,0 +1,1 @@
+UPDATE `item_db_re` SET `name_japanese` = 'Abusive Robe' WHERE (`id` = '15147');

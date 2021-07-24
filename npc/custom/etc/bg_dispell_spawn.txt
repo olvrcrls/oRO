@@ -1,0 +1,162 @@
+//===== rAthena Script ======================================= 
+//= Andie's BG Spawn dispell
+//= Dispells players on touching the cell spawn after every BG MODE
+//===== Changelogs: ==========================================
+//= 1.0 Initial release
+//============================================================
+bat_room,154,150,0	script	BGDispell	-1,2,2,{
+	OnTouch:
+		sc_end	SC_STONE;
+		sc_end	SC_FREEZE;
+		sc_end	SC_STUN;
+		sc_end	SC_SLEEP;
+		sc_end	SC_POISON;
+		sc_end	SC_CURSE;
+		sc_end	SC_SILENCE;
+		sc_end	SC_CONFUSION;
+		sc_end	SC_BLIND;
+		sc_end	SC_BLOODING;
+		sc_end	SC_DPOISON;
+		sc_end	SC_FEAR;
+		sc_end	SC_COLD;
+		sc_end	SC_BURNING;
+		sc_end	SC_DEEP_SLEEP;
+		sc_end	SC_DEC_AGI;
+		sc_end	SC_BROKENARMOR;
+		sc_end	SC_BROKENWEAPON;
+		sc_end	SC_NOEQUIPWEAPON;
+		sc_end	SC_NOEQUIPSHIELD;
+		sc_end	SC_NOEQUIPARMOR;
+		sc_end	SC_NOEQUIPHELM;
+		sc_end	SC_STRIPACCESSARY;
+		sc_end	SC__STRIPACCESSORY;
+		sc_end	SC_PROPERTYUNDEAD;
+		sc_end	SC_ORCISH;
+		sc_end	SC_BERSERK;
+		sc_end	SC_SKE;
+		sc_end	SC_SWOO;
+		sc_end	SC_SKA;
+		sc_end	SC_STRIPWEAPON;
+		sc_end	SC_STRIPSHIELD;
+		sc_end	SC_STRIPARMOR;
+		sc_end	SC_STRIPHELM;
+		sc_end	SC__IGNORANCE;
+		sc_end	SC__LAZINESS;
+		sc_end	SC__UNLUCKY;
+		sc_end	SC__WEAKNESS;
+		sc_end	SC__GROOMY;
+		sc_end	SC__ENERVATION;
+		sc_end	SC_FREEZING;
+		sc_end	SC_CURSEDCIRCLE_TARGET;
+		sc_end  SC_STASIS;
+		sc_end	SC_HARMONIZE;
+		sc_end	SC_HALLUCINATION;
+		sc_end	SC_MANDRAGORA;
+		sc_end	SC_BLEEDING;
+		sc_end	SC_LEECHESEND;
+		sc_end	SC_MAGICMUSHROOM;
+		sc_end	SC_PARALYSE;
+		sc_end	SC_PYREXIA;
+		sc_end	SC_DEATHHURT;
+		sc_end	SC_VENOMBLEED;
+		sc_end	SC_TOXIN;
+		sc_end	SC_OBLIVIONCURSE;
+		sc_end	SC_STEELBODY;
+		sc_end	SC_DECREASEAGI;
+		sc_end	SC_AETERNA;
+		sc_end	SC_PROVOKE;
+		sc_end	SC_CRYSTALIZE;
+		sc_end	SC_THORNSTRAP;
+		sc_end	SC_SV_ROOTTWIST;
+		sc_end	SC_SPIDERWEB;
+
+		// Acolyte Buffs
+		sc_end	SC_BLESSING;
+		sc_end	SC_INCREASEAGI;
+		sc_end	SC_ANGELUSH;
+		sc_end	SC_SECRAMENT;
+		sc_end	SC_EXPIATIO;
+		sc_end	SC_IMPOSITIO;
+		sc_end	SC_SUFFRAGIUM;
+		sc_end	SC_ASPERSIO;
+		sc_end	SC_KYRIE;
+		sc_end	SC_GLORIA;
+		sc_end	SC_OFFERTORIUM;
+
+		//Song Buffs
+		sc_end	SC_POEMBRAGI;
+		sc_end	SC_APPLEIDUN;
+		sc_end	SC_ASSNCROSS;
+		sc_end	SC_SERVICE4U;
+		sc_end	SC_FRIGG_SONG;
+		sc_end	SC_VOICEOFSIREN;
+		sc_end	SC_RUSHWINDMILL;
+		sc_end	SC_ECHOSONG;
+		sc_end	SC_SIEGFRIED;
+		sc_end	SC_SWINGDANCE;
+		sc_end	SC_NETHERWORLD;
+
+		//Ranger Buff
+		sc_end	SC_CONCENTRATE;
+		sc_end	SC_UNLIMIT;
+		sc_end	SC_WINDWALK;
+
+		//Merchant Buffs
+		sc_end	SC_OVERTHRUST;
+		sc_end	SC_MAXIMIZEPOWER;
+		sc_end	SC_WEAPONPERFECTION;
+		sc_end	SC_PYROCLASTIC;
+		sc_end	SC_ADRENALINE;
+		sc_end	SC_CARTBOOST;
+		sc_end	SC_GN_CARTBOOST;
+		sc_end	SC_CP_ARMOR;
+		sc_end	SC_CP_HELM;
+		sc_end	SC_CP_SHIELD;
+		sc_end	SC_CP_WEAPON;
+
+		// Mage Buffs
+		sc_end	SC_MARSHOFABYSS;
+		sc_end	SC_ENERGYCOAT;
+		sc_end	SC_MINDBREAKER;
+		sc_end	SC_STRIKING;
+		sc_end	SC_TELEKINESIS_INTENSE;
+
+		// Sura Buffs
+		sc_end	SC_GT_CHANGE;
+		sc_end	SC_GT_REVITALIZE;
+		sc_end	SC_GT_ENERGYGAIN;
+		sc_end	SC_EXPLOSIONSPIRITS;
+		sc_end	SC_RAISINGDRAGON;
+
+		//Paladin Buffs
+		sc_end	SC_AUTOGUARD;
+		sc_end	SC_REFLECTSHIELD;
+		sc_end	SC_DEFENDER;
+		sc_end	SC_ENDURE;
+		sc_end	SC_FORCEOFVANGUARD;
+		sc_end	SC_SPEARQUICKEN;
+		sc_end	SC_DEVOTION;
+		sc_end	SC_INSPIRATION;
+
+		// RK Buffs
+		sc_end	SC_GIANTGROWTH;
+		sc_end	SC_MILLENNIUMSHIELD;
+		sc_end	SC_STONEHARDSKIN;
+		sc_end	SC_REFRESH;
+		sc_end	SC_VITALITYACTIVATION;
+		sc_end	SC_FIGHTINGSPIRIT;
+		
+		// GX Buffs
+		sc_end	SC_EDP;
+		sc_end	SC_HALLUCINATIONWALK;
+		sc_end	SC_DARKCROW;
+		sc_end	SC_CLOAKINGEXCEED;
+
+		// Soul Linker Buffs
+		sc_end	SC_SPIRIT;
+
+
+		// Repair all equipment of the player
+		repairall
+		end;
+}

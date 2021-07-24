@@ -1,3 +1,10 @@
+//===== rAthena Script ======================================= 
+//= Hourly AFK Rewards
+//===== Changelogs: ==========================================
+//= 1.0 Initial release
+//============================================================
+//= TODO: Have an IP check to only reward one account.
+
 -	script	hourlypoints	-1,{
 //--Start of the Script
 OnPCLoginEvent:
@@ -10,6 +17,7 @@ OnPointGet:
 		set @consecutive_hour,0;
 		if(.@mes$=="") {
 			dispbottom set(.@mes$,"You are not receiving reward points because you are either vending, chatting, or idle.");
+			end;
 		}
 	}
 
@@ -23,7 +31,7 @@ OnPointGet:
 	if (@consecutive_hour == 8) {
 		getitem 7179,25;
 		dispbottom "You're treating this game like work. Here's your salary:";
-		dispbottom "You received 50 Proof of Donation by staying in game for 8 hours.";
+		dispbottom "You received 25 Proof of Donation by staying in game for 8 hours.";
 
 		// set #CASHPOINTS, #CASHPOINTS + .cpoint_amt;
 		// dispbottom "You receive "+.cpoint_amt+" SEA CPM in playing for 12 consecutive hours";
@@ -35,7 +43,7 @@ OnPointGet:
 		set @consecutive_hour,0;
 		getitem 7179, 50;
 		dispbottom "Wow, do you have a life?";
-		dispbottom "Anyway, thank you for staying active in game for 12 hours. You have 100 Proof of Donation!";
+		dispbottom "Anyway, thank you for staying active in game for 12 hours. You have 50 Proof of Donation!";
 	}
 	
 	addtimer .timer,"hourlypoints::OnPointGet";

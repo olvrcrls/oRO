@@ -7525,6 +7525,7 @@ Body:
     Description: Snap
     MaxLevel: 1
     TargetType: Ground
+    AfterCastActDelay: 100
     DamageFlags:
       NoDamage: true
     Range: 18
@@ -13840,7 +13841,7 @@ Body:
         Count: 9
       - Level: 10
         Count: 10
-    Element: Weapon
+    Element: Neutral
     CastCancel: true
     AfterCastActDelay: 1000
     FixedCastTime: 1000
@@ -17927,12 +17928,13 @@ Body:
     Name: RK_DRAGONBREATH
     Description: Dragon Breath
     MaxLevel: 10
-    Type: Misc
+    Type: Weapon
     TargetType: Ground
     DamageFlags:
       Splash: true
       IgnoreFlee: true
       IgnoreAtkCard: true
+      IgnoreDefense: true
     Flags:
       TargetTrap: true
     Range: 9
@@ -23174,7 +23176,7 @@ Body:
     Hit: Single
     HitCount: 1
     SplashArea: 2
-    AfterCastActDelay: 1000
+    Cooldown: 1000
     FixedCastTime: -1
     Requires:
       SpCost:
@@ -23963,6 +23965,7 @@ Body:
       - Level: 5
         Time: 2500
     FixedCastTime: -1
+    AfterCastActDelay: 200
     Requires:
       SpCost:
         - Level: 1
@@ -23990,7 +23993,7 @@ Body:
     Range: 1
     Hit: Single
     HitCount: 1
-    Element: Weapon
+    Element: Neutral
     SplashArea:
       - Level: 1
         Area: 1
@@ -24003,15 +24006,15 @@ Body:
       - Level: 5
         Area: 1
       - Level: 6
-        Area: 2
+        Area: 1
       - Level: 7
-        Area: 2
+        Area: 1
       - Level: 8
-        Area: 2
+        Area: 1
       - Level: 9
-        Area: 2
+        Area: 1
       - Level: 10
-        Area: 2
+        Area: 1
     CopyFlags:
       Skill:
         Reproduce: true
@@ -24267,6 +24270,8 @@ Body:
         Size: 10
       - Level: 4
         Size: 11
+      - Level: 5
+        Size: 12
     Hit: Single
     HitCount: 1
     Element: Weapon
@@ -24423,7 +24428,27 @@ Body:
     MaxLevel: 10
     Type: Weapon
     TargetType: Attack
-    Range: 7
+    Range:
+        - Level: 1
+          Size: 2
+        - Level: 2
+          Size: 2
+        - Level: 3
+          Size: 3
+        - Level: 4
+          Size: 3
+        - Level: 5
+          Size: 4
+        - Level: 6
+          Size: 4
+        - Level: 7
+          Size: 5
+        - Level: 8
+          Size: 5
+        - Level: 9
+          Size: 6
+        - Level: 10
+          Size: 7
     Hit: Multi_Hit
     HitCount: -7
     Element: Weapon
@@ -24575,7 +24600,7 @@ Body:
     CastTime: 1000
     AfterCastActDelay: 1000
     Duration1: 240000
-    Duration2: 600000
+    Duration2: 240000
     Cooldown: 1000
     FixedCastTime:
       - Level: 1
@@ -24615,7 +24640,7 @@ Body:
     Name: SR_GENTLETOUCH_CHANGE
     Description: Gentle Touch - Change
     MaxLevel: 5
-    TargetType: Self
+    TargetType: Support
     DamageFlags:
       NoDamage: true
     Range: 2
@@ -24625,7 +24650,17 @@ Body:
     CastTime: 1000
     AfterCastActDelay: 1000
     Duration1: 240000
-    Cooldown: 1000
+    Cooldown:
+      - Level: 1
+        Time: 200000
+      - Level: 2
+        Time: 180000
+      - Level: 3
+        Time: 160000
+      - Level: 4
+        Time: 140000
+      - Level: 5
+        Time: 120000
     FixedCastTime: 1000
     Requires:
       SpCost:
@@ -24641,16 +24676,16 @@ Body:
           Amount: 80
       HpRateCost:
         - Level: 1
-          Amount: -2
-        - Level: 2
           Amount: -4
-        - Level: 3
-          Amount: -6
-        - Level: 4
+        - Level: 2
           Amount: -8
+        - Level: 3
+          Amount: -12
+        - Level: 4
+          Amount: -16
         - Level: 5
-          Amount: -10
-      SpiritSphereCost: 1
+          Amount: -20
+      SpiritSphereCost: 2
   - Id: 2348
     Name: SR_GENTLETOUCH_REVITALIZE
     Description: Gentle Touch - Revitalize
@@ -24662,10 +24697,20 @@ Body:
     Hit: Single
     HitCount: 1
     CastCancel: true
-    CastTime: 1000
+    CastTime: 2000
     AfterCastActDelay: 1000
     Duration1: 240000
-    Cooldown: 1000
+    Cooldown:
+      - Level: 1
+        Time: 200000
+      - Level: 2
+        Time: 180000
+      - Level: 3
+        Time: 160000
+      - Level: 4
+        Time: 140000
+      - Level: 5
+        Time: 120000
     FixedCastTime: 1000
     Requires:
       SpCost:
@@ -24679,7 +24724,7 @@ Body:
           Amount: 70
         - Level: 5
           Amount: 80
-      SpiritSphereCost: 1
+      SpiritSphereCost: 2
   - Id: 2517
     Name: SR_HOWLINGOFLION
     Description: Howling of Lion
@@ -27576,7 +27621,7 @@ Body:
         Time: 2500
       - Level: 5
         Time: 3000
-    AfterCastActDelay: 500
+    AfterCastActDelay: 600
     FixedCastTime: -1
     Requires:
       SpCost:
@@ -27919,7 +27964,28 @@ Body:
     Hit: Single
     HitCount: 1
     Element: Earth
-    SplashArea: 4
+    SplashArea: 2
+    ActiveInstance:
+      - Level: 1
+        Max: 5
+      - Level: 2
+        Max: 6
+      - Level: 3
+        Max: 6
+      - Level: 4
+        Max: 7
+      - Level: 5
+        Max: 7
+      - Level: 6
+        Max: 8
+      - Level: 7
+        Max: 8
+      - Level: 8
+        Max: 9
+      - Level: 9
+        Max: 9
+      - Level: 10
+        Max: 10
     CopyFlags:
       Skill:
         Reproduce: true
@@ -28421,6 +28487,8 @@ Body:
     HitCount: 1
     CastCancel: true
     Duration1: 60000
+    Flags:
+        IgnoreLandProtector: true
     CastDelayFlags:
       IgnoreDex: true
       IgnoreStatus: true
@@ -31791,12 +31859,13 @@ Body:
     Name: RK_DRAGONBREATH_WATER
     Description: Dragon Breath - Water
     MaxLevel: 10
-    Type: Misc
+    Type: Weapon
     TargetType: Ground
     DamageFlags:
       Splash: true
       IgnoreFlee: true
       IgnoreAtkCard: true
+      IgnoreDefense: true
     Flags:
       TargetTrap: true
     Range: 9
@@ -32363,6 +32432,7 @@ Body:
     Range: 9
     Hit: Single
     HitCount: 1
+    Cooldown: 1000
     Element:
       - Level: 1
         Element: Earth
@@ -32376,9 +32446,9 @@ Body:
         Element: Ghost
     CastCancel: true
     CastTime: 2000
-    AfterCastActDelay: 1000
+    AfterCastActDelay: 1500
     Duration2: 120000
-    FixedCastTime: -1
+    FixedCastTime: 500
     Requires:
       SpCost: 40
   - Id: 5027
@@ -32806,6 +32876,7 @@ Body:
     SplashArea: -1
     CastCancel: true
     AfterCastActDelay: 1000
+    FixedCastTime: 1000
     Duration1:
       - Level: 1
         Time: 60000
@@ -33453,6 +33524,8 @@ Body:
     DamageFlags:
       NoDamage: true
     Cooldown: 2000
+    Flags:
+      AllowOnMado: true
     FixedCastTime: 60
     CastTimeFlags:
       IgnoreDex: true

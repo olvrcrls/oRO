@@ -31,11 +31,20 @@
 2430,1	//WM_SATURDAY_NIGHT_FEVER
 2455,1	//SO_ARRULLO
 2299,1	//SC_MANHOLE
+2300,1	//SC_DIMENSIONDOOR
+2301,1  //SC_CHAOSPANIC
+2303,1	//SC_BLOODYLUST
+219,1	//RG_INTIMIDATE
+489,1	//TAROTCARD
+//421,1	//TK_JUMPKICK
+2383,1	//MI_HARMONIZE
+290,1 //ABRACADABRA
 
 //----------------------------------------------------------------------------
 // PVP
 //----------------------------------------------------------------------------
 2300,2	//SC_DIMENSIONDOOR
+290,2 //ABRACADABRA
 
 //----------------------------------------------------------------------------
 // GVG
@@ -61,6 +70,7 @@
 2300,4	//SC_DIMENSIONDOOR
 5063,4	//WE_CALLALLFAMILY
 462,4	//SL_KAIZEL
+290,4 //ABRACADABRA
 
 //----------------------------------------------------------------------------
 // Battlegrounds
@@ -99,7 +109,10 @@
 2453,8	//SO_VACUUM_EXTREME
 2300,8	//SC_DIMENSIONDOOR
 5063,8	//WE_CALLALLFAMILY
-5023,8	//SU_LOPE
+// 5023,8	//SU_LOPE
+5052,8	//SU_SPIRITOFLIFE
+5054,8	//SU_SPIRITOFLAND
+5056,8	//SU_SPIRITOFSEA
 462,8	//SL_KAIZEL
 
 //----------------------------------------------------------------------------

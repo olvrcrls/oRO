@@ -742,7 +742,7 @@ veins,208,128,5	script	Kafra Employee::kaf_veins	116,{
 	mes "always ready to serve you.";
 	mes "How can I help you today?";
 	callfunc "F_Kafra",5,3,1,50,700;
-	savepoint "veins",207,121,1,1;
+	savepoint "veins",202,121,1,1;
 	callfunc "F_KafEnd",0,1,"in the city of Veins.";
 }
 

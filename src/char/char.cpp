@@ -360,7 +360,7 @@ int char_mmo_char_tosql(uint32 char_id, struct mmo_charstatus* p){
 			strcat(save_status, " status2");
 	}
 
-	/* Player Battleground Statistics */
+	/* Player Battleground Stadistics */
 	if (memcmp(&p->bgstats, &cp->bgstats, sizeof(struct s_battleground_stats)))
 	{
 		if (SQL_ERROR == Sql_Query(sql_handle, "REPLACE INTO `rank_bg` ("
@@ -421,7 +421,7 @@ int char_mmo_char_tosql(uint32 char_id, struct mmo_charstatus* p){
 			strcat(save_status, " bgstats");
 	}
 
-	/* WoE Stadistics */
+	/* WoE Statistics */
 	if (memcmp(&p->wstats, &cp->wstats, sizeof(struct s_woestats)))
 	{
 		if (SQL_ERROR == Sql_Query(sql_handle, "REPLACE INTO `rank_woe` (`char_id`, `kill_count`, `death_count`, `score`, `top_damage`, `damage_done`, `damage_received`, `emperium_damage`, `guardian_damage`, `barricade_damage`, `gstone_damage`, "
@@ -1163,6 +1163,7 @@ int char_mmo_char_fromsql(uint32 char_id, struct mmo_charstatus* p, bool load_ev
 	struct s_skill tmp_skill;
 	uint16 skill_count = 0;
 	struct s_friend tmp_friend;
+	struct s_skillcount tmp_skillcount;
 #ifdef HOTKEY_SAVING
 	struct hotkey tmp_hotkey;
 	int hotkey_num;
@@ -1367,6 +1368,174 @@ int char_mmo_char_fromsql(uint32 char_id, struct mmo_charstatus* p, bool load_ev
 	}
 	StringBuf_AppendStr(&msg_buf, " hotkeys");
 #endif
+
+	/* Character Battleground Standings */
+	if (SQL_ERROR == SqlStmt_Prepare(stmt, "SELECT `top_damage`,`damage_done`,`damage_received`,`ctf_taken`,`ctf_captured`,`ctf_droped`,`ctf_wins`,`ctf_lost`,`ctf_tie`,`tdm_kills`,`tdm_deaths`,`tdm_wins`,`tdm_lost`,`tdm_tie`,`eos_flags`,`eos_bases`,`eos_wins`,`eos_lost`,`eos_tie`,`emperium_kill`,`barricade_kill`,`gstone_kill`,`cq_wins`,`cq_lost`,`kvm_kills`,`kvm_deaths`,`kvm_wins`,`kvm_lost`,`kvm_tie`,`sc_stole`,`sc_captured`,`sc_droped`,`sc_wins`,`sc_lost`,`sc_tie`,`dom_bases`,`dom_off_kills`,`dom_def_kills`,`dom_wins`,`dom_lost`,`dom_tie`,`ru_captures`,`ru_wins`,`ru_lost`,`pb_kills`,`pb_deaths`,`pb_kill_surface`,`pb_death_surface`,`pb_scored`,`pb_score_penalty`,`pb_score_own`,`pb_penalty`,`pb_sixyard`,`pb_wins`,`pb_lost`,`pb_tie`,`td_taken`,`td_scored`,`td_kills`,`td_kill_fumbi`,`td_kill_wfumbi`,`td_deaths`,`td_death_fumbi`,`td_death_wfumbi`,`td_wins`,`td_lost`,`td_tie`,`kill_count`,`death_count`,`win`,`lost`,`tie`,`leader_win`,`leader_lost`,`leader_tie`,`deserter`,`score`,`points`,`sp_heal_potions`,`hp_heal_potions`,`yellow_gemstones`,`red_gemstones`,`blue_gemstones`,`poison_bottles`,`acid_demostration`,`acid_demostration_fail`,`support_skills_used`,`healing_done`,`wrong_support_skills_used`,`wrong_healing_done`,`sp_used`,`zeny_used`,`spiritb_used`,`ammo_used` FROM `rank_bg` WHERE `char_id` = ?")
+		|| SQL_ERROR == SqlStmt_BindParam(stmt, 0, SQLDT_INT, &char_id, 0)
+		|| SQL_ERROR == SqlStmt_Execute(stmt)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 0, SQLDT_UINT, &p->bgstats.top_damage, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 1, SQLDT_UINT, &p->bgstats.damage_done, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 2, SQLDT_UINT, &p->bgstats.damage_received, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 3, SQLDT_USHORT, &p->bgstats.ctf_taken, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 4, SQLDT_USHORT, &p->bgstats.ctf_captured, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 5, SQLDT_USHORT, &p->bgstats.ctf_droped, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 6, SQLDT_USHORT, &p->bgstats.ctf_wins, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 7, SQLDT_USHORT, &p->bgstats.ctf_lost, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 8, SQLDT_USHORT, &p->bgstats.ctf_tie, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 9, SQLDT_USHORT, &p->bgstats.tdm_kills, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 10, SQLDT_USHORT, &p->bgstats.tdm_deaths, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 11, SQLDT_USHORT, &p->bgstats.tdm_wins, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 12, SQLDT_USHORT, &p->bgstats.tdm_lost, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 13, SQLDT_USHORT, &p->bgstats.tdm_tie, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 14, SQLDT_USHORT, &p->bgstats.eos_flags, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 15, SQLDT_USHORT, &p->bgstats.eos_bases, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 16, SQLDT_USHORT, &p->bgstats.eos_wins, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 17, SQLDT_USHORT, &p->bgstats.eos_lost, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 18, SQLDT_USHORT, &p->bgstats.eos_tie, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 19, SQLDT_USHORT, &p->bgstats.emperium_kill, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 20, SQLDT_USHORT, &p->bgstats.barricade_kill, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 21, SQLDT_USHORT, &p->bgstats.gstone_kill, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 22, SQLDT_USHORT, &p->bgstats.cq_wins, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 23, SQLDT_USHORT, &p->bgstats.cq_lost, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 24, SQLDT_USHORT, &p->bgstats.kvm_kills, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 25, SQLDT_USHORT, &p->bgstats.kvm_deaths, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 26, SQLDT_USHORT, &p->bgstats.kvm_wins, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 27, SQLDT_USHORT, &p->bgstats.kvm_lost, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 28, SQLDT_USHORT, &p->bgstats.kvm_tie, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 29, SQLDT_USHORT, &p->bgstats.sc_stole, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 30, SQLDT_USHORT, &p->bgstats.sc_captured, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 31, SQLDT_USHORT, &p->bgstats.sc_droped, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 32, SQLDT_USHORT, &p->bgstats.sc_wins, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 33, SQLDT_USHORT, &p->bgstats.sc_lost, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 34, SQLDT_USHORT, &p->bgstats.sc_tie, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 35, SQLDT_USHORT, &p->bgstats.dom_bases, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 36, SQLDT_USHORT, &p->bgstats.dom_off_kills, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 37, SQLDT_USHORT, &p->bgstats.dom_def_kills, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 38, SQLDT_USHORT, &p->bgstats.dom_wins, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 39, SQLDT_USHORT, &p->bgstats.dom_lost, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 40, SQLDT_USHORT, &p->bgstats.dom_tie, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 41, SQLDT_USHORT, &p->bgstats.ru_captures, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 42, SQLDT_USHORT, &p->bgstats.ru_wins, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 43, SQLDT_USHORT, &p->bgstats.ru_lost, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 44, SQLDT_USHORT, &p->bgstats.pb_kills, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 45, SQLDT_USHORT, &p->bgstats.pb_deaths, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 46, SQLDT_USHORT, &p->bgstats.pb_kill_surface, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 47, SQLDT_USHORT, &p->bgstats.pb_death_surface, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 48, SQLDT_USHORT, &p->bgstats.pb_scored, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 49, SQLDT_USHORT, &p->bgstats.pb_score_penalty, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 50, SQLDT_USHORT, &p->bgstats.pb_score_own, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 51, SQLDT_USHORT, &p->bgstats.pb_penalty, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 52, SQLDT_USHORT, &p->bgstats.pb_sixyard, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 53, SQLDT_USHORT, &p->bgstats.pb_wins, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 54, SQLDT_USHORT, &p->bgstats.pb_lost, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 55, SQLDT_USHORT, &p->bgstats.pb_tie, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 56, SQLDT_USHORT, &p->bgstats.td_taken, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 57, SQLDT_USHORT, &p->bgstats.td_scored, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 58, SQLDT_USHORT, &p->bgstats.td_kills, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 59, SQLDT_USHORT, &p->bgstats.td_kill_fumbi, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 60, SQLDT_USHORT, &p->bgstats.td_kill_wfumbi, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 61, SQLDT_USHORT, &p->bgstats.td_deaths, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 62, SQLDT_USHORT, &p->bgstats.td_death_fumbi, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 63, SQLDT_USHORT, &p->bgstats.td_death_wfumbi, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 64, SQLDT_USHORT, &p->bgstats.td_wins, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 65, SQLDT_USHORT, &p->bgstats.td_lost, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 66, SQLDT_USHORT, &p->bgstats.td_tie, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 67, SQLDT_USHORT, &p->bgstats.kill_count, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 68, SQLDT_USHORT, &p->bgstats.death_count, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 69, SQLDT_USHORT, &p->bgstats.win, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 70, SQLDT_USHORT, &p->bgstats.lost, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 71, SQLDT_USHORT, &p->bgstats.tie, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 72, SQLDT_USHORT, &p->bgstats.leader_win, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 73, SQLDT_USHORT, &p->bgstats.leader_lost, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 74, SQLDT_USHORT, &p->bgstats.leader_tie, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 75, SQLDT_USHORT, &p->bgstats.deserter, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 76, SQLDT_USHORT, &p->bgstats.score, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 77, SQLDT_INT, &p->bgstats.points, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 78, SQLDT_UINT, &p->bgstats.sp_heal_potions, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 79, SQLDT_UINT, &p->bgstats.hp_heal_potions, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 80, SQLDT_UINT, &p->bgstats.yellow_gemstones, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 81, SQLDT_UINT, &p->bgstats.red_gemstones, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 82, SQLDT_UINT, &p->bgstats.blue_gemstones, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 83, SQLDT_UINT, &p->bgstats.poison_bottles, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 84, SQLDT_UINT, &p->bgstats.acid_demostration, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 85, SQLDT_UINT, &p->bgstats.acid_demostration_fail, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 86, SQLDT_UINT, &p->bgstats.support_skills_used, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 87, SQLDT_UINT, &p->bgstats.healing_done, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 88, SQLDT_UINT, &p->bgstats.wrong_support_skills_used, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 89, SQLDT_UINT, &p->bgstats.wrong_healing_done, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 90, SQLDT_UINT, &p->bgstats.sp_used, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 91, SQLDT_UINT, &p->bgstats.zeny_used, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 92, SQLDT_UINT, &p->bgstats.spiritb_used, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 93, SQLDT_UINT, &p->bgstats.ammo_used, 0, NULL, NULL)
+		|| SQL_SUCCESS != SqlStmt_NextRow(stmt))
+	{
+		p->bgstats.score = 2000;
+	}
+	StringBuf_AppendStr(&msg_buf, " bgstats");
+
+	/* Character WoE Standings */
+	if (SQL_ERROR == SqlStmt_Prepare(stmt, "SELECT `top_damage`, `damage_done`, `damage_received`, `emperium_damage`, `guardian_damage`, `barricade_damage`, `gstone_damage`, `emperium_kill`, `guardian_kill`, `barricade_kill`, `gstone_kill`, `sp_heal_potions`, `hp_heal_potions`, `yellow_gemstones`, `red_gemstones`, `blue_gemstones`, `poison_bottles`, `acid_demostration`, `acid_demostration_fail`, `support_skills_used`, `healing_done`, `wrong_support_skills_used`, `wrong_healing_done`, `sp_used`, `zeny_used`, `spiritb_used`, `ammo_used`, `kill_count`, `death_count`, `score` FROM `rank_woe` WHERE `char_id` = ?")
+		|| SQL_ERROR == SqlStmt_BindParam(stmt, 0, SQLDT_INT, &char_id, 0)
+		|| SQL_ERROR == SqlStmt_Execute(stmt)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 0, SQLDT_UINT, &p->wstats.top_damage, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 1, SQLDT_UINT, &p->wstats.damage_done, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 2, SQLDT_UINT, &p->wstats.damage_received, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 3, SQLDT_UINT, &p->wstats.emperium_damage, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 4, SQLDT_UINT, &p->wstats.guardian_damage, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 5, SQLDT_UINT, &p->wstats.barricade_damage, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 6, SQLDT_UINT, &p->wstats.gstone_damage, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 7, SQLDT_USHORT, &p->wstats.emperium_kill, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 8, SQLDT_USHORT, &p->wstats.guardian_kill, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 9, SQLDT_USHORT, &p->wstats.barricade_kill, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 10, SQLDT_USHORT, &p->wstats.gstone_kill, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 11, SQLDT_UINT, &p->wstats.sp_heal_potions, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 12, SQLDT_UINT, &p->wstats.hp_heal_potions, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 13, SQLDT_UINT, &p->wstats.yellow_gemstones, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 14, SQLDT_UINT, &p->wstats.red_gemstones, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 15, SQLDT_UINT, &p->wstats.blue_gemstones, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 16, SQLDT_UINT, &p->wstats.poison_bottles, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 17, SQLDT_UINT, &p->wstats.acid_demostration, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 18, SQLDT_UINT, &p->wstats.acid_demostration_fail, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 19, SQLDT_UINT, &p->wstats.support_skills_used, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 20, SQLDT_UINT, &p->wstats.healing_done, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 21, SQLDT_UINT, &p->wstats.wrong_support_skills_used, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 22, SQLDT_UINT, &p->wstats.wrong_healing_done, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 23, SQLDT_UINT, &p->wstats.sp_used, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 24, SQLDT_UINT, &p->wstats.zeny_used, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 25, SQLDT_UINT, &p->wstats.spiritb_used, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 26, SQLDT_UINT, &p->wstats.ammo_used, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 27, SQLDT_USHORT, &p->wstats.kill_count, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 28, SQLDT_USHORT, &p->wstats.death_count, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 29, SQLDT_USHORT, &p->wstats.score, 0, NULL, NULL)
+		|| SQL_SUCCESS != SqlStmt_NextRow(stmt))
+	{
+		p->wstats.score = 2000;
+	}
+	StringBuf_AppendStr(&msg_buf, " woestats");
+
+	/* Skill Usage */
+	if (SQL_ERROR == SqlStmt_Prepare(stmt, "SELECT `id`, `count` FROM `rank_skill_count` WHERE `char_id` = ? LIMIT %d", MAX_SKILL_TREE)
+		|| SQL_ERROR == SqlStmt_BindParam(stmt, 0, SQLDT_INT, &char_id, 0)
+		|| SQL_ERROR == SqlStmt_Execute(stmt)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 0, SQLDT_USHORT, &tmp_skillcount.id, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 1, SQLDT_USHORT, &tmp_skillcount.count, 0, NULL, NULL))
+		SqlStmt_ShowDebug(stmt);
+
+
+	for (i = 0; i < MAX_SKILL_TREE && SQL_SUCCESS == SqlStmt_NextRow(stmt); ++i)
+		memcpy(&p->skillcount[i], &tmp_skillcount, sizeof(tmp_skillcount));
+
+	/* BG Skill Usage */
+	if (SQL_ERROR == SqlStmt_Prepare(stmt, "SELECT `id`, `count` FROM `rank_bg_skill_count` WHERE `char_id` = ? LIMIT %d", MAX_SKILL_TREE)
+		|| SQL_ERROR == SqlStmt_BindParam(stmt, 0, SQLDT_INT, &char_id, 0)
+		|| SQL_ERROR == SqlStmt_Execute(stmt)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 0, SQLDT_USHORT, &tmp_skillcount.id, 0, NULL, NULL)
+		|| SQL_ERROR == SqlStmt_BindColumn(stmt, 1, SQLDT_USHORT, &tmp_skillcount.count, 0, NULL, NULL))
+		SqlStmt_ShowDebug(stmt);
+
+	for (i = 0; i < MAX_SKILL_TREE && SQL_SUCCESS == SqlStmt_NextRow(stmt); ++i)
+		memcpy(&p->bg_skillcount[i], &tmp_skillcount, sizeof(tmp_skillcount));
+	StringBuf_AppendStr(&msg_buf, " skillcount");
 
 	/* Mercenary Owner DataBase */
 	mercenary_owner_fromsql(char_id, p);
@@ -1804,6 +1973,16 @@ enum e_char_del_response char_delete(struct char_session_data* sd, uint32 char_i
 
 	/* delete char's friends list */
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `char_id` = '%d'", schema_config.friend_db, char_id) )
+		Sql_ShowDebug(sql_handle);
+
+	/* Char Ranking */
+	if (SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `rank_bg` WHERE `char_id` = '%d'", char_id))
+		Sql_ShowDebug(sql_handle);
+	if (SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `rank_bg_log` WHERE `killer_id` = '%d' OR `killed_id` = '%d'", char_id, char_id))
+		Sql_ShowDebug(sql_handle);
+	if (SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `rank_woe` WHERE `char_id` = '%d'", char_id))
+		Sql_ShowDebug(sql_handle);
+	if (SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `rank_woe_log` WHERE `killer_id` = '%d' OR `killed_id` = '%d'", char_id, char_id))
 		Sql_ShowDebug(sql_handle);
 
 	/* delete char from other's friend list */

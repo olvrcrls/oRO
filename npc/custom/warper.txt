@@ -29,8 +29,8 @@ menu	"Last Warp ^777777["+lastwarp$+"]^000000",-,
     	" ~ Dungeons",Dungeons,
     	" ~ Guild Castles",Castles,
     	// " ~ Guild Dungeons",Guild_Dungeons,
-    	" ~ Instances",Instances,
-    	" ~ Special Areas",Special;
+    	" ~ Instances",Instances;
+    	// " ~ Special Areas",Special;
 
 	if (lastwarp$ == "")
 		message strcharinfo(0),"You haven't warped anywhere yet.";
@@ -417,7 +417,7 @@ C4: setarray @c[2],134,65,240,128,153,137,111,240,208,240;
 C5: setarray @c[2],158,272,83,47,68,155,299,345,292,107;
 	Disp("Mardol:Cyr:Horn:Gefn:Banadis");
 	Pick("","aru_gld","aru_gld","aru_gld","aru_gld","aru_gld");
-C6: setarray @c[2],293,100,288,252,97,196,137,90,71,315;
+C6: setarray @c[2],293,100,288,247,97,196,137,90,71,315;
 	Disp("Himinn:Andlangr:Viblainn:Hljod:Skidbladnir");
 	Pick("","sch_gld","sch_gld","sch_gld","sch_gld","sch_gld");
 C7: Restrict("RE");
@@ -578,7 +578,7 @@ rachel,135,116,4	duplicate(Warper)	Warper#rac	4_F_SARAH
 splendide,205,153,4	duplicate(Warper)	Warper#spl	4_F_SARAH
 thor_camp,249,76,4	duplicate(Warper)	Warper#thor	4_F_SARAH
 umbala,91,153,3	duplicate(Warper)	Warper#umb	4_F_SARAH
-veins,214,123,4	duplicate(Warper)	Warper#ve	4_F_SARAH
+veins,194,125,4	duplicate(Warper)	Warper#ve	4_F_SARAH
 xmas,150,136,6	duplicate(Warper)	Warper#xmas	4_F_SARAH
 yuno,158,48,4	duplicate(Warper)	Warper#yuno	4_F_SARAH
 

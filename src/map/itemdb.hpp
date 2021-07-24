@@ -52,6 +52,7 @@ enum item_itemid
 	ITEMID_POISON_BOTTLE				= 678,
 	ITEMID_EMPTY_BOTTLE					= 713,
 	ITEMID_EMPERIUM						= 714,
+	ITEMID_YELLOW_GEMSTONE				= 715,
 	ITEMID_RED_GEMSTONE					= 716,
 	ITEMID_BLUE_GEMSTONE				= 717,
 	ITEMID_ORIDECON_STONE				= 756,
@@ -733,6 +734,24 @@ enum e_random_item_group {
 	IG_PRIZEOFHERO,
 	IG_PRIVATE_AIRSHIP,
 	IG_TOKEN_OF_SIEGFRIED,
+
+	// Loot box for BG MVP (Ares & Inberun's gift)
+	IG_BG_LOOT_BOX,
+	IG_MVP_LOOT_BOX,
+	IG_WOE_REWARD_BOX,
+	IG_BG_TIER_1,
+	IG_BG_TIER_2,
+	IG_BG_TIER_3,
+
+	// Other Avi's changes / Event Manager
+	IG_EVENT_SHADOW,
+	IG_EVENT_FROST,
+	IG_EVENT_SLIME,
+	IG_Super_Pet_SHADOW,
+	IG_Super_Card_Pet_SHADOW,
+	IG_Super_Pet_SHADOW_2,
+	IG_Costama_SHADOW8,
+	IG_Costama_SHADOW9,
 };
 
 /// Enum for bound/sell restricted selling

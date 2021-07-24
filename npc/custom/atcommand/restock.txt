@@ -35,7 +35,7 @@ function	showRestockHelp	{
 }
 
 OnInit:
-	setarray .allowedtypes[0],0,2,3,11; //healing,usable,etc,delayed usable
+	setarray .allowedtypes[0],0,2,3,10,11; //healing,usable,etc,delayed usable,ammo
 	bindatcmd "restock",strnpcinfo(3)+"::OnAtcommand";
 	end;
 
@@ -93,8 +93,9 @@ OnAtcommand:
 					} else if (strtolower(.@atcmd_parameters$[0]) == "snapshot") {
 						deletearray RestockList[0],getarraysize(RestockList);
 						deletearray RestockAmountList[0],getarraysize(RestockAmountList);
-						getinventorylist;
-						for(.@i = 0; .@i < @inventorylist_id; .@i++) {
+						getinventorylist(getcharid(0));
+						.@inventory_size = getarraysize(@inventorylist_id);
+						for(.@i = 0; .@i < .@inventory_size; .@i++) {
 							.@item = @inventorylist_id[.@i];
 							.@quantity = @inventorylist_amount[.@i];
 
@@ -104,8 +105,8 @@ OnAtcommand:
 								continue;
 							} else if(inarray(RestockList[0],.@item) >= 0) {
 								continue;
-							} else if(.@quantity < 1 || .@quantity > 500) {
-								.@quantity = 500;
+							} else if(.@quantity < 1 || .@quantity > 1000) {
+								.@quantity = 1000;
 							}
 
 							setarray RestockList[getarraysize(RestockList)],.@item;
@@ -151,8 +152,8 @@ OnAtcommand:
 					} else if(inarray(RestockList[0],.@item) >= 0) {
 						dispbottom "Item '"+getitemname(.@item)+"' (id:"+.@item+") already in list.", 0xFDFD96;
 						break;
-					} else if(.@quantity < 1 || .@quantity > 500) {
-						dispbottom "Please enter valid quantity value (1 - 500)", 0xFDFD96;
+					} else if(.@quantity < 1 || .@quantity > 1000) {
+						dispbottom "Please enter valid quantity value (1 - 1000)", 0xFDFD96;
 						break;
 					}
 					//passed all checks

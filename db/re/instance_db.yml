@@ -301,3 +301,10 @@ Body:
       Map: 1@slw
       X: 187
       Y: 24
+  - Id: 44
+    Name: Emp Breaker
+    TimeLimit: 900
+    Enter:
+        Map: sword_1-1
+        X: 215
+        Y: 206

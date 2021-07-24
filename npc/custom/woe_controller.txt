@@ -30,7 +30,7 @@ prontera,149,193,4	script	WOE Information	835,{
 	end;
 OnAgitStart:
 	while(agitcheck()) {
-		specialeffect EF_BEGINSPELL6;
+		//specialeffect EF_BEGINSPELL6;
 		sleep 425;
 	}
 	end;
@@ -71,19 +71,19 @@ OnInit:
 // -----------------------------------------------------------
 
 	// Combine values as needed (e.g. 1|8 = 1+8 = 9).
-	set .Options, 11;
+	set .Options, 3;
 
 	// Rewards per castle.
 	//   setarray .reward_id[0],     <itemID>{,<itemID>,...}
 	//   setarray .reward_amount[0], <amount>{,<amount>,...}
 	
 	// WoE rewards are: Basic Siege Supply Box, KVM Badge, Blank Card, Proof of Donation
-	setarray .reward_id[0],12675,6376,6187,7179;
+	setarray .reward_id[0],14654;
 	
-	setarray .reward_amount[0],3,1500,1500,100;
+	setarray .reward_amount[0],1;
 
 	// Zeny reward:
-	.reward_zeny = 50000000; // 50M
+	.reward_zeny = 100000000; // 100M
 
 // -----------------------------------------------------------
 //  Constants (leave this section alone).
@@ -184,6 +184,16 @@ OnReward:
 	for(set .@i,0; .@i<getarraysize(.Castles$); set .@i,.@i+1) {
 		if (getarg(0)&(1<<.@i)) {
 			set .@gid, getcastledata(.Castles$[.@i],1);
+			// Recording the statistics for guild history and guild ranking:
+			set .@record, query_sql("SELECT `guild_id` FROM `guild_ranking` WHERE `guild_id` = " + .@gid, .@guild_id_ranking);
+			if (.@record > 0) {
+				query_sql("UPDATE `guild_ranking` SET `castles_owned` = `castles_owned` + 1 WHERE `guild_id` = " + .@gid);
+			} else {
+				query_sql("INSERT INTO `guild_ranking`(`guild_id`,`name`,`guild_leader_id`,`castles_owned`) VALUES (" + .@gid + ",'" + getguildName(.@gid) + "',"+ getguildmasterid(.@gid) +",1);");
+			}
+		
+			query_sql("INSERT INTO `guild_castle_histories`(`guild_id`, `name`, `guild_leader_id`, `castle`) VALUES (" + .@gid + ",'" + getguildname(.@gid) + "'," + getguildmasterid(.@gid) + ",'" + .Castles$[.@i] + "');");
+
 			if (!.@gid) continue;
 
 			getguildmember( .@gid, 1, .@cid );
@@ -229,7 +239,8 @@ OnReward:
 						setd ".@str_"+.@cid[.@j],1;
 						message rid2name(.@aid[.@j]),"You've got mail!";
 					}
-				} else if (isloggedin(.@aid[.@j],.@cid[.@j])) {
+				//} else if (isloggedin(.@aid[.@j],.@cid[.@j])) {
+				} else {
 					attachrid( .@aid[.@j], true );
 					.@name$ = strcharinfo( 0 );
 					.@castle_name$ = getcastlename(.Castles$[.@i]);
@@ -241,6 +252,7 @@ OnReward:
 					}
 					Zeny += .reward_zeny;
 					dispbottom "You have been rewarded for conquering " + .@castle_name$ + ".";
+					dispbottom "Come again for the next War of Emperium to defend your castle!";
 					detachrid;
 				}
 			}

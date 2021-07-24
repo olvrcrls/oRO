@@ -1,0 +1,76 @@
+// eAthena Script / Rathena Script
+// Created By Rosemount
+// Current Version 1.0
+// Compatible With eAthena & Rathena Svn
+// Description Simple Pvp Arena
+
+kamizama,156,162,4	script	Pvp Manager	459,{
+switch(select("Coliseum [ "+getmapusers("coliseum")+" / 30 ]:UFC Arena [ "+getmapusers("ufc_pvp2")+" /30 ]")) {
+
+case 1:
+mes " 0 ~ Cancel Room : 1 ~ Join Room";
+input .@confirm;
+if(.@confirm == 1) goto Arena1;
+close;
+
+Arena1:
+if(getmapusers("coliseum") == 49) goto Full; 
+		specialeffect2 587;
+		specialeffect2 589;
+warp "coliseum",150,150;
+announce "[ Pvp Manager ] : "+strcharinfo(0)+" joined Coliseum Arena Room.",bc_all;
+end;
+
+case 2:
+mes " 0 ~ Cancel Room : 1 ~ Join Room";
+input .@confirm;
+if(.@confirm == 1) goto Arena2;
+close;
+
+Arena2:
+if(getmapusers("ufc_pvp2") == 49) goto Full;
+		specialeffect2 587;
+		specialeffect2 589;
+warp "ufc_pvp2",0,0;
+announce "[ Pvp Manager ] : "+strcharinfo(0)+" joined UFC Arena Room.",bc_all;
+end;
+
+case 3:
+mes " 0 ~ Cancel Room : 1 ~ Join Room";
+input .@confirm;
+if(.@confirm == 1) goto Arena3;
+close;
+
+Full:
+next;
+mes "This Arena is Full"; mes "Please Choose other Arena Room"; close;
+}
+OnInit:
+initnpctimer;
+end;
+
+OnTimer1000:
+delwaitingroom;
+waitingroom "PVP Coliseum - "+getmapusers("coliseum"),0;
+initnpctimer;
+end;
+}
+// -------- MapFlag --------------
+coliseum	mapflag	nobranch
+coliseum	mapflag	novending
+coliseum	mapflag	nosave
+coliseum	mapflag	nowarp
+coliseum	mapflag	novending
+coliseum	mapflag	noteleport
+coliseum	mapflag	noreturn
+coliseum	mapflag	pvp
+coliseum	mapflag	nowarpto
+ufc_pvp2	mapflag	nobranch
+ufc_pvp2	mapflag	novending
+ufc_pvp2	mapflag	nosave
+ufc_pvp2	mapflag	nowarp
+ufc_pvp2	mapflag	novending
+ufc_pvp2	mapflag	noteleport
+ufc_pvp2	mapflag	noreturn
+ufc_pvp2	mapflag	pvp
+ufc_pvp2	mapflag	nowarpto

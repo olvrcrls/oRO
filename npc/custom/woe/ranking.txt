@@ -24,14 +24,15 @@ PRIMARY KEY (`Char_ID`)
 */
 
 askald,114,110,4	script	Arias	419,{
-	set .n$, "[WoE Accountant]";
 	mes .n$;
 	mes "Hey, I'm a WoE Accountant.";
 	mes "I'm here while Master Andie is building"; 
 	mes "the website's WoE Stats page.";
 	next;
 	set .@menu$, "Top "+.top+" Kills:Top "+.top+" Deaths:Top "+.top+" Breaker:Guild Rank:Points Shop:";
-	if (getgmlevel() == 99) { set .@menu$, .@menu$ + "Reset Data"; }
+	if (getgmlevel() == 99) { 
+		set .@menu$, .@menu$ + "Reset Data"; 
+	}
 	switch(select(.@menu$)) {
 	case 1:
 	query_sql "CREATE TABLE IF NOT EXISTS `woe_ranking` ( `Char_ID` int(11) unsigned NOT NULL DEFAULT '0', `PlayerName` varchar(255) NULL DEFAULT 0, `Kills` INT NULL DEFAULT 0, `Deaths` INT NULL DEFAULT 0, `EmpBreak` INT NULL DEFAULT 0, PRIMARY KEY (`Char_ID`) ) ENGINE=MyISAM";
@@ -124,10 +125,11 @@ askald,114,110,4	script	Arias	419,{
 	}
 
 OnInit: // Script Configuration
+	set .n$, "[WoE Accountant]";
 	set .top, 25;
 	set .WoePoints, 1;      //points to add in database/player when kill
 	set .WoeDeduct, 1;      //points to add in database
-	set .diedeductpoint, 2; //points to deduct when died
+	set .diedeductpoint, 0; //points to deduct when died
 	waitingroom "WoE Master Ranks",0;
 	end;
 
@@ -136,12 +138,12 @@ OnPCKillEvent:
 		if (( agitcheck() || agitcheck2() ) && compare(strcharinfo(3),"g_cas")) {
 			set points, points+.WoePoints;
 			query_sql( "SELECT * FROM woe_ranking WHERE `Char_ID` = '"+getcharid(0)+"'", .@CharID, .@Name$, .@Kills, .@Deaths, .@EmpBreak);
-			set ToTalP , .@Kills + .WoePoints;
+			set ToTalP, .@Kills + .WoePoints;
 			
 			if(getcharid(0) == .@CharID){
-				query_sql("UPDATE `woe_ranking` SET `Kills` = '"+ToTalP+"' WHERE `Char_ID` = '"+getcharid(0)+"'");
+				query_sql("UPDATE `woe_ranking` SET `Kills` = "+ToTalP+" WHERE `Char_ID` = '"+getcharid(0)+"'");
 			}else{	
-				query_sql("INSERT INTO `woe_ranking` (`Char_ID`,`PlayerName`,`Kills`,`Deaths`,`EmpBreak`) VALUES ('"+getcharid(0)+"', '"+strcharinfo(0)+"', '"+.WoePoints+"', '"+.@Deaths+"', '"+.@EmpBreak+"')"); 
+				query_sql("INSERT INTO `woe_ranking` (`Char_ID`,`PlayerName`,`Kills`,`Deaths`,`EmpBreak`) VALUES ("+getcharid(0)+", '"+strcharinfo(0)+"', "+.WoePoints+", "+.@Deaths+", "+.@EmpBreak+")"); 
 			}
 			////////query for the deaths
 			query_sql( "SELECT `char_id`, `account_id` FROM `char` WHERE `account_id` =  '"+getcharid(3)+"' ", .@Cchar_id, .@Aid);
@@ -149,20 +151,18 @@ OnPCKillEvent:
 			set TotalD , .@Deaths + .WoeDeduct;
 			
 			if(.@CharID != .@Cchar_id){
-				query_sql("INSERT INTO `woe_ranking` (`Char_ID`,`PlayerName`,`Kills`,`Deaths`,`EmpBreak`) VALUES ('"+.@Cchar_id+"', '"+strcharinfo(0)+"', '0', '"+TotalD+"', '"+.@EmpBreak+"')");
+				query_sql("INSERT INTO `woe_ranking` (`Char_ID`,`PlayerName`,`Kills`,`Deaths`,`EmpBreak`) VALUES ('"+.@Cchar_id+"', '"+strcharinfo(0)+"', 0, "+TotalD+", "+.@EmpBreak+")");
 			} else {
-				query_sql("UPDATE woe_ranking SET Deaths = '"+TotalD+"' WHERE `Char_ID` = '"+.@Cchar_id+"'");
+				query_sql("UPDATE woe_ranking SET Deaths = "+TotalD+" WHERE `Char_ID` = "+.@Cchar_id);
 			}
 			
 			//This is the point system on the player, you can disable this anytime by adding comment " // "
-			dispbottom "You killed "+rid2name(killedrid)+" you gained "+.WoePoints+" point";
-			dispbottom "You now have a total of "+Points+" Woe Points.";
-			attachrid(killedrid);
-			set points, points-.diedeductpoint;
-			dispbottom "You are killed by "+rid2name(killerrid)+" you lost "+.diedeductpoint+" points.";
+			//dispbottom "You killed "+rid2name(killedrid)+" you gained "+.WoePoints+" point";
+			//dispbottom "You now have a total of "+Points+" Woe Points.";
+			//attachrid(killedrid);
+			//set points, points-.diedeductpoint;
+			//dispbottom "You are killed by "+rid2name(killerrid)+" you lost "+.diedeductpoint+" points.";
 			end;
-			///////
-
 		}
     }
     end;

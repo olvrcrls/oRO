@@ -2,22 +2,78 @@
 // Added by Hoar. Simple PVP script.	//
 // Date 09/23/2020						//
 // Version 1.0							//
+// Version 1.1 [Andie]
+//== Improved the scripting for simpler pvp enter map.
+//== Made the warper to be specific on 1 map.
 //--------------------------------------//
-askald,138,120,5	script	PVP Warper	4_F_KAFRA1,{
-	for (.@i = 0; .@i < .map_size; .@i++) {
-		.@menu$ = .@menu$ + .map$[.@i] + "("+getmapusers(.map$[.@i])+" user(s))" + ":";
-		.@i = select(.@menu$) - 1;
-		warp .map$[.@i], 0, 0;
-	} // end for
-	OnPCLoadMapEvent:
-		announce " Player: " + strcharinfo(0)+ " has entered the PVP room.", bc_map;
-		end;
+-	script	PVP Room	4_F_FENRIR,{
+	switch(select("Enter PvP Room:Cancel")) {
+		case 1:
+			warp "pvp_y_8-2", 0, 0;
+			announce strcharinfo(0)+ " has entered the PVP room.", bc_all;
+			break;
+		case 2:
+			end;
+			break;
+	}
+
 	OnInit:
-		setarray .map_name$, "name - Izlude"; // if you add more maps here. Need to update below as well.
-		setarray .map$, "pvp_y_8-2";
-		.map_size = getarraysize(.map_name$);
+		sleep 2000;
+		goto Waiting_Room;
 		end;
+
+	OnTimer5000:
+		stopnpctimer;
+		set .@pvp_room_population,(getmapusers("pvp_y_8-2"));
+		delwaitingroom;
+
+	Waiting_Room:
+		if(.@pvp_room_population >=1) 
+			waitingroom "PvP - " + .@pvp_room_population + " player(s)",0;
+		else
+			waitingroom "PvP - Empty",0;
+		initnpctimer;
+		end;
+
 } //script ends
 
 //mapflags
 pvp_y_8-2	mapflag	loadevent
+
+// Duplicates
+askald,138,110,4	duplicate(PVP Room)	PvP Room#ask	4_F_FENRIR
+prontera,161,192,4	duplicate(PVP Room)	PvP Room#prt	4_F_FENRIR
+morocc,149,88,4	duplicate(PVP Room)	PvP Room#moc	4_F_FENRIR
+geffen,111,66,4	duplicate(PVP Room)	PvP Room#gef	4_F_FENRIR
+payon,148,218,4	duplicate(PVP Room)	PvP Room#pay	4_F_FENRIR
+izlude,136,153,4	duplicate(PVP Room)	PvP Room#izl	4_F_FENRIR
+aldebaran,145,110,4	duplicate(PVP Room)	PvP Room#alde	4_F_FENRIR
+xmas,156,133,4	duplicate(PVP Room)	PvP Room#xmas	4_F_FENRIR
+comodo,180,148,4	duplicate(PVP Room)	PvP Room#com	4_F_FENRIR
+yuno,163,36,4	duplicate(PVP Room)	PvP Room#yuno	4_F_FENRIR
+amatsu,106,120,4	duplicate(PVP Room)	PvP Room#amat	4_F_FENRIR
+gonryun,166,113,4	duplicate(PVP Room)	PvP Room#gon	4_F_FENRIR
+umbala,80,160,4	duplicate(PVP Room)	PvP Room#umb	4_F_FENRIR
+niflheim,210,173,4	duplicate(PVP Room)	PvP Room#nif	4_F_FENRIR
+louyang,206,96,4	duplicate(PVP Room)	PvP Room#lou	4_F_FENRIR
+alberta,108,46,4	duplicate(PVP Room)	PvP Room#alb	4_F_FENRIR
+jawaii,240,135,4	duplicate(PVP Room)	PvP Room#jaw	4_F_FENRIR
+ayothaya,212,177,4	duplicate(PVP Room)	PvP Room#ayo	4_F_FENRIR
+einbroch,53,199,4	duplicate(PVP Room)	PvP Room#einb	4_F_FENRIR
+lighthalzen,154,85,4	duplicate(PVP Room)	PvP Room#light	4_F_FENRIR
+einbech,180,119,4	duplicate(PVP Room)	PvP Room#ein	4_F_FENRIR
+hugel,90,137,4	duplicate(PVP Room)	PvP Room#hugel	4_F_FENRIR
+rachel,121,108,4	duplicate(PVP Room)	PvP Room#rach	4_F_FENRIR
+veins,215,124,4	duplicate(PVP Room)	PvP Room#veins	4_F_FENRIR
+moscovia,214,184,4	duplicate(PVP Room)	PvP Room#mosc	4_F_FENRIR
+mid_camp,171,243,4	duplicate(PVP Room)	PvP Room#mid	4_F_FENRIR
+manuk,286,136,4	duplicate(PVP Room)	PvP Room#manuk	4_F_FENRIR
+splendide,193,145,4	duplicate(PVP Room)	PvP Room#spl	4_F_FENRIR
+brasilis,201,209,4	duplicate(PVP Room)	PvP Room#bra	4_F_FENRIR
+dicastes01,192,180,4	duplicate(PVP Room)	PvP Room#dica	4_F_FENRIR
+mora,113,62,4	duplicate(PVP Room)	PvP Room#mora	4_F_FENRIR
+dewata,207,178,4	duplicate(PVP Room)	PvP Room#dew	4_F_FENRIR
+malangdo,134,131,4	duplicate(PVP Room)	PvP Room#mal	4_F_FENRIR
+malaya,235,192,4	duplicate(PVP Room)	PvP Room#malaya	4_F_FENRIR
+lasagna,186,177,4	duplicate(PVP Room)	PvP Room#lasag	4_F_FENRIR
+verus04,128,249,4	duplicate(PVP Room)	PvP Room#verus	4_F_FENRIR

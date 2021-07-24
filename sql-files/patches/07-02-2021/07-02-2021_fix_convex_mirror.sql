@@ -1,0 +1,1 @@
+UPDATE `item_db_re` SET `script` = 'sc_start SC_BOSSMAPINFO,600000,0;' WHERE (`id` = '12472');

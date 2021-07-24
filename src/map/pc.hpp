@@ -672,6 +672,7 @@ struct map_session_data {
 	struct battleground_data *bmaster_flag;
 	struct queue_data *qd;
 	unsigned short bg_team;
+	unsigned short bg_kills;
 
 #ifdef SECURE_NPCTIMEOUT
 	/**
@@ -1311,6 +1312,11 @@ TIMER_FUNC(map_day_timer); // by [yor]
 TIMER_FUNC(map_night_timer); // by [yor]
 
 int pc_update_last_action(struct map_session_data *sd, int type, enum idletime_option idle_option);
+
+// WoE Ranking Stats
+void pc_record_damage(struct block_list* src, struct block_list* dst, int damage);
+void pc_record_maxdamage(struct block_list* src, struct block_list* dst, int damage);
+void pc_record_mobkills(struct map_session_data* sd, struct mob_data* md);
 
 // Rental System
 void pc_inventory_rentals(struct map_session_data *sd);

@@ -13770,6 +13770,8 @@ BUILDIN_FUNC(getcastledata)
 	}
 
 	switch (index) {
+		case CD_CASTLE_ID:
+			script_pushint(st,gc->castle_id); break;
 		case CD_GUILD_ID:
 			script_pushint(st,gc->guild_id); break;
 		case CD_CURRENT_ECONOMY:

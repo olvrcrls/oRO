@@ -2015,7 +2015,7 @@ ACMD_FUNC(go)
 		{ MAP_EINBECH,     172, 129 }, // 21=Einbech
 		{ MAP_HUGEL,        96, 145 }, // 22=Hugel
 		{ MAP_RACHEL,      130, 110 }, // 23=Rachel
-		{ MAP_VEINS,       207, 122 }, // 24=Veins
+		{ MAP_VEINS,       202, 122 }, // 24=Veins
 		{ MAP_MOSCOVIA,    223, 184 }, // 25=Moscovia
 		{ MAP_MIDCAMP,     180, 240 }, // 26=Midgard Camp
 		{ MAP_MANUK,       282, 138 }, // 27=Manuk
@@ -2030,7 +2030,11 @@ ACMD_FUNC(go)
 		{ MAP_LASAGNA,     193, 182 },  // 36=Lasagna
 		{ MAP_VERUS,       122, 250 }, // 37 = Verus
 		{ MAP_BG,		   154, 150 }, // 38 = BG
-		{ MAP_JAIL,         23,  61 }  // 39=Prison
+		{ MAP_JAIL,         23,  61 },  // 39=Prison
+		{ MAP_ASKALD,         64,  145 },  // 40=Askald Supplies
+		{ MAP_ASKALD,         32,  161 },  // 41=Askald Enchants
+		{ MAP_ASKALD,         54,  118 },  // 42=Askald Refine
+		{ MAP_ASKALD,         203,  136 }  // 43=Askald Quest
 	};
 
 	nullpo_retr(-1, sd);
@@ -2158,7 +2162,19 @@ ACMD_FUNC(go)
 		town = 37;
 	}  else if (strncmp(map_name, "bg", 2) == 0) {
 		town = 38;
-	}
+	} else if (strncmp(map_name, "supply", 3) == 0) {
+		town = 40;
+	} else if (strncmp(map_name, "supplies", 3) == 0) {
+		town = 40;
+	} else if (strncmp(map_name, "mats", 3) == 0) {
+		town = 41;
+	} else if (strncmp(map_name, "enchant", 3) == 0) {
+		town = 41;
+	} else if (strncmp(map_name, "refine", 3) == 0) {
+		town = 42;
+	} else if (strncmp(map_name, "quest", 3) == 0) {
+		town = 43;
+	} 
 
 	if (town >= 0 && town < ARRAYLENGTH(data))
 	{
@@ -10496,10 +10512,10 @@ ACMD_FUNC(partybuff)
 		clif_displaymessage(fd, msg_txt(sd, 1073)); // Displaying party member's buffs enabled.
 		clif_displaymessage(fd, "You will now receive party buff information:");
 		clif_displaymessage(fd, "F = Full Chemical Protection");
-		clif_displaymessage(fd, "+ = Blessing, - = Agility Up");
-		clif_displaymessage(fd, "$ = Sacrament, ? = Aspersio");
-		clif_displaymessage(fd, "x = Expiatio, D = Devotion");
-		clif_displaymessage(fd, "P = Pneuma, ! = Striking");
+		clif_displaymessage(fd, "+ = Blessing, - = Agility Up, @ = Blessing and Agility Up");
+		clif_displaymessage(fd, "$ = Sacrament, x = Expiatio");
+		clif_displaymessage(fd, "D = Devotion, ! = Striking");
+		//clif_displaymessage(fd, "P = Pneuma, ! = Striking");
 	}
 
 	clif_party_info(p, sd);

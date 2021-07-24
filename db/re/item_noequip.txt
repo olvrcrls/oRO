@@ -95,6 +95,20 @@
 4694,4	// True Gertie
 4695,4	// True Trentini
 4696,4	// True Alphoccio
+// Disable in BG
+4684,8	// True Eremes
+4685,8	// True Margaretha Sorin
+4686,8	// True Kathryne Keyron
+4687,8	// True Cecil
+4688,8	// True Howard
+4689,8	// True Seyren
+4690,8	// True Randel
+4691,8	// True Flamel
+4692,8	// True Celia
+4693,8	// True Chen
+4694,8	// True Gertie
+4695,8	// True Trentini
+4696,8	// True Alphoccio
 
 //----------------------------------------------------------------------------
 // Bio 5 Headgears
@@ -113,6 +127,21 @@
 18982,4	// Old Bone Circlet
 18983,4	// Old Casket of Protection
 18984,4	// Old Camouflauge Bunny Hood
+// Disable in BG
+18971,8	// Old Rune Circlet
+18972,8 // Old Mitra
+18973,8 // Old Driver's Band RED
+18974,8 // Old Driver's Band YELLOW
+18975,8 // Old Shadow Handicraft
+18976,8	// Old Maestro Song
+18977,8	// Old Midas Whisper
+18978,8	// Old Magic Stone
+18979,8	// Old Blazing Soul
+18980,8	// Old Wind Whisper
+18981,8	// Old Dying Swan
+18982,8	// Old Bone Circlet
+18983,8	// Old Casket of Protection
+18984,8	// Old Camouflauge Bunny Hood
 
 //----------------------------------------------------------------------------
 //	War of Emperium
@@ -137,6 +166,7 @@
 2365,4		// Orleans_Gown
 4077,4		// Phen_Card
 2980,4		// Evil Spirit Gloves
+4327,4		// Bloody Butterfly Card
 
 4144,4		// Osiris Card
 4147,4		// Baphomet Card
@@ -191,10 +221,66 @@
 31023,4		// Celine Kimi Card
 4697,4		// Charleston Card
 4590,4		// Bangungot Card
-
-
 // Mini boss cards
 4198,4		// Maya Purple Card
+
+//-- Battlegrounds Restricted
+4144,8		// Osiris Card
+4147,8		// Baphomet Card
+4142,8		// Doppelganger Card
+4132,8		// Mistress Card
+4128,8		// Golden Thiefbug Card
+4143,8		// Orc Hero Card
+4137,8		// Drake Card
+4123,8		// Eddga Card
+4146,8		// Maya Card
+4131,8		// Moonlight Flower Card
+4148,8		// Pharaoh Card
+4121,8		// Phreeoni Card
+4135,8		// Orc Lord Card
+4318,8		// Stormy Knight Card
+4324,8		// Hatii Card
+4168,8		// Dark Lord Card
+4305,8		// Turtle General Card
+4276,8		// Lord of The Dead Card
+4134,8		// Dracula
+4330,8		// Dark Snake Lord Card
+4263,8		// Incantation Samurai Card
+4236,8		// Amon Ra Card
+4302,8		// Tao Gunka Card
+4342,8		// RSX-0806 Card
+4372,8		// White Lady Card
+4357,8		// Lord Knight Card
+4359,8		// Assassin Cross Card
+4361,8		// MasterSmith Card
+4363,8		// High Priest Card
+4367,8		// Sniper Card
+4365,8		// High Wizard Card
+4352,8		// Boss Egnigem Card
+4374,8		// Vesper Card
+4376,8		// Lady Tanee Card
+4399,8		// Memory of Thanatos Card
+4386,8		// Detardeurus Card
+4403,8		// Kiel-D-01 Card
+4407,8		// Randgris Card
+4408,8		// Gloom Under Night Card
+4419,8		// Ktullanux Card
+4425,8		// Atroce Card
+4430,8		// Ifrit Card
+4441,8		// Fallen Bishop Card
+4145,8		// Berzebub Card
+4457,8		// Naght Sieger Card
+4527,8		// Dark Coelacanth Card
+4451,8		// Entwei Crothen Card
+4564,8		// Stalker Card
+4566,8		// Gypsy Card
+4574,8		// General Dahyun
+31023,8		// Celine Kimi Card
+4697,8		// Charleston Card
+4590,8		// Bangungot Card
+// Mini boss cards
+4198,8		// Maya Purple Card
+
 
 //----------------------------------------------------------------------------
 // Other Cards
@@ -226,6 +312,29 @@
 4538,4		// Sealed_Bacsojin_Card
 4539,4		// Sealed_Fallen_Bishop_Card
 4540,4		// SLD_Lord_of_Death_Card#
+//-- Bttlegrounds restricted
+4480,8		// Sealed_Kiel_Card
+4481,8		// Sealed_Ktullanux_Card
+4482,8		// Sealed_B_Ygnizem_Card
+4483,8		// Sealed_Dracula_Card
+4484,8		// Sealed_Mistress_Card
+4485,8		// Sealed_Gloom_Card
+4488,8		// Sealed_Dark_Lord_Card
+4494,8		// Sealed_Turtle_General_Card
+4495,8		// Sealed_Amon_Ra_Card
+4497,8		// Sealed_Stormy_Knight_Card
+4498,8		// Sealed_Lady_Tanee_Card
+4499,8		// Sealed_Samurai_Card
+4500,8		// Sealed_Orc_Lord_Card
+4501,8		// Sealed_High_Priest_Card
+4502,8		// Sealed_MasterSmith_Card
+4503,8		// Sealed_Vesper_Card
+4504,8		// Sealed_Eddga_Card
+4536,8		// Sealed_Atroce_Card
+4537,8		// Sealed_Phreeoni_Card
+4538,8		// Sealed_Bacsojin_Card
+4539,8		// Sealed_Fallen_Bishop_Card
+4540,8		// SLD_Lord_of_Death_Card#
 
 
 //----------------------------------------------------------------------------

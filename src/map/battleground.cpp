@@ -668,7 +668,7 @@ void bg_team_rewards(int bg_id, int nameid, int amount, int kafrapoints, int que
 	}
 
 	memset(&it,0,sizeof(it));
-	if( nameid == 7804 || nameid == 7828 || nameid == 7829 || nameid == 7773 )
+	if( nameid == 7804 || nameid == 7828 || nameid == 7829 || nameid == 7773 || nameid == 6187 || nameid == 7179 || nameid == 14652)
 	{
 		it.nameid = nameid;
 		it.identify = 1;
@@ -692,8 +692,14 @@ void bg_team_rewards(int bg_id, int nameid, int amount, int kafrapoints, int que
 
 		if( nameid && amount > 0 )
 		{
-			if (bg_result == 0)
+			//ShowInfo("Battle result %d, User ID %d\n", bg_result, sd->bl.id);
+			if (bg_result == 0) {
 				pc_getzeny(sd,(int)25000000,LOG_TYPE_SCRIPT,NULL); // Gives 25M to winner participants.
+				if (nameid == 14652) {
+					if( (flag = pc_additem(sd,&it,1,LOG_TYPE_SCRIPT)) )
+					clif_additem(sd,0,0,flag);
+				}
+			}
 			if (bg_result == 2)
 				pc_getzeny(sd,(int)10000000,LOG_TYPE_SCRIPT,NULL); // Gives 10M to loser participants.
 			if (bg_result == 1)
@@ -702,8 +708,10 @@ void bg_team_rewards(int bg_id, int nameid, int amount, int kafrapoints, int que
 			get_amount = amount;
 			if( rank ) get_amount += get_amount / 100;
 
-			if( (flag = pc_additem(sd,&it,get_amount,LOG_TYPE_SCRIPT)) )
-				clif_additem(sd,0,0,flag);
+			if (nameid != 14652) {
+				if( (flag = pc_additem(sd,&it,get_amount,LOG_TYPE_SCRIPT)) )
+					clif_additem(sd,0,0,flag);
+			} // To prevent rewarding multiple Ares Gift
 		}
 	}
 }

@@ -794,24 +794,56 @@ struct guild_skill {
 };
 
 struct Channel;
+
+#define RANK_CASTLES 34
+struct guild_rank_data {
+	unsigned short
+		capture, // Number of times you have captured this castle
+		emperium, // Number of times you have break an emperium on this castle
+		treasure, // Number of opened treasures
+		top_eco, // Max economy reach on this castle
+		top_def, // Max defense reach on this castle
+		invest_eco, // Total of Economy points
+		invest_def, // Total of Defense points
+		offensive_score,
+		defensive_score;
+	unsigned int
+		posesion_time,
+		zeny_eco,
+		zeny_def;
+	unsigned short
+		skill_battleorder,
+		skill_regeneration,
+		skill_restore,
+		skill_emergencycall;
+	struct {
+		unsigned int
+			kill_count,
+			death_count;
+	} off, def, ext, ali;
+	bool changed;
+};
+
 struct guild {
 	int guild_id;
 	short guild_lv, connect_member, max_member, average_lv;
 	uint64 exp;
 	unsigned int next_exp;
 	int skill_point;
-	char name[NAME_LENGTH],master[NAME_LENGTH];
+	char name[NAME_LENGTH], master[NAME_LENGTH];
 	struct guild_member member[MAX_GUILD];
 	struct guild_position position[MAX_GUILDPOSITION];
-	char mes1[MAX_GUILDMES1],mes2[MAX_GUILDMES2];
-	int emblem_len,emblem_id;
+	char mes1[MAX_GUILDMES1], mes2[MAX_GUILDMES2];
+	int emblem_len, emblem_id;
 	char emblem_data[2048];
 	struct guild_alliance alliance[MAX_GUILDALLIANCE];
 	struct guild_expulsion expulsion[MAX_GUILDEXPULSION];
 	struct guild_skill skill[MAX_GUILDSKILL];
-	struct Channel *channel;
-	unsigned short instance_id;
+	struct Channel* channel;
+	int instance_id;
 	time_t last_leader_change;
+
+	struct guild_rank_data castle[RANK_CASTLES];
 
 	/* Used by char-server to save events for guilds */
 	unsigned short save_flag;
@@ -853,7 +885,8 @@ enum e_castle_data : uint8 {
 	CD_ENABLED_KAFRA, ///< Is 1 if a Kafra was hired for this castle, 0 otherwise
 	CD_ENABLED_GUARDIAN00, ///< Is 1 if the 1st guardian is present (Soldier Guardian)
 	// The others in between are not needed in src, but are exported for the script engine
-	CD_MAX = CD_ENABLED_GUARDIAN00 + MAX_GUARDIANS
+	CD_MAX = CD_ENABLED_GUARDIAN00 + MAX_GUARDIANS,
+	CD_CASTLE_ID //< Castle ID
 };
 
 /// Guild Permissions
