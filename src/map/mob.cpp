@@ -3002,6 +3002,8 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 
 			if (sd->md && src && src->type == BL_MER && mob_db(md->mob_id)->lv > sd->status.base_level / 2)
 				mercenary_kills(sd->md);
+
+			pc_record_mobkills(sd, md); //Ranking data [Wazaby]
 		}
 
 		if( md->npc_event[0] && !md->state.npc_killmonster ) {
