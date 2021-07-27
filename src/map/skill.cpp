@@ -6512,26 +6512,26 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 				heal = ~heal + 1;
 			heal_get_jobexp = status_heal(bl,heal,0,0);
 
-			if (sd && dstsd && heal > 0 && sd != dstsd) {
-				if (sd->status.guild_id && map_allowed_woe(src->m))
+			if(sd && dstsd && heal > 0 && sd != dstsd) {
+				if( sd->status.guild_id && map_allowed_woe(src->m) )
 				{
-					if (sd->status.guild_id == dstsd->status.guild_id)
+					if( sd->status.guild_id == dstsd->status.guild_id)
 						add2limit(sd->status.wstats.healing_done, heal_get_jobexp, UINT_MAX);
 					else
 						add2limit(sd->status.wstats.wrong_healing_done, heal_get_jobexp, UINT_MAX);
 				}
-				else if (map_getmapflag(src->m, MF_BATTLEGROUND) && sd->bg_id && dstsd->bg_id)
+				else if(map_getmapflag(src->m, MF_BATTLEGROUND) && sd->bg_id && dstsd->bg_id )
 				{
-					if (sd->bg_id == dstsd->bg_id)
+					if( sd->bg_id == dstsd->bg_id )
 						add2limit(sd->status.bgstats.healing_done, heal_get_jobexp, UINT_MAX);
 					else
 						add2limit(sd->status.bgstats.wrong_healing_done, heal_get_jobexp, UINT_MAX);
 				}
-				if (battle_config.heal_exp > 0) {
+				if(battle_config.heal_exp > 0){
 					heal_get_jobexp = heal_get_jobexp * battle_config.heal_exp / 100;
 					if (heal_get_jobexp <= 0)
 						heal_get_jobexp = 1;
-					pc_gainexp(sd, bl, 0, heal_get_jobexp, 0);
+					pc_gainexp (sd, bl, 0, heal_get_jobexp, 0);
 			}
 		}
 		break;
