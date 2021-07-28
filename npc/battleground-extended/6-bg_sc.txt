@@ -82,22 +82,22 @@ OnTeam2Score:
 OnValidateScore:
 	if( $@BG_Status != 1 || getvariableofnpc(.BG_Arena$,"BG_Queue_Join") != "Flavius_SC" )
 		end;
-	if( .Team1_Score > 35 )
-		set .Team1_Score,35;
-	if( .Team2_Score > 35 )
-		set .Team2_Score,35;
+	if( .Team1_Score > 30 )
+		set .Team1_Score,30;
+	if( .Team2_Score > 30 )
+		set .Team2_Score,30;
 
 	bg_updatescore "bg_sc",.Team1_Score,.Team2_Score;
-	if( .Team2_Score >= 35 || .Team1_Score >= 35 )
+	if( .Team2_Score >= 30 || .Team1_Score >= 30 )
 		donpcevent "Flavius_SC::OnMatchEnd";
 	end;
 
 OnTimer600000:
-	mapannounce "bg_sc","The Battle will ends in 5 minutes!!",1,0x9ACD32;
+	mapannounce "bg_sc","The Battle will end in 5 minutes!!",1,0x9ACD32;
 	end;
 
 OnTimer840000:
-	mapannounce "bg_sc","The Battle will ends in 1 minute!!",1,0x9ACD32;
+	mapannounce "bg_sc","The Battle will end in 1 minute!!",1,0x9ACD32;
 	end;
 
 OnTimer900000:
