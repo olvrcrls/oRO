@@ -1294,11 +1294,7 @@
 19263:16024,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*6; bonus2 bSkillAtk,"SR_TIGERCANNON",.@r;}
 
 //Spell Circuit Combo Bonus
-//19249:1654,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*5; bonus2 bSkillAtk,"SO_PSYCHIC_WAVE",.@r;}
-//19249:2004,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*10; bonus2 bSkillAtk,"WL_HELLINFERNO",.@r;}
-//19249:13078,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*5; bonus2 bSkillAtk,"NJ_KOUENKA",.@r;}
-//19249:13078,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*5; bonus2 bSkillAtk,"NJ_HYOUSENSOU",.@r;}
-//19249:13078,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*5; bonus2 bSkillAtk,"NJ_HUUJIN",.@r;}
-//19249:13076,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*5; bonus2 bSkillAtk,"NJ_KOUENKA",.@r;}
-//19249:13076,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*5; bonus2 bSkillAtk,"NJ_HYOUSENSOU",.@r;}
-//19249:13076,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*5; bonus2 bSkillAtk,"NJ_HUUJIN",.@r;}
+19249:1654,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*5; bonus2 bSkillAtk,"SO_PSYCHIC_WAVE",.@r;}
+19249:2004,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*10; bonus2 bSkillAtk,"WL_HELLINFERNO",.@r;}
+19249:13076,{ .@rr = getequiprefinerycnt(EQI_HAND_R); .@rl = getequiprefinerycnt(EQI_HAND_L); if ( getequipid(EQI_HAND_R) == getequipd(EQI_HAND_L) && (getequipid(EQI_HAND_R) == 13076) ) { if ( .@rr >= .@rl) { .@r = .@rr; } else { .@r = .@rl; } } else if (getequipid(EQI_HAND_R) == 13076) { .@r = .@rr; } else if (getequipid(EQI_HAND_L) == 13076) { .@r = .@rl; } bonus bVariableCastRate,-.@r; }
+19249:13078,{ .@rr = getequiprefinerycnt(EQI_HAND_R); .@rl = getequiprefinerycnt(EQI_HAND_L); if ( getequipid(EQI_HAND_R) == getequipd(EQI_HAND_L) && (getequipid(EQI_HAND_R) == 13078) ) { if ( .@rr >= .@rl) { .@r = .@rr; } else { .@r = .@rl; } } else if (getequipid(EQI_HAND_R) == 13078) { .@r = .@rr; } else if (getequipid(EQI_HAND_L) == 13078) { .@r = .@rl; } bonus bVariableCastRate,-.@r; }
