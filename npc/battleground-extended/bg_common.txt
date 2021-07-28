@@ -496,10 +496,10 @@ OnInit:
 	// Bg Extension
 	// ================================================
 	// PORING BALL BY VYKIMO AVAILABLE? 1 = yes, 0 = no
-	$PB_AVAILABLE = 1;
+	$PB_AVAILABLE = 0;
 	// ================================================
 	// TOUCH DOWN BY VYKIMO AVAILABLE? 1 = yes, 0 = no
-	$TD_AVAILABLE = 1;
+	$TD_AVAILABLE = 0;
 	// ================================================
 	// Max player count difference allowed between teams ( default : 1 player )
 	.Diff = 5;
