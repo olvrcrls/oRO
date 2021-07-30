@@ -1765,6 +1765,9 @@ bool battle_can_hit_gvg_target(struct block_list *src,struct block_list *bl,uint
  */
 int64 battle_calc_gvg_damage(struct block_list *src,struct block_list *bl,int64 damage,uint16 skill_id,int flag)
 {
+
+	int class_ = status_get_class(bl);
+
 	if (!damage) //No reductions to make.
 		return 0;
 
@@ -1787,6 +1790,12 @@ int64 battle_calc_gvg_damage(struct block_list *src,struct block_list *bl,int64 
 		if (flag & BF_LONG)
 			damage = damage * battle_config.gvg_long_damage_rate / 100;
 	}
+
+	// Barricaade will only receive 50% of the total damage.
+	if (class_ == MOBID_BARRICADE) {
+		damage = damage / 2;
+	}
+
 	damage = i64max(damage,1);
 	return damage;
 }

@@ -10,7 +10,7 @@
 OnInit:
 	.HP_Option = true;	//Allow HP option
 	.SP_Option = true;	//Allow SP option
-	.MinDelay = 100;	//Minimum Delay Allowed in milliseconds (Default and Recommended: 100) [lower values will increase server strain]
+	.MinDelay = 170;	//Minimum Delay Allowed in milliseconds (Default and Recommended: 100) [lower values will increase server strain]
 	setarray .blackList[0],12279;	//Array of black listed item ID
 
 	if(!.HP_Option && !.SP_Option){
