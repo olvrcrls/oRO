@@ -5655,7 +5655,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 		case SR_GATEOFHELL: {
 			struct status_data *sstatus = status_get_status_data(src);
 			int64 sp_xbonus = (10 + skill_lv * 2) / 10;
-			int64 hp_bonus = (sstatus->max_hp - sstatus->hp) * 5;
+			int64 hp_bonus = (sstatus->max_hp - sstatus->hp) * 10;
 
 			if(sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_FALLENEMPIRE) {
 				int64 sp_bonus = (sstatus->max_sp * sp_xbonus);
