@@ -4244,9 +4244,9 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			else
 				skillratio += -100 + 500 * skill_lv;
 			RE_LVL_DMOD(100);
-			if (sc->data[SC_GT_REVITALIZE]) {
-				skillratio += skillratio * 50 / 100;
-			}
+			// if (sc->data[SC_GT_REVITALIZE]) {
+			// 	skillratio += skillratio * 50 / 100;
+			// }
 			break;
 		case SR_GENTLETOUCH_QUIET:
 			skillratio += -100 + 100 * skill_lv + status_get_dex(src);
@@ -5660,7 +5660,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 		case SR_GATEOFHELL: {
 			struct status_data *sstatus = status_get_status_data(src);
 			int64 sp_xbonus = (10 + skill_lv * 2) / 10;
-			int64 hp_bonus = (sstatus->max_hp - sstatus->hp) * 10;
+			// int64 hp_bonus = (sstatus->max_hp - sstatus->hp) * 10;
+			int64 hp_bonus = (sstatus->max_hp - sstatus->hp) * 2;
 
 			if(sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_FALLENEMPIRE) {
 				int64 sp_bonus = (sstatus->max_sp * sp_xbonus);
