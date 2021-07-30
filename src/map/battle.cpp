@@ -2163,7 +2163,7 @@ static int64 battle_calc_base_damage(struct block_list *src, struct status_data 
  *	Initial refactoring by Baalberith
  *	Refined and optimized by helvetica
  */
-void battle_consume_ammo(struct map_session_data*sd, int skill, int lv)
+void battle_consume_ammo(struct map_session_data* sd, int skill, int lv)
 {
 	int qty = 1;
 
@@ -2176,8 +2176,13 @@ void battle_consume_ammo(struct map_session_data*sd, int skill, int lv)
 	}
 
 	if (sd->equip_index[EQI_AMMO] >= 0) //Qty check should have been done in skill_check_condition
-		pc_delitem(sd,sd->equip_index[EQI_AMMO],qty,0,1,LOG_TYPE_CONSUME);
-
+	{
+		pc_delitem(sd, sd->equip_index[EQI_AMMO], qty, 0, 1, LOG_TYPE_CONSUME);
+		if (sd->status.guild_id && map_allowed_woe(sd->bl.m))
+			add2limit(sd->status.wstats.ammo_used, qty, UINT_MAX);
+		else if (sd->bg_id && map_getmapflag(sd->bl.m, MF_BATTLEGROUND))
+			add2limit(sd->status.bgstats.ammo_used, qty, UINT_MAX);
+	}
 	sd->state.arrow_atk = 0;
 }
 
