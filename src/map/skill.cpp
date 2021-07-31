@@ -11929,6 +11929,28 @@ TIMER_FUNC(skill_castend_id){
 		}
 		if( battle_config.display_status_timers && sd )
 			clif_status_change(src, EFST_POSTDELAY, 1, skill_delayfix(src, ud->skill_id, ud->skill_lv), 0, 0, 0);
+		if (sd && sd->skillitem != ud->skill_id)
+		{ // Skill Usage Counter
+			int i;
+			if (map_allowed_woe(sd->bl.m))
+			{
+				ARR_FIND(0, MAX_SKILL_TREE, i, sd->status.skillcount[i].id == ud->skill_id || !sd->status.skillcount[i].id);
+				if (i < MAX_SKILL_TREE)
+				{
+					sd->status.skillcount[i].id = ud->skill_id;
+					sd->status.skillcount[i].count++;
+				}
+			}
+			else if (map_getmapflag(sd->bl.m, MF_BATTLEGROUND) && sd->bg_id)
+			{
+				ARR_FIND(0, MAX_SKILL_TREE, i, sd->status.bg_skillcount[i].id == ud->skill_id || !sd->status.bg_skillcount[i].id);
+				if (i < MAX_SKILL_TREE)
+				{
+					sd->status.bg_skillcount[i].id = ud->skill_id;
+					sd->status.bg_skillcount[i].count++;
+				}
+			}
+		}
 		if( sd )
 		{
 			switch( ud->skill_id )
