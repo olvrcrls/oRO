@@ -6929,6 +6929,15 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 			skill_attack(BF_MISC,src,src,bl,skill_id,skill_lv,tick,flag);
 			break;
 		}
+	case ASC_EDP: {
+		int duration = skill_get_time(skill_id,skill_lv);
+		if (pc_checkskill(sd, GC_RESEARCHNEWPOISON)) {
+			duration += (pc_checkskill(sd, GC_RESEARCHNEWPOISON) * 3);
+		}
+		clif_skill_nodamage(src,bl,skill_id,skill_lv,
+			sc_start(src,bl,type,100,skill_lv,duration));
+	}
+		break;
 	case PR_SLOWPOISON:
 	case PR_IMPOSITIO:
 	case PR_LEXAETERNA:
@@ -6959,7 +6968,6 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 	case HW_MAGICPOWER:
 	case PF_MEMORIZE:
 	case PA_SACRIFICE:
-	case ASC_EDP:
 	case PF_DOUBLECASTING:
 	case SG_SUN_COMFORT:
 	case SG_MOON_COMFORT:
@@ -8316,7 +8324,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 					case SC_RECOGNIZEDSPELL:case SC_LEADERSHIP:		case SC_GLORYWOUNDS:
 					case SC_SOULCOLD:		case SC_HAWKEYES:		case SC_REGENERATION:
 					case SC_PUSH_CART:		case SC_RAISINGDRAGON:	case SC_GT_ENERGYGAIN:
-					case SC_GT_CHANGE:		case SC_GT_REVITALIZE:	
+					//case SC_GT_CHANGE:		case SC_GT_REVITALIZE:	
 					case SC_REFLECTDAMAGE:
 					case SC_INSPIRATION:	case SC_EXEEDBREAK:		case SC_FORCEOFVANGUARD:
 					case SC_BANDING:		case SC_DUPLELIGHT:		case SC_EXPIATIO:
