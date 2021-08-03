@@ -1119,7 +1119,7 @@ bat_room,150,157,4	script	Kafra Staff::kaf_bat	861,{
 	callfunc "F_Kafra",0,8,2,500,0;
 	savepoint "bat_room",153,150,1,1;
 	callfunc "F_KafEnd",2,0,0;
-	callfunc "F_KafRepair"
+	callfunc "F_KafRepair";
 }
 
 // Repairman
