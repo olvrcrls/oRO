@@ -1640,8 +1640,8 @@ OnInit:		//-- Config
 	// Rewards are Mailed to winners
 	// Ro Dex Supports 5 Items
 	// Old Mail & Direct DO NOT support multiple items
-	setarray $@RewardID	,40001,7179,40002,0,0;
-	setarray $@RewardQNT	,    20,10,20,0,0;
+	setarray $@RewardID	,40001,7179,40002,40003,0;
+	setarray $@RewardQNT	,    20,10,20,1,0;
 	$@RewardZeny = 10000000;
 
 	// Not Adding Card / Random Bonus Support Yet, bug me if you really want it.
