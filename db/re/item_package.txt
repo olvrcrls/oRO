@@ -4963,7 +4963,7 @@ IG_Santa_Gift,12259,500,2,1,0,0,0	// 2x Miracle_Medicine
 //-- Shadow dragon egg
 IG_EVENT_SLIME,40002,69,1 // Shadow dragon Egg - Tier 1
 IG_EVENT_FROST,40003,69,1 // Frost dragon Egg - Tier 2
-IG_EVENT_SHADOW,40004,69,1 // Slime dragon egg - Tier 3
+//IG_EVENT_SHADOW,40004,69,1 // Slime dragon egg - Tier 3
 
 //-- Ores
 //-- HD Oridecon / Elunium
