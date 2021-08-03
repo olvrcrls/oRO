@@ -1115,7 +1115,11 @@ bat_room,148,150,4	script	Teleporter#bat	124,{
 // *********************************************************************
 bat_room,150,157,4	script	Kafra Staff::kaf_bat	861,{
 	cutin "kafra_09",2;
-	callfunc "F_Kafra",0,2,1,150,0;
+	callfunc "F_KafSet";
+	callfunc "F_Kafra",0,8,2,500,0;
+	savepoint "bat_room",153,150,1,1;
+	callfunc "F_KafEnd",2,0,0;
+	callfunc "F_KafRepair"
 }
 
 // Repairman
