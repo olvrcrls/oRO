@@ -1792,7 +1792,7 @@ int64 battle_calc_gvg_damage(struct block_list *src,struct block_list *bl,int64 
 	}
 
 	// Barricaade will only receive 50% of the total damage.
-	if (class_ == MOBID_BARRICADE) {
+	if (class_ == MOBID_BARRICADE || class_ == MOBID_GUARDIAN_STONE1 || class_ == MOBID_GUARDIAN_STONE2) {
 		damage = damage / 2;
 	}
 
