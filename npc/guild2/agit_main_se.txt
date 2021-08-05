@@ -117,7 +117,7 @@ OnReset:
 	donpcevent "1st Guardian Stone#"+.@str$+"::OnDisable";
 	donpcevent "2nd Guardian Stone#"+.@str$+"::OnDisable";
 	for(set .@i,1; .@i<4; set .@i,.@i+1)
-		donpcevent "Control Device0"+.@i+"#"+.@str$+"::OnDisable";
+		donpcevent "Control Device0"+.@i+"#"+.@str$+"::OnDisable"; // TODO:
 	for(set .@i,0; .@i<4; set .@i,.@i+1)
 		donpcevent "RL"+.@i+"#"+strnpcinfo(2)+"::OnDisable";
 	if (agitcheck2())
@@ -640,6 +640,10 @@ OnStartArena:
 	maprespawnguildid strnpcinfo(4),getcastledata(strnpcinfo(4),CD_GUILD_ID),2;
 	donpcevent "Manager#"+strnpcinfo(4)+"::OnRecvCastle2";
 	donpcevent "::OnRecvCastle"+strnpcinfo(2);
+	//TODO: Do the 3rd Barricade Repair here
+	set .@str$, substr(strnpcinfo(2),0,1)+substr(strnpcinfo(2),8,9);
+	donpcevent "RL3#"+strnpcinfo(4)+"::OnEnable";
+	donpcevent "Control Device03#"+.@str$+"::OnDisable";
 	sleep 10000;
 	if (agitcheck2()) {
 		donpcevent "Manager#"+strnpcinfo(4)+"::OnChange";
@@ -1127,7 +1131,7 @@ OnEnable:
 				mes "^3355FFDemolished Fortress";
 				mes "Gates can be repaired,";
 				mes "but you will need to gather";
-				mes "the following materials.^000000";
+				mes "the following materialsR.^000000";
 				next;
 				mes "^4D4DFF10 Steel^000000,";
 				mes "^4D4DFF30 Trunks^000000,";
