@@ -256,7 +256,7 @@ OnClock2100:
 			if( gettime(DT_HOUR) >= 4 && gettime(DT_HOUR) < 6 )
 			{
 				bgannounce "-- Battleground Happy Hour has begun --",0x00FF00;
-				setbattleflag "bg_reward_rates",200; // +100% Reward Rates
+				setbattleflag "bg_reward_rates",180; // +80% Reward Rates
 				end;
 			}
 			
@@ -270,7 +270,7 @@ OnClock2100:
 			if( gettime(DT_HOUR) >= 8 && gettime(DT_HOUR) < 10 )
 			{
 				bgannounce "-- Battleground Happy Hour has begun --",0x00FF00;
-				setbattleflag "bg_reward_rates",200; // +100% Reward Rates
+				setbattleflag "bg_reward_rates",180; // +80% Reward Rates
 				end;
 			}
 			
@@ -284,7 +284,7 @@ OnClock2100:
 			if( gettime(DT_HOUR) >= 12 && gettime(DT_HOUR) < 14 )
 			{
 				bgannounce "-- Battleground Happy Hour has begun --",0x00FF00;
-				setbattleflag "bg_reward_rates",200; // +100% Reward Rates
+				setbattleflag "bg_reward_rates",180; // +80% Reward Rates
 				end;
 			}
 			
@@ -298,7 +298,7 @@ OnClock2100:
 			if( gettime(DT_HOUR) >= 16 && gettime(DT_HOUR) < 18 )
 			{
 				bgannounce "-- Battleground Happy Hour has begun --",0x00FF00;
-				setbattleflag "bg_reward_rates",200; // +100% Reward Rates
+				setbattleflag "bg_reward_rates",180; // +80% Reward Rates
 				end;
 			}
 			
@@ -312,7 +312,7 @@ OnClock2100:
 			if( gettime(DT_HOUR) >= 20 && gettime(DT_HOUR) < 22 )
 			{
 				bgannounce "-- Battleground Happy Hour has begun --",0x00FF00;
-				setbattleflag "bg_reward_rates",200; // +100% Reward Rates
+				setbattleflag "bg_reward_rates",180; // +80% Reward Rates
 				end;
 			}
 			
