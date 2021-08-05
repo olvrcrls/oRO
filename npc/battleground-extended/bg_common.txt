@@ -253,70 +253,70 @@ OnClock2100:
 		case FRIDAY:
 		case SATURDAY:
 		case SUNDAY:
-			if( gettime(DT_HOUR) >= 4 && gettime(DT_HOUR) < 5 )
+			if( gettime(DT_HOUR) >= 4 && gettime(DT_HOUR) < 6 )
 			{
 				bgannounce "-- Battleground Happy Hour has begun --",0x00FF00;
-				setbattleflag "bg_reward_rates",180; // +80% Reward Rates
+				setbattleflag "bg_reward_rates",200; // +100% Reward Rates
 				end;
 			}
 			
-			if( gettime(DT_HOUR) == 5 )
+			if( gettime(DT_HOUR) == 6 )
 			{
 				bgannounce "-- Battleground Happy Hour is over --",0x00BFFF;
 				setbattleflag "bg_reward_rates",100; // Normal Rates
 				end;
 			}
 
-			if( gettime(DT_HOUR) >= 8 && gettime(DT_HOUR) < 9 )
+			if( gettime(DT_HOUR) >= 8 && gettime(DT_HOUR) < 10 )
 			{
 				bgannounce "-- Battleground Happy Hour has begun --",0x00FF00;
-				setbattleflag "bg_reward_rates",150; // +50% Reward Rates
+				setbattleflag "bg_reward_rates",200; // +100% Reward Rates
 				end;
 			}
 			
-			if( gettime(DT_HOUR) == 9 )
+			if( gettime(DT_HOUR) == 10 )
 			{
 				bgannounce "-- Battleground Happy Hour is over --",0x00BFFF;
 				setbattleflag "bg_reward_rates",100; // Normal Rates
 				end;
 			}
 
-			if( gettime(DT_HOUR) >= 12 && gettime(DT_HOUR) < 13 )
+			if( gettime(DT_HOUR) >= 12 && gettime(DT_HOUR) < 14 )
 			{
 				bgannounce "-- Battleground Happy Hour has begun --",0x00FF00;
-				setbattleflag "bg_reward_rates",180; // +80% Reward Rates
+				setbattleflag "bg_reward_rates",200; // +100% Reward Rates
 				end;
 			}
 			
-			if( gettime(DT_HOUR) == 13 )
+			if( gettime(DT_HOUR) == 14 )
 			{
 				bgannounce "-- Battleground Happy Hour is over --",0x00BFFF;
 				setbattleflag "bg_reward_rates",100; // Normal Rates
 				end;
 			}
 
-			if( gettime(DT_HOUR) >= 16 && gettime(DT_HOUR) < 17 )
+			if( gettime(DT_HOUR) >= 16 && gettime(DT_HOUR) < 18 )
 			{
 				bgannounce "-- Battleground Happy Hour has begun --",0x00FF00;
-				setbattleflag "bg_reward_rates",150; // +50% Reward Rates
+				setbattleflag "bg_reward_rates",200; // +100% Reward Rates
 				end;
 			}
 			
-			if( gettime(DT_HOUR) == 17 )
+			if( gettime(DT_HOUR) == 18 )
 			{
 				bgannounce "-- Battleground Happy Hour is over --",0x00BFFF;
 				setbattleflag "bg_reward_rates",100; // Normal Rates
 				end;
 			}
 			
-			if( gettime(DT_HOUR) >= 20 && gettime(DT_HOUR) < 21 )
+			if( gettime(DT_HOUR) >= 20 && gettime(DT_HOUR) < 22 )
 			{
 				bgannounce "-- Battleground Happy Hour has begun --",0x00FF00;
-				setbattleflag "bg_reward_rates",180; // +80% Reward Rates
+				setbattleflag "bg_reward_rates",200; // +100% Reward Rates
 				end;
 			}
 			
-			if( gettime(DT_HOUR) == 21 )
+			if( gettime(DT_HOUR) == 22 )
 			{
 				bgannounce "-- Battleground Happy Hour is over --",0x00BFFF;
 				setbattleflag "bg_reward_rates",100; // Normal Rates
