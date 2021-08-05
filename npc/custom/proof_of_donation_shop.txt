@@ -14,13 +14,13 @@
 // Write your shop names in the select() function.
 
 -	itemshop	PSHOP1	-1,7179,14542:5 // Consumables
--	itemshop	PSHOP2	-1,7179,17523:50 // Costumes
--	itemshop	PSHOP3	-1,7179,7829:2 // Misc
--	itemshop	PSHOP4	-1,7179,18603:250 // Headgears
--	itemshop	PSHOP5	-1,7179,2349:50 // Armors
--	itemshop	PSHOP6	-1,7179,2168:250 // Shields 
--	itemshop	PSHOP7	-1,7179,12246:50 // Cards
--	itemshop	PSHOP8	-1,7179,1546:500 // Weapons
+//-	itemshop	PSHOP2	-1,7179,17523:50 // Costumes
+-	itemshop	PSHOP2	-1,7179,7829:2 // Misc
+-	itemshop	PSHOP3	-1,7179,18603:250 // Headgears
+-	itemshop	PSHOP4	-1,7179,2349:50 // Armors
+-	itemshop	PSHOP5	-1,7179,2168:250 // Shields 
+-	itemshop	PSHOP6	-1,7179,12246:50 // Cards
+-	itemshop	PSHOP7	-1,7179,1546:500 // Weapons
 
 askald,122,103,5	script	Donation Exchanger	790,{
 	// Add Weapons on the last option to enable vellum/glorious selling
