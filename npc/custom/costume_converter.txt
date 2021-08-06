@@ -1,4 +1,4 @@
-askald,167,248,4	script	Costume Converter#cs_0	646,{
+askald,167,248,4	script	Mamanda#cs_0	646,{
 	mes "[ "+strnpcinfo(1)+" ]";
 	mes "I can convert your equipment into costumes!";
 	mes "^ff0000Warning!^000000";
@@ -31,12 +31,12 @@ askald,167,248,4	script	Costume Converter#cs_0	646,{
 		mes "Alright, I can understand.";
 		close;
 	}
-	if (Zeny<1000000) { mes "You didn't bring enough money!"; close; }
-	if (Countitem(971)<30) { mes "You didn't bring enough Detrimindexta!"; close; }
-	if (Countitem(972)<30) { mes "You didn't bring enough Karvodailnirol!"; close; }
-	Zeny = Zeny - 1000000;
-	delitem 971,30;
-	delitem 972,30;
+	//if (Zeny<1000000) { mes "You didn't bring enough money!"; close; }
+	//if (Countitem(971)<30) { mes "You didn't bring enough Detrimindexta!"; close; }
+	//if (Countitem(972)<30) { mes "You didn't bring enough Karvodailnirol!"; close; }
+	//Zeny = Zeny - 1000000;
+	//delitem 971,30;
+	//delitem 972,30;
 	costume .@Part; // Convert the Headgear
 	mes "[ "+strnpcinfo(1)+" ]";
 	mes "Done, enjoy your costume headgear.";

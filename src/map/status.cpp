@@ -1829,6 +1829,8 @@ int status_damage(struct block_list *src,struct block_list *target,int64 dhp, in
 		unit_stop_walking( target, 1 );
 	}
 
+	pc_record_damage(src, target, hp); // Ranking data [Wazaby] records damage
+
 	if( status->hp || (flag&8) ) { // Still lives or has been dead before this damage.
 		if (walkdelay)
 			unit_set_walkdelay(target, gettick(), walkdelay, 0);

@@ -1765,6 +1765,9 @@ bool battle_can_hit_gvg_target(struct block_list *src,struct block_list *bl,uint
  */
 int64 battle_calc_gvg_damage(struct block_list *src,struct block_list *bl,int64 damage,uint16 skill_id,int flag)
 {
+
+	int class_ = status_get_class(bl);
+
 	if (!damage) //No reductions to make.
 		return 0;
 
@@ -1787,6 +1790,12 @@ int64 battle_calc_gvg_damage(struct block_list *src,struct block_list *bl,int64 
 		if (flag & BF_LONG)
 			damage = damage * battle_config.gvg_long_damage_rate / 100;
 	}
+
+	// Barricaade will only receive 50% of the total damage.
+	if (class_ == MOBID_BARRICADE || class_ == MOBID_GUARDIAN_STONE1 || class_ == MOBID_GUARDIAN_STONE2) {
+		damage = damage / 2;
+	}
+
 	damage = i64max(damage,1);
 	return damage;
 }
@@ -2154,7 +2163,7 @@ static int64 battle_calc_base_damage(struct block_list *src, struct status_data 
  *	Initial refactoring by Baalberith
  *	Refined and optimized by helvetica
  */
-void battle_consume_ammo(struct map_session_data*sd, int skill, int lv)
+void battle_consume_ammo(struct map_session_data* sd, int skill, int lv)
 {
 	int qty = 1;
 
@@ -2167,8 +2176,13 @@ void battle_consume_ammo(struct map_session_data*sd, int skill, int lv)
 	}
 
 	if (sd->equip_index[EQI_AMMO] >= 0) //Qty check should have been done in skill_check_condition
-		pc_delitem(sd,sd->equip_index[EQI_AMMO],qty,0,1,LOG_TYPE_CONSUME);
-
+	{
+		pc_delitem(sd, sd->equip_index[EQI_AMMO], qty, 0, 1, LOG_TYPE_CONSUME);
+		if (sd->status.guild_id && map_allowed_woe(sd->bl.m))
+			add2limit(sd->status.wstats.ammo_used, qty, UINT_MAX);
+		else if (sd->bg_id && map_getmapflag(sd->bl.m, MF_BATTLEGROUND))
+			add2limit(sd->status.bgstats.ammo_used, qty, UINT_MAX);
+	}
 	sd->state.arrow_atk = 0;
 }
 
@@ -4230,6 +4244,9 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			else
 				skillratio += -100 + 500 * skill_lv;
 			RE_LVL_DMOD(100);
+			if (sc->data[SC_GT_REVITALIZE]) {
+				skillratio += skillratio * 30 / 100;
+			}
 			break;
 		case SR_GENTLETOUCH_QUIET:
 			skillratio += -100 + 100 * skill_lv + status_get_dex(src);
@@ -5643,7 +5660,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 		case SR_GATEOFHELL: {
 			struct status_data *sstatus = status_get_status_data(src);
 			int64 sp_xbonus = (10 + skill_lv * 2) / 10;
-			int64 hp_bonus = (sstatus->max_hp - sstatus->hp) * 2;
+			int64 hp_bonus = (sstatus->max_hp - sstatus->hp); // multipler here creates an overflow
+			hp_bonus = hp_bonus * 4; // HP bonus was 10x Adjusted to 4x
 
 			if(sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_FALLENEMPIRE) {
 				int64 sp_bonus = (sstatus->max_sp * sp_xbonus);

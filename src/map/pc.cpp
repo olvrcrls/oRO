@@ -8777,6 +8777,7 @@ int pc_dead(struct map_session_data *sd,struct block_list *src, uint16 skill_id)
 
 	if (src && src->type == BL_PC) {
 		struct map_session_data *ssd = (struct map_session_data *)src;
+		pc_calc_ranking(sd, ssd, skill_id); // Ranking System
 		pc_battle_info(sd, ssd, skill_id);
 		pc_setparam(ssd, SP_KILLEDRID, sd->bl.id);
 		npc_script_event(ssd, NPCE_KILLPC);
