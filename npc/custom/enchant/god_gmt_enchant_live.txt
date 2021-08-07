@@ -44,14 +44,14 @@ switch(select("Cancel","Enchant Magic Armor","Enchant Magic Accessory")){
 			if(.gmt_token_cost > countitem(.gmt_item_id)){
 				mes .@npc$,
 					"You're missing " + (.gmt_token_cost - countitem(.gmt_item_id)),
-					"<ITEM>Geffen Magic Tournament Coin<INFO>6671</INFO></ITEM>.";
+					"<ITEM>" + getitemname(.gmt_item_id) + "<INFO>" + .gmt_item_id + "</INFO></ITEM>.";
 				close;
 			}
 
 			if(.valor_badge_cost > countitem(.valor_badge_id)){
 				mes .@npc$,
 					"You're missing " + (.valor_badge_cost - countitem(.valor_badge_id)),
-					"<ITEM>" + getitemname(.valor_badge_id) + "<INFO>" + .pod_id + "</INFO></ITEM>.";
+					"<ITEM>" + getitemname(.valor_badge_id) + "<INFO>" + .valor_badge_item_id + "</INFO></ITEM>.";
 				close;
 			}
 
@@ -123,7 +123,7 @@ switch(select("Cancel","Enchant Magic Armor","Enchant Magic Accessory")){
 			if(.gmt_token_cost > countitem(.gmt_item_id)){
 				mes .@npc$,
 					"You're missing " + (.gmt_token_cost - countitem(.gmt_item_id)),
-					"<ITEM>Geffen Magic Tournament Coin<INFO>6671</INFO></ITEM>.";
+					"<ITEM>" + getitemname(.gmt_item_id) + "<INFO>" + .gmt_item_id + "</INFO></ITEM>.";
 				close;
 			}
 
