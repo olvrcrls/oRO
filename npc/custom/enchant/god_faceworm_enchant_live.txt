@@ -1,0 +1,139 @@
+askald,98,143,6	script	GSS Perfect Enchanter	4_F_IRIS,{
+	disable_command;
+	disable_items;
+
+	mes .n$;
+	mes "I'm a specialist on ^0000FFGiant Snake Skin^000000 garments.";
+	mes "Make them special, boy, 'cause you're so special.";
+	next;
+
+	if(select("Enchant my garment.:I'll come back later.") == 2){
+		mes .n$;
+		mes "Come back when you made up your mind.";
+		close;
+	}
+
+	.@equip_id = getequipid(EQI_GARMENT);
+	switch(.@equip_id) {
+		case 20717: //Giant Snake Skin[0]
+		case 20718: //Giant Snake Skin[1]
+		break;
+		case -1: 
+			mes .n$;
+			mes "Where's the <ITEM>" + getitemname(.gss_slot) + "<INFO>" + .gss_slot + "</INFO></ITEM>?";
+			mes "Come back, with when you have it equipped.";
+		close;
+		default: 
+			mes .n$;
+			mes "Ew, what is this crap?";
+			mes "Come back, with your ^0000FFGiant Snake Skin^000000 equipped.";
+		close;
+	} // check if equipment is on
+	setarray .@enchant_1[0],4706,4736,4746,4716,4726,4756; //STR,AGI,VIT,INT,DEX,LUK
+	setarray .@enchant_2[0],4706,4736,4746,4716,4726,4756; //STR,AGI,VIT,INT,DEX,LUK
+	setarray .@enchant_3[0],4853,4854,4855,4856,4857,4858; //S_STR,S_AGI,S_VIT,S_INT,S_DEX,S_LUK
+	setarray .@card[0],
+		getequipcardid(EQI_GARMENT,0),
+		getequipcardid(EQI_GARMENT,1),
+		getequipcardid(EQI_GARMENT,2),
+		getequipcardid(EQI_GARMENT,3);
+	.@equip_refine = getequiprefinerycnt(EQI_GARMENT);
+
+	mes .n$;
+	mes "It will cost you the following: ";
+	mes .broken_horn_cost + " <ITEM>" + getitemname(.broken_horn_item_id) + "<INFO>" + .broken_horn_item_id + "</INFO></ITEM>.";
+	mes .valor_badge_cost + " <ITEM>" + getitemname(.valor_badge_item_id) + "<INFO>" + .valor_badge_item_id + "</INFO></ITEM>.";
+	mes .pod_cost + " <ITEM>" + getitemname(.pod_item_id) + "<INFO>" + .pod_item_id + "</INFO></ITEM>.";
+	mes "Do you want to continue?";
+	next;
+	if(select("No.","Continue.") == 1){
+		mes .n$;
+		mes "Alright, come back when you have decided.";
+		close;
+	}
+	if(.broken_horn_cost > countitem(.broken_horn_item_id)){
+		mes .@npc$,
+			"You're missing " + (.broken_horn_cost - countitem(.broken_horn_item_id)),
+			"<ITEM>" + getitemname(.broken_horn_item_id) + "<INFO>" + .broken_horn_item_id + "</INFO></ITEM>.";
+		close;
+	}
+
+	if(.valor_badge_cost > countitem(.valor_badge_item_id)){
+		mes .@npc$,
+			"You're missing " + (.valor_badge_cost - countitem(.valor_badge_id)),
+			"<ITEM>" + getitemname(.valor_badge_item_id) + "<INFO>" + .valor_badge_item_id + "</INFO></ITEM>.";
+		close;
+	}
+
+	if(.pod_cost > countitem(.pod_item_id)){
+		mes .@npc$,
+			"You're missing " + (.pod_cost - countitem(.pod_item_id)),
+			"<ITEM>" + getitemname(.pod_id) + "<INFO>" + .pod_id + "</INFO></ITEM>.";
+		close;
+	}
+
+	mes .n$;
+	mes "Choose your first TWO Enchants on your garment.";
+	next;
+	.@s1 = select("Quit","Strength","Agility","Vitality","Intelligence","Dexterity","Luck") -2;
+		if(.@s == -1){
+		mes .n$;
+		mes "What a waste of time, please come back later then.";
+		close;
+	}
+
+	.@card[3] = .@enchant_1[.@s1];
+	mes .n$;
+	mes "Choose your final or THIRD enchant on your garment.";
+	next;
+
+	.@s2 = 	select("Quit","Strength","Agility","Vitality","Intelligence","Dexterity","Luck") -2;
+	if(.@s == -1){
+		mes .n$;
+		mes "What a waste of time, please come back later then.";
+		close;
+	}
+	
+	.@card[2] = .@enchant_1[.@s2];
+
+	mes .n$;
+	mes "I'll proceed now. There will be no refund.";
+	next;
+	switch(select("Cancel","Yes, Continue.")){
+		case 1:
+			mes .n$;
+			mes "What a waste of time, please come back later then.";
+			close;
+		case 2:
+			.@card[1] = .@enchant_3[.@s2];
+			mes .n$;
+			mes "Congratulations. Enjoy your enhanced garment.";
+			break;
+	}
+
+	delitem .broken_horn_item_id, .broken_horn_cost;
+	delitem .valor_badge_item_id, .valor_badge_cost;
+	delitem .pod_item_id, .pod_cost;
+	delequip EQI_GARMENT;
+	specialeffect2 EF_REPAIRWEAPON;
+	getitem2 .@equip_id,1,1,.@equip_refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
+	close;
+
+	OnInit:
+		.broken_horn_item_id = 6649;
+		.broken_horn_cost = 1;
+
+		.pod_item_id = 7179;
+		.pod_cost = 50;
+
+		.valor_badge_item_id = 7829;
+		.valor_badge_cost = 3000;
+
+		.blank_card_item_id = 6187;
+		.blank_card_cost = 1000;
+
+		.gss_slot = 20718;
+		.gss_non_slot = 20717;
+
+		.n$ = "[GSS Perfect Enchanter]";
+}
