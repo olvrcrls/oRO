@@ -1,0 +1,230 @@
+askald,98,146,6	script	Fenrir#gmt_god	4_F_FENRIR,{
+disable_command;
+disable_items;
+.@npc$ = "[Fenrir]";
+mes .@npc$;
+mes "Hey, it's me Fenrir the Tournament Champion.";
+mes "I can enhance your Tournament stuff to its perfect condition.";
+mes "So, what's it going to be?";
+next;
+switch(select("Cancel","Enchant Magic Armor","Enchant Magic Accessory")){
+	case 1:
+		mes .@npc$;
+		mes "Come back when you made up your mind";
+		close;
+	break;
+	case 2: //Enchant Magic Armor
+		mes .@npc$;
+		.@itemEqId = getequipid(EQI_ARMOR);
+			if (!.@itemEqId){
+				mes "I don't see anything, please make sure you've equipped the item.";
+				close;
+			}
+			switch(.@itemEqId) {
+				case 15073: // Anti-Magic Suit
+				case 15074: // Geffen Magic Robe
+				break;
+				
+				default:
+				mes "I don't see anything, please make sure you've equipped the item.";
+				close;
+			}
+		mes "<ITEM>" + getitemname(.@itemEqId) + "<INFO>" + .@itemEqId + "</INFO></ITEM>.";
+		mes "It will cost you the following: ";
+		mes .gmt_token_cost + " <ITEM>" + getitemname(.gmt_item_id) + "<INFO>" + .gmt_item_id + "</INFO></ITEM>.";
+		mes .valor_badge_cost + " <ITEM>" + getitemname(.valor_badge_item_id) + "<INFO>" + .valor_badge_item_id + "</INFO></ITEM>.";
+		mes .pod_cost + " <ITEM>" + getitemname(.pod_item_id) + "<INFO>" + .pod_item_id + "</INFO></ITEM>.";
+		mes "Do you want to continue?";
+		next;
+			if(select("No.","Continue.") == 1){
+				mes .@npc$,
+					"Come back when you made up your mind.";
+				close;
+			}
+			if(.gmt_token_cost > countitem(.gmt_item_id)){
+				mes .@npc$,
+					"You're missing " + (.gmt_token_cost - countitem(.gmt_item_id)),
+					"<ITEM>Geffen Magic Tournament Coin<INFO>6671</INFO></ITEM>.";
+				close;
+			}
+
+			if(.valor_badge_cost > countitem(.valor_badge_id)){
+				mes .@npc$,
+					"You're missing " + (.valor_badge_cost - countitem(.valor_badge_id)),
+					"<ITEM>" + getitemname(.valor_badge_id) + "<INFO>" + .pod_id + "</INFO></ITEM>.";
+				close;
+			}
+
+			if(.pod_cost > countitem(.pod_item_id)){
+				mes .@npc$,
+					"You're missing " + (.pod_cost - countitem(.pod_item_id)),
+					"<ITEM>" + getitemname(.pod_id) + "<INFO>" + .pod_id + "</INFO></ITEM>.";
+				close;
+			}
+		mes .@npc$;
+		mes "Choose your preferred Bonus Option for ^7289DAFIRST^000000 Enchant";
+		next;
+		.@s1 = select("Quit","Strength","Agility","Vitality","Intelligence","Dexterity","Luck","Max HP","Max SP") -2;
+			if (.@s1 == -1)
+			{
+				close;
+			}
+		mes .@npc$;
+		mes "Choose your preferred Bonus Option for ^7289DASECOND^000000 Enchant";
+		next;
+		.@s2 = select("Quit","HP Regen","SP Regen","Hit","Flee","Defense","Magic Defense","Heal Power","Cast Reduction","Indestructible,","Water Armor","Fire Armor","Earth Armor","Wind Armor") -2;
+			if (.@s2 == -1)
+			{
+				close;
+			}
+		.@Opt1 = .RandOpt1_Armor[.@s1];
+		.@Opt2 = .RandOpt2_Armor[.@s2];
+		.@Opt1_V = .RandOpt1_Armor_V[.@s1];
+		.@Opt2_V = .RandOpt2_Armor_V[.@s2];
+		delitem .gmt_item_id,.gmt_token_cost;
+		delitem .valor_badge_item_id,.valor_badge_cost;
+		delitem .pod_item_id,.pod_cost;
+		setrandomoption(EQI_ARMOR,0,.@Opt1,.@Opt1_V,0);
+		setrandomoption(EQI_ARMOR,1,.@Opt2,.@Opt2_V,0);
+		specialeffect2 1031;
+		mes .@npc$;
+		mes "Good Luck Have Fun!!";
+		close;
+	break;
+	case 3:
+		.@part = select("Left Accessory.","Right Accessory.") - 1;
+		mes .@npc$;
+		.@itemEqId = getequipid(.@part);
+			if(!.@itemEqId) {
+				mes "I don't see anything, please make sure you've equipped the item.";
+				close;
+			}
+			switch(.@itemEqId) {
+				case 2963: // Physical Enchancer Ring
+				case 2964: // Magic Intensifier Ring
+				break;
+				
+				default:
+				mes "I don't see anything, please make sure you've equipped the item.";
+				close;
+			}
+		mes "<ITEM>" + getitemname(.@itemEqId) + "<INFO>" + .@itemEqId + "</INFO></ITEM>.";
+		mes "It will cost you the following: ";
+		mes .gmt_token_cost + " <ITEM>" + getitemname(.gmt_item_id) + "<INFO>" + .gmt_item_id + "</INFO></ITEM>.";
+		mes .valor_badge_cost + " <ITEM>" + getitemname(.valor_badge_item_id) + "<INFO>" + .valor_badge_item_id + "</INFO></ITEM>.";
+		mes .pod_cost + " <ITEM>" + getitemname(.pod_item_id) + "<INFO>" + .pod_item_id + "</INFO></ITEM>.";
+		mes "Do you want to continue?";
+		next;
+			if(select("No.","Continue.") == 1){
+				mes .@npc$;
+				mes "Come back when you made up your mind.";
+				close;
+			}
+			if(.gmt_token_cost > countitem(.gmt_item_id)){
+				mes .@npc$,
+					"You're missing " + (.gmt_token_cost - countitem(.gmt_item_id)),
+					"<ITEM>Geffen Magic Tournament Coin<INFO>6671</INFO></ITEM>.";
+				close;
+			}
+
+			if(.valor_badge_cost > countitem(.valor_badge_item_id)){
+				mes .@npc$,
+					"You're missing " + (.valor_badge_cost - countitem(.valor_badge_item_id)),
+					"<ITEM>" + getitemname(.valor_badge_item_id) + "<INFO>" + .valor_badge_item_id + "</INFO></ITEM>.";
+				close;
+			}
+
+			if(.pod_cost > countitem(.pod_item_id)){
+				mes .@npc$,
+					"You're missing " + (.pod_cost - countitem(.pod_item_id)),
+					"<ITEM>" + getitemname(.pod_item_id) + "<INFO>" + .pod_item_id + "</INFO></ITEM>.";
+				close;
+			}
+		mes .@npc$;
+		mes "Choose your preferred Bonus Option for ^7289DAFIRST^000000 Enchant";
+		next;
+		.@s1 = select("Quit","Attack","Magic Attack","Attack Speed","Cast Reduction","Critical Damage","Water Resistance","Earth Resistance","Fire Resistance","Wind Resistance","SP Consume Reduction","Max HP","Max SP","All Elemental Resistance") -2;
+			if (.@s1 == -1)
+			{
+				close;
+			}
+		
+		mes .@npc$;
+		mes "Choose your preferred Bonus Option for ^7289DASECOND^000000 Enchant";
+		next;
+		.@s2 = select("Quit","Attack","Magic Attack","Attack Speed","Cast Reduction","Critical Damage","Water Resistance","Earth Resistance","Fire Resistance","Wind Resistance","SP Consume Reduction","Max HP","Max SP","All Elemental Resistance") -2;
+			if (.@s2 == -1)
+			{
+				close;
+			}
+		.@Opt1 = .RandOpt_Accessory[.@s1];
+		.@Opt2 = .RandOpt_Accessory[.@s2];
+		.@Opt1_V = .RandOpt_Accessory_V[.@s1];
+		.@Opt2_V = .RandOpt_Accessory_V[.@s2];
+		delitem .gmt_item_id,.gmt_token_cost;
+		delitem .valor_badge_item_id,.valor_badge_cost;
+		delitem .pod_item_id,.pod_cost;
+		setrandomoption(.@part,0,.@Opt1,.@Opt1_V,0);
+		setrandomoption(.@part,1,.@Opt2,.@Opt2_V,0);
+		specialeffect2 1031;
+		mes .@npc$;
+		mes "Good Luck Have Fun!!";
+		close;
+
+	break;
+	}
+end;
+	OnInit:
+			.gmt_token_cost = 100;
+			.gmt_item_id = 6671; // Geffen Magic Tournament Token
+
+			.valor_badge_cost = 1000;
+			.valor_badge_item_id = 7829; // Valor Badge
+
+			.blank_card_cost = 1000;
+			.blank_card_item_id = 6187; // Blank Card
+
+			.pod_cost = 50;
+			.pod_item_id = 7179; // Proof of Donation
+
+		setarray .RandOpt1_Armor[0],RDMOPT_VAR_STRAMOUNT, 			// str 1 ~ 4
+									RDMOPT_VAR_AGIAMOUNT,			// agi 1 ~ 4
+									RDMOPT_VAR_VITAMOUNT,			// vit 1 ~ 4
+									RDMOPT_VAR_INTAMOUNT,			// int 1 ~ 4
+									RDMOPT_VAR_DEXAMOUNT,			// dex 1 ~ 4
+									RDMOPT_VAR_LUKAMOUNT,			// luk 1 ~ 4
+									RDMOPT_VAR_MAXHPPERCENT,		// MAX HP 3% ~ 5%
+									RDMOPT_VAR_MAXSPPERCENT;		// MAX SP 3% ~ 5%
+		setarray .RandOpt1_Armor_V[0],4,4,4,4,4,4,5,5;
+		setarray .RandOpt2_Armor[0],RDMOPT_VAR_HPACCELERATION, 		// 50% ~ 100%
+									RDMOPT_VAR_SPACCELERATION,		// 50% ~ 100%
+									RDMOPT_VAR_HITSUCCESSVALUE,		// Hit 15 ~ 30
+									RDMOPT_VAR_AVOIDSUCCESSVALUE,	// Flee 15 ~ 30
+									RDMOPT_VAR_ITEMDEFPOWER,		// Def 20 ~ 60
+									RDMOPT_VAR_MDEFPOWER,			// Magic Def 5 ~ 10
+									RDMOPT_HEAL_MODIFY_PERCENT,		// Heal Power 5% ~ 10%
+									RDMOPT_DEC_SPELL_CAST_TIME,		// Variable Cast Reduction	5% ~ 10%
+									RDMOPT_BODY_INDESTRUCTIBLE,		// Unbreakable Armor
+									RDMOPT_BODY_ATTR_WATER,			// Water Property
+									RDMOPT_BODY_ATTR_FIRE,			// Fire Property
+									RDMOPT_BODY_ATTR_GROUND,		// Earth Property
+									RDMOPT_BODY_ATTR_WIND;			// Wind Property
+		setarray .RandOpt2_Armor_V[0],100,100,30,30,60,10,10,10,0,0,0,0,0;					
+		setarray .RandOpt_Accessory[0],RDMOPT_VAR_ATKPERCENT,			// Attack 1% ~ 3%
+										RDMOPT_VAR_MAGICATKPERCENT,		// Magic Attack 1% ~ 3%
+										RDMOPT_VAR_PLUSASPDPERCENT,		// ASPD 3% ~ 5%
+										RDMOPT_DEC_SPELL_CAST_TIME,		// Variable Cast Reduction	5% ~ 7%
+										RDMOPT_DAMAGE_CRI_TARGET,		// Critical Damage	5% ~ 8%
+										RDMOPT_ATTR_TOLERACE_WATER,		// Water Resistance	3% ~ 5%
+										RDMOPT_ATTR_TOLERACE_GROUND,	// Earth Resistance	3% ~ 5%
+										RDMOPT_ATTR_TOLERACE_FIRE,		// Fire Resistance	3% ~ 5%
+										RDMOPT_ATTR_TOLERACE_WIND,		// Wind  Resistance	3% ~ 5%
+										RDMOPT_DEC_SP_CONSUMPTION,		// Decreases SP consumption	3% ~ 5%
+										RDMOPT_VAR_MAXHPPERCENT,		// Max HP 1% ~ 3%
+										RDMOPT_VAR_MAXSPPERCENT,		// Max SP 1% ~ 3%
+										RDMOPT_ATTR_TOLERACE_ALL;		// All Elements Except Neutral Resistance
+																		// 1% ~ 3% TODO Remove Neutral Resistance
+		setarray .RandOpt_Accessory_V[0],3,3,5,7,8,5,5,5,5,5,3,3,3;
+		
+end;
+}
