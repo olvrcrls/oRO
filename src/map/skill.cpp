@@ -13475,8 +13475,8 @@ struct skill_unit_group *skill_unitsetting(struct block_list *src, uint16 skill_
 		break;
 	case DC_DONTFORGETME:
 #ifdef RENEWAL
-		val1 = 3 * skill_lv + status->dex / 15; // ASPD decrease
-		val2 = 2 * skill_lv + status->agi / 20; // Movement speed adjustment.
+		val1 = (3 * skill_lv) + (status->dex / 10); // ASPD decrease
+		val2 = (2 * skill_lv) + (status->agi / 10); // Movement speed adjustment.
 #else
 		val1 = 5 + 3 * skill_lv + status->dex / 10; // ASPD decrease
 		val2 = 5 + 3 * skill_lv + status->agi / 10; // Movement speed adjustment.
