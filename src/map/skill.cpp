@@ -9853,7 +9853,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 				if (!tsc->data[i])
 					continue;
 				switch (i) {
-					case SC__STRIPACCESSORY:	case SC_PRESERVE:	case SC_ATKPOTION:
+					case SC_PRESERVE:	case SC_ATKPOTION:
 					case SC_MATKPOTION:		case SC_EDP:
 					case SC_WEIGHT50:		case SC_WEIGHT90:		case SC_HALLUCINATION:
 					case SC_STRIPWEAPON:		case SC_STRIPSHIELD:		case SC_STRIPARMOR:
