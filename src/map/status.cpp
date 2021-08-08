@@ -6909,7 +6909,7 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 			if( sc->data[SC_DECREASEAGI] )
 				val = max( val, 25 );
 			if( sc->data[SC_QUAGMIRE] || sc->data[SC_HALLUCINATIONWALK_POSTDELAY] || (sc->data[SC_GLOOMYDAY] && sc->data[SC_GLOOMYDAY]->val4) )
-				val = max( val, 50 );
+				val = max( val, 100 );
 			if( sc->data[SC_DONTFORGETME] )
 				val = max( val, sc->data[SC_DONTFORGETME]->val3 );
 			if( sc->data[SC_CURSE] )
@@ -8743,9 +8743,10 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 	undead_flag = battle_check_undead(status->race,status->def_ele);
 	// Check for immunities / sc fails
 	switch (type) {
-	//case SC_DECREASEAGI: // Make Guyak or other speed potions be not immune to decrease agi.
-	case SC_QUAGMIRE:
-	case SC_DONTFORGETME:
+	// Make Guyak or other speed potions be not immune to decrease agi.
+	//case SC_DECREASEAGI:
+	//case SC_QUAGMIRE:
+	//case SC_DONTFORGETME:
 	case SC_CREATINGSTAR:
 		if(sc->data[SC_SPEEDUP1])
 			return 0;
@@ -10402,7 +10403,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 			val2 = (status_get_lv(bl) + status->dex + status->luk); // Aspd increase
 			break;
 		case SC_QUAGMIRE:
-			val2 = (sd?5:10)*val1; // Agi/Dex decrease.
+			val2 = (sd ? 10 : 5)*val1; // Agi/Dex decrease.
 			break;
 
 		// gs_something1 [Vicious]
