@@ -1276,29 +1276,30 @@
 19308:13412,{ .@r_weapon = getequiprefinerycnt(EQI_HAND_R); bonus2 bSkillAtk,"GN_CARTCANNON",10*(.@r_weapon/2); }
 
 //Fancy Feather Hat Combo Bonus
-19296:2554, { .@r_weapon = getequiprefinerycnt(EQI_HAND_R); bonus2 bSkillAtk,"GN_CARTCANNON",10*(.@r_weapon/2); }
-19296:2544, { .@r_garment = getequiprefinerycnt(EQI_GARMENT); bonus2 bSkillAtk,"WM_SEVERE_RAINSTORM",7*(.@r_garment/2); }
-19296:2525, { .@r_garment = getequiprefinerycnt(EQI_GARMENT); bonus2 bSkillAtk,"SC_TRIANGLESHOT",15*(.@r_garment/2); }
+19296:2554,{ .@r_garment = getequiprefinerycnt(EQI_GARMENT); bonus2 bSkillAtk,"RA_ARROWSTORM",12*(.@r_garment/2); }
+19296:2544,{ .@r_garment = getequiprefinerycnt(EQI_GARMENT); bonus2 bSkillAtk,"WM_SEVERE_RAINSTORM",7*(.@r_garment/2); }
+19296:2525,{ .@r_garment = getequiprefinerycnt(EQI_GARMENT); bonus2 bSkillAtk,"SC_TRIANGLESHOT",15*(.@r_garment/2); }
 
 //Ruff Officer Combo Bonus
-19300:28000,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*20; bonus bBaseAtk,.@r;}
-19300:13138,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*6; bonus2 bSkillAtk,"RL_FIREDANCE",.@r;}
-19300:28101,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*15; bonus2 bSkillAtk,"NC_AXETORNADO",.@r;}
+19300:28000,{.@r_weapon = getequiprefinerycnt(EQI_HAND_R); bonus bAtk,20*(.@r_weapon/2);}
+19300:13138,{.@r_weapon = getequiprefinerycnt(EQI_HAND_R); bonus2 bSkillAtk,"RL_FIREDANCE",6*(.@r_weapon/2);}
+19300:28101,{.@r_weapon = getequiprefinerycnt(EQI_HAND_R); bonus2 bSkillAtk,"NC_AXETORNADO",15*(.@r_weapon/2);}
+
 
 //General Helmet Combo Bonus
-19263:1168,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*20; bonus bBaseAtk,.@r;}
-19263:1171,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*20; bonus bBaseAtk,.@r;}
-19263:1413,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*6; bonus2 bSkillAtk,"LG_BANISHINGPOINT",.@r;}
-19263:1418,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*6; bonus2 bSkillAtk,"LG_BANISHINGPOINT",.@r;}
-19263:1527,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*6; bonus2 bSkillAtk,"SR_TIGERCANNON",.@r;}
-19263:16024,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*6; bonus2 bSkillAtk,"SR_TIGERCANNON",.@r;}
+19263:1168,{.@r_weapon = getequiprefinerycnt(EQI_HAND_R); bonus bAtk,20*(.@r_weapon/2);}
+19263:1171,{.@r_weapon = getequiprefinerycnt(EQI_HAND_R); bonus bAtk,20*(.@r_weapon/2);}
+19263:1413,{.@r_weapon = getequiprefinerycnt(EQI_HAND_R); bonus2 bSkillAtk,"LG_BANISHINGPOINT",7*(.@r_weapon/2);}
+19263:1418,{.@r_weapon = getequiprefinerycnt(EQI_HAND_R); bonus2 bSkillAtk,"LG_BANISHINGPOINT",7*(.@r_weapon/2);}
+19263:1527,{.@r_weapon = getequiprefinerycnt(EQI_HAND_R); bonus2 bSkillAtk,"SR_TIGERCANNON",7*(.@r_weapon/2);}
+19263:16024,{.@r_weapon = getequiprefinerycnt(EQI_HAND_R); bonus2 bSkillAtk,"SR_TIGERCANNON",7*(.@r_weapon/2);}
 
 //Spell Circuit Combo Bonus
-//19249:1654,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*5; bonus2 bSkillAtk,"SO_PSYCHIC_WAVE",.@r;}
-//19249:2004,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*10; bonus2 bSkillAtk,"WL_HELLINFERNO",.@r;}
-//19249:13078,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*5; bonus2 bSkillAtk,"NJ_KOUENKA",.@r;}
-//19249:13078,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*5; bonus2 bSkillAtk,"NJ_HYOUSENSOU",.@r;}
-//19249:13078,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*5; bonus2 bSkillAtk,"NJ_HUUJIN",.@r;}
-//19249:13076,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*5; bonus2 bSkillAtk,"NJ_KOUENKA",.@r;}
-//19249:13076,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*5; bonus2 bSkillAtk,"NJ_HYOUSENSOU",.@r;}
-//19249:13076,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*5; bonus2 bSkillAtk,"NJ_HUUJIN",.@r;}
+19249:1654,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*5; bonus2 bSkillAtk,"SO_PSYCHIC_WAVE",.@r;}
+19249:2004,{.@r = getequiprefinerycnt(EQI_HAND_R)/2*10; bonus2 bSkillAtk,"WL_HELLINFERNO",.@r;}
+19249:13076,{ .@rr = getequiprefinerycnt(EQI_HAND_R); .@rl = getequiprefinerycnt(EQI_HAND_L); if ( getequipid(EQI_HAND_R) == getequipd(EQI_HAND_L) && (getequipid(EQI_HAND_R) == 13076) ) { if ( .@rr >= .@rl) { .@r = .@rr; } else { .@r = .@rl; } } else if (getequipid(EQI_HAND_R) == 13076) { .@r = .@rr; } else if (getequipid(EQI_HAND_L) == 13076) { .@r = .@rl; } bonus bVariableCastRate,-.@r; }
+19249:13078,{ .@rr = getequiprefinerycnt(EQI_HAND_R); .@rl = getequiprefinerycnt(EQI_HAND_L); if ( getequipid(EQI_HAND_R) == getequipd(EQI_HAND_L) && (getequipid(EQI_HAND_R) == 13078) ) { if ( .@rr >= .@rl) { .@r = .@rr; } else { .@r = .@rl; } } else if (getequipid(EQI_HAND_R) == 13078) { .@r = .@rr; } else if (getequipid(EQI_HAND_L) == 13078) { .@r = .@rl; } bonus bVariableCastRate,-.@r; }
+
+// Giant Snake Breath combos
+19268:20717,{ bonus bAtk,5*(readparam(bStr)/20); bonus bAspdRate,3*(readparam(bAgi)/20); bonus2 bSubEle,Ele_Neutral, 1*(readparam(bVit)/20); bonus bVariableCastrate,4*(readparam(bInt)/20); bonus bLongAtkRate,1*(readparam(bDex)/20);  bonus bCritAtkRate,3*(readparam(bLuk)/20); }
+19268:20718,{ bonus bAtk,5*(readparam(bStr)/20); bonus bAspdRate,3*(readparam(bAgi)/20); bonus2 bSubEle,Ele_Neutral, 1*(readparam(bVit)/20); bonus bVariableCastrate,4*(readparam(bInt)/20); bonus bLongAtkRate,1*(readparam(bDex)/20);  bonus bCritAtkRate,3*(readparam(bLuk)/20); }
