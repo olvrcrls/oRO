@@ -8831,8 +8831,9 @@ ACMD_FUNC(packetfilter)
 	if (!message || !*message) {
 		clif_displaymessage(sd->fd,"<<----- Packet Filtering Usage ----->>");
 		clif_displaymessage(sd->fd,".   @packetfilter <options>");
-		clif_displaymessage(sd->fd,".   C : To filter global chat messages.");
-		clif_displaymessage(sd->fd,".   I : To filter item usage.");
+		clif_displaymessage(sd->fd,".   C / chats: To filter global chat messages.");
+		clif_displaymessage(sd->fd,".   I / items: To filter item usage.");
+		clif_displaymessage(sd->fd,".   A / all: Apply all available filters.");
 		clif_displaymessage(sd->fd,".   - Samples");
 		clif_displaymessage(sd->fd,".   @packetfilter CI : To filter the 2 options.");
 		clif_displaymessage(sd->fd,".   @packetfilter off : To turn packet filter off.");
@@ -8840,16 +8841,21 @@ ACMD_FUNC(packetfilter)
 		sd->state.packet_filter = 0;
 		clif_displaymessage(sd->fd,"<< Packet Filter is turned OFF >>");
 	} else {
-		if (strstr(message, "C")) {
+		if (strstr(message, "C") || strstr(message, "c") || strstr(message, "chats") || strstr(message, "CHATS")) {
 			sd->state.packet_filter |= 1;
 			
 		}
 
-		if (strstr(message, "I")) {
+		if (strstr(message, "I") || strstr(message, "i") || strstr(message, "items") || strstr(message, "ITEMS")) {
 			sd->state.packet_filter |= 2;
 		}
 
-		sprintf(atcmd_output,"<< Packet Filtering | Chat: %s | Items: %s >>", (sd->state.packet_filter&1) ? "ON" : "OFF", (sd->state.packet_filter&2) ? "ON" : "OFF");
+		if (strstr(message,"A") || strstr(message, "a") || strstr(message,"all") || strstr(message, "ALL")) {
+			sd->state.packet_filter |= 1;
+			sd->state.packet_filter |= 2;
+		}
+
+		sprintf(atcmd_output,"<< Packet Filtering >>\n Chat: %s \n Items: %s", (sd->state.packet_filter&1) ? "ON" : "OFF", (sd->state.packet_filter&2) ? "ON" : "OFF");
 		clif_displaymessage(sd->fd, atcmd_output);
 	}
 
