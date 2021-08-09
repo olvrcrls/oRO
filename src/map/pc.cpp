@@ -8575,6 +8575,11 @@ void pc_calc_ranking(struct map_session_data* tsd, struct map_session_data* ssd,
 
 }
 
+/**
+ * @battleinfo
+ * @param map_session_data *tsd - target
+ * @param map_session_data *ssd - 
+*/
 void pc_battle_info(struct map_session_data *tsd, struct map_session_data *ssd, uint16 skill_id)
 {
 	char output[256];
@@ -8597,6 +8602,11 @@ void pc_battle_info(struct map_session_data *tsd, struct map_session_data *ssd, 
 		clif_messagecolor(&tsd->bl,color_table[COLOR_RED],output,false,SELF);
 	}
 }
+
+void pc_packet_filter(struct map_session_data *sd)
+{
+
+} // pc_packet_filter
 
 /*==========================================
  * Invoked when a player has negative current hp
@@ -12810,6 +12820,7 @@ uint8 pc_itemcd_add(struct map_session_data *sd, struct item_data *id, t_tick ti
 	if( i == MAX_ITEMDELAYS ) /* item not found. try first empty now */
 		ARR_FIND(0, MAX_ITEMDELAYS, i, !sd->item_delay[i].nameid );
 	if( i < MAX_ITEMDELAYS ) {
+		// if( sd->item_delay[i].nameid && sd->state.packetfilter.item_use ) {// found
 		if( sd->item_delay[i].nameid ) {// found
 			if( DIFF_TICK(sd->item_delay[i].tick, tick) > 0 ) {
 				t_tick e_tick = DIFF_TICK(sd->item_delay[i].tick, tick)/1000;

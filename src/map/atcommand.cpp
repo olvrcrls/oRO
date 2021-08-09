@@ -8819,6 +8819,44 @@ ACMD_FUNC(noask)
 	return 0;
 }
 
+
+/**
+ * Packet Filter
+ *
+*/
+ACMD_FUNC(packetfilter)
+{
+	nullpo_retr(-1, sd);
+	
+	if (!message || !*message) {
+		clif_displaymessage(sd->fd,"<<----- Packet Filtering Usage ----->>");
+		clif_displaymessage(sd->fd,".   @packetfilter <options>");
+		clif_displaymessage(sd->fd,".   C : To filter global chat messages.");
+		clif_displaymessage(sd->fd,".   I : To filter item usage.");
+		clif_displaymessage(sd->fd,".   - Samples");
+		clif_displaymessage(sd->fd,".   @packetfilter CI : To filter the 2 options.");
+		clif_displaymessage(sd->fd,".   @packetfilter off : To turn packet filter off.");
+	} else if ( !strcmpi(message, "off")) {
+		sd->state.packet_filter = 0;
+		clif_displaymessage(sd->fd,"<< Packet Filter is turned OFF >>");
+	} else {
+		if (strstr(message, "C")) {
+			sd->state.packet_filter |= 1;
+			
+		}
+
+		if (strstr(message, "I")) {
+			sd->state.packet_filter |= 2;
+		}
+
+		sprintf(atcmd_output,"<< Packet Filtering | Chat: %s | Items: %s >>", (sd->state.packet_filter&1) ? "ON" : "OFF", (sd->state.packet_filter&2) ? "ON" : "OFF");
+		clif_displaymessage(sd->fd, atcmd_output);
+	}
+
+	return 0;
+}
+
+
 /*=====================================
  * Send a @request message to all GMs of lowest_gm_level.
  * Usage: @request <petition>
@@ -10752,6 +10790,7 @@ void atcommand_basecommands(void) {
 		ACMD_DEF(tonpc),
 		ACMD_DEF(commands),
 		ACMD_DEF(noask),
+		ACMD_DEF(packetfilter),
 		ACMD_DEF(request),
 		ACMD_DEF(homlevel),
 		ACMD_DEF(homevolution),
