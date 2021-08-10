@@ -8815,6 +8815,7 @@ static const struct _battle_data {
 	{ "hom_idle_no_share",                  &battle_config.hom_idle_no_share,               0,      0,      INT_MAX,        },
 	{ "devotion_standup_fix",               &battle_config.devotion_standup_fix,            1,      0,      1,              },
 
+
 #include "../custom/battle_config_init.inc"
 };
 
