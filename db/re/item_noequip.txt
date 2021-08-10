@@ -78,6 +78,7 @@
 12218,4		// Assumptio_5_Scroll
 14529,4		// Greed_Scroll
 14590,4		// Pty_Assumptio_Scroll
+611,4		// Magnifier
 
 //----------------------------------------------------------------------------
 // Bio 5 Cards
