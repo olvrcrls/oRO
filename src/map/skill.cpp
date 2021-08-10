@@ -6939,7 +6939,9 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 	}
 		break;
 	case PR_SLOWPOISON:
+#ifndef RENEWAL
 	case PR_IMPOSITIO:
+#endif
 	case PR_LEXAETERNA:
 	case PR_SUFFRAGIUM:
 	case LK_BERSERK:
@@ -7560,6 +7562,9 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 		break;
 
 	case AL_ANGELUS:
+#ifdef RENEWAL
+	case PR_IMPOSITIO:
+#endif
 	case PR_MAGNIFICAT:
 	case PR_GLORIA:
 	case SN_WINDWALK:

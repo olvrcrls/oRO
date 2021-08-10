@@ -2483,12 +2483,14 @@ Body:
     Description: Impositio Manus
     MaxLevel: 5
     Type: Magic
-    TargetType: Support
+    TargetType: Self
     DamageFlags:
       NoDamage: true
+      Splash: true
     Range: 9
     Hit: Single
     HitCount: 1
+    SplashArea: -1
     CastCancel: true
     AfterCastActDelay: 3000
     Duration1: 60000
