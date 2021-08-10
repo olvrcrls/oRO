@@ -69,6 +69,7 @@ bat_room,154,150,0	script	BGDispell	-1,2,2,{
 		sc_end	SC_THORNSTRAP;
 		sc_end	SC_SV_ROOTTWIST;
 		sc_end	SC_SPIDERWEB;
+		sc_end	SC_MELON_BOMB
 
 		// Acolyte Buffs
 		sc_end	SC_BLESSING;

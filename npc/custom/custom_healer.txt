@@ -83,6 +83,7 @@
 	sc_end	SC_SV_ROOTTWIST;
 	sc_end	SC_SPIDERWEB;
 	sc_end	SC_DARKCROW;
+	sc_end	SC_MELON_BOMB;
 	sc_end	SC_NETHERWORLD;
 
 //	give players buff ... don't give too much otherwise player wanna spam
