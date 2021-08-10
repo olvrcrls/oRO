@@ -39,6 +39,7 @@
 //421,1	//TK_JUMPKICK
 2383,1	//MI_HARMONIZE
 290,1 //ABRACADABRA
+328,1 //SLOW GRACE
 
 // Extended Skills that are disabled
 3025,1 //SHADOW WARRIOR
