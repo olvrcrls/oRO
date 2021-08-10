@@ -8603,11 +8603,6 @@ void pc_battle_info(struct map_session_data *tsd, struct map_session_data *ssd, 
 	}
 }
 
-void pc_packet_filter(struct map_session_data *sd)
-{
-
-} // pc_packet_filter
-
 /*==========================================
  * Invoked when a player has negative current hp
  *------------------------------------------*/
