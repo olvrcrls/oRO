@@ -7559,6 +7559,13 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 		status_damage(src, src, sstatus->max_hp,0,0,1, skill_id);
 		break;
 
+	case WM_FRIGG_SONG:
+		if( sd == NULL || (sd->status.party_id == 0 && !map_getmapflag(sd->bl.m, MF_BATTLEGROUND)) || (flag & 1) )
+			clif_skill_nodamage(src, bl, skill_id, skill_lv, sc_start(src,bl,type,100,skill_lv,skill_get_time(skill_id,skill_lv)));
+		else if( sd )
+			party_foreachsamemap(skill_area_sub, sd, skill_get_splash(skill_id, skill_lv), src, skill_id, skill_lv, tick, flag|BCT_PARTY|1, skill_castend_nodamage_id);
+		break;
+
 	case AL_ANGELUS:
 	case PR_MAGNIFICAT:
 	case PR_GLORIA:
@@ -7566,7 +7573,6 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 	case CASH_BLESSING:
 	case CASH_INCAGI:
 	case CASH_ASSUMPTIO:
-	case WM_FRIGG_SONG:
 		if( sd == NULL || (sd->status.party_id == 0 && !map_getmapflag(sd->bl.m, MF_BATTLEGROUND)) || (flag & 1) )
 			clif_skill_nodamage(bl, bl, skill_id, skill_lv, sc_start(src,bl,type,100,skill_lv,skill_get_time(skill_id,skill_lv)));
 		else if( sd )
@@ -9733,7 +9739,10 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 			int bless_lv = ((sd) ? pc_checkskill(sd,AL_BLESSING) : skill_get_max(AL_BLESSING)) + (((sd) ? sd->status.job_level : 50) / 10);
 			int agi_lv = ((sd) ? pc_checkskill(sd,AL_INCAGI) : skill_get_max(AL_INCAGI)) + (((sd) ? sd->status.job_level : 50) / 10);
 			if( sd == NULL || sd->status.party_id == 0 || flag&1 )
-				clif_skill_nodamage(bl, bl, skill_id, skill_lv, sc_start(src,bl,type,100,
+				// The following is commented to remove the animation of party members. Uncomment this and remove the following clif_skill_nodamage if you want the animation to happen on all members.
+				// clif_skill_nodamage(bl, bl, skill_id, skill_lv, sc_start(src,bl,type,100,
+				// 	(skill_id == AB_CLEMENTIA)? bless_lv : (skill_id == AB_CANTO)? agi_lv : skill_lv, skill_get_time(skill_id,skill_lv)));
+				clif_skill_nodamage(src, bl, skill_id, skill_lv, sc_start(src,bl,type,100,
 					(skill_id == AB_CLEMENTIA)? bless_lv : (skill_id == AB_CANTO)? agi_lv : skill_lv, skill_get_time(skill_id,skill_lv)));
 			else if( sd )
 				party_foreachsamemap(skill_area_sub, sd, skill_get_splash(skill_id, skill_lv), src, skill_id, skill_lv, tick, flag|BCT_PARTY|1, skill_castend_nodamage_id);
