@@ -4246,7 +4246,7 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 				skillratio += -100 + 500 * skill_lv;
 			RE_LVL_DMOD(100);
 			if (sc->data[SC_GT_REVITALIZE]) {
-				skillratio += skillratio * 30 / 100;
+				skillratio += skillratio * 15 / 100;
 			}
 			break;
 		case SR_GENTLETOUCH_QUIET:
