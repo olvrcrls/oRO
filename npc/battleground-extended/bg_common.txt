@@ -253,70 +253,70 @@ OnClock2100:
 		case FRIDAY:
 		case SATURDAY:
 		case SUNDAY:
-			if( gettime(DT_HOUR) >= 4 && gettime(DT_HOUR) < 5 )
+			if( gettime(DT_HOUR) >= 4 && gettime(DT_HOUR) < 6 )
 			{
 				bgannounce "-- Battleground Happy Hour has begun --",0x00FF00;
 				setbattleflag "bg_reward_rates",180; // +80% Reward Rates
 				end;
 			}
 			
-			if( gettime(DT_HOUR) == 5 )
+			if( gettime(DT_HOUR) == 6 )
 			{
 				bgannounce "-- Battleground Happy Hour is over --",0x00BFFF;
 				setbattleflag "bg_reward_rates",100; // Normal Rates
 				end;
 			}
 
-			if( gettime(DT_HOUR) >= 8 && gettime(DT_HOUR) < 9 )
-			{
-				bgannounce "-- Battleground Happy Hour has begun --",0x00FF00;
-				setbattleflag "bg_reward_rates",150; // +50% Reward Rates
-				end;
-			}
-			
-			if( gettime(DT_HOUR) == 9 )
-			{
-				bgannounce "-- Battleground Happy Hour is over --",0x00BFFF;
-				setbattleflag "bg_reward_rates",100; // Normal Rates
-				end;
-			}
-
-			if( gettime(DT_HOUR) >= 12 && gettime(DT_HOUR) < 13 )
+			if( gettime(DT_HOUR) >= 8 && gettime(DT_HOUR) < 10 )
 			{
 				bgannounce "-- Battleground Happy Hour has begun --",0x00FF00;
 				setbattleflag "bg_reward_rates",180; // +80% Reward Rates
 				end;
 			}
 			
-			if( gettime(DT_HOUR) == 13 )
+			if( gettime(DT_HOUR) == 10 )
 			{
 				bgannounce "-- Battleground Happy Hour is over --",0x00BFFF;
 				setbattleflag "bg_reward_rates",100; // Normal Rates
 				end;
 			}
 
-			if( gettime(DT_HOUR) >= 16 && gettime(DT_HOUR) < 17 )
-			{
-				bgannounce "-- Battleground Happy Hour has begun --",0x00FF00;
-				setbattleflag "bg_reward_rates",150; // +50% Reward Rates
-				end;
-			}
-			
-			if( gettime(DT_HOUR) == 17 )
-			{
-				bgannounce "-- Battleground Happy Hour is over --",0x00BFFF;
-				setbattleflag "bg_reward_rates",100; // Normal Rates
-				end;
-			}
-			
-			if( gettime(DT_HOUR) >= 20 && gettime(DT_HOUR) < 21 )
+			if( gettime(DT_HOUR) >= 12 && gettime(DT_HOUR) < 14 )
 			{
 				bgannounce "-- Battleground Happy Hour has begun --",0x00FF00;
 				setbattleflag "bg_reward_rates",180; // +80% Reward Rates
 				end;
 			}
 			
-			if( gettime(DT_HOUR) == 21 )
+			if( gettime(DT_HOUR) == 14 )
+			{
+				bgannounce "-- Battleground Happy Hour is over --",0x00BFFF;
+				setbattleflag "bg_reward_rates",100; // Normal Rates
+				end;
+			}
+
+			if( gettime(DT_HOUR) >= 16 && gettime(DT_HOUR) < 18 )
+			{
+				bgannounce "-- Battleground Happy Hour has begun --",0x00FF00;
+				setbattleflag "bg_reward_rates",180; // +80% Reward Rates
+				end;
+			}
+			
+			if( gettime(DT_HOUR) == 18 )
+			{
+				bgannounce "-- Battleground Happy Hour is over --",0x00BFFF;
+				setbattleflag "bg_reward_rates",100; // Normal Rates
+				end;
+			}
+			
+			if( gettime(DT_HOUR) >= 20 && gettime(DT_HOUR) < 22 )
+			{
+				bgannounce "-- Battleground Happy Hour has begun --",0x00FF00;
+				setbattleflag "bg_reward_rates",180; // +80% Reward Rates
+				end;
+			}
+			
+			if( gettime(DT_HOUR) == 22 )
 			{
 				bgannounce "-- Battleground Happy Hour is over --",0x00BFFF;
 				setbattleflag "bg_reward_rates",100; // Normal Rates
@@ -1115,7 +1115,11 @@ bat_room,148,150,4	script	Teleporter#bat	124,{
 // *********************************************************************
 bat_room,150,157,4	script	Kafra Staff::kaf_bat	861,{
 	cutin "kafra_09",2;
-	callfunc "F_Kafra",0,2,1,150,0;
+	callfunc "F_KafSet";
+	callfunc "F_Kafra",0,8,2,500,0;
+	savepoint "bat_room",153,150,1,1;
+	callfunc "F_KafEnd",2,0,0;
+	callfunc "F_KafRepair";
 }
 
 // Repairman

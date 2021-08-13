@@ -322,6 +322,7 @@ struct map_session_data {
 		unsigned int bg_afk : 1; // Moved here to reduce searchs
 		unsigned int only_walk : 1; // [Zephyrus] Block Skills and Item usage to a player
 		unsigned int block_action : 10;
+		short packet_filter; // [Andie] Packet Filter
 	} state;
 	struct {
 		unsigned char no_weapon_damage, no_magic_damage, no_misc_damage;

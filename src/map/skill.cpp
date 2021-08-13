@@ -6939,7 +6939,9 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 	}
 		break;
 	case PR_SLOWPOISON:
+#ifndef RENEWAL
 	case PR_IMPOSITIO:
+#endif
 	case PR_LEXAETERNA:
 	case PR_SUFFRAGIUM:
 	case LK_BERSERK:
@@ -7567,6 +7569,9 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 		break;
 
 	case AL_ANGELUS:
+#ifdef RENEWAL
+	case PR_IMPOSITIO:
+#endif
 	case PR_MAGNIFICAT:
 	case PR_GLORIA:
 	case SN_WINDWALK:
@@ -11595,6 +11600,25 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 		return 1;
 	}
 
+	// The support skills were not getting logged. This will make the ELO more balanced.
+	if( skill_get_inf(skill_id)&INF_SUPPORT_SKILL && sd && dstsd && sd != dstsd )
+	{
+		if( sd->status.guild_id )
+		{
+			if( sd->status.guild_id == dstsd->status.guild_id )
+				add2limit(sd->status.wstats.support_skills_used, 1, UINT_MAX);
+			else
+				add2limit(sd->status.wstats.wrong_support_skills_used, 1, UINT_MAX);
+		}
+		else if( map_getmapflag(src->m, MF_BATTLEGROUND) && sd->bg_id && dstsd->bg_id )
+		{
+			if( sd->bg_id == dstsd->bg_id )
+				add2limit(sd->status.bgstats.support_skills_used, 1, UINT_MAX);
+			else
+				add2limit(sd->status.bgstats.wrong_support_skills_used, 1, UINT_MAX);
+		}
+	}
+
 	if (skill_id != SR_CURSEDCIRCLE) {
 		struct status_change *sc = status_get_sc(src);
 
@@ -11960,6 +11984,28 @@ TIMER_FUNC(skill_castend_id){
 		}
 		if( battle_config.display_status_timers && sd )
 			clif_status_change(src, EFST_POSTDELAY, 1, skill_delayfix(src, ud->skill_id, ud->skill_lv), 0, 0, 0);
+		if (sd && sd->skillitem != ud->skill_id)
+		{ // Skill Usage Counter
+			int i;
+			if (map_allowed_woe(sd->bl.m))
+			{
+				ARR_FIND(0, MAX_SKILL_TREE, i, sd->status.skillcount[i].id == ud->skill_id || !sd->status.skillcount[i].id);
+				if (i < MAX_SKILL_TREE)
+				{
+					sd->status.skillcount[i].id = ud->skill_id;
+					sd->status.skillcount[i].count++;
+				}
+			}
+			else if (map_getmapflag(sd->bl.m, MF_BATTLEGROUND) && sd->bg_id)
+			{
+				ARR_FIND(0, MAX_SKILL_TREE, i, sd->status.bg_skillcount[i].id == ud->skill_id || !sd->status.bg_skillcount[i].id);
+				if (i < MAX_SKILL_TREE)
+				{
+					sd->status.bg_skillcount[i].id = ud->skill_id;
+					sd->status.bg_skillcount[i].count++;
+				}
+			}
+		}
 		if( sd )
 		{
 			switch( ud->skill_id )

@@ -1301,5 +1301,5 @@
 19249:13078,{ .@rr = getequiprefinerycnt(EQI_HAND_R); .@rl = getequiprefinerycnt(EQI_HAND_L); if ( getequipid(EQI_HAND_R) == getequipd(EQI_HAND_L) && (getequipid(EQI_HAND_R) == 13078) ) { if ( .@rr >= .@rl) { .@r = .@rr; } else { .@r = .@rl; } } else if (getequipid(EQI_HAND_R) == 13078) { .@r = .@rr; } else if (getequipid(EQI_HAND_L) == 13078) { .@r = .@rl; } bonus bVariableCastRate,-.@r; }
 
 // Giant Snake Breath combos
-19268:20717,{bonus bBaseAtk,5*readparam(bStr)/20; bonus bAspdRate,3*readparam(bStr)/20; bonus2 bSubEle,1*readparam(bVit)/20; bonus bCastrate,4*readparam(bInt)/20; bonus bLongAtkRate,1*readparam(bStr)/20;  bonus bCritAtkRate,1*readparam(bLuk)/20;}-
-19268:20718,{bonus bBaseAtk,5*readparam(bStr)/20; bonus bAspdRate,3*readparam(bStr)/20; bonus2 bSubEle,1*readparam(bVit)/20; bonus bCastrate,4*readparam(bInt)/20; bonus bLongAtkRate,1*readparam(bStr)/20;  bonus bCritAtkRate,1*readparam(bLuk)/20;}
+19268:20717,{ bonus bAtk,5*(readparam(bStr)/20); bonus bAspdRate,3*(readparam(bAgi)/20); bonus2 bSubEle,Ele_Neutral, 1*(readparam(bVit)/20); bonus bVariableCastrate,4*(readparam(bInt)/20); bonus bLongAtkRate,1*(readparam(bDex)/20);  bonus bCritAtkRate,3*(readparam(bLuk)/20); }
+19268:20718,{ bonus bAtk,5*(readparam(bStr)/20); bonus bAspdRate,3*(readparam(bAgi)/20); bonus2 bSubEle,Ele_Neutral, 1*(readparam(bVit)/20); bonus bVariableCastrate,4*(readparam(bInt)/20); bonus bLongAtkRate,1*(readparam(bDex)/20);  bonus bCritAtkRate,3*(readparam(bLuk)/20); }

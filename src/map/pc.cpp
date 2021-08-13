@@ -8575,6 +8575,11 @@ void pc_calc_ranking(struct map_session_data* tsd, struct map_session_data* ssd,
 
 }
 
+/**
+ * @battleinfo
+ * @param map_session_data *tsd - target
+ * @param map_session_data *ssd - 
+*/
 void pc_battle_info(struct map_session_data *tsd, struct map_session_data *ssd, uint16 skill_id)
 {
 	char output[256];
@@ -12811,15 +12816,22 @@ uint8 pc_itemcd_add(struct map_session_data *sd, struct item_data *id, t_tick ti
 		ARR_FIND(0, MAX_ITEMDELAYS, i, !sd->item_delay[i].nameid );
 	if( i < MAX_ITEMDELAYS ) {
 		if( sd->item_delay[i].nameid ) {// found
-			if( DIFF_TICK(sd->item_delay[i].tick, tick) > 0 ) {
+			if(DIFF_TICK(sd->item_delay[i].tick, tick) > 0) {
+				if (sd->state.packet_filter&2)
+					return 1; // Skip the item usage cooldown text.
+
 				t_tick e_tick = DIFF_TICK(sd->item_delay[i].tick, tick)/1000;
 				char e_msg[CHAT_SIZE_MAX];
 				if( e_tick > 99 )
-					sprintf(e_msg,msg_txt(sd,379), // Item Failed. [%s] is cooling down. Wait %.1f minutes.
+					sprintf(e_msg,msg_txt(sd,379), // [%s] in cooling down. Wait %.1f minutes.
 									itemdb_jname(sd->item_delay[i].nameid), (double)e_tick / 60);
-				else
-					sprintf(e_msg,msg_txt(sd,380), // Item Failed. [%s] is cooling down. Wait %d seconds.
+				else {
+					if (e_tick < 1) {
+						return 1;
+					}
+					sprintf(e_msg,msg_txt(sd,380), // [%s] in cooling down. Wait %d seconds.
 									itemdb_jname(sd->item_delay[i].nameid), e_tick+1);
+				}
 				clif_messagecolor(&sd->bl,color_table[COLOR_YELLOW],e_msg,false,SELF);
 				return 1; // Delay has not expired yet
 			}

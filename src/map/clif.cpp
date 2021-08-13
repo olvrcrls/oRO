@@ -353,12 +353,22 @@ static int clif_send_sub(struct block_list *bl, va_list ap)
 	type = va_arg(ap,int);
 
 	switch(type) {
+	case AREA:
+		if( RBUFW(buf,0) == 0x01c8 && (map_getmapflag(sd->bl.m, MF_GVG) || map_getmapflag(sd->bl.m, MF_BATTLEGROUND)) && bl != src_bl && sd->state.packet_filter&2 )
+			return 0; // Ignore other player's item usage
+			
+		if( RBUFW(buf,0) == 0x8d && (map_getmapflag(sd->bl.m, MF_GVG) || map_getmapflag(sd->bl.m, MF_BATTLEGROUND)) && sd->state.packet_filter&1 )
+			return 0; // Ignore global message
+	break;
 	case AREA_WOS:
 		if (bl == src_bl)
 			return 0;
 	break;
 	case AREA_WOC:
 		if (sd->chatID || bl == src_bl)
+			return 0;
+
+		if( RBUFW(buf,0) == 0x8d && (map_getmapflag(sd->bl.m, MF_GVG) || map_getmapflag(sd->bl.m, MF_BATTLEGROUND)) && sd->state.packet_filter&1 )
 			return 0;
 	break;
 	case AREA_WOSC:
@@ -451,6 +461,12 @@ int clif_send(const uint8* buf, int len, struct block_list* bl, enum send_target
 
 	case AREA:
 	case AREA_WOSC:
+		if( sd && RBUFW(buf,0) == 0x01c8 && (map_getmapflag(sd->bl.m, MF_GVG) || map_getmapflag(sd->bl.m, MF_BATTLEGROUND)) && sd->state.packet_filter&2 )
+			return 0;
+
+		if( RBUFW(buf,0) == 0x8d && (map_getmapflag(sd->bl.m, MF_GVG) || map_getmapflag(sd->bl.m, MF_BATTLEGROUND)) && sd->state.packet_filter&1 )
+			return 0; // Ignore global message
+
 		if (sd && bl->prev == NULL) //Otherwise source misses the packet.[Skotlex]
 			clif_send (buf, len, bl, SELF);
 	case AREA_WOC:
@@ -5871,6 +5887,7 @@ bool clif_skill_nodamage(struct block_list *src,struct block_list *dst, uint16 s
 	WBUFL(buf,6+offset) = dst->id;
 	WBUFL(buf,10+offset) = src ? src->id : 0;
 	WBUFB(buf,14+offset) = success;
+	
 
 	if (disguised(dst)) {
 		clif_send(buf, packet_len(cmd), dst, AREA_WOS);

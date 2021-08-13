@@ -116,4 +116,4 @@
 14651,5000,SC_REUSE_LIMIT_A // Nutriboost Lite 5s
 14646,5000,SC_REUSE_LIMIT_A // Nutriboost 5s
 14647,5000,SC_REUSE_LIMIT_A // Nutriboost PLUS 5s
-11548,150 // White Siege Potion
+11548,100 // White Siege Potion

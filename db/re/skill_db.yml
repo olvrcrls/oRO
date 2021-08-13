@@ -2483,12 +2483,14 @@ Body:
     Description: Impositio Manus
     MaxLevel: 5
     Type: Magic
-    TargetType: Support
+    TargetType: Self
     DamageFlags:
       NoDamage: true
+      Splash: true
     Range: 9
     Hit: Single
     HitCount: 1
+    SplashArea: -1
     CastCancel: true
     AfterCastActDelay: 3000
     Duration1: 60000
@@ -8951,7 +8953,7 @@ Body:
         RemovedByFireRain: true
   - Id: 318
     Name: BA_FROSTJOKER
-    Description: Unbarring Octave
+    Description: Frost Joke
     MaxLevel: 5
     Type: Misc
     TargetType: Self
@@ -24650,17 +24652,18 @@ Body:
     CastTime: 1000
     AfterCastActDelay: 1000
     Duration1: 240000
-    Cooldown:
-      - Level: 1
-        Time: 200000
-      - Level: 2
-        Time: 180000
-      - Level: 3
-        Time: 160000
-      - Level: 4
-        Time: 140000
-      - Level: 5
-        Time: 120000
+    Cooldown: 25000
+    # Cooldown:
+    #   - Level: 1
+    #     Time: 200000
+    #   - Level: 2
+    #     Time: 180000
+    #   - Level: 3
+    #     Time: 160000
+    #   - Level: 4
+    #     Time: 140000
+    #   - Level: 5
+    #     Time: 120000
     FixedCastTime: 1000
     Requires:
       SpCost:
@@ -24700,17 +24703,18 @@ Body:
     CastTime: 2000
     AfterCastActDelay: 1000
     Duration1: 240000
-    Cooldown:
-      - Level: 1
-        Time: 200000
-      - Level: 2
-        Time: 180000
-      - Level: 3
-        Time: 160000
-      - Level: 4
-        Time: 140000
-      - Level: 5
-        Time: 120000
+    Cooldown: 25000
+    # Cooldown:
+    #   - Level: 1
+    #     Time: 200000
+    #   - Level: 2
+    #     Time: 180000
+    #   - Level: 3
+    #     Time: 160000
+    #   - Level: 4
+    #     Time: 140000
+    #   - Level: 5
+    #     Time: 120000
     FixedCastTime: 1000
     Requires:
       SpCost:

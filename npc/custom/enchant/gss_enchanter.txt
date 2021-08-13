@@ -66,7 +66,7 @@ askald,21,159,5	script	GSS Especialist	4_F_IRIS,{
 	.@cost_id = 6649; //Broken Horn
 	.@cost_v = 1;
 
-	if(.@card[3] == 0){
+	//if(.@card[3] == 0){
 		mes .n$;
 		mes "All right, I'll enchant your garment.";
 		mes "The enchantments are totally random.";
@@ -92,7 +92,6 @@ askald,21,159,5	script	GSS Especialist	4_F_IRIS,{
 			close;
 			end;
 		}
-		
 
 		// first stat enchant		
 		if (.@stats$[.@first_stat] == "STR") .@card[3] = .@str_enchants[.@first_enchant];
@@ -124,10 +123,10 @@ askald,21,159,5	script	GSS Especialist	4_F_IRIS,{
 		specialeffect2 EF_REPAIRWEAPON;
 		getitem2 .@equip_id,1,1,.@refine[.@refine_rng],0,.@card[0],.@card[1],.@card[2],.@card[3];
 		close;
-	}
-	else {
+	//}
+	/*else {
 		mes .n$;
 		mes "Wha--? This garment is already dirty. Come back with a brand new one!";
 		close;
-	}
+	}*/
 }

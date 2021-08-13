@@ -5004,11 +5004,62 @@ IG_EVENT_SLIME,14648,15,3 // 3 pcs PP up
 //-- POD
 IG_EVENT_SLIME,7179,25,5 // 5 pcs PODs
 IG_EVENT_SLIME,7179,35,10 // 10 pcs PODs
+//-- ORO Event tokens
+IG_EVENT_SLIME,40001,25,5 // 5 pcs PODs
+IG_EVENT_SLIME,40001,35,10 // 10 pcs PODs
 //-- Foods
 IG_EVENT_SLIME,14647,50,1 // 1pc Nutriboost Plus
 IG_EVENT_SLIME,14647,30,3 // 3pcs Nutriboost Plus
 //-- Guyak Pudding
 IG_EVENT_SLIME,14649,5,5 // 5pcs Guyak Pudding 1hr
+
+// Frost dragon egg - Event prize - tier 2
+//-- Ores
+//-- HD Oridecon / Elunium
+IG_EVENT_FROST,16394,25,1 // 1 boxes HD Oridecon 10pcs
+IG_EVENT_FROST,17104,15,2 // 2 boxes HD Oridecon 10pcs
+IG_EVENT_FROST,17104,25,3 // 3 boxes HD Oridecon 10pcs
+IG_EVENT_FROST,16396,3,1 // 1 box HD Elunium 10pcs
+IG_EVENT_FROST,16396,2,2 // 2 boxes HD Elunium 10pcs
+IG_EVENT_FROST,16396,3,3 // 3 boxes HD Elunium 10pcs
+//-- HD Carnium / Bradium
+IG_EVENT_FROST,16259,25,1 // 1 boxes HD Carnium 5pcs
+IG_EVENT_FROST,16259,20,2 // 2 boxes HD Carnium 5pcs
+IG_EVENT_FROST,16259,15,3 // 3 boxes HD Carnium 5pcs
+IG_EVENT_FROST,16258,25,1 // 1 boxes HD Bradium 5pcs
+IG_EVENT_FROST,16258,20,2 // 2 boxes HD Bradium 5pcs
+IG_EVENT_FROST,16258,15,3 // 3 boxes HD Bradium 5pcs
+//-- POD
+IG_EVENT_FROST,7179,25,5 // 5 pcs PODs
+IG_EVENT_FROST,7179,35,10 // 10 pcs PODs
+//-- ORO Event tokens
+IG_EVENT_FROST,40001,25,15 // 15 pcs event tokens
+IG_EVENT_FROST,40001,35,30 // 30 pcs event tokens
+//-- Costume eggs
+IG_EVENT_FROST,14735,3,1 // Costama partners
+IG_EVENT_FROST,17497,3,1 // Seaside egg
+IG_EVENT_FROST,40003,3,2 // Frost dragon egg
+IG_EVENT_FROST,40002,10,5 // Slime dragon Egg
+IG_EVENT_FROST,40004,1,1 // Shadow Dragon Egg
+//-- Costumes
+IG_EVENT_FROST,20512,2,1 // Costume adventurer's backpack
+IG_EVENT_FROST,20515,2,1 // Costume magic circle
+IG_EVENT_FROST,20514,2,1 // Costume thanatos sword
+IG_EVENT_FROST,20746,2,1 // Costume Rudra wings
+IG_EVENT_FROST,20132,2,1 // Costume Aura of Vicious mind (white)
+//-- Equipment
+IG_EVENT_FROST,5135,1,1 // Cyclop's Eye
+IG_EVENT_FROST,5800,2,1 // Blush of Groom
+//-- Badges
+//-- War Badges
+IG_EVENT_FROST,7773,2,5 // 5pcs War Badge
+IG_EVENT_FROST,7773,5,10 // 10pcs War Badge
+//-- KvM Badge
+IG_EVENT_FROST,6376,50,50 // 50pcs KvM Badge
+IG_EVENT_FROST,6376,25,100 // 100pcs KvM Badge
+IG_EVENT_FROST,6376,25,500 // 500pcs KvM Badge
+IG_EVENT_FROST,6376,10,1000 // 1000pcs KvM Badge
+
 
 // Custom Food Package
 // GroupID,ItemID,Rate{,Amount,Random,isAnnounced,Duration,GUID,isBound,isNamed}

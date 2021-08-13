@@ -1793,7 +1793,7 @@ int64 battle_calc_gvg_damage(struct block_list *src,struct block_list *bl,int64 
 	}
 
 	// Barricaade will only receive 50% of the total damage.
-	if (class_ == MOBID_BARRICADE) {
+	if (class_ == MOBID_BARRICADE || class_ == MOBID_GUARDIAN_STONE1 || class_ == MOBID_GUARDIAN_STONE2) {
 		damage = damage / 2;
 	}
 
@@ -4246,7 +4246,7 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 				skillratio += -100 + 500 * skill_lv;
 			RE_LVL_DMOD(100);
 			if (sc->data[SC_GT_REVITALIZE]) {
-				skillratio += skillratio * 50 / 100;
+				skillratio += skillratio * 30 / 100;
 			}
 			break;
 		case SR_GENTLETOUCH_QUIET:
@@ -8815,6 +8815,7 @@ static const struct _battle_data {
 	{ "instance_block_expulsion",           &battle_config.instance_block_expulsion,        1,      0,      1,              },
 	{ "hom_idle_no_share",                  &battle_config.hom_idle_no_share,               0,      0,      INT_MAX,        },
 	{ "devotion_standup_fix",               &battle_config.devotion_standup_fix,            1,      0,      1,              },
+
 
 #include "../custom/battle_config_init.inc"
 };

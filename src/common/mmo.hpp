@@ -860,6 +860,7 @@ struct guild_castle {
 	int payTime;
 	int createTime;
 	int visibleC;
+	time_t capture_tick; // [WoE Ranking]
 	struct {
 		unsigned visible : 1;
 		int id; // object id

@@ -123,31 +123,31 @@ function	script	determine_tier_rewards	{
 	setarray .bg_dailies_rewards_tier1_qty[0],10,1;
 
 	setarray .bg_dailies_rewards_tier2[0],7773,14655,14656;
-	setarray .bg_dailies_rewards_tier2_qty[0],25,2,1;
+	setarray .bg_dailies_rewards_tier2_qty[0],20,2,1;
 
 	setarray .bg_dailies_rewards_tier3[0],7773,14655,14656,14657;
-	setarray .bg_dailies_rewards_tier3_qty[0],50,3,2,1;
+	setarray .bg_dailies_rewards_tier3_qty[0],30,3,2,1;
 
 	.@wins = getarg(0);
 	.@account_id = getarg(1);
 
 	// Here where the Tier Rewards are being evaluated.
 	dispbottom "Total wins when reward claimed: " + .@wins;
-	if (.@wins >= 20 && .@wins < 30) {
+	if (.@wins >= 10 && .@wins < 20) {
 		for(.@i = 0; .@i < getarraysize(.bg_dailies_rewards_tier1); .@i += 1) {
 			getitem .bg_dailies_rewards_tier1[.@i],.bg_dailies_rewards_tier1_qty[.@i],.@account_id;
 		} // for loop bg tier 1
 		dispbottom "You have claimed the Tier I BG Reward. Please come back again tomorrow.";
 	}
 
-	else if (.@wins >= 30 && .@wins < 50) {
+	else if (.@wins >= 20 && .@wins < 30) {
 		for(.@i = 0; .@i < getarraysize(.bg_dailies_rewards_tier2); .@i += 1) {
 			getitem .bg_dailies_rewards_tier2[.@i],.bg_dailies_rewards_tier2_qty[.@i],.@account_id;
 		} // for loop bg tier 2
 		dispbottom "You have claimed the Tier II BG Reward. Please come back again tomorrow.";
 	}
 
-	else if (.@wins >= 50) {
+	else if (.@wins >= 30) {
 		for(.@i = 0; .@i < getarraysize(.bg_dailies_rewards_tier3); .@i += 1) {
 			getitem .bg_dailies_rewards_tier3[.@i],.bg_dailies_rewards_tier3_qty[.@i],.@account_id;
 		} // for loop bg tier 3
