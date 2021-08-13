@@ -1131,7 +1131,7 @@ OnEnable:
 				mes "^3355FFDemolished Fortress";
 				mes "Gates can be repaired,";
 				mes "but you will need to gather";
-				mes "the following materialsR.^000000";
+				mes "the following materials.^000000";
 				next;
 				mes "^4D4DFF10 Steel^000000,";
 				mes "^4D4DFF30 Trunks^000000,";
