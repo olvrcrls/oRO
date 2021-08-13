@@ -1468,11 +1468,12 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 		//Finally Kyrie because it may, or not, reduce damage to 0.
 		if((sce = sc->data[SC_KYRIE]) && damage > 0){
 			sce->val2 -= (int)cap_value(damage,INT_MIN,INT_MAX);
-			if(flag&BF_WEAPON || skill_id == TF_THROWSTONE){
-				if(sce->val2>=0)
-					damage=0;
+
+			if(flag & BF_WEAPONMASK || skill_id == TF_THROWSTONE){
+				if(sce->val2 >= 0)
+					damage = 0;
 				else
-				  	damage=-sce->val2;
+				  	damage = -sce->val2;
 			}
 			if((--sce->val3)<=0 || (sce->val2<=0) || skill_id == AL_HOLYLIGHT)
 				status_change_end(bl, SC_KYRIE, INVALID_TIMER);
