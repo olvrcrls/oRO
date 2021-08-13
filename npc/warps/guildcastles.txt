@@ -404,8 +404,17 @@ yuno,13,126,0	warp	schg001	1,1,sch_gld,351,89
 sch_gld,354,89,0	warp	schg002	1,1,yuno,16,126
 
 // Schwarzwald Castle Maps
-schg_cas01,119,4,0	warp	schg101	1,1,sch_gld,293,100
-sch_gld,293,90,0	warp	schg102	1,1,schg_cas01,119,8
+//Himinn Castle
+schg_cas01,119,4,0	warp	himinn_center_exit	1,1,sch_gld,293,100
+sch_gld,293,90,0	warp	himinn_center_entrance	1,1,schg_cas01,119,8
+
+sch_gld,304,96,0	warp	himinn_east_entrance	1,1,schg_cas01,152,39
+schg_cas01,61,15,0	warp	himinn_east_exit	1,1,sch_gld,285,103
+
+sch_gld,284,96,0	warp	himinn_west_entrance	1,1,schg_cas01,65,19
+schg_cas01,148,45,0	warp	himinn_west_exit	1,1,sch_gld,304,103
+
+
 schg_cas01,275,240,0	warp	schg103	1,1,schg_cas01,120,7
 
 //Andlangr
