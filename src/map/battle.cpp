@@ -1475,8 +1475,11 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 				else
 				  	damage = -sce->val2;
 			}
-			if((--sce->val3)<=0 || (sce->val2<=0) || skill_id == AL_HOLYLIGHT)
+			if((--sce->val3)<=0 || (sce->val2<=0) || skill_id == AL_HOLYLIGHT) {
 				status_change_end(bl, SC_KYRIE, INVALID_TIMER);
+				// Custom: If the Kyrie buff is dispelled, it will still not receive any damage just to protect the players from overpowered damage. But this is dangerous on players that possesses a card like Amon Ra card which can cause immunity to physical skills
+				damage = 0; 
+			}
 		}
 
 		if ((sce = sc->data[SC_P_ALTER]) && damage > 0) {
