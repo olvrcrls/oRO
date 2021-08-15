@@ -48,10 +48,10 @@ switch(select("Cancel","Enchant Magic Armor","Enchant Magic Accessory")){
 				close;
 			}
 
-			if(.valor_badge_cost > countitem(.valor_badge_id)){
+			if(.valor_badge_cost > countitem(.valor_badge_item_id)){
 				mes .@npc$,
-					"You're missing " + (.valor_badge_cost - countitem(.valor_badge_id)),
-					"<ITEM>" + getitemname(.valor_badge_id) + "<INFO>" + .valor_badge_item_id + "</INFO></ITEM>.";
+					"You're missing " + (.valor_badge_cost - countitem(.valor_badge_item_id)),
+					"<ITEM>" + getitemname(.valor_badge_item_id) + "<INFO>" + .valor_badge_item_id + "</INFO></ITEM>.";
 				close;
 			}
 
