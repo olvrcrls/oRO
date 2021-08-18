@@ -353,7 +353,7 @@ static int clif_send_sub(struct block_list *bl, va_list ap)
 	type = va_arg(ap,int);
 
 	switch(type) {
-	case AREA:
+	case AREA_CHAT_WOC:
 		if( RBUFW(buf,0) == 0x01c8 && (map_getmapflag(sd->bl.m, MF_GVG) || map_getmapflag(sd->bl.m, MF_BATTLEGROUND)) && bl != src_bl && sd->state.packet_filter&2 )
 			return 0; // Ignore other player's item usage
 			
@@ -461,9 +461,6 @@ int clif_send(const uint8* buf, int len, struct block_list* bl, enum send_target
 
 	case AREA:
 	case AREA_WOSC:
-		if( sd && RBUFW(buf,0) == 0x01c8 && (map_getmapflag(sd->bl.m, MF_GVG) || map_getmapflag(sd->bl.m, MF_BATTLEGROUND)) && sd->state.packet_filter&2 )
-			return 0;
-
 		if( RBUFW(buf,0) == 0x8d && (map_getmapflag(sd->bl.m, MF_GVG) || map_getmapflag(sd->bl.m, MF_BATTLEGROUND)) && sd->state.packet_filter&1 )
 			return 0; // Ignore global message
 
@@ -471,6 +468,8 @@ int clif_send(const uint8* buf, int len, struct block_list* bl, enum send_target
 			clif_send (buf, len, bl, SELF);
 	case AREA_WOC:
 	case AREA_WOS:
+		//if( sd && RBUFW(buf,0) == 0x01c8 && (map_getmapflag(sd->bl.m, MF_GVG) || map_getmapflag(sd->bl.m, MF_BATTLEGROUND)) && sd->state.packet_filter&2 )
+		//	return 0;
 		map_foreachinallarea(clif_send_sub, bl->m, bl->x-AREA_SIZE, bl->y-AREA_SIZE, bl->x+AREA_SIZE, bl->y+AREA_SIZE,
 			BL_PC, buf, len, bl, type);
 		break;
