@@ -1281,14 +1281,14 @@
 19296:2525,{ .@r_garment = getequiprefinerycnt(EQI_GARMENT); bonus2 bSkillAtk,"SC_TRIANGLESHOT",15*(.@r_garment/2); }
 
 //Ruff Officer Combo Bonus
-19300:28000,{.@r_weapon = getequiprefinerycnt(EQI_HAND_R); bonus bBaseAtk,20*(.@r_weapon/2);}
+19300:28000,{.@r_weapon = getequiprefinerycnt(EQI_HAND_R); bonus bAtk,20*(.@r_weapon/2);}
 19300:13138,{.@r_weapon = getequiprefinerycnt(EQI_HAND_R); bonus2 bSkillAtk,"RL_FIREDANCE",6*(.@r_weapon/2);}
 19300:28101,{.@r_weapon = getequiprefinerycnt(EQI_HAND_R); bonus2 bSkillAtk,"NC_AXETORNADO",15*(.@r_weapon/2);}
 
 
 //General Helmet Combo Bonus
-19263:1168,{.@r_weapon = getequiprefinerycnt(EQI_HAND_R); bonus bBaseAtk,20*(.@r_weapon/2);}
-19263:1171,{.@r_weapon = getequiprefinerycnt(EQI_HAND_R); bonus bBaseAtk,20*(.@r_weapon/2);}
+19263:1168,{.@r_weapon = getequiprefinerycnt(EQI_HAND_R); bonus bAtk,20*(.@r_weapon/2);}
+19263:1171,{.@r_weapon = getequiprefinerycnt(EQI_HAND_R); bonus bAtk,20*(.@r_weapon/2);}
 19263:1413,{.@r_weapon = getequiprefinerycnt(EQI_HAND_R); bonus2 bSkillAtk,"LG_BANISHINGPOINT",7*(.@r_weapon/2);}
 19263:1418,{.@r_weapon = getequiprefinerycnt(EQI_HAND_R); bonus2 bSkillAtk,"LG_BANISHINGPOINT",7*(.@r_weapon/2);}
 19263:1527,{.@r_weapon = getequiprefinerycnt(EQI_HAND_R); bonus2 bSkillAtk,"SR_TIGERCANNON",7*(.@r_weapon/2);}
