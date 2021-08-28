@@ -8819,6 +8819,10 @@ static const struct _battle_data {
 	{ "instance_block_expulsion",           &battle_config.instance_block_expulsion,        1,      0,      1,              },
 	{ "hom_idle_no_share",                  &battle_config.hom_idle_no_share,               0,      0,      INT_MAX,        },
 	{ "devotion_standup_fix",               &battle_config.devotion_standup_fix,            1,      0,      1,              },
+	{ "skill_spam_protection",              &battle_config.skill_spam_protection,           1,      0,      1,              },
+	{ "skill_spam_min_delay",               &battle_config.skill_spam_min_delay,            100,    0,      INT_MAX,        },
+	{ "skill_spam_count",                   &battle_config.skill_spam_count,           		10,     3,    	100,            },
+	{ "skill_spam_punish",               	&battle_config.skill_spam_punish,          		1,      0,      1,        		},
 
 
 #include "../custom/battle_config_init.inc"

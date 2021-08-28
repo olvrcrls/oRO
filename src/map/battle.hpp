@@ -683,6 +683,11 @@ struct Battle_Config
 	int instance_block_expulsion;
 	int hom_idle_no_share;
 	int devotion_standup_fix;
+	int skill_spam_protection;
+	int skill_spam_min_delay;
+	int skill_spam_flood_protection;
+	int skill_spam_count;
+	int skill_spam_punish;
 
 #include "../custom/battle_config_struct.inc"
 };

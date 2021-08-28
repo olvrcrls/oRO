@@ -17316,15 +17316,18 @@ struct s_skill_condition skill_get_requirement(struct map_session_data* sd, uint
  *------------------------------------------*/
 int skill_castfix(struct block_list *bl, uint16 skill_id, uint16 skill_lv) {
 	double time = skill_get_cast(skill_id, skill_lv);
-
+	struct map_session_data *sd = BL_CAST(BL_PC, bl);
 	nullpo_ret(bl);
 
 #ifndef RENEWAL_CAST
 	{
-		struct map_session_data *sd = BL_CAST(BL_PC, bl);
 		struct status_change *sc = status_get_sc(bl);
 		int reduce_cast_rate = 0;
 		uint8 flag = skill_get_castnodex(skill_id);
+
+		// Skill Spam Protection [Andie]
+		if (sd && battle_config.skill_spam_protection)
+			sp_skill_delay_check(sd, skill_id, skill_lv, 0);
 
 		// Calculate base cast time (reduced by dex)
 		if (!(flag&1)) {
@@ -17384,6 +17387,12 @@ int skill_castfix(struct block_list *bl, uint16 skill_id, uint16 skill_lv) {
 	// return final cast time
 	time = max(time, 0);
 	//ShowInfo("Castime castfix = %f\n",time);
+
+#ifdef RENEWAL_CAST
+	// Skill Spam Protection [Andie]
+	if (sd && battle_config.skill_spam_protection)
+		sp_skill_delay_check(sd, skill_id, skill_lv, 0);
+#endif
 
 	return (int)time;
 }
@@ -17672,9 +17681,165 @@ int skill_delayfix(struct block_list *bl, uint16 skill_id, uint16 skill_lv)
 
 	//ShowInfo("Delay delayfix = %d\n",time);
 
+	if (battle_config.skill_spam_protection)
+		if (sd->state.sp_skill_check_double) {
+			time = sp_skill_delay_penalty(skill_id);
+			sd->state.sp_skill_check_double = 0;
+		}
+
 	return max(time,0);
 }
 
+/*==========================================
+* Skill Spam Protection Checker [Andie]
+* It will check the player who recast same skill below X ms
+* Official ragnarok let you recast a same skill if the player has enough aspd to do
+*------------------------------------------*/
+int sp_skill_delay_check (struct map_session_data *sd, uint16 skill_id, uint16 skill_lv, uint16 flag) {
+	switch (skill_id)
+	{
+		case AS_SONICBLOW:
+		case GC_CROSSIMPACT:
+		case CG_ARROWVULCAN:
+			if (sd->last_skill == skill_id) {
+				if (DIFF_TICK(sd->canskill_tick2, gettick()) > 0)
+					sd->state.sp_skill_check_double = 1;
+				else
+					sd->canskill_tick2 = gettick() + 1500;
+			}
+		break;
+
+		case WL_CHAINLIGHTNING:
+		case CR_ACIDDEMONSTRATION:
+			if (sd->last_skill == skill_id) {
+				if (DIFF_TICK(sd->canskill_tick2, gettick()) > 0)
+					sd->state.sp_skill_check_double = 1;
+				else
+					sd->canskill_tick2 = gettick() + 500;
+			}
+		break;
+
+		case RK_DRAGONBREATH:
+		case RK_DRAGONBREATH_WATER:
+			if (sd->last_skill == skill_id) {
+				if (DIFF_TICK(sd->canskill_tick2, gettick()) > 0)
+					sd->state.sp_skill_check_double = 1;
+				else
+					sd->canskill_tick2 = gettick() + 1000;
+			}
+		break;
+
+		case AC_DOUBLE:
+		case SM_BASH:
+		case KN_BOWLINGBASH:
+		case NJ_KOUENKA:
+		case NJ_HYOUSENSOU:
+		case WZ_JUPITEL:
+			if (sd->last_skill == skill_id) {
+				sd->state.sp_skill_check_double = 1;
+			}
+		break;
+
+		default:
+		break;
+	} // switch
+
+	sd->last_skill = skill_id;
+	return 1;
+} // sp_skill_delay_check
+
+/*==========================================
+* Skill Spam Delay Penalty [Andie]
+* It will check if the player has been cast 2 times
+* As the official client rules, you only able to do cast 2 times and 
+* you should wait till the act end.
+*------------------------------------------*/
+int sp_skill_delay_penalty(uint16 skill_id) {
+	int time = 0;
+
+	switch (skill_id) {
+		case AS_SONICBLOW:
+		case GC_CROSSIMPACT:
+		case CG_ARROWVULCAN:
+			time = 2000;
+		break;
+
+		case WL_CHAINLIGHTNING:
+		case CR_ACIDDEMONSTRATION:
+			time = 450;
+		break;
+
+		case RK_DRAGONBREATH:
+		case RK_DRAGONBREATH_WATER:
+			time = 1200;
+		break;
+
+		case AC_DOUBLE:
+		case SM_BASH:
+		case NJ_KOUENKA:
+		case NJ_HYOUSENSOU:
+		case WZ_JUPITEL:
+			time = 350;
+		break;
+
+		case KN_BOWLINGBASH:
+			time = 490;
+		break;
+
+		default:
+			time = battle_config.skill_spam_min_delay;
+		break;
+	} // switch
+
+	return max(time, 0);
+} // sp_skill_delay_penalty
+
+/**
+ * Checks if the skill spam is flooding [Andie]
+ * 
+ * */
+int sp_flood_delay_check(struct map_session_data *sd, uint16 skill_id) {
+	int64 sum;
+	char message_to_gm[200];
+
+	if (sd->last_skill && sd->last_skill == skill_id) {
+		if (sd->temp_tick_skill2)
+			sd->temp_tick_skill3 = sd->temp_tick_skill2;
+
+		if (sd->temp_tick_skill1)
+			sd->temp_tick_skill2 = sd->temp_tick_skill1;
+
+		if (sd->castskill_tick)
+			sd->temp_tick_skill1 = gettick() - sd->castskill_tick;
+
+		sum = (sd->temp_tick_skill3 + sd->temp_tick_skill2 + sd->temp_tick_skill1) / 3; // get the average tick left.
+
+		if (sum >= sd->temp_tick_skill3 - 20 && sum <= sd->temp_tick_skill3 + 20) {
+			sd->spam_count += 1;
+		}
+		else {
+			sd->spam_count = 0;
+		}
+
+		if (sd->spam_count >= battle_config.skill_spam_count) {
+			// sprintf(message_to_gm, "[Skill Spam Protection]: Possible NDL Detected: '%s' probably uses a third party program. Constantly spamming at %d times, Time: %d", sd->status.name, sd->spam_count, sum);
+			// intif_wis_message_to_gm(wisp_server_name, PC_PERM_RECEIVE_HACK_INFO, message_to_gm);
+		}
+
+		if (sd->spam_count >= battle_config.skill_spam_count && battle_config.skill_spam_punish)
+			return 1;
+
+		sd->castskill_tick = gettick();
+	} else {
+		sd->temp_tick_skill1 = 0;
+		sd->temp_tick_skill2 = 0;
+		sd->temp_tick_skill3 = 0;
+		sd->spam_count = 0;
+	}
+
+	sd->last_skill = skill_id;
+	return 0;
+} // sp_flood_delay_check
 
 /*==========================================
  * Weapon Repair [Celest/DracoRPG]
