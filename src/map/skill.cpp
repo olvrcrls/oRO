@@ -17715,7 +17715,7 @@ int sp_skill_delay_check (struct map_session_data *sd, uint16 skill_id, uint16 s
 				if (DIFF_TICK(sd->canskill_tick2, gettick()) > 0)
 					sd->state.sp_skill_check_double = 1;
 				else
-					sd->canskill_tick2 = gettick() + 500;
+					sd->canskill_tick2 = gettick() + 150;
 			}
 		break;
 
@@ -17725,7 +17725,7 @@ int sp_skill_delay_check (struct map_session_data *sd, uint16 skill_id, uint16 s
 				if (DIFF_TICK(sd->canskill_tick2, gettick()) > 0)
 					sd->state.sp_skill_check_double = 1;
 				else
-					sd->canskill_tick2 = gettick() + 1000;
+					sd->canskill_tick2 = gettick() + 250;
 			}
 		break;
 
@@ -17766,12 +17766,12 @@ int sp_skill_delay_penalty(uint16 skill_id) {
 
 		case WL_CHAINLIGHTNING:
 		case CR_ACIDDEMONSTRATION:
-			time = 450;
+			time = 150;
 		break;
 
 		case RK_DRAGONBREATH:
 		case RK_DRAGONBREATH_WATER:
-			time = 1200;
+			time = 150;
 		break;
 
 		case AC_DOUBLE:
