@@ -17725,7 +17725,7 @@ int sp_skill_delay_check (struct map_session_data *sd, uint16 skill_id, uint16 s
 				if (DIFF_TICK(sd->canskill_tick2, gettick()) > 0)
 					sd->state.sp_skill_check_double = 1;
 				else
-					sd->canskill_tick2 = gettick() + 250;
+					sd->canskill_tick2 = gettick() + 150;
 			}
 		break;
 
