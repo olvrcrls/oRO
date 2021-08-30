@@ -32854,7 +32854,17 @@ Body:
     CastCancel: true
     AfterCastActDelay: 1000
     Duration1: 30000
-    Cooldown: 20000
+    Cooldown:
+        - Level: 1
+        Time: 14000
+        - Level: 2
+        Time: 18000
+        - Level: 3
+        Time: 22000
+        - Level: 4
+        Time: 26000
+        - Level: 5
+        Time: 30000
     Requires:
       SpCost:
         - Level: 1
