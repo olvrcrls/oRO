@@ -1801,6 +1801,15 @@ int64 battle_calc_gvg_damage(struct block_list *src,struct block_list *bl,int64 
 		damage = damage / 2;
 	}
 
+	switch (skill_id) {
+		case NC_ARMSCANNON:
+			damage += damage * 10 / 100; // Increases damage of Arms Cannon by 10% in GvG area.
+		break;
+
+		default:
+		break;
+	} // switch
+
 	damage = i64max(damage,1);
 	return damage;
 }
@@ -4689,7 +4698,7 @@ static void battle_attack_sc_bonus(struct Damage* wd, struct block_list *src, st
 				case AS_SONICBLOW:
 				case ASC_BREAKER:
 				case GC_COUNTERSLASH:
-				case GC_CROSSIMPACT:
+				//case GC_CROSSIMPACT:
 					ATK_RATE(wd->weaponAtk, wd->weaponAtk2, 50);
 					ATK_RATE(wd->equipAtk, wd->equipAtk2, 50);
 				default: // fall through to apply EDP bonuses
