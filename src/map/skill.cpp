@@ -3921,6 +3921,10 @@ static int skill_check_unit_range_sub(struct block_list *bl, va_list ap)
 			if(g_skill_id != MH_STEINWAND && g_skill_id != MG_SAFETYWALL && g_skill_id != AL_PNEUMA && g_skill_id != SC_MAELSTROM)
 				return 0;
 			break;
+		case SC_BLOODYLUST:
+			if (skill_id != g_skill_id && !skill_get_inf2(g_skill_id, INF2_ISTRAP) && g_skill_id != AS_VENOMDUST && g_skill_id != MH_POISON_MIST && g_skill_id != SA_LANDPROTECTOR) // Bloody Lust won't work if just one cell overlaps with Land Protector.
+				return 0;
+			break;
 		case AL_WARP:
 		case HT_SKIDTRAP:
 		case MA_SKIDTRAP:
@@ -3946,7 +3950,6 @@ static int skill_check_unit_range_sub(struct block_list *bl, va_list ap)
 		case RA_FIRINGTRAP:
 		case RA_ICEBOUNDTRAP:
 		case SC_DIMENSIONDOOR:
-		case SC_BLOODYLUST:
 		case SC_MANHOLE:
 		case NPC_REVERBERATION:
 		case WM_REVERBERATION:
@@ -3954,7 +3957,6 @@ static int skill_check_unit_range_sub(struct block_list *bl, va_list ap)
 		case GN_HELLS_PLANT:
 		case RL_B_TRAP:
 		case SC_ESCAPE:
-			//Non stackable on themselves and traps (including venom dust which does not has the trap inf2 set)
 			if (skill_id != g_skill_id && !skill_get_inf2(g_skill_id, INF2_ISTRAP) && g_skill_id != AS_VENOMDUST && g_skill_id != MH_POISON_MIST)
 				return 0;
 			break;
@@ -10291,8 +10293,21 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 		}
 		break;
 
-	case SC_ENERVATION:
 	case SC_GROOMY:
+		if( !(tsc && tsc->data[type]) ) {
+			int rate;
+
+			if (status_get_class_(bl) == CLASS_BOSS)
+				break;
+				// original the caster's dex is divided by 12 and 4
+			rate = status_get_lv(src) / 10 + rnd_value(sstatus->dex / 12, sstatus->dex / 4) + ( sd ? sd->status.job_level : 65 ) + 10 * skill_lv - (status_get_lv(bl) / 10 + rnd_value(tstatus->agi / 6, tstatus->agi / 3) + tstatus->luk / 10 + ( dstsd ? (dstsd->max_weight / 10 - dstsd->weight / 10 ) / 100 : 0));
+			rate = cap_value(rate, skill_lv + sstatus->dex / 20, 75); // Max Success Chance is 75%
+			clif_skill_nodamage(src,bl,skill_id,0,sc_start(src,bl,type,rate,skill_lv,skill_get_time(skill_id,skill_lv)));
+		} else if( sd )
+			 clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
+	break;
+
+	case SC_ENERVATION:
 	case SC_LAZINESS:
 	case SC_UNLUCKY:
 	case SC_WEAKNESS:
@@ -10306,7 +10321,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 			rate = cap_value(rate, skill_lv + sstatus->dex / 20, 100);
 			clif_skill_nodamage(src,bl,skill_id,0,sc_start(src,bl,type,rate,skill_lv,skill_get_time(skill_id,skill_lv)));
 		} else if( sd )
-			 clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
+			clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 		break;
 
 	case SC_IGNORANCE:
@@ -12398,7 +12413,6 @@ int skill_castend_pos2(struct block_list* src, int x, int y, uint16 skill_id, ui
 	case WE_CALLPARTNER:
 	case WE_CALLPARENT:
 	case WE_CALLBABY:
-	case SA_LANDPROTECTOR:
 	case BD_LULLABY:
 	case BD_RICHMANKIM:
 	case BD_ETERNALCHAOS:
@@ -12467,6 +12481,12 @@ int skill_castend_pos2(struct block_list* src, int x, int y, uint16 skill_id, ui
 	case SJ_BOOKOFCREATINGSTAR:
 	case RL_B_TRAP:
 		flag|=1;//Set flag to 1 to prevent deleting ammo (it will be deleted on group-delete).
+		if(map_getcell(src->m,x,y,CELL_CHKWALL) || map_getcell(src->m,x,y,CELL_CHKLANDPROTECTOR)) {
+			clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
+			return 0;
+		}
+	case SA_LANDPROTECTOR:
+		flag|=1;
 	case GS_GROUNDDRIFT: //Ammo should be deleted right away.
 	case GN_WALLOFTHORN:
 	case GN_DEMONIC_FIRE:
@@ -14016,7 +14036,6 @@ static int skill_unit_onplace(struct skill_unit *unit, struct block_list *bl, t_
 			if( !sce && sc_start4(ss, bl,type,100,sg->skill_lv,0,SC__BLOODYLUST,0,sg->limit) )
 				// Dirty fix to add extra time to Bloody Lust so it doesn't end before
 				// Berserk, causing HP to drop to 100 when we don't want it to [Akinari]
-				sc_start(ss, bl,SC__BLOODYLUST,100,sg->skill_lv,sg->limit+100);
 			break;
 
 		case UNT_PNEUMA:
@@ -17800,7 +17819,7 @@ int sp_skill_delay_penalty(uint16 skill_id) {
  * */
 int sp_flood_delay_check(struct map_session_data *sd, uint16 skill_id) {
 	int64 sum;
-	char message_to_gm[200];
+	// char message_to_gm[200];
 
 	if (sd->last_skill && sd->last_skill == skill_id) {
 		if (sd->temp_tick_skill2)
@@ -18536,14 +18555,16 @@ static int skill_cell_overlap(struct block_list *bl, va_list ap)
 		// 		break;
 		case GN_CRAZYWEED_ATK:
 		case HW_GANBANTEIN:
-		case LG_EARTHDRIVE:
+		case LG_EARTHDRIVE: {
+			std::shared_ptr<s_skill_db> skill = skill_db.find(unit->group->skill_id);
 			// Officially songs/dances are removed
-			if (skill_get_unit_flag(unit->group->skill_id, UF_RANGEDSINGLEUNIT)) {
+			if (skill->unit_flag[UF_RANGEDSINGLEUNIT] || unit->group->skill_id == SC_BLOODYLUST) {
 				if (unit->val2&(1 << UF_RANGEDSINGLEUNIT))
 					skill_delunitgroup(unit->group);
 			} else
 				skill_delunit(unit);
 			return 1;
+		}
 		case SA_VOLCANO:
 		case SA_DELUGE:
 		case SA_VIOLENTGALE:
@@ -21176,6 +21197,7 @@ static int skill_destroy_trap(struct block_list *bl, va_list ap)
 			case UNT_FLASHER:
 			case UNT_FREEZINGTRAP:
 			case UNT_CLUSTERBOMB:
+			case UNT_BLOODYLUST:
 				if (battle_config.skill_wall_check && !skill_get_nk(sg->skill_id, NK_NODAMAGE))
 					map_foreachinshootrange(skill_trap_splash,&su->bl, skill_get_splash(sg->skill_id, sg->skill_lv), sg->bl_flag, &su->bl,tick);
 				else
