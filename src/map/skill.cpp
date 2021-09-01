@@ -10304,7 +10304,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 			rate = cap_value(rate, skill_lv + sstatus->dex / 20, 75); // Max Success Chance is 75%
 			clif_skill_nodamage(src,bl,skill_id,0,sc_start(src,bl,type,rate,skill_lv,skill_get_time(skill_id,skill_lv)));
 		} else if( sd )
-			 clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
+			clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 	break;
 
 	case SC_ENERVATION:

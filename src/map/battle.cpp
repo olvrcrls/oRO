@@ -4697,7 +4697,7 @@ static void battle_attack_sc_bonus(struct Damage* wd, struct block_list *src, st
 				// * Cross Impact
 				case AS_SONICBLOW:
 				case ASC_BREAKER:
-				case GC_COUNTERSLASH:
+				//case GC_COUNTERSLASH:
 				//case GC_CROSSIMPACT:
 					ATK_RATE(wd->weaponAtk, wd->weaponAtk2, 50);
 					ATK_RATE(wd->equipAtk, wd->equipAtk2, 50);

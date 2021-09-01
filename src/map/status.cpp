@@ -11245,7 +11245,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 			val2 = 20 * val1 + 20; // atk bonus
 			break;
 		case SC_DARKCROW:
-			val2 = 30 * val1;
+			val2 = (30 * val1) + 50; // Buff Dark Claw by 50%
 			break;
 		case SC_UNLIMIT:
 			val2 = 50 * val1;
