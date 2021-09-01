@@ -32856,15 +32856,15 @@ Body:
     Duration1: 30000
     Cooldown:
         - Level: 1
-        Time: 14000
+          Time: 14000
         - Level: 2
-        Time: 18000
+          Time: 18000
         - Level: 3
-        Time: 22000
+          Time: 22000
         - Level: 4
-        Time: 26000
+          Time: 26000
         - Level: 5
-        Time: 30000
+          Time: 30000
     Requires:
       SpCost:
         - Level: 1
