@@ -17333,7 +17333,7 @@ int skill_castfix(struct block_list *bl, uint16 skill_id, uint16 skill_lv) {
 		uint8 flag = skill_get_castnodex(skill_id);
 
 		// Skill Spam Protection [Andie]
-		if (sd && battle_config.skill_spam_protection)
+		if (sd && battle_config.skill_spam_protection && bl->type == BL_PC)
 			sp_skill_delay_check(sd, skill_id, skill_lv, 0);
 
 		// Calculate base cast time (reduced by dex)
@@ -17397,7 +17397,7 @@ int skill_castfix(struct block_list *bl, uint16 skill_id, uint16 skill_lv) {
 
 #ifdef RENEWAL_CAST
 	// Skill Spam Protection [Andie]
-	if (sd && battle_config.skill_spam_protection)
+	if (sd && battle_config.skill_spam_protection && bl->type == BL_PC)
 		sp_skill_delay_check(sd, skill_id, skill_lv, 0);
 #endif
 
@@ -17688,7 +17688,7 @@ int skill_delayfix(struct block_list *bl, uint16 skill_id, uint16 skill_lv)
 
 	//ShowInfo("Delay delayfix = %d\n",time);
 
-	if (battle_config.skill_spam_protection)
+	if (battle_config.skill_spam_protection && bl->type == BL_PC)
 		if (sd->state.sp_skill_check_double) {
 			time = sp_skill_delay_penalty(skill_id);
 			sd->state.sp_skill_check_double = 0;
@@ -17722,7 +17722,7 @@ int sp_skill_delay_check (struct map_session_data *sd, uint16 skill_id, uint16 s
 				if (DIFF_TICK(sd->canskill_tick2, gettick()) > 0)
 					sd->state.sp_skill_check_double = 1;
 				else
-					sd->canskill_tick2 = gettick() + 150;
+					sd->canskill_tick2 = gettick() + 200;
 			}
 		break;
 
@@ -17773,7 +17773,7 @@ int sp_skill_delay_penalty(uint16 skill_id) {
 
 		case WL_CHAINLIGHTNING:
 		case CR_ACIDDEMONSTRATION:
-			time = 150;
+			time = 200;
 		break;
 
 		case RK_DRAGONBREATH:
