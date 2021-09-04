@@ -12647,9 +12647,10 @@ void clif_parse_skill_toid( struct map_session_data* sd, uint16 skill_id, uint16
 /// There are various variants of this packet, some of them have padding between fields.
 void clif_parse_UseSkillToId( int fd, struct map_session_data *sd ){
 	struct s_packet_db* info = &packet_db[RFIFOW(fd, 0)];
+	struct block_list *bl = &sd->bl;
 	
 	// Skill Spam Protection
-	if (battle_config.skill_spam_protection)
+	if (battle_config.skill_spam_protection && bl->type == BL_PC)
 		if (sp_flood_delay_check(sd, RFIFOW(fd, info->pos[1])))
 			set_eof(fd);
 
@@ -12684,7 +12685,10 @@ static void clif_parse_UseSkillToPosSub(int fd, struct map_session_data *sd, uin
 	}
 
 	// Skill Spam Protection
-	if (battle_config.skill_spam_protection)
+	struct block_list *bl = &sd->bl;
+	
+	// Skill Spam Protection
+	if (battle_config.skill_spam_protection && bl->type == BL_PC)
 		sp_flood_delay_check(sd, skill_id);
 
 	if( pc_hasprogress( sd, WIP_DISABLE_SKILLITEM ) ){
