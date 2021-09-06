@@ -1114,7 +1114,7 @@ int intif_guild_save_score(int guild_id, int castle, struct guild_rank_data* grd
 		return 0;
 
 	WFIFOHEAD(inter_fd, 14);
-	WFIFOW(inter_fd, 0) = 0x3043;
+	WFIFOW(inter_fd, 0) = 0x3042;
 	WFIFOW(inter_fd, 2) = sizeof(struct guild_rank_data) + 10;
 	WFIFOL(inter_fd, 4) = guild_id;
 	WFIFOW(inter_fd, 8) = castle;
