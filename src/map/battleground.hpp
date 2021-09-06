@@ -7,7 +7,7 @@
 #include "../common/cbasetypes.hpp"
 #include "../common/mmo.hpp" // struct party
 
-#define MAX_BG_MEMBERS 30
+#define MAX_BG_MEMBERS 200
 
 struct battleground_member_data {
 	unsigned short x, y;
