@@ -57,26 +57,26 @@ amatsu,119,123,4	duplicate(Soul Linker)	Soul Linker#ama	630
 ayothaya,202,166,6	duplicate(Soul Linker)	Soul Linker#ayo	630
 comodo,191,153,6	duplicate(Soul Linker)	Soul Linker#comodo	630
 einbroch,61,204,6	duplicate(Soul Linker)	Soul Linker#einbroch	630
-geffen,128,63,6		duplicate(Soul Linker)	Soul Linker#gef	630
+geffen,128,63,6	duplicate(Soul Linker)	Soul Linker#gef	630
 gonryun,153,115,6	duplicate(Soul Linker)	Soul Linker#gon	630
-hugel,101,143,6		duplicate(Soul Linker)	Soul Linker#hug	630
+hugel,101,143,6	duplicate(Soul Linker)	Soul Linker#hug	630
 izlude,126,150,6	duplicate(Soul Linker)	Soul Linker#izl	630	//Pre-RE: (125,118)
 jawaii,254,128,4	duplicate(Soul Linker)	Soul Linker#jaw	630
 lighthalzen,163,93,4	duplicate(Soul Linker)	Soul Linker#lhz	630
 louyang,210,108,4	duplicate(Soul Linker)	Soul Linker#lou	630
-manuk,272,144,6	duplicate(Healer)	Healer#man	630
-//mid_camp,203,289,6	duplicate(Healer)	Healer#mid	630
-mid_camp,172,249,6	duplicate(Healer)	Healer#mid1	630
-//moc_ruins,72,164,4	duplicate(Healer)	Healer#moc	630
+manuk,272,144,6	duplicate(Soul Linker)	Soul Linker#man	630
+//mid_camp,203,289,6	duplicate(Soul Linker)	Soul Linker#mid	630
+mid_camp,172,249,6	duplicate(Soul Linker)	Soul Linker#mid1	630
+//moc_ruins,72,164,4	duplicate(Soul Linker)	Soul Linker#moc	630
 morocc,164,95,6	duplicate(Soul Linker)	Soul Linker#mor	630
 moscovia,232,191,4	duplicate(Soul Linker)	Soul Linker#mos	630
-//niflheim,198,179,5	duplicate(Healer)	Healer#nif	630
-//payon,179,106,4	duplicate(Healer)	Healer#pay	630
+//niflheim,198,179,5	duplicate(Soul Linker)	Soul Linker#nif	630
+//payon,179,106,4	duplicate(Soul Linker)	Soul Linker#pay	630
 payon,160,222,4	duplicate(Soul Linker)	Soul Linker#pay1	630
 prontera,163,190,4	duplicate(Soul Linker)	Soul Linker#prt	630
 rachel,122,113,6	duplicate(Soul Linker)	Soul Linker#rac	630
 splendide,208,146,4	duplicate(Soul Linker)	Soul Linker#spl	630
-//thor_camp,249,74,4	duplicate(Healer)	Healer#thor	630
+//thor_camp,249,74,4	duplicate(Soul Linker)	Soul Linker#thor	630
 umbala,84,156,3	duplicate(Soul Linker)	Soul Linker#umb	630
 veins,204,131,5	duplicate(Soul Linker)	Soul Linkerve	630
 xmas,141,129,4	duplicate(Soul Linker)	Soul Linker#xmas	630
@@ -87,11 +87,11 @@ yuno,164,52,4	duplicate(Soul Linker)	Soul Linker#yuno	630
 brasilis,202,215,6	duplicate(Soul Linker)	Soul Linker#bra	630
 dewata,193,176,4	duplicate(Soul Linker)	Soul Linker#dew	630
 dicastes01,203,187,4	duplicate(Soul Linker)	Soul Linker#dic	630
-ecl_in01,45,60,4	duplicate(Healer)	Healer#ecl	630
-malangdo,133,125,6	duplicate(Healer)	Healer#mal	630
-malaya,227,204,6	duplicate(Healer)	Healer#ma	630
-mora,55,152,4	duplicate(Healer)	Healer#mora	630
-askald,134,122,3	duplicate(Soul Linker)	Healer#ask	630
-lasagna,188,184,3	duplicate(Healer)	Healer#lasagna	630
-verus04,122,258,3	duplicate(Healer)	Healer#verus	630
-bat_room,156,156,4	duplicate(Healer)	Healer#BG	630
+ecl_in01,45,60,4	duplicate(Soul Linker)	Soul Linker#ecl	630
+malangdo,133,125,6	duplicate(Soul Linker)	Soul Linker#mal	630
+malaya,227,204,6	duplicate(Soul Linker)	Soul Linker#ma	630
+mora,55,152,4	duplicate(Soul Linker)	Soul Linker#mora	630
+askald,134,122,3	duplicate(Soul Linker)	Soul Linker#ask	630
+lasagna,188,184,3	duplicate(Soul Linker)	Soul Linker#lasagna	630
+verus04,122,258,3	duplicate(Soul Linker)	Soul Linker#verus	630
+bat_room,156,156,4	duplicate(Soul Linker)	Soul Linker#BG	630
