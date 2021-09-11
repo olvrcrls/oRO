@@ -1,4 +1,4 @@
-askald,134,122,5	script	Soul Linker	718,{
+-	script	Soul Linker	718,{
 	set .@n$,"^0000FF[ Soul Linker ]^000000";
 	set .@time, 300000; // the buff last 5 minutes
 	set .zenycost,2000000;
