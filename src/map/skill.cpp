@@ -3921,10 +3921,6 @@ static int skill_check_unit_range_sub(struct block_list *bl, va_list ap)
 			if(g_skill_id != MH_STEINWAND && g_skill_id != MG_SAFETYWALL && g_skill_id != AL_PNEUMA && g_skill_id != SC_MAELSTROM)
 				return 0;
 			break;
-		case SC_BLOODYLUST:
-			if (skill_id != g_skill_id && !skill_get_inf2(g_skill_id, INF2_ISTRAP) && g_skill_id != AS_VENOMDUST && g_skill_id != MH_POISON_MIST && g_skill_id != SA_LANDPROTECTOR) // Bloody Lust won't work if just one cell overlaps with Land Protector.
-				return 0;
-			break;
 		case AL_WARP:
 		case HT_SKIDTRAP:
 		case MA_SKIDTRAP:
@@ -3950,6 +3946,7 @@ static int skill_check_unit_range_sub(struct block_list *bl, va_list ap)
 		case RA_FIRINGTRAP:
 		case RA_ICEBOUNDTRAP:
 		case SC_DIMENSIONDOOR:
+		case SC_BLOODYLUST:
 		case SC_MANHOLE:
 		case NPC_REVERBERATION:
 		case WM_REVERBERATION:
@@ -12401,6 +12398,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, uint16 skill_id, ui
 	case WE_CALLPARTNER:
 	case WE_CALLPARENT:
 	case WE_CALLBABY:
+	case SA_LANDPROTECTOR:
 	case BD_LULLABY:
 	case BD_RICHMANKIM:
 	case BD_ETERNALCHAOS:
@@ -12469,12 +12467,6 @@ int skill_castend_pos2(struct block_list* src, int x, int y, uint16 skill_id, ui
 	case SJ_BOOKOFCREATINGSTAR:
 	case RL_B_TRAP:
 		flag|=1;//Set flag to 1 to prevent deleting ammo (it will be deleted on group-delete).
-		if(map_getcell(src->m,x,y,CELL_CHKWALL) || map_getcell(src->m,x,y,CELL_CHKLANDPROTECTOR)) {
-			clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
-			return 0;
-		}
-	case SA_LANDPROTECTOR:
-		flag |=1;
 	case GS_GROUNDDRIFT: //Ammo should be deleted right away.
 	case GN_WALLOFTHORN:
 	case GN_DEMONIC_FIRE:
@@ -17807,7 +17799,7 @@ int sp_skill_delay_penalty(uint16 skill_id) {
  * */
 int sp_flood_delay_check(struct map_session_data *sd, uint16 skill_id) {
 	int64 sum;
-	// char message_to_gm[200];
+	char message_to_gm[200];
 
 	if (sd->last_skill && sd->last_skill == skill_id) {
 		if (sd->temp_tick_skill2)
@@ -18543,15 +18535,14 @@ static int skill_cell_overlap(struct block_list *bl, va_list ap)
 		// 		break;
 		case GN_CRAZYWEED_ATK:
 		case HW_GANBANTEIN:
-		case LG_EARTHDRIVE: {
+		case LG_EARTHDRIVE:
 			// Officially songs/dances are removed
-			if (skill_get_unit_flag(unit->group->skill_id, UF_RANGEDSINGLEUNIT) || unit->group->skill_id == SC_BLOODYLUST) {
+			if (skill_get_unit_flag(unit->group->skill_id, UF_RANGEDSINGLEUNIT)) {
 				if (unit->val2&(1 << UF_RANGEDSINGLEUNIT))
 					skill_delunitgroup(unit->group);
 			} else
 				skill_delunit(unit);
 			return 1;
-		}
 		case SA_VOLCANO:
 		case SA_DELUGE:
 		case SA_VIOLENTGALE:
@@ -21184,7 +21175,6 @@ static int skill_destroy_trap(struct block_list *bl, va_list ap)
 			case UNT_FLASHER:
 			case UNT_FREEZINGTRAP:
 			case UNT_CLUSTERBOMB:
-			case UNT_BLOODYLUST:
 				if (battle_config.skill_wall_check && !skill_get_nk(sg->skill_id, NK_NODAMAGE))
 					map_foreachinshootrange(skill_trap_splash,&su->bl, skill_get_splash(sg->skill_id, sg->skill_lv), sg->bl_flag, &su->bl,tick);
 				else
