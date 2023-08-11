@@ -4253,11 +4253,11 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 				mes "[Mille Feuille]";
 				mes "Ingredients- ^0000cd1 Clover, 1 Green Herb, 1 Red Herb^000000.";
 				next;
-				cutin "·ç³ªÆ½Ä«µå.bmp", 3;
+				cutin "ï¿½ç³ªÆ½Ä«ï¿½ï¿½.bmp", 3;
 				mes "[Dacquoise]";
 				mes "Clover and the Red Herb are dropped by Lunatic or Fabre monsters wandering everywhere on the field outside Izlude.";
 				next;
-				cutin "ÆÄºê¸£Ä«µå.bmp", 3;
+				cutin "ï¿½Äºê¸£Ä«ï¿½ï¿½.bmp", 3;
 				mes "[Eclaire]";
 				mes "Green Herbs are dropped by Fabres.";
 				next;
@@ -4279,11 +4279,11 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 				mes "[Mille Feuille]";
 				mes "Ingredients are ^0000cd1 Apple & 2 Carrots^000000.";
 				next;
-				cutin "Æ÷¸µÄ«µå.bmp", 3;
+				cutin "ï¿½ï¿½ï¿½ï¿½Ä«ï¿½ï¿½.bmp", 3;
 				mes "[Dacquoise]";
 				mes "Apples are dropped by Porings bouncing around the field outside of Izlude.";
 				next;
-				cutin "·ç³ªÆ½Ä«µå.bmp", 3;
+				cutin "ï¿½ç³ªÆ½Ä«ï¿½ï¿½.bmp", 3;
 				mes "[Eclaire]";
 				mes "Carrots are given by Lunatics.";
 				next;
@@ -4305,15 +4305,15 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 				mes "[Mille Feuille]";
 				mes "Ingredients are ^0000cd1 Jellopy, 1 Fluff, 1 Feather^000000.";
 				next;
-				cutin "Æ÷¸µÄ«µå.bmp", 3;
+				cutin "ï¿½ï¿½ï¿½ï¿½Ä«ï¿½ï¿½.bmp", 3;
 				mes "[Dacquoise]";
 				mes "Jellopy are dropped by Porings bouncing around the field of Izlude.";
 				next;
-				cutin "ÆÄºê¸£Ä«µå.bmp", 3;
+				cutin "ï¿½Äºê¸£Ä«ï¿½ï¿½.bmp", 3;
 				mes "[Eclaire]";
 				mes "Fluff can be received from Fabre or Lunatic.";
 				next;
-				cutin "·ç³ªÆ½Ä«µå.bmp", 3;
+				cutin "ï¿½ç³ªÆ½Ä«ï¿½ï¿½.bmp", 3;
 				mes "[Mille Feuille]";
 				mes "Feathers are dropped by Lunatics or Fabres.";
 				next;
@@ -4335,11 +4335,11 @@ iz_ac01,147,50,3	script	Dacquoise#ac	4_COOK,{
 				mes "[Mille Feuille]";
 				mes "Ingredients are-^0000cd 1 Apple & 1 Clover^000000.";
 				next;
-				cutin "Æ÷¸µÄ«µå.bmp", 3;
+				cutin "ï¿½ï¿½ï¿½ï¿½Ä«ï¿½ï¿½.bmp", 3;
 				mes "[Dacquoise]";
 				mes "Apple can be found in Porings in the field outside of Izlude.";
 				next;
-				cutin "·ç³ªÆ½Ä«µå.bmp", 3;
+				cutin "ï¿½ç³ªÆ½Ä«ï¿½ï¿½.bmp", 3;
 				mes "[Eclaire]";
 				mes "Clovers are dropped by Lunatics or Fabre in the field outside Izlude.";
 				next;
@@ -12877,13 +12877,37 @@ izlude_d,153,126,1	duplicate(Refinery Owner Han#iz)	Refinery Owner Han#iz_d	4_M_
 		}
 	}
 
-	.@price = getequiprefinecost(.@part, REFINE_COST_WAGJAK, REFINE_ZENY_COST);
-	.@material = getequiprefinecost(.@part, REFINE_COST_WAGJAK, REFINE_MATERIAL_ID);
+	// Wagjak has different hardcoded prices
+	//.@price = getequiprefinecost(.@part, REFINE_COST_NORMAL, REFINE_ZENY_COST);
+	.@material = getequiprefinecost(.@part, REFINE_COST_NORMAL, REFINE_MATERIAL_ID);
 
-	if ((getequipweaponlv(.@part) >= 1) && (getequipweaponlv(.@part) <= 4))
-		.@type$ = "Level " + getequipweaponlv(.@part) + " weapon";
-	else
-		.@type$ = "Armor";
+	switch(getequipweaponlv(.@part)) {
+		default:
+		case 0: // Armor
+			.@price = 20000;
+			.@type$ = "Armor";
+			break;
+
+		case 1: // Level 1 Weapon
+			.@price = 1000;
+			.@type$ = "Level 1 weapon";
+			break;
+
+		case 2: // Level 2 Weapon
+			.@price = 2000;
+			.@type$ = "Level 2 weapon";
+			break;
+
+		case 3: // Level 3 Weapon
+			.@price = 10000;
+			.@type$ = "Level 3 weapon";
+			break;
+
+		case 4: // Level 4 Weapon
+			.@price = 20000;
+			.@type$ = "Level 4 weapon";
+			break;
+	}
 
 	mes "[Refining Machine Wagjak]";
 	mes "Type : "+ .@type$ +"";

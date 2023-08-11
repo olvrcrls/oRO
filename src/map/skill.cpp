@@ -17939,6 +17939,9 @@ void skill_weaponrefine(struct map_session_data *sd, int idx)
 				return;
 			}
 			per = status_get_refine_chance(static_cast<refine_type>(ditem->wlv), (int)item->refine, false);
+
+			per = ( cost->chance / 100 );
+
 			if( sd->class_&JOBL_THIRD )
 				per += 10;
 			else

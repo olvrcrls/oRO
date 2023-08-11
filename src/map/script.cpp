@@ -9541,11 +9541,29 @@ BUILDIN_FUNC(getequippercentrefinery)
 
 	if (equip_index_check(num))
 		i = pc_checkequip(sd,equip_bitmask[num]);
+
 	if (i >= 0 && sd->inventory.u.items_inventory[i].nameid && sd->inventory.u.items_inventory[i].refine < MAX_REFINE) {
 		enum refine_type type = REFINE_TYPE_SHADOW;
 		if (sd->inventory_data[i]->type != IT_SHADOWGEAR)
 			type = (enum refine_type)sd->inventory_data[i]->wlv;
 		script_pushint(st, status_get_refine_chance(type, (int)sd->inventory.u.items_inventory[i].refine, enriched));
+
+	if (i >= 0 && sd->inventory.u.items_inventory[i].nameid) {
+		std::shared_ptr<s_refine_level_info> info = refine_db.findLevelInfo( *sd->inventory_data[i], sd->inventory.u.items_inventory[i] );
+
+		if( info == nullptr ){
+			script_pushint( st, 0 );
+			return SCRIPT_CMD_SUCCESS;
+		}
+
+		std::shared_ptr<s_refine_cost> cost = util::umap_find( info->costs, (uint16)( enriched ? REFINE_COST_ENRICHED : REFINE_COST_NORMAL ) );
+
+		if( cost == nullptr ){
+			script_pushint( st, 0 );
+			return SCRIPT_CMD_SUCCESS;
+		}
+
+		script_pushint( st, cost->chance / 100 );
 	}
 	else
 		script_pushint(st,0);
