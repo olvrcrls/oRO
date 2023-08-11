@@ -18,14 +18,14 @@
 // 512,4,12  // Will not allow more than 4 Apples in storages.
 
 // Rune Knight
-12725,60,1  // Nauthiz Rune
-12726,60,1  // Raido Rune
-12727,60,1  // Berkana Rune
-12728,60,1  // Isa Rune
-12730,60,1  // Uruz Rune
-12733,60,1  // Hagalaz Rune
-22540,60,1  // Lux Anima Rune
+12725,1000,1  // Nauthiz Rune
+12726,1000,1  // Raido Rune
+12727,1000,1  // Berkana Rune
+12728,1000,1  // Isa Rune
+12730,1000,1  // Uruz Rune
+12733,1000,1  // Hagalaz Rune
+22540,1000,1  // Lux Anima Rune
 
 // Arch Bishop
-12333,200,1  // Ancilla set to 200
+12333,100,1  // Ancilla set to 100
 

@@ -111,7 +111,9 @@
 12279,3500 // Undead Scroll 3.5s
 14648,5000 // PP Up 5s
 14649,5000 // Guyak Pudding 1hr 5s
+12290,5000 // Mysterious Can
 14650,5000,SC_REUSE_LIMIT_A // Budget Nutriboost 5s
 14651,5000,SC_REUSE_LIMIT_A // Nutriboost Lite 5s
 14646,5000,SC_REUSE_LIMIT_A // Nutriboost 5s
 14647,5000,SC_REUSE_LIMIT_A // Nutriboost PLUS 5s
+11548,100 // White Siege Potion

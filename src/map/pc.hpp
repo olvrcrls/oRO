@@ -322,6 +322,9 @@ struct map_session_data {
 		unsigned int bg_afk : 1; // Moved here to reduce searchs
 		unsigned int only_walk : 1; // [Zephyrus] Block Skills and Item usage to a player
 		unsigned int block_action : 10;
+		short packet_filter; // [Andie] Packet Filter
+		unsigned int sp_skill_check_double : 1; // [Andie] Skill Spam Protection to check if double casted
+		unsigned int sp_skill_check_flood : 1; // [Andie] Skill Spam Protection to check flood of cast
 	} state;
 	struct {
 		unsigned char no_weapon_damage, no_magic_damage, no_misc_damage;
@@ -406,6 +409,14 @@ struct map_session_data {
 	t_tick cansendmail_tick; // [Mail System Flood Protection]
 	t_tick ks_floodprotect_tick; // [Kill Steal Protection]
 	t_tick equipswitch_tick; // Equip switch
+	 // Skill Spam Protection
+	t_tick canskill_tick2;
+	t_tick temp_tick_skill1;
+	t_tick temp_tick_skill2;
+	t_tick temp_tick_skill3;
+	t_tick castskill_tick;
+	int spam_count;
+	int64 last_skill;
 
 	struct s_item_delay {
 		unsigned short nameid;
@@ -672,6 +683,7 @@ struct map_session_data {
 	struct battleground_data *bmaster_flag;
 	struct queue_data *qd;
 	unsigned short bg_team;
+	unsigned short bg_kills;
 
 #ifdef SECURE_NPCTIMEOUT
 	/**
@@ -1311,6 +1323,11 @@ TIMER_FUNC(map_day_timer); // by [yor]
 TIMER_FUNC(map_night_timer); // by [yor]
 
 int pc_update_last_action(struct map_session_data *sd, int type, enum idletime_option idle_option);
+
+// WoE Ranking Stats
+void pc_record_damage(struct block_list* src, struct block_list* dst, int damage);
+void pc_record_maxdamage(struct block_list* src, struct block_list* dst, int damage);
+void pc_record_mobkills(struct map_session_data* sd, struct mob_data* md);
 
 // Rental System
 void pc_inventory_rentals(struct map_session_data *sd);

@@ -261,3 +261,6 @@ com_d02_i	mapflag	nomemo
 // Star Emperor Job Change
 star_frst	mapflag	nomemo
 star_in	mapflag	nomemo
+
+// Para Market
+paramk	mapflag	nomemo

@@ -1,0 +1,401 @@
+// https://bbb.hidden-street.net/party-quest/ludibrium-maze/stage-1
+
+prontera,155,181,4	script	Pietri#LMPQ_Register	4_M_PIERROT,{
+	doevent "lmpq_main::OnRegister";
+}
+
+new_zone04,100,29,4	script	Pietri#LMPQ	4_M_PIERROT,{
+	// changecamera(424, 42, -31);
+	if (strnpcinfo(2) == "LMPQ") {
+		doevent "lmpq_main::OnTalk";
+	}
+	else {
+		sscanf(strnpcinfo(2), "%d-%d", .@room, .@portal);
+		mes "^0055FF[ "+strnpcinfo(1)+" ]^000000";
+		mes "You're currently at Room #"+.@room;
+		mes " ";
+		mes " ";
+		mes "^777777Now you have to decide. Which portals will lead you to Room 16?^000000";
+		close;
+	}
+	end;
+	
+	OnTouch:
+		sscanf(strnpcinfo(2), "%d-%d", .@room, .@portal);
+		if (.@portal == 1) {
+			.@room = (.@room + 4) % 16;
+		}
+		else if (.@portal == 2) {
+			.@room = (.@room + 7) % 16;
+		}
+		else if (.@portal == 3) {
+			.@room = (.@room - 3) % 16;
+			if (.@room < 0) 
+				.@room = 16 + .@room;
+		}
+		else {
+			showscript "Invalid Portal#"+strnpcinfo(2);
+			end;
+		}
+		.@room = (.@room % 16);
+		if (.@room == 0) {
+			if (!getmapxy(.@map$, .@x, .@y, UNITTYPE_NPC, "Pietri#LMPQ")) {
+				warp .@map$, .@x, .@y - rand(5, 10);
+			}
+		}
+		else if (!getmapxy(.@map$, .@x, .@y, UNITTYPE_NPC, "Pietri#"+.@room+"-2")) {
+			warp .@map$, .@x, .@y + rand(5, 15);
+			showscript "<LMPQ> You entered Room #"+.@room;
+		}
+		else {
+			showscript "Invalid Portal#"+strnpcinfo(2);
+		}
+		end;
+		
+	OnLMPQEnable:
+		sscanf(strnpcinfo(2), "%d-%d", .@room, .@portal);
+		if (.@room > 0 && .@portal == 0) {
+			delwaitingroom;
+			waitingroom "LMPQ Room # "+.@room, 0;
+		}
+		end;
+		
+	OnLMPQDisable:
+		delwaitingroom;
+		end;
+}
+
+-	script	Pietri::lmpq_main	-1,{
+	
+	OnInit:
+		// ticket ItemID + amount
+		.nameid = 512;
+		.amount = 100;
+		// bonus EXP given for each tickets
+		.exp_per_item = 50;
+		// Quest duration (minute)
+		.duration = 15;
+		// Required party member
+		.min_pt_member = 0;
+		
+		// Announcements within the map.
+		setarray .announce$,
+			"The objective of this party quest is to collect at least "+.amount+"x "+getitemname(.nameid)+" by killing monsters.",
+			"Bring the items to Pietri who will be waiting for you all at the last room (henceforth known as Room 16).",
+			"Navigating through the maze needs a firm foundation of how the rooms operate.",
+			"Each room of the maze consists of 3 portals (with the exception of Room 16).",
+			"Each type of monster drops a certain amount of tickets.",
+			"The more passes you have, the more experience points you will obtain at the end of the PQ.",
+			"Its absolutely vital for party members to follow the party leaders instructions so that all of you will not be lost.",
+			"Once you reach Room 16 with the tickets, talk to the NPC Pietri.",
+			"On exiting this PQ, you will be given experience points (based on the number of tickets you've obtained) and prizes.",
+			"That's all information for you all. Get ready, LMPQ shall be starting now...";
+		.announce_size = getarraysize(.announce$);
+		
+		getmapxy(.map$, .@x, .@y, UNITTYPE_NPC, "Pietri#LMPQ");
+		setmapflag .map$, mf_noteleport;
+		setmapflag .map$, mf_nowarp;
+		setmapflag .map$, mf_nowarpto;
+		setmapflag .map$, mf_nobranch;
+		setmapflag .map$, mf_nosave;
+		setmapflag .map$, mf_nomemo;
+		setmapflag .map$, mf_nomobloot;
+		setmapflag .map$, mf_nomvploot;
+		
+		getmapxy(.@map$, .@x, .@y, UNITTYPE_NPC, "Pietri#LMPQ_Register");
+		mapwarp .map$, .@map$, .@x, .@y;
+		
+		// bindatcmd("lmpq", strnpcinfo(3)+"::OnRoomWarp"); // quick access for each room.
+		end;
+		
+	OnRoomWarp:
+		if (getgmlevel() >= 99){
+			.@room = atoi(.@atcmd_parameters$[0]);
+			callsub(L_Warp, .@room);
+		}
+		end;
+	
+	L_Warp:
+		.@room = getarg(0, 0);
+		if (!getmapxy(.@map$, .@x, .@y, UNITTYPE_NPC, "Pietri#"+.@room+"-2")) {
+			warp .@map$, .@x, .@y + 15;
+		}
+		else {
+			showscript "Invalid Portal#"+.@room;
+		}
+		return;
+		
+	OnRegister:
+		.@party_id = getcharid(1);
+		.@is_leader = (getcharid(0) == getpartyleader(.@party_id, 2));
+		
+		mes "^0055FF[ "+strnpcinfo(1)+" ]^000000";
+		if (.status || getmapusers(.map$) > 0) {
+			mes "Sorry, currently another party are currently challenging the party quest now.";
+			mes "Try again later.";
+		}
+		else if (!.@is_leader) {
+			mes "You're not party leader.";
+		}
+		else if (.min_pt_member > 0 && !instance_check_party(.@party_id, .min_pt_member)) {
+			mes "Sorry, we required at least "+.min_pt_member+" online party members to participate this party quest.";
+			mes "Try again later.";
+		}
+		else {
+			.party_id = .@party_id;
+			.status = 1;
+			mes "Your party has successfully registered for the Party Quest.";
+			close2;
+			donpcevent strnpcinfo(3)+"::OnStart";
+			end;
+		}
+		close;
+		
+	OnTalk:
+		// changecamera(424, 42, -31);
+		.@party_id = getcharid(1);
+		.@is_leader = (getcharid(0) == getpartyleader(.@party_id, 2));
+		
+		mes "^0055FF[ "+strnpcinfo(1)+" ]^000000";
+		mes "Hey, I am "+strnpcinfo(1)+"...";
+		mes "Have you heard about LMPQ?";
+		next;
+		mes "^0055FF[ "+strnpcinfo(1)+" ]^000000";
+		if (.status != 1 || !.party_id) {
+			mes "Hope you enjoy the party quest. Try again next time.";
+			delitem .nameid, countitem(.nameid);
+			close2;
+			warp "SavePoint", 0, 0;
+			end;
+		}
+		else if (!.@is_leader) {
+			mes "You're not party leader.";
+		}
+		else if (countitem(.nameid) < .amount) {
+			mes "You're required to collect "+.amount+"x "+getitemname(.nameid)+" to clear the Party Quest.";
+		}
+		else {
+			.status = 2;
+			mes "Great! Your party manage to complete the task given, hence the LMPQ is done here!";
+			.@count = countitem(.nameid);
+			delitem .nameid, .@count;
+			close2;
+			getmapxy(.@map$, .@x, .@y, UNITTYPE_NPC, "Pietri#LMPQ_Register");
+			getpartymember .@party_id, 2;
+			.@size = $@partymembercount;
+			copyarray(.@aid, $@partymemberaid, .@size);
+			for (.@i = 0; .@i < .@size; .@i++) {
+				if (attachrid(.@aid[.@i])) {
+					if (strcharinfo(3) == .map$) {
+						dispbottom "<SYSTEM> Your team completed LMPQ by turning-in "+.@count+"x "+getitemname(.nameid);
+						getexp((.exp_per_item * .@count), (.exp_per_item * .@count));
+						
+						// Reward (if any)
+						if (.@count < 100) { // submit < 100 tickets.
+							getitem 512, 10;
+						}
+						else if (.@count < 200) { // submit < 200 tickets.
+							getitem 512, 10;
+						}
+						else { // submit more than 200 tickets.
+							getitem 512, 30;
+						}
+						
+						warp .@map$, .@x, .@y;
+					}
+					detachrid;
+				}
+			}
+			awake strnpcinfo(3);
+			end;
+		}
+		close;
+		
+	OnStart:
+		if (.status == 1) {
+			killmonsterall(.map$); 
+			if (.party_id > 0) {
+				.@room = rand(1, 15);
+				getpartymember .party_id, 2;
+				.@size = $@partymembercount;
+				copyarray(.@aid, $@partymemberaid, .@size);
+				for (.@i = 0; .@i < .@size; .@i++) {
+					if (attachrid(.@aid[.@i])) {
+						delitem .nameid, countitem(.nameid);
+						callsub(L_Warp, .@room);
+						detachrid;
+					}
+				}
+				sleep 5000;
+				donpcevent "::OnLMPQEnable";
+				// announce
+				for (.@i = 0; .@i < .announce_size; .@i++) {
+					mapannounce .map$, "<SYSTEM> " + .announce$[.@i], bc_map;
+					sleep 500;
+				}
+				donpcevent strnpcinfo(3)+"::OnSummon";
+				
+				sleep (.duration * 60000);
+				
+				// time's out, no winner.
+				if (.status == 1) {
+					mapannounce .map$, "<SYSTEM> Time's UP, it seem like your party failed to complete this quest.", bc_map;
+					sleep 5000;
+				}
+			}
+			.party_id = 0;
+			.status = 0;
+			mapwarp .map$, .map$, 100, 18;
+			donpcevent "::OnLMPQDisable";
+			killmonsterall(.map$); 
+		}
+		end;
+		
+	L_OnSummon:
+		.@x1 = getarg(0, 0);
+		.@y1 = getarg(1, 0);
+		.@x2 = getarg(2, 0);
+		.@y2 = getarg(3, 0);
+		.@label$ = getarg(4, "");
+		
+		.@getargcount = getargcount() - 1;
+		for (.@i = 5; .@i <= .@getargcount; .@i += 2) {
+			.@mob_id = getarg(.@i, 0);
+			.@amount = getarg(.@i+1, 1);
+			if (.@mob_id > 0 && .@amount > 0)
+				areamonster .map$, .@x1, .@y1, .@x2, .@y2, "--ja--", .@mob_id, .@amount, .@label$;
+		}
+		return;
+		
+	OnSummon:
+		killmonsterall(.map$); 
+		// callsub(L_OnSummon, .@x1, .@y1, .@x2, .@y2, "event_label", <mob_id>, <amount>, ..., <mob_id>, <amount>);
+		
+		callsub(L_OnSummon, 8, 128, 31, 151, strnpcinfo(3)+"::OnKill", 1002, 10, 1613, 10); // Room 1
+		callsub(L_OnSummon, 48, 128, 71, 151, strnpcinfo(3)+"::OnKill", 1784, 10, 1113, 10); // Room 2
+		callsub(L_OnSummon, 88, 128, 111, 151, strnpcinfo(3)+"::OnKill", 1242, 10, 1031, 10); // Room 3
+		callsub(L_OnSummon, 128, 128, 151, 151, strnpcinfo(3)+"::OnKill", 1002, 10, 1113, 10); // Room 4
+		callsub(L_OnSummon, 168, 128, 191, 151, strnpcinfo(3)+"::OnKill", 1784, 10, 1031, 10); // Room 5
+		callsub(L_OnSummon, 8, 88, 31, 111, strnpcinfo(3)+"::OnKill", 1242, 10, 1113, 10); // Room 6
+		callsub(L_OnSummon, 48, 88, 71, 111, strnpcinfo(3)+"::OnKill", 1002, 10, 1613, 10); // Room 7
+		callsub(L_OnSummon, 88, 88, 111, 111, strnpcinfo(3)+"::OnKill", 1784, 10, 1113, 10); // Room 8
+		callsub(L_OnSummon, 128, 88, 151, 111, strnpcinfo(3)+"::OnKill", 1242, 10, 1031, 10); // Room 9
+		callsub(L_OnSummon, 168, 88, 191, 111, strnpcinfo(3)+"::OnKill", 1002, 10, 1113, 10); // Room 10
+		callsub(L_OnSummon, 8, 48, 31, 71, strnpcinfo(3)+"::OnKill", 1784, 10, 1031, 10); // Room 11
+		
+		// special
+		callsub(L_OnSummon, 8, 88, 31, 111, strnpcinfo(3)+"::OnSummon2", 1902, 3); // Room 6
+		callsub(L_OnSummon, 48, 88, 71, 111, strnpcinfo(3)+"::OnSummon2", 1902, 2); // Room 7
+		end;
+		
+	OnSummon2:
+		if (.status == 1 && playerattached()) {
+			showscript "!!!";
+			sleep2 3000;
+			getmapxy(.@map$, .@x, .@y, UNITTYPE_PC);
+			callsub(L_OnSummon, .@x - 5, .@y - 5, .@x + 5, .@y + 5, strnpcinfo(3)+"::OnKill2", F_Rand(1090, 1096, 1120, 1388, 1582), rand(1,2));
+		}
+		end;
+		
+	OnKill:
+		if (.status == 1 && playerattached()) {
+			// each kill drop 1 tickets at 25% rate
+			getmapxy(.@map$, .@x, .@y, UNITTYPE_PC);
+			if (rand(100) < 25) { 
+				makeitem(.nameid, 1, .@map$, .@x + rand(-2, 2), .@y + rand(-2, 2));
+			}
+		}
+		end;
+		
+	OnKill2:
+		if (.status == 1 && playerattached()) {
+			// each kill drop random 3~5 tickets at 100% rate
+			getmapxy(.@map$, .@x, .@y, UNITTYPE_PC);
+			makeitem(.nameid, rand(3, 5), .@map$, .@x + rand(-2, 2), .@y + rand(-2, 2));
+		}
+		end;
+}
+
+// Pietri Room Portal.
+new_zone04,99,10,4	duplicate(Pietri#LMPQ)	Pietri#0-2	WARPNPC,2,2
+
+// Room's number signboard
+new_zone04,20,149,4	duplicate(Pietri#LMPQ)	Pietri#1-0	4_M_PIERROT
+new_zone04,60,149,4	duplicate(Pietri#LMPQ)	Pietri#2-0	4_M_PIERROT
+new_zone04,100,149,4	duplicate(Pietri#LMPQ)	Pietri#3-0	4_M_PIERROT
+new_zone04,140,149,4	duplicate(Pietri#LMPQ)	Pietri#4-0	4_M_PIERROT
+new_zone04,180,149,4	duplicate(Pietri#LMPQ)	Pietri#5-0	4_M_PIERROT
+
+new_zone04,20,109,4	duplicate(Pietri#LMPQ)	Pietri#6-0	4_M_PIERROT
+new_zone04,60,109,4	duplicate(Pietri#LMPQ)	Pietri#7-0	4_M_PIERROT
+new_zone04,100,109,4	duplicate(Pietri#LMPQ)	Pietri#8-0	4_M_PIERROT
+new_zone04,140,109,4	duplicate(Pietri#LMPQ)	Pietri#9-0	4_M_PIERROT
+new_zone04,180,109,4	duplicate(Pietri#LMPQ)	Pietri#10-0	4_M_PIERROT
+
+new_zone04,20,69,4	duplicate(Pietri#LMPQ)	Pietri#11-0	4_M_PIERROT
+new_zone04,60,69,4	duplicate(Pietri#LMPQ)	Pietri#12-0	4_M_PIERROT
+new_zone04,100,69,4	duplicate(Pietri#LMPQ)	Pietri#13-0	4_M_PIERROT
+new_zone04,140,69,4	duplicate(Pietri#LMPQ)	Pietri#14-0	4_M_PIERROT
+new_zone04,180,69,4	duplicate(Pietri#LMPQ)	Pietri#15-0	4_M_PIERROT
+
+// Portal of each rooms
+new_zone04,8,128,4	duplicate(Pietri#LMPQ)	Pietri#1-1	WARPNPC,2,2
+new_zone04,20,128,4	duplicate(Pietri#LMPQ)	Pietri#1-2	WARPNPC,2,2
+new_zone04,31,128,4	duplicate(Pietri#LMPQ)	Pietri#1-3	WARPNPC,2,2
+
+new_zone04,48,128,4	duplicate(Pietri#LMPQ)	Pietri#2-1	WARPNPC,2,2
+new_zone04,60,128,4	duplicate(Pietri#LMPQ)	Pietri#2-2	WARPNPC,2,2
+new_zone04,71,128,4	duplicate(Pietri#LMPQ)	Pietri#2-3	WARPNPC,2,2
+
+new_zone04,88,128,4	duplicate(Pietri#LMPQ)	Pietri#3-1	WARPNPC,2,2
+new_zone04,100,128,4	duplicate(Pietri#LMPQ)	Pietri#3-2	WARPNPC,2,2
+new_zone04,111,128,4	duplicate(Pietri#LMPQ)	Pietri#3-3	WARPNPC,2,2
+
+new_zone04,128,128,4	duplicate(Pietri#LMPQ)	Pietri#4-1	WARPNPC,2,2
+new_zone04,140,128,4	duplicate(Pietri#LMPQ)	Pietri#4-2	WARPNPC,2,2
+new_zone04,151,128,4	duplicate(Pietri#LMPQ)	Pietri#4-3	WARPNPC,2,2
+
+new_zone04,168,128,4	duplicate(Pietri#LMPQ)	Pietri#5-1	WARPNPC,2,2
+new_zone04,180,128,4	duplicate(Pietri#LMPQ)	Pietri#5-2	WARPNPC,2,2
+new_zone04,191,128,4	duplicate(Pietri#LMPQ)	Pietri#5-3	WARPNPC,2,2
+
+new_zone04,8,88,4	duplicate(Pietri#LMPQ)	Pietri#6-1	WARPNPC,2,2
+new_zone04,20,88,4	duplicate(Pietri#LMPQ)	Pietri#6-2	WARPNPC,2,2
+new_zone04,31,88,4	duplicate(Pietri#LMPQ)	Pietri#6-3	WARPNPC,2,2
+
+new_zone04,48,88,4	duplicate(Pietri#LMPQ)	Pietri#7-1	WARPNPC,2,2
+new_zone04,60,88,4	duplicate(Pietri#LMPQ)	Pietri#7-2	WARPNPC,2,2
+new_zone04,71,88,4	duplicate(Pietri#LMPQ)	Pietri#7-3	WARPNPC,2,2
+
+new_zone04,88,88,4	duplicate(Pietri#LMPQ)	Pietri#8-1	WARPNPC,2,2
+new_zone04,100,88,4	duplicate(Pietri#LMPQ)	Pietri#8-2	WARPNPC,2,2
+new_zone04,111,88,4	duplicate(Pietri#LMPQ)	Pietri#8-3	WARPNPC,2,2
+
+new_zone04,128,88,4	duplicate(Pietri#LMPQ)	Pietri#9-1	WARPNPC,2,2
+new_zone04,140,88,4	duplicate(Pietri#LMPQ)	Pietri#9-2	WARPNPC,2,2
+new_zone04,151,88,4	duplicate(Pietri#LMPQ)	Pietri#9-3	WARPNPC,2,2
+
+new_zone04,168,88,4	duplicate(Pietri#LMPQ)	Pietri#10-1	WARPNPC,2,2
+new_zone04,180,88,4	duplicate(Pietri#LMPQ)	Pietri#10-2	WARPNPC,2,2
+new_zone04,191,88,4	duplicate(Pietri#LMPQ)	Pietri#10-3	WARPNPC,2,2
+
+new_zone04,8,48,4	duplicate(Pietri#LMPQ)	Pietri#11-1	WARPNPC,2,2
+new_zone04,20,48,4	duplicate(Pietri#LMPQ)	Pietri#11-2	WARPNPC,2,2
+new_zone04,31,48,4	duplicate(Pietri#LMPQ)	Pietri#11-3	WARPNPC,2,2
+
+new_zone04,48,48,4	duplicate(Pietri#LMPQ)	Pietri#12-1	WARPNPC,2,2
+new_zone04,60,48,4	duplicate(Pietri#LMPQ)	Pietri#12-2	WARPNPC,2,2
+new_zone04,71,48,4	duplicate(Pietri#LMPQ)	Pietri#12-3	WARPNPC,2,2
+
+new_zone04,88,48,4	duplicate(Pietri#LMPQ)	Pietri#13-1	WARPNPC,2,2
+new_zone04,100,48,4	duplicate(Pietri#LMPQ)	Pietri#13-2	WARPNPC,2,2
+new_zone04,111,48,4	duplicate(Pietri#LMPQ)	Pietri#13-3	WARPNPC,2,2
+
+new_zone04,128,48,4	duplicate(Pietri#LMPQ)	Pietri#14-1	WARPNPC,2,2
+new_zone04,140,48,4	duplicate(Pietri#LMPQ)	Pietri#14-2	WARPNPC,2,2
+new_zone04,151,48,4	duplicate(Pietri#LMPQ)	Pietri#14-3	WARPNPC,2,2
+
+new_zone04,168,48,4	duplicate(Pietri#LMPQ)	Pietri#15-1	WARPNPC,2,2
+new_zone04,180,48,4	duplicate(Pietri#LMPQ)	Pietri#15-2	WARPNPC,2,2
+new_zone04,191,48,4	duplicate(Pietri#LMPQ)	Pietri#15-3	WARPNPC,2,2
+

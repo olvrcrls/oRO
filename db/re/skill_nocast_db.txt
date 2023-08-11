@@ -36,12 +36,32 @@
 2303,1	//SC_BLOODYLUST
 219,1	//RG_INTIMIDATE
 489,1	//TAROTCARD
-421,1	//TK_JUMPKICK
+//421,1	//TK_JUMPKICK
+2383,1	//MI_HARMONIZE
+290,1 //ABRACADABRA
+328,1 //SLOW GRACE
+
+// Extended Skills that are disabled
+3025,1 //SHADOW WARRIOR
+2596,1 //SP_SOULGOLEM
+2598,1 //SP_FALCONSOUL
+3026,1 //Distorted Crescent
+3022,1 // 16th Night
+2599,1 // SP_SOULFAIRY
 
 //----------------------------------------------------------------------------
 // PVP
 //----------------------------------------------------------------------------
 2300,2	//SC_DIMENSIONDOOR
+290,2 //ABRACADABRA
+
+// Extended Skills that are disabled
+3025,2 //SHADOW WARRIOR
+2596,2 //SP_SOULGOLEM
+2598,2 //SP_FALCONSOUL
+3026,2 //Distorted Crescent
+3022,2 // 16th Night
+2599,2 // SP_SOULFAIRY
 
 //----------------------------------------------------------------------------
 // GVG
@@ -51,7 +71,7 @@
 87,4	//WZ_ICEWALL
 5052,4	//SU_SPIRITOFLIFE
 5054,4	//SU_SPIRITOFLAND
-5056,4	//SU_SPIRITOFSEA
+//5056,4	//SU_SPIRITOFSEA
 150,4	//TF_BACKSLIDING
 219,4	//RG_INTIMIDATE
 336,4	//WE_CALLPARTNER
@@ -67,6 +87,17 @@
 2300,4	//SC_DIMENSIONDOOR
 5063,4	//WE_CALLALLFAMILY
 462,4	//SL_KAIZEL
+290,4 //ABRACADABRA
+40,4 //MC_IDENTIFY
+142,4 //NC_FIRSTAID
+
+// Extended Skills that are disabled
+2596,4 //SP_SOULGOLEM
+2598,4 //SP_FALCONSOUL
+3026,4 //Distorted Crescent
+3022,4 // 16th Night
+3025,4 //SHADOW Warrior
+2599,4 // SP_SOULFAIRY
 
 //----------------------------------------------------------------------------
 // Battlegrounds
@@ -108,7 +139,7 @@
 // 5023,8	//SU_LOPE
 5052,8	//SU_SPIRITOFLIFE
 5054,8	//SU_SPIRITOFLAND
-5056,8	//SU_SPIRITOFSEA
+//5056,8	//SU_SPIRITOFSEA
 462,8	//SL_KAIZEL
 
 //----------------------------------------------------------------------------

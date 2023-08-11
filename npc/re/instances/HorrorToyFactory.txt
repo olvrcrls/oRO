@@ -700,59 +700,48 @@ OnStart:
 			close;
 		}
 		close2;
-		setpcblock PCBLOCK_NPC, true;
+		setpcblock PCBLOCK_NPC, false;
 		switch(.@num) {
 		case 1:
 			npctalk "Worker: Ah! Grandpa? He's a real good man. He oiled us everyday and cleaned the dust very often.";
-			sleep2 3000;
 			npctalk "Worker: I wish he wouldn't pass away. Ah... Ahah... I feel better.";
 			break;
 		case 2:
 			npctalk "Worker: Did Kimi kill the craftsman grandpa? Who said that? That's not true. Kimi was going to save him!";
-			sleep2 3000;
 			npctalk "Worker: Ah... B.. By the way, why my does my body become...";
 			break;
 		case 3:
 			npctalk "Worker: He had a chronic cardiac disease, but it was so sudden when it started and he died. Kimi found him and gave him first aid, but..";
-			sleep2 3000;
 			npctalk "Worker: Ah.. Did you do something to me? I feel strange...";
 			break;
 		case 4:
 			npctalk "Worker: Kimi didn't move at all for sometime and sat down like ordinary dolls.";
-			sleep2 3000;
 			npctalk "Worker: She was about to fly her soul forever... Like me now... Oh, my... What happened to me?";
 			break;
 		case 5:
 			npctalk "Worker: Oh, Kimi.. My dear.. She thought the doll maker passed away because she startled him.";
-			sleep2 3000;
 			npctalk "Worker: Grandpa was just very pleased that Kimi was moving..";
 			break;
 		case 6:
 			npctalk "Worker: He could see a living doll for a while. That's what Kimi first did.";
-			sleep2 3000;
 			npctalk "Worker: And what she first saw was his death. What a misery.";
 			break;
 		case 7:
 			npctalk "Worker: Kimi was able to hear the Grandpa's voice and feel before she was indwelled.";
-			sleep2 3000;
 			npctalk "Worker: Perhaps Grandpa's affection made her move and become alive. Ahah.. I'm sleepy..";
 			break;
 		case 8:
 			npctalk "Worker: Grandpa was a good man! Pity on Kimi! Kimi loved Grandpa! But Grandpa died. I'm sad!";
-			sleep2 3000;
 			break;
 		case 9:
 			npctalk "Worker: He was so amazed to see Kimi's opening eyes and his heart... It became like that.";
-			sleep2 3000;
 			npctalk "Worker: Anyhow, why my is my body... It's likely to float in the air.... Something strange.";
 			break;
 		case 10:
 			npctalk "Worker: Kimi didn't hurt Grandpa! Kimi's wanted to save Grandpa! People are scared of Kimi, but Kimi is kind! Kimi is a good girl!";
-			sleep2 3000;
 			npctalk "Worker: Grandpa... I miss him. Grandpa, Grandpa...";
 			break;
 		}
-		sleep2 3000;
 		disablenpc instance_npcname( strnpcinfo(0) );
 		if ('worker[.@num] == 0) {
 			'worker[.@num] = 1;

@@ -27,6 +27,7 @@ bg_kvm,148,53,1	script	Therapist in battle#2	95,{
 	mes "You can be free from pain.";
 	specialeffect2 312;
 	percentheal 100,100;
+	repairall;
 	close2;
 	openstorage;
 	end;

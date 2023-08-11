@@ -1,29 +1,115 @@
+//-------------------------------------------
+// Mob kill bonus
+//------------------------------------------
+// This script grants a global item drop
+// whenever a player kill any mob on the map
+//------------------------------------------
+// Includes MVP hunting with reward system
+// and party system where rewards scale
+// the more the party members are.
+//------------------------------------------
+// [Andie]
+//------------------------------------------
+
 -	script	MobKillBonus	-1,{
 	OnNPCKillEvent:
 		// if (rand(99) > 9 || strnpcinfo(3) != "prt_fild01") end; // 10% chance of success, only works on prt_fild01
 
-		set .@blank_rng,rand(1,200);
-		set .@pod_rng,rand(1,1500);
-
-		if (.@pod_rng == 1) {
-			getitem 7179,1;
-		}
+		// We RNG count whenever a player kills a mob on the map then we provide them a bonus drop.
+		set .@blank_rng,rand(1,300);
 
 		if (.@blank_rng > 5 && .@blank_rng <= 15) {
-			getitem 6187,1;
+			getitem .bonus_drop_item_id,1;
 			end;
 		}
 		else if (.@blank_rng <= 5 && .@blank_rng > 1) {
-			getitem 6187,2;
+			getitem .bonus_drop_item_id,2;
 			end;
 		}
 		else if (.@blank_rng == 1) {
-			getitem 6187,5;
+			getitem .bonus_drop_item_id,5;
 			end;
 		}
 		else if (.@blank_rng == 69) {
-			getitem 6187,10;
+			getitem .bonus_drop_item_id,10;
 			end;
 		}
-	}
-	
+
+		// Evaluating if the mob killed is an MVP then perform the Loot Box system.
+		if (getmonsterinfo(killedrid, MOB_MVPEXP)) {
+			goto Reward_MVP_Kill;
+			end;
+		} else end; // if the mob killed is a MVP.
+
+	Reward_MVP_Kill:
+		if (compare(strcharinfo(3), "@")) {
+			dispbottom "You are on an instance map. There will be no MVP kill rewards given. This is only reserved for open-field MVP monsters.";
+			end;
+		} else {
+			// Getting all the party members if the character is in a party
+			if (getcharid(1) != 0) {
+				getpartymember getcharid(1), 1;
+				getpartymember getcharid(1), 2;
+				.@total_members = $@partymembercount;
+				.@mvp_map$ = strcharinfo(3); // The killer's map
+				if (.@total_members > 1)
+					.@loot_qty = rand(1,.@total_members); // RNG if that the players can receive up to X loot boxes maximum each.
+				else
+					.@loot_qty = 1;
+
+				set .@check_ip_array$[0],null;
+
+
+				// Evaluate the offline members, if there are offline members then we will reduce the reward amount.
+				for (.@i = 0; .@i < .@total_members; .@i = .@i + 1) {
+					.@current_member_account_id = $@partymemberaid[.@i];
+					.@current_member_char_id = $@partymembercid[.@i];
+					if (! isloggedin(.@current_member_account_id, .@current_member_char_id)) {
+						// We will reduce the loot quantity since the member is from a multiple account on the same IP or the member is offline
+						.@loot_qty -= 1;
+						if (.@loot_qty < 1)
+							.@loot_qty = 1;
+						continue;
+					}
+				} // for
+
+				for(.@i = 0; .@i < .@total_members; .@i = .@i + 1) {
+					.@current_member_account_id = $@partymemberaid[.@i];
+					.@current_member_char_id = $@partymembercid[.@i];
+					.@current_member_ip$ = getcharip(.@current_member_char_id);
+					if (.ip_restriction && .@current_member_char_id) {
+						if (inarray(.@check_ip_array$[0], .@current_member_ip$) == -1) {
+							if (strcharinfo(3,.@current_member_char_id) == .@mvp_map$) {
+								dispbottom "You have killed a MVP monster. Here's spoils of war reward for your effort.",0x7289DA,.@current_member_char_id;
+								set .@check_ip_array$[.@i],.@current_member_ip$;
+								getitem .mvp_loot_box_id,.@loot_qty,.@current_member_account_id;	
+							} else {
+								.@loot_qty -= 1;
+								if (.@loot_qty < 1)
+									.@loot_qty = 1;
+								dispbottom "You are not on the same map of the MVP. Leeching is not allowed.",0xFF2000,.@current_member_char_id;
+							}
+						} else {
+							dispbottom "The system detected that you're running multiple accounts or with offline members to get multiple rewards. This method is forbidden.",0xFF2000,.@current_member_char_id;
+						}
+					} else {
+						if (strcharinfo(3,.@current_member_char_id) == .@mvp_map$) {
+							dispbottom "You have killed a MVP monster. Here's spoils of war reward for your effort.",0x7289DA,.@current_member_char_id;
+							getitem .mvp_loot_box_id,.@loot_qty,.@current_member_account_id;
+						} else {
+							dispbottom "You are not on the MVP's map presence. Leeching is not allowed.",0xFF2000,.@current_member_char_id;
+							continue;
+						}
+					} // if IP restricted
+				} // for
+			} else {
+				dispbottom "You have killed a MVP monster. Here's spoils of war reward for your effort.",0x7289DA;
+				getitem .mvp_loot_box_id,1;
+			} // check if the player is in a party
+		} // if else
+
+	OnInit:
+		.ip_restriction = 1; // Set 1 to enable restriction, 0 to disable.
+		.bonus_drop_item_id = 6187; // Blank Card
+		.mvp_loot_box_id = 14653; // Inberun's Gift
+}

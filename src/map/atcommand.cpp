@@ -2004,7 +2004,11 @@ ACMD_FUNC(go)
 		{ MAP_LASAGNA,     193, 182 },  // 36=Lasagna
 		{ MAP_VERUS,       122, 250 }, // 37 = Verus
 		{ MAP_BG,		   154, 150 }, // 38 = BG
-		{ MAP_JAIL,         23,  61 }  // 39=Prison
+		{ MAP_JAIL,         23,  61 },  // 39=Prison
+		{ MAP_ASKALD,         64,  145 },  // 40=Askald Supplies
+		{ MAP_ASKALD,         32,  161 },  // 41=Askald Enchants
+		{ MAP_ASKALD,         54,  118 },  // 42=Askald Refine
+		{ MAP_ASKALD,         203,  136 }  // 43=Askald Quest
 	};
 
 	nullpo_retr(-1, sd);
@@ -2132,7 +2136,19 @@ ACMD_FUNC(go)
 		town = 37;
 	}  else if (strncmp(map_name, "bg", 2) == 0) {
 		town = 38;
-	}
+	} else if (strncmp(map_name, "supply", 3) == 0) {
+		town = 40;
+	} else if (strncmp(map_name, "supplies", 3) == 0) {
+		town = 40;
+	} else if (strncmp(map_name, "mats", 3) == 0) {
+		town = 41;
+	} else if (strncmp(map_name, "enchant", 3) == 0) {
+		town = 41;
+	} else if (strncmp(map_name, "refine", 3) == 0) {
+		town = 42;
+	} else if (strncmp(map_name, "quest", 3) == 0) {
+		town = 43;
+	} 
 
 	if (town >= 0 && town < ARRAYLENGTH(data))
 	{
@@ -8803,6 +8819,50 @@ ACMD_FUNC(noask)
 	return 0;
 }
 
+
+/**
+ * Packet Filter
+ *
+*/
+ACMD_FUNC(packetfilter)
+{
+	nullpo_retr(-1, sd);
+	
+	if (!message || !*message) {
+		clif_displaymessage(sd->fd,"<<----- Packet Filtering Usage ----->>");
+		clif_displaymessage(sd->fd,".   @packetfilter <options>");
+		clif_displaymessage(sd->fd,".   C / chats: To filter global chat messages.");
+		clif_displaymessage(sd->fd,".   I / items: To filter item usage.");
+		clif_displaymessage(sd->fd,".   A / all: Apply all available filters.");
+		clif_displaymessage(sd->fd,".   - Samples");
+		clif_displaymessage(sd->fd,".   @packetfilter CI : To filter the 2 options.");
+		clif_displaymessage(sd->fd,".   @packetfilter off : To turn packet filter off.");
+	} else if ( !strcmpi(message, "off")) {
+		sd->state.packet_filter = 0;
+		clif_displaymessage(sd->fd,"<< Packet Filter is turned OFF >>");
+	} else {
+		if (strstr(message, "C") || strstr(message, "c") || strstr(message, "chats") || strstr(message, "CHATS")) {
+			sd->state.packet_filter |= 1;
+			
+		}
+
+		if (strstr(message, "I") || strstr(message, "i") || strstr(message, "items") || strstr(message, "ITEMS")) {
+			sd->state.packet_filter |= 2;
+		}
+
+		if (strstr(message,"A") || strstr(message, "a") || strstr(message,"all") || strstr(message, "ALL")) {
+			sd->state.packet_filter |= 1;
+			sd->state.packet_filter |= 2;
+		}
+
+		sprintf(atcmd_output,"<< Packet Filtering >>\n Chat: %s \n Items: %s", (sd->state.packet_filter&1) ? "ON" : "OFF", (sd->state.packet_filter&2) ? "ON" : "OFF");
+		clif_displaymessage(sd->fd, atcmd_output);
+	}
+
+	return 0;
+}
+
+
 /*=====================================
  * Send a @request message to all GMs of lowest_gm_level.
  * Usage: @request <petition>
@@ -10470,10 +10530,10 @@ ACMD_FUNC(partybuff)
 		clif_displaymessage(fd, msg_txt(sd, 1073)); // Displaying party member's buffs enabled.
 		clif_displaymessage(fd, "You will now receive party buff information:");
 		clif_displaymessage(fd, "F = Full Chemical Protection");
-		clif_displaymessage(fd, "+ = Blessing, - = Agility Up, \u00b1 = Blessing and Agility Up");
-		clif_displaymessage(fd, "$ = Sacrament, ? = Aspersio");
-		clif_displaymessage(fd, "x = Expiatio, D = Devotion");
-		clif_displaymessage(fd, "P = Pneuma, ! = Striking");
+		clif_displaymessage(fd, "+ = Blessing, - = Agility Up, @ = Blessing and Agility Up");
+		clif_displaymessage(fd, "$ = Sacrament, x = Expiatio");
+		clif_displaymessage(fd, "D = Devotion, ! = Striking");
+		//clif_displaymessage(fd, "P = Pneuma, ! = Striking");
 	}
 
 	clif_party_info(p, sd);
@@ -10736,6 +10796,7 @@ void atcommand_basecommands(void) {
 		ACMD_DEF(tonpc),
 		ACMD_DEF(commands),
 		ACMD_DEF(noask),
+		ACMD_DEF(packetfilter),
 		ACMD_DEF(request),
 		ACMD_DEF(homlevel),
 		ACMD_DEF(homevolution),

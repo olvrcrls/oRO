@@ -3002,6 +3002,8 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 
 			if (sd->md && src && src->type == BL_MER && mob_db(md->mob_id)->lv > sd->status.base_level / 2)
 				mercenary_kills(sd->md);
+
+			pc_record_mobkills(sd, md); //Ranking data [Wazaby]
 		}
 
 		if( md->npc_event[0] && !md->state.npc_killmonster ) {
@@ -3294,7 +3296,7 @@ void mob_heal(struct mob_data *md,unsigned int heal)
 	if (battle_config.show_mob_info&3)
 		clif_name_area(&md->bl);
 #if PACKETVER >= 20120404
-	if (battle_config.monster_hp_bars_info && !map_getmapflag(md->bl.m, MF_HIDEMOBHPBAR)) {
+	//if (battle_config.monster_hp_bars_info && !map_getmapflag(md->bl.m, MF_HIDEMOBHPBAR)) {
 		int i;
 		for(i = 0; i < DAMAGELOG_SIZE; i++)// must show hp bar to all char who already hit the mob.
 			if( md->dmglog[i].id ) {
@@ -3302,7 +3304,7 @@ void mob_heal(struct mob_data *md,unsigned int heal)
 				if( sd && check_distance_bl(&md->bl, &sd->bl, AREA_SIZE) ) // check if in range
 					clif_monster_hp_bar(md, sd->fd);
 			}
-	}
+	//}
 #endif
 }
 

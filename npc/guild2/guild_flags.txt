@@ -106,4 +106,4 @@ OnRecvCastlear05:
 
 
 askald,138,103,4	duplicate(Mardol)	Mardol#askald_ban	722
-askald,118,103,4	duplicate(Himinn)	Himinn#askald_vib	722
+askald,118,103,4	duplicate(Viblainn)	Viblainn#askald_vib	722

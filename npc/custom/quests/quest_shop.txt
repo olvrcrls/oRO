@@ -26,7 +26,7 @@
 //	callfunc "qshop"{,<shop ID>{,<shop ID>{,...}}};
 //  ADD YOUR NPC HERE
 //============================================================
-askald,209,142,4	script	Collector#1	856,{ callfunc "qshop"; }
+askald,209,142,4	script	Collector#1	856,{ callfunc "qshop",1,2,3,4; }
 // prontera,165,203,6	script	Quest Shop#2	998,{ callfunc "qshop",1,2; }	// call the shop 1 and 2 defined below
 // etc.. Add your Shop NPCs 'Quest Shop#XXX' here
 //============================================================
@@ -69,7 +69,8 @@ OnInit:
 
 	setarray .Shops$[1],"Ores",	// HD Oridecon,Elunium,Bradium,Carnium,E.Ori,E.Elu
 		"Headgears",	// Shop Named 1
-		"Shields"; // Shop Named 2
+		"Shields", // Shop Named 2
+		"Battlegrounds";  // Battlegrounds
 
 // -----------------------------------------------------------
 //  Quest items -- do NOT use a reward item more than once!
@@ -96,6 +97,11 @@ OnInit:
 
 // Shields
 	Add(3,2190,1,200000000,0,7291,250,7297,250,7289,250,7754,5);
+
+
+// Battlegrounds
+	Add(4,14658,1,0,0,5135,1,7179,500,7773,10000,6187,10000,6376,500,7829,5000);
+	Add(4,14659,1,0,0,14658,1,7179,250,7773,10000,6187,5000,6376,250,7829,2500);
 
 // -----------------------------------------------------------
 
@@ -246,4 +252,3 @@ function	script	qshop	{
 -	shop	qshop2	-1,909:-1
 -	shop	qshop3	-1,909:-1
 -	shop	qshop4	-1,909:-1
--	shop	qshop5	-1,909:-1

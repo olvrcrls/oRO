@@ -96,6 +96,27 @@ static inline int itemtype(unsigned short nameid) {
 	return ( type == IT_PETEGG ) ? IT_ARMOR : type;
 }
 
+// TODO: doc
+static inline uint16 client_index(uint16 server_index) {
+	return server_index + 2;
+}
+
+static inline uint16 server_index(uint16 client_index) {
+	return client_index - 2;
+}
+
+static inline uint16 client_storage_index(uint16 server_index) {
+	return server_index + 1;
+}
+
+static inline uint16 server_storage_index(uint16 client_index) {
+	return client_index - 1;
+}
+
+static inline uint32 disguised_bl_id(uint32 bl_id) {
+	// Casting to prevent a compiler warning
+	return -((int32)bl_id);
+}
 
 static inline void WBUFPOS(uint8* p, unsigned short pos, short x, short y, unsigned char dir) {
 	p += pos;
@@ -332,12 +353,22 @@ static int clif_send_sub(struct block_list *bl, va_list ap)
 	type = va_arg(ap,int);
 
 	switch(type) {
+	case AREA_CHAT_WOC:
+		if( RBUFW(buf,0) == 0x01c8 && (map_getmapflag(sd->bl.m, MF_GVG) || map_getmapflag(sd->bl.m, MF_BATTLEGROUND)) && bl != src_bl && sd->state.packet_filter&2 )
+			return 0; // Ignore other player's item usage
+			
+		if( RBUFW(buf,0) == 0x8d && (map_getmapflag(sd->bl.m, MF_GVG) || map_getmapflag(sd->bl.m, MF_BATTLEGROUND)) && sd->state.packet_filter&1 )
+			return 0; // Ignore global message
+	break;
 	case AREA_WOS:
 		if (bl == src_bl)
 			return 0;
 	break;
 	case AREA_WOC:
 		if (sd->chatID || bl == src_bl)
+			return 0;
+
+		if( RBUFW(buf,0) == 0x8d && (map_getmapflag(sd->bl.m, MF_GVG) || map_getmapflag(sd->bl.m, MF_BATTLEGROUND)) && sd->state.packet_filter&1 )
 			return 0;
 	break;
 	case AREA_WOSC:
@@ -430,10 +461,15 @@ int clif_send(const uint8* buf, int len, struct block_list* bl, enum send_target
 
 	case AREA:
 	case AREA_WOSC:
+		if( RBUFW(buf,0) == 0x8d && (map_getmapflag(sd->bl.m, MF_GVG) || map_getmapflag(sd->bl.m, MF_BATTLEGROUND)) && sd->state.packet_filter&1 )
+			return 0; // Ignore global message
+
 		if (sd && bl->prev == NULL) //Otherwise source misses the packet.[Skotlex]
 			clif_send (buf, len, bl, SELF);
 	case AREA_WOC:
 	case AREA_WOS:
+		//if( sd && RBUFW(buf,0) == 0x01c8 && (map_getmapflag(sd->bl.m, MF_GVG) || map_getmapflag(sd->bl.m, MF_BATTLEGROUND)) && sd->state.packet_filter&2 )
+		//	return 0;
 		map_foreachinallarea(clif_send_sub, bl->m, bl->x-AREA_SIZE, bl->y-AREA_SIZE, bl->x+AREA_SIZE, bl->y+AREA_SIZE,
 			BL_PC, buf, len, bl, type);
 		break;
@@ -4795,12 +4831,13 @@ void clif_getareachar_unit(struct map_session_data* sd,struct block_list *bl)
 			else if(md->special_state.size==SZ_MEDIUM)
 				clif_specialeffect_single(bl,EF_BABYBODY2,sd->fd);
 #if PACKETVER >= 20120404
-			if (battle_config.monster_hp_bars_info && !map_getmapflag(bl->m, MF_HIDEMOBHPBAR)) {
-				int i;
-				for(i = 0; i < DAMAGELOG_SIZE; i++)// must show hp bar to all char who already hit the mob.
-					if( md->dmglog[i].id == sd->status.char_id )
-						clif_monster_hp_bar(md, sd->fd);
-			}
+			//if (battle_config.monster_hp_bars_info && !map_getmapflag(bl->m, MF_HIDEMOBHPBAR)) {
+				//int i;
+				//for(i = 0; i < DAMAGELOG_SIZE; i++)// must show hp bar to all char who already hit the mob.
+				//	if( md->dmglog[i].id == sd->status.char_id )
+				if (md->mob_id == MOBID_EMPERIUM || md->mob_id == MOBID_GUARDIAN_STONE1 || md->mob_id == MOBID_GUARDIAN_STONE2)
+					clif_monster_hp_bar(md, sd->fd);
+			//}
 #endif
 		}
 		break;
@@ -5644,96 +5681,122 @@ void clif_skill_cooldown(struct map_session_data *sd, uint16 skill_id, t_tick ti
 /// Skill attack effect and damage.
 /// 0114 <skill id>.W <src id>.L <dst id>.L <tick>.L <src delay>.L <dst delay>.L <damage>.W <level>.W <div>.W <type>.B (ZC_NOTIFY_SKILL)
 /// 01de <skill id>.W <src id>.L <dst id>.L <tick>.L <src delay>.L <dst delay>.L <damage>.L <level>.W <div>.W <type>.B (ZC_NOTIFY_SKILL2)
-int clif_skill_damage(struct block_list *src,struct block_list *dst,t_tick tick,int sdelay,int ddelay,int64 sdamage,int div,uint16 skill_id,uint16 skill_lv,enum e_damage_type type)
+int clif_skill_damage(struct block_list* src, struct block_list* dst, t_tick tick, int sdelay, int ddelay, int64 sdamage, int div, uint16 skill_id, uint16 skill_lv, enum e_damage_type type)
 {
 	unsigned char buf[64];
-	struct status_change *sc;
-	int damage = (int)cap_value(sdamage,INT_MIN,INT_MAX);
+	struct status_change* sc;
+	int damage = (int)cap_value(sdamage, INT_MIN, INT_MAX);
+	struct map_session_data* sd;
 
 	nullpo_ret(src);
 	nullpo_ret(dst);
 
-	type = clif_calc_delay(type,div,damage,ddelay);
+	/* WoE Stats */
+	pc_record_maxdamage(src, dst, damage);
+	sd = BL_CAST(BL_PC, src);
+	if (sd && skill_id == CR_ACIDDEMONSTRATION)
+	{
+		if (damage > 0)
+		{
+			if (sd->status.guild_id && map_allowed_woe(src->m))
+				add2limit(sd->status.wstats.acid_demostration, 1, UINT32_MAX);
+			else if (map_getmapflag(src->m, MF_BATTLEGROUND) && sd->bg_id)
+				add2limit(sd->status.bgstats.acid_demostration, 1, UINT32_MAX);
+		}
+		else
+		{
+			if (sd->status.guild_id && map_allowed_woe(src->m))
+				add2limit(sd->status.wstats.acid_demostration_fail, 1, UINT32_MAX);
+			else if (map_getmapflag(src->m, MF_BATTLEGROUND) && sd->bg_id)
+				add2limit(sd->status.bgstats.acid_demostration_fail, 1, UINT32_MAX);
+		}
+	}
 
-	if( ( sc = status_get_sc(dst) ) && sc->count ) {
-		if(sc->data[SC_HALLUCINATION] && damage)
+	type = clif_calc_delay(type, div, damage, ddelay);
+
+	if ((sc = status_get_sc(dst)) && sc->count) {
+		if (sc->data[SC_HALLUCINATION] && damage)
 			damage = clif_hallucination_damage();
 	}
 
 #if PACKETVER < 3
-	WBUFW(buf,0)=0x114;
-	WBUFW(buf,2)=skill_id;
-	WBUFL(buf,4)=src->id;
-	WBUFL(buf,8)=dst->id;
-	WBUFL(buf,12)=client_tick(tick);
-	WBUFL(buf,16)=sdelay;
-	WBUFL(buf,20)=ddelay;
+	WBUFW(buf, 0) = 0x114;
+	WBUFW(buf, 2) = skill_id;
+	WBUFL(buf, 4) = src->id;
+	WBUFL(buf, 8) = dst->id;
+	WBUFL(buf, 12) = client_tick(tick);
+	WBUFL(buf, 16) = sdelay;
+	WBUFL(buf, 20) = ddelay;
 	if (battle_config.hide_woe_damage && map_flag_gvg(src->m)) {
-		WBUFW(buf,24)=damage?div:0;
-	} else {
-		WBUFW(buf,24)=damage;
+		WBUFW(buf, 24) = damage ? div : 0;
 	}
-	WBUFW(buf,26)=skill_lv;
-	WBUFW(buf,28)=div;
-	WBUFB(buf,30)=type;
+	else {
+		WBUFW(buf, 24) = damage;
+	}
+	WBUFW(buf, 26) = skill_lv;
+	WBUFW(buf, 28) = div;
+	WBUFB(buf, 30) = type;
 	if (disguised(dst)) {
-		clif_send(buf,packet_len(0x114),dst,AREA_WOS);
-		WBUFL(buf,8)=-dst->id;
-		clif_send(buf,packet_len(0x114),dst,SELF);
-	} else
-		clif_send(buf,packet_len(0x114),dst,AREA);
+		clif_send(buf, packet_len(0x114), dst, AREA_WOS);
+		WBUFL(buf, 8) = disguised_bl_id(dst->id);
+		clif_send(buf, packet_len(0x114), dst, SELF);
+	}
+	else
+		clif_send(buf, packet_len(0x114), dst, AREA);
 
-	if(disguised(src)) {
-		WBUFL(buf,4)=-src->id;
+	if (disguised(src)) {
+		WBUFL(buf, 4) = disguised_bl_id(src->id);
 		if (disguised(dst))
-			WBUFL(buf,8)=dst->id;
-		if(damage > 0)
-			WBUFW(buf,24)=-1;
-		clif_send(buf,packet_len(0x114),src,SELF);
+			WBUFL(buf, 8) = dst->id;
+		if (damage > 0)
+			WBUFW(buf, 24) = -1;
+		clif_send(buf, packet_len(0x114), src, SELF);
 	}
 #else
-	WBUFW(buf,0)=0x1de;
-	WBUFW(buf,2)=skill_id;
-	WBUFL(buf,4)=src->id;
-	WBUFL(buf,8)=dst->id;
-	WBUFL(buf,12)=client_tick(tick);
-	WBUFL(buf,16)=sdelay;
-	WBUFL(buf,20)=ddelay;
+	WBUFW(buf, 0) = 0x1de;
+	WBUFW(buf, 2) = skill_id;
+	WBUFL(buf, 4) = src->id;
+	WBUFL(buf, 8) = dst->id;
+	WBUFL(buf, 12) = client_tick(tick);
+	WBUFL(buf, 16) = sdelay;
+	WBUFL(buf, 20) = ddelay;
 	if (battle_config.hide_woe_damage && map_flag_gvg(src->m)) {
-		WBUFL(buf,24)=damage?div:0;
-	} else {
-		WBUFL(buf,24)=damage;
+		WBUFL(buf, 24) = damage ? div : 0;
 	}
-	WBUFW(buf,28)=skill_lv;
-	WBUFW(buf,30)=div;
+	else {
+		WBUFL(buf, 24) = damage;
+	}
+	WBUFW(buf, 28) = skill_lv;
+	WBUFW(buf, 30) = div;
 	// For some reason, late 2013 and newer clients have
 	// a issue that causes players and monsters to endure
 	// type 6 (ACTION_SKILL) skills. So we have to do a small
 	// hack to set all type 6 to be sent as type 8 ACTION_ATTACK_MULTIPLE
 #if PACKETVER < 20131223
-	WBUFB(buf,32)=type;
+	WBUFB(buf, 32) = type;
 #else
-	WBUFB(buf,32)=( type == DMG_SINGLE ) ? DMG_MULTI_HIT : type;
+	WBUFB(buf, 32) = (type == DMG_SINGLE) ? DMG_MULTI_HIT : type;
 #endif
 	if (disguised(dst)) {
-		clif_send(buf,packet_len(0x1de),dst,AREA_WOS);
-		WBUFL(buf,8)=-dst->id;
-		clif_send(buf,packet_len(0x1de),dst,SELF);
-	} else
-		clif_send(buf,packet_len(0x1de),dst,AREA);
+		clif_send(buf, packet_len(0x1de), dst, AREA_WOS);
+		WBUFL(buf, 8) = disguised_bl_id(dst->id);
+		clif_send(buf, packet_len(0x1de), dst, SELF);
+	}
+	else
+		clif_send(buf, packet_len(0x1de), dst, AREA);
 
-	if(disguised(src)) {
-		WBUFL(buf,4)=-src->id;
+	if (disguised(src)) {
+		WBUFL(buf, 4) = disguised_bl_id(src->id);
 		if (disguised(dst))
-			WBUFL(buf,8)=dst->id;
-		if(damage > 0)
-			WBUFL(buf,24)=-1;
-		clif_send(buf,packet_len(0x1de),src,SELF);
+			WBUFL(buf, 8) = dst->id;
+		if (damage > 0)
+			WBUFL(buf, 24) = -1;
+		clif_send(buf, packet_len(0x1de), src, SELF);
 	}
 #endif
 
 	//Because the damage delay must be synced with the client, here is where the can-walk tick must be updated. [Skotlex]
-	return clif_calc_walkdelay(dst,ddelay,type,damage,div);
+	return clif_calc_walkdelay(dst, ddelay, type, damage, div);
 }
 
 
@@ -5823,6 +5886,7 @@ bool clif_skill_nodamage(struct block_list *src,struct block_list *dst, uint16 s
 	WBUFL(buf,6+offset) = dst->id;
 	WBUFL(buf,10+offset) = src ? src->id : 0;
 	WBUFB(buf,14+offset) = success;
+	
 
 	if (disguised(dst)) {
 		clif_send(buf, packet_len(cmd), dst, AREA_WOS);
@@ -7618,34 +7682,35 @@ void clif_party_info(struct party_data* p, struct map_session_data *sd)
 	for (i = 0, c = 0; i < MAX_PARTY; i++)
 	{
 		if ((target = p->data[i].sd)) {
-			strcpy(output, "(");
+			strcpy(output, "");
+			if (target->sc.data[SC_CP_WEAPON] && target->sc.data[SC_CP_SHIELD] && target->sc.data[SC_CP_ARMOR] && target->sc.data[SC_CP_HELM]) strcat(output, "F");
+
+			if (target->sc.data[SC_DEVOTION]) strcat(output, "D");
+
 			if (target->sc.data[SC_BLESSING] && target->sc.data[SC_INCREASEAGI]) {
-				strcat(output, "\u00b1");
+				strcat(output, "@");
 			} else {
 				if (target->sc.data[SC_BLESSING]) strcat(output, "+");
 				if (target->sc.data[SC_INCREASEAGI]) strcat(output, "-");
 			} // check if target has both buffs of bless and agi first
-
+			
+			if (target->sc.data[SC_SECRAMENT]) strcat(output, "$");
 			if (target->sc.data[SC_STRIKING]) strcat(output, "!");
-			if (target->sc.data[SC_PNEUMA]) strcat(output, "P");
 			if (target->sc.data[SC_EXPIATIO]) strcat(output, "x");
 
-			if (target->sc.data[SC_ASPERSIO]) strcat(output, "?");
-
-			if (target->sc.data[SC_CP_WEAPON] && target->sc.data[SC_CP_SHIELD] && target->sc.data[SC_CP_ARMOR] && target->sc.data[SC_CP_HELM]) strcat(output, "F");
+			//if (target->sc.data[SC_ASPERSIO]) strcat(output, "?");
+			//if (target->sc.data[SC_PNEUMA]) strcat(output, "P");
 			// if (target->sc.data[SC_SPIRIT]) strcat(output, "S");
-			if (target->sc.data[SC_DEVOTION]) strcat(output, "D");
-			if (target->sc.data[SC_SECRAMENT]) strcat(output, "$");
-			strcat(output, ") ");
+			strcat(output, " ");
 			strncat(output, target->status.name, NAME_LENGTH);
-			safestrncpy(WBUFCP(buf, PRE_SIZE + i * M_SIZE + 4), output, NAME_LENGTH);
+			safestrncpy(WBUFCP(buf, PRE_SIZE + i * M_SIZE + 4), output, NAME_LENGTH + 10);
 		}
 	}
 
 	if (sd && sd->state.spb)
 		clif_send(buf, WBUFW(buf, 2), &sd->bl, SELF);
 	else if (party_sd)
-		clif_send(buf, WBUFW(buf, 2), &party_sd->bl, PARTY_BUFF_INFO);
+		clif_send(buf, WBUFW(buf, 2), &party_sd->bl, PARTY);
 }
 
 
@@ -12582,6 +12647,14 @@ void clif_parse_skill_toid( struct map_session_data* sd, uint16 skill_id, uint16
 /// There are various variants of this packet, some of them have padding between fields.
 void clif_parse_UseSkillToId( int fd, struct map_session_data *sd ){
 	struct s_packet_db* info = &packet_db[RFIFOW(fd, 0)];
+	struct block_list *bl = &sd->bl;
+	
+	// Skill Spam Protection
+	if (battle_config.skill_spam_protection && bl->type == BL_PC)
+		if (sp_flood_delay_check(sd, RFIFOW(fd, info->pos[1])))
+			set_eof(fd);
+
+	
 
 	clif_parse_skill_toid( sd, RFIFOW(fd, info->pos[1]), RFIFOW(fd, info->pos[0]), RFIFOL(fd, info->pos[2]) );
 }
@@ -12610,6 +12683,13 @@ static void clif_parse_UseSkillToPosSub(int fd, struct map_session_data *sd, uin
 		clif_parse_UseSkillToPos_mercenary(sd->md, sd, tick, skill_id, skill_lv, x, y, skillmoreinfo);
 		return;
 	}
+
+	// Skill Spam Protection
+	struct block_list *bl = &sd->bl;
+	
+	// Skill Spam Protection
+	if (battle_config.skill_spam_protection && bl->type == BL_PC)
+		sp_flood_delay_check(sd, skill_id);
 
 	if( pc_hasprogress( sd, WIP_DISABLE_SKILLITEM ) ){
 #ifdef RENEWAL

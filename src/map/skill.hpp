@@ -551,6 +551,11 @@ int skill_vfcastfix(struct block_list *bl, double time, uint16 skill_id, uint16 
 int skill_delayfix(struct block_list *bl, uint16 skill_id, uint16 skill_lv);
 void skill_toggle_magicpower(struct block_list *bl, uint16 skill_id);
 
+// Skill Spam Protection [Andie]
+int sp_skill_delay_check(struct map_session_data *sd, uint16 skill_id, uint16 skill_lv, uint16 flag);
+int sp_skill_delay_penalty(uint16 skill_id);
+int sp_flood_delay_check(struct map_session_data *sd, uint16 skill_id);
+
 // Skill conditions check and remove [Inkfish]
 bool skill_check_condition_castbegin(struct map_session_data *sd, uint16 skill_id, uint16 skill_lv);
 bool skill_check_condition_castend(struct map_session_data *sd, uint16 skill_id, uint16 skill_lv);

@@ -1,0 +1,29 @@
+askald,209,137,3	script	Exchanger#Askald	62,{
+
+for(.@i=0;.@i<getarraysize(.Exchange);.@i+=4){
+	mes (++.@x)+". "+.Exchange[.@i+1]+"x "+getitemname(.Exchange[.@i])+" = "+.Exchange[.@i+3]+"x "+getitemname(.Exchange[.@i+2]);
+	set .@menu$,.@menu$+getitemname(.Exchange[.@i])+":";
+}
+
+set .@choice,select(.@menu$)-1;
+next;
+if(countitem(.Exchange[.@choice*4])<.Exchange[.@choice*4+1]){
+	mes "You don't have enough materials for echange.";
+	end;
+}
+	mes "Transaction completed";
+	delitem .Exchange[.@choice*4],.Exchange[.@choice*4+1];
+	getitem .Exchange[.@choice*4+2],.Exchange[.@choice*4+3];
+end;
+
+OnInit:
+	//<arg 1: Material;>, <arg 2: Material Amount;>, <arg 3:Prize;>, <arg 4: Prize amount;>,{Repeat}
+	setarray .Exchange[0],
+		6241,5,6225,1, // HD Eluniums to HD Carniums
+		6240,5,6226,1, // HD Oridecons to HD Bradiums
+		6314,5,6241,1, // Enriched eluniums to HD Eluniums
+		6315,5,6240,1, // Enriched oridecon to HD Oridecons
+		6187,1000,7829,500; // Blank to Valor converter
+end;
+
+}

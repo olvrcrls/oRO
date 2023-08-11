@@ -1,0 +1,329 @@
+//===================================================
+//= Specific Enchanter for Robes of Banquet of Heroes
+//===================================================
+//= 1.0 [Andie]
+//===================================================
+
+
+-	script	Master Dylan	4_CAT_SAILOR5,{
+	disable_command;
+	disable_items;
+
+	.@n$ = "[Master Dylan]";
+	//== Items needed
+	.@valor_badge_id = 7829;
+	.@honor_token_id = 6919;
+	.@zeny = 100000000; // 100 M
+
+	//== Costs
+	.@valor_badge_qty = 5000;
+	.@honor_token_qty = 100;
+
+	if ((MaxWeight - Weight) < 1000) {
+		mes .@n$;
+		mes "It seems difficult to proceed any further since the items in your possession are too heavy. Reduce the weight and try again.";
+		close;
+	}
+	if (checkweight(501,1) == 0) {
+		mes .@n$;
+		mes "There are too many kinds of items in possession. Reduce the type of the items and try again.";
+		close;
+	}
+	if (isbegin_quest(12369) == 0) {
+		mes .@n$;
+		mes "Are you a customer? I am not going to get more customers today because I am tired.";
+		next;
+		select("Are you running a business in the prison?");
+		mes .@n$;
+		mes "Although I may look like this now, I used to be called the man with the hand of minus out there. It is quite dangerous stuff. You'd better stay away.";
+		next;
+		mes "^0000ff Unlike his words, he really seems eager to give an explanation. ^000000";
+		next;
+		if (select( "I don't want to waste time here.", "What kind of business you are running here." ) == 1) {
+			mes .@n$;
+			mes "Don't be a chicken...";
+			close;
+		}
+		mes .@n$;
+		mes "Honor Mark, which is issued by the kingdom and not to be traded between individuals. I receive it and enhance people's equipment.";
+		next;
+		mes .@n$;
+		mes "As you can tell, it is against the law. That's why I used to only work for through personal contacts. However, one guy whose equipment was broken while resetting the enhancement informed on me.";
+		next;
+		select("It really is a crime.");
+		mes .@n$;
+		mes "I don't need to hear of some personal impression by you. Although I am caught, I am roaming the prison freely thanks to the warder over there.";
+		next;
+		mes .@n$;
+		mes "Of course, I cannot get out to avoid causing the real problem. That's why I stay in the prison like this. Are you interested in the deal?";
+		next;
+		if (select( "The kingdom has poor public security.", "What is the deal?" ) == 1) {
+			mes .@n$;
+			mes "What a nerd. I told you to back off if you didn't want to get involved.";
+			close;
+		}
+		mes .@n$;
+		mes "You are a great fellow to deal with. I want to save enough money to bail myself out. Any customers are welcome here.";
+		next;
+		mes .@n$;
+		mes "I enhance the three items, Flattery Robe, Abusive Robe, Consultation Robe for Honor Mark.";
+		next;
+		mes .@n$;
+		mes "I guess I don't need to explain about it anymore. Just bring the equipment you want to enhance to me.";
+		setquest 12369;// Secret Business Relation
+		completequest 12369;// Secret Business Relation
+		close;
+	}
+	mes .@n$;
+	mes "I have mastered enchanting Robes form Banquet of Heroes! I can grant what you want!";
+	next;
+	.@s = select( "Tell me about the deal.", "Enhance Robe", "Reset Enhanced Robe Stats" );
+	switch(.@s) {
+	case 1:
+		mes .@n$;
+		mes "Listen carefully. I won't say twice.";
+		next;
+		mes .@n$;
+		mes "I'll enhance one of the Flattery Robe or Abusive Robe, Consultation Robe slot for 20 Honor Marks. I can enhance up to 2 slots. And I take 10 Honor Marks for the reset. Do you follow me so far?";
+		next;
+		mes .@n$;
+		mes "Next, for the Prontera Badge. I'll take 5 Honor Marks to enhance 1 slot. I can enhance up to 2 slots. And I take 10 Honor Marks for the reset.";
+		next;
+		mes .@n$;
+		mes "I don't perform the reset anytime. I'll do it when the 2 slots are enhanced for that you cannot enhance the item anymore. And... Then...";
+		next;
+		mes .@n$;
+		mes "Oh, there is one problem though. There is a change that the badge can be destroyed while resetting it. The chance is about 20%. Since it is such a tiny thing, there is some side effect of removing the enhancement.";
+		next;
+		mes .@n$;
+		mes "I hope the deal goes well, buddy.";
+		close;
+	case 2:
+		mes .@n$;
+		mes "I need the following:"; 
+		mes "^FF0000" + .@valor_badge_qty + "^000000 " + getitemname(.@valor_badge_id);
+		mes "^FF0000" + .@honor_token_qty + "^000000 " + getitemname(.@honor_token_id);
+		mes "^FF0000" + callfunc("F_InsertComma",.@zeny) +  "^000000 zeny.";
+		mes "These are the requirements to enchant your ^7289DAAbusive and Flattery^000000 Robe. Do you want to enhance it?";
+		break;
+	case 3:
+		mes .@n$;
+		mes "You need 10 Honor Marks to reset Abusive Robe, Consultation Robe or Flattery Robe. The equipment won't be destroyed. The bound cards and the refinement level would remain the same as well.";
+		break;
+	}
+	next;
+	if (select( "I quit.", "Let's do it now." ) == 1) {
+		mes .@n$;
+		mes "I am busy so please don't waste my time by talking to me for no reason.";
+		close;
+	}
+	switch(.@s) {
+		case 2:
+			goto Enchant_Armor;
+			break;
+		case 3:
+			goto Reset_Enchant_Armor;
+			break;
+		default:
+			mes .@n$;
+			mes "What were we talking about again?";
+			break;
+	} // switch
+	specialeffect2 EF_REPAIRWEAPON;
+	close;
+
+
+Reset_Enchant_Armor:
+	.@item_id = getequipid(EQI_ARMOR);
+	.@refine = getequiprefinerycnt(EQI_ARMOR);
+	.@card[0] = getequipcardid(EQI_ARMOR,0);
+	.@card[2] = getequipcardid(EQI_ARMOR,2);
+	.@card[3] = getequipcardid(EQI_ARMOR,3);
+	if (.@item_id == -1) {
+		mes .@n$;
+		mes "Where's the stuff?";
+		close;
+	}
+	if (.@item_id != 15146 && .@item_id != 15147) {
+		mes .@n$;
+		mes "What is this? I am not familiar with this crap!1!";
+		close;
+	}
+	if (.@card[2] == 0 || .@card[3] == 0) {
+		mes .@n$;
+		mes "Come back when this item has been fully enchanted.";
+		close;
+	}
+	if (countitem(6919) < 10) {
+		mes .@n$;
+		mes "Hey, buddy, you can't scammaz me. Come back with the proper cost.";
+		close;
+	}
+	delitem 6919,10;
+	delequip EQI_ARMOR;
+	getitem2 .@item_id,1,1,.@refine,0,.@card[0],0,0,0;
+	mes .@n$;
+	mes "Hum, it has been processed well. Check out the item.";
+
+Enchant_Armor:
+	.@item_id = getequipid(EQI_ARMOR);
+	.@refine = getequiprefinerycnt(EQI_ARMOR);
+	.@card[0] = getequipcardid(EQI_ARMOR,0);
+	.@card[1] = getequipcardid(EQI_ARMOR,1);
+	.@card[2] = getequipcardid(EQI_ARMOR,2);
+	.@card[3] = getequipcardid(EQI_ARMOR,3);
+	setarray .@robe_enchants[0],
+		4994,	// 0 Rune of Strength Lv 1
+		4997,	// 1 Rune of Agility Lv 1
+		29009,	// 2 Rune of Vitality Lv 1
+		29000,	// 3 Rune of Intellect Lv 1
+		29003,	// 4 Rune of Dexterity Lv 1
+		29006,	// 5 Rune of Luck Lv 1
+		4995,	// 6 Rune of Strength Lv 2
+		4998,	// 7 Rune of Agility Lv 2
+		29010,	// 8 Rune of Vitality Lv 2
+		29001,	// 9 Rune of Intellect Lv 2
+		29004,	// 10 Rune of Dexterity Lv 2
+		29007,	// 11 Rune of Luck Lv 2
+		4996,	// 12 Rune of Strength Lv 3
+		4999,	// 13 Rune of Agility Lv 3
+		29011,	// 14 Rune of Vitality Lv 3
+		29002,	// 15 Rune of Intellect Lv 3
+		29005,	// 16 Rune of Dexterity Lv 3
+		29008;	// 17 Rune of Luck Lv 3
+
+	if (.@item_id == -1) {
+		mes .@n$;
+		mes "You are not wearing the item.";
+		close;
+	}
+	if (.@item_id != 15146 && .@item_id != 15147 && .@item_id != 15164) {
+		mes .@n$;
+		mes "Stop fooling around. If you want to enhance it, come to me wearing the equipment.";
+		close;
+	}
+	if (.@card[2] > 0 && .@card[3] > 0) {
+		mes .@n$;
+		mes "It cannot be enhanced any further. Come back with a clean robe.";
+		close;
+	}
+
+	if (countitem(.@honor_token_id) < .@honor_token_qty || countitem(.@valor_badge_id) < .@valor_badge_qty || Zeny < .@zeny) {
+		mes .@n$;
+		mes "You don't have the correct materials, man!";
+		mes "Get back when you have the following:";
+		mes "^FF0000" + .@valor_badge_qty + "^000000 " + getitemname(.@valor_badge_id);
+		mes "^FF0000" + .@honor_token_qty + "^000000 " + getitemname(.@honor_token_id);
+		mes "^FF0000" + callfunc("F_InsertComma",.@zeny) +  "^000000 zeny.";
+		close;
+	}
+
+	// Form the selection options for the robe.
+	.@selection_size = getarraysize(.@robe_enchants);
+	for(.@i = 0; .@i < .@selection_size; .@i += 1) {
+		.@selection_menu$ = .@selection_menu$ + (.@i < 0 ? "" : ":") + getitemname(.@robe_enchants[.@i]);
+	} // for
+
+	if (.@item_id == 15147) {// Abusive Robe
+		if (.@card[3] == 0) {
+			.@card_index = 3;
+			mes .@n$;
+			mes "Which ^FF00001ST Enchant^000000 do you want for your ^7289DA" + getitemname(15147) + "^000000 robe?";
+			.@selected_enchant = select(.@selection_menu$);
+			next;
+			
+			mes .@n$;
+			mes "You have selected: ^7289DA" + getitemname(.@robe_enchants[.@selected_enchant - 2]) + "^000000";
+			mes "Are you certain? This cannot be undone.";
+			.@agree = select("No.:Yeah, let's go!");
+		}
+		else {
+			.@card_index = 2;
+			mes .@n$;
+			mes "Which ^FF00002ND Enchant^000000 do you want for your ^7289DA" + getitemname(15147) + "^000000 robe?";
+			.@selected_enchant = select(.@selection_menu$);
+			next;
+
+			mes .@n$;
+			mes "You have selected: ^7289DA" + getitemname(.@robe_enchants[.@selected_enchant - 2]) + "^000000";
+			mes "Are you sure with this? This cannot be undone.";
+			.@agree = select("No.:Yeah, let's go!");
+		}
+	}
+	else if (.@item_id == 15146) {// Flattery Robe
+		if (.@card[3] == 0) {
+			.@card_index = 3;
+			mes .@n$;
+			mes "Which ^FF00001ST Enchant^000000 do you want for your ^7289DA" + getitemname(15146) + "^000000 robe?";
+			.@selected_enchant = select(.@selection_menu$);
+			next;
+			
+			mes .@n$;
+			mes "You have selected: ^7289DA" + getitemname(.@robe_enchants[.@selected_enchant - 2]) + "^000000";
+			mes "Are you sure with this? This cannot be undone.";
+			.@agree = select("No.:Yeah, let's go!");
+		}
+		else {
+			.@card_index = 2;
+			mes .@n$;
+			mes "Which ^FF00002ND Enchant^000000 do you want for your ^7289DA" + getitemname(15146) + "^000000 robe?";
+			.@selected_enchant = select(.@selection_menu$);
+			next;
+
+			mes .@n$;
+			mes "You have selected: ^7289DA" + getitemname(.@robe_enchants[.@selected_enchant - 2]) + "^000000";
+			mes "Are you sure with this? This cannot be undone.";
+			.@agree = select("No.:Yeah, let's go!");
+		}
+	}
+	else if (.@item_id == 15164) {// Consultation
+		if (.@card[3] == 0) {
+			.@card_index = 3;
+			mes .@n$;
+			mes "Which ^FF00001ST Enchant^000000 do you want for your ^7289DA" + getitemname(15164) + "^000000 robe?";
+			.@selected_enchant = select(.@selection_menu$);
+			next;
+			
+			mes .@n$;
+			mes "You have selected: ^7289DA" + getitemname(.@robe_enchants[.@selected_enchant - 2]) + "^000000";
+			mes "Are you sure with this? This cannot be undone.";
+			.@agree = select("No.:Yeah, let's go!");
+		}
+		else {
+			.@card_index = 2;
+			mes .@n$;
+			mes "Which ^FF00002ND Enchant^000000 do you want for your ^7289DA" + getitemname(15164) + "^000000 robe?";
+			.@selected_enchant = select(.@selection_menu$);
+			next;
+
+			mes .@n$;
+			mes "You have selected: ^7289DA" + getitemname(.@robe_enchants[.@selected_enchant - 2]) + "^000000";
+			mes "Are you sure with this? This cannot be undone.";
+			.@agree = select("No.:Yeah, let's go!");
+		}
+	}
+
+	if (.@agree == 2) {
+		.@card[.@card_index] = .@robe_enchants[.@selected_enchant - 2]);
+		// dispbottom "The ID is: " + .@robe_enchants[.@selected_enchant - 2] + " on the card index: " + .@card_index; // debugging purposes.
+		next;
+		mes .@n$;
+		mes "My work is done. Congratulations!";
+	} else {
+		mes "-";
+		mes "Wow, such a waste of time. Come back when you're decisive, noob.";
+		close;
+		end;
+	}
+
+	delitem .@honor_token_id,.@honor_token_qty;
+	delitem .@valor_badge_id,.@valor_badge_qty;
+	set Zeny, Zeny - .@zeny;
+	delequip EQI_ARMOR;
+	getitem2 .@item_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
+	close;
+	end;
+}
+
+
+askald,98,152,5	duplicate(Master Dylan)	Master Dylan#ask	4_CAT_SAILOR5

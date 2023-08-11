@@ -1234,7 +1234,7 @@
 7765,507,99	// Yaga_Secret_Medicine
 7766,475,99	// Bok_Choy
 7767,475,99	// Chung_E_Cake
-7773,499,99	// War_Badge
+7773,1,99	// War_Badge
 7775,475,99	// Spring_Rabbit_Ticket
 7776,9,99	// Max_Weight_Up_Scroll
 7779,475,99	// Gold_Key_TW

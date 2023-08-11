@@ -612,7 +612,7 @@ int guild_recv_info(struct guild *sg) {
 			//If the guild master is online the first time the guild_info is received,
 			//that means he was the first to join, so apply guild skill blocking here.
 			if( battle_config.guild_skill_relog_delay )
-				guild_block_skill(sd, battle_config.guild_skill_relog_delay);
+				guild_block_skill(sd, GD_EMERGENCYCALL, battle_config.guild_skill_relog_delay);
 
 			//Also set the guild master flag.
 			sd->guild = g;
@@ -809,7 +809,7 @@ void guild_member_joined(struct map_session_data *sd) {
 		sd->state.gmaster_flag = 1;
 		// prevent Guild Skills from being used directly after relog
 		if( battle_config.guild_skill_relog_delay )
-			guild_block_skill(sd, battle_config.guild_skill_relog_delay);
+			guild_block_skill(sd, GD_EMERGENCYCALL, battle_config.guild_skill_relog_delay);
 	}
 	i = guild_getindex(g, sd->status.account_id, sd->status.char_id);
 	if (i == -1)
@@ -1511,11 +1511,12 @@ int guild_get_alliance_count(struct guild *g,int flag) {
 }
 
 // Blocks all guild skills which have a common delay time.
-void guild_block_skill(struct map_session_data *sd, int time) {
-	uint16 skill_id[] = { GD_BATTLEORDER, GD_REGENERATION, GD_RESTORE, GD_EMERGENCYCALL };
-	int i;
-	for (i = 0; i < 4; i++)
-		skill_blockpc_start(sd, skill_id[i], time);
+void guild_block_skill(struct map_session_data *sd, uint16 skill_id, int time) {
+	skill_blockpc_start(sd, skill_id, time);
+	// uint16 skill_id[] = { GD_BATTLEORDER, GD_REGENERATION, GD_RESTORE, GD_EMERGENCYCALL };
+	// int i;
+	// for (i = 0; i < 4; i++)
+	// 	skill_blockpc_start(sd, skill_id[i], time);
 }
 
 /*====================================================
@@ -1954,8 +1955,12 @@ int guild_gm_changed(int guild_id, uint32 account_id, uint32 char_id, time_t tim
 		g->member[0].sd->state.gmaster_flag = 1;
 		clif_name_area(&g->member[0].sd->bl);
 		//Block his skills to prevent abuse.
-		if (battle_config.guild_skill_relog_delay)
-			guild_block_skill(g->member[0].sd, battle_config.guild_skill_relog_delay);
+		if (battle_config.guild_skill_relog_delay) {
+			guild_block_skill(g->member[0].sd, GD_EMERGENCYCALL, battle_config.guild_skill_relog_delay);
+			guild_block_skill(g->member[0].sd, GD_BATTLEORDER, battle_config.guild_skill_relog_delay);
+			guild_block_skill(g->member[0].sd, GD_RESTORE, battle_config.guild_skill_relog_delay);
+			guild_block_skill(g->member[0].sd, GD_REGENERATION, battle_config.guild_skill_relog_delay);
+		}
 	}
 
 	// announce the change to all guild members
@@ -2212,10 +2217,73 @@ int guild_castledataloadack(int len, struct guild_castle *gc) {
 	return 0;
 }
 
+/*------------------------------------------
+ * Guild Ranking System
+ *------------------------------------------*/
+int guild_ranking_save(int flag)
+{
+	struct guild_castle *gc;
+	struct guild *g;
+	DBIterator* iter;
+	struct map_session_data *sd;
+	int i, j, index, cc;
+
+	iter = castle_db->iterator(castle_db);
+	for( gc = (struct guild_castle*)dbi_first(iter); dbi_exists(iter); gc = (struct guild_castle*)dbi_next(iter) )
+	{
+		if( gc->guild_id == 0 )
+			continue;
+		
+		index = gc->castle_id;
+
+		if( index >= RANK_CASTLES || (flag == 1 && index >= 24) || (flag == 2 && index < 24) )
+			continue;
+
+		if( (g = guild_search(gc->guild_id)) != NULL )
+		{
+			int addtime = (int)DIFF_TICK(gettick(), gc->capture_tick);
+			int score = (addtime / 300) * (1 + (gc->economy / 25));
+
+			g->castle[index].capture++;
+			g->castle[index].posesion_time += addtime;
+			g->castle[index].defensive_score += score;
+			g->castle[index].changed = true;
+
+			// Capture counter for members
+			for( j = 0; j < MAX_GUILD; j++ )
+			{
+				if( (sd = g->member[j].sd) == NULL )
+					continue;
+
+				cc = pc_readaccountreg(sd, add_str("#GC_CAPTURES"));
+				pc_setaccountreg(sd, add_str("#GC_CAPTURES"),++cc);
+			}
+		}
+	}
+	iter->destroy(iter);
+
+	iter = guild_db->iterator(guild_db);
+	for( g = (struct guild*)dbi_first(iter); dbi_exists(iter); g = (struct guild*)dbi_next(iter) )
+	{
+		for( i = 0; i < RANK_CASTLES; i++ )
+		{
+			if( !g->castle[i].changed )
+				continue;
+
+			intif_guild_save_score(g->guild_id, i, &g->castle[i]);
+			g->castle[i].changed = false;
+		}
+	}
+	iter->destroy(iter);
+	return 0;
+}
+
 /**
  * Start WoE:FE and triggers all npc OnAgitStart
  */
-bool guild_agit_start(void){
+bool guild_agit_start(void){	
+	struct guild_castle *gc;
+	DBIterator *iter = db_iterator(castle_db);
 	if( agit_flag ){
 		return false;
 	}
@@ -2223,6 +2291,17 @@ bool guild_agit_start(void){
 	agit_flag = true;
 
 	npc_event_runall( script_config.agit_start_event_name );
+	
+	for( gc = (struct guild_castle*)dbi_first(iter); dbi_exists(iter); gc = (struct guild_castle*)dbi_next(iter) )
+	{
+		if( gc->castle_id >= 24 )
+			continue; // WoE SE Castle
+		if( !gc->guild_id )
+			continue; // No owner
+
+		gc->capture_tick = gettick();
+	}
+	dbi_destroy(iter);
 
 	return true;
 }
@@ -2238,7 +2317,8 @@ bool guild_agit_end(void){
 	agit_flag = false;
 
 	npc_event_runall( script_config.agit_end_event_name );
-
+	guild_ranking_save(1);
+	
 	return true;
 }
 
@@ -2246,6 +2326,8 @@ bool guild_agit_end(void){
  * Start WoE:SE and triggers all npc OnAgitStart2
  */
 bool guild_agit2_start(void){
+	struct guild_castle *gc;
+	DBIterator *iter = db_iterator(castle_db);
 	if( agit2_flag ){
 		return false;
 	}
@@ -2253,7 +2335,16 @@ bool guild_agit2_start(void){
 	agit2_flag = true;
 
 	npc_event_runall( script_config.agit_start2_event_name );
-
+	for( gc = (struct guild_castle*)dbi_first(iter); dbi_exists(iter); gc = (struct guild_castle*)dbi_next(iter) )
+	{
+		if( gc->castle_id < 24 )
+			continue; // Non WoE SE Castle
+		if( !gc->guild_id )
+			continue; // No owner
+ 
+		gc->capture_tick = gettick();
+	}
+	dbi_destroy(iter);
 	return true;
 }
 
@@ -2268,7 +2359,7 @@ bool guild_agit2_end(void){
 	agit2_flag = false;
 
 	npc_event_runall( script_config.agit_end2_event_name );
-
+	guild_ranking_save(2);
 	return true;
 }
 
